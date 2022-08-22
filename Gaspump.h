@@ -21,7 +21,7 @@ unsigned char gas1;
 unsigned int gas_speed;
 unsigned int cost_speed;
 
-#define GAS_STEP 50
+#define GAS_STEP 500
 #define COST_STEP 80
 
 

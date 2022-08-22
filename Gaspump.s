@@ -171,9 +171,9 @@ _pal2:
 	.byte	$30
 L0081:
 	.byte	$47,$61,$73,$20,$50,$75,$6D,$70,$65,$64,$3A,$00
-L00AB:
+L00AE:
 	.byte	$50,$75,$6D,$70,$69,$6E,$67,$21,$21,$21,$00
-L00B6:
+L00B9:
 	.byte	$57,$61,$69,$74,$69,$6E,$67,$2E,$2E,$2E,$00
 L008B:
 	.byte	$43,$6F,$73,$74,$3A,$00
@@ -247,7 +247,7 @@ _temp2:
 ;
 	lda     _cost1
 	cmp     #$0A
-	bcc     L0182
+	bcc     L0185
 ;
 ; cost1 = 0;
 ;
@@ -262,7 +262,7 @@ _temp2:
 ;
 	lda     _cost2
 	cmp     #$0A
-	bcc     L0182
+	bcc     L0185
 ;
 ; cost2 = 0;
 ;
@@ -277,7 +277,7 @@ _temp2:
 ;
 	lda     _cost3
 	cmp     #$0A
-	bcc     L0181
+	bcc     L0184
 ;
 ; cost3 = 0;
 ;
@@ -290,9 +290,9 @@ _temp2:
 ;
 ; if(cost4 >= 10) {
 ;
-L0181:	lda     _cost4
+L0184:	lda     _cost4
 	cmp     #$0A
-	bcc     L0182
+	bcc     L0185
 ;
 ; cost4 = 0;
 ;
@@ -305,9 +305,9 @@ L0181:	lda     _cost4
 ;
 ; if(cost5 >= 10){ // maximum 9999
 ;
-L0182:	lda     _cost5
+L0185:	lda     _cost5
 	cmp     #$0A
-	bcc     L00F5
+	bcc     L00F8
 ;
 ; cost5 = 9;
 ;
@@ -332,7 +332,7 @@ L0182:	lda     _cost5
 ;
 ; }
 ;
-L00F5:	rts
+L00F8:	rts
 
 .endproc
 
@@ -351,7 +351,7 @@ L00F5:	rts
 ;
 	lda     _gas1
 	cmp     #$0A
-	bcc     L0184
+	bcc     L0187
 ;
 ; gas1 = 0;
 ;
@@ -366,7 +366,7 @@ L00F5:	rts
 ;
 	lda     _gas2
 	cmp     #$0A
-	bcc     L0184
+	bcc     L0187
 ;
 ; gas2 = 0;
 ;
@@ -381,7 +381,7 @@ L00F5:	rts
 ;
 	lda     _gas3
 	cmp     #$0A
-	bcc     L0183
+	bcc     L0186
 ;
 ; gas3 = 0;
 ;
@@ -394,9 +394,9 @@ L00F5:	rts
 ;
 ; if(gas4 >= 10) {
 ;
-L0183:	lda     _gas4
+L0186:	lda     _gas4
 	cmp     #$0A
-	bcc     L0184
+	bcc     L0187
 ;
 ; gas4 = 0;
 ;
@@ -409,9 +409,9 @@ L0183:	lda     _gas4
 ;
 ; if(gas5 >= 10){ // maximum 9999
 ;
-L0184:	lda     _gas5
+L0187:	lda     _gas5
 	cmp     #$0A
-	bcc     L00D4
+	bcc     L00D7
 ;
 ; gas5 = 9;
 ;
@@ -436,7 +436,7 @@ L0184:	lda     _gas5
 ;
 ; }
 ;
-L00D4:	rts
+L00D7:	rts
 
 .endproc
 
@@ -458,11 +458,11 @@ L00D4:	rts
 	adc     #$30
 	sta     _temp1
 ;
-; one_vram_buffer(temp1, NTADR_A(22,7));
+; one_vram_buffer(temp1, NTADR_A(22,9));
 ;
 	jsr     pusha
-	ldx     #$20
-	lda     #$F6
+	ldx     #$21
+	lda     #$36
 	jsr     _one_vram_buffer
 ;
 ; temp1 = cost4 + 0x30;
@@ -472,11 +472,11 @@ L00D4:	rts
 	adc     #$30
 	sta     _temp1
 ;
-; one_vram_buffer(temp1, NTADR_A(23,7));
+; one_vram_buffer(temp1, NTADR_A(23,9));
 ;
 	jsr     pusha
-	ldx     #$20
-	lda     #$F7
+	ldx     #$21
+	lda     #$37
 	jsr     _one_vram_buffer
 ;
 ; temp1 = cost3 + 0x30;
@@ -486,11 +486,11 @@ L00D4:	rts
 	adc     #$30
 	sta     _temp1
 ;
-; one_vram_buffer(temp1, NTADR_A(24,7));
+; one_vram_buffer(temp1, NTADR_A(24,9));
 ;
 	jsr     pusha
-	ldx     #$20
-	lda     #$F8
+	ldx     #$21
+	lda     #$38
 	jsr     _one_vram_buffer
 ;
 ; one_vram_buffer('.', NTADR_A(25,9));
@@ -508,11 +508,11 @@ L00D4:	rts
 	adc     #$30
 	sta     _temp1
 ;
-; one_vram_buffer(temp1, NTADR_A(26,7));
+; one_vram_buffer(temp1, NTADR_A(26,9));
 ;
 	jsr     pusha
-	ldx     #$20
-	lda     #$FA
+	ldx     #$21
+	lda     #$3A
 	jsr     _one_vram_buffer
 ;
 ; temp1 = cost1 + 0x30;
@@ -522,11 +522,11 @@ L00D4:	rts
 	adc     #$30
 	sta     _temp1
 ;
-; one_vram_buffer(temp1, NTADR_A(27,7));
+; one_vram_buffer(temp1, NTADR_A(27,9));
 ;
 	jsr     pusha
-	ldx     #$20
-	lda     #$FB
+	ldx     #$21
+	lda     #$3B
 	jmp     _one_vram_buffer
 
 .endproc
@@ -549,11 +549,11 @@ L00D4:	rts
 	adc     #$30
 	sta     _temp1
 ;
-; one_vram_buffer(temp1, NTADR_A(22,9));
+; one_vram_buffer(temp1, NTADR_A(22,7));
 ;
 	jsr     pusha
-	ldx     #$21
-	lda     #$36
+	ldx     #$20
+	lda     #$F6
 	jsr     _one_vram_buffer
 ;
 ; temp1 = gas4 + 0x30;
@@ -563,11 +563,11 @@ L00D4:	rts
 	adc     #$30
 	sta     _temp1
 ;
-; one_vram_buffer(temp1, NTADR_A(23,9));
+; one_vram_buffer(temp1, NTADR_A(23,7));
 ;
 	jsr     pusha
-	ldx     #$21
-	lda     #$37
+	ldx     #$20
+	lda     #$F7
 	jsr     _one_vram_buffer
 ;
 ; temp1 = gas3 + 0x30;
@@ -577,20 +577,20 @@ L00D4:	rts
 	adc     #$30
 	sta     _temp1
 ;
-; one_vram_buffer('.', NTADR_A(24,9));
+; one_vram_buffer('.', NTADR_A(24,7));
 ;
 	lda     #$2E
 	jsr     pusha
-	ldx     #$21
-	lda     #$38
+	ldx     #$20
+	lda     #$F8
 	jsr     _one_vram_buffer
 ;
-; one_vram_buffer(temp1, NTADR_A(25,9));
+; one_vram_buffer(temp1, NTADR_A(25,7));
 ;
 	lda     _temp1
 	jsr     pusha
-	ldx     #$21
-	lda     #$39
+	ldx     #$20
+	lda     #$F9
 	jsr     _one_vram_buffer
 ;
 ; temp1 = gas2 + 0x30;
@@ -600,11 +600,11 @@ L00D4:	rts
 	adc     #$30
 	sta     _temp1
 ;
-; one_vram_buffer(temp1, NTADR_A(26,9));
+; one_vram_buffer(temp1, NTADR_A(26,7));
 ;
 	jsr     pusha
-	ldx     #$21
-	lda     #$3A
+	ldx     #$20
+	lda     #$FA
 	jsr     _one_vram_buffer
 ;
 ; temp1 = gas1 + 0x30;
@@ -614,11 +614,11 @@ L00D4:	rts
 	adc     #$30
 	sta     _temp1
 ;
-; one_vram_buffer(temp1, NTADR_A(27,9));
+; one_vram_buffer(temp1, NTADR_A(27,7));
 ;
 	jsr     pusha
-	ldx     #$21
-	lda     #$3B
+	ldx     #$20
+	lda     #$FB
 	jmp     _one_vram_buffer
 
 .endproc
@@ -723,34 +723,42 @@ L0077:	jsr     _ppu_wait_nmi
 ;
 	lda     _pad2_zapper
 	cmp     #$01
-	bne     L0094
+	jne     L0094
 ;
 ; gas_speed += GAS_STEP;
 ;
-	lda     #$32
+	lda     #$F4
 	clc
 	adc     _gas_speed
 	sta     _gas_speed
-	bcc     L0098
-	inc     _gas_speed+1
+	lda     #$01
+	adc     _gas_speed+1
 ;
-; if(gas_speed > 256){
+; while(gas_speed > 256){
 ;
-L0098:	lda     _gas_speed
-	cmp     #$01
-	lda     _gas_speed+1
-	sbc     #$01
-	bcc     L0099
+	jmp     L018B
 ;
 ; ++gas1;
 ;
-	inc     _gas1
+L0189:	inc     _gas1
 ;
-; gas_speed = 0;
+; gas_speed -= 256;
 ;
-	lda     #$00
+	lda     _gas_speed
+	sec
+	sbc     #$00
 	sta     _gas_speed
-	sta     _gas_speed+1
+	lda     _gas_speed+1
+	sbc     #$01
+L018B:	sta     _gas_speed+1
+;
+; while(gas_speed > 256){
+;
+	lda     _gas_speed
+	cmp     #$01
+	lda     _gas_speed+1
+	sbc     #$01
+	bcs     L0189
 ;
 ; adjust_gas();
 ;
@@ -762,30 +770,38 @@ L0098:	lda     _gas_speed
 ;
 ; cost_speed += COST_STEP;
 ;
-L0099:	lda     #$50
+	lda     #$50
 	clc
 	adc     _cost_speed
 	sta     _cost_speed
-	bcc     L00A2
+	bcc     L00A6
 	inc     _cost_speed+1
 ;
-; if(cost_speed > 256){
+; while(cost_speed > 256){
 ;
-L00A2:	lda     _cost_speed
-	cmp     #$01
-	lda     _cost_speed+1
-	sbc     #$01
-	bcc     L00A3
+	jmp     L00A6
 ;
 ; ++cost1;
 ;
-	inc     _cost1
+L018A:	inc     _cost1
 ;
-; cost_speed = 0;
+; cost_speed -= 256;
 ;
-	lda     #$00
+	lda     _cost_speed
+	sec
+	sbc     #$00
 	sta     _cost_speed
+	lda     _cost_speed+1
+	sbc     #$01
 	sta     _cost_speed+1
+;
+; while(cost_speed > 256){
+;
+L00A6:	lda     _cost_speed
+	cmp     #$01
+	lda     _cost_speed+1
+	sbc     #$01
+	bcs     L018A
 ;
 ; adjust_cost();
 ;
@@ -797,12 +813,12 @@ L00A2:	lda     _cost_speed
 ;
 ; multi_vram_buffer_horz("Pumping!!!", 10, NTADR_A(10,11)); 
 ;
-L00A3:	jsr     decsp3
-	lda     #<(L00AB)
+	jsr     decsp3
+	lda     #<(L00AE)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L00AB)
+	lda     #>(L00AE)
 	sta     (sp),y
 	lda     #$0A
 	ldy     #$00
@@ -818,11 +834,11 @@ L00A3:	jsr     decsp3
 ; multi_vram_buffer_horz("Waiting...", 10, NTADR_A(10,11)); 
 ;
 L0094:	jsr     decsp3
-	lda     #<(L00B6)
+	lda     #<(L00B9)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L00B6)
+	lda     #>(L00B9)
 	sta     (sp),y
 	lda     #$0A
 	ldy     #$00

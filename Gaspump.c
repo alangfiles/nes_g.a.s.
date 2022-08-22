@@ -75,19 +75,21 @@ void main (void) {
 		if(pad2_zapper == 1){
 
 			gas_speed += GAS_STEP;
-			if(gas_speed > 256){
+			while(gas_speed > 256){
 				++gas1;
-				gas_speed = 0;
-				adjust_gas();
-				draw_gas();
+				gas_speed -= 256;
 			}
+			adjust_gas();
+			draw_gas();
+		
 			cost_speed += COST_STEP;
-			if(cost_speed > 256){
+			while(cost_speed > 256){
 				++cost1;
-				cost_speed = 0;
-				adjust_cost();
-				draw_cost();
+				cost_speed -= 256;
 			}
+			adjust_cost();
+			draw_cost();
+			
 			multi_vram_buffer_horz("Pumping!!!", 10, NTADR_A(10,11)); 
 			
 			
@@ -158,30 +160,30 @@ void adjust_cost(void){
 void draw_cost(void){
 	// copy score to BG
 	temp1 = cost5 + 0x30;
-	one_vram_buffer(temp1, NTADR_A(22,7));
+	one_vram_buffer(temp1, NTADR_A(22,9));
 	temp1 = cost4 + 0x30;
-	one_vram_buffer(temp1, NTADR_A(23,7));
+	one_vram_buffer(temp1, NTADR_A(23,9));
 	temp1 = cost3 + 0x30;
-	one_vram_buffer(temp1, NTADR_A(24,7));
+	one_vram_buffer(temp1, NTADR_A(24,9));
 	one_vram_buffer('.', NTADR_A(25,9));
 	temp1 = cost2 + 0x30;
-	one_vram_buffer(temp1, NTADR_A(26,7));
+	one_vram_buffer(temp1, NTADR_A(26,9));
 	temp1 = cost1 + 0x30;
-	one_vram_buffer(temp1, NTADR_A(27,7));
+	one_vram_buffer(temp1, NTADR_A(27,9));
 }
 
 void draw_gas(void){
 	// copy score to BG
 	temp1 = gas5 + 0x30;
-	one_vram_buffer(temp1, NTADR_A(22,9));
+	one_vram_buffer(temp1, NTADR_A(22,7));
 	temp1 = gas4 + 0x30;
-	one_vram_buffer(temp1, NTADR_A(23,9));
+	one_vram_buffer(temp1, NTADR_A(23,7));
 	temp1 = gas3 + 0x30;
-	one_vram_buffer('.', NTADR_A(24,9));
+	one_vram_buffer('.', NTADR_A(24,7));
 
-	one_vram_buffer(temp1, NTADR_A(25,9));
+	one_vram_buffer(temp1, NTADR_A(25,7));
 	temp1 = gas2 + 0x30;
-	one_vram_buffer(temp1, NTADR_A(26,9));
+	one_vram_buffer(temp1, NTADR_A(26,7));
 	temp1 = gas1 + 0x30;
-	one_vram_buffer(temp1, NTADR_A(27,9));
+	one_vram_buffer(temp1, NTADR_A(27,7));
 }

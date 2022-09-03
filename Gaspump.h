@@ -24,6 +24,10 @@ unsigned int cost_speed;
 #define GAS_STEP 500
 #define COST_STEP 80
 
+unsigned char pad1;
+unsigned char pad1_new;
+unsigned char input_active;
+
 
 unsigned char star_active;
 unsigned char star_color;
@@ -44,6 +48,7 @@ void adjust_cost(void);
 void adjust_gas(void);
 void draw_cost(void);
 void draw_gas(void);
+void debug_zap(void);
 // void new_star(void);
 // void draw_box(void);
 // void draw_star(void);

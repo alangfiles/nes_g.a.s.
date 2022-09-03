@@ -67,12 +67,12 @@ void main (void) {
 		// zapper_ready = pad2_zapper^1; // XOR last frame, make sure it is not held down still
 		
 		// is trigger pulled?
-		pad2_zapper = zap_shoot(0); // controller slot 1
+		debug_zap(); //sets input_active
 		
 		multi_vram_buffer_horz("Gas Pumped:", 11, NTADR_A(10,7)); 
 		multi_vram_buffer_horz("Cost:", 11, NTADR_A(10,9)); 
 
-		if(pad2_zapper == 1){
+		if(input_active){
 
 			gas_speed += GAS_STEP;
 			while(gas_speed > 256){
@@ -99,6 +99,14 @@ void main (void) {
 		
 		
 	}
+}
+
+void debug_zap(void) {
+	//just a debug to include the a button for now.
+	pad1 = pad_poll(0);				 // read the first controller
+	// pad1_new = get_pad_new(0); // newly pressed button. do pad_poll first
+
+	input_active = (pad1 & PAD_A) || zap_shoot(0); // controller slot 1 zapper
 }
 
 void adjust_gas(void){

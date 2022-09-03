@@ -17,6 +17,7 @@
 	.import		_ppu_off
 	.import		_ppu_on_all
 	.import		_oam_clear
+	.import		_pad_poll
 	.import		_bank_spr
 	.import		_vram_adr
 	.import		_set_vram_buffer
@@ -39,6 +40,9 @@
 	.export		_gas1
 	.export		_gas_speed
 	.export		_cost_speed
+	.export		_pad1
+	.export		_pad1_new
+	.export		_input_active
 	.export		_star_active
 	.export		_star_color
 	.export		_star_x
@@ -52,6 +56,7 @@
 	.export		_adjust_gas
 	.export		_draw_cost
 	.export		_draw_gas
+	.export		_debug_zap
 	.export		_StarDark
 	.export		_StarLight
 	.export		_WhiteBox
@@ -169,13 +174,13 @@ _pal2:
 	.byte	$19
 	.byte	$29
 	.byte	$30
-L0081:
+L007F:
 	.byte	$47,$61,$73,$20,$50,$75,$6D,$70,$65,$64,$3A,$00
-L00AE:
+L00AC:
 	.byte	$50,$75,$6D,$70,$69,$6E,$67,$21,$21,$21,$00
-L00B9:
+L00B7:
 	.byte	$57,$61,$69,$74,$69,$6E,$67,$2E,$2E,$2E,$00
-L008B:
+L0089:
 	.byte	$43,$6F,$73,$74,$3A,$00
 
 .segment	"BSS"
@@ -213,6 +218,12 @@ _gas_speed:
 	.res	2,$00
 _cost_speed:
 	.res	2,$00
+_pad1:
+	.res	1,$00
+_pad1_new:
+	.res	1,$00
+_input_active:
+	.res	1,$00
 _star_active:
 	.res	1,$00
 _star_color:
@@ -247,7 +258,7 @@ _temp2:
 ;
 	lda     _cost1
 	cmp     #$0A
-	bcc     L0185
+	bcc     L018C
 ;
 ; cost1 = 0;
 ;
@@ -262,7 +273,7 @@ _temp2:
 ;
 	lda     _cost2
 	cmp     #$0A
-	bcc     L0185
+	bcc     L018C
 ;
 ; cost2 = 0;
 ;
@@ -277,7 +288,7 @@ _temp2:
 ;
 	lda     _cost3
 	cmp     #$0A
-	bcc     L0184
+	bcc     L018B
 ;
 ; cost3 = 0;
 ;
@@ -290,9 +301,9 @@ _temp2:
 ;
 ; if(cost4 >= 10) {
 ;
-L0184:	lda     _cost4
+L018B:	lda     _cost4
 	cmp     #$0A
-	bcc     L0185
+	bcc     L018C
 ;
 ; cost4 = 0;
 ;
@@ -305,9 +316,9 @@ L0184:	lda     _cost4
 ;
 ; if(cost5 >= 10){ // maximum 9999
 ;
-L0185:	lda     _cost5
+L018C:	lda     _cost5
 	cmp     #$0A
-	bcc     L00F8
+	bcc     L00FF
 ;
 ; cost5 = 9;
 ;
@@ -332,7 +343,7 @@ L0185:	lda     _cost5
 ;
 ; }
 ;
-L00F8:	rts
+L00FF:	rts
 
 .endproc
 
@@ -351,7 +362,7 @@ L00F8:	rts
 ;
 	lda     _gas1
 	cmp     #$0A
-	bcc     L0187
+	bcc     L018E
 ;
 ; gas1 = 0;
 ;
@@ -366,7 +377,7 @@ L00F8:	rts
 ;
 	lda     _gas2
 	cmp     #$0A
-	bcc     L0187
+	bcc     L018E
 ;
 ; gas2 = 0;
 ;
@@ -381,7 +392,7 @@ L00F8:	rts
 ;
 	lda     _gas3
 	cmp     #$0A
-	bcc     L0186
+	bcc     L018D
 ;
 ; gas3 = 0;
 ;
@@ -394,9 +405,9 @@ L00F8:	rts
 ;
 ; if(gas4 >= 10) {
 ;
-L0186:	lda     _gas4
+L018D:	lda     _gas4
 	cmp     #$0A
-	bcc     L0187
+	bcc     L018E
 ;
 ; gas4 = 0;
 ;
@@ -409,9 +420,9 @@ L0186:	lda     _gas4
 ;
 ; if(gas5 >= 10){ // maximum 9999
 ;
-L0187:	lda     _gas5
+L018E:	lda     _gas5
 	cmp     #$0A
-	bcc     L00D7
+	bcc     L00DE
 ;
 ; gas5 = 9;
 ;
@@ -436,7 +447,7 @@ L0187:	lda     _gas5
 ;
 ; }
 ;
-L00D7:	rts
+L00DE:	rts
 
 .endproc
 
@@ -624,6 +635,39 @@ L00D7:	rts
 .endproc
 
 ; ---------------------------------------------------------------
+; void __near__ debug_zap (void)
+; ---------------------------------------------------------------
+
+.segment	"CODE"
+
+.proc	_debug_zap: near
+
+.segment	"CODE"
+
+;
+; pad1 = pad_poll(0);     // read the first controller
+;
+	lda     #$00
+	jsr     _pad_poll
+	sta     _pad1
+;
+; input_active = (pad1 & PAD_A) || zap_shoot(0); // controller slot 1 zapper
+;
+	and     #$80
+	bne     L018F
+	jsr     _zap_shoot
+	tax
+	beq     L0190
+L018F:	lda     #$01
+L0190:	sta     _input_active
+;
+; }
+;
+	rts
+
+.endproc
+
+; ---------------------------------------------------------------
 ; void __near__ main (void)
 ; ---------------------------------------------------------------
 
@@ -681,20 +725,18 @@ L0077:	jsr     _ppu_wait_nmi
 ;
 	jsr     _oam_clear
 ;
-; pad2_zapper = zap_shoot(0); // controller slot 1
+; debug_zap(); //sets input_active
 ;
-	lda     #$00
-	jsr     _zap_shoot
-	sta     _pad2_zapper
+	jsr     _debug_zap
 ;
 ; multi_vram_buffer_horz("Gas Pumped:", 11, NTADR_A(10,7)); 
 ;
 	jsr     decsp3
-	lda     #<(L0081)
+	lda     #<(L007F)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L0081)
+	lda     #>(L007F)
 	sta     (sp),y
 	lda     #$0B
 	ldy     #$00
@@ -706,11 +748,11 @@ L0077:	jsr     _ppu_wait_nmi
 ; multi_vram_buffer_horz("Cost:", 11, NTADR_A(10,9)); 
 ;
 	jsr     decsp3
-	lda     #<(L008B)
+	lda     #<(L0089)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L008B)
+	lda     #>(L0089)
 	sta     (sp),y
 	lda     #$0B
 	ldy     #$00
@@ -719,11 +761,10 @@ L0077:	jsr     _ppu_wait_nmi
 	lda     #$2A
 	jsr     _multi_vram_buffer_horz
 ;
-; if(pad2_zapper == 1){
+; if(input_active){
 ;
-	lda     _pad2_zapper
-	cmp     #$01
-	jne     L0094
+	lda     _input_active
+	jeq     L0092
 ;
 ; gas_speed += GAS_STEP;
 ;
@@ -736,11 +777,11 @@ L0077:	jsr     _ppu_wait_nmi
 ;
 ; while(gas_speed > 256){
 ;
-	jmp     L018B
+	jmp     L0194
 ;
 ; ++gas1;
 ;
-L0189:	inc     _gas1
+L0192:	inc     _gas1
 ;
 ; gas_speed -= 256;
 ;
@@ -750,7 +791,7 @@ L0189:	inc     _gas1
 	sta     _gas_speed
 	lda     _gas_speed+1
 	sbc     #$01
-L018B:	sta     _gas_speed+1
+L0194:	sta     _gas_speed+1
 ;
 ; while(gas_speed > 256){
 ;
@@ -758,7 +799,7 @@ L018B:	sta     _gas_speed+1
 	cmp     #$01
 	lda     _gas_speed+1
 	sbc     #$01
-	bcs     L0189
+	bcs     L0192
 ;
 ; adjust_gas();
 ;
@@ -774,16 +815,16 @@ L018B:	sta     _gas_speed+1
 	clc
 	adc     _cost_speed
 	sta     _cost_speed
-	bcc     L00A6
+	bcc     L00A4
 	inc     _cost_speed+1
 ;
 ; while(cost_speed > 256){
 ;
-	jmp     L00A6
+	jmp     L00A4
 ;
 ; ++cost1;
 ;
-L018A:	inc     _cost1
+L0193:	inc     _cost1
 ;
 ; cost_speed -= 256;
 ;
@@ -797,11 +838,11 @@ L018A:	inc     _cost1
 ;
 ; while(cost_speed > 256){
 ;
-L00A6:	lda     _cost_speed
+L00A4:	lda     _cost_speed
 	cmp     #$01
 	lda     _cost_speed+1
 	sbc     #$01
-	bcs     L018A
+	bcs     L0193
 ;
 ; adjust_cost();
 ;
@@ -814,11 +855,11 @@ L00A6:	lda     _cost_speed
 ; multi_vram_buffer_horz("Pumping!!!", 10, NTADR_A(10,11)); 
 ;
 	jsr     decsp3
-	lda     #<(L00AE)
+	lda     #<(L00AC)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L00AE)
+	lda     #>(L00AC)
 	sta     (sp),y
 	lda     #$0A
 	ldy     #$00
@@ -833,12 +874,12 @@ L00A6:	lda     _cost_speed
 ;
 ; multi_vram_buffer_horz("Waiting...", 10, NTADR_A(10,11)); 
 ;
-L0094:	jsr     decsp3
-	lda     #<(L00B9)
+L0092:	jsr     decsp3
+	lda     #<(L00B7)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L00B9)
+	lda     #>(L00B7)
 	sta     (sp),y
 	lda     #$0A
 	ldy     #$00

@@ -27,6 +27,10 @@ unsigned int cost_speed;
 unsigned char pad1;
 unsigned char pad1_new;
 unsigned char input_active;
+unsigned char sprite_cost;
+unsigned char cost_sprite;
+
+const unsigned char * pointer;
 
 
 unsigned char star_active;
@@ -40,6 +44,12 @@ unsigned char star_wait;
 unsigned char temp1;
 unsigned char temp2;
 
+int address;
+unsigned char x; 
+unsigned char y;
+unsigned char index = 0;
+unsigned char index2;
+
 #pragma bss-name(push, "BSS")
 
 
@@ -48,7 +58,10 @@ void adjust_cost(void);
 void adjust_gas(void);
 void draw_cost(void);
 void draw_gas(void);
+void draw_bg(void);
+void draw_sprites(void);
 void debug_zap(void);
+void find_sprite(void);
 // void new_star(void);
 // void draw_box(void);
 // void draw_star(void);

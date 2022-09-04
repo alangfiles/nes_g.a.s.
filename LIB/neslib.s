@@ -12,7 +12,7 @@
 
 
 
-	.export _pal_all,_pal_bg,_pal_spr,_pal_col,_pal_clear
+	.export _pal_all,_pal_bg,_pal_spr,_pal_col,_pal_clear, _nt_attr
 	.export _pal_bright,_pal_spr_bright,_pal_bg_bright
 	.export _ppu_off,_ppu_on_all,_ppu_on_bg,_ppu_on_spr,_ppu_mask,_ppu_system
 	.export _oam_clear,_oam_size,_oam_spr,_oam_meta_spr,_oam_hide_rest
@@ -178,6 +178,31 @@ pal_copy:
 
 	rts
 
+attr_copy:
+
+	sta <LEN
+
+	ldy #$00
+
+@0:
+
+	lda (PTR),y
+	sta ATTR_BUF,x
+	inx
+	iny
+	dec <LEN
+	bne @0
+
+	inc <PAL_UPDATE
+
+	rts
+
+;void __fastcall__ nt_attr(const char *data);
+
+_nt_attr:
+	lda #$BF
+	sta $23C0
+	rts
 
 
 ;void __fastcall__ pal_bg(const char *data);

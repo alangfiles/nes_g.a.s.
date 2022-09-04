@@ -17,6 +17,8 @@
 
 
 
+//alans funcy call
+void __fastcall__ nt_attr(const char *data);
 
 //set bg and spr palettes, data is 32 bytes array
 

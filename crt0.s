@@ -56,6 +56,7 @@ CTRL_PORT2	=$4017
 OAM_BUF		=$0200
 PAL_BUF		=$01c0
 VRAM_BUF	=$0700
+ATTR_BUF  =$23C0
 
 
 
@@ -289,4 +290,4 @@ sounds_data:
 
 .segment "CHARS"
 
-	.incbin "AlphaZ.chr"
+	.incbin "Gaspump.chr"

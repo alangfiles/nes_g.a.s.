@@ -49,6 +49,7 @@ unsigned char x;
 unsigned char y;
 unsigned char index = 0;
 unsigned char index2;
+int largeindex;
 
 #pragma bss-name(push, "BSS")
 

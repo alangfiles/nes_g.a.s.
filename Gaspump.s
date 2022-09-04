@@ -24,7 +24,6 @@
 	.import		_vram_put
 	.import		_set_vram_buffer
 	.import		_one_vram_buffer
-	.import		_multi_vram_buffer_horz
 	.import		_flush_vram_update2
 	.import		_zap_shoot
 	.export		_pad2_zapper
@@ -63,6 +62,7 @@
 	.export		_y
 	.export		_index
 	.export		_index2
+	.export		_largeindex
 	.export		_adjust_cost
 	.export		_adjust_gas
 	.export		_draw_cost
@@ -82,37 +82,7 @@
 	.export		_Zero
 	.export		_metatiles_1
 	.export		_room_1
-	.export		_level1
-	.export		_level2
-	.export		_level3
-	.export		_level4
-	.export		_level5
-	.export		_level6
-	.export		_level7
-	.export		_level8
-	.export		_level9
-	.export		_level10
-	.export		_level11
-	.export		_level12
-	.export		_level13
-	.export		_level14
-	.export		_level15
-	.export		_level16
-	.export		_level17
-	.export		_level18
-	.export		_level19
-	.export		_level20
-	.export		_level21
-	.export		_level22
-	.export		_level23
-	.export		_level24
-	.export		_level25
-	.export		_level26
-	.export		_level27
-	.export		_level28
-	.export		_level29
-	.export		_level30
-	.export		_attribute
+	.export		_level1_test
 	.export		_pal1
 	.export		_pal2
 	.export		_main
@@ -846,7 +816,7 @@ _room_1:
 	.byte	$01
 	.byte	$01
 	.byte	$25
-_level1:
+_level1_test:
 	.byte	$01
 	.byte	$01
 	.byte	$01
@@ -879,7 +849,6 @@ _level1:
 	.byte	$01
 	.byte	$01
 	.byte	$01
-_level2:
 	.byte	$01
 	.byte	$01
 	.byte	$01
@@ -912,7 +881,6 @@ _level2:
 	.byte	$01
 	.byte	$01
 	.byte	$01
-_level3:
 	.byte	$01
 	.byte	$01
 	.byte	$01
@@ -945,7 +913,6 @@ _level3:
 	.byte	$01
 	.byte	$01
 	.byte	$01
-_level4:
 	.byte	$01
 	.byte	$01
 	.byte	$01
@@ -978,7 +945,6 @@ _level4:
 	.byte	$01
 	.byte	$01
 	.byte	$01
-_level5:
 	.byte	$01
 	.byte	$01
 	.byte	$01
@@ -1011,7 +977,6 @@ _level5:
 	.byte	$01
 	.byte	$01
 	.byte	$01
-_level6:
 	.byte	$01
 	.byte	$01
 	.byte	$01
@@ -1044,7 +1009,6 @@ _level6:
 	.byte	$01
 	.byte	$01
 	.byte	$01
-_level7:
 	.byte	$01
 	.byte	$01
 	.byte	$01
@@ -1077,7 +1041,6 @@ _level7:
 	.byte	$01
 	.byte	$01
 	.byte	$01
-_level8:
 	.byte	$01
 	.byte	$01
 	.byte	$01
@@ -1110,7 +1073,6 @@ _level8:
 	.byte	$01
 	.byte	$01
 	.byte	$01
-_level9:
 	.byte	$60
 	.byte	$60
 	.byte	$60
@@ -1143,7 +1105,6 @@ _level9:
 	.byte	$60
 	.byte	$60
 	.byte	$60
-_level10:
 	.byte	$60
 	.byte	$60
 	.byte	$60
@@ -1176,7 +1137,6 @@ _level10:
 	.byte	$60
 	.byte	$60
 	.byte	$60
-_level11:
 	.byte	$60
 	.byte	$60
 	.byte	$60
@@ -1209,7 +1169,6 @@ _level11:
 	.byte	$60
 	.byte	$60
 	.byte	$60
-_level12:
 	.byte	$60
 	.byte	$60
 	.byte	$60
@@ -1242,7 +1201,6 @@ _level12:
 	.byte	$60
 	.byte	$60
 	.byte	$60
-_level13:
 	.byte	$61
 	.byte	$61
 	.byte	$00
@@ -1275,7 +1233,6 @@ _level13:
 	.byte	$61
 	.byte	$00
 	.byte	$61
-_level14:
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1308,7 +1265,6 @@ _level14:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-_level15:
 	.byte	$00
 	.byte	$04
 	.byte	$00
@@ -1341,7 +1297,6 @@ _level15:
 	.byte	$00
 	.byte	$00
 	.byte	$04
-_level16:
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1374,7 +1329,6 @@ _level16:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-_level17:
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1407,7 +1361,6 @@ _level17:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-_level18:
 	.byte	$00
 	.byte	$70
 	.byte	$00
@@ -1440,7 +1393,6 @@ _level18:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-_level19:
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1473,7 +1425,6 @@ _level19:
 	.byte	$70
 	.byte	$00
 	.byte	$00
-_level20:
 	.byte	$00
 	.byte	$00
 	.byte	$70
@@ -1506,7 +1457,6 @@ _level20:
 	.byte	$60
 	.byte	$00
 	.byte	$00
-_level21:
 	.byte	$00
 	.byte	$00
 	.byte	$60
@@ -1539,7 +1489,6 @@ _level21:
 	.byte	$60
 	.byte	$00
 	.byte	$00
-_level22:
 	.byte	$00
 	.byte	$00
 	.byte	$61
@@ -1572,7 +1521,6 @@ _level22:
 	.byte	$61
 	.byte	$00
 	.byte	$00
-_level23:
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1605,7 +1553,6 @@ _level23:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-_level24:
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1638,7 +1585,6 @@ _level24:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-_level25:
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1671,7 +1617,6 @@ _level25:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-_level26:
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1704,7 +1649,6 @@ _level26:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-_level27:
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1737,7 +1681,6 @@ _level27:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-_level28:
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1770,7 +1713,6 @@ _level28:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-_level29:
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1803,7 +1745,6 @@ _level29:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-_level30:
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1836,7 +1777,6 @@ _level30:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-_attribute:
 	.byte	$55
 	.byte	$55
 	.byte	$55
@@ -2009,6 +1949,8 @@ _y:
 	.res	1,$00
 _index2:
 	.res	1,$00
+_largeindex:
+	.res	2,$00
 
 ; ---------------------------------------------------------------
 ; void __near__ adjust_cost (void)
@@ -2025,7 +1967,7 @@ _index2:
 ;
 	lda     _cost1
 	cmp     #$0A
-	bcc     L0BC2
+	bcc     L0A7A
 ;
 ; cost1 = 0;
 ;
@@ -2040,7 +1982,7 @@ _index2:
 ;
 	lda     _cost2
 	cmp     #$0A
-	bcc     L0BC2
+	bcc     L0A7A
 ;
 ; cost2 = 0;
 ;
@@ -2055,7 +1997,7 @@ _index2:
 ;
 	lda     _cost3
 	cmp     #$0A
-	bcc     L0BC1
+	bcc     L0A79
 ;
 ; cost3 = 0;
 ;
@@ -2068,9 +2010,9 @@ _index2:
 ;
 ; if(cost4 >= 10) {
 ;
-L0BC1:	lda     _cost4
+L0A79:	lda     _cost4
 	cmp     #$0A
-	bcc     L0BC2
+	bcc     L0A7A
 ;
 ; cost4 = 0;
 ;
@@ -2083,9 +2025,9 @@ L0BC1:	lda     _cost4
 ;
 ; if(cost5 >= 10){ // maximum 9999
 ;
-L0BC2:	lda     _cost5
+L0A7A:	lda     _cost5
 	cmp     #$0A
-	bcc     L0778
+	bcc     L075A
 ;
 ; cost5 = 9;
 ;
@@ -2110,7 +2052,7 @@ L0BC2:	lda     _cost5
 ;
 ; }
 ;
-L0778:	rts
+L075A:	rts
 
 .endproc
 
@@ -2129,7 +2071,7 @@ L0778:	rts
 ;
 	lda     _gas1
 	cmp     #$0A
-	bcc     L0BC4
+	bcc     L0A7C
 ;
 ; gas1 = 0;
 ;
@@ -2144,7 +2086,7 @@ L0778:	rts
 ;
 	lda     _gas2
 	cmp     #$0A
-	bcc     L0BC4
+	bcc     L0A7C
 ;
 ; gas2 = 0;
 ;
@@ -2159,7 +2101,7 @@ L0778:	rts
 ;
 	lda     _gas3
 	cmp     #$0A
-	bcc     L0BC3
+	bcc     L0A7B
 ;
 ; gas3 = 0;
 ;
@@ -2172,9 +2114,9 @@ L0778:	rts
 ;
 ; if(gas4 >= 10) {
 ;
-L0BC3:	lda     _gas4
+L0A7B:	lda     _gas4
 	cmp     #$0A
-	bcc     L0BC4
+	bcc     L0A7C
 ;
 ; gas4 = 0;
 ;
@@ -2187,9 +2129,9 @@ L0BC3:	lda     _gas4
 ;
 ; if(gas5 >= 10){ // maximum 9999
 ;
-L0BC4:	lda     _gas5
+L0A7C:	lda     _gas5
 	cmp     #$0A
-	bcc     L0757
+	bcc     L0739
 ;
 ; gas5 = 9;
 ;
@@ -2214,7 +2156,7 @@ L0BC4:	lda     _gas5
 ;
 ; }
 ;
-L0757:	rts
+L0739:	rts
 
 .endproc
 
@@ -2301,30 +2243,30 @@ L0757:	rts
 ;
 ; }
 ;
-	jeq     L0B35
+	jeq     L09ED
 	cmp     #$01
-	beq     L08E3
+	beq     L079B
 	cmp     #$02
-	jeq     L0925
+	jeq     L07DD
 	cmp     #$03
-	jeq     L0967
+	jeq     L081F
 	cmp     #$04
-	jeq     L09A9
+	jeq     L0861
 	cmp     #$05
-	jeq     L09EB
+	jeq     L08A3
 	cmp     #$06
-	jeq     L0A2D
+	jeq     L08E5
 	cmp     #$07
-	jeq     L0A6F
+	jeq     L0927
 	cmp     #$08
-	jeq     L0AB1
+	jeq     L0969
 	cmp     #$09
-	jeq     L0AF3
+	jeq     L09AB
 	rts
 ;
 ; one_vram_buffer(0xc0, NTADR_A(19,20));
 ;
-L08E3:	lda     #$C0
+L079B:	lda     #$C0
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2388,7 +2330,7 @@ L08E3:	lda     #$C0
 ;
 ; one_vram_buffer(0xc2, NTADR_A(19,20));
 ;
-L0925:	lda     #$C2
+L07DD:	lda     #$C2
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2452,7 +2394,7 @@ L0925:	lda     #$C2
 ;
 ; one_vram_buffer(0xc4, NTADR_A(19,20));
 ;
-L0967:	lda     #$C4
+L081F:	lda     #$C4
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2516,7 +2458,7 @@ L0967:	lda     #$C4
 ;
 ; one_vram_buffer(0xc6, NTADR_A(19,20));
 ;
-L09A9:	lda     #$C6
+L0861:	lda     #$C6
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2580,7 +2522,7 @@ L09A9:	lda     #$C6
 ;
 ; one_vram_buffer(0xc8, NTADR_A(19,20));
 ;
-L09EB:	lda     #$C8
+L08A3:	lda     #$C8
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2644,7 +2586,7 @@ L09EB:	lda     #$C8
 ;
 ; one_vram_buffer(0xca, NTADR_A(19,20));
 ;
-L0A2D:	lda     #$CA
+L08E5:	lda     #$CA
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2708,7 +2650,7 @@ L0A2D:	lda     #$CA
 ;
 ; one_vram_buffer(0xcc, NTADR_A(19,20));
 ;
-L0A6F:	lda     #$CC
+L0927:	lda     #$CC
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2772,7 +2714,7 @@ L0A6F:	lda     #$CC
 ;
 ; one_vram_buffer(0xce, NTADR_A(19,20));
 ;
-L0AB1:	lda     #$CE
+L0969:	lda     #$CE
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2836,7 +2778,7 @@ L0AB1:	lda     #$CE
 ;
 ; one_vram_buffer(0x5e, NTADR_A(19,20));
 ;
-L0AF3:	lda     #$5E
+L09AB:	lda     #$5E
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2900,7 +2842,7 @@ L0AF3:	lda     #$5E
 ;
 ; one_vram_buffer(0x1e, NTADR_A(19,20));
 ;
-L0B35:	lda     #$1E
+L09ED:	lda     #$1E
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -3084,941 +3026,70 @@ L0B35:	lda     #$1E
 ;
 	jsr     _oam_clear
 ;
-; x = 0;
-;
-	lda     #$00
-	sta     _x
-;
-; y = 0;
-;
-	sta     _y
-;
-; y=0;
-;
-	sta     _y
-;
-; multi_vram_buffer_horz(level1, 32, NTADR_A(0,0)); 
-;
-	jsr     decsp3
-	lda     #<(_level1)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level1)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	tax
-	tya
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level2, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level2)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level2)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level3, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level3)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level3)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level4, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level4)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level4)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level5, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level5)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level5)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level6, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level6)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level6)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level7, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level7)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level7)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level8, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level8)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level8)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level9, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level9)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level9)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level10, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level10)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level10)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level11, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level11)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level11)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level12, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level12)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level12)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level13, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level13)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level13)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level14, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level14)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level14)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level15, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level15)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level15)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level16, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level16)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level16)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level17, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level17)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level17)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level18, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level18)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level18)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level19, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level19)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level19)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level20, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level20)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level20)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level21, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level21)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level21)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level22, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level22)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level22)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level23, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level23)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level23)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level24, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level24)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level24)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level25, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level25)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level25)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level26, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level26)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level26)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level27, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level27)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level27)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level28, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level28)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level28)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level29, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level29)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level29)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; multi_vram_buffer_horz(level30, 32, NTADR_A(0,++y)); 
-;
-	jsr     decsp3
-	lda     #<(_level30)
-	ldy     #$01
-	sta     (sp),y
-	iny
-	lda     #>(_level30)
-	sta     (sp),y
-	lda     #$20
-	ldy     #$00
-	sta     (sp),y
-	ldx     #$00
-	inc     _y
-	lda     _y
-	jsr     aslax4
-	stx     tmp1
-	asl     a
-	rol     tmp1
-	pha
-	lda     tmp1
-	ora     #$20
-	tax
-	pla
-	jsr     _multi_vram_buffer_horz
-;
-; flush_vram_update2();
-;
-	jsr     _flush_vram_update2
-;
-; vram_adr(0x23C0);
-;
-	ldx     #$23
-	lda     #$C0
-	jsr     _vram_adr
-;
-; for(index = 0; index < 64; ++index){
+; index = 0;
 ;
 	lda     #$00
 	sta     _index
-L0BC5:	lda     _index
-	cmp     #$40
-	bcs     L08BC
 ;
-; vram_put(attribute[index]);
+; vram_adr(0x2000); //Nametable A;
 ;
-	ldy     _index
-	lda     _attribute,y
+	ldx     #$20
+	jsr     _vram_adr
+;
+; for(largeindex = 0; largeindex < 1024; ++largeindex){
+;
+	lda     #$00
+	sta     _largeindex
+	sta     _largeindex+1
+L076D:	lda     _largeindex
+	cmp     #$00
+	lda     _largeindex+1
+	sbc     #$04
+	bvc     L0774
+	eor     #$80
+L0774:	bpl     L076E
+;
+; vram_put(level1_test[largeindex]);
+;
+	lda     #<(_level1_test)
+	sta     ptr1
+	lda     #>(_level1_test)
+	clc
+	adc     _largeindex+1
+	sta     ptr1+1
+	ldy     _largeindex
+	lda     (ptr1),y
 	jsr     _vram_put
 ;
-; for(index = 0; index < 64; ++index){
+; ++index;
 ;
 	inc     _index
-	jmp     L0BC5
+;
+; if(index > 40) {
+;
+	lda     _index
+	cmp     #$29
+	bcc     L076F
 ;
 ; flush_vram_update2();
 ;
-L08BC:	jsr     _flush_vram_update2
+	jsr     _flush_vram_update2
+;
+; index = 0;
+;
+	lda     #$00
+	sta     _index
+;
+; for(largeindex = 0; largeindex < 1024; ++largeindex){
+;
+L076F:	inc     _largeindex
+	bne     L076D
+	inc     _largeindex+1
+	jmp     L076D
 ;
 ; ppu_on_all(); // turn on screen
 ;
-	jmp     _ppu_on_all
+L076E:	jmp     _ppu_on_all
 
 .endproc
 
@@ -4042,12 +3113,12 @@ L08BC:	jsr     _flush_vram_update2
 ; input_active = (pad1 & PAD_A) || zap_shoot(0); // controller slot 1 zapper
 ;
 	and     #$80
-	bne     L0BC6
+	bne     L0A7D
 	jsr     _zap_shoot
 	tax
-	beq     L0BC7
-L0BC6:	lda     #$01
-L0BC7:	sta     _input_active
+	beq     L0A7E
+L0A7D:	lda     #$01
+L0A7E:	sta     _input_active
 ;
 ; }
 ;
@@ -4072,30 +3143,30 @@ L0BC7:	sta     _input_active
 ;
 ; }
 ;
-	beq     L0B99
+	beq     L0A51
 	cmp     #$01
-	beq     L0B9D
+	beq     L0A55
 	cmp     #$02
-	beq     L0BA1
+	beq     L0A59
 	cmp     #$03
-	beq     L0BA5
+	beq     L0A5D
 	cmp     #$04
-	beq     L0BA9
+	beq     L0A61
 	cmp     #$05
-	beq     L0BAD
+	beq     L0A65
 	cmp     #$06
-	beq     L0BB1
+	beq     L0A69
 	cmp     #$07
-	beq     L0BB5
+	beq     L0A6D
 	cmp     #$08
-	beq     L0BB9
+	beq     L0A71
 	cmp     #$09
-	beq     L0BBD
+	beq     L0A75
 	rts
 ;
 ; pointer = Zero;
 ;
-L0B99:	lda     #>(_Zero)
+L0A51:	lda     #>(_Zero)
 	sta     _pointer+1
 	lda     #<(_Zero)
 	sta     _pointer
@@ -4106,7 +3177,7 @@ L0B99:	lda     #>(_Zero)
 ;
 ; pointer = One;
 ;
-L0B9D:	lda     #>(_One)
+L0A55:	lda     #>(_One)
 	sta     _pointer+1
 	lda     #<(_One)
 	sta     _pointer
@@ -4117,7 +3188,7 @@ L0B9D:	lda     #>(_One)
 ;
 ; pointer = Two;
 ;
-L0BA1:	lda     #>(_Two)
+L0A59:	lda     #>(_Two)
 	sta     _pointer+1
 	lda     #<(_Two)
 	sta     _pointer
@@ -4128,7 +3199,7 @@ L0BA1:	lda     #>(_Two)
 ;
 ; pointer = Three;
 ;
-L0BA5:	lda     #>(_Three)
+L0A5D:	lda     #>(_Three)
 	sta     _pointer+1
 	lda     #<(_Three)
 	sta     _pointer
@@ -4139,7 +3210,7 @@ L0BA5:	lda     #>(_Three)
 ;
 ; pointer = Four;
 ;
-L0BA9:	lda     #>(_Four)
+L0A61:	lda     #>(_Four)
 	sta     _pointer+1
 	lda     #<(_Four)
 	sta     _pointer
@@ -4150,7 +3221,7 @@ L0BA9:	lda     #>(_Four)
 ;
 ; pointer = Five;
 ;
-L0BAD:	lda     #>(_Five)
+L0A65:	lda     #>(_Five)
 	sta     _pointer+1
 	lda     #<(_Five)
 	sta     _pointer
@@ -4161,7 +3232,7 @@ L0BAD:	lda     #>(_Five)
 ;
 ; pointer = Six;
 ;
-L0BB1:	lda     #>(_Six)
+L0A69:	lda     #>(_Six)
 	sta     _pointer+1
 	lda     #<(_Six)
 	sta     _pointer
@@ -4172,7 +3243,7 @@ L0BB1:	lda     #>(_Six)
 ;
 ; pointer = Seven;
 ;
-L0BB5:	lda     #>(_Seven)
+L0A6D:	lda     #>(_Seven)
 	sta     _pointer+1
 	lda     #<(_Seven)
 	sta     _pointer
@@ -4183,7 +3254,7 @@ L0BB5:	lda     #>(_Seven)
 ;
 ; pointer = Eight;
 ;
-L0BB9:	lda     #>(_Eight)
+L0A71:	lda     #>(_Eight)
 	sta     _pointer+1
 	lda     #<(_Eight)
 	sta     _pointer
@@ -4194,7 +3265,7 @@ L0BB9:	lda     #>(_Eight)
 ;
 ; pointer = Nine;
 ;
-L0BBD:	lda     #>(_Nine)
+L0A75:	lda     #>(_Nine)
 	sta     _pointer+1
 	lda     #<(_Nine)
 	sta     _pointer
@@ -4261,7 +3332,7 @@ L0BBD:	lda     #>(_Nine)
 ;
 ; ppu_wait_nmi(); // wait till beginning of the frame
 ;
-L0718:	jsr     _ppu_wait_nmi
+L06FA:	jsr     _ppu_wait_nmi
 ;
 ; oam_clear();
 ;
@@ -4274,7 +3345,7 @@ L0718:	jsr     _ppu_wait_nmi
 ; if(input_active){
 ;
 	lda     _input_active
-	beq     L071F
+	beq     L0701
 ;
 ; gas_speed += GAS_STEP;
 ;
@@ -4287,11 +3358,11 @@ L0718:	jsr     _ppu_wait_nmi
 ;
 ; while(gas_speed > 256){
 ;
-	jmp     L0BCB
+	jmp     L0A82
 ;
 ; ++gas1;
 ;
-L0BC9:	inc     _gas1
+L0A80:	inc     _gas1
 ;
 ; gas_speed -= 256;
 ;
@@ -4301,7 +3372,7 @@ L0BC9:	inc     _gas1
 	sta     _gas_speed
 	lda     _gas_speed+1
 	sbc     #$01
-L0BCB:	sta     _gas_speed+1
+L0A82:	sta     _gas_speed+1
 ;
 ; while(gas_speed > 256){
 ;
@@ -4309,7 +3380,7 @@ L0BCB:	sta     _gas_speed+1
 	cmp     #$01
 	lda     _gas_speed+1
 	sbc     #$01
-	bcs     L0BC9
+	bcs     L0A80
 ;
 ; adjust_gas();
 ;
@@ -4321,16 +3392,16 @@ L0BCB:	sta     _gas_speed+1
 	clc
 	adc     _cost_speed
 	sta     _cost_speed
-	bcc     L0730
+	bcc     L0712
 	inc     _cost_speed+1
 ;
 ; while(cost_speed > 256){
 ;
-	jmp     L0730
+	jmp     L0712
 ;
 ; ++cost1;
 ;
-L0BCA:	inc     _cost1
+L0A81:	inc     _cost1
 ;
 ; cost_speed -= 256;
 ;
@@ -4344,11 +3415,11 @@ L0BCA:	inc     _cost1
 ;
 ; while(cost_speed > 256){
 ;
-L0730:	lda     _cost_speed
+L0712:	lda     _cost_speed
 	cmp     #$01
 	lda     _cost_speed+1
 	sbc     #$01
-	bcs     L0BCA
+	bcs     L0A81
 ;
 ; adjust_cost();
 ;
@@ -4356,7 +3427,7 @@ L0730:	lda     _cost_speed
 ;
 ; draw_gas();
 ;
-L071F:	jsr     _draw_gas
+L0701:	jsr     _draw_gas
 ;
 ; draw_cost();
 ;
@@ -4364,7 +3435,7 @@ L071F:	jsr     _draw_gas
 ;
 ; while (1){
 ;
-	jmp     L0718
+	jmp     L06FA
 
 .endproc
 

@@ -24,6 +24,7 @@
 	.import		_vram_put
 	.import		_set_vram_buffer
 	.import		_one_vram_buffer
+	.import		_set_scroll_y
 	.import		_flush_vram_update2
 	.import		_zap_shoot
 	.export		_pad2_zapper
@@ -1860,21 +1861,21 @@ _pal1:
 	.byte	$15
 _pal2:
 	.byte	$0F
-	.byte	$12
-	.byte	$22
-	.byte	$30
-	.byte	$0F
-	.byte	$15
-	.byte	$25
-	.byte	$30
-	.byte	$0F
-	.byte	$17
-	.byte	$27
-	.byte	$30
+	.byte	$3D
+	.byte	$20
+	.byte	$11
 	.byte	$0F
 	.byte	$19
-	.byte	$29
-	.byte	$30
+	.byte	$2A
+	.byte	$15
+	.byte	$0F
+	.byte	$05
+	.byte	$3D
+	.byte	$15
+	.byte	$0F
+	.byte	$38
+	.byte	$21
+	.byte	$15
 
 .segment	"BSS"
 
@@ -1967,7 +1968,7 @@ _largeindex:
 ;
 	lda     _cost1
 	cmp     #$0A
-	bcc     L0A7A
+	bcc     L0A7C
 ;
 ; cost1 = 0;
 ;
@@ -1982,7 +1983,7 @@ _largeindex:
 ;
 	lda     _cost2
 	cmp     #$0A
-	bcc     L0A7A
+	bcc     L0A7C
 ;
 ; cost2 = 0;
 ;
@@ -1997,7 +1998,7 @@ _largeindex:
 ;
 	lda     _cost3
 	cmp     #$0A
-	bcc     L0A79
+	bcc     L0A7B
 ;
 ; cost3 = 0;
 ;
@@ -2010,9 +2011,9 @@ _largeindex:
 ;
 ; if(cost4 >= 10) {
 ;
-L0A79:	lda     _cost4
+L0A7B:	lda     _cost4
 	cmp     #$0A
-	bcc     L0A7A
+	bcc     L0A7C
 ;
 ; cost4 = 0;
 ;
@@ -2025,9 +2026,9 @@ L0A79:	lda     _cost4
 ;
 ; if(cost5 >= 10){ // maximum 9999
 ;
-L0A7A:	lda     _cost5
+L0A7C:	lda     _cost5
 	cmp     #$0A
-	bcc     L075A
+	bcc     L075C
 ;
 ; cost5 = 9;
 ;
@@ -2052,7 +2053,7 @@ L0A7A:	lda     _cost5
 ;
 ; }
 ;
-L075A:	rts
+L075C:	rts
 
 .endproc
 
@@ -2071,7 +2072,7 @@ L075A:	rts
 ;
 	lda     _gas1
 	cmp     #$0A
-	bcc     L0A7C
+	bcc     L0A7E
 ;
 ; gas1 = 0;
 ;
@@ -2086,7 +2087,7 @@ L075A:	rts
 ;
 	lda     _gas2
 	cmp     #$0A
-	bcc     L0A7C
+	bcc     L0A7E
 ;
 ; gas2 = 0;
 ;
@@ -2101,7 +2102,7 @@ L075A:	rts
 ;
 	lda     _gas3
 	cmp     #$0A
-	bcc     L0A7B
+	bcc     L0A7D
 ;
 ; gas3 = 0;
 ;
@@ -2114,9 +2115,9 @@ L075A:	rts
 ;
 ; if(gas4 >= 10) {
 ;
-L0A7B:	lda     _gas4
+L0A7D:	lda     _gas4
 	cmp     #$0A
-	bcc     L0A7C
+	bcc     L0A7E
 ;
 ; gas4 = 0;
 ;
@@ -2129,9 +2130,9 @@ L0A7B:	lda     _gas4
 ;
 ; if(gas5 >= 10){ // maximum 9999
 ;
-L0A7C:	lda     _gas5
+L0A7E:	lda     _gas5
 	cmp     #$0A
-	bcc     L0739
+	bcc     L073B
 ;
 ; gas5 = 9;
 ;
@@ -2156,7 +2157,7 @@ L0A7C:	lda     _gas5
 ;
 ; }
 ;
-L0739:	rts
+L073B:	rts
 
 .endproc
 
@@ -2243,30 +2244,30 @@ L0739:	rts
 ;
 ; }
 ;
-	jeq     L09ED
+	jeq     L09EF
 	cmp     #$01
-	beq     L079B
+	beq     L079D
 	cmp     #$02
-	jeq     L07DD
+	jeq     L07DF
 	cmp     #$03
-	jeq     L081F
+	jeq     L0821
 	cmp     #$04
-	jeq     L0861
+	jeq     L0863
 	cmp     #$05
-	jeq     L08A3
+	jeq     L08A5
 	cmp     #$06
-	jeq     L08E5
+	jeq     L08E7
 	cmp     #$07
-	jeq     L0927
+	jeq     L0929
 	cmp     #$08
-	jeq     L0969
+	jeq     L096B
 	cmp     #$09
-	jeq     L09AB
+	jeq     L09AD
 	rts
 ;
 ; one_vram_buffer(0xc0, NTADR_A(19,20));
 ;
-L079B:	lda     #$C0
+L079D:	lda     #$C0
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2330,7 +2331,7 @@ L079B:	lda     #$C0
 ;
 ; one_vram_buffer(0xc2, NTADR_A(19,20));
 ;
-L07DD:	lda     #$C2
+L07DF:	lda     #$C2
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2394,7 +2395,7 @@ L07DD:	lda     #$C2
 ;
 ; one_vram_buffer(0xc4, NTADR_A(19,20));
 ;
-L081F:	lda     #$C4
+L0821:	lda     #$C4
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2458,7 +2459,7 @@ L081F:	lda     #$C4
 ;
 ; one_vram_buffer(0xc6, NTADR_A(19,20));
 ;
-L0861:	lda     #$C6
+L0863:	lda     #$C6
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2522,7 +2523,7 @@ L0861:	lda     #$C6
 ;
 ; one_vram_buffer(0xc8, NTADR_A(19,20));
 ;
-L08A3:	lda     #$C8
+L08A5:	lda     #$C8
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2586,7 +2587,7 @@ L08A3:	lda     #$C8
 ;
 ; one_vram_buffer(0xca, NTADR_A(19,20));
 ;
-L08E5:	lda     #$CA
+L08E7:	lda     #$CA
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2650,7 +2651,7 @@ L08E5:	lda     #$CA
 ;
 ; one_vram_buffer(0xcc, NTADR_A(19,20));
 ;
-L0927:	lda     #$CC
+L0929:	lda     #$CC
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2714,7 +2715,7 @@ L0927:	lda     #$CC
 ;
 ; one_vram_buffer(0xce, NTADR_A(19,20));
 ;
-L0969:	lda     #$CE
+L096B:	lda     #$CE
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2778,7 +2779,7 @@ L0969:	lda     #$CE
 ;
 ; one_vram_buffer(0x5e, NTADR_A(19,20));
 ;
-L09AB:	lda     #$5E
+L09AD:	lda     #$5E
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -2842,7 +2843,7 @@ L09AB:	lda     #$5E
 ;
 ; one_vram_buffer(0x1e, NTADR_A(19,20));
 ;
-L09ED:	lda     #$1E
+L09EF:	lda     #$1E
 	jsr     pusha
 	ldx     #$22
 	lda     #$93
@@ -3041,13 +3042,13 @@ L09ED:	lda     #$1E
 	lda     #$00
 	sta     _largeindex
 	sta     _largeindex+1
-L076D:	lda     _largeindex
+L076F:	lda     _largeindex
 	cmp     #$00
 	lda     _largeindex+1
 	sbc     #$04
-	bvc     L0774
+	bvc     L0776
 	eor     #$80
-L0774:	bpl     L076E
+L0776:	bpl     L0770
 ;
 ; vram_put(level1_test[largeindex]);
 ;
@@ -3065,11 +3066,11 @@ L0774:	bpl     L076E
 ;
 	inc     _index
 ;
-; if(index > 40) {
+; if(index > 40) { //don't put too much in the vram_buffer
 ;
 	lda     _index
 	cmp     #$29
-	bcc     L076F
+	bcc     L0771
 ;
 ; flush_vram_update2();
 ;
@@ -3082,14 +3083,14 @@ L0774:	bpl     L076E
 ;
 ; for(largeindex = 0; largeindex < 1024; ++largeindex){
 ;
-L076F:	inc     _largeindex
-	bne     L076D
+L0771:	inc     _largeindex
+	bne     L076F
 	inc     _largeindex+1
-	jmp     L076D
+	jmp     L076F
 ;
 ; ppu_on_all(); // turn on screen
 ;
-L076E:	jmp     _ppu_on_all
+L0770:	jmp     _ppu_on_all
 
 .endproc
 
@@ -3113,12 +3114,12 @@ L076E:	jmp     _ppu_on_all
 ; input_active = (pad1 & PAD_A) || zap_shoot(0); // controller slot 1 zapper
 ;
 	and     #$80
-	bne     L0A7D
+	bne     L0A7F
 	jsr     _zap_shoot
 	tax
-	beq     L0A7E
-L0A7D:	lda     #$01
-L0A7E:	sta     _input_active
+	beq     L0A80
+L0A7F:	lda     #$01
+L0A80:	sta     _input_active
 ;
 ; }
 ;
@@ -3143,30 +3144,30 @@ L0A7E:	sta     _input_active
 ;
 ; }
 ;
-	beq     L0A51
+	beq     L0A53
 	cmp     #$01
-	beq     L0A55
+	beq     L0A57
 	cmp     #$02
-	beq     L0A59
+	beq     L0A5B
 	cmp     #$03
-	beq     L0A5D
+	beq     L0A5F
 	cmp     #$04
-	beq     L0A61
+	beq     L0A63
 	cmp     #$05
-	beq     L0A65
+	beq     L0A67
 	cmp     #$06
-	beq     L0A69
+	beq     L0A6B
 	cmp     #$07
-	beq     L0A6D
+	beq     L0A6F
 	cmp     #$08
-	beq     L0A71
+	beq     L0A73
 	cmp     #$09
-	beq     L0A75
+	beq     L0A77
 	rts
 ;
 ; pointer = Zero;
 ;
-L0A51:	lda     #>(_Zero)
+L0A53:	lda     #>(_Zero)
 	sta     _pointer+1
 	lda     #<(_Zero)
 	sta     _pointer
@@ -3177,7 +3178,7 @@ L0A51:	lda     #>(_Zero)
 ;
 ; pointer = One;
 ;
-L0A55:	lda     #>(_One)
+L0A57:	lda     #>(_One)
 	sta     _pointer+1
 	lda     #<(_One)
 	sta     _pointer
@@ -3188,7 +3189,7 @@ L0A55:	lda     #>(_One)
 ;
 ; pointer = Two;
 ;
-L0A59:	lda     #>(_Two)
+L0A5B:	lda     #>(_Two)
 	sta     _pointer+1
 	lda     #<(_Two)
 	sta     _pointer
@@ -3199,7 +3200,7 @@ L0A59:	lda     #>(_Two)
 ;
 ; pointer = Three;
 ;
-L0A5D:	lda     #>(_Three)
+L0A5F:	lda     #>(_Three)
 	sta     _pointer+1
 	lda     #<(_Three)
 	sta     _pointer
@@ -3210,7 +3211,7 @@ L0A5D:	lda     #>(_Three)
 ;
 ; pointer = Four;
 ;
-L0A61:	lda     #>(_Four)
+L0A63:	lda     #>(_Four)
 	sta     _pointer+1
 	lda     #<(_Four)
 	sta     _pointer
@@ -3221,7 +3222,7 @@ L0A61:	lda     #>(_Four)
 ;
 ; pointer = Five;
 ;
-L0A65:	lda     #>(_Five)
+L0A67:	lda     #>(_Five)
 	sta     _pointer+1
 	lda     #<(_Five)
 	sta     _pointer
@@ -3232,7 +3233,7 @@ L0A65:	lda     #>(_Five)
 ;
 ; pointer = Six;
 ;
-L0A69:	lda     #>(_Six)
+L0A6B:	lda     #>(_Six)
 	sta     _pointer+1
 	lda     #<(_Six)
 	sta     _pointer
@@ -3243,7 +3244,7 @@ L0A69:	lda     #>(_Six)
 ;
 ; pointer = Seven;
 ;
-L0A6D:	lda     #>(_Seven)
+L0A6F:	lda     #>(_Seven)
 	sta     _pointer+1
 	lda     #<(_Seven)
 	sta     _pointer
@@ -3254,7 +3255,7 @@ L0A6D:	lda     #>(_Seven)
 ;
 ; pointer = Eight;
 ;
-L0A71:	lda     #>(_Eight)
+L0A73:	lda     #>(_Eight)
 	sta     _pointer+1
 	lda     #<(_Eight)
 	sta     _pointer
@@ -3265,7 +3266,7 @@ L0A71:	lda     #>(_Eight)
 ;
 ; pointer = Nine;
 ;
-L0A75:	lda     #>(_Nine)
+L0A77:	lda     #>(_Nine)
 	sta     _pointer+1
 	lda     #<(_Nine)
 	sta     _pointer
@@ -3308,6 +3309,12 @@ L0A75:	lda     #>(_Nine)
 	lda     #$01
 	jsr     _bank_spr
 ;
+; set_scroll_y(0xff); // shift the bg down 1 pixel
+;
+	ldx     #$00
+	lda     #$FF
+	jsr     _set_scroll_y
+;
 ; vram_adr(NAMETABLE_A);
 ;
 	ldx     #$20
@@ -3332,7 +3339,7 @@ L0A75:	lda     #>(_Nine)
 ;
 ; ppu_wait_nmi(); // wait till beginning of the frame
 ;
-L06FA:	jsr     _ppu_wait_nmi
+L06FC:	jsr     _ppu_wait_nmi
 ;
 ; oam_clear();
 ;
@@ -3345,7 +3352,7 @@ L06FA:	jsr     _ppu_wait_nmi
 ; if(input_active){
 ;
 	lda     _input_active
-	beq     L0701
+	beq     L0703
 ;
 ; gas_speed += GAS_STEP;
 ;
@@ -3358,11 +3365,11 @@ L06FA:	jsr     _ppu_wait_nmi
 ;
 ; while(gas_speed > 256){
 ;
-	jmp     L0A82
+	jmp     L0A84
 ;
 ; ++gas1;
 ;
-L0A80:	inc     _gas1
+L0A82:	inc     _gas1
 ;
 ; gas_speed -= 256;
 ;
@@ -3372,7 +3379,7 @@ L0A80:	inc     _gas1
 	sta     _gas_speed
 	lda     _gas_speed+1
 	sbc     #$01
-L0A82:	sta     _gas_speed+1
+L0A84:	sta     _gas_speed+1
 ;
 ; while(gas_speed > 256){
 ;
@@ -3380,7 +3387,7 @@ L0A82:	sta     _gas_speed+1
 	cmp     #$01
 	lda     _gas_speed+1
 	sbc     #$01
-	bcs     L0A80
+	bcs     L0A82
 ;
 ; adjust_gas();
 ;
@@ -3392,16 +3399,16 @@ L0A82:	sta     _gas_speed+1
 	clc
 	adc     _cost_speed
 	sta     _cost_speed
-	bcc     L0712
+	bcc     L0714
 	inc     _cost_speed+1
 ;
 ; while(cost_speed > 256){
 ;
-	jmp     L0712
+	jmp     L0714
 ;
 ; ++cost1;
 ;
-L0A81:	inc     _cost1
+L0A83:	inc     _cost1
 ;
 ; cost_speed -= 256;
 ;
@@ -3415,11 +3422,11 @@ L0A81:	inc     _cost1
 ;
 ; while(cost_speed > 256){
 ;
-L0712:	lda     _cost_speed
+L0714:	lda     _cost_speed
 	cmp     #$01
 	lda     _cost_speed+1
 	sbc     #$01
-	bcs     L0A81
+	bcs     L0A83
 ;
 ; adjust_cost();
 ;
@@ -3427,7 +3434,7 @@ L0712:	lda     _cost_speed
 ;
 ; draw_gas();
 ;
-L0701:	jsr     _draw_gas
+L0703:	jsr     _draw_gas
 ;
 ; draw_cost();
 ;
@@ -3435,7 +3442,7 @@ L0701:	jsr     _draw_gas
 ;
 ; while (1){
 ;
-	jmp     L06FA
+	jmp     L06FC
 
 .endproc
 

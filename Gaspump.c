@@ -9,12 +9,13 @@
 #include "LIB/nesdoug.h"
 
 #include "LIB/zaplib.h"
+#include "MMC1/bank_helpers.h"
 #include "Gaspump.h"
 
 #include "Sprites.h"
 #include "Metatiles.h"
 #include "level1.h"
-
+ 
 
 
 const unsigned char pal1[16]={ 
@@ -35,7 +36,7 @@ const unsigned char pal2[]={
 }; 
 
 	
-void main (void) {
+void main (void) {    
 	
 	ppu_off(); // screen off
 
@@ -58,6 +59,7 @@ void main (void) {
 	ppu_on_all(); // turn on screen
 	
 	
+	set_chr_bank_0(2);
 	
 	game_mode = MODE_TITLE;
 	init_mode_title();
@@ -146,16 +148,20 @@ void read_input(void) {
 
 void adjust_gas(void){
 	if(gas1 >= 10){
+		gas1_changed = 1;
 		gas1 = 0;
 		++gas2;
 		if(gas2 >= 10){
+			gas2_changed = 1;
 			gas2 = 0;
 			++gas3;
 			if(gas3 >= 10){
+				gas3_changed = 1;
 				gas3 = 0;
 				++gas4;
 			}
 			if(gas4 >= 10) {
+				gas4_changed = 1;
 				gas4 = 0;
 				++gas5;
 			}
@@ -174,16 +180,20 @@ void adjust_gas(void){
 
 void adjust_cost(void){
 	if(cost1 >= 10){
+		cost1_changed = 1;
 		cost1 = 0;
 		++cost2;
 		if(cost2 >= 10){
+			cost2_changed = 1;
 			cost2 = 0;
 			++cost3;
 			if(cost3 >= 10){
+				cost3_changed = 1;
 				cost3 = 0;
 				++cost4;
 			}
 			if(cost4 >= 10) {
+				cost4_changed = 1;
 				cost4 = 0;
 				++cost5;
 			}
@@ -206,23 +216,36 @@ void draw_cost(void){
 	// find_sprite();
 	// oam_meta_spr(0x40, 0x60, pointer);
 
-	sprite_cost = cost4;
-	find_sprite();
-	oam_meta_spr(0x68, 0xa0, pointer);
+	if(cost3_changed){
+		num_holder = cost4;
+		x=21;
+		y=20;
+		draw_number_as_bg_tile();
+		cost3_changed = 0;
+	}
 
-	sprite_cost = cost3;
-	find_sprite();
-	oam_meta_spr(0x78, 0xa0, pointer);
+	if(cost2_changed){
+		num_holder = cost3;
+		x=23;
+		y=20;
+		draw_number_as_bg_tile();
+		cost2_changed = 0;
+	}
 
-	sprite_cost = cost2;
-	find_sprite();
-	oam_meta_spr(0x88, 0xa0, pointer);
+	if(cost1_changed){
+		num_holder = cost2;
+		x=25;
+		y=20;
+		draw_number_as_bg_tile();
+		cost1_changed = 0;
+	}
 
-	
+
 	num_holder = cost1;
-	x=19;
+	x=27;
 	y=20;
 	draw_number_as_bg_tile();
+		
 
 	// sprite_cost = cost1;
 	// find_sprite();
@@ -346,21 +369,52 @@ void draw_gas(void){
 	// find_sprite();
 	// oam_meta_spr(0x40, 0x30, pointer);
 
-	sprite_cost = gas4;
-	find_sprite();
-	oam_meta_spr(0x68, 0x70, pointer);
+	// sprite_cost = gas4;
+	// find_sprite();
+	// oam_meta_spr(0x68, 0x70, pointer);
 
-	sprite_cost = gas3;
-	find_sprite();
-	oam_meta_spr(0x78, 0x70, pointer);
+	// sprite_cost = gas3;
+	// find_sprite();
+	// oam_meta_spr(0x78, 0x70, pointer);
 
-	sprite_cost = gas2;
-	find_sprite();
-	oam_meta_spr(0x88, 0x70, pointer);
+	// sprite_cost = gas2;
+	// find_sprite();
+	// oam_meta_spr(0x88, 0x70, pointer);
 
-	sprite_cost = gas1;
-	find_sprite();
-	oam_meta_spr(0x98, 0x70, pointer);
+	// sprite_cost = gas1;
+	// find_sprite();
+	// oam_meta_spr(0x98, 0x70, pointer);
+
+
+	if(gas3_changed){
+		num_holder = gas4;
+		x=21;
+		y=14;
+		draw_number_as_bg_tile();
+		gas3_changed=0;
+	}
+
+	if(gas2_changed){
+		num_holder = gas3;
+		x=23;
+		y=14;
+		draw_number_as_bg_tile();
+		gas2_changed = 0;
+	}
+
+	if(gas1_changed){
+		num_holder = gas2;
+		x=25;
+		y=14;
+		draw_number_as_bg_tile();
+		gas1_changed = 0;
+	}
+	
+	num_holder = gas1;
+	x=27;
+	y=14;
+	draw_number_as_bg_tile();
+
 }
 
 void find_sprite(void){
@@ -431,6 +485,19 @@ void init_mode_intro(void){
 }	
 
 void init_mode_game(void){ 
+	//reset changed values so they redraw
+	// cost1_changed = 1;
+	// cost2_changed = 1;
+	// cost3_changed = 1;
+	// cost4_changed = 1;
+	// cost5_changed = 1;
+	// gas1_changed = 1;
+	// gas2_changed = 1;
+	// gas3_changed = 1;
+	// gas4_changed = 1;
+	// gas5_changed = 1;
+
+	set_chr_bank_0(0);
 	//draw_bg: draw background code
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites

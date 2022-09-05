@@ -10,13 +10,22 @@ unsigned char cost4;
 unsigned char cost3;
 unsigned char cost2;
 unsigned char cost1;
+unsigned char cost5_changed;
+unsigned char cost4_changed;
+unsigned char cost3_changed;
+unsigned char cost2_changed;
+unsigned char cost1_changed;
 
-unsigned char gas6;
 unsigned char gas5;
 unsigned char gas4;
 unsigned char gas3;
 unsigned char gas2;
 unsigned char gas1;
+unsigned char gas5_changed;
+unsigned char gas4_changed;
+unsigned char gas3_changed;
+unsigned char gas2_changed;
+unsigned char gas1_changed;
 
 unsigned int gas_speed;
 unsigned int cost_speed;

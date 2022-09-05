@@ -3,6 +3,11 @@
 
 
 
+
+; Edited to work with MMC1 code
+.define SOUND_BANK 6
+
+
 FT_BASE_ADR		= $0100		;page in RAM, should be $xx00
 FT_DPCM_OFF		= $f000		;$c000..$ffc0, 64-byte steps
 FT_SFX_STREAMS	= 1			;number of sound effects played at once, 1..4
@@ -10,7 +15,7 @@ FT_SFX_STREAMS	= 1			;number of sound effects played at once, 1..4
 FT_THREAD       = 1		;undefine if you call sound effects in the same thread as sound update
 FT_PAL_SUPPORT	= 1		;undefine to exclude PAL support
 FT_NTSC_SUPPORT	= 1		;undefine to exclude NTSC support
-FT_DPCM_ENABLE  = 0		;undefine to exclude all DMC code
+FT_DPCM_ENABLE  = 1		;undefine to exclude all DMC code
 FT_SFX_ENABLE   = 1		;undefine to exclude all sound effects code
 
 
@@ -31,10 +36,7 @@ FT_SFX_ENABLE   = 1		;undefine to exclude all sound effects code
 	.import	__RODATA_LOAD__ ,__RODATA_RUN__ ,__RODATA_SIZE__
 	.import NES_MAPPER, NES_PRG_BANKS, NES_CHR_BANKS, NES_MIRRORING
 
-	.importzp _PAD_STATE, _PAD_STATET ;added
     .include "zeropage.inc"
-
-
 
 
 
@@ -56,7 +58,6 @@ CTRL_PORT2	=$4017
 OAM_BUF		=$0200
 PAL_BUF		=$01c0
 VRAM_BUF	=$0700
-ATTR_BUF  =$23C0
 
 
 
@@ -118,9 +119,19 @@ DATA_PTR:			.res 2
 	.byte <NES_CHR_BANKS
 	.byte <NES_MIRRORING|(<NES_MAPPER<<4)
 	.byte <NES_MAPPER&$f0
-	.res 8,0
+	.byte 1 ;8k of PRG RAM
+	.res 7,0
 
 
+; linker complains if I don't have at least one mention of each bank
+.segment "ONCE"
+.segment "BANK0"
+.segment "BANK1"
+.segment "BANK2"
+.segment "BANK3"
+.segment "BANK4"
+.segment "BANK5"
+.segment "BANK6"
 
 .segment "STARTUP"
 
@@ -137,6 +148,32 @@ _exit:
     stx PPU_MASK
     stx DMC_FREQ
     stx PPU_CTRL		;no NMI
+	
+	
+; MMC1 reset
+
+	lda #$80 ; reset all latches
+	sta $8000
+	sta $a000
+	sta $c000
+	sta $e000
+	
+	lda #$1f 	; set control to horizontal mirroring, 
+				; last bank $c000, $8000 swappable
+				; CHR in 4k and 4k mode
+	jsr _set_mmc1_ctrl
+	
+	lda #$00 ;CHR bank #0 for first tileset
+	jsr _set_chr_bank_0
+	
+	lda #$01 ;CHR bank #1 for second tileset
+	jsr _set_chr_bank_1
+	
+	lda #$00 ;PRG bank #0 at $8000
+	jsr _set_prg_bank
+	
+	
+	;x is still zero
 
 initPPU:
     bit PPU_STATUS
@@ -232,17 +269,6 @@ detectNTSC:
 	ldx #0
 	jsr _set_vram_update
 
-	ldx #<music_data
-	ldy #>music_data
-	lda <NTSC_MODE
-	jsr FamiToneInit
-
-	.if(FT_SFX_ENABLE)
-	ldx #<sounds_data
-	ldy #>sounds_data
-	jsr FamiToneSfxInit
-	.endif
-
 	lda #$fd
 	sta <RAND_SEED
 	sta <RAND_SEED+1
@@ -250,34 +276,59 @@ detectNTSC:
 	lda #0
 	sta PPU_SCROLL
 	sta PPU_SCROLL
+	
+	
+	
+	lda #SOUND_BANK ;PRG bank where all the music stuff is there
+					;SOUND_BANK is defined above
+	jsr _set_prg_bank
+	
+	ldx #<music_data
+	ldy #>music_data
+	lda <NTSC_MODE
+	jsr FamiToneInit
+
+	ldx #<sounds_data
+	ldy #>sounds_data
+	jsr FamiToneSfxInit
+	
+	lda #$00 ;PRG bank #0 at $8000, back to basic
+	jsr _set_prg_bank
+	
+	;for split screens with different CHR bank at top... disable it
+	jsr _unset_nmi_chr_tile_bank
 
 	jmp _main			;no parameters
+	
+	
 
+	.include "MMC1/mmc1_macros.asm"
+	.include "MMC1/bank_helpers.asm"
 	.include "LIB/neslib.s"
 	.include "LIB/nesdoug.s"
-	.include "MUSIC/famitone2.s"
 	.include "LIB/zaplib.s"
 	
+
+
+
 	
+; I put all the music stuff on bank 6
+; all the music functions swap in bank 6
 	
-.segment "RODATA"
+.segment "BANK6"	
+	.include "MUSIC/famitone2.s"
 
 music_data:
-;	.include "MUSIC/Silence.s"
-; since we have no music included, don't try to play a song
-; or it will crash the game.
-
-
-
+	.include "MUSIC/TestMusic3.s"
 
 sounds_data:
-	.include "MUSIC/SFX.s"
+	.include "MUSIC/SoundFx.s"
 
 
 	
 	
 .segment "SAMPLES"
-;	.incbin "music_dpcm.bin"
+	.incbin "MUSIC/BassDrum.dmc"
 
 
 
@@ -291,3 +342,7 @@ sounds_data:
 .segment "CHARS"
 
 	.incbin "Gaspump.chr"
+	.incbin "Gaspump2.chr"
+; the CHARS segment is much bigger, and I could have 
+; incbin-ed many more chr files
+	

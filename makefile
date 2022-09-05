@@ -6,7 +6,7 @@ CC65 = cc65
 CA65 = ca65
 LD65 = ld65
 NAME = Gaspump
-CFG = nrom_32k_vert.cfg
+CFG = MMC1_128_128.cfg
 
 
 .PHONY: default clean
@@ -21,7 +21,7 @@ $(NAME).nes: $(NAME).o crt0.o $(CFG)
 	rm *.o
 	@echo $(NAME).nes created
 
-crt0.o: crt0.s Gaspump.chr MUSIC/SFX.s
+crt0.o: crt0.s Gaspump.chr Gaspump2.chr MUSIC/SFX.s
 	$(CA65) crt0.s
 
 $(NAME).o: $(NAME).s

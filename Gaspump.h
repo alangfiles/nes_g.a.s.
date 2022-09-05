@@ -21,25 +21,31 @@ unsigned char gas1;
 unsigned int gas_speed;
 unsigned int cost_speed;
 
-#define GAS_STEP 500
+#define GAS_STEP 50
 #define COST_STEP 80
 
 unsigned char pad1;
 unsigned char pad1_new;
-unsigned char input_active;
+unsigned char trigger_pulled;
+unsigned char trigger_clicked;
 unsigned char sprite_cost;
 unsigned char cost_sprite;
 
+unsigned char game_mode;
+enum
+{
+	MODE_TITLE,
+	MODE_GAME,
+	MODE_PAUSE,
+	MODE_INTRO,
+	MODE_SWITCH,
+	MODE_TALKING_TIME,
+	MODE_DECISION_TIME,
+	MODE_END,
+	MODE_GAME_OVER,
+};
+
 const unsigned char * pointer;
-
-
-unsigned char star_active;
-unsigned char star_color;
-unsigned int star_x;
-unsigned int star_y;
-unsigned int star_x_speed;
-unsigned int star_y_speed;
-unsigned char star_wait;
 
 unsigned char temp1;
 unsigned char temp2;
@@ -47,6 +53,7 @@ unsigned char temp2;
 int address;
 unsigned char x; 
 unsigned char y;
+unsigned char num_holder;
 unsigned char index = 0;
 unsigned char index2;
 int largeindex;
@@ -54,15 +61,22 @@ int largeindex;
 #pragma bss-name(push, "BSS")
 
 
+#pragma bss-name(push, "XRAM")
+// extra RAM at $6000-$7fff
+unsigned char wram_array[0x2000];
+
 // PROTOTYPES
 void adjust_cost(void);
 void adjust_gas(void);
 void draw_cost(void);
 void draw_gas(void);
-void draw_bg(void);
 void draw_sprites(void);
-void debug_zap(void);
+void read_input(void);
 void find_sprite(void);
+void init_mode_title(void);
+void init_mode_intro(void);
+void init_mode_game(void);
+void draw_number_as_bg_tile(void);
 // void new_star(void);
 // void draw_box(void);
 // void draw_star(void);

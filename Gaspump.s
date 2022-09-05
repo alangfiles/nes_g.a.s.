@@ -24,6 +24,8 @@
 	.import		_vram_put
 	.import		_set_vram_buffer
 	.import		_one_vram_buffer
+	.import		_multi_vram_buffer_horz
+	.import		_get_pad_new
 	.import		_set_scroll_y
 	.import		_flush_vram_update2
 	.import		_zap_shoot
@@ -45,32 +47,32 @@
 	.export		_cost_speed
 	.export		_pad1
 	.export		_pad1_new
-	.export		_input_active
+	.export		_trigger_pulled
+	.export		_trigger_clicked
 	.export		_sprite_cost
 	.export		_cost_sprite
+	.export		_game_mode
 	.export		_pointer
-	.export		_star_active
-	.export		_star_color
-	.export		_star_x
-	.export		_star_y
-	.export		_star_x_speed
-	.export		_star_y_speed
-	.export		_star_wait
 	.export		_temp1
 	.export		_temp2
 	.export		_address
 	.export		_x
 	.export		_y
+	.export		_num_holder
 	.export		_index
 	.export		_index2
 	.export		_largeindex
+	.export		_wram_array
 	.export		_adjust_cost
 	.export		_adjust_gas
 	.export		_draw_cost
 	.export		_draw_gas
-	.export		_draw_bg
-	.export		_debug_zap
+	.export		_read_input
 	.export		_find_sprite
+	.export		_init_mode_title
+	.export		_init_mode_intro
+	.export		_init_mode_game
+	.export		_draw_number_as_bg_tile
 	.export		_One
 	.export		_Two
 	.export		_Three
@@ -83,7 +85,7 @@
 	.export		_Zero
 	.export		_metatiles_1
 	.export		_room_1
-	.export		_level1_test
+	.export		_level1
 	.export		_pal1
 	.export		_pal2
 	.export		_main
@@ -817,7 +819,7 @@ _room_1:
 	.byte	$01
 	.byte	$01
 	.byte	$25
-_level1_test:
+_level1:
 	.byte	$01
 	.byte	$01
 	.byte	$01
@@ -831,7 +833,7 @@ _level1_test:
 	.byte	$01
 	.byte	$01
 	.byte	$13
-	.byte	$14
+	.byte	$33
 	.byte	$15
 	.byte	$16
 	.byte	$17
@@ -840,7 +842,7 @@ _level1_test:
 	.byte	$1A
 	.byte	$1B
 	.byte	$1C
-	.byte	$1D
+	.byte	$01
 	.byte	$01
 	.byte	$01
 	.byte	$01
@@ -863,7 +865,7 @@ _level1_test:
 	.byte	$01
 	.byte	$22
 	.byte	$23
-	.byte	$24
+	.byte	$33
 	.byte	$25
 	.byte	$26
 	.byte	$27
@@ -895,7 +897,7 @@ _level1_test:
 	.byte	$01
 	.byte	$32
 	.byte	$33
-	.byte	$34
+	.byte	$03
 	.byte	$35
 	.byte	$36
 	.byte	$37
@@ -903,7 +905,7 @@ _level1_test:
 	.byte	$39
 	.byte	$3A
 	.byte	$3B
-	.byte	$3C
+	.byte	$03
 	.byte	$3D
 	.byte	$01
 	.byte	$01
@@ -935,7 +937,7 @@ _level1_test:
 	.byte	$49
 	.byte	$4A
 	.byte	$4B
-	.byte	$4C
+	.byte	$03
 	.byte	$4D
 	.byte	$01
 	.byte	$01
@@ -1021,7 +1023,7 @@ _level1_test:
 	.byte	$01
 	.byte	$01
 	.byte	$01
-	.byte	$72
+	.byte	$01
 	.byte	$73
 	.byte	$74
 	.byte	$75
@@ -1051,8 +1053,8 @@ _level1_test:
 	.byte	$01
 	.byte	$01
 	.byte	$01
-	.byte	$80
-	.byte	$81
+	.byte	$01
+	.byte	$01
 	.byte	$01
 	.byte	$01
 	.byte	$84
@@ -1183,7 +1185,7 @@ _level1_test:
 	.byte	$B0
 	.byte	$01
 	.byte	$01
-	.byte	$01
+	.byte	$7D
 	.byte	$01
 	.byte	$01
 	.byte	$01
@@ -1207,24 +1209,24 @@ _level1_test:
 	.byte	$00
 	.byte	$00
 	.byte	$61
-	.byte	$61
+	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$61
 	.byte	$90
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
+	.byte	$81
+	.byte	$07
+	.byte	$08
+	.byte	$09
+	.byte	$0A
+	.byte	$0B
+	.byte	$0B
+	.byte	$0C
+	.byte	$0D
+	.byte	$0E
+	.byte	$0F
+	.byte	$71
 	.byte	$9F
 	.byte	$61
 	.byte	$00
@@ -1245,8 +1247,8 @@ _level1_test:
 	.byte	$00
 	.byte	$00
 	.byte	$B0
+	.byte	$81
 	.byte	$01
-	.byte	$05
 	.byte	$20
 	.byte	$21
 	.byte	$30
@@ -1256,7 +1258,7 @@ _level1_test:
 	.byte	$41
 	.byte	$50
 	.byte	$01
-	.byte	$01
+	.byte	$71
 	.byte	$AF
 	.byte	$00
 	.byte	$00
@@ -1277,7 +1279,7 @@ _level1_test:
 	.byte	$00
 	.byte	$04
 	.byte	$B0
-	.byte	$01
+	.byte	$81
 	.byte	$00
 	.byte	$C0
 	.byte	$C1
@@ -1288,7 +1290,7 @@ _level1_test:
 	.byte	$C6
 	.byte	$C7
 	.byte	$00
-	.byte	$01
+	.byte	$71
 	.byte	$9F
 	.byte	$04
 	.byte	$00
@@ -1309,7 +1311,7 @@ _level1_test:
 	.byte	$00
 	.byte	$00
 	.byte	$A0
-	.byte	$01
+	.byte	$81
 	.byte	$00
 	.byte	$D0
 	.byte	$D1
@@ -1320,7 +1322,7 @@ _level1_test:
 	.byte	$D6
 	.byte	$D7
 	.byte	$00
-	.byte	$01
+	.byte	$3C
 	.byte	$BF
 	.byte	$00
 	.byte	$00
@@ -1341,7 +1343,7 @@ _level1_test:
 	.byte	$00
 	.byte	$00
 	.byte	$A0
-	.byte	$01
+	.byte	$81
 	.byte	$00
 	.byte	$E0
 	.byte	$E1
@@ -1352,7 +1354,7 @@ _level1_test:
 	.byte	$E6
 	.byte	$E7
 	.byte	$00
-	.byte	$01
+	.byte	$4C
 	.byte	$AF
 	.byte	$00
 	.byte	$00
@@ -1373,7 +1375,7 @@ _level1_test:
 	.byte	$00
 	.byte	$70
 	.byte	$B0
-	.byte	$01
+	.byte	$81
 	.byte	$00
 	.byte	$F0
 	.byte	$F1
@@ -1384,7 +1386,7 @@ _level1_test:
 	.byte	$F6
 	.byte	$F7
 	.byte	$00
-	.byte	$01
+	.byte	$71
 	.byte	$9F
 	.byte	$00
 	.byte	$70
@@ -1399,12 +1401,13 @@ _level1_test:
 	.byte	$00
 	.byte	$00
 	.byte	$70
-	.byte	$70
+	.byte	$12
 	.byte	$60
 	.byte	$60
 	.byte	$60
 	.byte	$60
 	.byte	$B0
+	.byte	$81
 	.byte	$01
 	.byte	$01
 	.byte	$01
@@ -1415,21 +1418,20 @@ _level1_test:
 	.byte	$01
 	.byte	$01
 	.byte	$01
-	.byte	$01
-	.byte	$01
+	.byte	$71
 	.byte	$BF
 	.byte	$60
 	.byte	$60
 	.byte	$60
 	.byte	$60
 	.byte	$60
-	.byte	$70
+	.byte	$14
 	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$70
-	.byte	$70
+	.byte	$12
 	.byte	$60
 	.byte	$60
 	.byte	$60
@@ -1437,7 +1439,7 @@ _level1_test:
 	.byte	$60
 	.byte	$60
 	.byte	$B0
-	.byte	$01
+	.byte	$81
 	.byte	$01
 	.byte	$10
 	.byte	$31
@@ -1448,7 +1450,7 @@ _level1_test:
 	.byte	$41
 	.byte	$50
 	.byte	$01
-	.byte	$01
+	.byte	$71
 	.byte	$AF
 	.byte	$60
 	.byte	$60
@@ -1456,7 +1458,7 @@ _level1_test:
 	.byte	$60
 	.byte	$60
 	.byte	$60
-	.byte	$00
+	.byte	$14
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1469,7 +1471,7 @@ _level1_test:
 	.byte	$60
 	.byte	$60
 	.byte	$B0
-	.byte	$01
+	.byte	$81
 	.byte	$00
 	.byte	$C8
 	.byte	$C9
@@ -1480,7 +1482,7 @@ _level1_test:
 	.byte	$CE
 	.byte	$CF
 	.byte	$00
-	.byte	$01
+	.byte	$71
 	.byte	$9F
 	.byte	$60
 	.byte	$60
@@ -1488,11 +1490,11 @@ _level1_test:
 	.byte	$60
 	.byte	$60
 	.byte	$60
+	.byte	$34
 	.byte	$00
 	.byte	$00
 	.byte	$00
-	.byte	$00
-	.byte	$61
+	.byte	$24
 	.byte	$60
 	.byte	$60
 	.byte	$60
@@ -1501,7 +1503,7 @@ _level1_test:
 	.byte	$60
 	.byte	$60
 	.byte	$A0
-	.byte	$01
+	.byte	$81
 	.byte	$00
 	.byte	$D8
 	.byte	$D9
@@ -1512,28 +1514,28 @@ _level1_test:
 	.byte	$DE
 	.byte	$DF
 	.byte	$00
-	.byte	$01
+	.byte	$3C
 	.byte	$BF
 	.byte	$60
 	.byte	$60
 	.byte	$60
 	.byte	$60
-	.byte	$60
+	.byte	$34
 	.byte	$61
 	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
+	.byte	$24
+	.byte	$60
+	.byte	$60
+	.byte	$34
 	.byte	$61
-	.byte	$60
-	.byte	$60
-	.byte	$60
-	.byte	$60
-	.byte	$60
+	.byte	$24
 	.byte	$60
 	.byte	$90
-	.byte	$01
+	.byte	$81
 	.byte	$00
 	.byte	$E8
 	.byte	$E9
@@ -1544,13 +1546,12 @@ _level1_test:
 	.byte	$EE
 	.byte	$EF
 	.byte	$00
-	.byte	$01
+	.byte	$4C
 	.byte	$AF
 	.byte	$60
 	.byte	$60
 	.byte	$60
-	.byte	$60
-	.byte	$61
+	.byte	$34
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1559,13 +1560,14 @@ _level1_test:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-	.byte	$61
 	.byte	$00
 	.byte	$61
 	.byte	$00
 	.byte	$61
+	.byte	$00
+	.byte	$24
 	.byte	$B0
-	.byte	$01
+	.byte	$81
 	.byte	$00
 	.byte	$F8
 	.byte	$F9
@@ -1576,12 +1578,44 @@ _level1_test:
 	.byte	$FE
 	.byte	$FF
 	.byte	$00
-	.byte	$01
+	.byte	$71
 	.byte	$AF
 	.byte	$61
 	.byte	$61
 	.byte	$61
 	.byte	$61
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$05
+	.byte	$05
+	.byte	$05
+	.byte	$05
+	.byte	$05
+	.byte	$05
+	.byte	$B0
+	.byte	$81
+	.byte	$01
+	.byte	$01
+	.byte	$09
+	.byte	$0A
+	.byte	$0B
+	.byte	$0B
+	.byte	$0C
+	.byte	$0D
+	.byte	$01
+	.byte	$01
+	.byte	$71
+	.byte	$AF
+	.byte	$05
+	.byte	$05
+	.byte	$05
+	.byte	$05
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1598,48 +1632,16 @@ _level1_test:
 	.byte	$00
 	.byte	$B0
 	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$AF
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$B0
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
-	.byte	$01
+	.byte	$07
+	.byte	$08
+	.byte	$09
+	.byte	$0A
+	.byte	$0B
+	.byte	$0B
+	.byte	$0C
+	.byte	$0D
+	.byte	$0E
+	.byte	$0F
 	.byte	$01
 	.byte	$BF
 	.byte	$00
@@ -1660,7 +1662,7 @@ _level1_test:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-	.byte	$A1
+	.byte	$80
 	.byte	$A2
 	.byte	$A3
 	.byte	$A4
@@ -1673,7 +1675,7 @@ _level1_test:
 	.byte	$AB
 	.byte	$AC
 	.byte	$AD
-	.byte	$AE
+	.byte	$8D
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -1727,14 +1729,14 @@ _level1_test:
 	.byte	$A0
 	.byte	$01
 	.byte	$01
-	.byte	$01
+	.byte	$82
 	.byte	$30
 	.byte	$51
 	.byte	$31
 	.byte	$20
 	.byte	$51
 	.byte	$20
-	.byte	$01
+	.byte	$82
 	.byte	$01
 	.byte	$01
 	.byte	$BF
@@ -1774,9 +1776,9 @@ _level1_test:
 	.byte	$00
 	.byte	$00
 	.byte	$00
+	.byte	$70
 	.byte	$00
-	.byte	$00
-	.byte	$00
+	.byte	$70
 	.byte	$00
 	.byte	$55
 	.byte	$55
@@ -1827,12 +1829,12 @@ _level1_test:
 	.byte	$FF
 	.byte	$FF
 	.byte	$F7
-	.byte	$FD
-	.byte	$33
+	.byte	$F5
+	.byte	$31
 	.byte	$00
 	.byte	$00
 	.byte	$00
-	.byte	$FF
+	.byte	$F5
 	.byte	$FF
 	.byte	$0F
 	.byte	$0F
@@ -1876,6 +1878,18 @@ _pal2:
 	.byte	$38
 	.byte	$21
 	.byte	$15
+L0B10:
+	.byte	$50,$75,$6C,$6C,$20,$74,$68,$65,$20,$74,$72,$69,$67,$67,$65,$72
+	.byte	$20,$68,$61,$6C,$66,$77,$61,$79,$00
+L0AFF:
+	.byte	$50,$75,$6C,$6C,$20,$74,$72,$69,$67,$67,$65,$72,$20,$74,$6F,$20
+	.byte	$73,$74,$61,$72,$74,$00
+L0AF4:
+	.byte	$47,$61,$73,$20,$53,$74,$61,$74,$69,$6F,$6E,$20,$53,$69,$6D,$75
+	.byte	$6C,$61,$74,$6F,$72,$00
+L0B1B:
+	.byte	$42,$75,$74,$20,$6E,$6F,$74,$20,$74,$69,$6C,$20,$69,$74,$20,$63
+	.byte	$6C,$69,$63,$6B,$73,$00
 
 .segment	"BSS"
 
@@ -1916,28 +1930,18 @@ _pad1:
 	.res	1,$00
 _pad1_new:
 	.res	1,$00
-_input_active:
+_trigger_pulled:
+	.res	1,$00
+_trigger_clicked:
 	.res	1,$00
 _sprite_cost:
 	.res	1,$00
 _cost_sprite:
 	.res	1,$00
+_game_mode:
+	.res	1,$00
 _pointer:
 	.res	2,$00
-_star_active:
-	.res	1,$00
-_star_color:
-	.res	1,$00
-_star_x:
-	.res	2,$00
-_star_y:
-	.res	2,$00
-_star_x_speed:
-	.res	2,$00
-_star_y_speed:
-	.res	2,$00
-_star_wait:
-	.res	1,$00
 _temp1:
 	.res	1,$00
 _temp2:
@@ -1948,10 +1952,15 @@ _x:
 	.res	1,$00
 _y:
 	.res	1,$00
+_num_holder:
+	.res	1,$00
 _index2:
 	.res	1,$00
 _largeindex:
 	.res	2,$00
+.segment	"XRAM"
+_wram_array:
+	.res	8192,$00
 
 ; ---------------------------------------------------------------
 ; void __near__ adjust_cost (void)
@@ -1968,7 +1977,7 @@ _largeindex:
 ;
 	lda     _cost1
 	cmp     #$0A
-	bcc     L0A7C
+	bcc     L0B46
 ;
 ; cost1 = 0;
 ;
@@ -1983,7 +1992,7 @@ _largeindex:
 ;
 	lda     _cost2
 	cmp     #$0A
-	bcc     L0A7C
+	bcc     L0B46
 ;
 ; cost2 = 0;
 ;
@@ -1998,7 +2007,7 @@ _largeindex:
 ;
 	lda     _cost3
 	cmp     #$0A
-	bcc     L0A7B
+	bcc     L0B45
 ;
 ; cost3 = 0;
 ;
@@ -2011,9 +2020,9 @@ _largeindex:
 ;
 ; if(cost4 >= 10) {
 ;
-L0A7B:	lda     _cost4
+L0B45:	lda     _cost4
 	cmp     #$0A
-	bcc     L0A7C
+	bcc     L0B46
 ;
 ; cost4 = 0;
 ;
@@ -2026,9 +2035,9 @@ L0A7B:	lda     _cost4
 ;
 ; if(cost5 >= 10){ // maximum 9999
 ;
-L0A7C:	lda     _cost5
+L0B46:	lda     _cost5
 	cmp     #$0A
-	bcc     L075C
+	bcc     L0780
 ;
 ; cost5 = 9;
 ;
@@ -2053,7 +2062,7 @@ L0A7C:	lda     _cost5
 ;
 ; }
 ;
-L075C:	rts
+L0780:	rts
 
 .endproc
 
@@ -2072,7 +2081,7 @@ L075C:	rts
 ;
 	lda     _gas1
 	cmp     #$0A
-	bcc     L0A7E
+	bcc     L0B48
 ;
 ; gas1 = 0;
 ;
@@ -2087,7 +2096,7 @@ L075C:	rts
 ;
 	lda     _gas2
 	cmp     #$0A
-	bcc     L0A7E
+	bcc     L0B48
 ;
 ; gas2 = 0;
 ;
@@ -2102,7 +2111,7 @@ L075C:	rts
 ;
 	lda     _gas3
 	cmp     #$0A
-	bcc     L0A7D
+	bcc     L0B47
 ;
 ; gas3 = 0;
 ;
@@ -2115,9 +2124,9 @@ L075C:	rts
 ;
 ; if(gas4 >= 10) {
 ;
-L0A7D:	lda     _gas4
+L0B47:	lda     _gas4
 	cmp     #$0A
-	bcc     L0A7E
+	bcc     L0B48
 ;
 ; gas4 = 0;
 ;
@@ -2130,9 +2139,9 @@ L0A7D:	lda     _gas4
 ;
 ; if(gas5 >= 10){ // maximum 9999
 ;
-L0A7E:	lda     _gas5
+L0B48:	lda     _gas5
 	cmp     #$0A
-	bcc     L073B
+	bcc     L075F
 ;
 ; gas5 = 9;
 ;
@@ -2157,7 +2166,7 @@ L0A7E:	lda     _gas5
 ;
 ; }
 ;
-L073B:	rts
+L075F:	rts
 
 .endproc
 
@@ -2238,672 +2247,24 @@ L073B:	rts
 	ldx     _pointer+1
 	jsr     _oam_meta_spr
 ;
-; switch(cost1) {
+; num_holder = cost1;
 ;
 	lda     _cost1
+	sta     _num_holder
 ;
-; }
+; x=19;
 ;
-	jeq     L09EF
-	cmp     #$01
-	beq     L079D
-	cmp     #$02
-	jeq     L07DF
-	cmp     #$03
-	jeq     L0821
-	cmp     #$04
-	jeq     L0863
-	cmp     #$05
-	jeq     L08A5
-	cmp     #$06
-	jeq     L08E7
-	cmp     #$07
-	jeq     L0929
-	cmp     #$08
-	jeq     L096B
-	cmp     #$09
-	jeq     L09AD
-	rts
+	lda     #$13
+	sta     _x
 ;
-; one_vram_buffer(0xc0, NTADR_A(19,20));
+; y=20;
 ;
-L079D:	lda     #$C0
-	jsr     pusha
-	ldx     #$22
-	lda     #$93
-	jsr     _one_vram_buffer
+	lda     #$14
+	sta     _y
 ;
-; one_vram_buffer(0xc1, NTADR_A(20,20));
+; draw_number_as_bg_tile();
 ;
-	lda     #$C1
-	jsr     pusha
-	ldx     #$22
-	lda     #$94
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xd0, NTADR_A(19,21));
-;
-	lda     #$D0
-	jsr     pusha
-	ldx     #$22
-	lda     #$B3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xd1, NTADR_A(20,21));
-;
-	lda     #$D1
-	jsr     pusha
-	ldx     #$22
-	lda     #$B4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xe0, NTADR_A(19,22));
-;
-	lda     #$E0
-	jsr     pusha
-	ldx     #$22
-	lda     #$D3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xe1, NTADR_A(20,22));
-;
-	lda     #$E1
-	jsr     pusha
-	ldx     #$22
-	lda     #$D4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xf0, NTADR_A(19,23));
-;
-	lda     #$F0
-	jsr     pusha
-	ldx     #$22
-	lda     #$F3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xf1, NTADR_A(20,23));
-;
-	lda     #$F1
-	jsr     pusha
-	ldx     #$22
-	lda     #$F4
-	jmp     _one_vram_buffer
-;
-; one_vram_buffer(0xc2, NTADR_A(19,20));
-;
-L07DF:	lda     #$C2
-	jsr     pusha
-	ldx     #$22
-	lda     #$93
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xc3, NTADR_A(20,20));
-;
-	lda     #$C3
-	jsr     pusha
-	ldx     #$22
-	lda     #$94
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xd2, NTADR_A(19,21));
-;
-	lda     #$D2
-	jsr     pusha
-	ldx     #$22
-	lda     #$B3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xd3, NTADR_A(20,21));
-;
-	lda     #$D3
-	jsr     pusha
-	ldx     #$22
-	lda     #$B4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xe2, NTADR_A(19,22));
-;
-	lda     #$E2
-	jsr     pusha
-	ldx     #$22
-	lda     #$D3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xe3, NTADR_A(20,22));
-;
-	lda     #$E3
-	jsr     pusha
-	ldx     #$22
-	lda     #$D4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xf2, NTADR_A(19,23));
-;
-	lda     #$F2
-	jsr     pusha
-	ldx     #$22
-	lda     #$F3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xf3, NTADR_A(20,23));
-;
-	lda     #$F3
-	jsr     pusha
-	ldx     #$22
-	lda     #$F4
-	jmp     _one_vram_buffer
-;
-; one_vram_buffer(0xc4, NTADR_A(19,20));
-;
-L0821:	lda     #$C4
-	jsr     pusha
-	ldx     #$22
-	lda     #$93
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xc5, NTADR_A(20,20));
-;
-	lda     #$C5
-	jsr     pusha
-	ldx     #$22
-	lda     #$94
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xd4, NTADR_A(19,21));
-;
-	lda     #$D4
-	jsr     pusha
-	ldx     #$22
-	lda     #$B3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xd5, NTADR_A(20,21));
-;
-	lda     #$D5
-	jsr     pusha
-	ldx     #$22
-	lda     #$B4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xe4, NTADR_A(19,22));
-;
-	lda     #$E4
-	jsr     pusha
-	ldx     #$22
-	lda     #$D3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xe5, NTADR_A(20,22));
-;
-	lda     #$E5
-	jsr     pusha
-	ldx     #$22
-	lda     #$D4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xf4, NTADR_A(19,23));
-;
-	lda     #$F4
-	jsr     pusha
-	ldx     #$22
-	lda     #$F3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xf5, NTADR_A(20,23));
-;
-	lda     #$F5
-	jsr     pusha
-	ldx     #$22
-	lda     #$F4
-	jmp     _one_vram_buffer
-;
-; one_vram_buffer(0xc6, NTADR_A(19,20));
-;
-L0863:	lda     #$C6
-	jsr     pusha
-	ldx     #$22
-	lda     #$93
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xc7, NTADR_A(20,20));
-;
-	lda     #$C7
-	jsr     pusha
-	ldx     #$22
-	lda     #$94
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xd6, NTADR_A(19,21));
-;
-	lda     #$D6
-	jsr     pusha
-	ldx     #$22
-	lda     #$B3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xd7, NTADR_A(20,21));
-;
-	lda     #$D7
-	jsr     pusha
-	ldx     #$22
-	lda     #$B4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xe6, NTADR_A(19,22));
-;
-	lda     #$E6
-	jsr     pusha
-	ldx     #$22
-	lda     #$D3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xe7, NTADR_A(20,22));
-;
-	lda     #$E7
-	jsr     pusha
-	ldx     #$22
-	lda     #$D4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xf6, NTADR_A(19,23));
-;
-	lda     #$F6
-	jsr     pusha
-	ldx     #$22
-	lda     #$F3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xf7, NTADR_A(20,23));
-;
-	lda     #$F7
-	jsr     pusha
-	ldx     #$22
-	lda     #$F4
-	jmp     _one_vram_buffer
-;
-; one_vram_buffer(0xc8, NTADR_A(19,20));
-;
-L08A5:	lda     #$C8
-	jsr     pusha
-	ldx     #$22
-	lda     #$93
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xc9, NTADR_A(20,20));
-;
-	lda     #$C9
-	jsr     pusha
-	ldx     #$22
-	lda     #$94
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xd8, NTADR_A(19,21));
-;
-	lda     #$D8
-	jsr     pusha
-	ldx     #$22
-	lda     #$B3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xd9, NTADR_A(20,21));
-;
-	lda     #$D9
-	jsr     pusha
-	ldx     #$22
-	lda     #$B4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xe8, NTADR_A(19,22));
-;
-	lda     #$E8
-	jsr     pusha
-	ldx     #$22
-	lda     #$D3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xe9, NTADR_A(20,22));
-;
-	lda     #$E9
-	jsr     pusha
-	ldx     #$22
-	lda     #$D4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xf8, NTADR_A(19,23));
-;
-	lda     #$F8
-	jsr     pusha
-	ldx     #$22
-	lda     #$F3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xf9, NTADR_A(20,23));
-;
-	lda     #$F9
-	jsr     pusha
-	ldx     #$22
-	lda     #$F4
-	jmp     _one_vram_buffer
-;
-; one_vram_buffer(0xca, NTADR_A(19,20));
-;
-L08E7:	lda     #$CA
-	jsr     pusha
-	ldx     #$22
-	lda     #$93
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xcb, NTADR_A(20,20));
-;
-	lda     #$CB
-	jsr     pusha
-	ldx     #$22
-	lda     #$94
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xda, NTADR_A(19,21));
-;
-	lda     #$DA
-	jsr     pusha
-	ldx     #$22
-	lda     #$B3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xdb, NTADR_A(20,21));
-;
-	lda     #$DB
-	jsr     pusha
-	ldx     #$22
-	lda     #$B4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xea, NTADR_A(19,22));
-;
-	lda     #$EA
-	jsr     pusha
-	ldx     #$22
-	lda     #$D3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xeb, NTADR_A(20,22));
-;
-	lda     #$EB
-	jsr     pusha
-	ldx     #$22
-	lda     #$D4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xfa, NTADR_A(19,23));
-;
-	lda     #$FA
-	jsr     pusha
-	ldx     #$22
-	lda     #$F3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xfb, NTADR_A(20,23));
-;
-	lda     #$FB
-	jsr     pusha
-	ldx     #$22
-	lda     #$F4
-	jmp     _one_vram_buffer
-;
-; one_vram_buffer(0xcc, NTADR_A(19,20));
-;
-L0929:	lda     #$CC
-	jsr     pusha
-	ldx     #$22
-	lda     #$93
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xcd, NTADR_A(20,20));
-;
-	lda     #$CD
-	jsr     pusha
-	ldx     #$22
-	lda     #$94
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xdc, NTADR_A(19,21));
-;
-	lda     #$DC
-	jsr     pusha
-	ldx     #$22
-	lda     #$B3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xdd, NTADR_A(20,21));
-;
-	lda     #$DD
-	jsr     pusha
-	ldx     #$22
-	lda     #$B4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xec, NTADR_A(19,22));
-;
-	lda     #$EC
-	jsr     pusha
-	ldx     #$22
-	lda     #$D3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xed, NTADR_A(20,22));
-;
-	lda     #$ED
-	jsr     pusha
-	ldx     #$22
-	lda     #$D4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xfc, NTADR_A(19,23));
-;
-	lda     #$FC
-	jsr     pusha
-	ldx     #$22
-	lda     #$F3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xfd, NTADR_A(20,23));
-;
-	lda     #$FD
-	jsr     pusha
-	ldx     #$22
-	lda     #$F4
-	jmp     _one_vram_buffer
-;
-; one_vram_buffer(0xce, NTADR_A(19,20));
-;
-L096B:	lda     #$CE
-	jsr     pusha
-	ldx     #$22
-	lda     #$93
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xcf, NTADR_A(20,20));
-;
-	lda     #$CF
-	jsr     pusha
-	ldx     #$22
-	lda     #$94
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xde, NTADR_A(19,21));
-;
-	lda     #$DE
-	jsr     pusha
-	ldx     #$22
-	lda     #$B3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xdf, NTADR_A(20,21));
-;
-	lda     #$DF
-	jsr     pusha
-	ldx     #$22
-	lda     #$B4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xee, NTADR_A(19,22));
-;
-	lda     #$EE
-	jsr     pusha
-	ldx     #$22
-	lda     #$D3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xef, NTADR_A(20,22));
-;
-	lda     #$EF
-	jsr     pusha
-	ldx     #$22
-	lda     #$D4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xfe, NTADR_A(19,23));
-;
-	lda     #$FE
-	jsr     pusha
-	ldx     #$22
-	lda     #$F3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0xff, NTADR_A(20,23));
-;
-	lda     #$FF
-	jsr     pusha
-	ldx     #$22
-	lda     #$F4
-	jmp     _one_vram_buffer
-;
-; one_vram_buffer(0x5e, NTADR_A(19,20));
-;
-L09AD:	lda     #$5E
-	jsr     pusha
-	ldx     #$22
-	lda     #$93
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0x5f, NTADR_A(20,20));
-;
-	lda     #$5F
-	jsr     pusha
-	ldx     #$22
-	lda     #$94
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0x6e, NTADR_A(19,21));
-;
-	lda     #$6E
-	jsr     pusha
-	ldx     #$22
-	lda     #$B3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0x6f, NTADR_A(20,21));
-;
-	lda     #$6F
-	jsr     pusha
-	ldx     #$22
-	lda     #$B4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0x7e, NTADR_A(19,22));
-;
-	lda     #$7E
-	jsr     pusha
-	ldx     #$22
-	lda     #$D3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0x7f, NTADR_A(20,22));
-;
-	lda     #$7F
-	jsr     pusha
-	ldx     #$22
-	lda     #$D4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0x8e, NTADR_A(19,23));
-;
-	lda     #$8E
-	jsr     pusha
-	ldx     #$22
-	lda     #$F3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0x8f, NTADR_A(20,23));
-;
-	lda     #$8F
-	jsr     pusha
-	ldx     #$22
-	lda     #$F4
-	jmp     _one_vram_buffer
-;
-; one_vram_buffer(0x1e, NTADR_A(19,20));
-;
-L09EF:	lda     #$1E
-	jsr     pusha
-	ldx     #$22
-	lda     #$93
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0x1f, NTADR_A(20,20));
-;
-	lda     #$1F
-	jsr     pusha
-	ldx     #$22
-	lda     #$94
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0x2e, NTADR_A(19,21));
-;
-	lda     #$2E
-	jsr     pusha
-	ldx     #$22
-	lda     #$B3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0x2f, NTADR_A(20,21));
-;
-	lda     #$2F
-	jsr     pusha
-	ldx     #$22
-	lda     #$B4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0x3e, NTADR_A(19,22));
-;
-	lda     #$3E
-	jsr     pusha
-	ldx     #$22
-	lda     #$D3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0x3f, NTADR_A(20,22));
-;
-	lda     #$3F
-	jsr     pusha
-	ldx     #$22
-	lda     #$D4
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0x4e, NTADR_A(19,23));
-;
-	lda     #$4E
-	jsr     pusha
-	ldx     #$22
-	lda     #$F3
-	jsr     _one_vram_buffer
-;
-; one_vram_buffer(0x4f, NTADR_A(20,23));
-;
-	lda     #$4F
-	jsr     pusha
-	ldx     #$22
-	lda     #$F4
-	jmp     _one_vram_buffer
+	jmp     _draw_number_as_bg_tile
 
 .endproc
 
@@ -3009,12 +2370,356 @@ L09EF:	lda     #$1E
 .endproc
 
 ; ---------------------------------------------------------------
-; void __near__ draw_bg (void)
+; void __near__ read_input (void)
 ; ---------------------------------------------------------------
 
 .segment	"CODE"
 
-.proc	_draw_bg: near
+.proc	_read_input: near
+
+.segment	"CODE"
+
+;
+; pad1 = pad_poll(0);     // read the first controller
+;
+	lda     #$00
+	jsr     _pad_poll
+	sta     _pad1
+;
+; pad1_new = get_pad_new(0); // newly pressed button. do pad_poll first
+;
+	lda     #$00
+	jsr     _get_pad_new
+	sta     _pad1_new
+;
+; trigger_pulled =  (pad1 & PAD_A) || zap_shoot(0); // controller slot 1 zapper
+;
+	lda     _pad1
+	and     #$80
+	bne     L0B49
+	jsr     _zap_shoot
+	tax
+	beq     L0B4A
+L0B49:	lda     #$01
+L0B4A:	sta     _trigger_pulled
+;
+; trigger_clicked = (pad1_new & PAD_A);
+;
+	lda     _pad1_new
+	and     #$80
+	sta     _trigger_clicked
+;
+; }
+;
+	rts
+
+.endproc
+
+; ---------------------------------------------------------------
+; void __near__ find_sprite (void)
+; ---------------------------------------------------------------
+
+.segment	"CODE"
+
+.proc	_find_sprite: near
+
+.segment	"CODE"
+
+;
+; switch(sprite_cost) {
+;
+	lda     _sprite_cost
+;
+; }
+;
+	beq     L0AC8
+	cmp     #$01
+	beq     L0ACC
+	cmp     #$02
+	beq     L0AD0
+	cmp     #$03
+	beq     L0AD4
+	cmp     #$04
+	beq     L0AD8
+	cmp     #$05
+	beq     L0ADC
+	cmp     #$06
+	beq     L0AE0
+	cmp     #$07
+	beq     L0AE4
+	cmp     #$08
+	beq     L0AE8
+	cmp     #$09
+	beq     L0AEC
+	rts
+;
+; pointer = Zero;
+;
+L0AC8:	lda     #>(_Zero)
+	sta     _pointer+1
+	lda     #<(_Zero)
+	sta     _pointer
+;
+; break;
+;
+	rts
+;
+; pointer = One;
+;
+L0ACC:	lda     #>(_One)
+	sta     _pointer+1
+	lda     #<(_One)
+	sta     _pointer
+;
+; break;
+;
+	rts
+;
+; pointer = Two;
+;
+L0AD0:	lda     #>(_Two)
+	sta     _pointer+1
+	lda     #<(_Two)
+	sta     _pointer
+;
+; break;
+;
+	rts
+;
+; pointer = Three;
+;
+L0AD4:	lda     #>(_Three)
+	sta     _pointer+1
+	lda     #<(_Three)
+	sta     _pointer
+;
+; break;
+;
+	rts
+;
+; pointer = Four;
+;
+L0AD8:	lda     #>(_Four)
+	sta     _pointer+1
+	lda     #<(_Four)
+	sta     _pointer
+;
+; break;
+;
+	rts
+;
+; pointer = Five;
+;
+L0ADC:	lda     #>(_Five)
+	sta     _pointer+1
+	lda     #<(_Five)
+	sta     _pointer
+;
+; break;
+;
+	rts
+;
+; pointer = Six;
+;
+L0AE0:	lda     #>(_Six)
+	sta     _pointer+1
+	lda     #<(_Six)
+	sta     _pointer
+;
+; break;
+;
+	rts
+;
+; pointer = Seven;
+;
+L0AE4:	lda     #>(_Seven)
+	sta     _pointer+1
+	lda     #<(_Seven)
+	sta     _pointer
+;
+; break;
+;
+	rts
+;
+; pointer = Eight;
+;
+L0AE8:	lda     #>(_Eight)
+	sta     _pointer+1
+	lda     #<(_Eight)
+	sta     _pointer
+;
+; break;
+;
+	rts
+;
+; pointer = Nine;
+;
+L0AEC:	lda     #>(_Nine)
+	sta     _pointer+1
+	lda     #<(_Nine)
+	sta     _pointer
+;
+; break;
+;
+	rts
+
+.endproc
+
+; ---------------------------------------------------------------
+; void __near__ init_mode_title (void)
+; ---------------------------------------------------------------
+
+.segment	"CODE"
+
+.proc	_init_mode_title: near
+
+.segment	"CODE"
+
+;
+; ppu_off();  // screen off
+;
+	jsr     _ppu_off
+;
+; oam_clear(); // clear all sprites
+;
+	jsr     _oam_clear
+;
+; multi_vram_buffer_horz("Gas Station Simulator", 21, NTADR_A(4,4)); 
+;
+	jsr     decsp3
+	lda     #<(L0AF4)
+	ldy     #$01
+	sta     (sp),y
+	iny
+	lda     #>(L0AF4)
+	sta     (sp),y
+	lda     #$15
+	ldy     #$00
+	sta     (sp),y
+	ldx     #$20
+	lda     #$84
+	jsr     _multi_vram_buffer_horz
+;
+; flush_vram_update2();
+;
+	jsr     _flush_vram_update2
+;
+; multi_vram_buffer_horz("Pull trigger to start", 21, NTADR_A(4,17)); 
+;
+	jsr     decsp3
+	lda     #<(L0AFF)
+	ldy     #$01
+	sta     (sp),y
+	iny
+	lda     #>(L0AFF)
+	sta     (sp),y
+	lda     #$15
+	ldy     #$00
+	sta     (sp),y
+	ldx     #$22
+	lda     #$24
+	jsr     _multi_vram_buffer_horz
+;
+; flush_vram_update2();
+;
+	jsr     _flush_vram_update2
+;
+; ppu_on_all(); // turn on screen
+;
+	jsr     _ppu_on_all
+;
+; game_mode=MODE_TITLE;
+;
+	lda     #$00
+	sta     _game_mode
+;
+; } 
+;
+	rts
+
+.endproc
+
+; ---------------------------------------------------------------
+; void __near__ init_mode_intro (void)
+; ---------------------------------------------------------------
+
+.segment	"CODE"
+
+.proc	_init_mode_intro: near
+
+.segment	"CODE"
+
+;
+; ppu_off();  // screen off
+;
+	jsr     _ppu_off
+;
+; oam_clear(); // clear all sprites
+;
+	jsr     _oam_clear
+;
+; multi_vram_buffer_horz("Pull the trigger halfway", 24, NTADR_A(4,4)); 
+;
+	jsr     decsp3
+	lda     #<(L0B10)
+	ldy     #$01
+	sta     (sp),y
+	iny
+	lda     #>(L0B10)
+	sta     (sp),y
+	lda     #$18
+	ldy     #$00
+	sta     (sp),y
+	ldx     #$20
+	lda     #$84
+	jsr     _multi_vram_buffer_horz
+;
+; flush_vram_update2();
+;
+	jsr     _flush_vram_update2
+;
+; multi_vram_buffer_horz("But not til it clicks", 21, NTADR_A(4,17)); 
+;
+	jsr     decsp3
+	lda     #<(L0B1B)
+	ldy     #$01
+	sta     (sp),y
+	iny
+	lda     #>(L0B1B)
+	sta     (sp),y
+	lda     #$15
+	ldy     #$00
+	sta     (sp),y
+	ldx     #$22
+	lda     #$24
+	jsr     _multi_vram_buffer_horz
+;
+; flush_vram_update2();
+;
+	jsr     _flush_vram_update2
+;
+; ppu_on_all(); // turn on screen
+;
+	jsr     _ppu_on_all
+;
+; game_mode=MODE_INTRO;
+;
+	lda     #$03
+	sta     _game_mode
+;
+; } 
+;
+	rts
+
+.endproc
+
+; ---------------------------------------------------------------
+; void __near__ init_mode_game (void)
+; ---------------------------------------------------------------
+
+.segment	"CODE"
+
+.proc	_init_mode_game: near
 
 .segment	"CODE"
 
@@ -3042,19 +2747,19 @@ L09EF:	lda     #$1E
 	lda     #$00
 	sta     _largeindex
 	sta     _largeindex+1
-L076F:	lda     _largeindex
+L0B2F:	lda     _largeindex
 	cmp     #$00
 	lda     _largeindex+1
 	sbc     #$04
-	bvc     L0776
+	bvc     L0B36
 	eor     #$80
-L0776:	bpl     L0770
+L0B36:	bpl     L0B30
 ;
-; vram_put(level1_test[largeindex]);
+; vram_put(level1[largeindex]);
 ;
-	lda     #<(_level1_test)
+	lda     #<(_level1)
 	sta     ptr1
-	lda     #>(_level1_test)
+	lda     #>(_level1)
 	clc
 	adc     _largeindex+1
 	sta     ptr1+1
@@ -3070,7 +2775,7 @@ L0776:	bpl     L0770
 ;
 	lda     _index
 	cmp     #$29
-	bcc     L0771
+	bcc     L0B31
 ;
 ; flush_vram_update2();
 ;
@@ -3083,197 +2788,2303 @@ L0776:	bpl     L0770
 ;
 ; for(largeindex = 0; largeindex < 1024; ++largeindex){
 ;
-L0771:	inc     _largeindex
-	bne     L076F
+L0B31:	inc     _largeindex
+	bne     L0B2F
 	inc     _largeindex+1
-	jmp     L076F
+	jmp     L0B2F
 ;
 ; ppu_on_all(); // turn on screen
 ;
-L0770:	jmp     _ppu_on_all
-
-.endproc
-
-; ---------------------------------------------------------------
-; void __near__ debug_zap (void)
-; ---------------------------------------------------------------
-
-.segment	"CODE"
-
-.proc	_debug_zap: near
-
-.segment	"CODE"
-
+L0B30:	jsr     _ppu_on_all
 ;
-; pad1 = pad_poll(0);     // read the first controller
+; game_mode=MODE_GAME;
 ;
-	lda     #$00
-	jsr     _pad_poll
-	sta     _pad1
+	lda     #$01
+	sta     _game_mode
 ;
-; input_active = (pad1 & PAD_A) || zap_shoot(0); // controller slot 1 zapper
-;
-	and     #$80
-	bne     L0A7F
-	jsr     _zap_shoot
-	tax
-	beq     L0A80
-L0A7F:	lda     #$01
-L0A80:	sta     _input_active
-;
-; }
+; } 
 ;
 	rts
 
 .endproc
 
 ; ---------------------------------------------------------------
-; void __near__ find_sprite (void)
+; void __near__ draw_number_as_bg_tile (void)
 ; ---------------------------------------------------------------
 
 .segment	"CODE"
 
-.proc	_find_sprite: near
+.proc	_draw_number_as_bg_tile: near
 
 .segment	"CODE"
 
 ;
-; switch(sprite_cost) {
+; switch(num_holder) {
 ;
-	lda     _sprite_cost
+	lda     _num_holder
 ;
 ; }
 ;
-	beq     L0A53
+	jeq     L0A5A
 	cmp     #$01
-	beq     L0A57
+	beq     L07AE
 	cmp     #$02
-	beq     L0A5B
+	jeq     L07FA
 	cmp     #$03
-	beq     L0A5F
+	jeq     L0846
 	cmp     #$04
-	beq     L0A63
+	jeq     L0892
 	cmp     #$05
-	beq     L0A67
+	jeq     L08DE
 	cmp     #$06
-	beq     L0A6B
+	jeq     L092A
 	cmp     #$07
-	beq     L0A6F
+	jeq     L0976
 	cmp     #$08
-	beq     L0A73
+	jeq     L09C2
 	cmp     #$09
-	beq     L0A77
+	jeq     L0A0E
 	rts
 ;
-; pointer = Zero;
+; one_vram_buffer(0xc0, NTADR_A(x,y));
 ;
-L0A53:	lda     #>(_Zero)
-	sta     _pointer+1
-	lda     #<(_Zero)
-	sta     _pointer
+L07AE:	lda     #$C0
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; break;
+; one_vram_buffer(0xc1, NTADR_A(x+1,y));
 ;
-	rts
+	lda     #$C1
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L07BF
+	inx
+L07BF:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; pointer = One;
+; one_vram_buffer(0xd0, NTADR_A(x, y+1));
 ;
-L0A57:	lda     #>(_One)
-	sta     _pointer+1
-	lda     #<(_One)
-	sta     _pointer
+	lda     #$D0
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L07C7
+	inx
+L07C7:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; break;
+; one_vram_buffer(0xd1, NTADR_A(x+1, y+1));
 ;
-	rts
+	lda     #$D1
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L07D0
+	inx
+L07D0:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L07D2
+	inx
+L07D2:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; pointer = Two;
+; one_vram_buffer(0xe0, NTADR_A(x,y+2));
 ;
-L0A5B:	lda     #>(_Two)
-	sta     _pointer+1
-	lda     #<(_Two)
-	sta     _pointer
+	lda     #$E0
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L07DA
+	inx
+L07DA:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; break;
+; one_vram_buffer(0xe1, NTADR_A(x+1,y+2));
 ;
-	rts
+	lda     #$E1
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L07E3
+	inx
+L07E3:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L07E5
+	inx
+L07E5:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; pointer = Three;
+; one_vram_buffer(0xf0, NTADR_A(x,y+3));
 ;
-L0A5F:	lda     #>(_Three)
-	sta     _pointer+1
-	lda     #<(_Three)
-	sta     _pointer
+	lda     #$F0
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L07ED
+	inx
+L07ED:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; break;
+; one_vram_buffer(0xf1, NTADR_A(x+1,y+3));
 ;
-	rts
+	lda     #$F1
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L07F6
+	inx
+L07F6:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L07F8
+	inx
+L07F8:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jmp     _one_vram_buffer
 ;
-; pointer = Four;
+; one_vram_buffer(0xc2, NTADR_A(x,y));
 ;
-L0A63:	lda     #>(_Four)
-	sta     _pointer+1
-	lda     #<(_Four)
-	sta     _pointer
+L07FA:	lda     #$C2
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; break;
+; one_vram_buffer(0xc3, NTADR_A(x+1,y));
 ;
-	rts
+	lda     #$C3
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L080B
+	inx
+L080B:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; pointer = Five;
+; one_vram_buffer(0xd2, NTADR_A(x, y+1));
 ;
-L0A67:	lda     #>(_Five)
-	sta     _pointer+1
-	lda     #<(_Five)
-	sta     _pointer
+	lda     #$D2
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L0813
+	inx
+L0813:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; break;
+; one_vram_buffer(0xd3, NTADR_A(x+1, y+1));
 ;
-	rts
+	lda     #$D3
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L081C
+	inx
+L081C:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L081E
+	inx
+L081E:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; pointer = Six;
+; one_vram_buffer(0xe2, NTADR_A(x,y+2));
 ;
-L0A6B:	lda     #>(_Six)
-	sta     _pointer+1
-	lda     #<(_Six)
-	sta     _pointer
+	lda     #$E2
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L0826
+	inx
+L0826:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; break;
+; one_vram_buffer(0xe3, NTADR_A(x+1,y+2));
 ;
-	rts
+	lda     #$E3
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L082F
+	inx
+L082F:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0831
+	inx
+L0831:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; pointer = Seven;
+; one_vram_buffer(0xf2, NTADR_A(x,y+3));
 ;
-L0A6F:	lda     #>(_Seven)
-	sta     _pointer+1
-	lda     #<(_Seven)
-	sta     _pointer
+	lda     #$F2
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L0839
+	inx
+L0839:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; break;
+; one_vram_buffer(0xf3, NTADR_A(x+1,y+3));
 ;
-	rts
+	lda     #$F3
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L0842
+	inx
+L0842:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0844
+	inx
+L0844:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jmp     _one_vram_buffer
 ;
-; pointer = Eight;
+; one_vram_buffer(0xc4, NTADR_A(x,y));
 ;
-L0A73:	lda     #>(_Eight)
-	sta     _pointer+1
-	lda     #<(_Eight)
-	sta     _pointer
+L0846:	lda     #$C4
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; break;
+; one_vram_buffer(0xc5, NTADR_A(x+1,y));
 ;
-	rts
+	lda     #$C5
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0857
+	inx
+L0857:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; pointer = Nine;
+; one_vram_buffer(0xd4, NTADR_A(x, y+1));
 ;
-L0A77:	lda     #>(_Nine)
-	sta     _pointer+1
-	lda     #<(_Nine)
-	sta     _pointer
+	lda     #$D4
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L085F
+	inx
+L085F:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
 ;
-; break;
+; one_vram_buffer(0xd5, NTADR_A(x+1, y+1));
 ;
-	rts
+	lda     #$D5
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L0868
+	inx
+L0868:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L086A
+	inx
+L086A:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xe4, NTADR_A(x,y+2));
+;
+	lda     #$E4
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L0872
+	inx
+L0872:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xe5, NTADR_A(x+1,y+2));
+;
+	lda     #$E5
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L087B
+	inx
+L087B:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L087D
+	inx
+L087D:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xf4, NTADR_A(x,y+3));
+;
+	lda     #$F4
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L0885
+	inx
+L0885:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xf5, NTADR_A(x+1,y+3));
+;
+	lda     #$F5
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L088E
+	inx
+L088E:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0890
+	inx
+L0890:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jmp     _one_vram_buffer
+;
+; one_vram_buffer(0xc6, NTADR_A(x,y));
+;
+L0892:	lda     #$C6
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xc7, NTADR_A(x+1,y));
+;
+	lda     #$C7
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L08A3
+	inx
+L08A3:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xd6, NTADR_A(x, y+1));
+;
+	lda     #$D6
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L08AB
+	inx
+L08AB:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xd7, NTADR_A(x+1, y+1));
+;
+	lda     #$D7
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L08B4
+	inx
+L08B4:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L08B6
+	inx
+L08B6:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xe6, NTADR_A(x,y+2));
+;
+	lda     #$E6
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L08BE
+	inx
+L08BE:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xe7, NTADR_A(x+1,y+2));
+;
+	lda     #$E7
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L08C7
+	inx
+L08C7:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L08C9
+	inx
+L08C9:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xf6, NTADR_A(x,y+3));
+;
+	lda     #$F6
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L08D1
+	inx
+L08D1:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xf7, NTADR_A(x+1,y+3));
+;
+	lda     #$F7
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L08DA
+	inx
+L08DA:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L08DC
+	inx
+L08DC:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jmp     _one_vram_buffer
+;
+; one_vram_buffer(0xc8, NTADR_A(x,y));
+;
+L08DE:	lda     #$C8
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xc9, NTADR_A(x+1,y));
+;
+	lda     #$C9
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L08EF
+	inx
+L08EF:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xd8, NTADR_A(x, y+1));
+;
+	lda     #$D8
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L08F7
+	inx
+L08F7:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xd9, NTADR_A(x+1, y+1));
+;
+	lda     #$D9
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L0900
+	inx
+L0900:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0902
+	inx
+L0902:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xe8, NTADR_A(x,y+2));
+;
+	lda     #$E8
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L090A
+	inx
+L090A:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xe9, NTADR_A(x+1,y+2));
+;
+	lda     #$E9
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L0913
+	inx
+L0913:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0915
+	inx
+L0915:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xf8, NTADR_A(x,y+3));
+;
+	lda     #$F8
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L091D
+	inx
+L091D:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xf9, NTADR_A(x+1,y+3));
+;
+	lda     #$F9
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L0926
+	inx
+L0926:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0928
+	inx
+L0928:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jmp     _one_vram_buffer
+;
+; one_vram_buffer(0xca, NTADR_A(x,y));
+;
+L092A:	lda     #$CA
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xcb, NTADR_A(x+1,y));
+;
+	lda     #$CB
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L093B
+	inx
+L093B:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xda, NTADR_A(x, y+1));
+;
+	lda     #$DA
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L0943
+	inx
+L0943:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xdb, NTADR_A(x+1, y+1));
+;
+	lda     #$DB
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L094C
+	inx
+L094C:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L094E
+	inx
+L094E:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xea, NTADR_A(x,y+2));
+;
+	lda     #$EA
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L0956
+	inx
+L0956:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xeb, NTADR_A(x+1,y+2));
+;
+	lda     #$EB
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L095F
+	inx
+L095F:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0961
+	inx
+L0961:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xfa, NTADR_A(x,y+3));
+;
+	lda     #$FA
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L0969
+	inx
+L0969:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xfb, NTADR_A(x+1,y+3));
+;
+	lda     #$FB
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L0972
+	inx
+L0972:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0974
+	inx
+L0974:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jmp     _one_vram_buffer
+;
+; one_vram_buffer(0xcc, NTADR_A(x,y));
+;
+L0976:	lda     #$CC
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xcd, NTADR_A(x+1,y));
+;
+	lda     #$CD
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0987
+	inx
+L0987:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xdc, NTADR_A(x, y+1));
+;
+	lda     #$DC
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L098F
+	inx
+L098F:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xdd, NTADR_A(x+1, y+1));
+;
+	lda     #$DD
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L0998
+	inx
+L0998:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L099A
+	inx
+L099A:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xec, NTADR_A(x,y+2));
+;
+	lda     #$EC
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L09A2
+	inx
+L09A2:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xed, NTADR_A(x+1,y+2));
+;
+	lda     #$ED
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L09AB
+	inx
+L09AB:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L09AD
+	inx
+L09AD:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xfc, NTADR_A(x,y+3));
+;
+	lda     #$FC
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L09B5
+	inx
+L09B5:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xfd, NTADR_A(x+1,y+3));
+;
+	lda     #$FD
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L09BE
+	inx
+L09BE:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L09C0
+	inx
+L09C0:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jmp     _one_vram_buffer
+;
+; one_vram_buffer(0xce, NTADR_A(x,y));
+;
+L09C2:	lda     #$CE
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xcf, NTADR_A(x+1,y));
+;
+	lda     #$CF
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L09D3
+	inx
+L09D3:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xde, NTADR_A(x, y+1));
+;
+	lda     #$DE
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L09DB
+	inx
+L09DB:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xdf, NTADR_A(x+1, y+1));
+;
+	lda     #$DF
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L09E4
+	inx
+L09E4:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L09E6
+	inx
+L09E6:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xee, NTADR_A(x,y+2));
+;
+	lda     #$EE
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L09EE
+	inx
+L09EE:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xef, NTADR_A(x+1,y+2));
+;
+	lda     #$EF
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L09F7
+	inx
+L09F7:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L09F9
+	inx
+L09F9:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xfe, NTADR_A(x,y+3));
+;
+	lda     #$FE
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L0A01
+	inx
+L0A01:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0xff, NTADR_A(x+1,y+3));
+;
+	lda     #$FF
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L0A0A
+	inx
+L0A0A:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0A0C
+	inx
+L0A0C:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jmp     _one_vram_buffer
+;
+; one_vram_buffer(0x5e, NTADR_A(x,y));
+;
+L0A0E:	lda     #$5E
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0x5f, NTADR_A(x+1,y));
+;
+	lda     #$5F
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0A1F
+	inx
+L0A1F:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0x6e, NTADR_A(x, y+1));
+;
+	lda     #$6E
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L0A27
+	inx
+L0A27:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0x6f, NTADR_A(x+1, y+1));
+;
+	lda     #$6F
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L0A30
+	inx
+L0A30:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0A32
+	inx
+L0A32:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0x7e, NTADR_A(x,y+2));
+;
+	lda     #$7E
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L0A3A
+	inx
+L0A3A:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0x7f, NTADR_A(x+1,y+2));
+;
+	lda     #$7F
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L0A43
+	inx
+L0A43:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0A45
+	inx
+L0A45:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0x8e, NTADR_A(x,y+3));
+;
+	lda     #$8E
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L0A4D
+	inx
+L0A4D:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0x8f, NTADR_A(x+1,y+3));
+;
+	lda     #$8F
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L0A56
+	inx
+L0A56:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0A58
+	inx
+L0A58:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jmp     _one_vram_buffer
+;
+; one_vram_buffer(0x1e, NTADR_A(x,y));
+;
+L0A5A:	lda     #$1E
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0x1f, NTADR_A(x+1,y));
+;
+	lda     #$1F
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	jsr     aslax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0A6B
+	inx
+L0A6B:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0x2e, NTADR_A(x, y+1));
+;
+	lda     #$2E
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L0A73
+	inx
+L0A73:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0x2f, NTADR_A(x+1, y+1));
+;
+	lda     #$2F
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$01
+	bcc     L0A7C
+	inx
+L0A7C:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0A7E
+	inx
+L0A7E:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0x3e, NTADR_A(x,y+2));
+;
+	lda     #$3E
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L0A86
+	inx
+L0A86:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0x3f, NTADR_A(x+1,y+2));
+;
+	lda     #$3F
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$02
+	bcc     L0A8F
+	inx
+L0A8F:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0A91
+	inx
+L0A91:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0x4e, NTADR_A(x,y+3));
+;
+	lda     #$4E
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L0A99
+	inx
+L0A99:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	lda     _x
+	ora     ptr1
+	pha
+	lda     tmp1
+	ora     #$20
+	tax
+	pla
+	jsr     _one_vram_buffer
+;
+; one_vram_buffer(0x4f, NTADR_A(x+1,y+3));
+;
+	lda     #$4F
+	jsr     pusha
+	ldx     #$00
+	lda     _y
+	clc
+	adc     #$03
+	bcc     L0AA2
+	inx
+L0AA2:	jsr     shlax4
+	stx     tmp1
+	asl     a
+	rol     tmp1
+	sta     ptr1
+	ldx     #$00
+	lda     _x
+	clc
+	adc     #$01
+	bcc     L0AA4
+	inx
+L0AA4:	ora     ptr1
+	pha
+	txa
+	ora     tmp1
+	tax
+	pla
+	pha
+	txa
+	ora     #$20
+	tax
+	pla
+	jmp     _one_vram_buffer
 
 .endproc
 
@@ -3333,43 +5144,116 @@ L0A77:	lda     #>(_Nine)
 ;
 	jsr     _ppu_on_all
 ;
-; draw_bg();
+; game_mode = MODE_TITLE;
 ;
-	jsr     _draw_bg
+	lda     #$00
+	sta     _game_mode
+;
+; init_mode_title();
+;
+	jsr     _init_mode_title
+;
+; if(game_mode == MODE_TITLE){
+;
+L0B4B:	lda     _game_mode
+	bne     L0B4C
+;
+; ppu_wait_nmi();
+;
+	jsr     _ppu_wait_nmi
+;
+; read_input();
+;
+	jsr     _read_input
+;
+; if (trigger_clicked)
+;
+	lda     _trigger_clicked
+	beq     L0B4C
+;
+; init_mode_intro();
+;
+	jsr     _init_mode_intro
+;
+; if(game_mode == MODE_INTRO){
+;
+L0B4C:	lda     _game_mode
+	cmp     #$03
+	bne     L0B4E
+;
+; ppu_wait_nmi();
+;
+	jsr     _ppu_wait_nmi
+;
+; read_input();
+;
+	jsr     _read_input
+;
+; if (trigger_clicked)
+;
+	lda     _trigger_clicked
+	beq     L0B4E
+;
+; for(index=0; index < 10; ++index){
+;
+	lda     #$00
+	sta     _index
+L0B4D:	lda     _index
+	cmp     #$0A
+	bcs     L0712
+;
+; ppu_wait_nmi();
+;
+	jsr     _ppu_wait_nmi
+;
+; for(index=0; index < 10; ++index){
+;
+	inc     _index
+	jmp     L0B4D
+;
+; init_mode_game();
+;
+L0712:	jsr     _init_mode_game
+;
+; if(game_mode == MODE_GAME){
+;
+L0B4E:	lda     _game_mode
+	cmp     #$01
+	bne     L0B4B
 ;
 ; ppu_wait_nmi(); // wait till beginning of the frame
 ;
-L06FC:	jsr     _ppu_wait_nmi
+	jsr     _ppu_wait_nmi
 ;
 ; oam_clear();
 ;
 	jsr     _oam_clear
 ;
-; debug_zap(); //sets input_active
+; read_input(); //sets input_active
 ;
-	jsr     _debug_zap
+	jsr     _read_input
 ;
-; if(input_active){
+; if(trigger_pulled){
 ;
-	lda     _input_active
-	beq     L0703
+	lda     _trigger_pulled
+	beq     L0720
 ;
 ; gas_speed += GAS_STEP;
 ;
-	lda     #$F4
+	lda     #$32
 	clc
 	adc     _gas_speed
 	sta     _gas_speed
-	lda     #$01
-	adc     _gas_speed+1
+	bcc     L0727
+	inc     _gas_speed+1
 ;
 ; while(gas_speed > 256){
 ;
-	jmp     L0A84
+	jmp     L0727
 ;
 ; ++gas1;
 ;
-L0A82:	inc     _gas1
+L0B4F:	inc     _gas1
 ;
 ; gas_speed -= 256;
 ;
@@ -3379,15 +5263,15 @@ L0A82:	inc     _gas1
 	sta     _gas_speed
 	lda     _gas_speed+1
 	sbc     #$01
-L0A84:	sta     _gas_speed+1
+	sta     _gas_speed+1
 ;
 ; while(gas_speed > 256){
 ;
-	lda     _gas_speed
+L0727:	lda     _gas_speed
 	cmp     #$01
 	lda     _gas_speed+1
 	sbc     #$01
-	bcs     L0A82
+	bcs     L0B4F
 ;
 ; adjust_gas();
 ;
@@ -3399,16 +5283,16 @@ L0A84:	sta     _gas_speed+1
 	clc
 	adc     _cost_speed
 	sta     _cost_speed
-	bcc     L0714
+	bcc     L0732
 	inc     _cost_speed+1
 ;
 ; while(cost_speed > 256){
 ;
-	jmp     L0714
+	jmp     L0732
 ;
 ; ++cost1;
 ;
-L0A83:	inc     _cost1
+L0B50:	inc     _cost1
 ;
 ; cost_speed -= 256;
 ;
@@ -3422,11 +5306,11 @@ L0A83:	inc     _cost1
 ;
 ; while(cost_speed > 256){
 ;
-L0714:	lda     _cost_speed
+L0732:	lda     _cost_speed
 	cmp     #$01
 	lda     _cost_speed+1
 	sbc     #$01
-	bcs     L0A83
+	bcs     L0B50
 ;
 ; adjust_cost();
 ;
@@ -3434,7 +5318,7 @@ L0714:	lda     _cost_speed
 ;
 ; draw_gas();
 ;
-L0703:	jsr     _draw_gas
+L0720:	jsr     _draw_gas
 ;
 ; draw_cost();
 ;
@@ -3442,7 +5326,7 @@ L0703:	jsr     _draw_gas
 ;
 ; while (1){
 ;
-	jmp     L06FC
+	jmp     L0B4B
 
 .endproc
 

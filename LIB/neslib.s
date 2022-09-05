@@ -2,17 +2,17 @@
 ;with improvements by VEG
 ;Feel free to do anything you want with this code, consider it Public Domain
 
-;for nesdoug version 1.2, 1/1/2022
-;changed nmi to prevent possible incomplete sprite
-;added a little bit at the end of _flush_vram_update
-;changed the name of flush_vram_update_nmi to flush_vram_update2
-
+;nesdoug version 1.2, 1/1/2022
 ;minor change %%, added ldx #0 to functions returning char
 ;removed sprid from c functions to speed them up
+;music and nmi changed for mmc1
+
+;SOUND_BANK is defined at the top of crt0.s
+;and needs to match the bank where the music is
 
 
 
-	.export _pal_all,_pal_bg,_pal_spr,_pal_col,_pal_clear, _nt_attr
+	.export _pal_all,_pal_bg,_pal_spr,_pal_col,_pal_clear
 	.export _pal_bright,_pal_spr_bright,_pal_bg_bright
 	.export _ppu_off,_ppu_on_all,_ppu_on_bg,_ppu_on_spr,_ppu_mask,_ppu_system
 	.export _oam_clear,_oam_size,_oam_spr,_oam_meta_spr,_oam_hide_rest
@@ -45,8 +45,16 @@ nmi:
 	and #%00011000
 	bne @renderingOn
 	jmp	@skipAll
-	
-@renderingOn:	
+
+@renderingOn:
+
+;for split screens with different CHR bank at top	
+	lda nmiChrTileBank
+	cmp #NO_CHR_BANK 
+	beq @no_chr_chg
+	jsr _set_chr_bank_0
+@no_chr_chg:
+
 	lda <VRAM_UPDATE ;is the frame complete?
 	bne @doUpdate
 	jmp @skipAll ;skipUpd
@@ -136,7 +144,15 @@ nmi:
 
 @skipNtsc:
 
+;switch the music into the prg bank first
+	lda BP_BANK ;save current prg bank
+	pha
+	lda #SOUND_BANK
+	jsr _set_prg_bank
 	jsr FamiToneUpdate
+	pla
+	sta BP_BANK ;restore prg bank
+	jsr _set_prg_bank
 
 	pla
 	tay
@@ -178,31 +194,6 @@ pal_copy:
 
 	rts
 
-attr_copy:
-
-	sta <LEN
-
-	ldy #$00
-
-@0:
-
-	lda (PTR),y
-	sta ATTR_BUF,x
-	inx
-	iny
-	dec <LEN
-	bne @0
-
-	inc <PAL_UPDATE
-
-	rts
-
-;void __fastcall__ nt_attr(const char *data);
-
-_nt_attr:
-	lda #$BF
-	sta $23C0
-	rts
 
 
 ;void __fastcall__ pal_bg(const char *data);
@@ -828,20 +819,57 @@ _vram_write:
 
 
 ;void __fastcall__ music_play(unsigned char song);
+;a = song #
 
-_music_play=FamiToneMusicPlay
-
+_music_play:
+	tax
+	lda BP_BANK ;save current prg bank
+	pha
+	lda #SOUND_BANK
+	jsr _set_prg_bank
+	txa ;song number
+	jsr FamiToneMusicPlay
+	
+	pla
+	sta BP_BANK ;restore prg bank
+	jmp _set_prg_bank
+	;rts
 
 
 ;void __fastcall__ music_stop(void);
 
-_music_stop=FamiToneMusicStop
+_music_stop:
+	lda BP_BANK ;save current prg bank
+	pha
+	lda #SOUND_BANK
+	jsr _set_prg_bank
+	jsr FamiToneMusicStop
+	
+	pla
+	sta BP_BANK ;restore prg bank
+	jmp _set_prg_bank
+	;rts
 
 
 
 ;void __fastcall__ music_pause(unsigned char pause);
+;a = pause or not
 
-_music_pause=FamiToneMusicPause
+_music_pause:
+	tax
+	lda BP_BANK ;save current prg bank
+	pha
+	lda #SOUND_BANK
+	jsr _set_prg_bank
+	txa ;song number
+	jsr FamiToneMusicPause
+	
+	pla
+	sta BP_BANK ;restore prg bank
+	jmp _set_prg_bank
+	;rts
+
+	
 
 
 
@@ -850,13 +878,25 @@ _music_pause=FamiToneMusicPause
 _sfx_play:
 
 .if(FT_SFX_ENABLE)
-
+; a = channel
 	and #$03
 	tax
 	lda @sfxPriority,x
 	tax
-	jsr popa
-	jmp FamiToneSfxPlay
+	
+	lda BP_BANK ;save current prg bank
+	pha
+	lda #SOUND_BANK
+	jsr _set_prg_bank
+	
+	jsr popa ;a = sound
+	;x = channel offset
+	jsr FamiToneSfxPlay
+	
+	pla
+	sta BP_BANK ;restore prg bank
+	jmp _set_prg_bank
+	;rts
 
 @sfxPriority:
 
@@ -868,9 +908,23 @@ _sfx_play:
 
 
 ;void __fastcall__ sample_play(unsigned char sample);
+;a = sample #
 
 .if(FT_DPCM_ENABLE)
-_sample_play=FamiToneSamplePlay
+_sample_play:
+	tax
+	lda BP_BANK ;save current prg bank
+	pha
+	lda #SOUND_BANK
+	jsr _set_prg_bank
+	txa ;sample number
+	jsr FamiToneSamplePlay
+	
+	pla
+	sta BP_BANK ;restore prg bank
+	jmp _set_prg_bank
+	;rts
+
 .else
 _sample_play:
 	rts

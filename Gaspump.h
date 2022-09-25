@@ -37,6 +37,8 @@ unsigned char pad1;
 unsigned char pad1_new;
 unsigned char trigger_pulled;
 unsigned char trigger_clicked;
+unsigned char started_pumping;
+
 unsigned char sprite_cost;
 unsigned char cost_sprite;
 
@@ -54,10 +56,23 @@ enum
 	MODE_GAME_OVER,
 };
 
+enum
+{
+	LEVEL1_BG_CHR,
+	LEVEL1_FG_CHR,
+	TALKING_TIME_CHR,
+};
+
 const unsigned char * pointer;
 
 unsigned char temp1;
 unsigned char temp2;
+unsigned char temp3;
+int tempint;
+unsigned char talking_time = 0;
+
+unsigned char bird_x;
+unsigned char bird_y;
 
 int address;
 unsigned char x; 
@@ -66,6 +81,8 @@ unsigned char num_holder;
 unsigned char index = 0;
 unsigned char index2;
 int largeindex;
+
+unsigned char moveframes;
 
 #pragma bss-name(push, "BSS")
 
@@ -85,7 +102,12 @@ void find_sprite(void);
 void init_mode_title(void);
 void init_mode_intro(void);
 void init_mode_game(void);
+void init_level_one_end(void);
 void draw_number_as_bg_tile(void);
+void draw_level_one_sprites(void);
+void draw_talking_time(void);
+void draw_talking_time_background(void);
+void clear_background(void);
 // void new_star(void);
 // void draw_box(void);
 // void draw_star(void);

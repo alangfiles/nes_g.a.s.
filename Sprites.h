@@ -1,4 +1,48 @@
 
+const unsigned char TurboGut_2[] = {
+		0, 0, 0x00, 0,
+		8, 0, 0x01, 0,
+		0, 8, 0x10, 0,
+		8, 8, 0x11, 0,
+		128
+};
+
+const unsigned char BigAlTalk1[] = {
+		8, 48, 0xe1, 0,
+		16, 48, 0xe2, 0,
+		24, 48, 0xe3, 0,
+		32, 48, 0xe4, 0,
+		40, 48, 0xe5, 0,
+		48, 48, 0xe6, 0,
+		128
+};
+
+const unsigned char BigAlTalk2[] = {
+		8, 48, 0xe1, 0,
+		16, 48, 0xe2, 0,
+		24, 48, 0xe9, 01,
+		32, 48, 0xea, 0,
+		40, 48, 0xeb, 0,
+		48, 48, 0xe6, 0,
+
+		128
+};
+
+
+
+
+
+const unsigned char Bird[] = {
+		0, 0, 0xa2, 0| OAM_BEHIND,
+		8, 0, 0xa3, 0| OAM_BEHIND,
+		16, 0, 0xa4, 0| OAM_BEHIND,
+		0, 8, 0xb2, 0| OAM_BEHIND,
+		8, 8, 0xb3, 0| OAM_BEHIND,
+		16, 8, 0xb4, 0| OAM_BEHIND,
+		128
+};
+
+
 const unsigned char One[] = {
 		0, 0, 0x00, 0,
 		8, 0, 0x01, 0,

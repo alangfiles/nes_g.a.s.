@@ -2033,33 +2033,33 @@ _talking_time_palete:
 	.byte	$09
 	.byte	$19
 	.byte	$29
-L0CBA:
+L0CBC:
 	.byte	$50,$75,$6C,$6C,$20,$74,$68,$65,$20,$74,$72,$69,$67,$67,$65,$72
 	.byte	$20,$68,$61,$6C,$66,$77,$61,$79,$00
 L0C52:
 	.byte	$50,$75,$6C,$6C,$20,$74,$72,$69,$67,$67,$65,$72,$20,$74,$6F,$20
 	.byte	$73,$74,$61,$72,$74,$00
-L0CC5:
+L0CC7:
 	.byte	$42,$75,$74,$20,$6E,$6F,$74,$20,$74,$69,$6C,$20,$69,$74,$20,$63
 	.byte	$6C,$69,$63,$6B,$73,$00
 L0C47:
 	.byte	$47,$61,$73,$20,$53,$74,$61,$74,$69,$6F,$6E,$20,$53,$69,$6D,$75
 	.byte	$6C,$61,$74,$6F,$72,$00
-L0C87:
+L0C89:
 	.byte	$68,$61,$76,$65,$20,$77,$68,$61,$74,$20,$69,$74,$20,$74,$61,$6B
 	.byte	$65,$73,$00
-L0CAF:
+L0CB1:
 	.byte	$47,$69,$76,$65,$20,$6D,$65,$20,$32,$20,$67,$61,$6C,$6C,$6F,$6E
 	.byte	$73,$21,$00
-L0C7D:
+L0C7F:
 	.byte	$59,$6F,$75,$20,$6A,$75,$73,$74,$20,$64,$6F,$6E,$27,$74,$00
-L0CA4:
+L0CA6:
 	.byte	$20,$70,$75,$6D,$70,$20,$67,$61,$73,$3F,$21,$3F,$00
-L0C9A:
+L0C9C:
 	.byte	$53,$6F,$20,$79,$6F,$75,$20,$77,$61,$6E,$6E,$61,$00
-L0C68:
+L0C6A:
 	.byte	$4E,$69,$63,$65,$20,$57,$6F,$72,$6B,$21,$00
-L0C73:
+L0C75:
 	.byte	$48,$6D,$6D,$6D,$6D,$2E,$2E,$2E,$2E,$00
 
 .segment	"BSS"
@@ -2184,7 +2184,7 @@ _wram_array:
 ;
 	lda     _cost1
 	cmp     #$0A
-	bcc     L0D08
+	bcc     L0D0A
 ;
 ; cost1_changed = 1;
 ;
@@ -2204,7 +2204,7 @@ _wram_array:
 ;
 	lda     _cost2
 	cmp     #$0A
-	bcc     L0D08
+	bcc     L0D0A
 ;
 ; cost2_changed = 1;
 ;
@@ -2224,7 +2224,7 @@ _wram_array:
 ;
 	lda     _cost3
 	cmp     #$0A
-	bcc     L0D07
+	bcc     L0D09
 ;
 ; cost3_changed = 1;
 ;
@@ -2242,9 +2242,9 @@ _wram_array:
 ;
 ; if(cost4 >= 10) {
 ;
-L0D07:	lda     _cost4
+L0D09:	lda     _cost4
 	cmp     #$0A
-	bcc     L0D08
+	bcc     L0D0A
 ;
 ; cost4_changed = 1;
 ;
@@ -2262,7 +2262,7 @@ L0D07:	lda     _cost4
 ;
 ; if(cost5 >= 10){ // maximum 9999
 ;
-L0D08:	lda     _cost5
+L0D0A:	lda     _cost5
 	cmp     #$0A
 	bcc     L08A4
 ;
@@ -2308,7 +2308,7 @@ L08A4:	rts
 ;
 	lda     _gas1
 	cmp     #$0A
-	bcc     L0D0A
+	bcc     L0D0C
 ;
 ; gas1_changed = 1;
 ;
@@ -2328,7 +2328,7 @@ L08A4:	rts
 ;
 	lda     _gas2
 	cmp     #$0A
-	bcc     L0D0A
+	bcc     L0D0C
 ;
 ; gas2_changed = 1;
 ;
@@ -2348,7 +2348,7 @@ L08A4:	rts
 ;
 	lda     _gas3
 	cmp     #$0A
-	bcc     L0D09
+	bcc     L0D0B
 ;
 ; gas3_changed = 1;
 ;
@@ -2366,9 +2366,9 @@ L08A4:	rts
 ;
 ; if(gas4 >= 10) {
 ;
-L0D09:	lda     _gas4
+L0D0B:	lda     _gas4
 	cmp     #$0A
-	bcc     L0D0A
+	bcc     L0D0C
 ;
 ; gas4_changed = 1;
 ;
@@ -2386,7 +2386,7 @@ L0D09:	lda     _gas4
 ;
 ; if(gas5 >= 10){ // maximum 9999
 ;
-L0D0A:	lda     _gas5
+L0D0C:	lda     _gas5
 	cmp     #$0A
 	bcc     L087B
 ;
@@ -2708,12 +2708,12 @@ L0BF7:	jsr     decsp2
 ;
 	lda     _pad1
 	and     #$80
-	bne     L0D0B
+	bne     L0D0D
 	jsr     _zap_shoot
 	tax
-	beq     L0D0C
-L0D0B:	lda     #$01
-L0D0C:	sta     _trigger_pulled
+	beq     L0D0E
+L0D0D:	lda     #$01
+L0D0E:	sta     _trigger_pulled
 ;
 ; trigger_clicked = (pad1_new & PAD_A);
 ;
@@ -2991,11 +2991,11 @@ L0C3A:	lda     #>(_Nine)
 ; multi_vram_buffer_horz("So you wanna", 12, NTADR_A(15,6)); 
 ;
 	jsr     decsp3
-	lda     #<(L0C9A)
+	lda     #<(L0C9C)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L0C9A)
+	lda     #>(L0C9C)
 	sta     (sp),y
 	lda     #$0C
 	ldy     #$00
@@ -3007,11 +3007,11 @@ L0C3A:	lda     #>(_Nine)
 ; multi_vram_buffer_horz(" pump gas?!?", 12, NTADR_A(15,7)); 
 ;
 	jsr     decsp3
-	lda     #<(L0CA4)
+	lda     #<(L0CA6)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L0CA4)
+	lda     #>(L0CA6)
 	sta     (sp),y
 	lda     #$0C
 	ldy     #$00
@@ -3027,11 +3027,11 @@ L0C3A:	lda     #>(_Nine)
 ; multi_vram_buffer_horz("Give me 2 gallons!", 18, NTADR_A(13,9)); 
 ;
 	jsr     decsp3
-	lda     #<(L0CAF)
+	lda     #<(L0CB1)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L0CAF)
+	lda     #>(L0CB1)
 	sta     (sp),y
 	lda     #$12
 	ldy     #$00
@@ -3047,11 +3047,11 @@ L0C3A:	lda     #>(_Nine)
 ; multi_vram_buffer_horz("Pull the trigger halfway", 24, NTADR_A(4,16)); 
 ;
 	jsr     decsp3
-	lda     #<(L0CBA)
+	lda     #<(L0CBC)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L0CBA)
+	lda     #>(L0CBC)
 	sta     (sp),y
 	lda     #$18
 	ldy     #$00
@@ -3067,11 +3067,11 @@ L0C3A:	lda     #>(_Nine)
 ; multi_vram_buffer_horz("But not til it clicks", 21, NTADR_A(4,17)); 
 ;
 	jsr     decsp3
-	lda     #<(L0CC5)
+	lda     #<(L0CC7)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L0CC5)
+	lda     #>(L0CC7)
 	sta     (sp),y
 	lda     #$15
 	ldy     #$00
@@ -3110,6 +3110,14 @@ L0C3A:	lda     #>(_Nine)
 .segment	"CODE"
 
 ;
+; ppu_off();  // screen off
+;
+	jsr     _ppu_off
+;
+; oam_clear(); // clear all sprites
+;
+	jsr     _oam_clear
+;
 ; pal_col(0,0x21);
 ;
 	lda     #$00
@@ -3137,14 +3145,6 @@ L0C3A:	lda     #>(_Nine)
 	lda     #$01
 	jsr     _set_chr_bank_1
 ;
-; ppu_off();  // screen off
-;
-	jsr     _ppu_off
-;
-; oam_clear(); // clear all sprites
-;
-	jsr     _oam_clear
-;
 ; index = 0;
 ;
 	lda     #$00
@@ -3160,13 +3160,13 @@ L0C3A:	lda     #>(_Nine)
 	lda     #$00
 	sta     _largeindex
 	sta     _largeindex+1
-L0CE4:	lda     _largeindex
+L0CE6:	lda     _largeindex
 	cmp     #$00
 	lda     _largeindex+1
 	sbc     #$04
-	bvc     L0CEB
+	bvc     L0CED
 	eor     #$80
-L0CEB:	bpl     L0CE5
+L0CED:	bpl     L0CE7
 ;
 ; vram_put(level1[largeindex]);
 ;
@@ -3188,7 +3188,7 @@ L0CEB:	bpl     L0CE5
 ;
 	lda     _index
 	cmp     #$29
-	bcc     L0CE6
+	bcc     L0CE8
 ;
 ; flush_vram_update2();
 ;
@@ -3201,14 +3201,14 @@ L0CEB:	bpl     L0CE5
 ;
 ; for(largeindex = 0; largeindex < 1024; ++largeindex){
 ;
-L0CE6:	inc     _largeindex
-	bne     L0CE4
+L0CE8:	inc     _largeindex
+	bne     L0CE6
 	inc     _largeindex+1
-	jmp     L0CE4
+	jmp     L0CE6
 ;
 ; ppu_on_all(); // turn on screen
 ;
-L0CE5:	jsr     _ppu_on_all
+L0CE7:	jsr     _ppu_on_all
 ;
 ; game_mode=MODE_GAME;
 ;
@@ -3236,6 +3236,14 @@ L0CE5:	jsr     _ppu_on_all
 ;
 	jsr     _ppu_off
 ;
+; oam_clear(); // clear all sprites
+;
+	jsr     _oam_clear
+;
+; clear_background();
+;
+	jsr     _clear_background
+;
 ; draw_talking_time_background();
 ;
 	jsr     _draw_talking_time_background
@@ -3244,16 +3252,16 @@ L0CE5:	jsr     _ppu_on_all
 ;
 	lda     _gas3
 	cmp     #$02
-	bne     L0C65
+	bne     L0C67
 ;
 ; multi_vram_buffer_horz("Nice Work!", 10, NTADR_A(16,5)); 
 ;
 	jsr     decsp3
-	lda     #<(L0C68)
+	lda     #<(L0C6A)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L0C68)
+	lda     #>(L0C6A)
 	sta     (sp),y
 	lda     #$0A
 	ldy     #$00
@@ -3263,16 +3271,16 @@ L0CE5:	jsr     _ppu_on_all
 ;
 ; } else {
 ;
-	jmp     L0D0D
+	jmp     L0D0F
 ;
 ; multi_vram_buffer_horz("Hmmmm....", 10, NTADR_A(13,5)); 
 ;
-L0C65:	jsr     decsp3
-	lda     #<(L0C73)
+L0C67:	jsr     decsp3
+	lda     #<(L0C75)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L0C73)
+	lda     #>(L0C75)
 	sta     (sp),y
 	lda     #$0A
 	ldy     #$00
@@ -3284,11 +3292,11 @@ L0C65:	jsr     decsp3
 ; multi_vram_buffer_horz("You just don't", 14, NTADR_A(13,6)); 
 ;
 	jsr     decsp3
-	lda     #<(L0C7D)
+	lda     #<(L0C7F)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L0C7D)
+	lda     #>(L0C7F)
 	sta     (sp),y
 	lda     #$0E
 	ldy     #$00
@@ -3300,18 +3308,18 @@ L0C65:	jsr     decsp3
 ; multi_vram_buffer_horz("have what it takes", 18, NTADR_A(13,7)); 
 ;
 	jsr     decsp3
-	lda     #<(L0C87)
+	lda     #<(L0C89)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L0C87)
+	lda     #>(L0C89)
 	sta     (sp),y
 	lda     #$12
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$20
 	lda     #$ED
-L0D0D:	jsr     _multi_vram_buffer_horz
+L0D0F:	jsr     _multi_vram_buffer_horz
 ;
 ; flush_vram_update2();
 ;
@@ -5676,7 +5684,7 @@ L0BDE:	ora     ptr1
 ;
 	lda     #$00
 	sta     _temp2
-L0D0E:	lda     _temp2
+L0D10:	lda     _temp2
 	cmp     #$06
 	bcs     L0835
 ;
@@ -5694,7 +5702,7 @@ L0D0E:	lda     _temp2
 ;
 	lda     #$00
 	sta     _index
-L0D0F:	lda     _index
+L0D11:	lda     _index
 	cmp     #$09
 	bcs     L0840
 ;
@@ -5706,7 +5714,7 @@ L0D0F:	lda     _index
 ; for(index = 0; index < 9; ++index){
 ;
 	inc     _index
-	jmp     L0D0F
+	jmp     L0D11
 ;
 ; flush_vram_update2();
 ;
@@ -5722,7 +5730,7 @@ L0840:	jsr     _flush_vram_update2
 ; for(temp2 = 0; temp2 < 6; ++temp2){
 ;
 	inc     _temp2
-	jmp     L0D0E
+	jmp     L0D10
 ;
 ; flush_vram_update2();
 ;
@@ -5786,7 +5794,7 @@ L0835:	jsr     _flush_vram_update2
 ;
 	lda     #$00
 	sta     _index2
-L0D11:	lda     _index2
+L0D13:	lda     _index2
 	cmp     #$08
 	bcs     L0808
 ;
@@ -5800,7 +5808,7 @@ L0D11:	lda     _index2
 ;
 	lda     #$00
 	sta     _index
-L0D12:	lda     _index
+L0D14:	lda     _index
 	cmp     #$08
 	bcs     L0812
 ;
@@ -5814,7 +5822,7 @@ L0D12:	lda     _index
 ; for(index = 0; index < 8; ++index){
 ;
 	inc     _index
-	jmp     L0D12
+	jmp     L0D14
 ;
 ; flush_vram_update2();
 ;
@@ -5839,7 +5847,7 @@ L0812:	jsr     _flush_vram_update2
 ; for(index2 = 0; index2 < 8; ++index2){
 ;
 L0820:	inc     _index2
-	jmp     L0D11
+	jmp     L0D13
 ;
 ; }
 ;
@@ -6007,8 +6015,8 @@ L0825:	rts
 ;
 ; if(game_mode == MODE_TITLE){
 ;
-L0D13:	lda     _game_mode
-	bne     L0D14
+L0D15:	lda     _game_mode
+	bne     L0D16
 ;
 ; ppu_wait_nmi();
 ;
@@ -6021,7 +6029,7 @@ L0D13:	lda     _game_mode
 ; if (trigger_clicked)
 ;
 	lda     _trigger_clicked
-	beq     L0D14
+	beq     L0D16
 ;
 ; init_mode_intro();
 ;
@@ -6029,9 +6037,9 @@ L0D13:	lda     _game_mode
 ;
 ; if(game_mode == MODE_INTRO){
 ;
-L0D14:	lda     _game_mode
+L0D16:	lda     _game_mode
 	cmp     #$03
-	bne     L0D1B
+	bne     L0D1D
 ;
 ; ppu_wait_nmi();
 ;
@@ -6060,7 +6068,7 @@ L0785:	jsr     _oam_clear
 ;
 	lda     _moveframes
 	cmp     #$1E
-	bcs     L0D16
+	bcs     L0D18
 ;
 ; oam_meta_spr(0x20, 0x20, BigAlTalk1);
 ;
@@ -6076,7 +6084,7 @@ L0785:	jsr     _oam_clear
 ;
 ; if(moveframes >= 30 && moveframes < 61){
 ;
-L0D16:	lda     _moveframes
+L0D18:	lda     _moveframes
 	cmp     #$1E
 	bcc     L0792
 	cmp     #$3D
@@ -6101,13 +6109,13 @@ L0792:	jsr     _read_input
 ; if (trigger_clicked)
 ;
 	lda     _trigger_clicked
-	beq     L0D1B
+	beq     L0D1D
 ;
 ; for(index=0; index < 10; ++index){
 ;
 	lda     #$00
 	sta     _index
-L0D1A:	lda     _index
+L0D1C:	lda     _index
 	cmp     #$0A
 	bcs     L079E
 ;
@@ -6118,7 +6126,7 @@ L0D1A:	lda     _index
 ; for(index=0; index < 10; ++index){
 ;
 	inc     _index
-	jmp     L0D1A
+	jmp     L0D1C
 ;
 ; init_mode_game();
 ;
@@ -6126,9 +6134,9 @@ L079E:	jsr     _init_mode_game
 ;
 ; if(game_mode == MODE_TALKING_TIME){
 ;
-L0D1B:	lda     _game_mode
+L0D1D:	lda     _game_mode
 	cmp     #$05
-	jne     L0D23
+	jne     L0D25
 ;
 ; ppu_wait_nmi();
 ;
@@ -6157,7 +6165,7 @@ L07AB:	jsr     _oam_clear
 ;
 	lda     _moveframes
 	cmp     #$1E
-	bcs     L0D1D
+	bcs     L0D1F
 ;
 ; oam_meta_spr(0x20, 0x20, BigAlTalk1);
 ;
@@ -6173,7 +6181,7 @@ L07AB:	jsr     _oam_clear
 ;
 ; if(moveframes >= 30 && moveframes < 61){
 ;
-L0D1D:	lda     _moveframes
+L0D1F:	lda     _moveframes
 	cmp     #$1E
 	bcc     L07B8
 	cmp     #$3D
@@ -6198,15 +6206,15 @@ L07B8:	jsr     _read_input
 ; if (trigger_clicked)
 ;
 	lda     _trigger_clicked
-	beq     L0D23
+	beq     L0D25
 ;
 ; for(index=0; index < 10; ++index){
 ;
 	lda     #$00
 	sta     _index
-L0D21:	lda     _index
+L0D23:	lda     _index
 	cmp     #$0A
-	bcs     L0D22
+	bcs     L0D24
 ;
 ; ppu_wait_nmi();
 ;
@@ -6215,18 +6223,18 @@ L0D21:	lda     _index
 ; for(index=0; index < 10; ++index){
 ;
 	inc     _index
-	jmp     L0D21
+	jmp     L0D23
 ;
 ; switch(game_level){
 ;
-L0D22:	lda     _game_level
+L0D24:	lda     _game_level
 ;
 ; }
 ;
 	beq     L07D0
 	cmp     #$01
 	beq     L07D3
-	jmp     L0D23
+	jmp     L0D25
 ;
 ; init_mode_game();
 ;
@@ -6234,7 +6242,7 @@ L07D0:	jsr     _init_mode_game
 ;
 ; break;
 ;
-	jmp     L0D23
+	jmp     L0D25
 ;
 ; init_mode_title();
 ;
@@ -6242,9 +6250,9 @@ L07D3:	jsr     _init_mode_title
 ;
 ; if(game_mode == MODE_GAME){
 ;
-L0D23:	lda     _game_mode
+L0D25:	lda     _game_mode
 	cmp     #$01
-	jne     L0D13
+	jne     L0D15
 ;
 ; ppu_wait_nmi(); // wait till beginning of the frame
 ;
@@ -6254,6 +6262,14 @@ L0D23:	lda     _game_mode
 ;
 	jsr     _draw_level_one_sprites
 ;
+; draw_gas();
+;
+	jsr     _draw_gas
+;
+; draw_cost();
+;
+	jsr     _draw_cost
+;
 ; read_input(); //sets input_active
 ;
 	jsr     _read_input
@@ -6261,7 +6277,7 @@ L0D23:	lda     _game_mode
 ; if(trigger_pulled){
 ;
 	lda     _trigger_pulled
-	beq     L07DB
+	beq     L07DD
 ;
 ; started_pumping = 1; //actually only need to set this once
 ;
@@ -6274,16 +6290,16 @@ L0D23:	lda     _game_mode
 	clc
 	adc     _gas_speed
 	sta     _gas_speed
-	bcc     L07E4
+	bcc     L07E6
 	inc     _gas_speed+1
 ;
 ; while(gas_speed > 256){
 ;
-	jmp     L07E4
+	jmp     L07E6
 ;
 ; ++gas1;
 ;
-L0D24:	inc     _gas1
+L0D26:	inc     _gas1
 ;
 ; gas_speed -= 256;
 ;
@@ -6297,11 +6313,11 @@ L0D24:	inc     _gas1
 ;
 ; while(gas_speed > 256){
 ;
-L07E4:	lda     _gas_speed
+L07E6:	lda     _gas_speed
 	cmp     #$01
 	lda     _gas_speed+1
 	sbc     #$01
-	bcs     L0D24
+	bcs     L0D26
 ;
 ; adjust_gas();
 ;
@@ -6313,16 +6329,16 @@ L07E4:	lda     _gas_speed
 	clc
 	adc     _cost_speed
 	sta     _cost_speed
-	bcc     L07EF
+	bcc     L07F1
 	inc     _cost_speed+1
 ;
 ; while(cost_speed > 256){
 ;
-	jmp     L07EF
+	jmp     L07F1
 ;
 ; ++cost1;
 ;
-L0D25:	inc     _cost1
+L0D27:	inc     _cost1
 ;
 ; cost_speed -= 256;
 ;
@@ -6336,11 +6352,11 @@ L0D25:	inc     _cost1
 ;
 ; while(cost_speed > 256){
 ;
-L07EF:	lda     _cost_speed
+L07F1:	lda     _cost_speed
 	cmp     #$01
 	lda     _cost_speed+1
 	sbc     #$01
-	bcs     L0D25
+	bcs     L0D27
 ;
 ; adjust_cost(); 
 ;
@@ -6348,29 +6364,21 @@ L07EF:	lda     _cost_speed
 ;
 ; } else {
 ;
-	jmp     L07F6
+	jmp     L0D15
 ;
 ; if(started_pumping == 1){
 ;
-L07DB:	lda     _started_pumping
+L07DD:	lda     _started_pumping
 	cmp     #$01
-	bne     L07F6
+	jne     L0D15
 ;
 ; init_level_one_end();
 ;
 	jsr     _init_level_one_end
 ;
-; draw_gas();
-;
-L07F6:	jsr     _draw_gas
-;
-; draw_cost();
-;
-	jsr     _draw_cost
-;
 ; while (1){
 ;
-	jmp     L0D13
+	jmp     L0D15
 
 .endproc
 

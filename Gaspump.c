@@ -163,6 +163,8 @@ void main (void) {
 			ppu_wait_nmi(); // wait till beginning of the frame
 
 			draw_level_one_sprites();
+			draw_gas();
+			draw_cost();
 			
 			// zapper_ready = pad2_zapper^1; // XOR last frame, make sure it is not held down still
 			
@@ -171,6 +173,7 @@ void main (void) {
 			
 			// multi_vram_buffer_horz("Gas Pumped:", 11, NTADR_A(10,7)); 
 			// multi_vram_buffer_horz("Cost:", 11, NTADR_A(10,9)); 
+
 
 			if(trigger_pulled){
 				started_pumping = 1; //actually only need to set this once
@@ -189,6 +192,8 @@ void main (void) {
 					cost_speed -= 256;
 				}
 				adjust_cost();	
+
+				
 			} else {
 				if(started_pumping == 1){
 					//trigger ending
@@ -196,8 +201,7 @@ void main (void) {
 				}
 			}
 
-			draw_gas();
-			draw_cost();
+			
 		
 		}
 	}
@@ -615,7 +619,8 @@ void init_mode_title(void){
 
 void init_level_one_end(void){ 
 	ppu_off();	 // screen off
-	// oam_clear(); // clear all sprites
+	oam_clear(); // clear all sprites
+	clear_background();
 
 	draw_talking_time_background();
 	
@@ -658,6 +663,8 @@ void init_mode_intro(void){
 
 void init_mode_game(void){ 
 	//reset changed values so they redraw
+	ppu_off();	 // screen off
+	oam_clear(); // clear all sprites
 
 	pal_col(0,0x21);
 	pal_bg(background_pal);
@@ -667,8 +674,7 @@ void init_mode_game(void){
 	set_chr_bank_0(LEVEL1_BG_CHR);
 	set_chr_bank_1(LEVEL1_FG_CHR);
 	//draw_bg: draw background code
-	ppu_off();	 // screen off
-	oam_clear(); // clear all sprites
+	
 
 	index = 0;
 	vram_adr(0x2000); //Nametable A;

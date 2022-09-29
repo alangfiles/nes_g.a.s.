@@ -28,6 +28,11 @@ const unsigned char BigAlTalk2[] = {
 		128
 };
 
+const unsigned char Decimal_1[] = {
+	0,0, 0x84, 0,
+	128
+};
+
 
 
 

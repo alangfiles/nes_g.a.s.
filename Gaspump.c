@@ -75,7 +75,6 @@ void main (void) {
 	ppu_on_all(); // turn on screen
 	
 	
-	game_mode = MODE_TITLE;
 	init_mode_title();
 	 
 	while (1){
@@ -144,7 +143,17 @@ void main (void) {
 				for(index=0; index < 10; ++index){
 					ppu_wait_nmi();
 				}
-				init_mode_game();
+				//based off of `game_level` we choose what to do next
+				switch(game_level){
+					case START_OF_GAME:
+						init_mode_game();
+						break;
+					case LEVEL_ONE_COMPLETE:
+						init_mode_title();
+						break;
+					default:
+					break;
+				}
 			}
 		}
 
@@ -532,6 +541,9 @@ void draw_gas(void){
 		draw_number_as_bg_tile();
 		gas1_changed = 0;
 	}
+
+	oam_meta_spr(0xc5,0x89,Decimal_1);//decimal for dollars
+	oam_meta_spr(0xc5,0xb9,Decimal_1);//decimal for gas
 	
 	num_holder = gas1;
 	x=27;
@@ -582,21 +594,28 @@ void init_mode_title(void){
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 
+	//todo: update these to the right banks
+	set_chr_bank_0(TALKING_TIME_CHR);
+	set_chr_bank_1(TALKING_TIME_CHR);
+
+	clear_background();
 	multi_vram_buffer_horz("Gas Station Simulator", 21, NTADR_A(4,16)); 
 	flush_vram_update2();
 
 	multi_vram_buffer_horz("Pull trigger to start", 21, NTADR_A(4,17)); 
 	flush_vram_update2();
-	
-	// oam_meta_spr(0x40, 0x60, TurboGut_2);
 
 	ppu_on_all(); // turn on screen
 	game_mode=MODE_TITLE;
+	game_level=START_OF_GAME;
+	reset_game_variables();
+
+	//todo: add title music
 }	
 
 void init_level_one_end(void){ 
 	ppu_off();	 // screen off
-	oam_clear(); // clear all sprites
+	// oam_clear(); // clear all sprites
 
 	draw_talking_time_background();
 	
@@ -610,16 +629,11 @@ void init_level_one_end(void){
 
 	
 	flush_vram_update2();
-
-	// oam_meta_spr(0x40, 0x60, TurboGut_2);
-
 	
 	ppu_on_all(); // turn on screen
 	game_mode=MODE_TALKING_TIME;
+	game_level=LEVEL_ONE_COMPLETE;
 }	
-
-
-
 
 void init_mode_intro(void){ 
 	ppu_off();	 // screen off
@@ -669,6 +683,11 @@ void init_mode_game(void){
 	ppu_on_all(); // turn on screen
 	game_mode=MODE_GAME;
 }	
+
+void reset_game_variables(){
+	gas1 = gas2 = gas3 = gas4 = gas5 = 0;
+	cost1 = cost2 = cost3 = cost4 = cost5 = 0;
+}
 
 
 

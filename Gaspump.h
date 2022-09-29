@@ -43,6 +43,7 @@ unsigned char sprite_cost;
 unsigned char cost_sprite;
 
 unsigned char game_mode;
+unsigned char game_level;
 enum
 {
 	MODE_TITLE,
@@ -54,6 +55,12 @@ enum
 	MODE_DECISION_TIME,
 	MODE_END,
 	MODE_GAME_OVER,
+};
+
+enum
+{
+	START_OF_GAME,
+	LEVEL_ONE_COMPLETE,
 };
 
 enum
@@ -108,6 +115,7 @@ void draw_level_one_sprites(void);
 void draw_talking_time(void);
 void draw_talking_time_background(void);
 void clear_background(void);
+void reset_game_variables(void);
 // void new_star(void);
 // void draw_box(void);
 // void draw_star(void);

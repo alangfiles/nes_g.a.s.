@@ -5,6 +5,10 @@ unsigned char pad2_zapper;
 unsigned char zapper_ready; //wait till it's 0
 unsigned char hit_detected;
 
+unsigned int scroll_y;
+unsigned char scrolled_past_once;
+unsigned char stop_scrolling;
+
 unsigned char cost5;
 unsigned char cost4;
 unsigned char cost3;
@@ -49,10 +53,9 @@ enum
 	MODE_TITLE,
 	MODE_GAME,
 	MODE_PAUSE,
-	MODE_INTRO,
-	MODE_SWITCH,
+	MODE_INTRO_CUTSCENE,
+	MODE_INTRO_INSTRUCTION,
 	MODE_TALKING_TIME,
-	MODE_DECISION_TIME,
 	MODE_END,
 	MODE_GAME_OVER,
 };
@@ -68,6 +71,9 @@ enum
 	LEVEL1_BG_CHR,
 	LEVEL1_FG_CHR,
 	TALKING_TIME_CHR,
+	TALKING_TIME_CHR_2,
+	INTRO_CHR,
+	INTRO_CHR_2,
 };
 
 const unsigned char * pointer;
@@ -107,13 +113,16 @@ void draw_sprites(void);
 void read_input(void);
 void find_sprite(void);
 void init_mode_title(void);
-void init_mode_intro(void);
+void init_mode_intro_cutscene(void);
+void init_mode_intro_instructions(void);
 void init_mode_game(void);
 void init_level_one_end(void);
 void draw_number_as_bg_tile(void);
 void draw_level_one_sprites(void);
 void draw_talking_time(void);
 void draw_talking_time_background(void);
+void draw_evaluation_time_background(void);
+void draw_talking_time_sprites(void);
 void clear_background(void);
 void reset_game_variables(void);
 // void new_star(void);

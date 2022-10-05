@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "gaspump.h": "c",
-    "level1.h": "c"
+    "level1.h": "c",
+    "metatiles.h": "c"
   }
 }

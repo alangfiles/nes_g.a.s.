@@ -10,13 +10,18 @@
 
 #include "LIB/zaplib.h"
 #include "MMC1/bank_helpers.h"
+#include "MMC1/bank_helpers.c"
 #include "Gaspump.h"
 
 #include "Sprites.h"
 #include "Metatiles.h"
 #include "level1.h"
  
+#include "LEVELS/evaluation.h"
+#include "LEVELS/talkingtime.h"
 
+// #include "CUTSCENES/Intro.h"
+// #include "CUTSCENES/Intro.c"
 
 const unsigned char background_pal[16]={ 
 	0x2c,0x05,0x3d,0x15,
@@ -48,6 +53,105 @@ const unsigned char talking_time_palete[]={
 
 // }; 
 
+enum{BANK_0, BANK_1, BANK_2, BANK_3, BANK_4, BANK_5, BANK_6};
+// 7 shouldn't be needed, that's the fixed bank, just call it normally
+
+
+
+// BANK0 is being used for the INTRO_CUTSCENE
+#pragma rodata-name ("BANK0")
+#pragma code-name ("BANK0")
+#include "LEVELS/intro_topdata.h"
+#include "LEVELS/intro_middledata.h"
+#include "LEVELS/intro_bottomdata.h"
+
+void init_mode_intro_cutscene(void){
+	scrolled_past_once = 0;
+	stop_scrolling = 0;
+	set_mirroring(MIRROR_HORIZONTAL);
+	//reset changed values so they redraw
+	ppu_off();	 // screen off
+	oam_clear(); // clear all sprites
+
+	pal_col(0,0x21);
+	pal_bg(background_pal);
+
+	// bird_x = 0;
+
+	set_chr_bank_0(INTRO_CHR);
+	set_chr_bank_1(TALKING_TIME_CHR);
+	//draw_bg: draw background code
+	
+
+	vram_adr(NAMETABLE_A);
+	// this sets a start position on the BG, top left of screen A
+	vram_unrle(INTRO_TOP);
+
+	vram_adr(NAMETABLE_C);
+	// this sets a start position on the BG, top left of screen A
+	vram_unrle(INTRO_MIDDLE);
+	
+	// vram_adr(NAMETABLE_A); //Nametable A;
+	// for(largeindex = 0; largeindex < 1024; ++largeindex){
+	// 	vram_put(intro_top[largeindex]);
+	// 	++index;
+	// 	if(index > 40) { //don't put too much in the vram_buffer
+	// 		flush_vram_update2();
+	// 		index = 0;
+	// 	}
+	// }
+
+	// vram_adr(NAMETABLE_C); //Nametable A;
+	// for(largeindex = 0; largeindex < 1024; ++largeindex){
+	// 	vram_put(intro_middle[largeindex]);
+	// 	++index;
+	// 	if(index > 40) { //don't put too much in the vram_buffer
+	// 		flush_vram_update2();
+	// 		index = 0;
+	// 	}
+	// }
+	ppu_on_all(); // turn on screen
+	game_mode=MODE_INTRO_CUTSCENE;
+}	
+
+void mode_intro_cutscene(void){
+	++moveframes;
+
+	if(stop_scrolling == 0 && moveframes > 0){
+
+		scroll_y += 1;
+
+		if(scrolled_past_once == 1 && scroll_y > 0x1df){
+			stop_scrolling = 1;
+			moveframes=0;
+		}
+		
+		// scroll_y = add_scroll_y(1, scroll_y);
+
+		if(scroll_y == 0x0ff){
+			ppu_off();
+			vram_adr(NAMETABLE_A);
+			vram_unrle(INTRO_BOTTOM);
+			ppu_on_all();
+			scrolled_past_once = 1;
+		}
+
+		if(scroll_y > 0x1df) {
+			scroll_y = 0;
+		}
+		scroll(0,scroll_y);
+		moveframes = 0;
+	}
+
+	if(stop_scrolling == 1 && moveframes == 100){
+		//wait for a while after scrolling down, then do instructions.
+		init_mode_intro_instructions();
+	}
+}
+
+// the fixed bank, bank 7
+#pragma rodata-name ("CODE")
+#pragma code-name ("CODE")	
 	
 void main (void) {    
 	
@@ -86,12 +190,24 @@ void main (void) {
 
 			if (trigger_clicked)
 			{
-				init_mode_intro();
+				//debug, just go to game
+				for(index=0; index < 10; ++index){
+					ppu_wait_nmi();
+				}
+				init_mode_game(); 
+
+				//normally show intro
+				//banked_call(BANK_0, init_mode_intro_cutscene);
 			}
 		}
-		if(game_mode == MODE_INTRO){
+		if(game_mode == MODE_INTRO_CUTSCENE){
 			ppu_wait_nmi();
-			++moveframes;
+			mode_intro_cutscene();
+		}
+
+		if(game_mode == MODE_INTRO_INSTRUCTION){
+			ppu_wait_nmi();
+			draw_talking_time_sprites();
 
 			if(moveframes > 60){
 				moveframes = 0;
@@ -200,38 +316,53 @@ void main (void) {
 					init_level_one_end();
 				}
 			}
-
-			
-		
 		}
 	}
+}  
+
+void draw_evaluation_time_background(void){
+	set_chr_bank_0(TALKING_TIME_CHR);
+	set_chr_bank_1(TALKING_TIME_CHR);
+	// clear_background();
+	pal_bg(talking_time_palete);
+
+	vram_adr(NAMETABLE_A);  
+	vram_unrle(EVALUATION);
 }
 
 void draw_talking_time_background(void) {
 	set_chr_bank_0(TALKING_TIME_CHR);
 	set_chr_bank_1(TALKING_TIME_CHR);
-	clear_background();
+	// clear_background();
+	pal_bg(talking_time_palete);
+
+	vram_adr(NAMETABLE_A);  
+	vram_unrle(TALKING_TIME_LEVEL);
 	// ppu_off();	 // screen off
 	// oam_clear(); // clear all sprites
 	// ppu_mask(0x16); // for blacking out ppu
 	//time to draw tiles
-	pal_bg(talking_time_palete);
+	
 
-	tempint = 0x2084;
+	// tempint = 0x2084;
 	
 	//place the non-moving parts of the head down:
-	temp1 = 0x80;
-	for(index2 = 0; index2 < 8; ++index2){
-		vram_adr(tempint);
-		for(index = 0; index < 8; ++index){
-			vram_put(temp1 + index);
-		}
-		flush_vram_update2();
-		temp1 += 16;
-		tempint += 32;
-	}
+	// temp1 = 0x80;
+	// for(index2 = 0; index2 < 8; ++index2){
+	// 	vram_adr(tempint);
+	// 	for(index = 0; index < 8; ++index){
+	// 		vram_put(temp1 + index);
+	// 	}
+	// 	flush_vram_update2();
+	// 	temp1 += 16;
+	// 	tempint += 32;
+	// }
 	// ppu_on_all();
+}
 
+void draw_talking_time_sprites(void){
+	  
+		oam_meta_spr(0xa0, 0x90, BigAlsShirt);
 }
 
 void clear_background(void) {
@@ -622,7 +753,7 @@ void init_level_one_end(void){
 	oam_clear(); // clear all sprites
 	clear_background();
 
-	draw_talking_time_background();
+	draw_evaluation_time_background();
 	
 	if(gas3 == 2){
 		multi_vram_buffer_horz("Nice Work!", 10, NTADR_A(16,5)); 
@@ -631,7 +762,6 @@ void init_level_one_end(void){
 		multi_vram_buffer_horz("You just don't", 14, NTADR_A(13,6)); 
 		multi_vram_buffer_horz("have what it takes", 18, NTADR_A(13,7)); 
 	}
-
 	
 	flush_vram_update2();
 	
@@ -640,8 +770,10 @@ void init_level_one_end(void){
 	game_level=LEVEL_ONE_COMPLETE;
 }	
 
-void init_mode_intro(void){ 
-	ppu_off();	 // screen off
+void init_mode_intro_instructions(void){
+	ppu_off();
+	oam_clear();
+
 	draw_talking_time_background();
 
 	multi_vram_buffer_horz("So you wanna", 12, NTADR_A(15,6)); 
@@ -658,11 +790,14 @@ void init_mode_intro(void){
 	flush_vram_update2();
 	
 	ppu_on_all(); // turn on screen
-	game_mode=MODE_INTRO;
-}	
+
+
+	game_mode = MODE_INTRO_INSTRUCTION;
+}
 
 void init_mode_game(void){ 
 	//reset changed values so they redraw
+	
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 
@@ -676,16 +811,20 @@ void init_mode_game(void){
 	//draw_bg: draw background code
 	
 
+	scroll(0,0); //reset scrolling
+
 	index = 0;
-	vram_adr(0x2000); //Nametable A;
-	for(largeindex = 0; largeindex < 1024; ++largeindex){
-		vram_put(level1[largeindex]);
-		++index;
-		if(index > 40) { //don't put too much in the vram_buffer
-			flush_vram_update2();
-			index = 0;
-		}
-	}
+	vram_adr(NAMETABLE_A); //Nametable A;
+
+	vram_unrle(LEVEL_1_PUMP);
+	// for(largeindex = 0; largeindex < 1024; ++largeindex){
+	// 	vram_put(level1[largeindex]); //todo fix this
+	// 	++index;
+	// 	if(index > 40) { //don't put too much in the vram_buffer
+	// 		flush_vram_update2();
+	// 		index = 0;
+	// 	}
+	// }
 	ppu_on_all(); // turn on screen
 	game_mode=MODE_GAME;
 }	
@@ -694,6 +833,7 @@ void reset_game_variables(){
 	gas1 = gas2 = gas3 = gas4 = gas5 = 0;
 	cost1 = cost2 = cost3 = cost4 = cost5 = 0;
 }
+
 
 
 

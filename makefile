@@ -21,13 +21,13 @@ $(NAME).nes: $(NAME).o crt0.o $(CFG)
 	rm *.o
 	@echo $(NAME).nes created
 
-crt0.o: crt0.s Gaspump.chr Gaspump2.chr MUSIC/SFX.s
+crt0.o: crt0.s Gaspump.chr talkingtime.chr intro.chr MUSIC/SFX.s
 	$(CA65) crt0.s
 
 $(NAME).o: $(NAME).s
 	$(CA65) $(NAME).s -g
 
-$(NAME).s: $(NAME).c Sprites.h Metatiles.h Gaspump.h 
+$(NAME).s: $(NAME).c Sprites.h Metatiles.h Gaspump.h CUTSCENES/Intro.h
 	$(CC65) -Oirs $(NAME).c --add-source
 
 clean:

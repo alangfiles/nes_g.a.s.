@@ -27,7 +27,7 @@ crt0.o: crt0.s Gaspump.chr talkingtime.chr intro.chr MUSIC/SFX.s
 $(NAME).o: $(NAME).s
 	$(CA65) $(NAME).s -g
 
-$(NAME).s: $(NAME).c Sprites.h Metatiles.h Gaspump.h CUTSCENES/Intro.h
+$(NAME).s: $(NAME).c Sprites.h Metatiles.h Gaspump.h 
 	$(CC65) -Oirs $(NAME).c --add-source
 
 clean:

@@ -33,9 +33,12 @@ unsigned char gas1_changed;
 
 unsigned int gas_speed;
 unsigned int cost_speed;
+unsigned int gas_pumped;
 
 #define GAS_STEP 50
 #define COST_STEP 80
+
+#define LEVEL_ONE_TARGET 200
 
 unsigned char pad1;
 unsigned char pad1_new;

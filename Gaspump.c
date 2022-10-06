@@ -41,9 +41,12 @@ const unsigned char pal2[]={
 const unsigned char talking_time_palete[]={
 	0x0f,0x20,0x16,0x36,
 	0x0f,0x05,0x16,0x36,
-	0x0f,0x13,0x0f,0x36,
-	0x0f,0x09,0x19,0x29 
+	0x0f,0x00,0x1b,0x30,
+	0x0f,0x09,0x19,0x38 
 };
+
+
+const unsigned char palette[16]={ };
 
 // {
 // 	0x0f,0x07,0x27,0x36,
@@ -63,7 +66,20 @@ enum{BANK_0, BANK_1, BANK_2, BANK_3, BANK_4, BANK_5, BANK_6};
 #pragma code-name ("BANK0")
 #include "LEVELS/intro_topdata.h"
 #include "LEVELS/intro_middledata.h"
-#include "LEVELS/intro_bottomdata.h"
+// #include "LEVELS/intro_bottomdata.h"
+
+#include "CUTSCENES/bottomdata.h"
+
+int cutscene_index = NAMETABLE_A;
+int nametable_index = 0;
+const unsigned char intro_cutscene_palette[16]={
+	0x0f,0x00,0x10,0x30,
+	0x0f,0x01,0x21,0x31,
+	0x0f,0x06,0x16,0x26,
+	0x0f,0x09,0x19,0x29 
+};
+
+unsigned char line_counter = 0;
 
 void init_mode_intro_cutscene(void){
 	scrolled_past_once = 0;
@@ -73,8 +89,7 @@ void init_mode_intro_cutscene(void){
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 
-	pal_col(0,0x21);
-	pal_bg(background_pal);
+	pal_bg(intro_cutscene_palette);
 
 	// bird_x = 0;
 
@@ -116,6 +131,7 @@ void init_mode_intro_cutscene(void){
 
 void mode_intro_cutscene(void){
 	++moveframes;
+	++line_counter;
 
 	if(stop_scrolling == 0 && moveframes > 0){
 
@@ -128,11 +144,25 @@ void mode_intro_cutscene(void){
 		
 		// scroll_y = add_scroll_y(1, scroll_y);
 
+		if( line_counter == 8 && nametable_index < 1024){ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
+			for(index = 0; index < 32; ++index){
+				one_vram_buffer(bottomdata[nametable_index], cutscene_index);
+				++nametable_index;
+				++cutscene_index;
+			}
+			// flush_vram_update2();
+			
+
+			line_counter = 0;
+		}
+
+		
+
 		if(scroll_y == 0x0ff){
-			ppu_off();
-			vram_adr(NAMETABLE_A);
-			vram_unrle(INTRO_BOTTOM);
-			ppu_on_all();
+			// ppu_off();
+			// vram_adr(NAMETABLE_A);
+			// vram_unrle(INTRO_BOTTOM);
+			// ppu_on_all();
 			scrolled_past_once = 1;
 		}
 
@@ -194,32 +224,42 @@ void main (void) {
 				for(index=0; index < 10; ++index){
 					ppu_wait_nmi();
 				}
-				init_mode_game(); 
-
-				//normally show intro
-				//banked_call(BANK_0, init_mode_intro_cutscene);
+				banked_call(BANK_0, init_mode_intro_cutscene);
 			}
 		}
 		if(game_mode == MODE_INTRO_CUTSCENE){
 			ppu_wait_nmi();
-			mode_intro_cutscene();
+			banked_call(BANK_0, mode_intro_cutscene);
+
+			read_input();
+
+			if (trigger_clicked) //allow cutscene to be skipped
+			{
+				//debug, just go to game
+				for(index=0; index < 10; ++index){
+					ppu_wait_nmi();
+				}
+				set_scroll_y(0);
+				init_mode_intro_instructions();
+			}
+			
 		}
 
 		if(game_mode == MODE_INTRO_INSTRUCTION){
 			ppu_wait_nmi();
-			draw_talking_time_sprites();
+			// draw_talking_time_sprites();
 
 			if(moveframes > 60){
 				moveframes = 0;
 			}
 			//big al loop:
 			oam_clear(); // clear all sprites
-			if(moveframes >= 0 && moveframes < 30){
-				oam_meta_spr(0x20, 0x20, BigAlTalk1);
-			}
-			if(moveframes >= 30 && moveframes < 61){
-				oam_meta_spr(0x20, 0x20, BigAlTalk2);
-			}
+			// if(moveframes >= 0 && moveframes < 30){
+			// 	oam_meta_spr(0x20, 0x20, BigAlTalk1);
+			// }
+			// if(moveframes >= 30 && moveframes < 61){
+			// 	oam_meta_spr(0x20, 0x20, BigAlTalk2);
+			// }
 
 			read_input();
 
@@ -241,13 +281,19 @@ void main (void) {
 			if(moveframes > 60){
 				moveframes = 0;
 			}
-			//big al loop:
+			// //big al loop:
 			oam_clear(); // clear all sprites
+
+			// draw_talking_time_sprites();
+
+			oam_meta_spr(0xa8, 0xb8, BigAlsShirt);
+			oam_meta_spr(0xb8, 0x98, BigAlsEyes);
+
 			if(moveframes >= 0 && moveframes < 30){
-				oam_meta_spr(0x20, 0x20, BigAlTalk1);
+				oam_meta_spr(0xb0, 0xaf, BigAlTalkClosedMouth);
 			}
 			if(moveframes >= 30 && moveframes < 61){
-				oam_meta_spr(0x20, 0x20, BigAlTalk2);
+				oam_meta_spr(0xb0, 0xaf, BigAlTalkMidMouth);
 			}
 
 			read_input();
@@ -362,7 +408,7 @@ void draw_talking_time_background(void) {
 
 void draw_talking_time_sprites(void){
 	  
-		oam_meta_spr(0xa0, 0x90, BigAlsShirt);
+		oam_meta_spr(0xb0, 0xc0, BigAlsShirt);
 }
 
 void clear_background(void) {
@@ -752,18 +798,55 @@ void init_level_one_end(void){
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 	clear_background();
+	
 
 	draw_evaluation_time_background();
+	gas_pumped = 0;
+	for(index = 0; index < gas3; ++index){
+		gas_pumped += 100;
+	}
+	for(index = 0; index < gas2; ++index){
+		gas_pumped += 10;
+	}
+	gas_pumped += gas1;
+
+
+	//pump scores:
+	//goal
+	multi_vram_buffer_horz("2.00 G", 6, NTADR_A(21,2)); 
+	flush_vram_update2();
+	//speed
+	multi_vram_buffer_horz(">>>", 3, NTADR_A(21,6)); 
+	flush_vram_update2();
+	//accuracy
+	one_vram_buffer(gas3+48, NTADR_A(21,8));
+	one_vram_buffer('.', NTADR_A(22,8));
+	one_vram_buffer(gas2+48, NTADR_A(23,8));
+	one_vram_buffer(gas1+48, NTADR_A(24,8));
+	one_vram_buffer('G', NTADR_A(26,8));
+	flush_vram_update2();
+	//style 
+	multi_vram_buffer_horz("NONE", 4, NTADR_A(21,10)); 
+	flush_vram_update2();
 	
-	if(gas3 == 2){
-		multi_vram_buffer_horz("Nice Work!", 10, NTADR_A(16,5)); 
+	if(gas_pumped > LEVEL_ONE_TARGET + 5){
+		multi_vram_buffer_horz("Bit too much, bub.", 18, NTADR_A(2,18)); 
+		flush_vram_update2();
+	} else if (gas_pumped >= LEVEL_ONE_TARGET-5){
+		multi_vram_buffer_horz("!!! WOW !!!", 11, NTADR_A(2,18)); 
+		multi_vram_buffer_horz("You've got it kid", 17, NTADR_A(2,20)); 
+		flush_vram_update2();
+	} else if (gas_pumped >= LEVEL_ONE_TARGET-100){
+		multi_vram_buffer_horz("Hmmmmm....", 10, NTADR_A(2,18)); 
+		multi_vram_buffer_horz("Pump harder.", 12, NTADR_A(2,20)); 
+		flush_vram_update2();
 	} else {
-		multi_vram_buffer_horz("Hmmmm....", 10, NTADR_A(13,5)); 
-		multi_vram_buffer_horz("You just don't", 14, NTADR_A(13,6)); 
-		multi_vram_buffer_horz("have what it takes", 18, NTADR_A(13,7)); 
+		multi_vram_buffer_horz("You just don't", 14, NTADR_A(2,18)); 
+		multi_vram_buffer_horz("have what it takes", 18, NTADR_A(2,20)); 
+		flush_vram_update2();
 	}
 	
-	flush_vram_update2();
+	
 	
 	ppu_on_all(); // turn on screen
 	game_mode=MODE_TALKING_TIME;
@@ -771,22 +854,23 @@ void init_level_one_end(void){
 }	
 
 void init_mode_intro_instructions(void){
-	ppu_off();
-	oam_clear();
+	ppu_off();	 // screen off
+	oam_clear(); // clear all sprites
+	clear_background();
 
 	draw_talking_time_background();
-
-	multi_vram_buffer_horz("So you wanna", 12, NTADR_A(15,6)); 
-	multi_vram_buffer_horz(" pump gas?!?", 12, NTADR_A(15,7)); 
 	flush_vram_update2();
 
-	multi_vram_buffer_horz("Give me 2 gallons!", 18, NTADR_A(13,9)); 
+	multi_vram_buffer_horz("So you wanna pump gas?!?", 24, NTADR_A(3,6)); 
 	flush_vram_update2();
 
-	multi_vram_buffer_horz("Pull the trigger halfway", 24, NTADR_A(4,16)); 
+	multi_vram_buffer_horz("Give me 2 gallons!", 18, NTADR_A(3,9)); 
 	flush_vram_update2();
 
-	multi_vram_buffer_horz("But not til it clicks", 21, NTADR_A(4,17)); 
+	multi_vram_buffer_horz("Pull the trigger", 24, NTADR_A(2,20)); 
+	flush_vram_update2();
+
+	multi_vram_buffer_horz("But don't click it", 18, NTADR_A(2,22)); 
 	flush_vram_update2();
 	
 	ppu_on_all(); // turn on screen

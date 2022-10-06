@@ -7,24 +7,43 @@ const unsigned char TurboGut_2[] = {
 		128
 };
 
-const unsigned char BigAlTalk1[] = {
-		8, 48, 0xe1, 0,
-		16, 48, 0xe2, 0,
-		24, 48, 0xe3, 0,
-		32, 48, 0xe4, 0,
-		40, 48, 0xe5, 0,
-		48, 48, 0xe6, 0,
+const unsigned char BigAlTalkSmallMouth[] = {
+		8, 0, 0x8c, 0,
+		16, 0, 0x8d, 0,
+		24, 0, 0x8e, 0,
+		32, 0, 0x8f, 0,
 		128
 };
 
-const unsigned char BigAlTalk2[] = {
-		8, 48, 0xe1, 0,
-		16, 48, 0xe2, 0,
-		24, 48, 0xe9, 01,
-		32, 48, 0xea, 0,
-		40, 48, 0xeb, 0,
-		48, 48, 0xe6, 0,
+const unsigned char BigAlTalkMidMouth[] = {
+		8, 0, 0x9c, 0,
+		16, 0, 0x9d, 0,
+		24, 0, 0x9e, 0,
+		32, 0, 0x9f, 0,
+		128
+};
 
+const unsigned char BigAlTalkClosedMouth[] = {
+		8, 0, 0xac, 0,
+		16, 0, 0xad, 0,
+		24, 0, 0xae, 0,
+		32, 0, 0xaf, 0,
+		128
+};
+
+const unsigned char BigAlTalkBigMouth[] = {
+		8, 0, 0xbc, 0,
+		16, 0, 0xbd, 0,
+		24, 0, 0xbe, 0,
+		32, 0, 0xbf, 0,
+		128
+};
+
+const unsigned char BigAlsEyes[] = {
+		0, 0, 0xa8, 0,
+		8, 0, 0xa9, 0,
+		16, 0, 0xa8, 0,
+		24, 0, 0xa9, 0,
 		128
 };
 
@@ -61,6 +80,9 @@ const unsigned char BigAlsShirt[] = {
 	56,16, 0xff, 0,
 	128
 };
+
+
+
 
 
 

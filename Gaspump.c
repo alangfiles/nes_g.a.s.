@@ -81,9 +81,42 @@ const unsigned char intro_cutscene_palette[16]={
 
 unsigned char line_counter = 0;
 
-void init_mode_intro_cutscene(void){
+
+void init_mode_intro_text(void){
+	nametable_index = 0;
 	scrolled_past_once = 0;
 	stop_scrolling = 0;
+	moveframes = 0;
+	line_counter = 0;
+	scroll(0,0); //reset scrolling
+	set_mirroring(MIRROR_HORIZONTAL);
+	//reset changed values so they redraw
+	ppu_off();	 // screen off
+	oam_clear(); // clear all sprites
+
+	pal_bg(intro_cutscene_palette);
+
+	set_chr_bank_0(INTRO_CHR);
+	set_chr_bank_1(TALKING_TIME_CHR);
+	// vram_adr(NAMETABLE_A);
+	// // this sets a start position on the BG, top left of screen A
+	// vram_unrle(EVALUATION);
+
+	vram_adr(NAMETABLE_C);
+	// this sets a start position on the BG, top left of screen A
+	vram_unrle(EVALUATION);
+	ppu_on_all(); // turn on screen
+	game_mode = MODE_INTRO_TEXT;
+	
+}
+
+void init_mode_intro_cutscene(void){
+	nametable_index = 0;
+	scrolled_past_once = 0;
+	stop_scrolling = 0;
+	moveframes = 0;
+	line_counter = 0;
+	scroll(0,0); //reset scrolling
 	set_mirroring(MIRROR_HORIZONTAL);
 	//reset changed values so they redraw
 	ppu_off();	 // screen off
@@ -127,7 +160,60 @@ void init_mode_intro_cutscene(void){
 	// }
 	ppu_on_all(); // turn on screen
 	game_mode=MODE_INTRO_CUTSCENE;
+	pal_fade_to(0,4);
 }	
+
+
+void mode_intro_text(void){
+	++moveframes;
+	++line_counter;
+
+	if(stop_scrolling == 0 && moveframes > 0){
+
+		scroll_y += 1;
+
+		if(scrolled_past_once == 1 && scroll_y > 0x1df){
+			stop_scrolling = 1;
+			moveframes=0;
+		}
+		
+		// scroll_y = add_scroll_y(1, scroll_y);
+
+		if( line_counter == 8 && nametable_index < 1024){ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
+			for(index = 0; index < 32; ++index){
+				one_vram_buffer(0x0, cutscene_index);
+				++nametable_index;
+				++cutscene_index;
+			}
+			// flush_vram_update2();
+			
+
+			line_counter = 0;
+		}
+
+		
+
+		if(scroll_y == 0x0ff){
+			// ppu_off();
+			// vram_adr(NAMETABLE_A);
+			// vram_unrle(INTRO_BOTTOM);
+			// ppu_on_all();
+			scrolled_past_once = 1;
+		}
+
+		if(scroll_y > 0x1df) {
+			scroll_y = 0;
+		}
+		scroll(0,scroll_y);
+		moveframes = 0;
+	}
+
+	if(stop_scrolling == 1 && moveframes == 20){
+		//wait for a while after scrolling down, then do cutscene.
+		pal_fade_to(4,0);
+		init_mode_intro_cutscene();
+	}
+}
 
 void mode_intro_cutscene(void){
 	++moveframes;
@@ -218,12 +304,64 @@ void main (void) {
 
 			read_input();
 
-			if (trigger_clicked)
+
+			if(option == 0){
+				one_vram_buffer(0x3d, NTADR_A(10,17));
+				one_vram_buffer(0x3f, NTADR_A(10,19));
+			} else {
+				one_vram_buffer(0x3f, NTADR_A(10,17));
+				one_vram_buffer(0x3d, NTADR_A(10,19));
+			}
+			
+
+			if (trigger_clicked) //if((pad2_zapper)&&(zapper_ready)){
+			{
+
+				// bg off, project white boxes
+				oam_clear();
+				// white_background();
+				ppu_mask(0x16); // BG off, won't happen till NEXT frame
+				
+				ppu_wait_nmi(); // wait till the top of the next frame
+				// this frame will display no BG and a white box
+				
+				oam_clear(); // clear the NEXT frame
+				// draw_title_background();
+				ppu_mask(0x1e); // bg on, won't happen till NEXT frame
+				
+				// hit_detected = zap_read(1); // look for light in zapper, port 2
+				
+
+
+
+				if(trigger_hit){
+					if(option == 0){
+						//debug, just go to game
+						wait_a_little();
+						banked_call(BANK_0, init_mode_intro_text);
+					} else {
+						multi_vram_buffer_horz("No Options Mode yet", 19, NTADR_A(6, 21));
+					}
+				}
+				if(trigger_miss){
+					if(option == 0){
+						option = 1;
+					} else {
+						option = 0;
+					}
+				}
+				
+			}
+		}
+		if(game_mode == MODE_INTRO_TEXT){
+			ppu_wait_nmi();
+			banked_call(BANK_0, mode_intro_text);
+			read_input();
+			if (trigger_clicked) //allow cutscene to be skipped
 			{
 				//debug, just go to game
-				for(index=0; index < 10; ++index){
-					ppu_wait_nmi();
-				}
+				wait_a_little();
+				set_scroll_y(0);
 				banked_call(BANK_0, init_mode_intro_cutscene);
 			}
 		}
@@ -236,9 +374,7 @@ void main (void) {
 			if (trigger_clicked) //allow cutscene to be skipped
 			{
 				//debug, just go to game
-				for(index=0; index < 10; ++index){
-					ppu_wait_nmi();
-				}
+				wait_a_little();
 				set_scroll_y(0);
 				init_mode_intro_instructions();
 			}
@@ -266,10 +402,7 @@ void main (void) {
 			if (trigger_clicked)
 			{
 
-				//wait 10 frames before starting the next section
-				for(index=0; index < 10; ++index){
-					ppu_wait_nmi();
-				}
+				wait_a_little();
 				init_mode_game();
 			}
 		}
@@ -359,6 +492,7 @@ void main (void) {
 			} else {
 				if(started_pumping == 1){
 					//trigger ending
+					wait_a_little();
 					init_level_one_end();
 				}
 			}
@@ -420,6 +554,15 @@ void clear_background(void) {
 	}
 }
 
+void white_background(void) {
+	//draw all 0x00 into the bg
+	vram_adr(NAMETABLE_A);
+	for(tempint = 0; tempint < 960; ++tempint){
+		vram_put(0x03);
+		flush_vram_update2();
+	}
+}
+
 void draw_talking_time(void) {
 
 	temp1 = 0x2044; //vram addr for start of box
@@ -447,8 +590,11 @@ void read_input(void) {
 	pad1 = pad_poll(0);				 // read the first controller
 	pad1_new = get_pad_new(0); // newly pressed button. do pad_poll first
 
-	trigger_pulled =  (pad1 & PAD_A) || zap_shoot(0); // controller slot 1 zapper
-	trigger_clicked = (pad1_new & PAD_A);
+	trigger_pulled =  (pad1 & PAD_B) || (pad1 & PAD_A) || zap_shoot(0); // controller slot 1 zapper
+	trigger_clicked = (pad1_new & PAD_A) || (pad1_new & PAD_B); //needs to check last frame for blank
+
+	trigger_hit =  (pad1 & PAD_A) || zap_shoot(0); // controller slot 1 zapper
+	trigger_miss =  (pad1 & PAD_B) || zap_shoot(0); // controller slot 1 zapper
 }
 
 void adjust_gas(void){
@@ -769,7 +915,16 @@ void find_sprite(void){
 	}
 }
 
+void draw_title_background(void){
+	clear_background();
+	multi_vram_buffer_horz("G.A.S.", 6, NTADR_A(12,4)); 
+	multi_vram_buffer_horz("Gas Attendant Simulator", 23, NTADR_A(5,6)); 
+	flush_vram_update2();
 
+	multi_vram_buffer_horz("Start", 5, NTADR_A(12,17)); 
+	multi_vram_buffer_horz("Options", 7, NTADR_A(12,19)); 
+	flush_vram_update2();
+}
 
 void init_mode_title(void){ 
 	ppu_off();	 // screen off
@@ -779,12 +934,7 @@ void init_mode_title(void){
 	set_chr_bank_0(TALKING_TIME_CHR);
 	set_chr_bank_1(TALKING_TIME_CHR);
 
-	clear_background();
-	multi_vram_buffer_horz("Gas Station Simulator", 21, NTADR_A(4,16)); 
-	flush_vram_update2();
-
-	multi_vram_buffer_horz("Pull trigger to start", 21, NTADR_A(4,17)); 
-	flush_vram_update2();
+	draw_title_background();
 
 	ppu_on_all(); // turn on screen
 	game_mode=MODE_TITLE;
@@ -916,9 +1066,14 @@ void init_mode_game(void){
 void reset_game_variables(){
 	gas1 = gas2 = gas3 = gas4 = gas5 = 0;
 	cost1 = cost2 = cost3 = cost4 = cost5 = 0;
+	option = 0;
 }
 
-
+void wait_a_little(){
+	for(index=0; index < 25; ++index){
+		ppu_wait_nmi();
+	}
+}
 
 
 

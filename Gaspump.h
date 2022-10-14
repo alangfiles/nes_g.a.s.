@@ -9,6 +9,8 @@ unsigned int scroll_y;
 unsigned char scrolled_past_once;
 unsigned char stop_scrolling;
 
+unsigned char option;
+
 unsigned char cost5;
 unsigned char cost4;
 unsigned char cost3;
@@ -44,6 +46,8 @@ unsigned char pad1;
 unsigned char pad1_new;
 unsigned char trigger_pulled;
 unsigned char trigger_clicked;
+unsigned char trigger_hit;
+unsigned char trigger_miss;
 unsigned char started_pumping;
 
 unsigned char sprite_cost;
@@ -56,6 +60,7 @@ enum
 	MODE_TITLE,
 	MODE_GAME,
 	MODE_PAUSE,
+	MODE_INTRO_TEXT,
 	MODE_INTRO_CUTSCENE,
 	MODE_INTRO_INSTRUCTION,
 	MODE_TALKING_TIME,
@@ -127,7 +132,10 @@ void draw_talking_time_background(void);
 void draw_evaluation_time_background(void);
 void draw_talking_time_sprites(void);
 void clear_background(void);
+void white_background(void);
 void reset_game_variables(void);
+void wait_a_little(void);
+void draw_title_background(void);
 // void new_star(void);
 // void draw_box(void);
 // void draw_star(void);

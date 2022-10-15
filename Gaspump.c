@@ -265,6 +265,74 @@ void mode_intro_cutscene(void){
 	}
 }
 
+#pragma rodata-name ("BANK1")
+#pragma code-name ("BANK1")
+void init_mode_instructions(void){
+	ppu_off();	 // screen off
+	oam_clear(); // clear all sprites
+	clear_background();
+	reset_game_variables();
+
+	draw_talking_time_background();
+	flush_vram_update2();
+
+	index = get_frame_count() & 3; // returns 0,1,2,3
+	gas_goal = gas_goal_array[index];
+
+	switch (levels_complete)
+	{
+	case 0:
+		multi_vram_buffer_horz("So you wanna pump gas?!?", 24, NTADR_A(3,6)); 
+		flush_vram_update2();
+
+		multi_vram_buffer_horz("Give me X gallons!", 18, NTADR_A(3,9)); 
+		one_vram_buffer(gas_goal+48, NTADR_A(11,9));
+		flush_vram_update2();
+
+		multi_vram_buffer_horz("Pull the trigger", 24, NTADR_A(2,20)); 
+		flush_vram_update2();
+
+		multi_vram_buffer_horz("But don't click it", 18, NTADR_A(2,22)); 
+		flush_vram_update2();
+		break;
+	case 1:
+		multi_vram_buffer_horz("You're starting to believe", 26, NTADR_A(3,6)); 
+		flush_vram_update2();
+
+		multi_vram_buffer_horz("Now give me X gallons!", 22, NTADR_A(3,9)); 
+		one_vram_buffer(gas_goal+48, NTADR_A(15,9));
+		flush_vram_update2();
+
+		multi_vram_buffer_horz("And make it quick", 18, NTADR_A(3,12)); 
+		flush_vram_update2();
+		break;
+	case 2:
+		multi_vram_buffer_horz("I can't deny, you were", 22, NTADR_A(3,6)); 
+		flush_vram_update2();
+		multi_vram_buffer_horz("born to do this.", 17, NTADR_A(3,7)); 
+		flush_vram_update2();
+
+		multi_vram_buffer_horz("But can you do X gallons?", 25, NTADR_A(3,9)); 
+		one_vram_buffer(gas_goal+48, NTADR_A(18,9));
+		flush_vram_update2();
+
+		multi_vram_buffer_horz("I'm watching closely...", 23, NTADR_A(3,12)); 
+		flush_vram_update2();
+		break;
+	
+	default:
+		break;
+	}
+
+	
+	
+	ppu_on_all(); // turn on screen
+
+
+	game_mode = MODE_INTRO_INSTRUCTION;
+}
+
+
 // the fixed bank, bank 7
 #pragma rodata-name ("CODE")
 #pragma code-name ("CODE")	
@@ -376,7 +444,7 @@ void main (void) {
 				//debug, just go to game
 				wait_a_little();
 				set_scroll_y(0);
-				init_mode_intro_instructions();
+				banked_call(BANK_1, init_mode_instructions);
 			}
 			
 		}
@@ -401,7 +469,7 @@ void main (void) {
 
 			if (trigger_clicked)
 			{
-
+				pal_fade_to(4,0);
 				wait_a_little();
 				init_mode_game();
 			}
@@ -444,7 +512,7 @@ void main (void) {
 						init_mode_game();
 						break;
 					case LEVEL_ONE_COMPLETE:
-						init_mode_title();
+						banked_call(BANK_1, init_mode_instructions);
 						break;
 					default:
 					break;
@@ -939,6 +1007,9 @@ void init_mode_title(void){
 	ppu_on_all(); // turn on screen
 	game_mode=MODE_TITLE;
 	game_level=START_OF_GAME;
+	option = 0;
+	levels_complete = 0;
+	perfect_levels = 0;
 	reset_game_variables();
 
 	//todo: add title music
@@ -948,6 +1019,7 @@ void init_level_one_end(void){
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 	clear_background();
+	gas_goal_hundreds = 0;
 	
 
 	draw_evaluation_time_background();
@@ -960,10 +1032,14 @@ void init_level_one_end(void){
 	}
 	gas_pumped += gas1;
 
+	for(index = 0; index < gas_goal; ++index){
+		gas_goal_hundreds += 100;
+	}
 
 	//pump scores:
 	//goal
-	multi_vram_buffer_horz("2.00 G", 6, NTADR_A(21,2)); 
+	one_vram_buffer(gas_goal+48, NTADR_A(21,2));
+	multi_vram_buffer_horz(".00 G", 5, NTADR_A(22,2)); 
 	flush_vram_update2();
 	//speed
 	multi_vram_buffer_horz(">>>", 3, NTADR_A(21,6)); 
@@ -979,14 +1055,15 @@ void init_level_one_end(void){
 	multi_vram_buffer_horz("NONE", 4, NTADR_A(21,10)); 
 	flush_vram_update2();
 	
-	if(gas_pumped > LEVEL_ONE_TARGET + 5){
+	if(gas_pumped > gas_goal_hundreds + 5){
 		multi_vram_buffer_horz("Bit too much, bub.", 18, NTADR_A(2,18)); 
 		flush_vram_update2();
-	} else if (gas_pumped >= LEVEL_ONE_TARGET-5){
+	} else if (gas_pumped >= gas_goal_hundreds-5){
+		++levels_complete;
 		multi_vram_buffer_horz("!!! WOW !!!", 11, NTADR_A(2,18)); 
 		multi_vram_buffer_horz("You've got it kid", 17, NTADR_A(2,20)); 
 		flush_vram_update2();
-	} else if (gas_pumped >= LEVEL_ONE_TARGET-100){
+	} else if (gas_pumped >= gas_goal_hundreds-100){
 		multi_vram_buffer_horz("Hmmmmm....", 10, NTADR_A(2,18)); 
 		multi_vram_buffer_horz("Pump harder.", 12, NTADR_A(2,20)); 
 		flush_vram_update2();
@@ -1007,21 +1084,28 @@ void init_mode_intro_instructions(void){
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 	clear_background();
+	reset_game_variables();
 
 	draw_talking_time_background();
 	flush_vram_update2();
 
-	multi_vram_buffer_horz("So you wanna pump gas?!?", 24, NTADR_A(3,6)); 
-	flush_vram_update2();
+	index = get_frame_count() & 3; // returns 0,1,2,3
+	gas_goal = gas_goal_array[index];
 
-	multi_vram_buffer_horz("Give me 2 gallons!", 18, NTADR_A(3,9)); 
-	flush_vram_update2();
+		multi_vram_buffer_horz("So you wanna pump gas?!?", 24, NTADR_A(3,6)); 
+		flush_vram_update2();
 
-	multi_vram_buffer_horz("Pull the trigger", 24, NTADR_A(2,20)); 
-	flush_vram_update2();
+		multi_vram_buffer_horz("Give me X gallons!", 18, NTADR_A(3,9)); 
+		one_vram_buffer(gas_goal+48, NTADR_A(11,9));
+		flush_vram_update2();
 
-	multi_vram_buffer_horz("But don't click it", 18, NTADR_A(2,22)); 
-	flush_vram_update2();
+		multi_vram_buffer_horz("Pull the trigger", 24, NTADR_A(2,20)); 
+		flush_vram_update2();
+
+		multi_vram_buffer_horz("But don't click it", 18, NTADR_A(2,22)); 
+		flush_vram_update2();
+	
+	
 	
 	ppu_on_all(); // turn on screen
 
@@ -1060,13 +1144,15 @@ void init_mode_game(void){
 	// 	}
 	// }
 	ppu_on_all(); // turn on screen
+	pal_fade_to(0,4);
+	wait_a_little();
 	game_mode=MODE_GAME;
+	started_pumping=0;
 }	
 
 void reset_game_variables(){
 	gas1 = gas2 = gas3 = gas4 = gas5 = 0;
 	cost1 = cost2 = cost3 = cost4 = cost5 = 0;
-	option = 0;
 }
 
 void wait_a_little(){

@@ -33,6 +33,11 @@ unsigned char gas3_changed;
 unsigned char gas2_changed;
 unsigned char gas1_changed;
 
+
+unsigned int gas_goal;
+unsigned int gas_goal_hundreds;
+const unsigned char gas_goal_array[]={1,2,3,4};
+
 unsigned int gas_speed;
 unsigned int cost_speed;
 unsigned int gas_pumped;
@@ -55,6 +60,9 @@ unsigned char cost_sprite;
 
 unsigned char game_mode;
 unsigned char game_level;
+unsigned char levels_complete;
+unsigned char perfect_levels;
+
 enum
 {
 	MODE_TITLE,

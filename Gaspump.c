@@ -306,7 +306,7 @@ void init_mode_instructions(void){
 		multi_vram_buffer_horz("And make it quick", 18, NTADR_A(3,12)); 
 		flush_vram_update2();
 		break;
-	case 2:
+	case 2: 
 		multi_vram_buffer_horz("I can't deny, you were", 22, NTADR_A(3,6)); 
 		flush_vram_update2();
 		multi_vram_buffer_horz("born to do this.", 17, NTADR_A(3,7)); 

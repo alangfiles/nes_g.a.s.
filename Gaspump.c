@@ -60,7 +60,6 @@ enum{BANK_0, BANK_1, BANK_2, BANK_3, BANK_4, BANK_5, BANK_6};
 // 7 shouldn't be needed, that's the fixed bank, just call it normally
 
 
-
 // BANK0 is being used for the INTRO_CUTSCENE
 #pragma rodata-name ("BANK0")
 #pragma code-name ("BANK0")
@@ -70,7 +69,7 @@ enum{BANK_0, BANK_1, BANK_2, BANK_3, BANK_4, BANK_5, BANK_6};
 
 #include "CUTSCENES/bottomdata.h"
 
-void init_mode_instructions(void); //prototype (needed to get call from bank_1)
+void bank_1_init_mode_instructions(void); //prototype (needed to get call from bank_1)
 
 int cutscene_index = NAMETABLE_A;
 int nametable_index = 0;
@@ -84,7 +83,7 @@ const unsigned char intro_cutscene_palette[16]={
 unsigned char line_counter = 0;
 
 
-void init_mode_intro_text(void){
+void bank_0_init_mode_intro_text(void){
 	nametable_index = 0;
 	scrolled_past_once = 0;
 	stop_scrolling = 0;
@@ -112,7 +111,7 @@ void init_mode_intro_text(void){
 	
 }
 
-void init_mode_intro_cutscene(void){
+void bank_0_init_mode_intro_cutscene(void){
 	nametable_index = 0;
 	scrolled_past_once = 0;
 	stop_scrolling = 0;
@@ -166,7 +165,7 @@ void init_mode_intro_cutscene(void){
 }	
 
 
-void mode_intro_text(void){
+void bank_0_mode_intro_text(void){
 	++moveframes;
 	++line_counter;
 
@@ -213,11 +212,11 @@ void mode_intro_text(void){
 	if(stop_scrolling == 1 && moveframes == 20){
 		//wait for a while after scrolling down, then do cutscene.
 		pal_fade_to(4,0);
-		init_mode_intro_cutscene();
+		bank_0_init_mode_intro_cutscene();
 	}
 }
 
-void mode_intro_cutscene(void){
+void bank_0_mode_intro_cutscene(void){
 	++moveframes;
 	++line_counter;
 
@@ -263,13 +262,18 @@ void mode_intro_cutscene(void){
 
 	if(stop_scrolling == 1 && moveframes == 100){
 		//wait for a while after scrolling down, then do instructions.
-		banked_call(BANK_1, init_mode_instructions);
+		banked_call(BANK_1, bank_1_init_mode_instructions);
 	}
 }
 
 #pragma rodata-name ("BANK1")
 #pragma code-name ("BANK1")
-void init_mode_instructions(void){
+
+const unsigned char level_0_text[] = "So you wanna pump gas ?!?\nGive me 1 gallons\n Just pull the trigger\nBut don't click it.";
+const unsigned char level_1_text[] = "You're starting to believe\nbut you have much to learn.\n\nNow give me 1 gallons!\nand make it quick!!!";
+const unsigned char level_2_text[] = "I can't deny it...\nYou were born to do this.\nOne last test...\nCan you do 1 gallons?\n\nI'm watching closely...";
+void bank_1_init_mode_instructions(void){
+	reset_text_values();
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 	clear_background();
@@ -278,60 +282,69 @@ void init_mode_instructions(void){
 	draw_talking_time_background();
 	flush_vram_update2();
 
-	index = get_frame_count() & 3; // returns 0,1,2,3
-	gas_goal = gas_goal_array[index];
+	// random gas goal (commenting out for now)
+	// index = get_frame_count() & 3; // returns 0,1,2,3
+	// gas_goal = gas_goal_array[index];
 
 	switch (levels_complete)
 	{
 	case 0:
-		multi_vram_buffer_horz("So you wanna pump gas?!?", 24, NTADR_A(3,6)); 
-		flush_vram_update2();
-
-		multi_vram_buffer_horz("Give me X gallons!", 18, NTADR_A(3,9)); 
-		one_vram_buffer(gas_goal+48, NTADR_A(11,9));
-		flush_vram_update2();
-
-		multi_vram_buffer_horz("Pull the trigger", 24, NTADR_A(2,20)); 
-		flush_vram_update2();
-
-		multi_vram_buffer_horz("But don't click it", 18, NTADR_A(2,22)); 
-		flush_vram_update2();
+		pointer = level_0_text;
+		text_length = sizeof(level_0_text);
+		gas_goal = 1;
 		break;
 	case 1:
-		multi_vram_buffer_horz("You're starting to believe", 26, NTADR_A(3,6)); 
-		flush_vram_update2();
-
-		multi_vram_buffer_horz("Now give me X gallons!", 22, NTADR_A(3,9)); 
-		one_vram_buffer(gas_goal+48, NTADR_A(15,9));
-		flush_vram_update2();
-
-		multi_vram_buffer_horz("And make it quick", 18, NTADR_A(3,12)); 
-		flush_vram_update2();
+		pointer = level_1_text;
+		text_length = sizeof(level_1_text);
+		gas_goal = 1;
 		break;
 	case 2: 
-		multi_vram_buffer_horz("I can't deny, you were", 22, NTADR_A(3,6)); 
-		flush_vram_update2();
-		multi_vram_buffer_horz("born to do this.", 17, NTADR_A(3,7)); 
-		flush_vram_update2();
-
-		multi_vram_buffer_horz("But can you do X gallons?", 25, NTADR_A(3,9)); 
-		one_vram_buffer(gas_goal+48, NTADR_A(18,9));
-		flush_vram_update2();
-
-		multi_vram_buffer_horz("I'm watching closely...", 23, NTADR_A(3,12)); 
-		flush_vram_update2();
+		pointer = level_2_text;
+		text_length = sizeof(level_2_text);
+		gas_goal = 1;
 		break;
 	
 	default:
 		break;
 	}
 
-	
-	
 	ppu_on_all(); // turn on screen
 
-
 	game_mode = MODE_INTRO_INSTRUCTION;
+}
+
+void bank_1_instructions_loop(void){
+			ppu_wait_nmi();
+			++moveframes;
+
+			if(text_row < 6){
+				typewriter();
+			}
+
+			if(moveframes > 60){
+				moveframes = 0;
+			}
+			
+			oam_clear(); // clear all sprites
+			oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
+			oam_meta_spr(0xc0, 0xa8, BigAlsEyes);
+
+			//big al loop:
+			if(moveframes >= 0 && moveframes < 30){
+				oam_meta_spr(0xb8, 0xbf, BigAlTalkClosedMouth);
+			}
+			if(moveframes >= 30 && moveframes < 61){
+				oam_meta_spr(0xb8, 0xbf, BigAlTalkMidMouth);
+			}
+
+			read_input();
+
+			if (trigger_clicked)
+			{
+				pal_fade_to(4,0);
+				wait_a_little();
+				init_mode_game();
+			}
 }
 
 
@@ -376,11 +389,11 @@ void main (void) {
 
 
 			if(option == 0){
-				one_vram_buffer(0x3d, NTADR_A(10,17));
-				one_vram_buffer(0x3f, NTADR_A(10,19));
+				one_vram_buffer(0x3d, NTADR_A(6,17));
+				one_vram_buffer(0x3f, NTADR_A(6,19));
 			} else {
-				one_vram_buffer(0x3f, NTADR_A(10,17));
-				one_vram_buffer(0x3d, NTADR_A(10,19));
+				one_vram_buffer(0x3f, NTADR_A(6,17));
+				one_vram_buffer(0x3d, NTADR_A(6,19));
 			}
 			
 
@@ -408,9 +421,9 @@ void main (void) {
 					if(option == 0){
 						//debug, just go to game
 						wait_a_little();
-						banked_call(BANK_0, init_mode_intro_text);
+						banked_call(BANK_0, bank_0_init_mode_intro_text);
 					} else {
-						multi_vram_buffer_horz("No Options Mode yet", 19, NTADR_A(6, 21));
+						multi_vram_buffer_horz("No Free Pump Mode yet", 21, NTADR_A(6, 21));
 					}
 				}
 				if(trigger_miss){
@@ -419,25 +432,26 @@ void main (void) {
 					} else {
 						option = 0;
 					}
+					multi_vram_buffer_horz("                     ", 21, NTADR_A(6, 21));
 				}
 				
 			}
 		}
 		if(game_mode == MODE_INTRO_TEXT){
 			ppu_wait_nmi();
-			banked_call(BANK_0, mode_intro_text);
+			banked_call(BANK_0, bank_0_mode_intro_text);
 			read_input();
 			if (trigger_clicked) //allow cutscene to be skipped
 			{
 				//debug, just go to game
 				wait_a_little();
 				set_scroll_y(0);
-				banked_call(BANK_0, init_mode_intro_cutscene);
+				banked_call(BANK_0, bank_0_init_mode_intro_cutscene);
 			}
 		}
 		if(game_mode == MODE_INTRO_CUTSCENE){
 			ppu_wait_nmi();
-			banked_call(BANK_0, mode_intro_cutscene);
+			banked_call(BANK_0, bank_0_mode_intro_cutscene);
 
 			read_input();
 
@@ -446,35 +460,13 @@ void main (void) {
 				//debug, just go to game
 				wait_a_little();
 				set_scroll_y(0);
-				banked_call(BANK_1, init_mode_instructions);
+				banked_call(BANK_1, bank_1_init_mode_instructions);
 			}
 			
 		}
 
 		if(game_mode == MODE_INTRO_INSTRUCTION){
-			ppu_wait_nmi();
-			// draw_talking_time_sprites();
-
-			if(moveframes > 60){
-				moveframes = 0;
-			}
-			//big al loop:
-			oam_clear(); // clear all sprites
-			// if(moveframes >= 0 && moveframes < 30){
-			// 	oam_meta_spr(0x20, 0x20, BigAlTalk1);
-			// }
-			// if(moveframes >= 30 && moveframes < 61){
-			// 	oam_meta_spr(0x20, 0x20, BigAlTalk2);
-			// }
-
-			read_input();
-
-			if (trigger_clicked)
-			{
-				pal_fade_to(4,0);
-				wait_a_little();
-				init_mode_game();
-			}
+			banked_call(BANK_1, bank_1_instructions_loop);
 		}
 
 		if(game_mode == MODE_TALKING_TIME){
@@ -514,7 +506,7 @@ void main (void) {
 						init_mode_game();
 						break;
 					case LEVEL_ONE_COMPLETE:
-						banked_call(BANK_1, init_mode_instructions);
+						banked_call(BANK_1, bank_1_init_mode_instructions);
 						break;
 					default:
 					break;
@@ -991,8 +983,8 @@ void draw_title_background(void){
 	multi_vram_buffer_horz("Gas Attendant Simulator", 23, NTADR_A(5,6)); 
 	flush_vram_update2();
 
-	multi_vram_buffer_horz("Start", 5, NTADR_A(12,17)); 
-	multi_vram_buffer_horz("Options", 7, NTADR_A(12,19)); 
+	multi_vram_buffer_horz("Game Quest Mode", 15, NTADR_A(8,17)); 
+	multi_vram_buffer_horz("Free Pump Mode", 14, NTADR_A(8,19)); 
 	flush_vram_update2();
 }
 
@@ -1127,6 +1119,50 @@ void reset_game_variables(){
 void wait_a_little(){
 	for(index=0; index < 25; ++index){
 		ppu_wait_nmi();
+	}
+}
+
+void reset_text_values(void)
+{
+	text_rendered = 0;
+	text_row = 0;
+	text_col = 0;
+}
+
+void typewriter(void)
+{
+
+	if (text_rendered != text_length)
+	{
+
+		if (pointer[text_rendered] == '\n')
+		{
+			// auto-wrap to next row
+			++text_row;
+			text_col = 0;
+		}
+		else if (pointer[text_rendered] == '\t')
+		{
+			text_col += 4;
+			if (text_col >= 27) // wrap to next row
+			{
+				++text_row;
+				text_col = 0;
+			}
+		}
+		else
+		{
+			one_vram_buffer(pointer[text_rendered], NTADR_A(3 + text_col, 6 + text_row));
+			delay(1);
+			++text_col;
+
+			if (text_col == 27) // wrap to next row
+			{
+				++text_row;
+				text_col = 0;
+			}
+		}
+		++text_rendered;
 	}
 }
 

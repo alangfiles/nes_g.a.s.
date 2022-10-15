@@ -96,7 +96,6 @@ const unsigned char * pointer;
 
 unsigned char temp1;
 unsigned char temp2;
-unsigned char temp3;
 int tempint;
 unsigned char talking_time = 0;
 
@@ -110,6 +109,11 @@ unsigned char num_holder;
 unsigned char index = 0;
 unsigned char index2;
 int largeindex;
+
+unsigned char text_rendered;
+unsigned char text_length;
+unsigned char text_row;
+unsigned char text_col;
 
 unsigned char moveframes;
 
@@ -129,7 +133,9 @@ void draw_sprites(void);
 void read_input(void);
 void find_sprite(void);
 void init_mode_title(void);
-void init_mode_intro_cutscene(void);
+void typewriter(void);
+void reset_text_values(void);
+void bank_0_init_mode_intro_cutscene(void);
 void init_mode_game(void);
 void init_level_one_end(void);
 void draw_number_as_bg_tile(void);

@@ -2,6 +2,7 @@
   "files.associations": {
     "gaspump.h": "c",
     "level1.h": "c",
-    "metatiles.h": "c"
+    "metatiles.h": "c",
+    "bottomdata.h": "c"
   }
 }

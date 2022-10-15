@@ -70,6 +70,8 @@ enum{BANK_0, BANK_1, BANK_2, BANK_3, BANK_4, BANK_5, BANK_6};
 
 #include "CUTSCENES/bottomdata.h"
 
+void init_mode_instructions(void); //prototype (needed to get call from bank_1)
+
 int cutscene_index = NAMETABLE_A;
 int nametable_index = 0;
 const unsigned char intro_cutscene_palette[16]={
@@ -261,7 +263,7 @@ void mode_intro_cutscene(void){
 
 	if(stop_scrolling == 1 && moveframes == 100){
 		//wait for a while after scrolling down, then do instructions.
-		init_mode_intro_instructions();
+		banked_call(BANK_1, init_mode_instructions);
 	}
 }
 
@@ -1079,39 +1081,6 @@ void init_level_one_end(void){
 	game_mode=MODE_TALKING_TIME;
 	game_level=LEVEL_ONE_COMPLETE;
 }	
-
-void init_mode_intro_instructions(void){
-	ppu_off();	 // screen off
-	oam_clear(); // clear all sprites
-	clear_background();
-	reset_game_variables();
-
-	draw_talking_time_background();
-	flush_vram_update2();
-
-	index = get_frame_count() & 3; // returns 0,1,2,3
-	gas_goal = gas_goal_array[index];
-
-		multi_vram_buffer_horz("So you wanna pump gas?!?", 24, NTADR_A(3,6)); 
-		flush_vram_update2();
-
-		multi_vram_buffer_horz("Give me X gallons!", 18, NTADR_A(3,9)); 
-		one_vram_buffer(gas_goal+48, NTADR_A(11,9));
-		flush_vram_update2();
-
-		multi_vram_buffer_horz("Pull the trigger", 24, NTADR_A(2,20)); 
-		flush_vram_update2();
-
-		multi_vram_buffer_horz("But don't click it", 18, NTADR_A(2,22)); 
-		flush_vram_update2();
-	
-	
-	
-	ppu_on_all(); // turn on screen
-
-
-	game_mode = MODE_INTRO_INSTRUCTION;
-}
 
 void init_mode_game(void){ 
 	//reset changed values so they redraw

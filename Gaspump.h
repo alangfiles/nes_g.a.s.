@@ -130,7 +130,6 @@ void read_input(void);
 void find_sprite(void);
 void init_mode_title(void);
 void init_mode_intro_cutscene(void);
-void init_mode_intro_instructions(void);
 void init_mode_game(void);
 void init_level_one_end(void);
 void draw_number_as_bg_tile(void);

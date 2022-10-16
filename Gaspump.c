@@ -20,38 +20,33 @@
 #include "BACKGROUNDS/evaluation_rle.h"
 #include "BACKGROUNDS/talkingtime_rle.h"
 
-const unsigned char background_pal[16]={ 
+const unsigned char gaspump_palette[16]={ 
 	0x2c,0x05,0x3d,0x15,
 	0x2c,0x05,0x37,0x15,
 	0x2c,0x0f,0x20,0x11,
 	0x2c,0x19,0x2a,0x0f
 	};
 
-const unsigned char pal2[]={ 
+const unsigned char talking_time_palette[]={
+	0x0f,0x20,0x16,0x36,
+	0x0f,0x05,0x16,0x36,
+	0x0f,0x00,0x1b,0x30,
+	0x0f,0x09,0x19,0x38 
+};
+const unsigned char intro_cutscene_palette[16]={
+	0x0f,0x01,0x14,0x30,
+	0x0f,0x01,0x21,0x31,
+	0x0f,0x06,0x16,0x26,
+	0x0f,0x09,0x19,0x29 
+};
+
+const unsigned char gaspump_sprite_palette[]={ 
 	0x0f,0x20,0x16,0x36,
 	0x0f,0x05,0x16,0x36,
 	0x0f,0x13,0x0f,0x36,
 	0x0f,0x09,0x19,0x29 
 	};
 
-//todo: ask brian for this palete
-const unsigned char talking_time_palete[]={
-	0x0f,0x20,0x16,0x36,
-	0x0f,0x05,0x16,0x36,
-	0x0f,0x00,0x1b,0x30,
-	0x0f,0x09,0x19,0x38 
-};
-
-
-const unsigned char palette[16]={ };
-
-// {
-// 	0x0f,0x07,0x27,0x36,
-// 	0x0f,0x30,0x27,0x36,
-// 	0x0f,0x05,0x3d,0x15,
-// 	0x0f,0x38,0x21,0x15,
-
-// }; 
 
 enum{BANK_0, BANK_1, BANK_2, BANK_3, BANK_4, BANK_5, BANK_6};
 // 7 shouldn't be needed, that's the fixed bank, just call it normally
@@ -72,12 +67,6 @@ void bank_1_init_mode_instructions(void); //prototype (needed to get call from b
 
 int cutscene_index = NAMETABLE_A;
 int nametable_index = 0;
-const unsigned char intro_cutscene_palette[16]={
-	0x0f,0x00,0x10,0x30,
-	0x0f,0x01,0x21,0x31,
-	0x0f,0x06,0x16,0x26,
-	0x0f,0x09,0x19,0x29 
-};
 
 unsigned char line_counter = 0;
 unsigned char screen_line_counter = 0;
@@ -373,8 +362,8 @@ void main (void) {
 	ppu_off(); // screen off
 	moveframes =0;
 
-	pal_bg(background_pal); //	load the palette
-	pal_spr(pal2); //	load the palette
+	pal_bg(gaspump_palette); //	load the palette
+	pal_spr(gaspump_sprite_palette); //	load the palette
 
 	pal_col(0,0x0D);
 	
@@ -587,7 +576,7 @@ void draw_evaluation_time_background(void){
 	set_chr_bank_0(TALKING_TIME_CHR);
 	set_chr_bank_1(TALKING_TIME_CHR);
 	// clear_background();
-	pal_bg(talking_time_palete);
+	pal_bg(talking_time_palette);
 
 	vram_adr(NAMETABLE_A);  
 	vram_unrle(evaluation_rle);
@@ -597,7 +586,7 @@ void draw_talking_time_background(void) {
 	set_chr_bank_0(TALKING_TIME_CHR);
 	set_chr_bank_1(TALKING_TIME_CHR);
 	// clear_background();
-	pal_bg(talking_time_palete);
+	pal_bg(talking_time_palette);
 
 	vram_adr(NAMETABLE_A);  
 	vram_unrle(talkingtime_rle);
@@ -1079,7 +1068,7 @@ void init_mode_game(void){
 	oam_clear(); // clear all sprites
 
 	pal_col(0,0x21);
-	pal_bg(background_pal);
+	pal_bg(gaspump_palette);
 
 	bird_x = 0;
 

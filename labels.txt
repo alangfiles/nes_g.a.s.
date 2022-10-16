@@ -28,7 +28,7 @@ al 00E727 ._Two
 al 00E82F ._Zero
 al 008000 .__BANK0_LOAD__
 al 008000 .__BANK0_RUN__
-al 001A80 .__BANK0_SIZE__
+al 001A70 .__BANK0_SIZE__
 al 008000 .__BANK1_LOAD__
 al 008000 .__BANK1_RUN__
 al 000579 .__BANK1_SIZE__
@@ -60,7 +60,7 @@ al 00EEC0 .__ONCE_LOAD__
 al 00EEC0 .__ONCE_RUN__
 al 000000 .__ONCE_SIZE__
 al 000010 .__PRG0_FILEOFFS__
-al 009A80 .__PRG0_LAST__
+al 009A70 .__PRG0_LAST__
 al 004000 .__PRG0_SIZE__
 al 008000 .__PRG0_START__
 al 004010 .__PRG1_FILEOFFS__
@@ -119,13 +119,12 @@ al 00C953 ._add_scroll_y
 al 00006F ._address
 al 00CD7A ._adjust_cost
 al 00CDCD ._adjust_gas
-al 00EE78 ._background_pal
 al 000309 ._bankBuffer
 al 000308 ._bankLevel
-al 009810 ._bank_0_init_mode_intro_cutscene
-al 009874 ._bank_0_init_mode_intro_text
-al 0099AF ._bank_0_mode_intro_cutscene
-al 0098C4 ._bank_0_mode_intro_text
+al 009800 ._bank_0_init_mode_intro_cutscene
+al 009864 ._bank_0_init_mode_intro_text
+al 00999F ._bank_0_mode_intro_cutscene
+al 0098B4 ._bank_0_mode_intro_text
 al 0083DF ._bank_1_init_mode_instructions
 al 0084D0 ._bank_1_init_mode_title
 al 008439 ._bank_1_instructions_loop
@@ -188,6 +187,8 @@ al 00E61D ._gas_goal_array
 al 000052 ._gas_goal_hundreds
 al 000058 ._gas_pumped
 al 000054 ._gas_speed
+al 00EE78 ._gaspump_palette
+al 00EEA8 ._gaspump_sprite_palette
 al 00C9B0 ._get_at_addr
 al 00C897 ._get_frame_count
 al 00C890 ._get_pad_new
@@ -202,7 +203,7 @@ al 00D074 ._init_mode_game
 al 008000 ._intro_cutscene_1
 al 008400 ._intro_cutscene_2
 al 008800 ._intro_cutscene_3
-al 009800 ._intro_cutscene_palette
+al 00EE98 ._intro_cutscene_palette
 al 008C00 ._intro_scroll_1
 al 009000 ._intro_scroll_2
 al 009400 ._intro_scroll_3
@@ -239,7 +240,6 @@ al 000033 ._pad1_zapper
 al 00C5BF ._pad_poll
 al 00C608 ._pad_state
 al 00C5FD ._pad_trigger
-al 00EE88 ._pal2
 al 00C2F9 ._pal_all
 al 00C313 ._pal_bg
 al 00C353 ._pal_bg_bright
@@ -249,7 +249,6 @@ al 00C326 ._pal_col
 al 00C900 ._pal_fade_to
 al 00C31D ._pal_spr
 al 00C345 ._pal_spr_bright
-al 00EEA8 ._palette
 al 000066 ._perfect_levels
 al 000067 ._pointer
 al 00C386 ._ppu_mask
@@ -295,7 +294,7 @@ al 000060 ._started_pumping
 al 00003A ._stop_scrolling
 al 00C96B ._sub_scroll_y
 al 000300 ._talking_time
-al 00EE98 ._talking_time_palete
+al 00EE88 ._talking_time_palette
 al 00ED72 ._talkingtime_rle
 al 000069 ._temp1
 al 00006A ._temp2

@@ -158,10 +158,10 @@
 	.export		_LEVEL_1_PUMP
 	.export		_evaluation_rle
 	.export		_talkingtime_rle
-	.export		_background_pal
-	.export		_pal2
-	.export		_talking_time_palete
-	.export		_palette
+	.export		_gaspump_palette
+	.export		_talking_time_palette
+	.export		_intro_cutscene_palette
+	.export		_gaspump_sprite_palette
 	.export		_intro_cutscene_1
 	.export		_intro_cutscene_2
 	.export		_intro_cutscene_3
@@ -171,7 +171,6 @@
 	.export		_bank_1_init_mode_instructions
 	.export		_cutscene_index
 	.export		_nametable_index
-	.export		_intro_cutscene_palette
 	.export		_line_counter
 	.export		_screen_line_counter
 	.export		_bank_0_init_mode_intro_text
@@ -2368,7 +2367,7 @@ _talkingtime_rle:
 	.byte	$05
 	.byte	$01
 	.byte	$00
-_background_pal:
+_gaspump_palette:
 	.byte	$2C
 	.byte	$05
 	.byte	$3D
@@ -2385,24 +2384,7 @@ _background_pal:
 	.byte	$19
 	.byte	$2A
 	.byte	$0F
-_pal2:
-	.byte	$0F
-	.byte	$20
-	.byte	$16
-	.byte	$36
-	.byte	$0F
-	.byte	$05
-	.byte	$16
-	.byte	$36
-	.byte	$0F
-	.byte	$13
-	.byte	$0F
-	.byte	$36
-	.byte	$0F
-	.byte	$09
-	.byte	$19
-	.byte	$29
-_talking_time_palete:
+_talking_time_palette:
 	.byte	$0F
 	.byte	$20
 	.byte	$16
@@ -2419,8 +2401,40 @@ _talking_time_palete:
 	.byte	$09
 	.byte	$19
 	.byte	$38
-_palette:
-	.res	16,$00
+_intro_cutscene_palette:
+	.byte	$0F
+	.byte	$01
+	.byte	$14
+	.byte	$30
+	.byte	$0F
+	.byte	$01
+	.byte	$21
+	.byte	$31
+	.byte	$0F
+	.byte	$06
+	.byte	$16
+	.byte	$26
+	.byte	$0F
+	.byte	$09
+	.byte	$19
+	.byte	$29
+_gaspump_sprite_palette:
+	.byte	$0F
+	.byte	$20
+	.byte	$16
+	.byte	$36
+	.byte	$0F
+	.byte	$05
+	.byte	$16
+	.byte	$36
+	.byte	$0F
+	.byte	$13
+	.byte	$0F
+	.byte	$36
+	.byte	$0F
+	.byte	$09
+	.byte	$19
+	.byte	$29
 .segment	"BANK0"
 _intro_cutscene_1:
 	.byte	$00
@@ -8572,23 +8586,6 @@ _intro_scroll_3:
 	.byte	$06
 	.byte	$05
 	.byte	$09
-_intro_cutscene_palette:
-	.byte	$0F
-	.byte	$00
-	.byte	$10
-	.byte	$30
-	.byte	$0F
-	.byte	$01
-	.byte	$21
-	.byte	$31
-	.byte	$0F
-	.byte	$06
-	.byte	$16
-	.byte	$26
-	.byte	$0F
-	.byte	$09
-	.byte	$19
-	.byte	$29
 .segment	"BANK1"
 _level_0_text:
 	.byte	$53,$6F,$20,$79,$6F,$75,$20,$77,$61,$6E,$6E,$61,$20,$70,$75,$6D
@@ -9310,43 +9307,43 @@ _title_screen_rle:
 	.byte	$02
 	.byte	$00
 .segment	"CODE"
-L24C2:
+L24C1:
 	.byte	$47,$61,$73,$20,$41,$74,$74,$65,$6E,$64,$61,$6E,$74,$20,$53,$69
 	.byte	$6D,$75,$6C,$61,$74,$6F,$72,$00
-L2547:
+L2546:
 	.byte	$4E,$6F,$20,$46,$72,$65,$65,$20,$50,$75,$6D,$70,$20,$4D,$6F,$64
 	.byte	$65,$20,$79,$65,$74,$00
-L2559:
+L2558:
 	.byte	$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
 	.byte	$20,$20,$20,$20,$20,$00
-L2B1A:
+L2B19:
 	.byte	$68,$61,$76,$65,$20,$77,$68,$61,$74,$20,$69,$74,$20,$74,$61,$6B
 	.byte	$65,$73,$00
-L2AD1:
+L2AD0:
 	.byte	$42,$69,$74,$20,$74,$6F,$6F,$20,$6D,$75,$63,$68,$2C,$20,$62,$75
 	.byte	$62,$2E,$00
-L2AEB:
+L2AEA:
 	.byte	$59,$6F,$75,$27,$76,$65,$20,$67,$6F,$74,$20,$69,$74,$20,$6B,$69
 	.byte	$64,$00
-L24CD:
+L24CC:
 	.byte	$47,$61,$6D,$65,$20,$51,$75,$65,$73,$74,$20,$4D,$6F,$64,$65,$00
-L2B10:
+L2B0F:
 	.byte	$59,$6F,$75,$20,$6A,$75,$73,$74,$20,$64,$6F,$6E,$27,$74,$00
-L24D7:
+L24D6:
 	.byte	$46,$72,$65,$65,$20,$50,$75,$6D,$70,$20,$4D,$6F,$64,$65,$00
-L2B04:
+L2B03:
 	.byte	$50,$75,$6D,$70,$20,$68,$61,$72,$64,$65,$72,$2E,$00
-L2AE1:
+L2AE0:
 	.byte	$21,$21,$21,$20,$57,$4F,$57,$20,$21,$21,$21,$00
-L2AFA:
+L2AF9:
 	.byte	$48,$6D,$6D,$6D,$6D,$6D,$2E,$2E,$2E,$2E,$00
-L24B8:
+L24B7:
 	.byte	$47,$2E,$41,$2E,$53,$2E,$00
-L2A81:
+L2A80:
 	.byte	$2E,$30,$30,$20,$47,$00
-L2AC3:
+L2AC2:
 	.byte	$4E,$4F,$4E,$45,$00
-L2A8C:
+L2A8B:
 	.byte	$3E,$3E,$3E,$00
 
 .segment	"BSS"
@@ -9617,7 +9614,7 @@ L0011:	rts
 ;
 	lda     _cost1
 	cmp     #$0A
-	bcc     L2B91
+	bcc     L2B90
 ;
 ; cost1_changed = 1;
 ;
@@ -9637,7 +9634,7 @@ L0011:	rts
 ;
 	lda     _cost2
 	cmp     #$0A
-	bcc     L2B91
+	bcc     L2B90
 ;
 ; cost2_changed = 1;
 ;
@@ -9657,7 +9654,7 @@ L0011:	rts
 ;
 	lda     _cost3
 	cmp     #$0A
-	bcc     L2B90
+	bcc     L2B8F
 ;
 ; cost3_changed = 1;
 ;
@@ -9675,9 +9672,9 @@ L0011:	rts
 ;
 ; if(cost4 >= 10) {
 ;
-L2B90:	lda     _cost4
+L2B8F:	lda     _cost4
 	cmp     #$0A
-	bcc     L2B91
+	bcc     L2B90
 ;
 ; cost4_changed = 1;
 ;
@@ -9695,9 +9692,9 @@ L2B90:	lda     _cost4
 ;
 ; if(cost5 >= 10){ // maximum 9999
 ;
-L2B91:	lda     _cost5
+L2B90:	lda     _cost5
 	cmp     #$0A
-	bcc     L26B1
+	bcc     L26B0
 ;
 ; cost5 = 9;
 ;
@@ -9722,7 +9719,7 @@ L2B91:	lda     _cost5
 ;
 ; }
 ;
-L26B1:	rts
+L26B0:	rts
 
 .endproc
 
@@ -9741,7 +9738,7 @@ L26B1:	rts
 ;
 	lda     _gas1
 	cmp     #$0A
-	bcc     L2B93
+	bcc     L2B92
 ;
 ; gas1_changed = 1;
 ;
@@ -9761,7 +9758,7 @@ L26B1:	rts
 ;
 	lda     _gas2
 	cmp     #$0A
-	bcc     L2B93
+	bcc     L2B92
 ;
 ; gas2_changed = 1;
 ;
@@ -9781,7 +9778,7 @@ L26B1:	rts
 ;
 	lda     _gas3
 	cmp     #$0A
-	bcc     L2B92
+	bcc     L2B91
 ;
 ; gas3_changed = 1;
 ;
@@ -9799,9 +9796,9 @@ L26B1:	rts
 ;
 ; if(gas4 >= 10) {
 ;
-L2B92:	lda     _gas4
+L2B91:	lda     _gas4
 	cmp     #$0A
-	bcc     L2B93
+	bcc     L2B92
 ;
 ; gas4_changed = 1;
 ;
@@ -9819,9 +9816,9 @@ L2B92:	lda     _gas4
 ;
 ; if(gas5 >= 10){ // maximum 9999
 ;
-L2B93:	lda     _gas5
+L2B92:	lda     _gas5
 	cmp     #$0A
-	bcc     L2688
+	bcc     L2687
 ;
 ; gas5 = 9;
 ;
@@ -9846,7 +9843,7 @@ L2B93:	lda     _gas5
 ;
 ; }
 ;
-L2688:	rts
+L2687:	rts
 
 .endproc
 
@@ -9864,7 +9861,7 @@ L2688:	rts
 ; if(cost3_changed){
 ;
 	lda     _cost3_changed
-	beq     L26C8
+	beq     L26C7
 ;
 ; num_holder = cost4;
 ;
@@ -9892,8 +9889,8 @@ L2688:	rts
 ;
 ; if(cost2_changed){
 ;
-L26C8:	lda     _cost2_changed
-	beq     L26D3
+L26C7:	lda     _cost2_changed
+	beq     L26D2
 ;
 ; num_holder = cost3;
 ;
@@ -9921,8 +9918,8 @@ L26C8:	lda     _cost2_changed
 ;
 ; if(cost1_changed){
 ;
-L26D3:	lda     _cost1_changed
-	beq     L26DE
+L26D2:	lda     _cost1_changed
+	beq     L26DD
 ;
 ; num_holder = cost2;
 ;
@@ -9950,7 +9947,7 @@ L26D3:	lda     _cost1_changed
 ;
 ; num_holder = cost1;
 ;
-L26DE:	lda     _cost1
+L26DD:	lda     _cost1
 	sta     _num_holder
 ;
 ; x=27;
@@ -9983,7 +9980,7 @@ L26DE:	lda     _cost1
 ; if(gas3_changed){
 ;
 	lda     _gas3_changed
-	beq     L29EE
+	beq     L29ED
 ;
 ; num_holder = gas4;
 ;
@@ -10011,8 +10008,8 @@ L26DE:	lda     _cost1
 ;
 ; if(gas2_changed){
 ;
-L29EE:	lda     _gas2_changed
-	beq     L29F9
+L29ED:	lda     _gas2_changed
+	beq     L29F8
 ;
 ; num_holder = gas3;
 ;
@@ -10040,8 +10037,8 @@ L29EE:	lda     _gas2_changed
 ;
 ; if(gas1_changed){
 ;
-L29F9:	lda     _gas1_changed
-	beq     L2A04
+L29F8:	lda     _gas1_changed
+	beq     L2A03
 ;
 ; num_holder = gas2;
 ;
@@ -10069,7 +10066,7 @@ L29F9:	lda     _gas1_changed
 ;
 ; oam_meta_spr(0xc5,0x89,Decimal_1);//decimal for dollars
 ;
-L2A04:	jsr     decsp2
+L2A03:	jsr     decsp2
 	lda     #$C5
 	ldy     #$01
 	sta     (sp),y
@@ -10157,38 +10154,38 @@ L2A04:	jsr     decsp2
 ;
 	lda     _pad1
 	and     #$40
-	bne     L2B95
+	bne     L2B94
 	lda     _pad1
 	and     #$80
-	bne     L2B95
+	bne     L2B94
 	lda     #$01
 	jsr     _zap_shoot
 	tax
-	beq     L2B96
-L2B95:	lda     #$01
-L2B96:	sta     _trigger_pulled
+	beq     L2B95
+L2B94:	lda     #$01
+L2B95:	sta     _trigger_pulled
 ;
 ; trigger_clicked = (pad1_new & PAD_A) || (pad1_new & PAD_B) || ((pad1_zapper)&&(zapper_ready)) ; //needs to check last frame for blank
 ;
 	lda     _pad1_new
 	and     #$80
-	bne     L2B9C
+	bne     L2B9B
 	lda     _pad1_new
 	and     #$40
-	bne     L2B9C
+	bne     L2B9B
 	lda     _pad1_zapper
-	beq     L2B9D
+	beq     L2B9C
 	lda     _zapper_ready
-	beq     L2B9D
-L2B9C:	lda     #$01
-L2B9D:	sta     _trigger_clicked
+	beq     L2B9C
+L2B9B:	lda     #$01
+L2B9C:	sta     _trigger_clicked
 ;
 ; if((pad1_zapper)&&(zapper_ready)){
 ;
 	lda     _pad1_zapper
-	beq     L265B
+	beq     L265A
 	lda     _zapper_ready
-	beq     L265B
+	beq     L265A
 ;
 ; hit_detected = zap_read(1);
 ;
@@ -10198,15 +10195,15 @@ L2B9D:	sta     _trigger_clicked
 ;
 ; if(debug_mode && hit_detected == 0){
 ;
-L265B:	lda     _debug_mode
-	beq     L2666
+L265A:	lda     _debug_mode
+	beq     L2665
 	lda     _hit_detected
-	beq     L2BA1
-L2666:	rts
+	beq     L2BA0
+L2665:	rts
 ;
 ; hit_detected = (pad1 & PAD_A);
 ;
-L2BA1:	lda     _pad1
+L2BA0:	lda     _pad1
 	and     #$80
 	sta     _hit_detected
 ;
@@ -10233,30 +10230,30 @@ L2BA1:	lda     _pad1
 ;
 ; }
 ;
-	beq     L2A23
+	beq     L2A22
 	cmp     #$01
-	beq     L2A27
+	beq     L2A26
 	cmp     #$02
-	beq     L2A2B
+	beq     L2A2A
 	cmp     #$03
-	beq     L2A2F
+	beq     L2A2E
 	cmp     #$04
-	beq     L2A33
+	beq     L2A32
 	cmp     #$05
-	beq     L2A37
+	beq     L2A36
 	cmp     #$06
-	beq     L2A3B
+	beq     L2A3A
 	cmp     #$07
-	beq     L2A3F
+	beq     L2A3E
 	cmp     #$08
-	beq     L2A43
+	beq     L2A42
 	cmp     #$09
-	beq     L2A47
+	beq     L2A46
 	rts
 ;
 ; pointer = Zero;
 ;
-L2A23:	lda     #>(_Zero)
+L2A22:	lda     #>(_Zero)
 	sta     _pointer+1
 	lda     #<(_Zero)
 	sta     _pointer
@@ -10267,7 +10264,7 @@ L2A23:	lda     #>(_Zero)
 ;
 ; pointer = One;
 ;
-L2A27:	lda     #>(_One)
+L2A26:	lda     #>(_One)
 	sta     _pointer+1
 	lda     #<(_One)
 	sta     _pointer
@@ -10278,7 +10275,7 @@ L2A27:	lda     #>(_One)
 ;
 ; pointer = Two;
 ;
-L2A2B:	lda     #>(_Two)
+L2A2A:	lda     #>(_Two)
 	sta     _pointer+1
 	lda     #<(_Two)
 	sta     _pointer
@@ -10289,7 +10286,7 @@ L2A2B:	lda     #>(_Two)
 ;
 ; pointer = Three;
 ;
-L2A2F:	lda     #>(_Three)
+L2A2E:	lda     #>(_Three)
 	sta     _pointer+1
 	lda     #<(_Three)
 	sta     _pointer
@@ -10300,7 +10297,7 @@ L2A2F:	lda     #>(_Three)
 ;
 ; pointer = Four;
 ;
-L2A33:	lda     #>(_Four)
+L2A32:	lda     #>(_Four)
 	sta     _pointer+1
 	lda     #<(_Four)
 	sta     _pointer
@@ -10311,7 +10308,7 @@ L2A33:	lda     #>(_Four)
 ;
 ; pointer = Five;
 ;
-L2A37:	lda     #>(_Five)
+L2A36:	lda     #>(_Five)
 	sta     _pointer+1
 	lda     #<(_Five)
 	sta     _pointer
@@ -10322,7 +10319,7 @@ L2A37:	lda     #>(_Five)
 ;
 ; pointer = Six;
 ;
-L2A3B:	lda     #>(_Six)
+L2A3A:	lda     #>(_Six)
 	sta     _pointer+1
 	lda     #<(_Six)
 	sta     _pointer
@@ -10333,7 +10330,7 @@ L2A3B:	lda     #>(_Six)
 ;
 ; pointer = Seven;
 ;
-L2A3F:	lda     #>(_Seven)
+L2A3E:	lda     #>(_Seven)
 	sta     _pointer+1
 	lda     #<(_Seven)
 	sta     _pointer
@@ -10344,7 +10341,7 @@ L2A3F:	lda     #>(_Seven)
 ;
 ; pointer = Eight;
 ;
-L2A43:	lda     #>(_Eight)
+L2A42:	lda     #>(_Eight)
 	sta     _pointer+1
 	lda     #<(_Eight)
 	sta     _pointer
@@ -10355,7 +10352,7 @@ L2A43:	lda     #>(_Eight)
 ;
 ; pointer = Nine;
 ;
-L2A47:	lda     #>(_Nine)
+L2A46:	lda     #>(_Nine)
 	sta     _pointer+1
 	lda     #<(_Nine)
 	sta     _pointer
@@ -10381,7 +10378,7 @@ L2A47:	lda     #>(_Nine)
 ;
 	lda     _text_length
 	cmp     _text_rendered
-	bne     L2BAA
+	bne     L2BA9
 ;
 ; }
 ;
@@ -10389,7 +10386,7 @@ L2A47:	lda     #>(_Nine)
 ;
 ; if (pointer[text_rendered] == '\n')
 ;
-L2BAA:	lda     _pointer
+L2BA9:	lda     _pointer
 	ldx     _pointer+1
 	ldy     _text_rendered
 	sta     ptr1
@@ -10399,7 +10396,7 @@ L2BAA:	lda     _pointer
 ;
 ; else if (pointer[text_rendered] == '\t')
 ;
-	beq     L2BA9
+	beq     L2BA8
 	lda     _pointer
 	ldx     _pointer+1
 	ldy     _text_rendered
@@ -10407,7 +10404,7 @@ L2BAA:	lda     _pointer
 	stx     ptr1+1
 	lda     (ptr1),y
 	cmp     #$09
-	bne     L2B71
+	bne     L2B70
 ;
 ; text_col += 4;
 ;
@@ -10419,15 +10416,15 @@ L2BAA:	lda     _pointer
 ; if (text_col >= 27) // wrap to next row
 ;
 	cmp     #$1B
-	bcc     L2BA7
+	bcc     L2BA6
 ;
 ; else
 ;
-	jmp     L2BA9
+	jmp     L2BA8
 ;
 ; one_vram_buffer(pointer[text_rendered], NTADR_A(3 + text_col, 6 + text_row));
 ;
-L2B71:	lda     _pointer
+L2B70:	lda     _pointer
 	ldx     _pointer+1
 	ldy     _text_rendered
 	sta     ptr1
@@ -10438,9 +10435,9 @@ L2B71:	lda     _pointer
 	lda     _text_row
 	clc
 	adc     #$06
-	bcc     L2B84
+	bcc     L2B83
 	inx
-L2B84:	jsr     shlax4
+L2B83:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -10449,9 +10446,9 @@ L2B84:	jsr     shlax4
 	lda     _text_col
 	clc
 	adc     #$03
-	bcc     L2B86
+	bcc     L2B85
 	inx
-L2B86:	ora     ptr1
+L2B85:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -10477,11 +10474,11 @@ L2B86:	ora     ptr1
 ;
 	lda     _text_col
 	cmp     #$1B
-	bne     L2BA7
+	bne     L2BA6
 ;
 ; ++text_row;
 ;
-L2BA9:	inc     _text_row
+L2BA8:	inc     _text_row
 ;
 ; text_col = 0;
 ;
@@ -10490,7 +10487,7 @@ L2BA9:	inc     _text_row
 ;
 ; ++text_rendered;
 ;
-L2BA7:	inc     _text_rendered
+L2BA6:	inc     _text_rendered
 ;
 ; }
 ;
@@ -10668,10 +10665,10 @@ L2BA7:	inc     _text_rendered
 	lda     #$21
 	jsr     _pal_col
 ;
-; pal_bg(background_pal);
+; pal_bg(gaspump_palette);
 ;
-	lda     #<(_background_pal)
-	ldx     #>(_background_pal)
+	lda     #<(_gaspump_palette)
+	ldx     #>(_gaspump_palette)
 	jsr     _pal_bg
 ;
 ; bird_x = 0;
@@ -10783,11 +10780,11 @@ L2BA7:	inc     _text_rendered
 ; for(index = 0; index < gas3; ++index){
 ;
 	sta     _index
-L2BAC:	lda     _index
+L2BAB:	lda     _index
 	cmp     _gas3
 	txa
 	sbc     #$00
-	bcs     L2BAD
+	bcs     L2BAC
 ;
 ; gas_pumped += 100;
 ;
@@ -10795,23 +10792,23 @@ L2BAC:	lda     _index
 	clc
 	adc     _gas_pumped
 	sta     _gas_pumped
-	bcc     L2A5E
+	bcc     L2A5D
 	inc     _gas_pumped+1
 ;
 ; for(index = 0; index < gas3; ++index){
 ;
-L2A5E:	inc     _index
-	jmp     L2BAC
+L2A5D:	inc     _index
+	jmp     L2BAB
 ;
 ; for(index = 0; index < gas2; ++index){
 ;
-L2BAD:	lda     #$00
+L2BAC:	lda     #$00
 	sta     _index
-L2BAE:	lda     _index
+L2BAD:	lda     _index
 	cmp     _gas2
 	txa
 	sbc     #$00
-	bcs     L2BAF
+	bcs     L2BAE
 ;
 ; gas_pumped += 10;
 ;
@@ -10819,17 +10816,17 @@ L2BAE:	lda     _index
 	clc
 	adc     _gas_pumped
 	sta     _gas_pumped
-	bcc     L2A69
+	bcc     L2A68
 	inc     _gas_pumped+1
 ;
 ; for(index = 0; index < gas2; ++index){
 ;
-L2A69:	inc     _index
-	jmp     L2BAE
+L2A68:	inc     _index
+	jmp     L2BAD
 ;
 ; gas_pumped += gas1;
 ;
-L2BAF:	lda     _gas1
+L2BAE:	lda     _gas1
 	clc
 	adc     _gas_pumped
 	sta     _gas_pumped
@@ -10841,11 +10838,11 @@ L2BAF:	lda     _gas1
 ;
 	lda     #$00
 	sta     _index
-L2BB0:	lda     _index
+L2BAF:	lda     _index
 	cmp     _gas_goal
 	txa
 	sbc     _gas_goal+1
-	bcs     L2A6D
+	bcs     L2A6C
 ;
 ; gas_goal_hundreds += 100;
 ;
@@ -10853,17 +10850,17 @@ L2BB0:	lda     _index
 	clc
 	adc     _gas_goal_hundreds
 	sta     _gas_goal_hundreds
-	bcc     L2A76
+	bcc     L2A75
 	inc     _gas_goal_hundreds+1
 ;
 ; for(index = 0; index < gas_goal; ++index){
 ;
-L2A76:	inc     _index
-	jmp     L2BB0
+L2A75:	inc     _index
+	jmp     L2BAF
 ;
 ; one_vram_buffer(gas_goal+48, NTADR_A(21,2));
 ;
-L2A6D:	lda     _gas_goal
+L2A6C:	lda     _gas_goal
 	clc
 	adc     #$30
 	jsr     pusha
@@ -10874,11 +10871,11 @@ L2A6D:	lda     _gas_goal
 ; multi_vram_buffer_horz(".00 G", 5, NTADR_A(22,2)); 
 ;
 	jsr     decsp3
-	lda     #<(L2A81)
+	lda     #<(L2A80)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2A81)
+	lda     #>(L2A80)
 	sta     (sp),y
 	lda     #$05
 	ldy     #$00
@@ -10894,11 +10891,11 @@ L2A6D:	lda     _gas_goal
 ; multi_vram_buffer_horz(">>>", 3, NTADR_A(21,6)); 
 ;
 	jsr     decsp3
-	lda     #<(L2A8C)
+	lda     #<(L2A8B)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2A8C)
+	lda     #>(L2A8B)
 	sta     (sp),y
 	lda     #$03
 	ldy     #$00
@@ -10964,11 +10961,11 @@ L2A6D:	lda     _gas_goal
 ; multi_vram_buffer_horz("NONE", 4, NTADR_A(21,10)); 
 ;
 	jsr     decsp3
-	lda     #<(L2AC3)
+	lda     #<(L2AC2)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2AC3)
+	lda     #>(L2AC2)
 	sta     (sp),y
 	lda     #$04
 	ldy     #$00
@@ -10990,20 +10987,20 @@ L2A6D:	lda     _gas_goal
 	ldx     _gas_goal_hundreds+1
 	clc
 	adc     #$05
-	bcc     L2ACF
+	bcc     L2ACE
 	inx
-L2ACF:	jsr     tosicmp
-	bcc     L2ACD
-	beq     L2ACD
+L2ACE:	jsr     tosicmp
+	bcc     L2ACC
+	beq     L2ACC
 ;
 ; multi_vram_buffer_horz("Bit too much, bub.", 18, NTADR_A(2,18)); 
 ;
 	jsr     decsp3
-	lda     #<(L2AD1)
+	lda     #<(L2AD0)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2AD1)
+	lda     #>(L2AD0)
 	sta     (sp),y
 	lda     #$12
 	ldy     #$00
@@ -11013,18 +11010,18 @@ L2ACF:	jsr     tosicmp
 ;
 ; } else if (gas_pumped >= gas_goal_hundreds-5){
 ;
-	jmp     L2BB1
-L2ACD:	lda     _gas_pumped
+	jmp     L2BB0
+L2ACC:	lda     _gas_pumped
 	ldx     _gas_pumped+1
 	jsr     pushax
 	lda     _gas_goal_hundreds
 	ldx     _gas_goal_hundreds+1
 	sec
 	sbc     #$05
-	bcs     L2ADE
+	bcs     L2ADD
 	dex
-L2ADE:	jsr     tosicmp
-	bcc     L2ADC
+L2ADD:	jsr     tosicmp
+	bcc     L2ADB
 ;
 ; ++levels_complete;
 ;
@@ -11033,11 +11030,11 @@ L2ADE:	jsr     tosicmp
 ; multi_vram_buffer_horz("!!! WOW !!!", 11, NTADR_A(2,18)); 
 ;
 	jsr     decsp3
-	lda     #<(L2AE1)
+	lda     #<(L2AE0)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2AE1)
+	lda     #>(L2AE0)
 	sta     (sp),y
 	lda     #$0B
 	ldy     #$00
@@ -11049,37 +11046,37 @@ L2ADE:	jsr     tosicmp
 ; multi_vram_buffer_horz("You've got it kid", 17, NTADR_A(2,20)); 
 ;
 	jsr     decsp3
-	lda     #<(L2AEB)
+	lda     #<(L2AEA)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2AEB)
+	lda     #>(L2AEA)
 	sta     (sp),y
 	lda     #$11
 ;
 ; } else if (gas_pumped >= gas_goal_hundreds-100){
 ;
-	jmp     L2BB5
-L2ADC:	lda     _gas_pumped
+	jmp     L2BB4
+L2ADB:	lda     _gas_pumped
 	ldx     _gas_pumped+1
 	jsr     pushax
 	lda     _gas_goal_hundreds
 	ldx     _gas_goal_hundreds+1
 	sec
 	sbc     #$64
-	bcs     L2AF8
+	bcs     L2AF7
 	dex
-L2AF8:	jsr     tosicmp
-	bcc     L2AF6
+L2AF7:	jsr     tosicmp
+	bcc     L2AF5
 ;
 ; multi_vram_buffer_horz("Hmmmmm....", 10, NTADR_A(2,18)); 
 ;
 	jsr     decsp3
-	lda     #<(L2AFA)
+	lda     #<(L2AF9)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2AFA)
+	lda     #>(L2AF9)
 	sta     (sp),y
 	lda     #$0A
 	ldy     #$00
@@ -11091,26 +11088,26 @@ L2AF8:	jsr     tosicmp
 ; multi_vram_buffer_horz("Pump harder.", 12, NTADR_A(2,20)); 
 ;
 	jsr     decsp3
-	lda     #<(L2B04)
+	lda     #<(L2B03)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2B04)
+	lda     #>(L2B03)
 	sta     (sp),y
 	lda     #$0C
 ;
 ; } else {
 ;
-	jmp     L2BB5
+	jmp     L2BB4
 ;
 ; multi_vram_buffer_horz("You just don't", 14, NTADR_A(2,18)); 
 ;
-L2AF6:	jsr     decsp3
-	lda     #<(L2B10)
+L2AF5:	jsr     decsp3
+	lda     #<(L2B0F)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2B10)
+	lda     #>(L2B0F)
 	sta     (sp),y
 	lda     #$0E
 	ldy     #$00
@@ -11122,18 +11119,18 @@ L2AF6:	jsr     decsp3
 ; multi_vram_buffer_horz("have what it takes", 18, NTADR_A(2,20)); 
 ;
 	jsr     decsp3
-	lda     #<(L2B1A)
+	lda     #<(L2B19)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2B1A)
+	lda     #>(L2B19)
 	sta     (sp),y
 	lda     #$12
-L2BB5:	ldy     #$00
+L2BB4:	ldy     #$00
 	sta     (sp),y
 	ldx     #$22
 	lda     #$82
-L2BB1:	jsr     _multi_vram_buffer_horz
+L2BB0:	jsr     _multi_vram_buffer_horz
 ;
 ; flush_vram_update2();
 ;
@@ -11176,30 +11173,30 @@ L2BB1:	jsr     _multi_vram_buffer_horz
 ;
 ; }
 ;
-	jeq     L29A1
+	jeq     L29A0
 	cmp     #$01
-	beq     L26F5
+	beq     L26F4
 	cmp     #$02
-	jeq     L2741
+	jeq     L2740
 	cmp     #$03
-	jeq     L278D
+	jeq     L278C
 	cmp     #$04
-	jeq     L27D9
+	jeq     L27D8
 	cmp     #$05
-	jeq     L2825
+	jeq     L2824
 	cmp     #$06
-	jeq     L2871
+	jeq     L2870
 	cmp     #$07
-	jeq     L28BD
+	jeq     L28BC
 	cmp     #$08
-	jeq     L2909
+	jeq     L2908
 	cmp     #$09
-	jeq     L2955
+	jeq     L2954
 	rts
 ;
 ; one_vram_buffer(0xc0, NTADR_A(x,y));
 ;
-L26F5:	lda     #$C0
+L26F4:	lda     #$C0
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -11232,9 +11229,9 @@ L26F5:	lda     #$C0
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2706
+	bcc     L2705
 	inx
-L2706:	ora     ptr1
+L2705:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -11255,9 +11252,9 @@ L2706:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L270E
+	bcc     L270D
 	inx
-L270E:	jsr     shlax4
+L270D:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11279,9 +11276,9 @@ L270E:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L2717
+	bcc     L2716
 	inx
-L2717:	jsr     shlax4
+L2716:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11290,9 +11287,9 @@ L2717:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2719
+	bcc     L2718
 	inx
-L2719:	ora     ptr1
+L2718:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -11313,9 +11310,9 @@ L2719:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L2721
+	bcc     L2720
 	inx
-L2721:	jsr     shlax4
+L2720:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11337,9 +11334,9 @@ L2721:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L272A
+	bcc     L2729
 	inx
-L272A:	jsr     shlax4
+L2729:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11348,9 +11345,9 @@ L272A:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L272C
+	bcc     L272B
 	inx
-L272C:	ora     ptr1
+L272B:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -11371,9 +11368,9 @@ L272C:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L2734
+	bcc     L2733
 	inx
-L2734:	jsr     shlax4
+L2733:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11395,9 +11392,9 @@ L2734:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L273D
+	bcc     L273C
 	inx
-L273D:	jsr     shlax4
+L273C:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11406,9 +11403,9 @@ L273D:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L273F
+	bcc     L273E
 	inx
-L273F:	ora     ptr1
+L273E:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -11423,7 +11420,7 @@ L273F:	ora     ptr1
 ;
 ; one_vram_buffer(0xc2, NTADR_A(x,y));
 ;
-L2741:	lda     #$C2
+L2740:	lda     #$C2
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -11456,9 +11453,9 @@ L2741:	lda     #$C2
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2752
+	bcc     L2751
 	inx
-L2752:	ora     ptr1
+L2751:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -11479,9 +11476,9 @@ L2752:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L275A
+	bcc     L2759
 	inx
-L275A:	jsr     shlax4
+L2759:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11503,9 +11500,9 @@ L275A:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L2763
+	bcc     L2762
 	inx
-L2763:	jsr     shlax4
+L2762:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11514,9 +11511,9 @@ L2763:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2765
+	bcc     L2764
 	inx
-L2765:	ora     ptr1
+L2764:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -11537,9 +11534,9 @@ L2765:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L276D
+	bcc     L276C
 	inx
-L276D:	jsr     shlax4
+L276C:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11561,9 +11558,9 @@ L276D:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L2776
+	bcc     L2775
 	inx
-L2776:	jsr     shlax4
+L2775:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11572,9 +11569,9 @@ L2776:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2778
+	bcc     L2777
 	inx
-L2778:	ora     ptr1
+L2777:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -11595,9 +11592,9 @@ L2778:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L2780
+	bcc     L277F
 	inx
-L2780:	jsr     shlax4
+L277F:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11619,9 +11616,9 @@ L2780:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L2789
+	bcc     L2788
 	inx
-L2789:	jsr     shlax4
+L2788:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11630,9 +11627,9 @@ L2789:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L278B
+	bcc     L278A
 	inx
-L278B:	ora     ptr1
+L278A:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -11647,7 +11644,7 @@ L278B:	ora     ptr1
 ;
 ; one_vram_buffer(0xc4, NTADR_A(x,y));
 ;
-L278D:	lda     #$C4
+L278C:	lda     #$C4
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -11680,9 +11677,9 @@ L278D:	lda     #$C4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L279E
+	bcc     L279D
 	inx
-L279E:	ora     ptr1
+L279D:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -11703,9 +11700,9 @@ L279E:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L27A6
+	bcc     L27A5
 	inx
-L27A6:	jsr     shlax4
+L27A5:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11727,9 +11724,9 @@ L27A6:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L27AF
+	bcc     L27AE
 	inx
-L27AF:	jsr     shlax4
+L27AE:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11738,9 +11735,9 @@ L27AF:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L27B1
+	bcc     L27B0
 	inx
-L27B1:	ora     ptr1
+L27B0:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -11761,9 +11758,9 @@ L27B1:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L27B9
+	bcc     L27B8
 	inx
-L27B9:	jsr     shlax4
+L27B8:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11785,9 +11782,9 @@ L27B9:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L27C2
+	bcc     L27C1
 	inx
-L27C2:	jsr     shlax4
+L27C1:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11796,9 +11793,9 @@ L27C2:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L27C4
+	bcc     L27C3
 	inx
-L27C4:	ora     ptr1
+L27C3:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -11819,9 +11816,9 @@ L27C4:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L27CC
+	bcc     L27CB
 	inx
-L27CC:	jsr     shlax4
+L27CB:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11843,9 +11840,9 @@ L27CC:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L27D5
+	bcc     L27D4
 	inx
-L27D5:	jsr     shlax4
+L27D4:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11854,9 +11851,9 @@ L27D5:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L27D7
+	bcc     L27D6
 	inx
-L27D7:	ora     ptr1
+L27D6:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -11871,7 +11868,7 @@ L27D7:	ora     ptr1
 ;
 ; one_vram_buffer(0xc6, NTADR_A(x,y));
 ;
-L27D9:	lda     #$C6
+L27D8:	lda     #$C6
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -11904,9 +11901,9 @@ L27D9:	lda     #$C6
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L27EA
+	bcc     L27E9
 	inx
-L27EA:	ora     ptr1
+L27E9:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -11927,9 +11924,9 @@ L27EA:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L27F2
+	bcc     L27F1
 	inx
-L27F2:	jsr     shlax4
+L27F1:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11951,9 +11948,9 @@ L27F2:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L27FB
+	bcc     L27FA
 	inx
-L27FB:	jsr     shlax4
+L27FA:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -11962,9 +11959,9 @@ L27FB:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L27FD
+	bcc     L27FC
 	inx
-L27FD:	ora     ptr1
+L27FC:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -11985,9 +11982,9 @@ L27FD:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L2805
+	bcc     L2804
 	inx
-L2805:	jsr     shlax4
+L2804:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12009,9 +12006,9 @@ L2805:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L280E
+	bcc     L280D
 	inx
-L280E:	jsr     shlax4
+L280D:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12020,9 +12017,9 @@ L280E:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2810
+	bcc     L280F
 	inx
-L2810:	ora     ptr1
+L280F:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12043,9 +12040,9 @@ L2810:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L2818
+	bcc     L2817
 	inx
-L2818:	jsr     shlax4
+L2817:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12067,9 +12064,9 @@ L2818:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L2821
+	bcc     L2820
 	inx
-L2821:	jsr     shlax4
+L2820:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12078,9 +12075,9 @@ L2821:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2823
+	bcc     L2822
 	inx
-L2823:	ora     ptr1
+L2822:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12095,7 +12092,7 @@ L2823:	ora     ptr1
 ;
 ; one_vram_buffer(0xc8, NTADR_A(x,y));
 ;
-L2825:	lda     #$C8
+L2824:	lda     #$C8
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -12128,9 +12125,9 @@ L2825:	lda     #$C8
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2836
+	bcc     L2835
 	inx
-L2836:	ora     ptr1
+L2835:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12151,9 +12148,9 @@ L2836:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L283E
+	bcc     L283D
 	inx
-L283E:	jsr     shlax4
+L283D:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12175,9 +12172,9 @@ L283E:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L2847
+	bcc     L2846
 	inx
-L2847:	jsr     shlax4
+L2846:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12186,9 +12183,9 @@ L2847:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2849
+	bcc     L2848
 	inx
-L2849:	ora     ptr1
+L2848:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12209,9 +12206,9 @@ L2849:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L2851
+	bcc     L2850
 	inx
-L2851:	jsr     shlax4
+L2850:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12233,9 +12230,9 @@ L2851:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L285A
+	bcc     L2859
 	inx
-L285A:	jsr     shlax4
+L2859:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12244,9 +12241,9 @@ L285A:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L285C
+	bcc     L285B
 	inx
-L285C:	ora     ptr1
+L285B:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12267,9 +12264,9 @@ L285C:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L2864
+	bcc     L2863
 	inx
-L2864:	jsr     shlax4
+L2863:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12291,9 +12288,9 @@ L2864:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L286D
+	bcc     L286C
 	inx
-L286D:	jsr     shlax4
+L286C:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12302,9 +12299,9 @@ L286D:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L286F
+	bcc     L286E
 	inx
-L286F:	ora     ptr1
+L286E:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12319,7 +12316,7 @@ L286F:	ora     ptr1
 ;
 ; one_vram_buffer(0xca, NTADR_A(x,y));
 ;
-L2871:	lda     #$CA
+L2870:	lda     #$CA
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -12352,9 +12349,9 @@ L2871:	lda     #$CA
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2882
+	bcc     L2881
 	inx
-L2882:	ora     ptr1
+L2881:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12375,9 +12372,9 @@ L2882:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L288A
+	bcc     L2889
 	inx
-L288A:	jsr     shlax4
+L2889:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12399,9 +12396,9 @@ L288A:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L2893
+	bcc     L2892
 	inx
-L2893:	jsr     shlax4
+L2892:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12410,9 +12407,9 @@ L2893:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2895
+	bcc     L2894
 	inx
-L2895:	ora     ptr1
+L2894:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12433,9 +12430,9 @@ L2895:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L289D
+	bcc     L289C
 	inx
-L289D:	jsr     shlax4
+L289C:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12457,9 +12454,9 @@ L289D:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L28A6
+	bcc     L28A5
 	inx
-L28A6:	jsr     shlax4
+L28A5:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12468,9 +12465,9 @@ L28A6:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L28A8
+	bcc     L28A7
 	inx
-L28A8:	ora     ptr1
+L28A7:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12491,9 +12488,9 @@ L28A8:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L28B0
+	bcc     L28AF
 	inx
-L28B0:	jsr     shlax4
+L28AF:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12515,9 +12512,9 @@ L28B0:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L28B9
+	bcc     L28B8
 	inx
-L28B9:	jsr     shlax4
+L28B8:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12526,9 +12523,9 @@ L28B9:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L28BB
+	bcc     L28BA
 	inx
-L28BB:	ora     ptr1
+L28BA:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12543,7 +12540,7 @@ L28BB:	ora     ptr1
 ;
 ; one_vram_buffer(0xcc, NTADR_A(x,y));
 ;
-L28BD:	lda     #$CC
+L28BC:	lda     #$CC
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -12576,9 +12573,9 @@ L28BD:	lda     #$CC
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L28CE
+	bcc     L28CD
 	inx
-L28CE:	ora     ptr1
+L28CD:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12599,9 +12596,9 @@ L28CE:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L28D6
+	bcc     L28D5
 	inx
-L28D6:	jsr     shlax4
+L28D5:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12623,9 +12620,9 @@ L28D6:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L28DF
+	bcc     L28DE
 	inx
-L28DF:	jsr     shlax4
+L28DE:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12634,9 +12631,9 @@ L28DF:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L28E1
+	bcc     L28E0
 	inx
-L28E1:	ora     ptr1
+L28E0:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12657,9 +12654,9 @@ L28E1:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L28E9
+	bcc     L28E8
 	inx
-L28E9:	jsr     shlax4
+L28E8:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12681,9 +12678,9 @@ L28E9:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L28F2
+	bcc     L28F1
 	inx
-L28F2:	jsr     shlax4
+L28F1:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12692,9 +12689,9 @@ L28F2:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L28F4
+	bcc     L28F3
 	inx
-L28F4:	ora     ptr1
+L28F3:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12715,9 +12712,9 @@ L28F4:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L28FC
+	bcc     L28FB
 	inx
-L28FC:	jsr     shlax4
+L28FB:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12739,9 +12736,9 @@ L28FC:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L2905
+	bcc     L2904
 	inx
-L2905:	jsr     shlax4
+L2904:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12750,9 +12747,9 @@ L2905:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2907
+	bcc     L2906
 	inx
-L2907:	ora     ptr1
+L2906:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12767,7 +12764,7 @@ L2907:	ora     ptr1
 ;
 ; one_vram_buffer(0xce, NTADR_A(x,y));
 ;
-L2909:	lda     #$CE
+L2908:	lda     #$CE
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -12800,9 +12797,9 @@ L2909:	lda     #$CE
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L291A
+	bcc     L2919
 	inx
-L291A:	ora     ptr1
+L2919:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12823,9 +12820,9 @@ L291A:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L2922
+	bcc     L2921
 	inx
-L2922:	jsr     shlax4
+L2921:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12847,9 +12844,9 @@ L2922:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L292B
+	bcc     L292A
 	inx
-L292B:	jsr     shlax4
+L292A:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12858,9 +12855,9 @@ L292B:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L292D
+	bcc     L292C
 	inx
-L292D:	ora     ptr1
+L292C:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12881,9 +12878,9 @@ L292D:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L2935
+	bcc     L2934
 	inx
-L2935:	jsr     shlax4
+L2934:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12905,9 +12902,9 @@ L2935:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L293E
+	bcc     L293D
 	inx
-L293E:	jsr     shlax4
+L293D:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12916,9 +12913,9 @@ L293E:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2940
+	bcc     L293F
 	inx
-L2940:	ora     ptr1
+L293F:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12939,9 +12936,9 @@ L2940:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L2948
+	bcc     L2947
 	inx
-L2948:	jsr     shlax4
+L2947:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12963,9 +12960,9 @@ L2948:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L2951
+	bcc     L2950
 	inx
-L2951:	jsr     shlax4
+L2950:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -12974,9 +12971,9 @@ L2951:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2953
+	bcc     L2952
 	inx
-L2953:	ora     ptr1
+L2952:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -12991,7 +12988,7 @@ L2953:	ora     ptr1
 ;
 ; one_vram_buffer(0x5e, NTADR_A(x,y));
 ;
-L2955:	lda     #$5E
+L2954:	lda     #$5E
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -13024,9 +13021,9 @@ L2955:	lda     #$5E
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2966
+	bcc     L2965
 	inx
-L2966:	ora     ptr1
+L2965:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -13047,9 +13044,9 @@ L2966:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L296E
+	bcc     L296D
 	inx
-L296E:	jsr     shlax4
+L296D:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -13071,9 +13068,9 @@ L296E:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L2977
+	bcc     L2976
 	inx
-L2977:	jsr     shlax4
+L2976:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -13082,9 +13079,9 @@ L2977:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L2979
+	bcc     L2978
 	inx
-L2979:	ora     ptr1
+L2978:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -13105,9 +13102,9 @@ L2979:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L2981
+	bcc     L2980
 	inx
-L2981:	jsr     shlax4
+L2980:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -13129,9 +13126,9 @@ L2981:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L298A
+	bcc     L2989
 	inx
-L298A:	jsr     shlax4
+L2989:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -13140,9 +13137,9 @@ L298A:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L298C
+	bcc     L298B
 	inx
-L298C:	ora     ptr1
+L298B:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -13163,9 +13160,9 @@ L298C:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L2994
+	bcc     L2993
 	inx
-L2994:	jsr     shlax4
+L2993:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -13187,9 +13184,9 @@ L2994:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L299D
+	bcc     L299C
 	inx
-L299D:	jsr     shlax4
+L299C:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -13198,9 +13195,9 @@ L299D:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L299F
+	bcc     L299E
 	inx
-L299F:	ora     ptr1
+L299E:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -13215,7 +13212,7 @@ L299F:	ora     ptr1
 ;
 ; one_vram_buffer(0x1e, NTADR_A(x,y));
 ;
-L29A1:	lda     #$1E
+L29A0:	lda     #$1E
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -13248,9 +13245,9 @@ L29A1:	lda     #$1E
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L29B2
+	bcc     L29B1
 	inx
-L29B2:	ora     ptr1
+L29B1:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -13271,9 +13268,9 @@ L29B2:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L29BA
+	bcc     L29B9
 	inx
-L29BA:	jsr     shlax4
+L29B9:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -13295,9 +13292,9 @@ L29BA:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L29C3
+	bcc     L29C2
 	inx
-L29C3:	jsr     shlax4
+L29C2:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -13306,9 +13303,9 @@ L29C3:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L29C5
+	bcc     L29C4
 	inx
-L29C5:	ora     ptr1
+L29C4:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -13329,9 +13326,9 @@ L29C5:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L29CD
+	bcc     L29CC
 	inx
-L29CD:	jsr     shlax4
+L29CC:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -13353,9 +13350,9 @@ L29CD:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L29D6
+	bcc     L29D5
 	inx
-L29D6:	jsr     shlax4
+L29D5:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -13364,9 +13361,9 @@ L29D6:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L29D8
+	bcc     L29D7
 	inx
-L29D8:	ora     ptr1
+L29D7:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -13387,9 +13384,9 @@ L29D8:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L29E0
+	bcc     L29DF
 	inx
-L29E0:	jsr     shlax4
+L29DF:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -13411,9 +13408,9 @@ L29E0:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L29E9
+	bcc     L29E8
 	inx
-L29E9:	jsr     shlax4
+L29E8:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -13422,9 +13419,9 @@ L29E9:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L29EB
+	bcc     L29EA
 	inx
-L29EB:	ora     ptr1
+L29EA:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -13498,9 +13495,9 @@ L29EB:	ora     ptr1
 ;
 	lda     #$00
 	sta     _temp2
-L2BB6:	lda     _temp2
+L2BB5:	lda     _temp2
 	cmp     #$06
-	bcs     L2623
+	bcs     L2622
 ;
 ; ppu_wait_nmi();
 ;
@@ -13516,9 +13513,9 @@ L2BB6:	lda     _temp2
 ;
 	lda     #$00
 	sta     _index
-L2BB7:	lda     _index
+L2BB6:	lda     _index
 	cmp     #$09
-	bcs     L262E
+	bcs     L262D
 ;
 ; vram_put(0x00);
 ;
@@ -13528,11 +13525,11 @@ L2BB7:	lda     _index
 ; for(index = 0; index < 9; ++index){
 ;
 	inc     _index
-	jmp     L2BB7
+	jmp     L2BB6
 ;
 ; flush_vram_update2();
 ;
-L262E:	jsr     _flush_vram_update2
+L262D:	jsr     _flush_vram_update2
 ;
 ; temp1 += 16;
 ;
@@ -13544,11 +13541,11 @@ L262E:	jsr     _flush_vram_update2
 ; for(temp2 = 0; temp2 < 6; ++temp2){
 ;
 	inc     _temp2
-	jmp     L2BB6
+	jmp     L2BB5
 ;
 ; flush_vram_update2();
 ;
-L2623:	jsr     _flush_vram_update2
+L2622:	jsr     _flush_vram_update2
 ;
 ; talking_time = 1;
 ;
@@ -13582,10 +13579,10 @@ L2623:	jsr     _flush_vram_update2
 	lda     #$02
 	jsr     _set_chr_bank_1
 ;
-; pal_bg(talking_time_palete);
+; pal_bg(talking_time_palette);
 ;
-	lda     #<(_talking_time_palete)
-	ldx     #>(_talking_time_palete)
+	lda     #<(_talking_time_palette)
+	ldx     #>(_talking_time_palette)
 	jsr     _pal_bg
 ;
 ; vram_adr(NAMETABLE_A);  
@@ -13623,10 +13620,10 @@ L2623:	jsr     _flush_vram_update2
 	lda     #$02
 	jsr     _set_chr_bank_1
 ;
-; pal_bg(talking_time_palete);
+; pal_bg(talking_time_palette);
 ;
-	lda     #<(_talking_time_palete)
-	ldx     #>(_talking_time_palete)
+	lda     #<(_talking_time_palette)
+	ldx     #>(_talking_time_palette)
 	jsr     _pal_bg
 ;
 ; vram_adr(NAMETABLE_A);  
@@ -13691,13 +13688,13 @@ L2623:	jsr     _flush_vram_update2
 	lda     #$00
 	sta     _tempint
 	sta     _tempint+1
-L2602:	lda     _tempint
+L2601:	lda     _tempint
 	cmp     #$C0
 	lda     _tempint+1
 	sbc     #$03
-	bvc     L2609
+	bvc     L2608
 	eor     #$80
-L2609:	bpl     L2603
+L2608:	bpl     L2602
 ;
 ; vram_put(0x00);
 ;
@@ -13711,13 +13708,13 @@ L2609:	bpl     L2603
 ; for(tempint = 0; tempint < 960; ++tempint){
 ;
 	inc     _tempint
-	bne     L2602
+	bne     L2601
 	inc     _tempint+1
-	jmp     L2602
+	jmp     L2601
 ;
 ; }
 ;
-L2603:	rts
+L2602:	rts
 
 .endproc
 
@@ -13743,13 +13740,13 @@ L2603:	rts
 	lda     #$00
 	sta     _tempint
 	sta     _tempint+1
-L2612:	lda     _tempint
+L2611:	lda     _tempint
 	cmp     #$C0
 	lda     _tempint+1
 	sbc     #$03
-	bvc     L2619
+	bvc     L2618
 	eor     #$80
-L2619:	bpl     L2613
+L2618:	bpl     L2612
 ;
 ; vram_put(0x00);
 ;
@@ -13763,13 +13760,13 @@ L2619:	bpl     L2613
 ; for(tempint = 0; tempint < 960; ++tempint){
 ;
 	inc     _tempint
-	bne     L2612
+	bne     L2611
 	inc     _tempint+1
-	jmp     L2612
+	jmp     L2611
 ;
 ; }
 ;
-L2613:	rts
+L2612:	rts
 
 .endproc
 
@@ -13822,9 +13819,9 @@ L2613:	rts
 ;
 	lda     #$00
 	sta     _index
-L2BB8:	lda     _index
+L2BB7:	lda     _index
 	cmp     #$19
-	bcs     L2B58
+	bcs     L2B57
 ;
 ; ppu_wait_nmi();
 ;
@@ -13833,11 +13830,11 @@ L2BB8:	lda     _index
 ; for(index=0; index < 25; ++index){
 ;
 	inc     _index
-	jmp     L2BB8
+	jmp     L2BB7
 ;
 ; }
 ;
-L2B58:	rts
+L2B57:	rts
 
 .endproc
 
@@ -13886,16 +13883,16 @@ L2B58:	rts
 ;
 ; }
 ;
-	beq     L21A9
+	beq     L21A8
 	cmp     #$01
-	beq     L21B2
+	beq     L21B1
 	cmp     #$02
-	beq     L21BB
-	jmp     L21A7
+	beq     L21BA
+	jmp     L21A6
 ;
 ; pointer = level_0_text;
 ;
-L21A9:	lda     #>(_level_0_text)
+L21A8:	lda     #>(_level_0_text)
 	sta     _pointer+1
 	lda     #<(_level_0_text)
 	sta     _pointer
@@ -13906,11 +13903,11 @@ L21A9:	lda     #>(_level_0_text)
 ;
 ; break;
 ;
-	jmp     L2BBD
+	jmp     L2BBC
 ;
 ; pointer = level_1_text;
 ;
-L21B2:	lda     #>(_level_1_text)
+L21B1:	lda     #>(_level_1_text)
 	sta     _pointer+1
 	lda     #<(_level_1_text)
 	sta     _pointer
@@ -13921,11 +13918,11 @@ L21B2:	lda     #>(_level_1_text)
 ;
 ; break;
 ;
-	jmp     L2BBD
+	jmp     L2BBC
 ;
 ; pointer = level_2_text;
 ;
-L21BB:	lda     #>(_level_2_text)
+L21BA:	lda     #>(_level_2_text)
 	sta     _pointer+1
 	lda     #<(_level_2_text)
 	sta     _pointer
@@ -13933,7 +13930,7 @@ L21BB:	lda     #>(_level_2_text)
 ; text_length = sizeof(level_2_text);
 ;
 	lda     #$6D
-L2BBD:	sta     _text_length
+L2BBC:	sta     _text_length
 ;
 ; gas_goal = 1;
 ;
@@ -13944,7 +13941,7 @@ L2BBD:	sta     _text_length
 ;
 ; ppu_on_all(); // turn on screen
 ;
-L21A7:	jsr     _ppu_on_all
+L21A6:	jsr     _ppu_on_all
 ;
 ; game_mode = MODE_INTRO_INSTRUCTION;
 ;
@@ -14079,7 +14076,7 @@ L21A7:	jsr     _ppu_on_all
 ;
 	lda     _moveframes
 	cmp     #$03
-	bne     L2BBE
+	bne     L2BBD
 ;
 ; ++line_counter; //count 1 line up for each frame, so we know when we'd done 8 frames, and card draw
 ;
@@ -14092,19 +14089,19 @@ L21A7:	jsr     _ppu_on_all
 ; ++scroll_y;
 ;
 	inc     _scroll_y
-	bne     L211E
+	bne     L211D
 	inc     _scroll_y+1
 ;
 ; moveframes = 0;
 ;
-L211E:	lda     #$00
+L211D:	lda     #$00
 	sta     _moveframes
 ;
 ; if(screen_line_counter > 240) 
 ;
-L2BBE:	lda     _screen_line_counter
+L2BBD:	lda     _screen_line_counter
 	cmp     #$F1
-	bcc     L2BC0
+	bcc     L2BBF
 ;
 ; ++scroll_page;
 ;
@@ -14124,7 +14121,7 @@ L2BBE:	lda     _screen_line_counter
 ;
 	lda     _scroll_page
 	cmp     #$01
-	bne     L2BBF
+	bne     L2BBE
 ;
 ; cutscene_index = NAMETABLE_A;
 ;
@@ -14142,9 +14139,9 @@ L2BBE:	lda     _screen_line_counter
 ;
 ; if(scroll_page == 2){
 ;
-L2BBF:	lda     _scroll_page
+L2BBE:	lda     _scroll_page
 	cmp     #$02
-	bne     L2BC0
+	bne     L2BBF
 ;
 ; cutscene_index = NAMETABLE_C;
 ;
@@ -14162,9 +14159,9 @@ L2BBF:	lda     _scroll_page
 ;
 ; if(scroll_page == 3){ //we're done here
 ;
-L2BC0:	lda     _scroll_page
+L2BBF:	lda     _scroll_page
 	cmp     #$03
-	bne     L2BC1
+	bne     L2BC0
 ;
 ; pal_fade_to(4,0);
 ;
@@ -14179,24 +14176,24 @@ L2BC0:	lda     _scroll_page
 ;
 ; if( line_counter == 8 && nametable_index < 1024){ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
 ;
-L2BC1:	lda     _line_counter
+L2BC0:	lda     _line_counter
 	cmp     #$08
-	bne     L213A
+	bne     L2139
 	lda     _nametable_index
 	cmp     #$00
 	lda     _nametable_index+1
 	sbc     #$04
-	bvc     L213D
+	bvc     L213C
 	eor     #$80
-L213D:	bpl     L213A
+L213C:	bpl     L2139
 ;
 ; for(index = 0; index < 32; ++index){
 ;
 	lda     #$00
 	sta     _index
-L2BC4:	lda     _index
+L2BC3:	lda     _index
 	cmp     #$20
-	bcs     L2BC5
+	bcs     L2BC4
 ;
 ; one_vram_buffer(pointer[nametable_index], cutscene_index);
 ;
@@ -14217,32 +14214,32 @@ L2BC4:	lda     _index
 ; ++nametable_index;
 ;
 	inc     _nametable_index
-	bne     L214C
+	bne     L214B
 	inc     _nametable_index+1
 ;
 ; ++cutscene_index;
 ;
-L214C:	inc     _cutscene_index
-	bne     L214E
+L214B:	inc     _cutscene_index
+	bne     L214D
 	inc     _cutscene_index+1
 ;
 ; for(index = 0; index < 32; ++index){
 ;
-L214E:	inc     _index
-	jmp     L2BC4
+L214D:	inc     _index
+	jmp     L2BC3
 ;
 ; line_counter = 0;
 ;
-L2BC5:	lda     #$00
+L2BC4:	lda     #$00
 	sta     _line_counter
 ;
 ; if(scroll_y > 0x1df) {
 ;
-L213A:	lda     _scroll_y
+L2139:	lda     _scroll_y
 	cmp     #$E0
 	lda     _scroll_y+1
 	sbc     #$01
-	bcc     L2BC6
+	bcc     L2BC5
 ;
 ; scroll_y = 0;
 ;
@@ -14252,8 +14249,8 @@ L213A:	lda     _scroll_y
 ;
 ; if(moveframes == 0){
 ;
-L2BC6:	lda     _moveframes
-	bne     L2155
+L2BC5:	lda     _moveframes
+	bne     L2154
 ;
 ; scroll(0,scroll_y);
 ;
@@ -14264,7 +14261,7 @@ L2BC6:	lda     _moveframes
 ;
 ; }
 ;
-L2155:	rts
+L2154:	rts
 
 .endproc
 
@@ -14290,26 +14287,26 @@ L2155:	rts
 ; if(stop_scrolling == 0 && moveframes > 0){
 ;
 	lda     _stop_scrolling
-	jne     L2BD2
+	jne     L2BD1
 	lda     _moveframes
-	jeq     L2BD2
+	jeq     L2BD1
 ;
 ; scroll_y += 1;
 ;
 	inc     _scroll_y
-	bne     L2163
+	bne     L2162
 	inc     _scroll_y+1
 ;
 ; if(scrolled_past_once == 1 && scroll_y > 0x1df){
 ;
-L2163:	lda     _scrolled_past_once
+L2162:	lda     _scrolled_past_once
 	cmp     #$01
-	bne     L2BCB
+	bne     L2BCA
 	lda     _scroll_y
 	cmp     #$E0
 	lda     _scroll_y+1
 	sbc     #$01
-	bcc     L2BCB
+	bcc     L2BCA
 ;
 ; stop_scrolling = 1;
 ;
@@ -14323,24 +14320,24 @@ L2163:	lda     _scrolled_past_once
 ;
 ; if( line_counter == 8 && nametable_index < 1024){ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
 ;
-L2BCB:	lda     _line_counter
+L2BCA:	lda     _line_counter
 	cmp     #$08
-	bne     L216C
+	bne     L216B
 	lda     _nametable_index
 	cmp     #$00
 	lda     _nametable_index+1
 	sbc     #$04
-	bvc     L216F
+	bvc     L216E
 	eor     #$80
-L216F:	bpl     L216C
+L216E:	bpl     L216B
 ;
 ; for(index = 0; index < 32; ++index){
 ;
 	lda     #$00
 	sta     _index
-L2BCE:	lda     _index
+L2BCD:	lda     _index
 	cmp     #$20
-	bcs     L2BCF
+	bcs     L2BCE
 ;
 ; one_vram_buffer(intro_cutscene_3[nametable_index], cutscene_index);
 ;
@@ -14360,32 +14357,32 @@ L2BCE:	lda     _index
 ; ++nametable_index;
 ;
 	inc     _nametable_index
-	bne     L217E
+	bne     L217D
 	inc     _nametable_index+1
 ;
 ; ++cutscene_index;
 ;
-L217E:	inc     _cutscene_index
-	bne     L2180
+L217D:	inc     _cutscene_index
+	bne     L217F
 	inc     _cutscene_index+1
 ;
 ; for(index = 0; index < 32; ++index){
 ;
-L2180:	inc     _index
-	jmp     L2BCE
+L217F:	inc     _index
+	jmp     L2BCD
 ;
 ; line_counter = 0;
 ;
-L2BCF:	lda     #$00
+L2BCE:	lda     #$00
 	sta     _line_counter
 ;
 ; if(scroll_y == 0x0ff){
 ;
-L216C:	lda     _scroll_y+1
-	bne     L2183
+L216B:	lda     _scroll_y+1
+	bne     L2182
 	lda     _scroll_y
 	cmp     #$FF
-	bne     L2183
+	bne     L2182
 ;
 ; scrolled_past_once = 1;
 ;
@@ -14394,12 +14391,12 @@ L216C:	lda     _scroll_y+1
 ;
 ; if(scroll_y > 0x1df) {
 ;
-L2183:	lda     _scroll_y
+L2182:	lda     _scroll_y
 	cmp     #$E0
 	lda     _scroll_y+1
 	sbc     #$01
 	lda     #$00
-	bcc     L2BD1
+	bcc     L2BD0
 ;
 ; scroll_y = 0;
 ;
@@ -14408,7 +14405,7 @@ L2183:	lda     _scroll_y
 ;
 ; scroll(0,scroll_y);
 ;
-L2BD1:	jsr     push0
+L2BD0:	jsr     push0
 	lda     _scroll_y
 	ldx     _scroll_y+1
 	jsr     _scroll
@@ -14420,17 +14417,17 @@ L2BD1:	jsr     push0
 ;
 ; if(stop_scrolling == 1 && moveframes == 100){
 ;
-L2BD2:	lda     _stop_scrolling
+L2BD1:	lda     _stop_scrolling
 	cmp     #$01
-	bne     L2BD3
+	bne     L2BD2
 	lda     _moveframes
 	cmp     #$64
-	beq     L2BD4
-L2BD3:	rts
+	beq     L2BD3
+L2BD2:	rts
 ;
 ; banked_call(BANK_1, bank_1_init_mode_instructions);
 ;
-L2BD4:	lda     #$01
+L2BD3:	lda     #$01
 	jsr     pusha
 	lda     #<(_bank_1_init_mode_instructions)
 	ldx     #>(_bank_1_init_mode_instructions)
@@ -14461,7 +14458,7 @@ L2BD4:	lda     #$01
 ;
 	lda     _text_row
 	cmp     #$06
-	bcs     L2BD5
+	bcs     L2BD4
 ;
 ; typewriter();
 ;
@@ -14469,9 +14466,9 @@ L2BD4:	lda     #$01
 ;
 ; if(moveframes > 60){
 ;
-L2BD5:	lda     _moveframes
+L2BD4:	lda     _moveframes
 	cmp     #$3D
-	bcc     L21CD
+	bcc     L21CC
 ;
 ; moveframes = 0;
 ;
@@ -14480,7 +14477,7 @@ L2BD5:	lda     _moveframes
 ;
 ; oam_clear(); // clear all sprites
 ;
-L21CD:	jsr     _oam_clear
+L21CC:	jsr     _oam_clear
 ;
 ; oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
 ;
@@ -14512,7 +14509,7 @@ L21CD:	jsr     _oam_clear
 ;
 	lda     _moveframes
 	cmp     #$1E
-	bcs     L2BD7
+	bcs     L2BD6
 ;
 ; oam_meta_spr(0xb8, 0xbf, BigAlTalkClosedMouth);
 ;
@@ -14529,11 +14526,11 @@ L21CD:	jsr     _oam_clear
 ;
 ; if(moveframes >= 30 && moveframes < 61){
 ;
-L2BD7:	lda     _moveframes
+L2BD6:	lda     _moveframes
 	cmp     #$1E
-	bcc     L21E2
+	bcc     L21E1
 	cmp     #$3D
-	bcs     L21E2
+	bcs     L21E1
 ;
 ; oam_meta_spr(0xb8, 0xbf, BigAlTalkMidMouth);
 ;
@@ -14550,12 +14547,12 @@ L2BD7:	lda     _moveframes
 ;
 ; read_input();
 ;
-L21E2:	jsr     _read_input
+L21E1:	jsr     _read_input
 ;
 ; if (trigger_clicked)
 ;
 	lda     _trigger_clicked
-	beq     L21EB
+	beq     L21EA
 ;
 ; pal_fade_to(4,0);
 ;
@@ -14574,7 +14571,7 @@ L21E2:	jsr     _read_input
 ;
 ; }
 ;
-L21EB:	rts
+L21EA:	rts
 
 .endproc
 
@@ -14628,11 +14625,11 @@ L21EB:	rts
 ; multi_vram_buffer_horz("G.A.S.", 6, NTADR_A(12,4)); 
 ;
 	jsr     decsp3
-	lda     #<(L24B8)
+	lda     #<(L24B7)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L24B8)
+	lda     #>(L24B7)
 	sta     (sp),y
 	lda     #$06
 	ldy     #$00
@@ -14644,11 +14641,11 @@ L21EB:	rts
 ; multi_vram_buffer_horz("Gas Attendant Simulator", 23, NTADR_A(5,6)); 
 ;
 	jsr     decsp3
-	lda     #<(L24C2)
+	lda     #<(L24C1)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L24C2)
+	lda     #>(L24C1)
 	sta     (sp),y
 	lda     #$17
 	ldy     #$00
@@ -14664,11 +14661,11 @@ L21EB:	rts
 ; multi_vram_buffer_horz("Game Quest Mode", 15, NTADR_A(8,17)); 
 ;
 	jsr     decsp3
-	lda     #<(L24CD)
+	lda     #<(L24CC)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L24CD)
+	lda     #>(L24CC)
 	sta     (sp),y
 	lda     #$0F
 	ldy     #$00
@@ -14680,11 +14677,11 @@ L21EB:	rts
 ; multi_vram_buffer_horz("Free Pump Mode", 14, NTADR_A(8,19)); 
 ;
 	jsr     decsp3
-	lda     #<(L24D7)
+	lda     #<(L24D6)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L24D7)
+	lda     #>(L24D6)
 	sta     (sp),y
 	lda     #$0E
 	ldy     #$00
@@ -14748,16 +14745,16 @@ L21EB:	rts
 	lda     #$00
 	sta     _moveframes
 ;
-; pal_bg(background_pal); // load the palette
+; pal_bg(gaspump_palette); // load the palette
 ;
-	lda     #<(_background_pal)
-	ldx     #>(_background_pal)
+	lda     #<(_gaspump_palette)
+	ldx     #>(_gaspump_palette)
 	jsr     _pal_bg
 ;
-; pal_spr(pal2); // load the palette
+; pal_spr(gaspump_sprite_palette); // load the palette
 ;
-	lda     #<(_pal2)
-	ldx     #>(_pal2)
+	lda     #<(_gaspump_sprite_palette)
+	ldx     #>(_gaspump_sprite_palette)
 	jsr     _pal_spr
 ;
 ; pal_col(0,0x0D);
@@ -14806,8 +14803,8 @@ L21EB:	rts
 ;
 ; if(game_mode == MODE_TITLE){
 ;
-L2BDE:	lda     _game_mode
-	jne     L2BE0
+L2BDD:	lda     _game_mode
+	jne     L2BDF
 ;
 ; ppu_wait_nmi();
 ;
@@ -14816,7 +14813,7 @@ L2BDE:	lda     _game_mode
 ; if(option == 0){
 ;
 	lda     _option
-	bne     L250D
+	bne     L250C
 ;
 ; one_vram_buffer(0x3d, NTADR_A(6,17));
 ;
@@ -14832,11 +14829,11 @@ L2BDE:	lda     _game_mode
 ;
 ; } else {
 ;
-	jmp     L2BF3
+	jmp     L2BF2
 ;
 ; one_vram_buffer(0x3f, NTADR_A(6,17));
 ;
-L250D:	lda     #$3F
+L250C:	lda     #$3F
 	jsr     pusha
 	ldx     #$22
 	lda     #$26
@@ -14845,7 +14842,7 @@ L250D:	lda     #$3F
 ; one_vram_buffer(0x3d, NTADR_A(6,19));
 ;
 	lda     #$3D
-L2BF3:	jsr     pusha
+L2BF2:	jsr     pusha
 	ldx     #$22
 	lda     #$66
 	jsr     _one_vram_buffer
@@ -14857,7 +14854,7 @@ L2BF3:	jsr     pusha
 ; if (trigger_clicked) //if((pad2_zapper)&&(zapper_ready)){
 ;
 	lda     _trigger_clicked
-	beq     L2BE0
+	beq     L2BDF
 ;
 ; oam_clear();
 ;
@@ -14892,12 +14889,12 @@ L2BF3:	jsr     pusha
 ; if(hit_detected){
 ;
 	lda     _hit_detected
-	beq     L253D
+	beq     L253C
 ;
 ; if(option == 0){
 ;
 	lda     _option
-	bne     L253F
+	bne     L253E
 ;
 ; wait_a_little();
 ;
@@ -14913,25 +14910,25 @@ L2BF3:	jsr     pusha
 ;
 ; } else {
 ;
-	jmp     L2BE0
+	jmp     L2BDF
 ;
 ; multi_vram_buffer_horz("No Free Pump Mode yet", 21, NTADR_A(6, 21));
 ;
-L253F:	jsr     decsp3
-	lda     #<(L2547)
+L253E:	jsr     decsp3
+	lda     #<(L2546)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2547)
+	lda     #>(L2546)
 ;
 ; else{
 ;
-	jmp     L2BF7
+	jmp     L2BF6
 ;
 ; if(option == 0){
 ;
-L253D:	lda     _option
-	bne     L2BDF
+L253C:	lda     _option
+	bne     L2BDE
 ;
 ; option = 1;
 ;
@@ -14939,22 +14936,22 @@ L253D:	lda     _option
 ;
 ; } else {
 ;
-	jmp     L2BDD
+	jmp     L2BDC
 ;
 ; option = 0;
 ;
-L2BDF:	lda     #$00
-L2BDD:	sta     _option
+L2BDE:	lda     #$00
+L2BDC:	sta     _option
 ;
 ; multi_vram_buffer_horz("                     ", 21, NTADR_A(6, 21));
 ;
 	jsr     decsp3
-	lda     #<(L2559)
+	lda     #<(L2558)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2559)
-L2BF7:	sta     (sp),y
+	lda     #>(L2558)
+L2BF6:	sta     (sp),y
 	lda     #$15
 	ldy     #$00
 	sta     (sp),y
@@ -14964,9 +14961,9 @@ L2BF7:	sta     (sp),y
 ;
 ; if(game_mode == MODE_INTRO_TEXT){
 ;
-L2BE0:	lda     _game_mode
+L2BDF:	lda     _game_mode
 	cmp     #$03
-	bne     L2BE1
+	bne     L2BE0
 ;
 ; ppu_wait_nmi();
 ;
@@ -14987,7 +14984,7 @@ L2BE0:	lda     _game_mode
 ; if (trigger_clicked) //allow cutscene to be skipped
 ;
 	lda     _trigger_clicked
-	beq     L2BE1
+	beq     L2BE0
 ;
 ; wait_a_little();
 ;
@@ -15009,9 +15006,9 @@ L2BE0:	lda     _game_mode
 ;
 ; if(game_mode == MODE_INTRO_CUTSCENE){
 ;
-L2BE1:	lda     _game_mode
+L2BE0:	lda     _game_mode
 	cmp     #$04
-	bne     L2BE2
+	bne     L2BE1
 ;
 ; ppu_wait_nmi();
 ;
@@ -15032,7 +15029,7 @@ L2BE1:	lda     _game_mode
 ; if (trigger_clicked) //allow cutscene to be skipped
 ;
 	lda     _trigger_clicked
-	beq     L2BE2
+	beq     L2BE1
 ;
 ; wait_a_little();
 ;
@@ -15054,9 +15051,9 @@ L2BE1:	lda     _game_mode
 ;
 ; if(game_mode == MODE_INTRO_INSTRUCTION){
 ;
-L2BE2:	lda     _game_mode
+L2BE1:	lda     _game_mode
 	cmp     #$05
-	bne     L2BE3
+	bne     L2BE2
 ;
 ; banked_call(BANK_1, bank_1_instructions_loop);
 ;
@@ -15068,9 +15065,9 @@ L2BE2:	lda     _game_mode
 ;
 ; if(game_mode == MODE_TALKING_TIME){
 ;
-L2BE3:	lda     _game_mode
+L2BE2:	lda     _game_mode
 	cmp     #$06
-	jne     L2BEC
+	jne     L2BEB
 ;
 ; ppu_wait_nmi();
 ;
@@ -15084,7 +15081,7 @@ L2BE3:	lda     _game_mode
 ;
 	lda     _moveframes
 	cmp     #$3D
-	bcc     L2589
+	bcc     L2588
 ;
 ; moveframes = 0;
 ;
@@ -15093,7 +15090,7 @@ L2BE3:	lda     _game_mode
 ;
 ; oam_clear(); // clear all sprites
 ;
-L2589:	jsr     _oam_clear
+L2588:	jsr     _oam_clear
 ;
 ; oam_meta_spr(0xa8, 0xb8, BigAlsShirt);
 ;
@@ -15125,7 +15122,7 @@ L2589:	jsr     _oam_clear
 ;
 	lda     _moveframes
 	cmp     #$1E
-	bcs     L2BE5
+	bcs     L2BE4
 ;
 ; oam_meta_spr(0xb0, 0xaf, BigAlTalkClosedMouth);
 ;
@@ -15142,11 +15139,11 @@ L2589:	jsr     _oam_clear
 ;
 ; if(moveframes >= 30 && moveframes < 61){
 ;
-L2BE5:	lda     _moveframes
+L2BE4:	lda     _moveframes
 	cmp     #$1E
-	bcc     L259E
+	bcc     L259D
 	cmp     #$3D
-	bcs     L259E
+	bcs     L259D
 ;
 ; oam_meta_spr(0xb0, 0xaf, BigAlTalkMidMouth);
 ;
@@ -15163,20 +15160,20 @@ L2BE5:	lda     _moveframes
 ;
 ; read_input();
 ;
-L259E:	jsr     _read_input
+L259D:	jsr     _read_input
 ;
 ; if (trigger_clicked)
 ;
 	lda     _trigger_clicked
-	beq     L2BEC
+	beq     L2BEB
 ;
 ; for(index=0; index < 10; ++index){
 ;
 	lda     #$00
 	sta     _index
-L2BE9:	lda     _index
+L2BE8:	lda     _index
 	cmp     #$0A
-	bcs     L2BEA
+	bcs     L2BE9
 ;
 ; ppu_wait_nmi();
 ;
@@ -15185,39 +15182,39 @@ L2BE9:	lda     _index
 ; for(index=0; index < 10; ++index){
 ;
 	inc     _index
-	jmp     L2BE9
+	jmp     L2BE8
 ;
 ; switch(game_level){
 ;
-L2BEA:	lda     _game_level
+L2BE9:	lda     _game_level
 ;
 ; }
 ;
-	beq     L25B6
+	beq     L25B5
 	cmp     #$01
-	beq     L2BEB
-	jmp     L2BEC
+	beq     L2BEA
+	jmp     L2BEB
 ;
 ; init_mode_game();
 ;
-L25B6:	jsr     _init_mode_game
+L25B5:	jsr     _init_mode_game
 ;
 ; break;
 ;
-	jmp     L2BEC
+	jmp     L2BEB
 ;
 ; banked_call(BANK_1, bank_1_init_mode_instructions);
 ;
-L2BEB:	jsr     pusha
+L2BEA:	jsr     pusha
 	lda     #<(_bank_1_init_mode_instructions)
 	ldx     #>(_bank_1_init_mode_instructions)
 	jsr     _banked_call
 ;
 ; if(game_mode == MODE_GAME){
 ;
-L2BEC:	lda     _game_mode
+L2BEB:	lda     _game_mode
 	cmp     #$01
-	jne     L2BDE
+	jne     L2BDD
 ;
 ; ppu_wait_nmi(); // wait till beginning of the frame
 ;
@@ -15242,7 +15239,7 @@ L2BEC:	lda     _game_mode
 ; if(trigger_pulled){
 ;
 	lda     _trigger_pulled
-	beq     L25C5
+	beq     L25C4
 ;
 ; started_pumping = 1; //actually only need to set this once
 ;
@@ -15255,16 +15252,16 @@ L2BEC:	lda     _game_mode
 	clc
 	adc     _gas_speed
 	sta     _gas_speed
-	bcc     L25CE
+	bcc     L25CD
 	inc     _gas_speed+1
 ;
 ; while(gas_speed > 256){
 ;
-	jmp     L25CE
+	jmp     L25CD
 ;
 ; ++gas1;
 ;
-L2BED:	inc     _gas1
+L2BEC:	inc     _gas1
 ;
 ; gas_speed -= 256;
 ;
@@ -15278,11 +15275,11 @@ L2BED:	inc     _gas1
 ;
 ; while(gas_speed > 256){
 ;
-L25CE:	lda     _gas_speed
+L25CD:	lda     _gas_speed
 	cmp     #$01
 	lda     _gas_speed+1
 	sbc     #$01
-	bcs     L2BED
+	bcs     L2BEC
 ;
 ; adjust_gas();
 ;
@@ -15294,16 +15291,16 @@ L25CE:	lda     _gas_speed
 	clc
 	adc     _cost_speed
 	sta     _cost_speed
-	bcc     L25D9
+	bcc     L25D8
 	inc     _cost_speed+1
 ;
 ; while(cost_speed > 256){
 ;
-	jmp     L25D9
+	jmp     L25D8
 ;
 ; ++cost1;
 ;
-L2BEE:	inc     _cost1
+L2BED:	inc     _cost1
 ;
 ; cost_speed -= 256;
 ;
@@ -15317,11 +15314,11 @@ L2BEE:	inc     _cost1
 ;
 ; while(cost_speed > 256){
 ;
-L25D9:	lda     _cost_speed
+L25D8:	lda     _cost_speed
 	cmp     #$01
 	lda     _cost_speed+1
 	sbc     #$01
-	bcs     L2BEE
+	bcs     L2BED
 ;
 ; adjust_cost(); 
 ;
@@ -15329,13 +15326,13 @@ L25D9:	lda     _cost_speed
 ;
 ; } else {
 ;
-	jmp     L2BDE
+	jmp     L2BDD
 ;
 ; if(started_pumping == 1){
 ;
-L25C5:	lda     _started_pumping
+L25C4:	lda     _started_pumping
 	cmp     #$01
-	jne     L2BDE
+	jne     L2BDD
 ;
 ; wait_a_little();
 ;
@@ -15347,7 +15344,7 @@ L25C5:	lda     _started_pumping
 ;
 ; while (1){
 ;
-	jmp     L2BDE
+	jmp     L2BDD
 
 .endproc
 

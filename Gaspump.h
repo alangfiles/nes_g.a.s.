@@ -8,6 +8,7 @@ const unsigned char debug_mode = 1;
 
 unsigned int scroll_y;
 unsigned char scrolled_past_once;
+unsigned char scroll_page;
 unsigned char stop_scrolling;
 
 unsigned char option;

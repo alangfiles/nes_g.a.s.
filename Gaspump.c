@@ -17,8 +17,8 @@
 #include "Metatiles.h"
 #include "level1.h"
  
-#include "LEVELS/evaluation.h"
-#include "LEVELS/talkingtime.h"
+#include "BACKGROUNDS/evaluation.h"
+#include "BACKGROUNDS/talkingtime.h"
 
 // #include "CUTSCENES/Intro.h"
 // #include "CUTSCENES/Intro.c"
@@ -63,11 +63,14 @@ enum{BANK_0, BANK_1, BANK_2, BANK_3, BANK_4, BANK_5, BANK_6};
 // BANK0 is being used for the INTRO_CUTSCENE
 #pragma rodata-name ("BANK0")
 #pragma code-name ("BANK0")
-#include "LEVELS/intro_topdata.h"
-#include "LEVELS/intro_middledata.h"
-// #include "LEVELS/intro_bottomdata.h"
-
+#include "BACKGROUNDS/intro_topdata.h"
+#include "BACKGROUNDS/intro_middledata.h"
 #include "CUTSCENES/bottomdata.h"
+// #include "CUTSCENES/middledata.h"
+#include "BACKGROUNDS/scrollstart.h"
+#include "BACKGROUNDS/scrollmiddle.h"
+#include "BACKGROUNDS/scrollbottom.h"
+
 
 void bank_1_init_mode_instructions(void); //prototype (needed to get call from bank_1)
 
@@ -81,6 +84,7 @@ const unsigned char intro_cutscene_palette[16]={
 };
 
 unsigned char line_counter = 0;
+unsigned char screen_line_counter = 0;
 
 
 void bank_0_init_mode_intro_text(void){
@@ -89,6 +93,10 @@ void bank_0_init_mode_intro_text(void){
 	stop_scrolling = 0;
 	moveframes = 0;
 	line_counter = 0;
+	screen_line_counter=0;
+	scroll_page = 0;
+	cutscene_index = NAMETABLE_C;
+	pointer = scrollstart;
 	scroll(0,0); //reset scrolling
 	set_mirroring(MIRROR_HORIZONTAL);
 	//reset changed values so they redraw
@@ -97,15 +105,9 @@ void bank_0_init_mode_intro_text(void){
 
 	pal_bg(intro_cutscene_palette);
 
-	set_chr_bank_0(INTRO_CHR);
+	set_chr_bank_0(TALKING_TIME_CHR);
 	set_chr_bank_1(TALKING_TIME_CHR);
-	// vram_adr(NAMETABLE_A);
-	// // this sets a start position on the BG, top left of screen A
-	// vram_unrle(EVALUATION);
-
-	vram_adr(NAMETABLE_C);
-	// this sets a start position on the BG, top left of screen A
-	vram_unrle(EVALUATION);
+	
 	ppu_on_all(); // turn on screen
 	game_mode = MODE_INTRO_TEXT;
 	
@@ -117,6 +119,7 @@ void bank_0_init_mode_intro_cutscene(void){
 	stop_scrolling = 0;
 	moveframes = 0;
 	line_counter = 0;
+	scroll_y = 0;
 	scroll(0,0); //reset scrolling
 	set_mirroring(MIRROR_HORIZONTAL);
 	//reset changed values so they redraw
@@ -140,79 +143,60 @@ void bank_0_init_mode_intro_cutscene(void){
 	// this sets a start position on the BG, top left of screen A
 	vram_unrle(INTRO_MIDDLE);
 	
-	// vram_adr(NAMETABLE_A); //Nametable A;
-	// for(largeindex = 0; largeindex < 1024; ++largeindex){
-	// 	vram_put(intro_top[largeindex]);
-	// 	++index;
-	// 	if(index > 40) { //don't put too much in the vram_buffer
-	// 		flush_vram_update2();
-	// 		index = 0;
-	// 	}
-	// }
-
-	// vram_adr(NAMETABLE_C); //Nametable A;
-	// for(largeindex = 0; largeindex < 1024; ++largeindex){
-	// 	vram_put(intro_middle[largeindex]);
-	// 	++index;
-	// 	if(index > 40) { //don't put too much in the vram_buffer
-	// 		flush_vram_update2();
-	// 		index = 0;
-	// 	}
-	// }
 	ppu_on_all(); // turn on screen
 	game_mode=MODE_INTRO_CUTSCENE;
-	pal_fade_to(0,4);
-}	
+	pal_fade_to(0,4);        
+}	  
 
 
 void bank_0_mode_intro_text(void){
-	++moveframes;
-	++line_counter;
+	++moveframes; //count up each frame
 
-	if(stop_scrolling == 0 && moveframes > 0){
-
-		scroll_y += 1;
-
-		if(scrolled_past_once == 1 && scroll_y > 0x1df){
-			stop_scrolling = 1;
-			moveframes=0;
-		}
-		
-		// scroll_y = add_scroll_y(1, scroll_y);
-
-		if( line_counter == 8 && nametable_index < 1024){ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
-			for(index = 0; index < 32; ++index){
-				one_vram_buffer(0x0, cutscene_index);
-				++nametable_index;
-				++cutscene_index;
-			}
-			// flush_vram_update2();
-			
-
-			line_counter = 0;
-		}
-
-		
-
-		if(scroll_y == 0x0ff){
-			// ppu_off();
-			// vram_adr(NAMETABLE_A);
-			// vram_unrle(INTRO_BOTTOM);
-			// ppu_on_all();
-			scrolled_past_once = 1;
-		}
-
-		if(scroll_y > 0x1df) {
-			scroll_y = 0;
-		}
-		scroll(0,scroll_y);
+	if(moveframes == 3){
+		++line_counter; //count 1 line up for each frame, so we know when we'd done 8 frames, and card draw
+		++screen_line_counter; //count each screen line
+		++scroll_y;
 		moveframes = 0;
 	}
+	
 
-	if(stop_scrolling == 1 && moveframes == 20){
-		//wait for a while after scrolling down, then do cutscene.
+	if(screen_line_counter > 240) 
+	{
+		++scroll_page;
+		screen_line_counter = 0;
+		nametable_index = 0;
+		//update where we're pointing
+		if(scroll_page == 1){
+				cutscene_index = NAMETABLE_A;
+				pointer = scrollmiddle;
+		}
+		if(scroll_page == 2){
+			cutscene_index = NAMETABLE_C;
+			pointer = scrollbottom;
+		}
+	}
+
+	if(scroll_page == 3){ //we're done here
 		pal_fade_to(4,0);
 		bank_0_init_mode_intro_cutscene();
+		return;
+	}
+
+	if( line_counter == 8 && nametable_index < 1024){ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
+		for(index = 0; index < 32; ++index){
+			one_vram_buffer(pointer[nametable_index], cutscene_index);
+			++nametable_index;
+			++cutscene_index;
+		}
+		line_counter = 0;
+	}
+
+	if(scroll_y > 0x1df) {
+		scroll_y = 0;
+	}
+
+	if(moveframes == 0){
+		scroll(0,scroll_y);
 	}
 }
 
@@ -286,7 +270,7 @@ void bank_1_init_mode_instructions(void){
 	// index = get_frame_count() & 3; // returns 0,1,2,3
 	// gas_goal = gas_goal_array[index];
 
-	switch (levels_complete)
+	switch (BACKGROUNDS_complete)
 	{
 	case 0:
 		pointer = level_0_text;
@@ -347,6 +331,41 @@ void bank_1_instructions_loop(void){
 			}
 }
 
+#include "CUTSCENES/bottomshiny.h";
+
+void bank_1_init_mode_title(void){ 
+	ppu_off();	 // screen off
+	oam_clear(); // clear all sprites
+
+	//todo: update these to the right banks
+	pal_bg(intro_cutscene_palette);
+
+	// bird_x = 0;
+
+	set_chr_bank_0(INTRO_CHR);
+	set_chr_bank_1(TALKING_TIME_CHR);
+
+	vram_adr(NAMETABLE_A);
+	vram_unrle(bottomshiny);
+	multi_vram_buffer_horz("G.A.S.", 6, NTADR_A(12,4)); 
+	multi_vram_buffer_horz("Gas Attendant Simulator", 23, NTADR_A(5,6)); 
+	flush_vram_update2();
+
+	multi_vram_buffer_horz("Game Quest Mode", 15, NTADR_A(8,17)); 
+	multi_vram_buffer_horz("Free Pump Mode", 14, NTADR_A(8,19)); 
+	flush_vram_update2();
+
+	ppu_on_all(); // turn on screen
+	game_mode=MODE_TITLE;
+	game_level=START_OF_GAME;
+	option = 0;
+	BACKGROUNDS_complete = 0;
+	perfect_BACKGROUNDS = 0;
+	reset_game_variables();
+
+	//todo: add title music
+}	
+
 
 // the fixed bank, bank 7
 #pragma rodata-name ("CODE")
@@ -378,7 +397,7 @@ void main (void) {
 	ppu_on_all(); // turn on screen
 	
 	
-	init_mode_title();
+	banked_call(BANK_1,bank_1_init_mode_title);
 	 
 	while (1){
 
@@ -991,38 +1010,6 @@ void find_sprite(void){
 	}
 }
 
-void draw_title_background(void){
-	clear_background();
-	multi_vram_buffer_horz("G.A.S.", 6, NTADR_A(12,4)); 
-	multi_vram_buffer_horz("Gas Attendant Simulator", 23, NTADR_A(5,6)); 
-	flush_vram_update2();
-
-	multi_vram_buffer_horz("Game Quest Mode", 15, NTADR_A(8,17)); 
-	multi_vram_buffer_horz("Free Pump Mode", 14, NTADR_A(8,19)); 
-	flush_vram_update2();
-}
-
-void init_mode_title(void){ 
-	ppu_off();	 // screen off
-	oam_clear(); // clear all sprites
-
-	//todo: update these to the right banks
-	set_chr_bank_0(TALKING_TIME_CHR);
-	set_chr_bank_1(TALKING_TIME_CHR);
-
-	draw_title_background();
-
-	ppu_on_all(); // turn on screen
-	game_mode=MODE_TITLE;
-	game_level=START_OF_GAME;
-	option = 0;
-	levels_complete = 0;
-	perfect_levels = 0;
-	reset_game_variables();
-
-	//todo: add title music
-}	
-
 void init_level_one_end(void){ 
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
@@ -1030,7 +1017,7 @@ void init_level_one_end(void){
 	gas_goal_hundreds = 0;
 	
 
-	draw_evaluation_time_background();
+	draw_evaluation_time_background();  
 	gas_pumped = 0;
 	for(index = 0; index < gas3; ++index){
 		gas_pumped += 100;
@@ -1067,7 +1054,7 @@ void init_level_one_end(void){
 		multi_vram_buffer_horz("Bit too much, bub.", 18, NTADR_A(2,18)); 
 		flush_vram_update2();
 	} else if (gas_pumped >= gas_goal_hundreds-5){
-		++levels_complete;
+		++BACKGROUNDS_complete;
 		multi_vram_buffer_horz("!!! WOW !!!", 11, NTADR_A(2,18)); 
 		multi_vram_buffer_horz("You've got it kid", 17, NTADR_A(2,20)); 
 		flush_vram_update2();

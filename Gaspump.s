@@ -14658,7 +14658,7 @@ L21EA:	rts
 ;
 	jsr     _flush_vram_update2
 ;
-; multi_vram_buffer_horz("Game Quest Mode", 15, NTADR_A(8,17)); 
+; multi_vram_buffer_horz("Game Quest Mode", 15, NTADR_A(8,22)); 
 ;
 	jsr     decsp3
 	lda     #<(L24CC)
@@ -14671,10 +14671,10 @@ L21EA:	rts
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$22
-	lda     #$28
+	lda     #$C8
 	jsr     _multi_vram_buffer_horz
 ;
-; multi_vram_buffer_horz("Free Pump Mode", 14, NTADR_A(8,19)); 
+; multi_vram_buffer_horz("Free Pump Mode", 14, NTADR_A(8,24)); 
 ;
 	jsr     decsp3
 	lda     #<(L24D6)
@@ -14686,8 +14686,8 @@ L21EA:	rts
 	lda     #$0E
 	ldy     #$00
 	sta     (sp),y
-	ldx     #$22
-	lda     #$68
+	ldx     #$23
+	lda     #$08
 	jsr     _multi_vram_buffer_horz
 ;
 ; flush_vram_update2();
@@ -14815,15 +14815,15 @@ L2BDD:	lda     _game_mode
 	lda     _option
 	bne     L250C
 ;
-; one_vram_buffer(0x3d, NTADR_A(6,17));
+; one_vram_buffer(0x3d, NTADR_A(6,22));
 ;
 	lda     #$3D
 	jsr     pusha
 	ldx     #$22
-	lda     #$26
+	lda     #$C6
 	jsr     _one_vram_buffer
 ;
-; one_vram_buffer(0x3f, NTADR_A(6,19));
+; one_vram_buffer(0x3f, NTADR_A(6,24));
 ;
 	lda     #$3F
 ;
@@ -14831,20 +14831,20 @@ L2BDD:	lda     _game_mode
 ;
 	jmp     L2BF2
 ;
-; one_vram_buffer(0x3f, NTADR_A(6,17));
+; one_vram_buffer(0x3f, NTADR_A(6,22));
 ;
 L250C:	lda     #$3F
 	jsr     pusha
 	ldx     #$22
-	lda     #$26
+	lda     #$C6
 	jsr     _one_vram_buffer
 ;
-; one_vram_buffer(0x3d, NTADR_A(6,19));
+; one_vram_buffer(0x3d, NTADR_A(6,24));
 ;
 	lda     #$3D
 L2BF2:	jsr     pusha
-	ldx     #$22
-	lda     #$66
+	ldx     #$23
+	lda     #$06
 	jsr     _one_vram_buffer
 ;
 ; read_input();
@@ -14912,7 +14912,7 @@ L2BF2:	jsr     pusha
 ;
 	jmp     L2BDF
 ;
-; multi_vram_buffer_horz("No Free Pump Mode yet", 21, NTADR_A(6, 21));
+; multi_vram_buffer_horz("No Free Pump Mode yet", 21, NTADR_A(6, 25));
 ;
 L253E:	jsr     decsp3
 	lda     #<(L2546)
@@ -14943,7 +14943,7 @@ L253C:	lda     _option
 L2BDE:	lda     #$00
 L2BDC:	sta     _option
 ;
-; multi_vram_buffer_horz("                     ", 21, NTADR_A(6, 21));
+; multi_vram_buffer_horz("                     ", 21, NTADR_A(6, 25));
 ;
 	jsr     decsp3
 	lda     #<(L2558)
@@ -14955,8 +14955,8 @@ L2BF6:	sta     (sp),y
 	lda     #$15
 	ldy     #$00
 	sta     (sp),y
-	ldx     #$22
-	lda     #$A6
+	ldx     #$23
+	lda     #$26
 	jsr     _multi_vram_buffer_horz
 ;
 ; if(game_mode == MODE_INTRO_TEXT){

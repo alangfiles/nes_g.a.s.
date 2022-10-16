@@ -337,8 +337,8 @@ void bank_1_init_mode_title(void){
 	multi_vram_buffer_horz("Gas Attendant Simulator", 23, NTADR_A(5,6)); 
 	flush_vram_update2();
 
-	multi_vram_buffer_horz("Game Quest Mode", 15, NTADR_A(8,17)); 
-	multi_vram_buffer_horz("Free Pump Mode", 14, NTADR_A(8,19)); 
+	multi_vram_buffer_horz("Game Quest Mode", 15, NTADR_A(8,22)); 
+	multi_vram_buffer_horz("Free Pump Mode", 14, NTADR_A(8,24)); 
 	flush_vram_update2();
 
 	ppu_on_all(); // turn on screen
@@ -390,15 +390,12 @@ void main (void) {
 		if(game_mode == MODE_TITLE){
 			ppu_wait_nmi();
 
-			
-
-
 			if(option == 0){
-				one_vram_buffer(0x3d, NTADR_A(6,17));
-				one_vram_buffer(0x3f, NTADR_A(6,19));
+				one_vram_buffer(0x3d, NTADR_A(6,22));
+				one_vram_buffer(0x3f, NTADR_A(6,24));
 			} else {
-				one_vram_buffer(0x3f, NTADR_A(6,17));
-				one_vram_buffer(0x3d, NTADR_A(6,19));
+				one_vram_buffer(0x3f, NTADR_A(6,22));
+				one_vram_buffer(0x3d, NTADR_A(6,24));
 			}
 
 			read_input();
@@ -433,7 +430,7 @@ void main (void) {
 						wait_a_little();
 						banked_call(BANK_0, bank_0_init_mode_intro_text);
 					} else {
-						multi_vram_buffer_horz("No Free Pump Mode yet", 21, NTADR_A(6, 21));
+						multi_vram_buffer_horz("No Free Pump Mode yet", 21, NTADR_A(6, 25));
 					}
 				}
 				else{
@@ -442,7 +439,7 @@ void main (void) {
 					} else {
 						option = 0;
 					}
-					multi_vram_buffer_horz("                     ", 21, NTADR_A(6, 21));
+					multi_vram_buffer_horz("                     ", 21, NTADR_A(6, 25));
 				}
 				
 			}

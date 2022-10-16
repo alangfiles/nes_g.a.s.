@@ -20,9 +20,6 @@
 #include "BACKGROUNDS/evaluation.h"
 #include "BACKGROUNDS/talkingtime.h"
 
-// #include "CUTSCENES/Intro.h"
-// #include "CUTSCENES/Intro.c"
-
 const unsigned char background_pal[16]={ 
 	0x2c,0x05,0x3d,0x15,
 	0x2c,0x05,0x37,0x15,
@@ -65,8 +62,7 @@ enum{BANK_0, BANK_1, BANK_2, BANK_3, BANK_4, BANK_5, BANK_6};
 #pragma code-name ("BANK0")
 #include "BACKGROUNDS/intro_topdata.h"
 #include "BACKGROUNDS/intro_middledata.h"
-#include "CUTSCENES/bottomdata.h"
-// #include "CUTSCENES/middledata.h"
+#include "BACKGROUNDS/bottomdata.h"
 #include "BACKGROUNDS/scrollstart.h"
 #include "BACKGROUNDS/scrollmiddle.h"
 #include "BACKGROUNDS/scrollbottom.h"
@@ -270,7 +266,7 @@ void bank_1_init_mode_instructions(void){
 	// index = get_frame_count() & 3; // returns 0,1,2,3
 	// gas_goal = gas_goal_array[index];
 
-	switch (BACKGROUNDS_complete)
+	switch (levels_complete)
 	{
 	case 0:
 		pointer = level_0_text;
@@ -331,7 +327,7 @@ void bank_1_instructions_loop(void){
 			}
 }
 
-#include "CUTSCENES/bottomshiny.h";
+#include "BACKGROUNDS/bottomshiny.h";
 
 void bank_1_init_mode_title(void){ 
 	ppu_off();	 // screen off
@@ -359,8 +355,8 @@ void bank_1_init_mode_title(void){
 	game_mode=MODE_TITLE;
 	game_level=START_OF_GAME;
 	option = 0;
-	BACKGROUNDS_complete = 0;
-	perfect_BACKGROUNDS = 0;
+	levels_complete = 0;
+	perfect_levels = 0;
 	reset_game_variables();
 
 	//todo: add title music
@@ -1054,7 +1050,7 @@ void init_level_one_end(void){
 		multi_vram_buffer_horz("Bit too much, bub.", 18, NTADR_A(2,18)); 
 		flush_vram_update2();
 	} else if (gas_pumped >= gas_goal_hundreds-5){
-		++BACKGROUNDS_complete;
+		++levels_complete;
 		multi_vram_buffer_horz("!!! WOW !!!", 11, NTADR_A(2,18)); 
 		multi_vram_buffer_horz("You've got it kid", 17, NTADR_A(2,20)); 
 		flush_vram_update2();

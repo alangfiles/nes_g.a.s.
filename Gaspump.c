@@ -47,6 +47,19 @@ const unsigned char gaspump_sprite_palette[]={
 	0x0f,0x09,0x19,0x29 
 	};
 
+	const unsigned char fade_1[16]={ 
+						0x0f,0x04,0x07,0x10,
+						0x0f,0x04,0x07,0x10,
+						0x0f,0x04,0x07,0x10,
+						0x0f,0x04,0x07,0x10,
+						};
+						const unsigned char fade_2[16]={ 
+						0x0f,0x0C,0x08,0x2D,
+						0x0f,0x0C,0x08,0x2D,
+						0x0f,0x0C,0x08,0x2D,
+						0x0f,0x0C,0x08,0x2D,
+						};
+
 
 enum{BANK_0, BANK_1, BANK_2, BANK_3, BANK_4, BANK_5, BANK_6};
 // 7 shouldn't be needed, that's the fixed bank, just call it normally
@@ -78,7 +91,7 @@ void bank_0_init_mode_intro_scroll(void){
 	stop_scrolling = 0;
 	moveframes = 0;
 	line_counter = 0;
-	screen_line_counter=0;
+	screen_line_counter=0;  
 	scroll_page = 0;
 	cutscene_index = NAMETABLE_C;
 	pointer = intro_scroll_1;
@@ -89,11 +102,15 @@ void bank_0_init_mode_intro_scroll(void){
 	oam_clear(); // clear all sprites
 
 	pal_bg(intro_cutscene_palette);
+	clear_background();
+	// scroll_y = 0x080;
+	// scroll(0,scroll_y);
 
 	set_chr_bank_0(TALKING_TIME_CHR);
 	set_chr_bank_1(TALKING_TIME_CHR);
 	
 	ppu_on_all(); // turn on screen
+	pal_fade_to(0,4);
 	game_mode = MODE_INTRO_SCROLL;
 	
 }
@@ -428,6 +445,22 @@ void main (void) {
 					if(option == 0){
 						//debug, just go to game
 						wait_a_little();
+						//flash colors:
+						//0x0f,0x01,0x14,0x30,
+						
+						pal_bg(fade_1);
+						// pal_col(1, 0x04);
+						// pal_col(2, 0x07);
+						// pal_col(3, 0x10);
+						for(index = 0; index < 15; ++index){
+							ppu_wait_nmi();
+						}
+						
+						pal_bg(fade_2);
+						for(index = 0; index < 15; ++index){
+							ppu_wait_nmi();
+						}
+						pal_fade_to(4,0);
 						banked_call(BANK_0, bank_0_init_mode_intro_scroll);
 					} else {
 						multi_vram_buffer_horz("No Free Pump Mode yet", 21, NTADR_A(6, 25));
@@ -617,7 +650,7 @@ void draw_talking_time_sprites(void){
 void clear_background(void) {
 	//draw all 0x00 into the bg
 	vram_adr(NAMETABLE_A);
-	for(tempint = 0; tempint < 960; ++tempint){
+	for(tempint = 0; tempint < 1024; ++tempint){
 		vram_put(0x00);
 		flush_vram_update2();
 	}

@@ -9,6 +9,8 @@
     "scrollmiddle.h": "c",
     "scrollbottom.h": "c",
     "middledata.h": "c",
-    "intro_topdata.h": "c"
+    "intro_topdata.h": "c",
+    "evaluation_rle.h": "c",
+    "talkingtime_rle.h": "c"
   }
 }

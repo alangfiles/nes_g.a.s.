@@ -17,8 +17,8 @@
 #include "Metatiles.h"
 #include "level1.h"
  
-#include "BACKGROUNDS/evaluation.h"
-#include "BACKGROUNDS/talkingtime.h"
+#include "BACKGROUNDS/evaluation_rle.h"
+#include "BACKGROUNDS/talkingtime_rle.h"
 
 const unsigned char background_pal[16]={ 
 	0x2c,0x05,0x3d,0x15,
@@ -60,12 +60,12 @@ enum{BANK_0, BANK_1, BANK_2, BANK_3, BANK_4, BANK_5, BANK_6};
 // BANK0 is being used for the INTRO_CUTSCENE
 #pragma rodata-name ("BANK0")
 #pragma code-name ("BANK0")
-#include "BACKGROUNDS/intro_topdata.h"
-#include "BACKGROUNDS/intro_middledata.h"
-#include "BACKGROUNDS/bottomdata.h"
-#include "BACKGROUNDS/scrollstart.h"
-#include "BACKGROUNDS/scrollmiddle.h"
-#include "BACKGROUNDS/scrollbottom.h"
+#include "BACKGROUNDS/intro_cutscene_1.h"
+#include "BACKGROUNDS/intro_cutscene_2.h"
+#include "BACKGROUNDS/intro_cutscene_3.h"
+#include "BACKGROUNDS/intro_scroll_1.h"
+#include "BACKGROUNDS/intro_scroll_2.h"
+#include "BACKGROUNDS/intro_scroll_3.h"
 
 
 void bank_1_init_mode_instructions(void); //prototype (needed to get call from bank_1)
@@ -92,7 +92,7 @@ void bank_0_init_mode_intro_text(void){
 	screen_line_counter=0;
 	scroll_page = 0;
 	cutscene_index = NAMETABLE_C;
-	pointer = scrollstart;
+	pointer = intro_scroll_1;
 	scroll(0,0); //reset scrolling
 	set_mirroring(MIRROR_HORIZONTAL);
 	//reset changed values so they redraw
@@ -133,11 +133,11 @@ void bank_0_init_mode_intro_cutscene(void){
 
 	vram_adr(NAMETABLE_A);
 	// this sets a start position on the BG, top left of screen A
-	vram_unrle(INTRO_TOP);
+	vram_unrle(intro_cutscene_1);
 
 	vram_adr(NAMETABLE_C);
 	// this sets a start position on the BG, top left of screen A
-	vram_unrle(INTRO_MIDDLE);
+	vram_unrle(intro_cutscene_2);
 	
 	ppu_on_all(); // turn on screen
 	game_mode=MODE_INTRO_CUTSCENE;
@@ -164,11 +164,11 @@ void bank_0_mode_intro_text(void){
 		//update where we're pointing
 		if(scroll_page == 1){
 				cutscene_index = NAMETABLE_A;
-				pointer = scrollmiddle;
+				pointer = intro_scroll_2;
 		}
 		if(scroll_page == 2){
 			cutscene_index = NAMETABLE_C;
-			pointer = scrollbottom;
+			pointer = intro_scroll_3;
 		}
 	}
 
@@ -213,7 +213,7 @@ void bank_0_mode_intro_cutscene(void){
 
 		if( line_counter == 8 && nametable_index < 1024){ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
 			for(index = 0; index < 32; ++index){
-				one_vram_buffer(bottomdata[nametable_index], cutscene_index);
+				one_vram_buffer(intro_cutscene_3[nametable_index], cutscene_index);
 				++nametable_index;
 				++cutscene_index;
 			}
@@ -327,7 +327,7 @@ void bank_1_instructions_loop(void){
 			}
 }
 
-#include "BACKGROUNDS/bottomshiny.h";
+#include "BACKGROUNDS/title_screen_rle.h";
 
 void bank_1_init_mode_title(void){ 
 	ppu_off();	 // screen off
@@ -339,10 +339,11 @@ void bank_1_init_mode_title(void){
 	// bird_x = 0;
 
 	set_chr_bank_0(INTRO_CHR);
-	set_chr_bank_1(TALKING_TIME_CHR);
+	set_chr_bank_1(INTRO_CHR);
 
 	vram_adr(NAMETABLE_A);
-	vram_unrle(bottomshiny);
+	vram_unrle(title_screen_rle);
+	
 	multi_vram_buffer_horz("G.A.S.", 6, NTADR_A(12,4)); 
 	multi_vram_buffer_horz("Gas Attendant Simulator", 23, NTADR_A(5,6)); 
 	flush_vram_update2();
@@ -589,7 +590,7 @@ void draw_evaluation_time_background(void){
 	pal_bg(talking_time_palete);
 
 	vram_adr(NAMETABLE_A);  
-	vram_unrle(EVALUATION);
+	vram_unrle(evaluation_rle);
 }
 
 void draw_talking_time_background(void) {
@@ -599,7 +600,7 @@ void draw_talking_time_background(void) {
 	pal_bg(talking_time_palete);
 
 	vram_adr(NAMETABLE_A);  
-	vram_unrle(TALKING_TIME_LEVEL);
+	vram_unrle(talkingtime_rle);
 	// ppu_off();	 // screen off
 	// oam_clear(); // clear all sprites
 	// ppu_mask(0x16); // for blacking out ppu

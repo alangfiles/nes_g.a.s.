@@ -72,7 +72,7 @@ unsigned char line_counter = 0;
 unsigned char screen_line_counter = 0;
 
 
-void bank_0_init_mode_intro_text(void){
+void bank_0_init_mode_intro_scroll(void){
 	nametable_index = 0;
 	scrolled_past_once = 0;
 	stop_scrolling = 0;
@@ -94,7 +94,7 @@ void bank_0_init_mode_intro_text(void){
 	set_chr_bank_1(TALKING_TIME_CHR);
 	
 	ppu_on_all(); // turn on screen
-	game_mode = MODE_INTRO_TEXT;
+	game_mode = MODE_INTRO_SCROLL;
 	
 }
 
@@ -134,7 +134,7 @@ void bank_0_init_mode_intro_cutscene(void){
 }	  
 
 
-void bank_0_mode_intro_text(void){
+void bank_0_mode_intro_scroll(void){
 	++moveframes; //count up each frame
 
 	if(moveframes == 3){
@@ -428,7 +428,7 @@ void main (void) {
 					if(option == 0){
 						//debug, just go to game
 						wait_a_little();
-						banked_call(BANK_0, bank_0_init_mode_intro_text);
+						banked_call(BANK_0, bank_0_init_mode_intro_scroll);
 					} else {
 						multi_vram_buffer_horz("No Free Pump Mode yet", 21, NTADR_A(6, 25));
 					}
@@ -444,9 +444,9 @@ void main (void) {
 				
 			}
 		}
-		if(game_mode == MODE_INTRO_TEXT){
+		if(game_mode == MODE_INTRO_SCROLL){
 			ppu_wait_nmi();
-			banked_call(BANK_0, bank_0_mode_intro_text);
+			banked_call(BANK_0, bank_0_mode_intro_scroll);
 			read_input();
 			if (trigger_clicked) //allow cutscene to be skipped
 			{

@@ -122,9 +122,9 @@ al 00CDCD ._adjust_gas
 al 000309 ._bankBuffer
 al 000308 ._bankLevel
 al 009800 ._bank_0_init_mode_intro_cutscene
-al 009864 ._bank_0_init_mode_intro_text
+al 009864 ._bank_0_init_mode_intro_scroll
 al 00999F ._bank_0_mode_intro_cutscene
-al 0098B4 ._bank_0_mode_intro_text
+al 0098B4 ._bank_0_mode_intro_scroll
 al 0083DF ._bank_1_init_mode_instructions
 al 0084D0 ._bank_1_init_mode_title
 al 008439 ._bank_1_instructions_loop

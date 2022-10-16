@@ -173,8 +173,8 @@
 	.export		_nametable_index
 	.export		_line_counter
 	.export		_screen_line_counter
-	.export		_bank_0_init_mode_intro_text
-	.export		_bank_0_mode_intro_text
+	.export		_bank_0_init_mode_intro_scroll
+	.export		_bank_0_mode_intro_scroll
 	.export		_bank_0_mode_intro_cutscene
 	.export		_level_0_text
 	.export		_level_1_text
@@ -13955,12 +13955,12 @@ L21A6:	jsr     _ppu_on_all
 .endproc
 
 ; ---------------------------------------------------------------
-; void __near__ bank_0_init_mode_intro_text (void)
+; void __near__ bank_0_init_mode_intro_scroll (void)
 ; ---------------------------------------------------------------
 
 .segment	"BANK0"
 
-.proc	_bank_0_init_mode_intro_text: near
+.proc	_bank_0_init_mode_intro_scroll: near
 
 .segment	"BANK0"
 
@@ -14046,7 +14046,7 @@ L21A6:	jsr     _ppu_on_all
 ;
 	jsr     _ppu_on_all
 ;
-; game_mode = MODE_INTRO_TEXT;
+; game_mode = MODE_INTRO_SCROLL;
 ;
 	lda     #$03
 	sta     _game_mode
@@ -14058,12 +14058,12 @@ L21A6:	jsr     _ppu_on_all
 .endproc
 
 ; ---------------------------------------------------------------
-; void __near__ bank_0_mode_intro_text (void)
+; void __near__ bank_0_mode_intro_scroll (void)
 ; ---------------------------------------------------------------
 
 .segment	"BANK0"
 
-.proc	_bank_0_mode_intro_text: near
+.proc	_bank_0_mode_intro_scroll: near
 
 .segment	"BANK0"
 
@@ -14900,12 +14900,12 @@ L2BF2:	jsr     pusha
 ;
 	jsr     _wait_a_little
 ;
-; banked_call(BANK_0, bank_0_init_mode_intro_text);
+; banked_call(BANK_0, bank_0_init_mode_intro_scroll);
 ;
 	lda     #$00
 	jsr     pusha
-	lda     #<(_bank_0_init_mode_intro_text)
-	ldx     #>(_bank_0_init_mode_intro_text)
+	lda     #<(_bank_0_init_mode_intro_scroll)
+	ldx     #>(_bank_0_init_mode_intro_scroll)
 	jsr     _banked_call
 ;
 ; } else {
@@ -14959,7 +14959,7 @@ L2BF6:	sta     (sp),y
 	lda     #$26
 	jsr     _multi_vram_buffer_horz
 ;
-; if(game_mode == MODE_INTRO_TEXT){
+; if(game_mode == MODE_INTRO_SCROLL){
 ;
 L2BDF:	lda     _game_mode
 	cmp     #$03
@@ -14969,12 +14969,12 @@ L2BDF:	lda     _game_mode
 ;
 	jsr     _ppu_wait_nmi
 ;
-; banked_call(BANK_0, bank_0_mode_intro_text);
+; banked_call(BANK_0, bank_0_mode_intro_scroll);
 ;
 	lda     #$00
 	jsr     pusha
-	lda     #<(_bank_0_mode_intro_text)
-	ldx     #>(_bank_0_mode_intro_text)
+	lda     #<(_bank_0_mode_intro_scroll)
+	ldx     #>(_bank_0_mode_intro_scroll)
 	jsr     _banked_call
 ;
 ; read_input();

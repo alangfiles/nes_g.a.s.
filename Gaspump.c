@@ -385,7 +385,7 @@ void main (void) {
 		if(game_mode == MODE_TITLE){
 			ppu_wait_nmi();
 
-			read_input();
+			
 
 
 			if(option == 0){
@@ -395,29 +395,34 @@ void main (void) {
 				one_vram_buffer(0x3f, NTADR_A(6,17));
 				one_vram_buffer(0x3d, NTADR_A(6,19));
 			}
-			
 
+			read_input();
+			
 			if (trigger_clicked) //if((pad2_zapper)&&(zapper_ready)){
 			{
 
 				// bg off, project white boxes
 				oam_clear();
 				// white_background();
-				ppu_mask(0x16); // BG off, won't happen till NEXT frame
+				pal_col(0, 0x30); //set color to white
+				// ppu_mask(0x16); // BG off, won't happen till NEXT frame
 				
 				ppu_wait_nmi(); // wait till the top of the next frame
 				// this frame will display no BG and a white box
 				
 				oam_clear(); // clear the NEXT frame
+				
 				// draw_title_background();
-				ppu_mask(0x1e); // bg on, won't happen till NEXT frame
-				
+				// ppu_mask(0x1e); // bg on, won't happen till NEXT frame
+				read_input();
+				// hit_detected = zap_read(1);
+
 				// hit_detected = zap_read(1); // look for light in zapper, port 2
-				
+				pal_col(0, 0x0f); //back to transparent
 
 
 
-				if(trigger_hit){
+				if(hit_detected){
 					if(option == 0){
 						//debug, just go to game
 						wait_a_little();
@@ -426,7 +431,7 @@ void main (void) {
 						multi_vram_buffer_horz("No Free Pump Mode yet", 21, NTADR_A(6, 21));
 					}
 				}
-				if(trigger_miss){
+				else{
 					if(option == 0){
 						option = 1;
 					} else {
@@ -620,7 +625,7 @@ void white_background(void) {
 	//draw all 0x00 into the bg
 	vram_adr(NAMETABLE_A);
 	for(tempint = 0; tempint < 960; ++tempint){
-		vram_put(0x03);
+		vram_put(0x00);
 		flush_vram_update2();
 	}
 }
@@ -648,15 +653,24 @@ void draw_talking_time(void) {
 }
 
 void read_input(void) {
+	hit_detected = 0;
 	//just a debug to include the a button for now.
+	//right now this is using 1 as the zapper
 	pad1 = pad_poll(0);				 // read the first controller
 	pad1_new = get_pad_new(0); // newly pressed button. do pad_poll first
 
-	trigger_pulled =  (pad1 & PAD_B) || (pad1 & PAD_A) || zap_shoot(0); // controller slot 1 zapper
-	trigger_clicked = (pad1_new & PAD_A) || (pad1_new & PAD_B); //needs to check last frame for blank
+	zapper_ready = pad1_zapper^1; // XOR last frame, make sure not held down still
+	pad1_zapper = zap_shoot(1); // controller slot 2
 
-	trigger_hit =  (pad1 & PAD_A) || zap_shoot(0); // controller slot 1 zapper
-	trigger_miss =  (pad1 & PAD_B) || zap_shoot(0); // controller slot 1 zapper
+	trigger_pulled =  (pad1 & PAD_B) || (pad1 & PAD_A) || zap_shoot(1); // controller slot 1 zapper
+	trigger_clicked = (pad1_new & PAD_A) || (pad1_new & PAD_B) || ((pad1_zapper)&&(zapper_ready)) ; //needs to check last frame for blank
+	
+	if((pad1_zapper)&&(zapper_ready)){
+		hit_detected = zap_read(1);
+	}
+	if(debug_mode && hit_detected == 0){
+		hit_detected = (pad1 & PAD_A);
+	}
 }
 
 void adjust_gas(void){

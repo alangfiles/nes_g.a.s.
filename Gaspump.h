@@ -1,9 +1,10 @@
 //variables
 
 #pragma bss-name(push, "ZEROPAGE")
-unsigned char pad2_zapper;
+unsigned char pad1_zapper;
 unsigned char zapper_ready; //wait till it's 0
 unsigned char hit_detected;
+const unsigned char debug_mode = 1;
 
 unsigned int scroll_y;
 unsigned char scrolled_past_once;
@@ -51,8 +52,8 @@ unsigned char pad1;
 unsigned char pad1_new;
 unsigned char trigger_pulled;
 unsigned char trigger_clicked;
-unsigned char trigger_hit;
-unsigned char trigger_miss;
+unsigned char debug_trigger_hit;
+unsigned char debug_trigger_miss;
 unsigned char started_pumping;
 
 unsigned char sprite_cost;

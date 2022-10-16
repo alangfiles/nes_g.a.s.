@@ -11,6 +11,7 @@
     "middledata.h": "c",
     "intro_topdata.h": "c",
     "evaluation_rle.h": "c",
-    "talkingtime_rle.h": "c"
+    "talkingtime_rle.h": "c",
+    "intro_cutscene_3.h": "c"
   }
 }

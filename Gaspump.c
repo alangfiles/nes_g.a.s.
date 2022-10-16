@@ -48,17 +48,17 @@ const unsigned char gaspump_sprite_palette[]={
 	};
 
 	const unsigned char fade_1[16]={ 
-						0x0f,0x04,0x07,0x10,
-						0x0f,0x04,0x07,0x10,
-						0x0f,0x04,0x07,0x10,
-						0x0f,0x04,0x07,0x10,
-						};
-						const unsigned char fade_2[16]={ 
-						0x0f,0x0C,0x08,0x2D,
-						0x0f,0x0C,0x08,0x2D,
-						0x0f,0x0C,0x08,0x2D,
-						0x0f,0x0C,0x08,0x2D,
-						};
+	0x0f,0x04,0x07,0x10,
+	0x0f,0x04,0x07,0x10,
+	0x0f,0x04,0x07,0x10,
+	0x0f,0x04,0x07,0x10,
+	};
+	const unsigned char fade_2[16]={ 
+	0x0f,0x0C,0x08,0x2D,
+	0x0f,0x0C,0x08,0x2D,
+	0x0f,0x0C,0x08,0x2D,
+	0x0f,0x0C,0x08,0x2D,
+	};
 
 
 enum{BANK_0, BANK_1, BANK_2, BANK_3, BANK_4, BANK_5, BANK_6};
@@ -74,6 +74,7 @@ enum{BANK_0, BANK_1, BANK_2, BANK_3, BANK_4, BANK_5, BANK_6};
 #include "BACKGROUNDS/intro_scroll_1.h"
 #include "BACKGROUNDS/intro_scroll_2.h"
 #include "BACKGROUNDS/intro_scroll_3.h"
+#include "BACKGROUNDS/intro_single_page.h"
 
 
 void bank_1_init_mode_instructions(void); //prototype (needed to get call from bank_1)
@@ -93,8 +94,11 @@ void bank_0_init_mode_intro_scroll(void){
 	line_counter = 0;
 	screen_line_counter=0;  
 	scroll_page = 0;
+	// scroll_page_end = 3; //this is for the 3 page scroll
+	scroll_page_end = 1; //this is for the 1 page scroll
 	cutscene_index = NAMETABLE_C;
-	pointer = intro_scroll_1;
+	pointer = intro_single_page;
+	// /pointer = intro_scroll_1;
 	scroll(0,0); //reset scrolling
 	set_mirroring(MIRROR_HORIZONTAL);
 	//reset changed values so they redraw
@@ -134,16 +138,22 @@ void bank_0_init_mode_intro_cutscene(void){
 
 	set_chr_bank_0(INTRO_CHR);
 	set_chr_bank_1(TALKING_TIME_CHR);
-	//draw_bg: draw background code
-	
 
 	vram_adr(NAMETABLE_A);
-	// this sets a start position on the BG, top left of screen A
-	vram_unrle(intro_cutscene_1);
+	for(nametable_index = 0; nametable_index < 1024; ++nametable_index){
+		vram_put(intro_cutscene_1[nametable_index]);
+		flush_vram_update2();
+	}
 
+	
 	vram_adr(NAMETABLE_C);
-	// this sets a start position on the BG, top left of screen A
-	vram_unrle(intro_cutscene_2);
+	for(nametable_index = 0; nametable_index < 1024; ++nametable_index){
+		vram_put(intro_cutscene_2[nametable_index]);
+		flush_vram_update2();
+	}
+	
+	cutscene_index = NAMETABLE_A;
+	nametable_index = 0;
 	
 	ppu_on_all(); // turn on screen
 	game_mode=MODE_INTRO_CUTSCENE;
@@ -169,8 +179,8 @@ void bank_0_mode_intro_scroll(void){
 		nametable_index = 0;
 		//update where we're pointing
 		if(scroll_page == 1){
-				cutscene_index = NAMETABLE_A;
-				pointer = intro_scroll_2;
+			cutscene_index = NAMETABLE_A;
+			pointer = intro_scroll_2;
 		}
 		if(scroll_page == 2){
 			cutscene_index = NAMETABLE_C;
@@ -178,7 +188,10 @@ void bank_0_mode_intro_scroll(void){
 		}
 	}
 
-	if(scroll_page == 3){ //we're done here
+	if(scroll_page == scroll_page_end){ //we're done here
+		for(index = 0; index < 180; ++index){
+			ppu_wait_nmi();
+		}
 		pal_fade_to(4,0);
 		bank_0_init_mode_intro_cutscene();
 		return;
@@ -202,7 +215,7 @@ void bank_0_mode_intro_scroll(void){
 	}
 }
 
-void bank_0_mode_intro_cutscene(void){
+void bank_0_mode_intro_cutscene_loop(void){
 	++moveframes;
 	++line_counter;
 
@@ -491,7 +504,7 @@ void main (void) {
 		}
 		if(game_mode == MODE_INTRO_CUTSCENE){
 			ppu_wait_nmi();
-			banked_call(BANK_0, bank_0_mode_intro_cutscene);
+			banked_call(BANK_0, bank_0_mode_intro_cutscene_loop);
 
 			read_input();
 

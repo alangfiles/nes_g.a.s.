@@ -74,6 +74,8 @@ enum{BANK_0, BANK_1, BANK_2, BANK_3, BANK_4, BANK_5, BANK_6};
 #include "BACKGROUNDS/intro_scroll_1.h"
 #include "BACKGROUNDS/intro_scroll_2.h"
 #include "BACKGROUNDS/intro_scroll_3.h"
+#include "BACKGROUNDS/intro_scroll_4.h"
+#include "BACKGROUNDS/intro_scroll_5.h"
 #include "BACKGROUNDS/intro_single_page.h"
 
 
@@ -94,11 +96,12 @@ void bank_0_init_mode_intro_scroll(void){
 	line_counter = 0;
 	screen_line_counter=0;  
 	scroll_page = 0;
+	scroll_page_end = 4; //this is for the 3 page scroll
 	// scroll_page_end = 3; //this is for the 3 page scroll
-	scroll_page_end = 1; //this is for the 1 page scroll
-	cutscene_index = NAMETABLE_C;
-	pointer = intro_single_page;
-	// /pointer = intro_scroll_1;
+	// scroll_page_end = 1; //this is for the 1 page scroll
+	cutscene_index = NAMETABLE_C;  
+	// pointer = intro_single_page;
+	pointer = intro_scroll_1;
 	scroll(0,0); //reset scrolling
 	set_mirroring(MIRROR_HORIZONTAL);
 	//reset changed values so they redraw
@@ -109,6 +112,8 @@ void bank_0_init_mode_intro_scroll(void){
 	clear_background();
 	// scroll_y = 0x080;
 	// scroll(0,scroll_y);
+	multi_vram_buffer_horz("Pull the Trigger", 16, NTADR_A(4,10)); 
+	multi_vram_buffer_horz("But don't click it", 18, NTADR_A(4,12)); 
 
 	set_chr_bank_0(TALKING_TIME_CHR);
 	set_chr_bank_1(TALKING_TIME_CHR);
@@ -162,13 +167,15 @@ void bank_0_init_mode_intro_cutscene(void){
 
 
 void bank_0_mode_intro_scroll(void){
-	++moveframes; //count up each frame
+	// ++moveframes; //count up each frame
 
-	if(moveframes == 3){
+	read_input();
+
+	if(trigger_pulled){
 		++line_counter; //count 1 line up for each frame, so we know when we'd done 8 frames, and card draw
 		++screen_line_counter; //count each screen line
 		++scroll_y;
-		moveframes = 0;
+		// moveframes = 0;
 	}
 	
 
@@ -186,6 +193,14 @@ void bank_0_mode_intro_scroll(void){
 			cutscene_index = NAMETABLE_C;
 			pointer = intro_scroll_3;
 		}
+		if(scroll_page == 3){
+			cutscene_index = NAMETABLE_A;
+			pointer = intro_scroll_4;
+		}
+		if(scroll_page == 4){
+			cutscene_index = NAMETABLE_C;
+			pointer = intro_scroll_5;
+		}
 	}
 
 	if(scroll_page == scroll_page_end){ //we're done here
@@ -197,13 +212,13 @@ void bank_0_mode_intro_scroll(void){
 		return;
 	}
 
-	if( line_counter == 8 && nametable_index < 1024){ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
+	if( line_counter == 16 && nametable_index < 1024){ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
 		for(index = 0; index < 32; ++index){
 			one_vram_buffer(pointer[nametable_index], cutscene_index);
 			++nametable_index;
 			++cutscene_index;
 		}
-		line_counter = 0;
+		line_counter = 8;
 	}
 
 	if(scroll_y > 0x1df) {

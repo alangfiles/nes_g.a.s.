@@ -383,8 +383,8 @@ void bank_1_init_mode_title(void){
 
 	// bird_x = 0;
 
-	set_chr_bank_0(CUTSCENE_GUN_CHR_0);
-	set_chr_bank_1(CUTSCENE_GUN_CHR_0);
+	set_chr_bank_0(CUTSCENE_CHR_0);
+	set_chr_bank_1(CUTSCENE_CHR_0);
 
 	vram_adr(NAMETABLE_A);
 	vram_unrle(title_screen_rle);

@@ -18942,14 +18942,14 @@ L325B:	rts
 	ldx     #>(_intro_cutscene_palette)
 	jsr     _pal_bg
 ;
-; set_chr_bank_0(CUTSCENE_GUN_CHR_0);
+; set_chr_bank_0(CUTSCENE_CHR_0);
 ;
-	lda     #$04
+	lda     #$06
 	jsr     _set_chr_bank_0
 ;
-; set_chr_bank_1(CUTSCENE_GUN_CHR_0);
+; set_chr_bank_1(CUTSCENE_CHR_0);
 ;
-	lda     #$04
+	lda     #$06
 	jsr     _set_chr_bank_1
 ;
 ; vram_adr(NAMETABLE_A);

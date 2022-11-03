@@ -342,9 +342,10 @@ sounds_data:
 
 .segment "CHARS"
 
-	.incbin "Gaspump.chr"
-	.incbin "talkingtime.chr"
-	.incbin "intro.chr"
+	.incbin "CHRS/Gaspump.chr"
+	.incbin "CHRS/talkingtime.chr"
+	.incbin "CHRS/cutscenegun.chr"
+	.incbin "CHRS/cutscene.chr"
 ; the CHARS segment is much bigger, and I could have 
 ; incbin-ed many more chr files
 	

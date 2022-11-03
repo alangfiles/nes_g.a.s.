@@ -77,7 +77,7 @@ enum{BANK_0, BANK_1, BANK_2, BANK_3, BANK_4, BANK_5, BANK_6};
 #include "BACKGROUNDS/intro_scroll_4.h"
 #include "BACKGROUNDS/intro_scroll_5.h"
 #include "BACKGROUNDS/intro_single_page.h"
-
+#include "BACKGROUNDS/cutscenegun_small_arrow.h"
 
 void bank_1_init_mode_instructions(void); //prototype (needed to get call from bank_1)
 
@@ -112,11 +112,20 @@ void bank_0_init_mode_intro_scroll(void){
 	clear_background();
 	// scroll_y = 0x080;
 	// scroll(0,scroll_y);
-	multi_vram_buffer_horz("Pull the Trigger", 16, NTADR_A(4,10)); 
-	multi_vram_buffer_horz("But don't click it", 18, NTADR_A(4,12)); 
+	// multi_vram_buffer_horz("Pull the Trigger", 16, NTADR_A(4,10)); 
+	// multi_vram_buffer_horz("But don't click it", 18, NTADR_A(4,12)); 
+	
+	
+	vram_adr(NAMETABLE_A);
+	for(nametable_index = 0; nametable_index < 1024; ++nametable_index){
+		vram_put(cutscenegun_small_arrow[nametable_index]);
+		flush_vram_update2();
+	}
+	nametable_index =0;
 
-	set_chr_bank_0(TALKING_TIME_CHR);
-	set_chr_bank_1(TALKING_TIME_CHR);
+	set_chr_bank_0(CUTSCENE_GUN_CHR_0);
+	set_chr_bank_1(CUTSCENE_GUN_CHR_1);
+
 	
 	ppu_on_all(); // turn on screen
 	pal_fade_to(0,4);
@@ -141,8 +150,8 @@ void bank_0_init_mode_intro_cutscene(void){
 
 	// bird_x = 0;
 
-	set_chr_bank_0(INTRO_CHR);
-	set_chr_bank_1(TALKING_TIME_CHR);
+	set_chr_bank_0(CUTSCENE_CHR_0);
+	set_chr_bank_1(CUTSCENE_CHR_1);
 
 	vram_adr(NAMETABLE_A);
 	for(nametable_index = 0; nametable_index < 1024; ++nametable_index){
@@ -181,6 +190,8 @@ void bank_0_mode_intro_scroll(void){
 
 	if(screen_line_counter > 240) 
 	{
+		set_chr_bank_0(CUTSCENE_CHR_0);
+		set_chr_bank_1(CUTSCENE_CHR_1);
 		++scroll_page;
 		screen_line_counter = 0;
 		nametable_index = 0;
@@ -206,19 +217,19 @@ void bank_0_mode_intro_scroll(void){
 	if(scroll_page == scroll_page_end){ //we're done here
 		for(index = 0; index < 180; ++index){
 			ppu_wait_nmi();
-		}
+	}
 		pal_fade_to(4,0);
 		bank_0_init_mode_intro_cutscene();
 		return;
 	}
 
-	if( line_counter == 16 && nametable_index < 1024){ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
+	if( line_counter == 8 && nametable_index < 1024){ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
 		for(index = 0; index < 32; ++index){
 			one_vram_buffer(pointer[nametable_index], cutscene_index);
 			++nametable_index;
 			++cutscene_index;
 		}
-		line_counter = 8;
+		line_counter = 0;
 	}
 
 	if(scroll_y > 0x1df) {
@@ -372,8 +383,8 @@ void bank_1_init_mode_title(void){
 
 	// bird_x = 0;
 
-	set_chr_bank_0(INTRO_CHR);
-	set_chr_bank_1(INTRO_CHR);
+	set_chr_bank_0(CUTSCENE_GUN_CHR_0);
+	set_chr_bank_1(CUTSCENE_GUN_CHR_0);
 
 	vram_adr(NAMETABLE_A);
 	vram_unrle(title_screen_rle);
@@ -631,8 +642,8 @@ void main (void) {
 }  
 
 void draw_evaluation_time_background(void){
-	set_chr_bank_0(TALKING_TIME_CHR);
-	set_chr_bank_1(TALKING_TIME_CHR);
+	set_chr_bank_0(TALKING_TIME_CHR_0);
+	set_chr_bank_1(TALKING_TIME_CHR_0);
 	// clear_background();
 	pal_bg(talking_time_palette);
 
@@ -641,8 +652,8 @@ void draw_evaluation_time_background(void){
 }
 
 void draw_talking_time_background(void) {
-	set_chr_bank_0(TALKING_TIME_CHR);
-	set_chr_bank_1(TALKING_TIME_CHR);
+	set_chr_bank_0(TALKING_TIME_CHR_0);
+	set_chr_bank_1(TALKING_TIME_CHR_0);
 	// clear_background();
 	pal_bg(talking_time_palette);
 
@@ -1130,8 +1141,8 @@ void init_mode_game(void){
 
 	bird_x = 0;
 
-	set_chr_bank_0(LEVEL1_BG_CHR);
-	set_chr_bank_1(LEVEL1_FG_CHR);
+	set_chr_bank_0(GASPUMP_CHR_0);
+	set_chr_bank_1(GASPUMP_CHR_1);
 	//draw_bg: draw background code
 	
 

@@ -15,7 +15,7 @@ file	id=11,name="CHRS/Gaspump.chr",size=8192,mtime=0x631F8185,mod=0
 file	id=12,name="CHRS/talkingtime.chr",size=8192,mtime=0x633A0FCD,mod=0
 file	id=13,name="CHRS/cutscenegun.chr",size=8192,mtime=0x63645D6F,mod=0
 file	id=14,name="CHRS/cutscene.chr",size=8192,mtime=0x63645CE6,mod=0
-file	id=15,name="Gaspump.s",size=240788,mtime=0x63645FC9,mod=1
+file	id=15,name="Gaspump.s",size=240788,mtime=0x636460C9,mod=1
 file	id=16,name="/usr/local/Cellar/cc65/2.19/share/cc65/asminc/longbranch.mac",size=2632,mtime=0x5ED2ADF3,mod=1
 file	id=17,name="/private/tmp/cc65-20201122-38696-hsf64/cc65-2.19/asminc/cpu.mac",size=843,mtime=0x5ED2ADF3,mod=10+12+13
 file	id=18,name="/private/tmp/cc65-20201122-38696-hsf64/cc65-2.19/asminc/zeropage.inc",size=721,mtime=0x5ED2ADF3,mod=17

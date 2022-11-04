@@ -6579,7 +6579,7 @@ _intro_scroll_1:
 	.byte	$09
 _intro_scroll_2:
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$20
 	.byte	$20
@@ -6608,10 +6608,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$74
 	.byte	$68
@@ -6640,10 +6640,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$20
 	.byte	$20
@@ -6672,10 +6672,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$44
 	.byte	$45
@@ -6704,42 +6704,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
-	.byte	$00
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$00
-	.byte	$00
-	.byte	$16
-	.byte	$00
-	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$20
 	.byte	$20
@@ -6768,10 +6736,42 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$3F
+	.byte	$00
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$00
+	.byte	$00
+	.byte	$CD
+	.byte	$00
+	.byte	$00
+	.byte	$CD
 	.byte	$00
 	.byte	$43
 	.byte	$69
@@ -6800,10 +6800,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$20
 	.byte	$20
@@ -6832,10 +6832,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$73
 	.byte	$63
@@ -6864,10 +6864,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$20
 	.byte	$20
@@ -6896,10 +6896,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$41
 	.byte	$6C
@@ -6928,10 +6928,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$20
 	.byte	$20
@@ -6960,10 +6960,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$77
 	.byte	$61
@@ -6992,42 +6992,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
-	.byte	$00
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$00
-	.byte	$00
-	.byte	$16
-	.byte	$00
-	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$20
 	.byte	$20
@@ -7056,10 +7024,42 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
+	.byte	$00
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$00
+	.byte	$00
+	.byte	$CD
+	.byte	$00
+	.byte	$00
+	.byte	$CD
 	.byte	$00
 	.byte	$42
 	.byte	$75
@@ -7088,10 +7088,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$20
 	.byte	$20
@@ -7120,10 +7120,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$75
 	.byte	$70
@@ -7152,10 +7152,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$20
 	.byte	$20
@@ -7184,10 +7184,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$62
 	.byte	$72
@@ -7216,42 +7216,10 @@ _intro_scroll_2:
 	.byte	$2E
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
-	.byte	$00
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$20
-	.byte	$00
-	.byte	$00
-	.byte	$16
-	.byte	$00
-	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$20
 	.byte	$20
@@ -7280,10 +7248,42 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
+	.byte	$00
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$20
+	.byte	$00
+	.byte	$00
+	.byte	$CD
+	.byte	$00
+	.byte	$00
+	.byte	$CD
 	.byte	$00
 	.byte	$54
 	.byte	$68
@@ -7312,10 +7312,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$20
 	.byte	$20
@@ -7344,10 +7344,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$42
 	.byte	$41
@@ -7376,10 +7376,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$20
 	.byte	$20
@@ -7408,10 +7408,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$73
 	.byte	$75
@@ -7440,10 +7440,10 @@ _intro_scroll_2:
 	.byte	$74
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$20
 	.byte	$20
@@ -7472,10 +7472,10 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$61
 	.byte	$72
@@ -7504,10 +7504,10 @@ _intro_scroll_2:
 	.byte	$73
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$20
 	.byte	$20
@@ -7536,7 +7536,7 @@ _intro_scroll_2:
 	.byte	$20
 	.byte	$00
 	.byte	$00
-	.byte	$16
+	.byte	$CD
 	.byte	$00
 	.byte	$AA
 	.byte	$AA
@@ -11741,6 +11741,38 @@ _cutscenegun_small_arrow:
 	.byte	$00
 	.byte	$00
 	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 	.byte	$8D
 	.byte	$8D
 	.byte	$8D
@@ -12464,70 +12496,6 @@ _cutscenegun_small_arrow:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-	.byte	$94
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -12657,6 +12625,38 @@ _cutscenegun_small_arrow:
 	.byte	$00
 	.byte	$00
 	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$94
 	.byte	$00
 	.byte	$00
 	.byte	$00

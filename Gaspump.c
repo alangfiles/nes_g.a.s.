@@ -110,7 +110,7 @@ void bank_0_init_mode_intro_scroll(void){
   
 	pal_bg(intro_cutscene_palette);
 	clear_background();
-	// scroll_y = 0x080;  
+	// scroll_y = 0x080;    
 	// scroll(0,scroll_y);  
 	// multi_vram_buffer_horz("Pull the Trigger", 16, NTADR_A(4,10)); 
 	// multi_vram_buffer_horz("But don't click it", 18, NTADR_A(4,12)); 

@@ -101,17 +101,17 @@ void bank_0_init_mode_intro_scroll(void){
 	// scroll_page_end = 1; //this is for the 1 page scroll
 	cutscene_index = NAMETABLE_C;  
 	// pointer = intro_single_page;
-	pointer = intro_scroll_1;
+	pointer = intro_scroll_1;  
 	scroll(0,0); //reset scrolling
-	set_mirroring(MIRROR_HORIZONTAL);
+	set_mirroring(MIRROR_HORIZONTAL);  
 	//reset changed values so they redraw
-	ppu_off();	 // screen off
+	ppu_off();	 // screen off  
 	oam_clear(); // clear all sprites
-
+  
 	pal_bg(intro_cutscene_palette);
 	clear_background();
-	// scroll_y = 0x080;
-	// scroll(0,scroll_y);
+	// scroll_y = 0x080;  
+	// scroll(0,scroll_y);  
 	// multi_vram_buffer_horz("Pull the Trigger", 16, NTADR_A(4,10)); 
 	// multi_vram_buffer_horz("But don't click it", 18, NTADR_A(4,12)); 
 	
@@ -135,6 +135,7 @@ void bank_0_init_mode_intro_scroll(void){
 
 void bank_0_init_mode_intro_cutscene(void){
 	nametable_index = 0;
+	cutscene_index = 0;
 	scrolled_past_once = 0;
 	stop_scrolling = 0;
 	moveframes = 0;

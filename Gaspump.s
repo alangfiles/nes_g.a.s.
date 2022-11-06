@@ -19188,17 +19188,17 @@ L3C7F:	lda     _game_mode
 	lda     #$C6
 	jsr     _one_vram_buffer
 ;
-; one_vram_buffer(0x3f, NTADR_A(6,24));
+; one_vram_buffer(0x00, NTADR_A(6,24));
 ;
-	lda     #$3F
+	lda     #$00
 ;
 ; } else {
 ;
 	jmp     L3C96
 ;
-; one_vram_buffer(0x3f, NTADR_A(6,22));
+; one_vram_buffer(0x00, NTADR_A(6,22));
 ;
-L3590:	lda     #$3F
+L3590:	lda     #$00
 	jsr     pusha
 	ldx     #$22
 	lda     #$C6

@@ -455,9 +455,9 @@ void main (void) {
 
 			if(option == 0){
 				one_vram_buffer(0x3d, NTADR_A(6,22));
-				one_vram_buffer(0x3f, NTADR_A(6,24));
+				one_vram_buffer(0x00, NTADR_A(6,24));
 			} else {
-				one_vram_buffer(0x3f, NTADR_A(6,22));
+				one_vram_buffer(0x00, NTADR_A(6,22));
 				one_vram_buffer(0x3d, NTADR_A(6,24));
 			}
 

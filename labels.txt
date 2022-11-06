@@ -53,11 +53,11 @@ al 00000B .__BSS_SIZE__
 al 00C0ED .__CODE_LOAD__
 al 00C0ED .__CODE_RUN__
 al 002574 .__CODE_SIZE__
-al 00EF1D .__DATA_LOAD__
+al 00EF2D .__DATA_LOAD__
 al 000300 .__DATA_RUN__
 al 000008 .__DATA_SIZE__
-al 00EF25 .__ONCE_LOAD__
-al 00EF25 .__ONCE_RUN__
+al 00EF35 .__ONCE_LOAD__
+al 00EF35 .__ONCE_RUN__
 al 000000 .__ONCE_SIZE__
 al 000010 .__PRG0_FILEOFFS__
 al 00AB96 .__PRG0_LAST__
@@ -97,7 +97,7 @@ al 000400 .__RAM_SIZE__
 al 000300 .__RAM_START__
 al 00E661 .__RODATA_LOAD__
 al 00E661 .__RODATA_RUN__
-al 0008BC .__RODATA_SIZE__
+al 0008CC .__RODATA_SIZE__
 al 000100 .__STACKSIZE__
 al 000700 .__STACK_START__
 al 00C000 .__STARTUP_LOAD__
@@ -168,8 +168,8 @@ al 00E167 ._draw_talking_time_background
 al 00E1A5 ._draw_talking_time_sprites
 al 00EC7A ._evaluation_rle
 al 00C000 ._exit
-al 00EEFD ._fade_1
-al 00EF0D ._fade_2
+al 00EF0D ._fade_1
+al 00EF1D ._fade_2
 al 00CF5F ._find_sprite
 al 00C643 ._flush_vram_update
 al 00C647 ._flush_vram_update2
@@ -191,7 +191,7 @@ al 000053 ._gas_goal_hundreds
 al 000059 ._gas_pumped
 al 000055 ._gas_speed
 al 00EEBD ._gaspump_palette
-al 00EEED ._gaspump_sprite_palette
+al 00EEFD ._gaspump_sprite_palette
 al 00C9B0 ._get_at_addr
 al 00C897 ._get_frame_count
 al 00C890 ._get_pad_new
@@ -206,7 +206,8 @@ al 00D074 ._init_mode_game
 al 008000 ._intro_cutscene_1
 al 008400 ._intro_cutscene_2
 al 008800 ._intro_cutscene_3
-al 00EEDD ._intro_cutscene_palette
+al 00EEDD ._intro_cutscene_gun_palette
+al 00EEED ._intro_cutscene_palette
 al 008C00 ._intro_scroll_1
 al 009000 ._intro_scroll_2
 al 009400 ._intro_scroll_3

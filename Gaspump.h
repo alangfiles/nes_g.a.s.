@@ -1,5 +1,11 @@
 //variables
 
+#define NAMETABLE_A_ATTR 0x23C0
+#define NAMETABLE_B_ATTR 0x27C0
+#define NAMETABLE_C_ATTR 0x2BC0
+#define NAMETABLE_D_ATTR 0x2FC0
+
+
 #pragma bss-name(push, "ZEROPAGE")
 unsigned char pad1_zapper;
 unsigned char zapper_ready; //wait till it's 0
@@ -74,7 +80,7 @@ enum
 	MODE_INTRO_SCROLL,
 	MODE_INTRO_CUTSCENE,
 	MODE_INTRO_INSTRUCTION,
-	MODE_TALKING_TIME,
+	MODE_EVALUATION_TIME,
 	MODE_END,
 	MODE_GAME_OVER,
 };
@@ -119,6 +125,8 @@ unsigned char text_rendered;
 unsigned char text_length;
 unsigned char text_row;
 unsigned char text_col;
+unsigned char text_x_start;
+unsigned char text_y_start;
 
 unsigned char moveframes;
 
@@ -154,6 +162,7 @@ void white_background(void);
 void reset_game_variables(void);
 void wait_a_little(void);
 void draw_title_background(void);
+void level_end_loop(void);
 // void new_star(void);
 // void draw_box(void);
 // void draw_star(void);

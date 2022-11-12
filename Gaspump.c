@@ -546,12 +546,12 @@ void main (void) {
 	pal_bg(gaspump_palette); //	load the palette
 	pal_spr(gaspump_sprite_palette); //	load the palette
 
-	pal_col(0,0x0D);
+	pal_col(0,0x0D);   
 	
 	bank_spr(1); // sprites use the 2nd tileset
 	set_scroll_y(0xff); // shift the bg down 1 pixel
 	
-	vram_adr(NAMETABLE_A);
+	vram_adr(NAMETABLE_A);  
 	// this sets a start position on the BG, top left of screen
 	// vram_adr() and vram_unrle() need to be done with the screen OFF
 	

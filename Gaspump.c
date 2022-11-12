@@ -314,6 +314,7 @@ void bank_0_mode_intro_cutscene_loop(void){
 	if(stop_scrolling == 1 && moveframes == 100){
 		//wait for a while after scrolling down, then do instructions.
 		banked_call(BANK_1, bank_1_init_mode_instructions);
+		
 	}
 }
 
@@ -440,13 +441,87 @@ void bank_1_init_mode_title(void){
 #pragma rodata-name ("BANK2")
 #pragma code-name ("BANK2")
 
-// void bank_1_init_mode_instructions(void); //prototype (needed to get call from bank_1)
+const unsigned char level_0_max[] = "Bit too much, bub.";
+const unsigned char level_0_good[] = "!!! WOW !!!\nYou've got it kid!";
+const unsigned char level_0_ok[] = "Hmmmmm....\nPump harder.";
+const unsigned char level_0_bad[] = "You just don't\nhave what it takes...";
+void bank_2_init_level_one_end(void){ 
+	ppu_off();	 // screen off
+	oam_clear(); // clear all sprites
+	clear_background();
+	gas_goal_hundreds = 0;
+
+	draw_evaluation_time_background();  
+	gas_pumped = 0;
+	for(index = 0; index < gas3; ++index){
+		gas_pumped += 100;
+	}
+	for(index = 0; index < gas2; ++index){
+		gas_pumped += 10;
+	}
+	gas_pumped += gas1;
+
+	for(index = 0; index < gas_goal; ++index){
+		gas_goal_hundreds += 100;
+	}
+
+	//pump scores:
+	//goal
+	one_vram_buffer(gas_goal+48, NTADR_A(21,2));
+	multi_vram_buffer_horz(".00 G", 5, NTADR_A(22,2)); 
+	flush_vram_update2();
+	//speed
+	multi_vram_buffer_horz(">>>", 3, NTADR_A(21,6)); 
+	flush_vram_update2();
+	//accuracy
+	one_vram_buffer(gas3+48, NTADR_A(21,8));
+	one_vram_buffer('.', NTADR_A(22,8));
+	one_vram_buffer(gas2+48, NTADR_A(23,8));
+	one_vram_buffer(gas1+48, NTADR_A(24,8));
+	one_vram_buffer('G', NTADR_A(26,8));
+	flush_vram_update2();
+	//style 
+	multi_vram_buffer_horz("NONE", 4, NTADR_A(21,10)); 
+	flush_vram_update2();
+	
+	text_x_start = 2;
+	text_y_start = 18;
+	reset_text_values();
+	if(gas_pumped > gas_goal_hundreds + 5){
+		pointer = level_0_max;
+		text_length = sizeof(level_0_max);
+	} else if (gas_pumped >= gas_goal_hundreds-5){
+		++levels_complete;
+		pointer = level_0_good;
+		text_length = sizeof(level_0_good);
+	} else if (gas_pumped >= gas_goal_hundreds-100){
+		pointer = level_0_ok;
+		text_length = sizeof(level_0_ok);
+	} else {
+		pointer = level_0_bad;
+		text_length = sizeof(level_0_bad);
+	}
+	
+	ppu_on_all(); // turn on screen
+	game_mode=MODE_EVALUATION_TIME;
+	game_level=LEVEL_ONE_COMPLETE;
+}	
 
 void bank_2_evaluation_loop(void){
 	++moveframes;
 
 	if(moveframes > 60){
 		moveframes = 0;
+	}
+
+	if(text_row <6){
+		typewriter();
+		if(moveframes >= 0 && moveframes < 30){
+			oam_meta_spr(0xb0, 0xaf, BigAlTalkClosedMouth);
+		}
+		if(moveframes >= 30 && moveframes < 61){
+			oam_meta_spr(0xb0, 0xaf, BigAlTalkMidMouth);
+		}
 	}
 	// //big al loop:
 	oam_clear(); // clear all sprites
@@ -455,15 +530,7 @@ void bank_2_evaluation_loop(void){
 	oam_meta_spr(0xa8, 0xb8, BigAlsShirt);
 	oam_meta_spr(0xb8, 0x98, BigAlsEyes);
 
-	if(text_row < 3){
-		if(moveframes >= 0 && moveframes < 30){
-			oam_meta_spr(0xb0, 0xaf, BigAlTalkClosedMouth);
-		}
-		if(moveframes >= 30 && moveframes < 61){
-			oam_meta_spr(0xb0, 0xaf, BigAlTalkMidMouth);
-		}
-		typewriter();
-	}
+	
 }
 
 
@@ -663,7 +730,7 @@ void main (void) {
 				if(started_pumping == 1){
 					//trigger ending
 					wait_a_little();
-					init_level_one_end();
+					banked_call(BANK_2, bank_2_init_level_one_end);
 				}
 			}
 		}
@@ -1095,71 +1162,7 @@ void find_sprite(void){
 }
 
 
-const unsigned char level_0_max[] = "Bit too much, bub.";
-const unsigned char level_0_good[] = "!!! WOW !!!\nYou've got it kid!";
-const unsigned char level_0_ok[] = "Hmmmmm....\nPump harder.";
-const unsigned char level_0_bad[] = "You just don't\nhave what it takes...";
-void init_level_one_end(void){ 
-	ppu_off();	 // screen off
-	oam_clear(); // clear all sprites
-	clear_background();
-	gas_goal_hundreds = 0;
-	
 
-	draw_evaluation_time_background();  
-	gas_pumped = 0;
-	for(index = 0; index < gas3; ++index){
-		gas_pumped += 100;
-	}
-	for(index = 0; index < gas2; ++index){
-		gas_pumped += 10;
-	}
-	gas_pumped += gas1;
-
-	for(index = 0; index < gas_goal; ++index){
-		gas_goal_hundreds += 100;
-	}
-
-	//pump scores:
-	//goal
-	one_vram_buffer(gas_goal+48, NTADR_A(21,2));
-	multi_vram_buffer_horz(".00 G", 5, NTADR_A(22,2)); 
-	flush_vram_update2();
-	//speed
-	multi_vram_buffer_horz(">>>", 3, NTADR_A(21,6)); 
-	flush_vram_update2();
-	//accuracy
-	one_vram_buffer(gas3+48, NTADR_A(21,8));
-	one_vram_buffer('.', NTADR_A(22,8));
-	one_vram_buffer(gas2+48, NTADR_A(23,8));
-	one_vram_buffer(gas1+48, NTADR_A(24,8));
-	one_vram_buffer('G', NTADR_A(26,8));
-	flush_vram_update2();
-	//style 
-	multi_vram_buffer_horz("NONE", 4, NTADR_A(21,10)); 
-	flush_vram_update2();
-	
-	text_x_start = 2;
-	text_y_start = 18;
-	if(gas_pumped > gas_goal_hundreds + 5){
-		pointer = level_0_max;
-		text_length = sizeof(level_0_max);
-	} else if (gas_pumped >= gas_goal_hundreds-5){
-		++levels_complete;
-		pointer = level_0_good;
-		text_length = sizeof(level_0_good);
-	} else if (gas_pumped >= gas_goal_hundreds-100){
-		pointer = level_0_ok;
-		text_length = sizeof(level_0_ok);
-	} else {
-		pointer = level_0_bad;
-		text_length = sizeof(level_0_bad);
-	}
-	
-	ppu_on_all(); // turn on screen
-	game_mode=MODE_EVALUATION_TIME;
-	game_level=LEVEL_ONE_COMPLETE;
-}	
 
 void init_mode_game(void){ 
 	//reset changed values so they redraw

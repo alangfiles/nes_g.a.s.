@@ -43,6 +43,7 @@ unsigned char gas2_changed;
 unsigned char gas1_changed;
 
 
+unsigned char alien_level;
 unsigned int gas_goal;
 unsigned int gas_goal_hundreds;
 const unsigned char gas_goal_array[]={1,2,3,4};

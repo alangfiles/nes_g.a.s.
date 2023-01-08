@@ -1,8 +1,32 @@
-/*	example code for cc65, for NES
- *  testing the zapper gun on controller slot 2
- *	using neslib
- *	Doug Fraker 2018
+/*	Based off code by nesdoug
  */
+
+/*  Development todo:
+ *
+ * [] cleanup palettes everywhere
+ * [] get space level in
+ * [] update "evaluation page" (do we even need it?)
+ * [] look into putting all functions in banks (main back getting full)
+ * [] Add text for successful/unsuccessful level
+ * [] Add ending scroll
+ * [] Add last level scroll
+ * [] Add sound effects
+ * [] add music
+ * [] add things flying in levels
+ * [] fill in scaffolding for game flow (including missing parts)
+ * 
+ * game flow:
+ * title->intro_scroll->intro_cutscene->
+ * talking_time(level1)->level1->evaluation(level1)-> (repeat if failed)
+ * talking_time(level2)->level2->evaluation(level2)-> (repeat if failed)
+ * talking_time(level3)->level3->evaluation(level3)-> (repeat if failed)
+ * last_level_cutscene (abduction)->
+ * talking_time(level4)->level4(space)->evaluation(level4) (probably a new screen)->
+ * (if failed) go to gameoverscreen.
+ * shooting_level???->ending_scroll
+ * 
+ */
+
 
 #include "LIB/neslib.h"
 #include "LIB/nesdoug.h"
@@ -96,6 +120,10 @@ enum
 };
 // 7 shouldn't be needed, that's the fixed bank, just call it normally
 
+/*
+ * Bank0 is used for the intro scroll and cutscene
+*/
+#pragma region BANK0
 // BANK0 is being used for the INTRO_CUTSCENE
 #pragma rodata-name("BANK0")
 #pragma code-name("BANK0")
@@ -356,6 +384,13 @@ void bank_0_mode_intro_cutscene_loop(void)
 	}
 }
 
+#pragma endregion
+
+/*
+ * Bank1 is used for talking_time stuff
+ */
+#pragma region BANK1
+
 #pragma rodata-name("BANK1")
 #pragma code-name("BANK1")
 
@@ -488,6 +523,13 @@ void bank_1_init_mode_title(void)
 	// todo: add title music
 }
 
+#pragma endregion
+
+
+/*
+ * Bank 2 is used for evaluation time stuff
+ */
+#pragma region BANK2
 #pragma rodata-name("BANK2")
 #pragma code-name("BANK2")
 
@@ -596,8 +638,37 @@ void bank_2_evaluation_loop(void)
 	oam_meta_spr(0xa8, 0xb8, BigAlsShirt);
 	oam_meta_spr(0xb8, 0x98, BigAlsEyes);
 }
+#pragma endregion
 
-// the fixed bank, bank 7
+/*
+ * Bank3 is used for Nothing at the moment...
+ * but I should move the level into this bank.
+ */
+#pragma rodata-name("BANK3")
+#pragma code-name("BANK3")
+
+void bank3_loop(void){
+	return;
+}
+
+#pragma endregion
+
+
+/*
+ *  Bank 7 is the fixed bank for game code.
+ *  But I think it's small because of that.
+ *  So really it'll just have the game loop and call off to other fns
+ * 
+ * Game flow:
+ * title->intro_scroll->intro_cutscene->
+ * talking_time(level1)->level1->evaluation(level1)-> (repeat if failed)
+ * talking_time(level2)->level2->evaluation(level2)-> (repeat if failed)
+ * talking_time(level3)->level3->evaluation(level3)-> (repeat if failed)
+ * last_level_cutscene (abduction)->
+ * talking_time(level4)->level4(space)->evaluation(level4) (probably a new screen)->
+ * (if failed) go to gameoverscreen.
+ * shooting_level???->ending_scroll
+ */
 #pragma rodata-name("CODE")
 #pragma code-name("CODE")
 

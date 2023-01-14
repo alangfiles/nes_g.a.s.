@@ -13,6 +13,7 @@
     "evaluation_rle.h": "c",
     "talkingtime_rle.h": "c",
     "intro_cutscene_3.h": "c",
-    "intro_scroll_1.h": "c"
+    "intro_scroll_1.h": "c",
+    "abduction_cutscene.h": "c"
   }
 }

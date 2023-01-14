@@ -82,7 +82,12 @@ enum
 	MODE_INTRO_CUTSCENE,
 	MODE_INTRO_INSTRUCTION,
 	MODE_EVALUATION_TIME,
-	MODE_END,
+	MODE_ABDUCTION_CUTSCENE,
+	MODE_ALIEN_INSTRUCTION,
+	MODE_ALIEN_LEVEL,
+	MODE_ALIEN_EVALUATION,
+	MODE_ALIEN_SHOOTING_GALLERY,
+	MODE_GAME_ENDING,
 	MODE_GAME_OVER,
 };
 
@@ -102,6 +107,8 @@ enum
 	CUTSCENE_GUN_CHR_1,
 	CUTSCENE_CHR_0,
 	CUTSCENE_CHR_1,
+	FUTUREPUMP_CHR_0,
+	FUTUREPUMP_CHR_1,
 };
 
 const unsigned char * pointer;
@@ -150,7 +157,7 @@ void init_mode_title(void);
 void typewriter(void);
 void reset_text_values(void);
 // void bank_0_init_mode_intro_cutscene(void);
-void init_mode_game(void);
+void gas_level_init(void);
 // void init_level_one_end(void);
 void draw_number_as_bg_tile(void);
 void draw_level_one_sprites(void);

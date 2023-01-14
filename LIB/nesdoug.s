@@ -113,10 +113,10 @@ _one_vram_buffer:
 	
 ;unsigned char __fastcall__ get_pad_new(unsigned char pad);	
 _get_pad_new:
-	tay
-	lda <PAD_STATET,y
-	ldx #0
-	rts
+	tay                    ; a comes in as `pad` value (0 or 1 for which pad to read)
+	lda <PAD_STATET,y      ; load pad_state+y to get which pad trigger to read
+	ldx #0                 ; idk why x is set to zero? 
+	rts                    ; returns from subroutine with padstate in the accumlator which it returns
 	
 	
 	

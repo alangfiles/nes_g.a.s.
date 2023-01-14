@@ -939,47 +939,48 @@ _sample_play:
 
 _pad_poll:
 
-	tay
-	ldx #3
+	tay               ; I (think) y is the variable (which pad, 0 or 1)
+	ldx #3            ; idk wtf
 
 @padPollPort:
 
-	lda #1
-	sta CTRL_PORT1
-	sta <PAD_BUF-1,x
+	lda #1            
+	sta CTRL_PORT1    ;write 1 to $4016 to signal controller to start poll
+	sta <PAD_BUF-1,x  ; ah, this 'resets' padbuf+2 (cause x is 3) to be #1 before we read into it. 
 	lda #0
-	sta CTRL_PORT1
-	lda #8
-	sta <TEMP
+	sta CTRL_PORT1    ; write 0 to $2016 to finish the poll
+	lda #8            ; we wanna read 8 bits of data I guess
+	sta <TEMP         ; this goes into TEMP which never gets used? is this some branch madness where is sets some carry too?
 
-@padPollLoop:
+@padPollLoop: ; I think we run this 3 times, to make sure our inputs are right, into Pad_Buf+2,+1,+0 then we check them in the end.
 
-	lda CTRL_PORT1,y
-	lsr a
-	rol <PAD_BUF-1,x
-	bcc @padPollLoop
+	lda CTRL_PORT1,y  ; I think y is the param for which controller to read
+	lsr a             ; moves bit read to carry
+	rol <PAD_BUF-1,x  ; roll bit from carry into (PAD_BUFF-1,x)
+	bcc @padPollLoop  ; go back to the loop if the carry is set (maybe this is where the `lda #8` comes in?)
 
-	dex
-	bne @padPollPort
+	dex               ; dec x because we got a bit
+	bne @padPollPort  ; now loop back to the top? reading from the controller (in case somethign flubbed up? DPCM conflict? maybwe we re-read everytime?)
 
+	; no idea what this section does. looks like it all gets to done. maybe it handles overflow?
 	lda <PAD_BUF
 	cmp <PAD_BUF+1
 	beq @done
-	cmp <PAD_BUF+2
+	cmp <PAD_BUF+2    ; is this for the player 2 controller?
 	beq @done
-	lda <PAD_BUF+1
+	lda <PAD_BUF+1    ; otherwise just load pad_buf+1?
 
-@done:
+@done:             ; somehow this puts what we got in pad_buf into pad_state, pad_statep(poll?) and pad_statet (trigger?))
 
-	sta <PAD_STATE,y
-	tax
-	eor <PAD_STATEP,y
-	and <PAD_STATE ,y
-	sta <PAD_STATET,y
-	txa
-	sta <PAD_STATEP,y
+	sta <PAD_STATE,y   ;store whats in the accumlator into PAD_STATE adding the contents of register Y
+	tax                ;transfer accumlator to X (what's in the accumlator now? what was in X?)
+	eor <PAD_STATEP,y  ; exclusive or the accumlator and pad_statep
+	and <PAD_STATE ,y  ; add the accumlator and pad_state
+	sta <PAD_STATET,y  ; store what's in the accumlator to the trigger (the above steps eor/and to figure out what's changed)
+	txa                ; transfer x to the accumlator (are we just cleaning up here?)
+	sta <PAD_STATEP,y  ; store what's in the accumlator into pad_statep
 	
-	ldx #0
+	ldx #0             ; reset x to 0
 	rts
 
 

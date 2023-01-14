@@ -49,6 +49,13 @@ const unsigned char gaspump_palette[16] = {
 		0x2c, 0x0f, 0x20, 0x11,
 		0x2c, 0x19, 0x2a, 0x0f};
 
+const unsigned char futurepump_palette[16]={ 
+	0x0f,0x00,0x10,0x30,
+	0x0f,0x13,0x23,0x31,
+	0x0f,0x23,0x16,0x26,
+	0x0f,0x09,0x19,0x29};
+	
+
 const unsigned char talking_time_palette[] = {
 		0x0f, 0x20, 0x16, 0x36,
 		0x0f, 0x05, 0x16, 0x36,
@@ -138,8 +145,7 @@ enum
 #include "BACKGROUNDS/intro_single_page.h"
 #include "BACKGROUNDS/cutscenegun_small_arrow.h"
 
-void bank_1_init_mode_instructions(void); // prototype (needed to get call from bank_1)
-
+void bank_1_instructions_init(void); // prototype (needed to get call from bank_1)
 int cutscene_index = NAMETABLE_A;
 int nametable_index = 0;
 int attribute_table_index = 0;
@@ -148,7 +154,7 @@ unsigned char attribute_bytes_written = 0;
 unsigned char line_counter = 0;
 unsigned char screen_line_counter = 0;
 
-void bank_0_init_mode_intro_scroll(void)
+void bank_0_intro_scroll_init(void)
 {
 	nametable_index = 0;
 	scrolled_past_once = 0;
@@ -192,7 +198,92 @@ void bank_0_init_mode_intro_scroll(void)
 	game_mode = MODE_INTRO_SCROLL;
 }
 
-void bank_0_init_mode_intro_cutscene(void)
+void bank_0_title_loop(void){
+	ppu_wait_nmi();
+
+			if (option == 0)
+			{
+				one_vram_buffer(0x3d, NTADR_A(6, 22));
+				one_vram_buffer(0x00, NTADR_A(6, 24));
+			}
+			else
+			{
+				one_vram_buffer(0x00, NTADR_A(6, 22));
+				one_vram_buffer(0x3d, NTADR_A(6, 24));
+			}
+
+			read_input();
+
+			if (trigger_clicked) // if((pad2_zapper)&&(zapper_ready)){
+			{
+
+				// bg off, project white boxes
+				oam_clear();
+				// white_background();
+				pal_col(0, 0x30); // set color to white
+				// ppu_mask(0x16); // BG off, won't happen till NEXT frame
+
+				ppu_wait_nmi(); // wait till the top of the next frame
+				// this frame will display no BG and a white box
+
+				oam_clear(); // clear the NEXT frame
+
+				// draw_title_background();
+				// ppu_mask(0x1e); // bg on, won't happen till NEXT frame
+				read_input();
+				// hit_detected = zap_read(1);
+
+				// hit_detected = zap_read(1); // look for light in zapper, port 2
+				pal_col(0, 0x0f); // back to transparent
+
+				if (hit_detected)
+				{
+					if (option == 0)
+					{
+						// debug, just go to game
+						wait_a_little();
+						// flash colors:
+						// 0x0f,0x01,0x14,0x30,
+
+						pal_bg(fade_1);
+						// pal_col(1, 0x04);
+						// pal_col(2, 0x07);
+						// pal_col(3, 0x10);
+						for (index = 0; index < 15; ++index)
+						{
+							ppu_wait_nmi();
+						}
+
+						pal_bg(fade_2);
+						for (index = 0; index < 15; ++index)
+						{
+							ppu_wait_nmi();
+						}
+						pal_fade_to(4, 0);
+						banked_call(BANK_0, bank_0_intro_scroll_init);
+					}
+					else
+					{
+						multi_vram_buffer_horz("No Free Pump Mode yet", 21, NTADR_A(6, 25));
+					}
+				}
+				else
+				{
+					if (option == 0)
+					{
+						option = 1;
+					}
+					else
+					{
+						option = 0;
+					}
+					multi_vram_buffer_horz("                     ", 21, NTADR_A(6, 25));
+				}
+			}
+}
+
+
+void bank_0_intro_cutscene_init(void)
 {
 	nametable_index = 0;
 	cutscene_index = 0;
@@ -236,8 +327,9 @@ void bank_0_init_mode_intro_cutscene(void)
 	pal_fade_to(0, 4);
 }
 
-void bank_0_mode_intro_scroll(void)
+void bank_0_intro_scroll_loop(void)
 {
+	ppu_wait_nmi();
 	// ++moveframes; //count up each frame
 
 	read_input();
@@ -292,7 +384,7 @@ void bank_0_mode_intro_scroll(void)
 			ppu_wait_nmi();
 		}
 		pal_fade_to(4, 0);
-		bank_0_init_mode_intro_cutscene();
+		bank_0_intro_cutscene_init();
 		return;
 	}
 
@@ -327,10 +419,19 @@ void bank_0_mode_intro_scroll(void)
 	{
 		scroll(0, scroll_y);
 	}
+	read_input();
+	if (trigger_clicked) // allow cutscene to be skipped
+	{
+		// debug, just go to game
+		wait_a_little();
+		set_scroll_y(0);
+		banked_call(BANK_0, bank_0_intro_cutscene_init);
+	}
 }
 
-void bank_0_mode_intro_cutscene_loop(void)
+void bank_0_intro_cutscene_loop(void)
 {
+	ppu_wait_nmi();
 	++moveframes;
 	++line_counter;
 
@@ -380,7 +481,17 @@ void bank_0_mode_intro_cutscene_loop(void)
 	if (stop_scrolling == 1 && moveframes == 100)
 	{
 		// wait for a while after scrolling down, then do instructions.
-		banked_call(BANK_1, bank_1_init_mode_instructions);
+		banked_call(BANK_1, bank_1_instructions_init);
+	}
+
+	read_input();
+
+	if (trigger_clicked) // allow cutscene to be skipped
+	{
+		// debug, just go to game
+		wait_a_little();
+		set_scroll_y(0);
+		banked_call(BANK_1, bank_1_instructions_init);
 	}
 }
 
@@ -397,8 +508,10 @@ void bank_0_mode_intro_cutscene_loop(void)
 const unsigned char level_0_text[] = "So you wanna pump gas ?!?\nGive me 1 gallons\n Just pull the trigger\nBut don't click it.";
 const unsigned char level_1_text[] = "You're starting to believe\nbut you have much to learn.\n\nNow give me 1 gallons!\nand make it quick!!!";
 const unsigned char level_2_text[] = "I can't deny it...\nYou were born to do this.\nOne last test...\nCan you do 1 gallons?\n\nI'm watching closely...";
-const unsigned char level_3_text[] = "You've got it. \n I believe in you.\n Only you can save our space people.\n\n Follow me to my galaxy.";
-void bank_1_init_mode_instructions(void)
+// const unsigned char level_3_text[] = "You've got it. \n I believe in you.\n Only you can save our space people.\n\n Follow me to my galaxy.";
+void bank_4_cutscene_init(void); //prototype (needed to get call from bank_4)
+
+void bank_1_instructions_init(void)
 {
 	reset_text_values();
 	ppu_off();	 // screen off
@@ -431,11 +544,6 @@ void bank_1_init_mode_instructions(void)
 		pointer = level_2_text;
 		text_length = sizeof(level_2_text);
 		gas_goal = 1;
-		break;
-	case 3:
-		pointer = level_3_text;
-		text_length = sizeof(level_3_text);
-		gas_goal = 9;
 		alien_level = 1;
 		break;
 	default:
@@ -482,13 +590,13 @@ void bank_1_instructions_loop(void)
 	{
 		pal_fade_to(4, 0);
 		wait_a_little();
-		init_mode_game();
+		gas_level_init();
 	}
 }
 
 #include "BACKGROUNDS/title_screen_rle.h";
 
-void bank_1_init_mode_title(void)
+void bank_1_title_init(void)
 {
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
@@ -537,6 +645,11 @@ const unsigned char level_0_max[] = "Bit too much, bub.";
 const unsigned char level_0_good[] = "!!! WOW !!!\nYou've got it kid!";
 const unsigned char level_0_ok[] = "Hmmmmm....\nPump harder.";
 const unsigned char level_0_bad[] = "You just don't\nhave what it takes...";
+
+
+void bank_1_instructions_init(void); //prototype
+void bank_4_cutscene_init(void); //prototype
+
 void bank_2_init_level_one_end(void)
 {
 	ppu_off();	 // screen off
@@ -612,6 +725,7 @@ void bank_2_init_level_one_end(void)
 
 void bank_2_evaluation_loop(void)
 {
+	ppu_wait_nmi();
 	++moveframes;
 
 	if (moveframes > 60)
@@ -637,6 +751,26 @@ void bank_2_evaluation_loop(void)
 	// draw_talking_time_sprites();
 	oam_meta_spr(0xa8, 0xb8, BigAlsShirt);
 	oam_meta_spr(0xb8, 0x98, BigAlsEyes);
+
+	read_input();
+
+	if (trigger_clicked)
+	{
+
+		// wait 10 frames before starting the next section
+		for (index = 0; index < 10; ++index)
+		{
+			ppu_wait_nmi();
+		}
+
+		if(alien_level == 1){
+			banked_call(BANK_4, bank_4_cutscene_init);
+		} else {
+			banked_call(BANK_1, bank_1_instructions_init);
+		}
+		
+	}
+
 }
 #pragma endregion
 
@@ -644,6 +778,9 @@ void bank_2_evaluation_loop(void)
  * Bank3 is used for Nothing at the moment...
  * but I should move the level into this bank.
  */
+
+#pragma region BANK3
+
 #pragma rodata-name("BANK3")
 #pragma code-name("BANK3")
 
@@ -991,6 +1128,7 @@ void bank_3_adjust_cost(void)
 
 
 void bank_3_level_loop(void){
+	ppu_wait_nmi(); // wait till beginning of the frame
 	bank_3_draw_level_one_sprites();
 	bank_3_draw_gas();
 	bank_3_draw_cost();
@@ -1037,6 +1175,106 @@ void bank_3_level_loop(void){
 #pragma endregion
 
 
+#pragma region BANK4
+
+#pragma rodata-name("BANK4")
+#pragma code-name("BANK4")
+
+#include "BACKGROUNDS/future_pump.h"
+#include "BACKGROUNDS/abduction_cutscene.h"
+
+
+void bank_4_cutscene_init(void){
+	ppu_off();	 // screen off
+	oam_clear(); // clear all sprites
+	//TODO change this to the right CHR
+	set_chr_bank_0(CUTSCENE_CHR_0);
+	set_chr_bank_1(CUTSCENE_CHR_1);
+	scroll(0, 0); // reset scrolling
+	index = 0;
+	
+	vram_adr(NAMETABLE_A); // Nametable A;
+
+	for(largeindex = 0; largeindex < 1024; ++largeindex){
+		vram_put(abduction_cutscene[largeindex]); //todo fix this
+		++index;
+		if(index > 40) { //don't put too much in the vram_buffer
+			flush_vram_update2();
+			index = 0;
+		}
+	}
+	
+	ppu_on_all();
+	pal_fade_to(0, 4);
+	wait_a_little();
+	game_mode = MODE_ABDUCTION_CUTSCENE;
+	started_pumping = 0;
+	moveframes = 0;
+}
+
+void bank_4_level_init(void){
+
+	ppu_off();	 // screen off
+	oam_clear(); // clear all sprites
+
+	set_chr_bank_0(FUTUREPUMP_CHR_0);
+	set_chr_bank_1(FUTUREPUMP_CHR_1);
+	scroll(0, 0); // reset scrolling
+	index = 0;
+	
+	vram_adr(NAMETABLE_A); // Nametable A;
+
+	for(largeindex = 0; largeindex < 1024; ++largeindex){
+		vram_put(FUTURE_PUMP_LEVEL[largeindex]); //todo fix this
+		++index;
+		if(index > 40) { //don't put too much in the vram_buffer
+			flush_vram_update2();
+			index = 0;
+		}
+	}
+
+	pal_fade_to(0, 4);
+	ppu_on_all();
+	game_mode = MODE_ALIEN_LEVEL;
+}
+
+void bank_4_instruction_init(void){
+
+	// todo init the instruction screen and display stuff;
+	game_mode = MODE_ALIEN_INSTRUCTION;
+}
+
+void bank_4_instruction_loop(void){
+	ppu_wait_nmi();
+	banked_call(BANK_4,bank_4_level_init);
+}
+
+void bank_4_cutscene_loop(void){
+		ppu_wait_nmi();
+		++moveframes;
+		//add in sprite animation, etc here
+
+		if(moveframes > 200){
+			// ppu_off();
+			banked_call(BANK_4, bank_4_instruction_init);
+		}
+
+}
+
+
+
+
+void bank_4_alien_level_loop(void){
+	ppu_wait_nmi();
+	//this probaly looks a lot like the main level loop
+}
+
+#pragma endregion
+
+
+
+
+#pragma region CODE
 /*
  *  Bank 7 is the fixed bank for game code.
  *  But I think it's small because of that.
@@ -1084,123 +1322,29 @@ void main(void)
 
 	ppu_on_all(); // turn on screen
 
-	banked_call(BANK_1, bank_1_init_mode_title);
+	banked_call(BANK_1, bank_1_title_init);
 
 	while (1)
 	{
+		// if(game_mode == MODE_X)
+		// {
+		// 	call banked loop for this mode, that code will call ppu_wait_nmi
+		// 	and handle init/transition to new game modes
+		// }
 
 		if (game_mode == MODE_TITLE)
 		{
-			ppu_wait_nmi();
-
-			if (option == 0)
-			{
-				one_vram_buffer(0x3d, NTADR_A(6, 22));
-				one_vram_buffer(0x00, NTADR_A(6, 24));
-			}
-			else
-			{
-				one_vram_buffer(0x00, NTADR_A(6, 22));
-				one_vram_buffer(0x3d, NTADR_A(6, 24));
-			}
-
-			read_input();
-
-			if (trigger_clicked) // if((pad2_zapper)&&(zapper_ready)){
-			{
-
-				// bg off, project white boxes
-				oam_clear();
-				// white_background();
-				pal_col(0, 0x30); // set color to white
-				// ppu_mask(0x16); // BG off, won't happen till NEXT frame
-
-				ppu_wait_nmi(); // wait till the top of the next frame
-				// this frame will display no BG and a white box
-
-				oam_clear(); // clear the NEXT frame
-
-				// draw_title_background();
-				// ppu_mask(0x1e); // bg on, won't happen till NEXT frame
-				read_input();
-				// hit_detected = zap_read(1);
-
-				// hit_detected = zap_read(1); // look for light in zapper, port 2
-				pal_col(0, 0x0f); // back to transparent
-
-				if (hit_detected)
-				{
-					if (option == 0)
-					{
-						// debug, just go to game
-						wait_a_little();
-						// flash colors:
-						// 0x0f,0x01,0x14,0x30,
-
-						pal_bg(fade_1);
-						// pal_col(1, 0x04);
-						// pal_col(2, 0x07);
-						// pal_col(3, 0x10);
-						for (index = 0; index < 15; ++index)
-						{
-							ppu_wait_nmi();
-						}
-
-						pal_bg(fade_2);
-						for (index = 0; index < 15; ++index)
-						{
-							ppu_wait_nmi();
-						}
-						pal_fade_to(4, 0);
-						banked_call(BANK_0, bank_0_init_mode_intro_scroll);
-					}
-					else
-					{
-						multi_vram_buffer_horz("No Free Pump Mode yet", 21, NTADR_A(6, 25));
-					}
-				}
-				else
-				{
-					if (option == 0)
-					{
-						option = 1;
-					}
-					else
-					{
-						option = 0;
-					}
-					multi_vram_buffer_horz("                     ", 21, NTADR_A(6, 25));
-				}
-			}
+			banked_call(BANK_0, bank_0_title_loop);
 		}
 
 		if (game_mode == MODE_INTRO_SCROLL)
 		{ // text scroll (in the year 20XX...)
-			ppu_wait_nmi();
-			banked_call(BANK_0, bank_0_mode_intro_scroll);
-			read_input();
-			if (trigger_clicked) // allow cutscene to be skipped
-			{
-				// debug, just go to game
-				wait_a_little();
-				set_scroll_y(0);
-				banked_call(BANK_0, bank_0_init_mode_intro_cutscene);
-			}
+			banked_call(BANK_0, bank_0_intro_scroll_loop);
+			
 		}
 		if (game_mode == MODE_INTRO_CUTSCENE)
 		{ // city scroll (scrolls down from the sky)
-			ppu_wait_nmi();
-			banked_call(BANK_0, bank_0_mode_intro_cutscene_loop);
-
-			read_input();
-
-			if (trigger_clicked) // allow cutscene to be skipped
-			{
-				// debug, just go to game
-				wait_a_little();
-				set_scroll_y(0);
-				banked_call(BANK_1, bank_1_init_mode_instructions);
-			}
+			banked_call(BANK_0, bank_0_intro_cutscene_loop);
 		}
 
 		if (game_mode == MODE_INTRO_INSTRUCTION)
@@ -1210,29 +1354,38 @@ void main(void)
 
 		if (game_mode == MODE_EVALUATION_TIME)
 		{ // Al tells you how good you did
-			ppu_wait_nmi();
 			banked_call(BANK_2, bank_2_evaluation_loop);
-			read_input();
-
-			if (trigger_clicked)
-			{
-
-				// wait 10 frames before starting the next section
-				for (index = 0; index < 10; ++index)
-				{
-					ppu_wait_nmi();
-				}
-				banked_call(BANK_1, bank_1_init_mode_instructions);
-			}
 		}
-
 		if (game_mode == MODE_GAME)
 		{ // this is game pumping mode, either level 1 or alien level
-
-			// infinite loop
-			ppu_wait_nmi(); // wait till beginning of the frame
 			banked_call(BANK_3, bank_3_level_loop);
-
+		}
+		if(game_mode == MODE_ABDUCTION_CUTSCENE){
+			//todo
+			//draw cutscene
+			banked_call(BANK_4, bank_4_cutscene_loop);
+		}
+		if(game_mode == MODE_ALIEN_INSTRUCTION){
+			//todo
+			// add instruction screen
+			//for now this just passes through.
+			banked_call(BANK_4, bank_4_instruction_loop);
+		}
+		if(game_mode == MODE_ALIEN_LEVEL){
+			//todo
+			banked_call(BANK_4, bank_4_alien_level_loop);
+		}
+		if(game_mode == MODE_ALIEN_EVALUATION){
+			//todo
+		}
+		if(game_mode == MODE_ALIEN_SHOOTING_GALLERY){
+			//todo
+		}
+		if(game_mode == MODE_GAME_ENDING) {
+			//todo
+		}
+		if(game_mode == MODE_GAME_OVER){
+			//todo
 		}
 	}
 }
@@ -1355,55 +1508,37 @@ void read_input(void)
 }
 
 
-
-
-void init_mode_game(void)
+void gas_level_init(void)
 {
-	// TODO: if this is alien level, then draw the alien level
 	// reset changed values so they redraw
 
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 
-	if (alien_level)
-	{
-		//TODO change this to the right CHR
-		set_chr_bank_0(CUTSCENE_GUN_CHR_0);
-		set_chr_bank_1(CUTSCENE_GUN_CHR_1);
-		scroll(0, 0); // reset scrolling
-		index = 0;
-		
-		vram_adr(NAMETABLE_A); // Nametable A;
+	pal_col(0, 0x21);
+	pal_bg(gaspump_palette);
 
-		vram_unrle(LEVEL_1_PUMP); //TODO change this one to the alien pump
-	}
-	else // normal gas pump level
-	{
+	bird_x = 0;
 
-		pal_col(0, 0x21);
-		pal_bg(gaspump_palette);
+	set_chr_bank_0(GASPUMP_CHR_0);
+	set_chr_bank_1(GASPUMP_CHR_1);
+	// draw_bg: draw background code
 
-		bird_x = 0;
+	scroll(0, 0); // reset scrolling
 
-		set_chr_bank_0(GASPUMP_CHR_0);
-		set_chr_bank_1(GASPUMP_CHR_1);
-		// draw_bg: draw background code
+	index = 0;
+	vram_adr(NAMETABLE_A); // Nametable A;
 
-		scroll(0, 0); // reset scrolling
+	vram_unrle(LEVEL_1_PUMP);
+	// for(largeindex = 0; largeindex < 1024; ++largeindex){
+	// 	vram_put(level1[largeindex]); //todo fix this
+	// 	++index;
+	// 	if(index > 40) { //don't put too much in the vram_buffer
+	// 		flush_vram_update2();
+	// 		index = 0;
+	// 	}
+	// }
 
-		index = 0;
-		vram_adr(NAMETABLE_A); // Nametable A;
-
-		vram_unrle(LEVEL_1_PUMP);
-		// for(largeindex = 0; largeindex < 1024; ++largeindex){
-		// 	vram_put(level1[largeindex]); //todo fix this
-		// 	++index;
-		// 	if(index > 40) { //don't put too much in the vram_buffer
-		// 		flush_vram_update2();
-		// 		index = 0;
-		// 	}
-		// }
-	}
 
 	ppu_on_all(); // turn on screen
 	pal_fade_to(0, 4);
@@ -1469,3 +1604,5 @@ void typewriter(void)
 		++text_rendered;
 	}
 }
+
+#pragma endregion

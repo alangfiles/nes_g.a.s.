@@ -193,7 +193,7 @@ void bank_0_intro_scroll_init(void)
 		flush_vram_update2();
 	}
 	nametable_index = 0;  
-	//debug
+	//put in the attribute table for the intro_scroll before showing it.
 	attribute_table_index = NAMETABLE_C_ATTR;
 	attribute_bytes_written = 0;
 	while(attribute_bytes_written < 64)
@@ -205,7 +205,6 @@ void bank_0_intro_scroll_init(void)
 		++attribute_bytes_written;
 		++attribute_table_index;
 	}
-	//end
 
 	set_chr_bank_0(CUTSCENE_GUN_CHR_0);
 	set_chr_bank_1(CUTSCENE_GUN_CHR_1);

@@ -14,6 +14,8 @@
  * [] add music
  * [] add things flying in levels
  * [] fill in scaffolding for game flow (including missing parts)
+ * [] futurepump palette
+ * [] main gas pump palette
  * 
  * game flow:
  * title->intro_scroll->intro_cutscene->
@@ -1212,11 +1214,12 @@ void bank_4_cutscene_init(void){
 	moveframes = 0;
 }
 
-void bank_4_level_init(void){
+void bank_4_alien_level_init(void){
 
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 
+	pal_bg(futurepump_palette);
 	set_chr_bank_0(FUTUREPUMP_CHR_0);
 	set_chr_bank_1(FUTUREPUMP_CHR_1);
 	scroll(0, 0); // reset scrolling
@@ -1246,7 +1249,7 @@ void bank_4_instruction_init(void){
 
 void bank_4_instruction_loop(void){
 	ppu_wait_nmi();
-	banked_call(BANK_4,bank_4_level_init);
+	banked_call(BANK_4,bank_4_alien_level_init);
 }
 
 void bank_4_cutscene_loop(void){

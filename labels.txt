@@ -41,7 +41,7 @@ al 008000 .__BANK3_RUN__
 al 00109E .__BANK3_SIZE__
 al 008000 .__BANK4_LOAD__
 al 008000 .__BANK4_RUN__
-al 00091F .__BANK4_SIZE__
+al 000926 .__BANK4_SIZE__
 al 008000 .__BANK5_LOAD__
 al 008000 .__BANK5_RUN__
 al 000000 .__BANK5_SIZE__
@@ -77,7 +77,7 @@ al 00909E .__PRG3_LAST__
 al 004000 .__PRG3_SIZE__
 al 008000 .__PRG3_START__
 al 010010 .__PRG4_FILEOFFS__
-al 00891F .__PRG4_LAST__
+al 008926 .__PRG4_LAST__
 al 004000 .__PRG4_SIZE__
 al 008000 .__PRG4_START__
 al 014010 .__PRG5_FILEOFFS__
@@ -142,12 +142,12 @@ al 008000 ._bank_3_draw_level_one_sprites
 al 00801E ._bank_3_draw_number_as_bg_tile
 al 008EF4 ._bank_3_find_sprite
 al 00901D ._bank_3_level_loop
-al 00891C ._bank_4_alien_level_loop
+al 00887C ._bank_4_alien_level_init
+al 008923 ._bank_4_alien_level_loop
 al 008800 ._bank_4_cutscene_init
-al 008904 ._bank_4_cutscene_loop
-al 0088F0 ._bank_4_instruction_init
-al 0088F5 ._bank_4_instruction_loop
-al 00887C ._bank_4_level_init
+al 00890B ._bank_4_cutscene_loop
+al 0088F7 ._bank_4_instruction_init
+al 0088FC ._bank_4_instruction_loop
 al 00C4FE ._bank_bg
 al 00CCFD ._bank_pop
 al 00CCD7 ._bank_push

@@ -219,7 +219,7 @@
 	.export		_bank_3_level_loop
 	.export		_FUTURE_PUMP_LEVEL
 	.export		_abduction_cutscene
-	.export		_bank_4_level_init
+	.export		_bank_4_alien_level_init
 	.export		_bank_4_instruction_init
 	.export		_bank_4_instruction_loop
 	.export		_bank_4_cutscene_loop
@@ -16883,38 +16883,38 @@ L0011:	rts
 ;
 	lda     _pad1
 	and     #$40
-	bne     L488E
+	bne     L4890
 	lda     _pad1
 	and     #$80
-	bne     L488E
+	bne     L4890
 	lda     #$01
 	jsr     _zap_shoot
 	tax
-	beq     L488F
-L488E:	lda     #$01
-L488F:	sta     _trigger_pulled
+	beq     L4891
+L4890:	lda     #$01
+L4891:	sta     _trigger_pulled
 ;
 ; trigger_clicked = (pad1_new & PAD_A) || (pad1_new & PAD_B) || ((pad1_zapper) && (zapper_ready)); // needs to check last frame for blank
 ;
 	lda     _pad1_new
 	and     #$80
-	bne     L4895
+	bne     L4897
 	lda     _pad1_new
 	and     #$40
-	bne     L4895
+	bne     L4897
 	lda     _pad1_zapper
-	beq     L4896
+	beq     L4898
 	lda     _zapper_ready
-	beq     L4896
-L4895:	lda     #$01
-L4896:	sta     _trigger_clicked
+	beq     L4898
+L4897:	lda     #$01
+L4898:	sta     _trigger_clicked
 ;
 ; if ((pad1_zapper) && (zapper_ready))
 ;
 	lda     _pad1_zapper
-	beq     L4817
+	beq     L4819
 	lda     _zapper_ready
-	beq     L4817
+	beq     L4819
 ;
 ; hit_detected = zap_read(1);
 ;
@@ -16924,15 +16924,15 @@ L4896:	sta     _trigger_clicked
 ;
 ; if (debug_mode && hit_detected == 0)
 ;
-L4817:	lda     _debug_mode
-	beq     L4822
+L4819:	lda     _debug_mode
+	beq     L4824
 	lda     _hit_detected
-	beq     L489A
-L4822:	rts
+	beq     L489C
+L4824:	rts
 ;
 ; hit_detected = (pad1 & PAD_A);
 ;
-L489A:	lda     _pad1
+L489C:	lda     _pad1
 	and     #$80
 	sta     _hit_detected
 ;
@@ -16957,7 +16957,7 @@ L489A:	lda     _pad1
 ;
 	lda     _text_length
 	cmp     _text_rendered
-	bne     L48A5
+	bne     L48A7
 ;
 ; }
 ;
@@ -16965,7 +16965,7 @@ L489A:	lda     _pad1
 ;
 ; if (pointer[text_rendered] == '\n')
 ;
-L48A5:	lda     _pointer
+L48A7:	lda     _pointer
 	ldx     _pointer+1
 	ldy     _text_rendered
 	sta     ptr1
@@ -16975,7 +16975,7 @@ L48A5:	lda     _pointer
 ;
 ; else if (pointer[text_rendered] == '\t')
 ;
-	beq     L48A4
+	beq     L48A6
 	lda     _pointer
 	ldx     _pointer+1
 	ldy     _text_rendered
@@ -16983,7 +16983,7 @@ L48A5:	lda     _pointer
 	stx     ptr1+1
 	lda     (ptr1),y
 	cmp     #$09
-	bne     L486F
+	bne     L4871
 ;
 ; text_col += 4;
 ;
@@ -16995,15 +16995,15 @@ L48A5:	lda     _pointer
 ; if (text_col >= 27) // wrap to next row
 ;
 	cmp     #$1B
-	bcc     L48A2
+	bcc     L48A4
 ;
 ; else
 ;
-	jmp     L48A4
+	jmp     L48A6
 ;
 ; one_vram_buffer(pointer[text_rendered], NTADR_A(text_x_start + text_col, text_y_start + text_row));
 ;
-L486F:	lda     _pointer
+L4871:	lda     _pointer
 	ldx     _pointer+1
 	ldy     _text_rendered
 	sta     ptr1
@@ -17014,9 +17014,9 @@ L486F:	lda     _pointer
 	lda     _text_y_start
 	clc
 	adc     _text_row
-	bcc     L489E
+	bcc     L48A0
 	inx
-L489E:	jsr     shlax4
+L48A0:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -17025,9 +17025,9 @@ L489E:	jsr     shlax4
 	lda     _text_x_start
 	clc
 	adc     _text_col
-	bcc     L489F
+	bcc     L48A1
 	inx
-L489F:	ora     ptr1
+L48A1:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -17053,11 +17053,11 @@ L489F:	ora     ptr1
 ;
 	lda     _text_col
 	cmp     #$1B
-	bne     L48A2
+	bne     L48A4
 ;
 ; ++text_row;
 ;
-L48A4:	inc     _text_row
+L48A6:	inc     _text_row
 ;
 ; text_col = 0;
 ;
@@ -17066,7 +17066,7 @@ L48A4:	inc     _text_row
 ;
 ; ++text_rendered;
 ;
-L48A2:	inc     _text_rendered
+L48A4:	inc     _text_rendered
 ;
 ; }
 ;
@@ -17222,9 +17222,9 @@ L48A2:	inc     _text_rendered
 ;
 	lda     #$00
 	sta     _temp2
-L48A6:	lda     _temp2
+L48A8:	lda     _temp2
 	cmp     #$06
-	bcs     L47DF
+	bcs     L47E1
 ;
 ; ppu_wait_nmi();
 ;
@@ -17240,9 +17240,9 @@ L48A6:	lda     _temp2
 ;
 	lda     #$00
 	sta     _index
-L48A7:	lda     _index
+L48A9:	lda     _index
 	cmp     #$09
-	bcs     L47EA
+	bcs     L47EC
 ;
 ; vram_put(0x00);
 ;
@@ -17252,11 +17252,11 @@ L48A7:	lda     _index
 ; for (index = 0; index < 9; ++index)
 ;
 	inc     _index
-	jmp     L48A7
+	jmp     L48A9
 ;
 ; flush_vram_update2();
 ;
-L47EA:	jsr     _flush_vram_update2
+L47EC:	jsr     _flush_vram_update2
 ;
 ; temp1 += 16;
 ;
@@ -17268,11 +17268,11 @@ L47EA:	jsr     _flush_vram_update2
 ; for (temp2 = 0; temp2 < 6; ++temp2)
 ;
 	inc     _temp2
-	jmp     L48A6
+	jmp     L48A8
 ;
 ; flush_vram_update2();
 ;
-L47DF:	jsr     _flush_vram_update2
+L47E1:	jsr     _flush_vram_update2
 ;
 ; talking_time = 1;
 ;
@@ -17415,13 +17415,13 @@ L47DF:	jsr     _flush_vram_update2
 	lda     #$00
 	sta     _tempint
 	sta     _tempint+1
-L47BE:	lda     _tempint
+L47C0:	lda     _tempint
 	cmp     #$00
 	lda     _tempint+1
 	sbc     #$04
-	bvc     L47C5
+	bvc     L47C7
 	eor     #$80
-L47C5:	bpl     L47BF
+L47C7:	bpl     L47C1
 ;
 ; vram_put(0x00);
 ;
@@ -17435,13 +17435,13 @@ L47C5:	bpl     L47BF
 ; for (tempint = 0; tempint < 1024; ++tempint)
 ;
 	inc     _tempint
-	bne     L47BE
+	bne     L47C0
 	inc     _tempint+1
-	jmp     L47BE
+	jmp     L47C0
 ;
 ; }
 ;
-L47BF:	rts
+L47C1:	rts
 
 .endproc
 
@@ -17467,13 +17467,13 @@ L47BF:	rts
 	lda     #$00
 	sta     _tempint
 	sta     _tempint+1
-L47CE:	lda     _tempint
+L47D0:	lda     _tempint
 	cmp     #$C0
 	lda     _tempint+1
 	sbc     #$03
-	bvc     L47D5
+	bvc     L47D7
 	eor     #$80
-L47D5:	bpl     L47CF
+L47D7:	bpl     L47D1
 ;
 ; vram_put(0x00);
 ;
@@ -17487,13 +17487,13 @@ L47D5:	bpl     L47CF
 ; for (tempint = 0; tempint < 960; ++tempint)
 ;
 	inc     _tempint
-	bne     L47CE
+	bne     L47D0
 	inc     _tempint+1
-	jmp     L47CE
+	jmp     L47D0
 ;
 ; }
 ;
-L47CF:	rts
+L47D1:	rts
 
 .endproc
 
@@ -17546,9 +17546,9 @@ L47CF:	rts
 ;
 	lda     #$00
 	sta     _index
-L48A8:	lda     _index
+L48AA:	lda     _index
 	cmp     #$19
-	bcs     L4856
+	bcs     L4858
 ;
 ; ppu_wait_nmi();
 ;
@@ -17557,11 +17557,11 @@ L48A8:	lda     _index
 ; for (index = 0; index < 25; ++index)
 ;
 	inc     _index
-	jmp     L48A8
+	jmp     L48AA
 ;
 ; }
 ;
-L4856:	rts
+L4858:	rts
 
 .endproc
 
@@ -17818,7 +17818,7 @@ L34F4:	lda     _nametable_index
 	eor     #$80
 L34FB:	asl     a
 	lda     #$00
-	bcc     L48AA
+	bcc     L48AC
 ;
 ; vram_put(cutscenegun_small_arrow[nametable_index]);
 ;
@@ -17845,7 +17845,7 @@ L34FB:	asl     a
 ;
 ; nametable_index = 0;
 ;
-L48AA:	sta     _nametable_index
+L48AC:	sta     _nametable_index
 	sta     _nametable_index+1
 ;
 ; set_chr_bank_0(CUTSCENE_GUN_CHR_0);
@@ -17914,7 +17914,7 @@ L48AA:	sta     _nametable_index
 ;
 ; else
 ;
-	jmp     L48B2
+	jmp     L48B4
 ;
 ; one_vram_buffer(0x00, NTADR_A(6, 22));
 ;
@@ -17927,7 +17927,7 @@ L3510:	lda     #$00
 ; one_vram_buffer(0x3d, NTADR_A(6, 24));
 ;
 	lda     #$3D
-L48B2:	jsr     pusha
+L48B4:	jsr     pusha
 	ldx     #$23
 	lda     #$06
 	jsr     _one_vram_buffer
@@ -17939,7 +17939,7 @@ L48B2:	jsr     pusha
 ; if (trigger_clicked) // if((pad2_zapper)&&(zapper_ready)){
 ;
 	lda     _trigger_clicked
-	bne     L48B3
+	bne     L48B5
 ;
 ; }
 ;
@@ -17947,7 +17947,7 @@ L48B2:	jsr     pusha
 ;
 ; oam_clear();
 ;
-L48B3:	jsr     _oam_clear
+L48B5:	jsr     _oam_clear
 ;
 ; pal_col(0, 0x30); // set color to white
 ;
@@ -17999,7 +17999,7 @@ L48B3:	jsr     _oam_clear
 ;
 	lda     #$00
 	sta     _index
-L48AD:	lda     _index
+L48AF:	lda     _index
 	cmp     #$0F
 	bcs     L3548
 ;
@@ -18010,7 +18010,7 @@ L48AD:	lda     _index
 ; for (index = 0; index < 15; ++index)
 ;
 	inc     _index
-	jmp     L48AD
+	jmp     L48AF
 ;
 ; pal_bg(fade_2);
 ;
@@ -18022,7 +18022,7 @@ L3548:	lda     #<(_fade_2)
 ;
 	lda     #$00
 	sta     _index
-L48AE:	lda     _index
+L48B0:	lda     _index
 	cmp     #$0F
 	bcs     L3553
 ;
@@ -18033,7 +18033,7 @@ L48AE:	lda     _index
 ; for (index = 0; index < 15; ++index)
 ;
 	inc     _index
-	jmp     L48AE
+	jmp     L48B0
 ;
 ; pal_fade_to(4, 0);
 ;
@@ -18069,7 +18069,7 @@ L3542:	jsr     decsp3
 ; if (option == 0)
 ;
 L3540:	lda     _option
-	bne     L48AF
+	bne     L48B1
 ;
 ; option = 1;
 ;
@@ -18077,12 +18077,12 @@ L3540:	lda     _option
 ;
 ; else
 ;
-	jmp     L48AC
+	jmp     L48AE
 ;
 ; option = 0;
 ;
-L48AF:	lda     #$00
-L48AC:	sta     _option
+L48B1:	lda     #$00
+L48AE:	sta     _option
 ;
 ; multi_vram_buffer_horz("                     ", 21, NTADR_A(6, 25));
 ;
@@ -18335,7 +18335,7 @@ L35AD:	ldx     #$20
 ;
 L35C7:	lda     _screen_line_counter
 	cmp     #$F1
-	jcc     L48B8
+	jcc     L48BA
 ;
 ; set_chr_bank_0(CUTSCENE_CHR_0);
 ;
@@ -18369,7 +18369,7 @@ L35C7:	lda     _screen_line_counter
 ;
 	lda     _scroll_page
 	cmp     #$01
-	bne     L48B5
+	bne     L48B7
 ;
 ; attribute_table_index = NAMETABLE_A_ATTR;
 ;
@@ -18394,9 +18394,9 @@ L35C7:	lda     _screen_line_counter
 ;
 ; if (scroll_page == 2)
 ;
-L48B5:	lda     _scroll_page
+L48B7:	lda     _scroll_page
 	cmp     #$02
-	bne     L48B6
+	bne     L48B8
 ;
 ; attribute_table_index = NAMETABLE_C_ATTR;
 ;
@@ -18421,9 +18421,9 @@ L48B5:	lda     _scroll_page
 ;
 ; if (scroll_page == 3)
 ;
-L48B6:	lda     _scroll_page
+L48B8:	lda     _scroll_page
 	cmp     #$03
-	bne     L48B7
+	bne     L48B9
 ;
 ; attribute_table_index = NAMETABLE_A_ATTR;
 ;
@@ -18448,9 +18448,9 @@ L48B6:	lda     _scroll_page
 ;
 ; if (scroll_page == 4)
 ;
-L48B7:	lda     _scroll_page
+L48B9:	lda     _scroll_page
 	cmp     #$04
-	bne     L48B8
+	bne     L48BA
 ;
 ; attribute_table_index = NAMETABLE_C_ATTR;
 ;
@@ -18475,15 +18475,15 @@ L48B7:	lda     _scroll_page
 ;
 ; if (scroll_page == scroll_page_end)
 ;
-L48B8:	lda     _scroll_page_end
+L48BA:	lda     _scroll_page_end
 	cmp     _scroll_page
-	bne     L48BA
+	bne     L48BC
 ;
 ; for (index = 0; index < 60; ++index)
 ;
 	lda     #$00
 	sta     _index
-L48B9:	lda     _index
+L48BB:	lda     _index
 	cmp     #$3C
 	bcs     L35FD
 ;
@@ -18494,7 +18494,7 @@ L48B9:	lda     _index
 ; for (index = 0; index < 60; ++index)
 ;
 	inc     _index
-	jmp     L48B9
+	jmp     L48BB
 ;
 ; pal_fade_to(4, 0);
 ;
@@ -18509,7 +18509,7 @@ L35FD:	lda     #$04
 ;
 ; if (line_counter == 8 && nametable_index < 1024)
 ;
-L48BA:	lda     _line_counter
+L48BC:	lda     _line_counter
 	cmp     #$08
 	jne     L3609
 	lda     _nametable_index
@@ -18524,9 +18524,9 @@ L360C:	jpl     L3609
 ;
 	lda     #$00
 	sta     _index
-L48BD:	lda     _index
+L48BF:	lda     _index
 	cmp     #$20
-	bcs     L48BE
+	bcs     L48C0
 ;
 ; one_vram_buffer(pointer[nametable_index], cutscene_index);
 ;
@@ -18559,13 +18559,13 @@ L361B:	inc     _cutscene_index
 ; for (index = 0; index < 32; ++index)
 ;
 L361D:	inc     _index
-	jmp     L48BD
+	jmp     L48BF
 ;
 ; if (attribute_bytes_written < 64)
 ;
-L48BE:	lda     _attribute_bytes_written
+L48C0:	lda     _attribute_bytes_written
 	cmp     #$40
-	bcs     L48BF
+	bcs     L48C1
 ;
 ; one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
 ;
@@ -18629,12 +18629,12 @@ L3626:	lda     _attribute_bytes_written
 ; ++attribute_table_index;
 ;
 	inc     _attribute_table_index
-	bne     L48BF
+	bne     L48C1
 	inc     _attribute_table_index+1
 ;
 ; line_counter = 0;
 ;
-L48BF:	lda     #$00
+L48C1:	lda     #$00
 	sta     _line_counter
 ;
 ; if (scroll_y > 0x1df)
@@ -18643,7 +18643,7 @@ L3609:	lda     _scroll_y
 	cmp     #$E0
 	lda     _scroll_y+1
 	sbc     #$01
-	bcc     L48C0
+	bcc     L48C2
 ;
 ; scroll_y = 0;
 ;
@@ -18653,7 +18653,7 @@ L3609:	lda     _scroll_y
 ;
 ; if (moveframes == 0)
 ;
-L48C0:	lda     _moveframes
+L48C2:	lda     _moveframes
 	bne     L3634
 ;
 ; scroll(0, scroll_y);
@@ -18722,9 +18722,9 @@ L363A:	rts
 ; if (stop_scrolling == 0 && moveframes > 0)
 ;
 	lda     _stop_scrolling
-	jne     L48CC
+	jne     L48CE
 	lda     _moveframes
-	jeq     L48CC
+	jeq     L48CE
 ;
 ; scroll_y += 1;
 ;
@@ -18736,12 +18736,12 @@ L363A:	rts
 ;
 L364C:	lda     _scrolled_past_once
 	cmp     #$01
-	bne     L48C5
+	bne     L48C7
 	lda     _scroll_y
 	cmp     #$E0
 	lda     _scroll_y+1
 	sbc     #$01
-	bcc     L48C5
+	bcc     L48C7
 ;
 ; stop_scrolling = 1;
 ;
@@ -18755,7 +18755,7 @@ L364C:	lda     _scrolled_past_once
 ;
 ; if (line_counter == 8 && nametable_index < 1024)
 ;
-L48C5:	lda     _line_counter
+L48C7:	lda     _line_counter
 	cmp     #$08
 	bne     L3655
 	lda     _nametable_index
@@ -18770,9 +18770,9 @@ L3658:	bpl     L3655
 ;
 	lda     #$00
 	sta     _index
-L48C8:	lda     _index
+L48CA:	lda     _index
 	cmp     #$20
-	bcs     L48C9
+	bcs     L48CB
 ;
 ; one_vram_buffer(intro_cutscene_3[nametable_index], cutscene_index);
 ;
@@ -18804,11 +18804,11 @@ L3667:	inc     _cutscene_index
 ; for (index = 0; index < 32; ++index)
 ;
 L3669:	inc     _index
-	jmp     L48C8
+	jmp     L48CA
 ;
 ; line_counter = 0;
 ;
-L48C9:	lda     #$00
+L48CB:	lda     #$00
 	sta     _line_counter
 ;
 ; if (scroll_y == 0x0ff)
@@ -18831,7 +18831,7 @@ L366C:	lda     _scroll_y
 	lda     _scroll_y+1
 	sbc     #$01
 	lda     #$00
-	bcc     L48CB
+	bcc     L48CD
 ;
 ; scroll_y = 0;
 ;
@@ -18840,7 +18840,7 @@ L366C:	lda     _scroll_y
 ;
 ; scroll(0, scroll_y);
 ;
-L48CB:	jsr     push0
+L48CD:	jsr     push0
 	lda     _scroll_y
 	ldx     _scroll_y+1
 	jsr     _scroll
@@ -18852,7 +18852,7 @@ L48CB:	jsr     push0
 ;
 ; if (stop_scrolling == 1 && moveframes == 100)
 ;
-L48CC:	lda     _stop_scrolling
+L48CE:	lda     _stop_scrolling
 	cmp     #$01
 	bne     L367A
 	lda     _moveframes
@@ -19053,7 +19053,7 @@ L46F4:	jsr     _ppu_on_all
 ;
 	lda     _text_row
 	cmp     #$06
-	bcs     L48CF
+	bcs     L48D1
 ;
 ; typewriter();
 ;
@@ -19061,7 +19061,7 @@ L46F4:	jsr     _ppu_on_all
 ;
 ; if (moveframes > 60)
 ;
-L48CF:	lda     _moveframes
+L48D1:	lda     _moveframes
 	cmp     #$3D
 	bcc     L36C7
 ;
@@ -19104,7 +19104,7 @@ L36C7:	jsr     _oam_clear
 ;
 	lda     _moveframes
 	cmp     #$1E
-	bcs     L48D1
+	bcs     L48D3
 ;
 ; oam_meta_spr(0xb8, 0xbf, BigAlTalkClosedMouth);
 ;
@@ -19121,7 +19121,7 @@ L36C7:	jsr     _oam_clear
 ;
 ; if (moveframes >= 30 && moveframes < 61)
 ;
-L48D1:	lda     _moveframes
+L48D3:	lda     _moveframes
 	cmp     #$1E
 	bcc     L36DC
 	cmp     #$3D
@@ -19363,11 +19363,11 @@ L36E5:	rts
 ; for (index = 0; index < gas3; ++index)
 ;
 	sta     _index
-L48D6:	lda     _index
+L48D8:	lda     _index
 	cmp     _gas3
 	txa
 	sbc     #$00
-	bcs     L48D7
+	bcs     L48D9
 ;
 ; gas_pumped += 100;
 ;
@@ -19381,17 +19381,17 @@ L48D6:	lda     _index
 ; for (index = 0; index < gas3; ++index)
 ;
 L3A02:	inc     _index
-	jmp     L48D6
+	jmp     L48D8
 ;
 ; for (index = 0; index < gas2; ++index)
 ;
-L48D7:	lda     #$00
+L48D9:	lda     #$00
 	sta     _index
-L48D8:	lda     _index
+L48DA:	lda     _index
 	cmp     _gas2
 	txa
 	sbc     #$00
-	bcs     L48D9
+	bcs     L48DB
 ;
 ; gas_pumped += 10;
 ;
@@ -19405,11 +19405,11 @@ L48D8:	lda     _index
 ; for (index = 0; index < gas2; ++index)
 ;
 L3A0D:	inc     _index
-	jmp     L48D8
+	jmp     L48DA
 ;
 ; gas_pumped += gas1;
 ;
-L48D9:	lda     _gas1
+L48DB:	lda     _gas1
 	clc
 	adc     _gas_pumped
 	sta     _gas_pumped
@@ -19421,7 +19421,7 @@ L48D9:	lda     _gas1
 ;
 	lda     #$00
 	sta     _index
-L48DA:	lda     _index
+L48DC:	lda     _index
 	cmp     _gas_goal
 	txa
 	sbc     _gas_goal+1
@@ -19439,7 +19439,7 @@ L48DA:	lda     _index
 ; for (index = 0; index < gas_goal; ++index)
 ;
 L3A1A:	inc     _index
-	jmp     L48DA
+	jmp     L48DC
 ;
 ; one_vram_buffer(gas_goal + 48, NTADR_A(21, 2));
 ;
@@ -19603,7 +19603,7 @@ L3A78:	jsr     tosicmp
 ;
 ; else if (gas_pumped >= gas_goal_hundreds - 5)
 ;
-	jmp     L48D5
+	jmp     L48D7
 L3A76:	lda     _gas_pumped
 	ldx     _gas_pumped+1
 	jsr     pushax
@@ -19633,7 +19633,7 @@ L3A81:	jsr     tosicmp
 ;
 ; else if (gas_pumped >= gas_goal_hundreds - 100)
 ;
-	jmp     L48D5
+	jmp     L48D7
 L3A7F:	lda     _gas_pumped
 	ldx     _gas_pumped+1
 	jsr     pushax
@@ -19659,7 +19659,7 @@ L3A8B:	jsr     tosicmp
 ;
 ; else
 ;
-	jmp     L48D5
+	jmp     L48D7
 ;
 ; pointer = level_0_bad;
 ;
@@ -19671,7 +19671,7 @@ L3A89:	lda     #>(_level_0_bad)
 ; text_length = sizeof(level_0_bad);
 ;
 	lda     #$25
-L48D5:	sta     _text_length
+L48D7:	sta     _text_length
 ;
 ; ppu_on_all(); // turn on screen
 ;
@@ -19716,7 +19716,7 @@ L48D5:	sta     _text_length
 ;
 	lda     _moveframes
 	cmp     #$3D
-	bcc     L48DB
+	bcc     L48DD
 ;
 ; moveframes = 0;
 ;
@@ -19725,7 +19725,7 @@ L48D5:	sta     _text_length
 ;
 ; if (text_row < 6)
 ;
-L48DB:	lda     _text_row
+L48DD:	lda     _text_row
 	cmp     #$06
 	bcs     L3AAE
 ;
@@ -19737,7 +19737,7 @@ L48DB:	lda     _text_row
 ;
 	lda     _moveframes
 	cmp     #$1E
-	bcs     L48DD
+	bcs     L48DF
 ;
 ; oam_meta_spr(0xb0, 0xaf, BigAlTalkClosedMouth);
 ;
@@ -19754,7 +19754,7 @@ L48DB:	lda     _text_row
 ;
 ; if (moveframes >= 30 && moveframes < 61)
 ;
-L48DD:	lda     _moveframes
+L48DF:	lda     _moveframes
 	cmp     #$1E
 	bcc     L3AAE
 	cmp     #$3D
@@ -19816,9 +19816,9 @@ L3AAE:	jsr     _oam_clear
 ;
 	lda     #$00
 	sta     _index
-L48E1:	lda     _index
+L48E3:	lda     _index
 	cmp     #$0A
-	bcs     L48E2
+	bcs     L48E4
 ;
 ; ppu_wait_nmi();
 ;
@@ -19827,11 +19827,11 @@ L48E1:	lda     _index
 ; for (index = 0; index < 10; ++index)
 ;
 	inc     _index
-	jmp     L48E1
+	jmp     L48E3
 ;
 ; if(alien_level == 1){
 ;
-L48E2:	lda     _alien_level
+L48E4:	lda     _alien_level
 	cmp     #$01
 	bne     L3ACB
 ;
@@ -22605,7 +22605,7 @@ L3E62:	lda     #>(_Nine)
 ;
 	lda     _gas1
 	cmp     #$0A
-	bcc     L48E4
+	bcc     L48E6
 ;
 ; gas1_changed = 1;
 ;
@@ -22625,7 +22625,7 @@ L3E62:	lda     #>(_Nine)
 ;
 	lda     _gas2
 	cmp     #$0A
-	bcc     L48E4
+	bcc     L48E6
 ;
 ; gas2_changed = 1;
 ;
@@ -22645,7 +22645,7 @@ L3E62:	lda     #>(_Nine)
 ;
 	lda     _gas3
 	cmp     #$0A
-	bcc     L48E3
+	bcc     L48E5
 ;
 ; gas3_changed = 1;
 ;
@@ -22663,9 +22663,9 @@ L3E62:	lda     #>(_Nine)
 ;
 ; if (gas4 >= 10)
 ;
-L48E3:	lda     _gas4
+L48E5:	lda     _gas4
 	cmp     #$0A
-	bcc     L48E4
+	bcc     L48E6
 ;
 ; gas4_changed = 1;
 ;
@@ -22683,7 +22683,7 @@ L48E3:	lda     _gas4
 ;
 ; if (gas5 >= 10)
 ;
-L48E4:	lda     _gas5
+L48E6:	lda     _gas5
 	cmp     #$0A
 	bcc     L3E83
 ;
@@ -22729,7 +22729,7 @@ L3E83:	rts
 ;
 	lda     _cost1
 	cmp     #$0A
-	bcc     L48E6
+	bcc     L48E8
 ;
 ; cost1_changed = 1;
 ;
@@ -22749,7 +22749,7 @@ L3E83:	rts
 ;
 	lda     _cost2
 	cmp     #$0A
-	bcc     L48E6
+	bcc     L48E8
 ;
 ; cost2_changed = 1;
 ;
@@ -22769,7 +22769,7 @@ L3E83:	rts
 ;
 	lda     _cost3
 	cmp     #$0A
-	bcc     L48E5
+	bcc     L48E7
 ;
 ; cost3_changed = 1;
 ;
@@ -22787,9 +22787,9 @@ L3E83:	rts
 ;
 ; if (cost4 >= 10)
 ;
-L48E5:	lda     _cost4
+L48E7:	lda     _cost4
 	cmp     #$0A
-	bcc     L48E6
+	bcc     L48E8
 ;
 ; cost4_changed = 1;
 ;
@@ -22807,7 +22807,7 @@ L48E5:	lda     _cost4
 ;
 ; if (cost5 >= 10)
 ;
-L48E6:	lda     _cost5
+L48E8:	lda     _cost5
 	cmp     #$0A
 	bcc     L3EAC
 ;
@@ -22894,7 +22894,7 @@ L3EAC:	rts
 ;
 ; ++gas1;
 ;
-L48E7:	inc     _gas1
+L48E9:	inc     _gas1
 ;
 ; gas_speed -= 256;
 ;
@@ -22912,7 +22912,7 @@ L3EC7:	lda     _gas_speed
 	cmp     #$01
 	lda     _gas_speed+1
 	sbc     #$01
-	bcs     L48E7
+	bcs     L48E9
 ;
 ; bank_3_adjust_gas();
 ;
@@ -22933,7 +22933,7 @@ L3EC7:	lda     _gas_speed
 ;
 ; ++cost1;
 ;
-L48E8:	inc     _cost1
+L48EA:	inc     _cost1
 ;
 ; cost_speed -= 256;
 ;
@@ -22951,7 +22951,7 @@ L3ED2:	lda     _cost_speed
 	cmp     #$01
 	lda     _cost_speed+1
 	sbc     #$01
-	bcs     L48E8
+	bcs     L48EA
 ;
 ; bank_3_adjust_cost();
 ;
@@ -22982,12 +22982,12 @@ L3ED9:	rts
 .endproc
 
 ; ---------------------------------------------------------------
-; void __near__ bank_4_level_init (void)
+; void __near__ bank_4_alien_level_init (void)
 ; ---------------------------------------------------------------
 
 .segment	"BANK4"
 
-.proc	_bank_4_level_init: near
+.proc	_bank_4_alien_level_init: near
 
 .segment	"BANK4"
 
@@ -22999,6 +22999,12 @@ L3ED9:	rts
 ; oam_clear(); // clear all sprites
 ;
 	jsr     _oam_clear
+;
+; pal_bg(futurepump_palette);
+;
+	lda     #<(_futurepump_palette)
+	ldx     #>(_futurepump_palette)
+	jsr     _pal_bg
 ;
 ; set_chr_bank_0(FUTUREPUMP_CHR_0);
 ;
@@ -23030,15 +23036,15 @@ L3ED9:	rts
 	lda     #$00
 	sta     _largeindex
 	sta     _largeindex+1
-L471F:	lda     _largeindex
+L4721:	lda     _largeindex
 	cmp     #$00
 	lda     _largeindex+1
 	sbc     #$04
-	bvc     L4726
+	bvc     L4728
 	eor     #$80
-L4726:	asl     a
+L4728:	asl     a
 	lda     #$00
-	bcc     L48E9
+	bcc     L48EB
 ;
 ; vram_put(FUTURE_PUMP_LEVEL[largeindex]); //todo fix this
 ;
@@ -23060,7 +23066,7 @@ L4726:	asl     a
 ;
 	lda     _index
 	cmp     #$29
-	bcc     L4721
+	bcc     L4723
 ;
 ; flush_vram_update2();
 ;
@@ -23073,14 +23079,14 @@ L4726:	asl     a
 ;
 ; for(largeindex = 0; largeindex < 1024; ++largeindex){
 ;
-L4721:	inc     _largeindex
-	bne     L471F
+L4723:	inc     _largeindex
+	bne     L4721
 	inc     _largeindex+1
-	jmp     L471F
+	jmp     L4721
 ;
 ; pal_fade_to(0, 4);
 ;
-L48E9:	jsr     pusha
+L48EB:	jsr     pusha
 	lda     #$04
 	jsr     _pal_fade_to
 ;
@@ -23136,12 +23142,12 @@ L48E9:	jsr     pusha
 ;
 	jsr     _ppu_wait_nmi
 ;
-; banked_call(BANK_4,bank_4_level_init);
+; banked_call(BANK_4,bank_4_alien_level_init);
 ;
 	lda     #$04
 	jsr     pusha
-	lda     #<(_bank_4_level_init)
-	ldx     #>(_bank_4_level_init)
+	lda     #<(_bank_4_alien_level_init)
+	ldx     #>(_bank_4_alien_level_init)
 	jmp     _banked_call
 
 .endproc
@@ -23169,7 +23175,7 @@ L48E9:	jsr     pusha
 ;
 	lda     _moveframes
 	cmp     #$C9
-	bcc     L4743
+	bcc     L4745
 ;
 ; banked_call(BANK_4, bank_4_instruction_init);
 ;
@@ -23181,7 +23187,7 @@ L48E9:	jsr     pusha
 ;
 ; }
 ;
-L4743:	rts
+L4745:	rts
 
 .endproc
 
@@ -23285,8 +23291,8 @@ L4743:	rts
 ;
 ; if (game_mode == MODE_TITLE)
 ;
-L48EA:	lda     _game_mode
-	bne     L48EB
+L48EC:	lda     _game_mode
+	bne     L48ED
 ;
 ; banked_call(BANK_0, bank_0_title_loop);
 ;
@@ -23297,9 +23303,9 @@ L48EA:	lda     _game_mode
 ;
 ; if (game_mode == MODE_INTRO_SCROLL)
 ;
-L48EB:	lda     _game_mode
+L48ED:	lda     _game_mode
 	cmp     #$03
-	bne     L48EC
+	bne     L48EE
 ;
 ; banked_call(BANK_0, bank_0_intro_scroll_loop);
 ;
@@ -23311,9 +23317,9 @@ L48EB:	lda     _game_mode
 ;
 ; if (game_mode == MODE_INTRO_CUTSCENE)
 ;
-L48EC:	lda     _game_mode
+L48EE:	lda     _game_mode
 	cmp     #$04
-	bne     L48ED
+	bne     L48EF
 ;
 ; banked_call(BANK_0, bank_0_intro_cutscene_loop);
 ;
@@ -23325,9 +23331,9 @@ L48EC:	lda     _game_mode
 ;
 ; if (game_mode == MODE_INTRO_INSTRUCTION)
 ;
-L48ED:	lda     _game_mode
+L48EF:	lda     _game_mode
 	cmp     #$05
-	bne     L48EE
+	bne     L48F0
 ;
 ; banked_call(BANK_1, bank_1_instructions_loop);
 ;
@@ -23339,9 +23345,9 @@ L48ED:	lda     _game_mode
 ;
 ; if (game_mode == MODE_EVALUATION_TIME)
 ;
-L48EE:	lda     _game_mode
+L48F0:	lda     _game_mode
 	cmp     #$06
-	bne     L48EF
+	bne     L48F1
 ;
 ; banked_call(BANK_2, bank_2_evaluation_loop);
 ;
@@ -23353,9 +23359,9 @@ L48EE:	lda     _game_mode
 ;
 ; if (game_mode == MODE_GAME)
 ;
-L48EF:	lda     _game_mode
+L48F1:	lda     _game_mode
 	cmp     #$01
-	bne     L48F0
+	bne     L48F2
 ;
 ; banked_call(BANK_3, bank_3_level_loop);
 ;
@@ -23367,9 +23373,9 @@ L48EF:	lda     _game_mode
 ;
 ; if(game_mode == MODE_ABDUCTION_CUTSCENE){
 ;
-L48F0:	lda     _game_mode
+L48F2:	lda     _game_mode
 	cmp     #$07
-	bne     L48F1
+	bne     L48F3
 ;
 ; banked_call(BANK_4, bank_4_cutscene_loop);
 ;
@@ -23381,9 +23387,9 @@ L48F0:	lda     _game_mode
 ;
 ; if(game_mode == MODE_ALIEN_INSTRUCTION){
 ;
-L48F1:	lda     _game_mode
+L48F3:	lda     _game_mode
 	cmp     #$08
-	bne     L48F2
+	bne     L48F4
 ;
 ; banked_call(BANK_4, bank_4_instruction_loop);
 ;
@@ -23395,9 +23401,9 @@ L48F1:	lda     _game_mode
 ;
 ; if(game_mode == MODE_ALIEN_LEVEL){
 ;
-L48F2:	lda     _game_mode
+L48F4:	lda     _game_mode
 	cmp     #$09
-	bne     L48F3
+	bne     L48F5
 ;
 ; banked_call(BANK_4, bank_4_alien_level_loop);
 ;
@@ -23409,7 +23415,7 @@ L48F2:	lda     _game_mode
 ;
 ; if(game_mode == MODE_ALIEN_EVALUATION){
 ;
-L48F3:	lda     _game_mode
+L48F5:	lda     _game_mode
 	cmp     #$0A
 	jsr     booleq
 ;
@@ -23429,11 +23435,11 @@ L48F3:	lda     _game_mode
 ;
 	lda     _game_mode
 	cmp     #$0D
-	jne     L48EA
+	jne     L48EC
 ;
 ; while (1)
 ;
-	jmp     L48EA
+	jmp     L48EC
 
 .endproc
 

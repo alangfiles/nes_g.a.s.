@@ -77,7 +77,7 @@ const unsigned char intro_cutscene_palette[16] = {
 const unsigned char gaspump_sprite_palette[] = {
 		0x0f, 0x20, 0x16, 0x36,
 		0x0f, 0x05, 0x2c, 0x36,
-		0x0f, 0x13, 0x0f, 0x36,
+		0x0f, 0x2c, 0x21, 0x11,
 		0x0f, 0x09, 0x19, 0x29};
 
 const unsigned char fade_1[16] = {
@@ -512,6 +512,7 @@ const unsigned char level_1_text[] = "You're starting to believe\nbut you have m
 const unsigned char level_2_text[] = "I can't deny it...\nYou were born to do this.\nOne last test...\nCan you do 1 gallons?\n\nI'm watching closely...";
 // const unsigned char level_3_text[] = "You've got it. \n I believe in you.\n Only you can save our space people.\n\n Follow me to my galaxy.";
 void bank_4_cutscene_init(void); //prototype (needed to get call from bank_4)
+void bank_3_draw_level_one_sprites(void); //prototype 
 
 void bank_1_instructions_init(void)
 {
@@ -592,6 +593,7 @@ void bank_1_gas_level_init(void){
 
 
 	ppu_on_all(); // turn on screen
+	banked_call(BANK_3, bank_3_draw_level_one_sprites);
 	pal_fade_to(0, 4);
 	wait_a_little();
 	game_mode = MODE_GAME;
@@ -844,6 +846,22 @@ const unsigned char gas_shoulder_reverse[] = {
 		128
 };
 
+
+const unsigned char Bird[] = {
+		0, 0, 0xa2, 0| OAM_BEHIND,
+		8, 0, 0xa3, 0| OAM_BEHIND,
+		16, 0, 0xa4, 0| OAM_BEHIND,
+		0, 8, 0xb2, 0| OAM_BEHIND,
+		8, 8, 0xb3, 0| OAM_BEHIND,
+		16, 8, 0xb4, 0| OAM_BEHIND,
+		128
+};
+
+const unsigned char Decimal_1[] = {
+	0,0, 0x84, 2,
+	128
+};
+
 void bank_3_draw_level_one_sprites()
 {
 	// this is the bird/cars that go across the screen
@@ -852,9 +870,12 @@ void bank_3_draw_level_one_sprites()
 	oam_meta_spr(144, 63, gas_shoulder);
 	oam_meta_spr(224, 63, gas_shoulder_reverse);
 
-	bird_x += 1;
-	bird_y = 0x20;
-	oam_meta_spr(bird_x, bird_y, Bird);
+	//decimals
+	oam_meta_spr(0xc4, 0x88, Decimal_1); // decimal for dollars
+	oam_meta_spr(0xc4, 0xb8, Decimal_1); // decimal for gas
+	// bird_x += 1;
+	// bird_y = 0x20;
+	// oam_meta_spr(bird_x, bird_y, Bird);
 }
 
 void bank_3_draw_number_as_bg_tile(void)
@@ -1066,8 +1087,7 @@ void bank_3_draw_gas(void)
 		gas1_changed = 0;
 	}
 
-	oam_meta_spr(0xc5, 0x89, Decimal_1); // decimal for dollars
-	oam_meta_spr(0xc5, 0xb9, Decimal_1); // decimal for gas
+	
 
 	num_holder = gas1;
 	x = 27;

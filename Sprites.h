@@ -47,10 +47,7 @@ const unsigned char BigAlsEyes[] = {
 		128
 };
 
-const unsigned char Decimal_1[] = {
-	0,0, 0x84, 0,
-	128
-};
+
 
 
 const unsigned char BigAlsShirt[] = {
@@ -86,16 +83,6 @@ const unsigned char BigAlsShirt[] = {
 
 
 
-
-const unsigned char Bird[] = {
-		0, 0, 0xa2, 0| OAM_BEHIND,
-		8, 0, 0xa3, 0| OAM_BEHIND,
-		16, 0, 0xa4, 0| OAM_BEHIND,
-		0, 8, 0xb2, 0| OAM_BEHIND,
-		8, 8, 0xb3, 0| OAM_BEHIND,
-		16, 8, 0xb4, 0| OAM_BEHIND,
-		128
-};
 
 
 const unsigned char One[] = {

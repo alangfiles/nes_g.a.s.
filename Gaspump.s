@@ -3396,7 +3396,7 @@ _gaspump_palette:
 	.byte	$15
 	.byte	$2C
 	.byte	$0F
-	.byte	$20
+	.byte	$3D
 	.byte	$11
 	.byte	$2C
 	.byte	$19

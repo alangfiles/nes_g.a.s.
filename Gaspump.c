@@ -63,11 +63,13 @@ const unsigned char talking_time_palette[] = {
 		0x0f, 0x05, 0x16, 0x36,
 		0x0f, 0x00, 0x1b, 0x30,
 		0x0f, 0x09, 0x19, 0x38};
+
 const unsigned char intro_cutscene_gun_palette[16] = {
 		0x0f, 0x10, 0x2a, 0x15,
 		0x0f, 0x10, 0x16, 0x26,
 		0x0f, 0x00, 0x1b, 0x30,
 		0x0f, 0x26, 0x00, 0x10};
+
 const unsigned char intro_cutscene_palette[16] = {
 		0x0f, 0x00, 0x10, 0x30,
 		0x0f, 0x06, 0x21, 0x31,
@@ -522,7 +524,13 @@ void bank_1_instructions_init(void)
 	clear_background();
 	reset_game_variables();
 
-	draw_talking_time_background();
+	set_chr_bank_0(TALKING_TIME_CHR_0);
+	set_chr_bank_1(TALKING_TIME_CHR_0);
+	// clear_background();
+	pal_bg(talking_time_palette);
+
+	vram_adr(NAMETABLE_A);
+	vram_unrle(talkingtime_rle);
 	flush_vram_update2();
 
 	// random gas goal (commenting out for now)
@@ -616,6 +624,7 @@ void bank_1_instructions_loop(void)
 		moveframes = 0;
 	}
 
+	#pragma region instructions_sprites
 	oam_clear(); // clear all sprites
 	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
 	oam_meta_spr(0xc0, 0xa8, BigAlsEyes);
@@ -629,6 +638,7 @@ void bank_1_instructions_loop(void)
 	{
 		oam_meta_spr(0xb8, 0xbf, BigAlTalkMidMouth);
 	}
+	#pragma endregion
 
 	read_input();
 
@@ -703,7 +713,13 @@ void bank_2_init_level_one_end(void)
 	clear_background();
 	gas_goal_hundreds = 0;
 
-	draw_evaluation_time_background();
+	set_chr_bank_0(TALKING_TIME_CHR_0);
+	set_chr_bank_1(TALKING_TIME_CHR_0);
+	// clear_background();
+	pal_bg(talking_time_palette);
+
+	vram_adr(NAMETABLE_A);
+	vram_unrle(evaluation_rle);
 	gas_pumped = 0;
 	for (index = 0; index < gas3; ++index)
 	{
@@ -830,7 +846,7 @@ void bank_2_evaluation_loop(void)
 #pragma rodata-name("BANK3")
 #pragma code-name("BANK3")
 
-const unsigned char gas_shoulder[] = {
+const unsigned char GasShoulder[] = {
 		0, 0, 0x80, 1,
 		8, 0, 0x81, 1,
 		16, 0, 0x82, 1,
@@ -838,7 +854,7 @@ const unsigned char gas_shoulder[] = {
 		128
 };
 
-const unsigned char gas_shoulder_reverse[] = {
+const unsigned char GasShoulderReverse[] = {
 		24, 0, 0x80, 1|OAM_FLIP_H,
 		16, 0, 0x81, 1|OAM_FLIP_H,
 		8, 0, 0x82, 1|OAM_FLIP_H,
@@ -857,7 +873,7 @@ const unsigned char Bird[] = {
 		128
 };
 
-const unsigned char Decimal_1[] = {
+const unsigned char Decimal[] = {
 	0,0, 0x84, 2,
 	128
 };
@@ -867,12 +883,12 @@ void bank_3_draw_level_one_sprites()
 	// this is the bird/cars that go across the screen
 	oam_clear();
 	// covers for the gas pump shoulders
-	oam_meta_spr(144, 63, gas_shoulder);
-	oam_meta_spr(224, 63, gas_shoulder_reverse);
+	oam_meta_spr(144, 63, GasShoulder);
+	oam_meta_spr(224, 63, GasShoulderReverse);
 
 	//decimals
-	oam_meta_spr(0xc4, 0x88, Decimal_1); // decimal for dollars
-	oam_meta_spr(0xc4, 0xb8, Decimal_1); // decimal for gas
+	oam_meta_spr(0xc4, 0x88, Decimal); // decimal for dollars
+	oam_meta_spr(0xc4, 0xb8, Decimal); // decimal for gas
 	// bird_x += 1;
 	// bird_y = 0x20;
 	// oam_meta_spr(bird_x, bird_y, Bird);
@@ -1472,53 +1488,6 @@ void main(void)
 			//todo
 		}
 	}
-}
-
-void draw_evaluation_time_background(void)
-{
-	set_chr_bank_0(TALKING_TIME_CHR_0);
-	set_chr_bank_1(TALKING_TIME_CHR_0);
-	// clear_background();
-	pal_bg(talking_time_palette);
-
-	vram_adr(NAMETABLE_A);
-	vram_unrle(evaluation_rle);
-}
-
-void draw_talking_time_background(void)
-{
-	set_chr_bank_0(TALKING_TIME_CHR_0);
-	set_chr_bank_1(TALKING_TIME_CHR_0);
-	// clear_background();
-	pal_bg(talking_time_palette);
-
-	vram_adr(NAMETABLE_A);
-	vram_unrle(talkingtime_rle);
-	// ppu_off();	 // screen off
-	// oam_clear(); // clear all sprites
-	// ppu_mask(0x16); // for blacking out ppu
-	// time to draw tiles
-
-	// tempint = 0x2084;
-
-	// place the non-moving parts of the head down:
-	//  temp1 = 0x80;
-	//  for(index2 = 0; index2 < 8; ++index2){
-	//  	vram_adr(tempint);
-	//  	for(index = 0; index < 8; ++index){
-	//  		vram_put(temp1 + index);
-	//  	}
-	//  	flush_vram_update2();
-	//  	temp1 += 16;
-	//  	tempint += 32;
-	//  }
-	//  ppu_on_all();
-}
-
-void draw_talking_time_sprites(void)
-{
-
-	oam_meta_spr(0xb0, 0xc0, BigAlsShirt);
 }
 
 void clear_background(void)

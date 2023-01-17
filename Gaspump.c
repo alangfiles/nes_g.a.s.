@@ -40,13 +40,13 @@
 
 #include "Sprites.h"
 #include "Metatiles.h"
-#include "level1.h"
+#include "BACKGROUNDS/main_gas_level.h"
 
 #include "BACKGROUNDS/evaluation_rle.h"
 #include "BACKGROUNDS/talkingtime_rle.h"
 
 const unsigned char gaspump_palette[16] = {
-		0x2c, 0x05, 0x3d, 0x15,
+		0x2c, 0x05, 0x10, 0x15,
 		0x2c, 0x05, 0x37, 0x15,
 		0x2c, 0x0f, 0x20, 0x11,
 		0x2c, 0x19, 0x2a, 0x0f};
@@ -557,6 +557,46 @@ void bank_1_instructions_init(void)
 	game_mode = MODE_INTRO_INSTRUCTION;
 }
 
+void bank_1_gas_level_init(void){
+
+	// reset changed values so they redraw
+
+	ppu_off();	 // screen off
+	oam_clear(); // clear all sprites
+
+	pal_col(0, 0x21);
+	pal_bg(gaspump_palette);
+
+	bird_x = 0;
+
+	set_chr_bank_0(GASPUMP_CHR_0);
+	set_chr_bank_1(GASPUMP_CHR_1);
+	// draw_bg: draw background code
+
+	scroll(0, 0); // reset scrolling
+
+	index = 0;
+	vram_adr(NAMETABLE_A); // Nametable A;
+
+	vram_unrle(LEVEL_1_PUMP);
+	// for(largeindex = 0; largeindex < 1024; ++largeindex){
+	// 	vram_put(level1[largeindex]); //todo fix this
+	// 	++index;
+	// 	if(index > 40) { //don't put too much in the vram_buffer
+	// 		flush_vram_update2();
+	// 		index = 0;
+	// 	}
+	// }
+
+
+	ppu_on_all(); // turn on screen
+	pal_fade_to(0, 4);
+	wait_a_little();
+	game_mode = MODE_GAME;
+	started_pumping = 0;
+
+}
+
 void bank_1_instructions_loop(void)
 {
 	ppu_wait_nmi();
@@ -592,7 +632,7 @@ void bank_1_instructions_loop(void)
 	{
 		pal_fade_to(4, 0);
 		wait_a_little();
-		gas_level_init();
+		banked_call(BANK_1, bank_1_gas_level_init);
 	}
 }
 
@@ -1510,45 +1550,6 @@ void read_input(void)
 	}
 }
 
-
-void gas_level_init(void)
-{
-	// reset changed values so they redraw
-
-	ppu_off();	 // screen off
-	oam_clear(); // clear all sprites
-
-	pal_col(0, 0x21);
-	pal_bg(gaspump_palette);
-
-	bird_x = 0;
-
-	set_chr_bank_0(GASPUMP_CHR_0);
-	set_chr_bank_1(GASPUMP_CHR_1);
-	// draw_bg: draw background code
-
-	scroll(0, 0); // reset scrolling
-
-	index = 0;
-	vram_adr(NAMETABLE_A); // Nametable A;
-
-	vram_unrle(LEVEL_1_PUMP);
-	// for(largeindex = 0; largeindex < 1024; ++largeindex){
-	// 	vram_put(level1[largeindex]); //todo fix this
-	// 	++index;
-	// 	if(index > 40) { //don't put too much in the vram_buffer
-	// 		flush_vram_update2();
-	// 		index = 0;
-	// 	}
-	// }
-
-
-	ppu_on_all(); // turn on screen
-	pal_fade_to(0, 4);
-	wait_a_little();
-	game_mode = MODE_GAME;
-	started_pumping = 0;
-}
 
 void reset_game_variables()
 {

@@ -66,7 +66,7 @@ const unsigned char talking_time_palette[] = {
 
 const unsigned char intro_cutscene_gun_palette[16] = {
 		0x0f, 0x10, 0x2a, 0x15,
-		0x0f, 0x10, 0x16, 0x26,
+		0x0f, 0x10, 0x16, 0x26,  
 		0x0f, 0x00, 0x1b, 0x30,
 		0x0f, 0x26, 0x00, 0x10};
 
@@ -192,7 +192,20 @@ void bank_0_intro_scroll_init(void)
 		vram_put(cutscenegun_small_arrow[nametable_index]);
 		flush_vram_update2();
 	}
-	nametable_index = 0;
+	nametable_index = 0;  
+	//debug
+	attribute_table_index = NAMETABLE_C_ATTR;
+	attribute_bytes_written = 0;
+	while(attribute_bytes_written < 64)
+	{
+		one_vram_buffer(intro_scroll_1[960 + attribute_bytes_written], attribute_table_index);
+		++attribute_bytes_written;
+		++attribute_table_index;
+		one_vram_buffer(intro_scroll_1[960 + attribute_bytes_written], attribute_table_index);
+		++attribute_bytes_written;
+		++attribute_table_index;
+	}
+	//end
 
 	set_chr_bank_0(CUTSCENE_GUN_CHR_0);
 	set_chr_bank_1(CUTSCENE_GUN_CHR_1);
@@ -806,7 +819,7 @@ void bank_2_evaluation_loop(void)
 		{
 			oam_meta_spr(0xb0, 0xaf, BigAlTalkMidMouth);
 		}
-	}
+	}  
 	// //big al loop:
 	oam_clear(); // clear all sprites
 

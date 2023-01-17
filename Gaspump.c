@@ -76,7 +76,7 @@ const unsigned char intro_cutscene_palette[16] = {
 
 const unsigned char gaspump_sprite_palette[] = {
 		0x0f, 0x20, 0x16, 0x36,
-		0x0f, 0x05, 0x16, 0x36,
+		0x0f, 0x05, 0x2c, 0x36,
 		0x0f, 0x13, 0x0f, 0x36,
 		0x0f, 0x09, 0x19, 0x29};
 
@@ -563,9 +563,11 @@ void bank_1_gas_level_init(void){
 
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
-
+	
+	pal_col(0, 0x0D);
 	pal_col(0, 0x21);
 	pal_bg(gaspump_palette);
+	pal_spr(gaspump_sprite_palette); //	load the palette
 
 	bird_x = 0;
 
@@ -826,11 +828,30 @@ void bank_2_evaluation_loop(void)
 #pragma rodata-name("BANK3")
 #pragma code-name("BANK3")
 
+const unsigned char gas_shoulder[] = {
+		0, 0, 0x80, 1,
+		8, 0, 0x81, 1,
+		16, 0, 0x82, 1,
+		24, 0, 0x83, 1,
+		128
+};
+
+const unsigned char gas_shoulder_reverse[] = {
+		24, 0, 0x80, 1|OAM_FLIP_H,
+		16, 0, 0x81, 1|OAM_FLIP_H,
+		8, 0, 0x82, 1|OAM_FLIP_H,
+		0, 0, 0x83, 1|OAM_FLIP_H,
+		128
+};
 
 void bank_3_draw_level_one_sprites()
 {
 	// this is the bird/cars that go across the screen
 	oam_clear();
+	// covers for the gas pump shoulders
+	oam_meta_spr(144, 63, gas_shoulder);
+	oam_meta_spr(224, 63, gas_shoulder_reverse);
+
 	bird_x += 1;
 	bird_y = 0x20;
 	oam_meta_spr(bird_x, bird_y, Bird);

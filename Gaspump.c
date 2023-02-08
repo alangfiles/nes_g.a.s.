@@ -16,7 +16,7 @@
  * [] fill in scaffolding for game flow (including missing parts)
  * [] futurepump palette
  * [] main gas pump palette
- * 
+ *
  * game flow:
  * title->intro_scroll->intro_cutscene->
  * talking_time(level1)->level1->evaluation(level1)-> (repeat if failed)
@@ -26,9 +26,8 @@
  * talking_time(level4)->level4(space)->evaluation(level4) (probably a new screen)->
  * (if failed) go to gameoverscreen.
  * shooting_level???->ending_scroll
- * 
+ *
  */
-
 
 #include "LIB/neslib.h"
 #include "LIB/nesdoug.h"
@@ -51,12 +50,11 @@ const unsigned char gaspump_palette[16] = {
 		0x2c, 0x0f, 0x3d, 0x11,
 		0x2c, 0x19, 0x2a, 0x0f};
 
-const unsigned char futurepump_palette[16]={ 
-	0x0f,0x00,0x10,0x30,
-	0x0f,0x13,0x23,0x31,
-	0x0f,0x23,0x16,0x26,
-	0x0f,0x09,0x19,0x29};
-	
+const unsigned char futurepump_palette[16] = {
+		0x0f, 0x00, 0x10, 0x30,
+		0x0f, 0x13, 0x23, 0x31,
+		0x0f, 0x23, 0x16, 0x26,
+		0x0f, 0x09, 0x19, 0x29};
 
 const unsigned char talking_time_palette[] = {
 		0x0f, 0x20, 0x16, 0x36,
@@ -66,7 +64,7 @@ const unsigned char talking_time_palette[] = {
 
 const unsigned char intro_cutscene_gun_palette[16] = {
 		0x0f, 0x10, 0x2a, 0x15,
-		0x0f, 0x10, 0x16, 0x26,  
+		0x0f, 0x10, 0x16, 0x26,
 		0x0f, 0x00, 0x1b, 0x30,
 		0x0f, 0x26, 0x00, 0x10};
 
@@ -81,6 +79,8 @@ const unsigned char gaspump_sprite_palette[] = {
 		0x0f, 0x05, 0x2c, 0x36,
 		0x0f, 0x2c, 0x21, 0x11,
 		0x0f, 0x09, 0x19, 0x29};
+
+const unsigned char abduction_palette[16] = {0x0f, 0x16, 0x3d, 0x30, 0x0f, 0x10, 0x21, 0x00, 0x0f, 0x05, 0x00, 0x38, 0x0f, 0x24, 0x0c, 0x2a};
 
 const unsigned char fade_1[16] = {
 		0x0f,
@@ -133,7 +133,7 @@ enum
 
 /*
  * Bank0 is used for the intro scroll and cutscene
-*/
+ */
 #pragma region BANK0
 // BANK0 is being used for the INTRO_CUTSCENE
 #pragma rodata-name("BANK0")
@@ -192,11 +192,11 @@ void bank_0_intro_scroll_init(void)
 		vram_put(cutscenegun_small_arrow[nametable_index]);
 		flush_vram_update2();
 	}
-	nametable_index = 0;  
-	//put in the attribute table for the intro_scroll before showing it.
+	nametable_index = 0;
+	// put in the attribute table for the intro_scroll before showing it.
 	attribute_table_index = NAMETABLE_C_ATTR;
 	attribute_bytes_written = 0;
-	while(attribute_bytes_written < 64)
+	while (attribute_bytes_written < 64)
 	{
 		one_vram_buffer(intro_scroll_1[960 + attribute_bytes_written], attribute_table_index);
 		++attribute_bytes_written;
@@ -214,90 +214,90 @@ void bank_0_intro_scroll_init(void)
 	game_mode = MODE_INTRO_SCROLL;
 }
 
-void bank_0_title_loop(void){
+void bank_0_title_loop(void)
+{
 	ppu_wait_nmi();
 
+	if (option == 0)
+	{
+		one_vram_buffer(0x3d, NTADR_A(6, 22));
+		one_vram_buffer(0x00, NTADR_A(6, 24));
+	}
+	else
+	{
+		one_vram_buffer(0x00, NTADR_A(6, 22));
+		one_vram_buffer(0x3d, NTADR_A(6, 24));
+	}
+
+	read_input();
+
+	if (trigger_clicked) // if((pad2_zapper)&&(zapper_ready)){
+	{
+
+		// bg off, project white boxes
+		oam_clear();
+		// white_background();
+		pal_col(0, 0x30); // set color to white
+		// ppu_mask(0x16); // BG off, won't happen till NEXT frame
+
+		ppu_wait_nmi(); // wait till the top of the next frame
+		// this frame will display no BG and a white box
+
+		oam_clear(); // clear the NEXT frame
+
+		// draw_title_background();
+		// ppu_mask(0x1e); // bg on, won't happen till NEXT frame
+		read_input();
+		// hit_detected = zap_read(1);
+
+		// hit_detected = zap_read(1); // look for light in zapper, port 2
+		pal_col(0, 0x0f); // back to transparent
+
+		if (hit_detected)
+		{
 			if (option == 0)
 			{
-				one_vram_buffer(0x3d, NTADR_A(6, 22));
-				one_vram_buffer(0x00, NTADR_A(6, 24));
+				// debug, just go to game
+				wait_a_little();
+				// flash colors:
+				// 0x0f,0x01,0x14,0x30,
+
+				pal_bg(fade_1);
+				// pal_col(1, 0x04);
+				// pal_col(2, 0x07);
+				// pal_col(3, 0x10);
+				for (index = 0; index < 15; ++index)
+				{
+					ppu_wait_nmi();
+				}
+
+				pal_bg(fade_2);
+				for (index = 0; index < 15; ++index)
+				{
+					ppu_wait_nmi();
+				}
+				pal_fade_to(4, 0);
+				banked_call(BANK_0, bank_0_intro_scroll_init);
 			}
 			else
 			{
-				one_vram_buffer(0x00, NTADR_A(6, 22));
-				one_vram_buffer(0x3d, NTADR_A(6, 24));
+				multi_vram_buffer_horz("No Free Pump Mode yet", 21, NTADR_A(6, 25));
 			}
-
-			read_input();
-
-			if (trigger_clicked) // if((pad2_zapper)&&(zapper_ready)){
+		}
+		else
+		{
+			if (option == 0)
 			{
-
-				// bg off, project white boxes
-				oam_clear();
-				// white_background();
-				pal_col(0, 0x30); // set color to white
-				// ppu_mask(0x16); // BG off, won't happen till NEXT frame
-
-				ppu_wait_nmi(); // wait till the top of the next frame
-				// this frame will display no BG and a white box
-
-				oam_clear(); // clear the NEXT frame
-
-				// draw_title_background();
-				// ppu_mask(0x1e); // bg on, won't happen till NEXT frame
-				read_input();
-				// hit_detected = zap_read(1);
-
-				// hit_detected = zap_read(1); // look for light in zapper, port 2
-				pal_col(0, 0x0f); // back to transparent
-
-				if (hit_detected)
-				{
-					if (option == 0)
-					{
-						// debug, just go to game
-						wait_a_little();
-						// flash colors:
-						// 0x0f,0x01,0x14,0x30,
-
-						pal_bg(fade_1);
-						// pal_col(1, 0x04);
-						// pal_col(2, 0x07);
-						// pal_col(3, 0x10);
-						for (index = 0; index < 15; ++index)
-						{
-							ppu_wait_nmi();
-						}
-
-						pal_bg(fade_2);
-						for (index = 0; index < 15; ++index)
-						{
-							ppu_wait_nmi();
-						}
-						pal_fade_to(4, 0);
-						banked_call(BANK_0, bank_0_intro_scroll_init);
-					}
-					else
-					{
-						multi_vram_buffer_horz("No Free Pump Mode yet", 21, NTADR_A(6, 25));
-					}
-				}
-				else
-				{
-					if (option == 0)
-					{
-						option = 1;
-					}
-					else
-					{
-						option = 0;
-					}
-					multi_vram_buffer_horz("                     ", 21, NTADR_A(6, 25));
-				}
+				option = 1;
 			}
+			else
+			{
+				option = 0;
+			}
+			multi_vram_buffer_horz("                     ", 21, NTADR_A(6, 25));
+		}
+	}
 }
-
 
 void bank_0_intro_cutscene_init(void)
 {
@@ -525,8 +525,8 @@ const unsigned char level_0_text[] = "So you wanna pump gas ?!?\nGive me 1 gallo
 const unsigned char level_1_text[] = "You're starting to believe\nbut you have much to learn.\n\nNow give me 1 gallons!\nand make it quick!!!";
 const unsigned char level_2_text[] = "I can't deny it...\nYou were born to do this.\nOne last test...\nCan you do 1 gallons?\n\nI'm watching closely...";
 // const unsigned char level_3_text[] = "You've got it. \n I believe in you.\n Only you can save our space people.\n\n Follow me to my galaxy.";
-void bank_4_cutscene_init(void); //prototype (needed to get call from bank_4)
-void bank_3_draw_level_one_sprites(void); //prototype 
+void bank_4_cutscene_init(void);					// prototype (needed to get call from bank_4)
+void bank_3_draw_level_one_sprites(void); // prototype
 
 void bank_1_instructions_init(void)
 {
@@ -546,7 +546,7 @@ void bank_1_instructions_init(void)
 	flush_vram_update2();
 
 	// random gas goal (commenting out for now)
-	// index = get_frame_count() & 3; // returns 0,1,2,3
+	// index = get_frame_count() & 4; // returns 0,1,2,3
 	// gas_goal = gas_goal_array[index];
 
 	text_x_start = 3;
@@ -578,13 +578,14 @@ void bank_1_instructions_init(void)
 	game_mode = MODE_INTRO_INSTRUCTION;
 }
 
-void bank_1_gas_level_init(void){
+void bank_1_gas_level_init(void)
+{
 
 	// reset changed values so they redraw
 
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
-	
+
 	pal_col(0, 0x0D);
 	pal_col(0, 0x21);
 	pal_bg(gaspump_palette);
@@ -611,14 +612,12 @@ void bank_1_gas_level_init(void){
 	// 	}
 	// }
 
-
 	ppu_on_all(); // turn on screen
 	banked_call(BANK_3, bank_3_draw_level_one_sprites);
 	pal_fade_to(0, 4);
 	wait_a_little();
 	game_mode = MODE_GAME;
 	started_pumping = 0;
-
 }
 
 void bank_1_instructions_loop(void)
@@ -636,7 +635,7 @@ void bank_1_instructions_loop(void)
 		moveframes = 0;
 	}
 
-	#pragma region instructions_sprites
+#pragma region instructions_sprites
 	oam_clear(); // clear all sprites
 	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
 	oam_meta_spr(0xc0, 0xa8, BigAlsEyes);
@@ -650,7 +649,7 @@ void bank_1_instructions_loop(void)
 	{
 		oam_meta_spr(0xb8, 0xbf, BigAlTalkMidMouth);
 	}
-	#pragma endregion
+#pragma endregion
 
 	read_input();
 
@@ -701,7 +700,6 @@ void bank_1_title_init(void)
 
 #pragma endregion
 
-
 /*
  * Bank 2 is used for evaluation time stuff
  */
@@ -714,9 +712,8 @@ const unsigned char level_0_good[] = "!!! WOW !!!\nYou've got it kid!";
 const unsigned char level_0_ok[] = "Hmmmmm....\nPump harder.";
 const unsigned char level_0_bad[] = "You just don't\nhave what it takes...";
 
-
-void bank_1_instructions_init(void); //prototype
-void bank_4_cutscene_init(void); //prototype
+void bank_1_instructions_init(void); // prototype
+void bank_4_cutscene_init(void);		 // prototype
 
 void bank_2_init_level_one_end(void)
 {
@@ -818,7 +815,7 @@ void bank_2_evaluation_loop(void)
 		{
 			oam_meta_spr(0xb0, 0xaf, BigAlTalkMidMouth);
 		}
-	}  
+	}
 	// //big al loop:
 	oam_clear(); // clear all sprites
 
@@ -837,20 +834,20 @@ void bank_2_evaluation_loop(void)
 			ppu_wait_nmi();
 		}
 
-		if(alien_level == 1){
+		if (alien_level == 1)
+		{
 			banked_call(BANK_4, bank_4_cutscene_init);
-		} else {
+		}
+		else
+		{
 			banked_call(BANK_1, bank_1_instructions_init);
 		}
-		
 	}
-
 }
 #pragma endregion
 
 /*
- * Bank3 is used for Nothing at the moment...
- * but I should move the level into this bank.
+ * Bank3 is used for the main game level
  */
 
 #pragma region BANK3
@@ -863,32 +860,27 @@ const unsigned char GasShoulder[] = {
 		8, 0, 0x81, 1,
 		16, 0, 0x82, 1,
 		24, 0, 0x83, 1,
-		128
-};
+		128};
 
 const unsigned char GasShoulderReverse[] = {
-		24, 0, 0x80, 1|OAM_FLIP_H,
-		16, 0, 0x81, 1|OAM_FLIP_H,
-		8, 0, 0x82, 1|OAM_FLIP_H,
-		0, 0, 0x83, 1|OAM_FLIP_H,
-		128
-};
-
+		24, 0, 0x80, 1 | OAM_FLIP_H,
+		16, 0, 0x81, 1 | OAM_FLIP_H,
+		8, 0, 0x82, 1 | OAM_FLIP_H,
+		0, 0, 0x83, 1 | OAM_FLIP_H,
+		128};
 
 const unsigned char Bird[] = {
-		0, 0, 0xa2, 0| OAM_BEHIND,
-		8, 0, 0xa3, 0| OAM_BEHIND,
-		16, 0, 0xa4, 0| OAM_BEHIND,
-		0, 8, 0xb2, 0| OAM_BEHIND,
-		8, 8, 0xb3, 0| OAM_BEHIND,
-		16, 8, 0xb4, 0| OAM_BEHIND,
-		128
-};
+		0, 0, 0xa2, 0 | OAM_BEHIND,
+		8, 0, 0xa3, 0 | OAM_BEHIND,
+		16, 0, 0xa4, 0 | OAM_BEHIND,
+		0, 8, 0xb2, 0 | OAM_BEHIND,
+		8, 8, 0xb3, 0 | OAM_BEHIND,
+		16, 8, 0xb4, 0 | OAM_BEHIND,
+		128};
 
 const unsigned char Decimal[] = {
-	0,0, 0x84, 2,
-	128
-};
+		0, 0, 0x84, 2,
+		128};
 
 void bank_3_draw_level_one_sprites()
 {
@@ -898,12 +890,12 @@ void bank_3_draw_level_one_sprites()
 	oam_meta_spr(144, 63, GasShoulder);
 	oam_meta_spr(224, 63, GasShoulderReverse);
 
-	//decimals
+	// decimals
 	oam_meta_spr(0xc4, 0x88, Decimal); // decimal for dollars
 	oam_meta_spr(0xc4, 0xb8, Decimal); // decimal for gas
-	// bird_x += 1;
-	// bird_y = 0x20;
-	// oam_meta_spr(bird_x, bird_y, Bird);
+																		 // bird_x += 1;
+																		 // bird_y = 0x20;
+																		 // oam_meta_spr(bird_x, bird_y, Bird);
 }
 
 void bank_3_draw_number_as_bg_tile(void)
@@ -1019,7 +1011,6 @@ void bank_3_draw_number_as_bg_tile(void)
 	}
 }
 
-
 void bank_3_draw_cost(void)
 {
 
@@ -1063,7 +1054,6 @@ void bank_3_draw_cost(void)
 	// find_sprite();
 	// oam_meta_spr(0x80, 0x60, pointer);
 }
-
 
 void bank_3_draw_gas(void)
 {
@@ -1115,8 +1105,6 @@ void bank_3_draw_gas(void)
 		gas1_changed = 0;
 	}
 
-	
-
 	num_holder = gas1;
 	x = 27;
 	y = 20;
@@ -1161,7 +1149,6 @@ void bank_3_find_sprite(void)
 		break;
 	}
 }
-
 
 void bank_3_adjust_gas(void)
 {
@@ -1237,8 +1224,8 @@ void bank_3_adjust_cost(void)
 	}
 }
 
-
-void bank_3_level_loop(void){
+void bank_3_level_loop(void)
+{
 	ppu_wait_nmi(); // wait till beginning of the frame
 	bank_3_draw_level_one_sprites();
 	bank_3_draw_gas();
@@ -1285,7 +1272,6 @@ void bank_3_level_loop(void){
 
 #pragma endregion
 
-
 #pragma region BANK4
 
 #pragma rodata-name("BANK4")
@@ -1293,37 +1279,45 @@ void bank_3_level_loop(void){
 
 #include "BACKGROUNDS/future_pump.h"
 #include "BACKGROUNDS/abduction_cutscene.h"
+#include "BACKGROUNDS/abduction_cutscene_beam.h"
 
-
-void bank_4_cutscene_init(void){
+void bank_4_cutscene_init(void)
+{
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
-	//TODO change this to the right CHR
-	set_chr_bank_0(CUTSCENE_CHR_0);
-	set_chr_bank_1(CUTSCENE_CHR_1);
+	pal_bg(abduction_palette);
+	pal_spr(abduction_palette);
+	// TODO change this to the right CHR
+	set_chr_bank_0(CUTSCENE_ABDUCTION_CHR_0);
+	set_chr_bank_1(CUTSCENE_ABDUCTION_CHR_1);
 	scroll(0, 0); // reset scrolling
 	index = 0;
-	
+
 	vram_adr(NAMETABLE_A); // Nametable A;
 
-	for(largeindex = 0; largeindex < 1024; ++largeindex){
-		vram_put(abduction_cutscene[largeindex]); //todo fix this
+	for (largeindex = 0; largeindex < 1024; ++largeindex)
+	{
+		vram_put(abduction_cutscene[largeindex]); // todo fix this
 		++index;
-		if(index > 40) { //don't put too much in the vram_buffer
+		if (index > 40)
+		{ // don't put too much in the vram_buffer
 			flush_vram_update2();
 			index = 0;
 		}
 	}
-	
+
 	ppu_on_all();
 	pal_fade_to(0, 4);
 	wait_a_little();
 	game_mode = MODE_ABDUCTION_CUTSCENE;
 	started_pumping = 0;
 	moveframes = 0;
+
+	abduction_cutscene_step = ABDUCTION_START;
 }
 
-void bank_4_alien_level_init(void){
+void bank_4_alien_level_init(void)
+{
 
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
@@ -1333,13 +1327,15 @@ void bank_4_alien_level_init(void){
 	set_chr_bank_1(FUTUREPUMP_CHR_1);
 	scroll(0, 0); // reset scrolling
 	index = 0;
-	
+
 	vram_adr(NAMETABLE_A); // Nametable A;
 
-	for(largeindex = 0; largeindex < 1024; ++largeindex){
-		vram_put(FUTURE_PUMP_LEVEL[largeindex]); //todo fix this
+	for (largeindex = 0; largeindex < 1024; ++largeindex)
+	{
+		vram_put(FUTURE_PUMP_LEVEL[largeindex]); // todo fix this
 		++index;
-		if(index > 40) { //don't put too much in the vram_buffer
+		if (index > 40)
+		{ // don't put too much in the vram_buffer
 			flush_vram_update2();
 			index = 0;
 		}
@@ -1350,48 +1346,487 @@ void bank_4_alien_level_init(void){
 	game_mode = MODE_ALIEN_LEVEL;
 }
 
-void bank_4_instruction_init(void){
+void bank_4_instruction_init(void)
+{
 
 	// todo init the instruction screen and display stuff;
 	game_mode = MODE_ALIEN_INSTRUCTION;
 }
 
-void bank_4_instruction_loop(void){
+void bank_4_instruction_loop(void)
+{
 	ppu_wait_nmi();
-	banked_call(BANK_4,bank_4_alien_level_init);
+	banked_call(BANK_4, bank_4_alien_level_init);
 }
 
-void bank_4_cutscene_loop(void){
-		ppu_wait_nmi();
-		++moveframes;
-		//add in sprite animation, etc here
+void bank_4_cutscene_loop(void)
+{
+	ppu_wait_nmi();
 
-		if(moveframes > 200){
-			// ppu_off();
-			banked_call(BANK_4, bank_4_instruction_init);
+	// add in sprite animation, etc here
+
+	if (abduction_cutscene_step == ABDUCTION_START)
+	{
+		if (moveframes > 250) // ending condition
+		{
+			// init next step
+			moveframes = 0;
+			abduction_cutscene_step = ABDUCTION_BEAM;
+			cutscene_index = NAMETABLE_A;
+			nametable_index = 0;
+		}
+		// 600 frames for guy to smoke cigarette, etc
+		// draw sprites:
+		oam_clear();
+		if (moveframes % 4 == 0)
+		{
+			oam_meta_spr(172, 12, abduction_ship_1);
+		}
+		else
+		{
+			oam_meta_spr(172, 12, abduction_ship_2);
 		}
 
+		if (moveframes < 100)
+		{
+			oam_meta_spr(200, 190, abduction_guy_0);
+		}
+		else if (moveframes < 110)
+		{
+			oam_meta_spr(200, 190, abduction_guy_1);
+		}
+		else if (moveframes < 120)
+		{
+			oam_meta_spr(200, 190, abduction_guy_2);
+		}
+		else if (moveframes < 130)
+		{
+			oam_meta_spr(200, 190, abduction_guy_3);
+		}
+		else if (moveframes < 140)
+		{
+			oam_meta_spr(200, 190, abduction_guy_4);
+		}
+		else if (moveframes < 150)
+		{
+			oam_meta_spr(200, 190, abduction_guy_5);
+		}
+		else if (moveframes < 160)
+		{
+			oam_meta_spr(200, 190, abduction_guy_6);
+		}
+		else if (moveframes < 170)
+		{
+			oam_meta_spr(200, 190, abduction_guy_7);
+		}
+		else if (moveframes < 180)
+		{
+			oam_meta_spr(200, 190, abduction_guy_8);
+		}
+		else if (moveframes < 190)
+		{
+			oam_meta_spr(200, 190, abduction_guy_9);
+		}
+		else if (moveframes < 200)
+		{
+			oam_meta_spr(200, 190, abduction_guy_10);
+		}
+		else if (moveframes < 210)
+		{
+			oam_meta_spr(200, 190, abduction_guy_11);
+		}
+		else if (moveframes < 220)
+		{
+			oam_meta_spr(200, 190, abduction_guy_12);
+		}
+		else if (moveframes < 230)
+		{
+			oam_meta_spr(200, 190, abduction_guy_13);
+		}
+		else if (moveframes < 240)
+		{
+			oam_meta_spr(200, 190, abduction_guy_14);
+		}
+		else
+		{
+			oam_meta_spr(200, 190, abduction_guy_14);
+		}
+		++moveframes;
+	}
+
+	if (abduction_cutscene_step == ABDUCTION_BEAM)
+	{
+		oam_clear();
+		if (moveframes % 4 == 0)
+		{
+			oam_meta_spr(172, 12, abduction_ship_1);
+			oam_meta_spr(200, 190, abduction_guy_14);
+		}
+		else
+		{
+			oam_meta_spr(172, 12, abduction_ship_2);
+			oam_meta_spr(200, 190, abduction_guy_14);
+		}
+		// this is just used for the beam coming down, maybe we want the guy
+		//  to anmiate here to, but not right now
+		if (nametable_index == 1024)
+		{
+			moveframes = 0;
+			abduction_cutscene_step = ABDUCTION_BEAM_UP;
+		}
+
+		// we want to do 1 line every 5 frames
+		if (index2 == 5 && nametable_index < 1024)
+		{
+			for (index = 0; index < 32; ++index)
+			{
+				one_vram_buffer(abduction_cutscene_beam[nametable_index], cutscene_index);
+				++nametable_index;
+				++cutscene_index;
+			}
+			index2 = 0;
+		}
+
+		++index2;
+		++moveframes;
+	}
+	if (abduction_cutscene_step == ABDUCTION_BEAM_UP)
+	{
+		if (moveframes > 210)
+		{
+			moveframes = 0;
+			abduction_cutscene_step = ABDUCTION_BEAM_RETRACT;
+			cutscene_index = NAMETABLE_A + 1024;
+			nametable_index = 1024;
+		}
+		oam_clear();
+		// draw space ship:
+		if (moveframes % 4 == 0)
+		{
+			oam_meta_spr(172, 12, abduction_ship_1);
+		}
+		else
+		{
+			oam_meta_spr(172, 12, abduction_ship_2);
+		}
+
+		if (moveframes < 0)
+		{
+			oam_meta_spr(200, 190, abduction_guy_15);
+		}
+		else if (moveframes < 10)
+		{
+			oam_meta_spr(200, 190, abduction_guy_16);
+		}
+		else if (moveframes < 20)
+		{
+			oam_meta_spr(200, 190, abduction_guy_17);
+		}
+		else if (moveframes < 30)
+		{
+			oam_meta_spr(200, 190, abduction_guy_18);
+		}
+		else if (moveframes < 40)
+		{
+			oam_meta_spr(200, 190, abduction_guy_19);
+		}
+		else if (moveframes < 50)
+		{
+			oam_meta_spr(200, 190, abduction_guy_20);
+		}
+		else if (moveframes < 60)
+		{
+			oam_meta_spr(200, 190, abduction_guy_21); // this is cigarette flick
+		}
+		else if (moveframes < 70)
+		{
+			oam_meta_spr(200, 190, abduction_guy_22);
+		}
+		else if (moveframes < 80)
+		{
+			oam_meta_spr(200, 190, abduction_guy_23);
+		}
+		else if (moveframes < 90)
+		{
+			oam_meta_spr(200, 190, abduction_guy_24);
+		}
+		else if (moveframes < 100)
+		{
+			oam_meta_spr(200, 190, abduction_guy_25);
+		}
+		else if (moveframes < 110)
+		{
+			// moveframes between 100 and 110
+			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_45);
+		}
+		else if (moveframes < 120)
+		{
+			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_46);
+		}
+		else if (moveframes < 130)
+		{
+			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_47);
+		}
+		else if (moveframes < 140)
+		{
+			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_48);
+		}
+		else if (moveframes < 150)
+		{
+			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_49);
+		}
+		else if (moveframes < 160)
+		{
+			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_50);
+		}
+		else if (moveframes < 170)
+		{
+			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_51);
+		}
+		else if (moveframes < 190)
+		{
+			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_52);
+		}
+		else if (moveframes < 210)
+		{
+			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_53);
+		}
+		else
+		{
+		}
+
+		++moveframes;
+	}
+	if (abduction_cutscene_step == ABDUCTION_BEAM_RETRACT)
+	{
+		oam_clear();
+		if (moveframes % 4 == 0)
+		{
+			oam_meta_spr(172, 12, abduction_ship_1);
+		}
+		else
+		{
+			oam_meta_spr(172, 12, abduction_ship_2);
+		}
+		// this is just used for the beam coming down, maybe we want the guy
+		//  to anmiate here to, but not right now
+		if (nametable_index == 0)
+		{
+			moveframes = 0;
+			abduction_cutscene_step = ABDUCTION_DONE;
+		}
+
+		// we want to do 1 line every 5 frames
+		if (index2 == 5 && nametable_index > 0)
+		{
+			for (index = 0; index < 32; ++index)
+			{
+				one_vram_buffer(abduction_cutscene[nametable_index], cutscene_index);
+				--nametable_index;
+				--cutscene_index;
+			}
+			index2 = 0;
+		}
+
+		++index2;
+		++moveframes;
+	}
+
+	if (abduction_cutscene_step == ABDUCTION_DONE) // to call at the end of everything
+	{
+		banked_call(BANK_4, bank_4_instruction_init);
+	}
 }
 
-
-
-
-void bank_4_alien_level_loop(void){
+void bank_4_alien_level_loop(void)
+{
 	ppu_wait_nmi();
-	//this probaly looks a lot like the main level loop
+	// this probaly looks a lot like the main level loop
 }
 
 #pragma endregion
 
+#pragma region BANK_5
+/*
+ * Bank 5 is Gameover (and ....)
+ *
+ */
+#pragma rodata-name("BANK5")
+#pragma code-name("BANK5")
 
+#include "BACKGROUNDS/gameover.h"
+#include "BACKGROUNDS/starfield1.h"
+#include "BACKGROUNDS/starfield2.h"
+#include "BACKGROUNDS/starfield3.h"
+#include "BACKGROUNDS/starfield4.h"
+#include "BACKGROUNDS/starfield5.h"
+#include "BACKGROUNDS/starfield6.h"
+#include "BACKGROUNDS/starfield7.h"
+#include "BACKGROUNDS/starfieldearth.h"
 
+const unsigned char Starfields[8] = {
+	STARFIELD1,STARFIELD2,STARFIELD3,STARFIELD4,STARFIELD5,STARFIELD6,STARFIELD7,STARFIELD8
+};
+
+void bank_5_gameover_init(void)
+{
+	ppu_off();	 // screen off
+	oam_clear(); // clear all sprites
+
+	pal_bg(futurepump_palette);
+	set_chr_bank_0(GAMEOVER_CHR_0);
+	set_chr_bank_1(GAMEOVER_CHR_1);
+	scroll(0, 0); // reset scrolling
+	index = 0;
+
+	vram_adr(NAMETABLE_A); // Nametable A;
+
+	for (largeindex = 0; largeindex < 1024; ++largeindex)
+	{
+		vram_put(gameover[largeindex]); // todo fix this
+		++index;
+		if (index > 40)
+		{ // don't put too much in the vram_buffer
+			flush_vram_update2();
+			index = 0;
+		}
+	}
+
+	pal_fade_to(0, 4);
+	ppu_on_all();
+	game_mode = MODE_GAME_OVER;
+	
+}
+
+void bank_5_gameover_loop(void)
+{
+	ppu_wait_nmi();
+	//wait for keybaord input, then restart the whole game
+}
+
+void bank_5_starfield_init(void)
+{
+	
+	ppu_off();	 // screen off
+	oam_clear(); // clear all sprites
+
+	pal_bg(futurepump_palette);
+	set_chr_bank_0(STARFIELD_CHR_0);
+	set_chr_bank_1(STARFIELD_CHR_1);
+	scroll(0, 0); // reset scrolling
+	index = 0;
+	scroll_x = 0;
+	moveframes = 0;
+	scroll_page = 0;
+
+	vram_adr(NAMETABLE_A); // Nametable A;
+
+	for (largeindex = 0; largeindex < 1024; ++largeindex)
+	{
+		vram_put(starfield1[largeindex]); // todo fix this
+		++index;
+		if (index > 40)
+		{ // don't put too much in the vram_buffer
+			flush_vram_update2();
+			index = 0;
+		}
+	}
+
+	vram_adr(NAMETABLE_C); // Nametable C;
+	for (largeindex = 0; largeindex < 1024; ++largeindex)
+	{
+		vram_put(starfield2[largeindex]); // todo fix this
+		++index;
+		if (index > 40)
+		{ // don't put too much in the vram_buffer
+			flush_vram_update2();
+			index = 0;
+		}
+	}
+
+	pal_fade_to(0, 4);
+	ppu_on_all();
+	game_mode = MODE_ALIEN_STARFIELD;
+	pointer = starfield3;
+	nametable_index = NAMETABLE_A;
+}
+
+unsigned char column_pixel_counter = 0;
+unsigned char row_column_index = 0;
+
+void bank_5_draw_screen_right(void){
+if (column_pixel_counter > 7 )
+	{ // after we've scrolled 8 pixels, lets draw the next column
+		for (largeindex = 0; largeindex <= 960; largeindex += 32)
+		{
+			//draw a column of sprites.
+			one_vram_buffer(pointer[largeindex+row_column_index], nametable_index+largeindex+row_column_index);
+		}
+		column_pixel_counter = 0;
+		++row_column_index;
+	}
+
+	if(row_column_index > 31) {
+		//we've drawn the full screen now, let's pick a new background.
+
+		if(nametable_index > NAMETABLE_B){
+			nametable_index = NAMETABLE_A;
+		} else {
+			nametable_index = NAMETABLE_B;
+		}
+
+		//randomly pick a new starfield
+		temp1 = rand8(); // 0 - 255
+		if(temp1 < 32){
+			pointer = starfield1;
+		} else if(temp1 < 64){
+			pointer = starfield2;
+		}else if(temp1 < 96){
+			pointer = starfield3;
+		}else if(temp1 < 128){
+			pointer = starfield4;
+		}else if(temp1 < 160){
+			pointer = starfield5;
+		}else if(temp1 < 192){
+			pointer = starfield6;
+		}else if(temp1 < 224){
+			pointer = starfield7;
+		}else {
+			pointer = starfieldearth;
+		}
+		
+
+		row_column_index = 0;
+
+	}
+}
+
+void bank_5_starfield_loop(void)
+{
+	ppu_wait_nmi();
+	
+	if(moveframes == 1)
+	{
+		++scroll_x;
+		++column_pixel_counter;
+		scroll(scroll_x, 0);
+		moveframes = 0;
+	}
+	bank_5_draw_screen_right();
+	
+
+	
+	++moveframes;
+}
+
+#pragma endregion
 
 #pragma region CODE
 /*
  *  Bank 7 is the fixed bank for game code.
  *  But I think it's small because of that.
  *  So really it'll just have the game loop and call off to other fns
- * 
+ *
  * Game flow:
  * title->intro_scroll->intro_cutscene->
  * talking_time(level1)->level1->evaluation(level1)-> (repeat if failed)
@@ -1434,7 +1869,16 @@ void main(void)
 
 	ppu_on_all(); // turn on screen
 
+	// debug, actually allow this:
 	banked_call(BANK_1, bank_1_title_init);
+
+	// debug to the level I want to test
+	/*
+		DEBUG ONLY!!!!
+	*/
+	game_mode = MODE_ALIEN_STARFIELD;
+	banked_call(BANK_5, bank_5_starfield_init);
+	
 
 	while (1)
 	{
@@ -1452,7 +1896,6 @@ void main(void)
 		if (game_mode == MODE_INTRO_SCROLL)
 		{ // text scroll (in the year 20XX...)
 			banked_call(BANK_0, bank_0_intro_scroll_loop);
-			
 		}
 		if (game_mode == MODE_INTRO_CUTSCENE)
 		{ // city scroll (scrolls down from the sky)
@@ -1472,32 +1915,40 @@ void main(void)
 		{ // this is game pumping mode, either level 1 or alien level
 			banked_call(BANK_3, bank_3_level_loop);
 		}
-		if(game_mode == MODE_ABDUCTION_CUTSCENE){
-			//todo
-			//draw cutscene
+		if (game_mode == MODE_ABDUCTION_CUTSCENE)
+		{
+			// todo
+			// draw cutscene
 			banked_call(BANK_4, bank_4_cutscene_loop);
 		}
-		if(game_mode == MODE_ALIEN_INSTRUCTION){
-			//todo
-			// add instruction screen
-			//for now this just passes through.
+		if (game_mode == MODE_ALIEN_INSTRUCTION)
+		{
+			// todo
+			//  add instruction screen
+			// for now this just passes through.
 			banked_call(BANK_4, bank_4_instruction_loop);
 		}
-		if(game_mode == MODE_ALIEN_LEVEL){
-			//todo
+		if (game_mode == MODE_ALIEN_LEVEL)
+		{
+			// todo
 			banked_call(BANK_4, bank_4_alien_level_loop);
 		}
-		if(game_mode == MODE_ALIEN_EVALUATION){
-			//todo
+		if (game_mode == MODE_ALIEN_EVALUATION)
+		{
+			// todo
 		}
-		if(game_mode == MODE_ALIEN_SHOOTING_GALLERY){
-			//todo
+		if (game_mode == MODE_ALIEN_STARFIELD)
+		{
+			// todo
+			banked_call(BANK_5, bank_5_starfield_loop);
 		}
-		if(game_mode == MODE_GAME_ENDING) {
-			//todo
+		if (game_mode == MODE_GAME_ENDING)
+		{
+			// todo
 		}
-		if(game_mode == MODE_GAME_OVER){
-			//todo
+		if (game_mode == MODE_GAME_OVER)
+		{
+			banked_call(BANK_5, bank_5_gameover_loop);
 		}
 	}
 }
@@ -1571,7 +2022,6 @@ void read_input(void)
 		hit_detected = (pad1 & PAD_A);
 	}
 }
-
 
 void reset_game_variables()
 {

@@ -1,18 +1,18 @@
-//variables
+// variables
 
 #define NAMETABLE_A_ATTR 0x23C0
 #define NAMETABLE_B_ATTR 0x27C0
 #define NAMETABLE_C_ATTR 0x2BC0
 #define NAMETABLE_D_ATTR 0x2FC0
 
-
 #pragma bss-name(push, "ZEROPAGE")
 unsigned char pad1_zapper;
-unsigned char zapper_ready; //wait till it's 0
+unsigned char zapper_ready; // wait till it's 0
 unsigned char hit_detected;
 const unsigned char debug_mode = 1;
 
 unsigned int scroll_y;
+unsigned int scroll_x;
 unsigned char scrolled_past_once;
 unsigned char scroll_page;
 unsigned char scroll_page_end;
@@ -42,11 +42,10 @@ unsigned char gas3_changed;
 unsigned char gas2_changed;
 unsigned char gas1_changed;
 
-
 unsigned char alien_level;
 unsigned int gas_goal;
 unsigned int gas_goal_hundreds;
-const unsigned char gas_goal_array[]={1,2,3,4};
+const unsigned char gas_goal_array[] = {1, 2, 3, 4};
 
 unsigned int gas_speed;
 unsigned int cost_speed;
@@ -72,6 +71,29 @@ unsigned char game_mode;
 unsigned char game_level;
 unsigned char levels_complete;
 unsigned char perfect_levels;
+unsigned char abduction_cutscene_step;
+
+enum
+{
+	ABDUCTION_START,
+	ABDUCTION_BEAM,
+	ABDUCTION_BEAM_UP,
+	ABDUCTION_BEAM_RETRACT,
+	ABDUCTION_SHIP_FLY_OFF,
+	ABDUCTION_DONE
+};
+
+enum
+{
+	STARFIELD1,
+	STARFIELD2,
+	STARFIELD3,
+	STARFIELD4,
+	STARFIELD5,
+	STARFIELD6,
+	STARFIELD7,
+	STARFIELD8,
+};
 
 enum
 {
@@ -86,7 +108,7 @@ enum
 	MODE_ALIEN_INSTRUCTION,
 	MODE_ALIEN_LEVEL,
 	MODE_ALIEN_EVALUATION,
-	MODE_ALIEN_SHOOTING_GALLERY,
+	MODE_ALIEN_STARFIELD,
 	MODE_GAME_ENDING,
 	MODE_GAME_OVER,
 };
@@ -109,9 +131,15 @@ enum
 	CUTSCENE_CHR_1,
 	FUTUREPUMP_CHR_0,
 	FUTUREPUMP_CHR_1,
+	CUTSCENE_ABDUCTION_CHR_0,
+	CUTSCENE_ABDUCTION_CHR_1,
+	GAMEOVER_CHR_0,
+	GAMEOVER_CHR_1,
+	STARFIELD_CHR_0,
+	STARFIELD_CHR_1
 };
 
-const unsigned char * pointer;
+const unsigned char *pointer;
 
 unsigned char temp1;
 unsigned char temp2;
@@ -122,11 +150,12 @@ unsigned char bird_x;
 unsigned char bird_y;
 
 int address;
-unsigned char x; 
+unsigned char x;
 unsigned char y;
 unsigned char num_holder;
 unsigned char index = 0;
 unsigned char index2;
+unsigned char scroll_per_nmi;
 int largeindex;
 
 unsigned char text_rendered;
@@ -136,10 +165,11 @@ unsigned char text_col;
 unsigned char text_x_start;
 unsigned char text_y_start;
 
-unsigned char moveframes;
+unsigned int moveframes;
+unsigned int moveframes2;
+
 
 #pragma bss-name(push, "BSS")
-
 
 #pragma bss-name(push, "XRAM")
 // extra RAM at $6000-$7fff
@@ -174,4 +204,3 @@ void level_end_loop(void);
 // void new_star(void);
 // void draw_box(void);
 // void draw_star(void);
-

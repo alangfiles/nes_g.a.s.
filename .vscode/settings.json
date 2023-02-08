@@ -15,6 +15,11 @@
     "intro_cutscene_3.h": "c",
     "intro_scroll_1.h": "c",
     "abduction_cutscene.h": "c",
-    "main_gas_level.h": "c"
-  }
+    "main_gas_level.h": "c",
+    "abduction_cutscene_beam.h": "c",
+    "starfieldearth.h": "c",
+    "intro_scroll_4.h": "c",
+    "intro_scroll_3.h": "c"
+  },
+  "editor.formatOnSave": false
 }

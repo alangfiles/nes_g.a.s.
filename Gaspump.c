@@ -1373,6 +1373,7 @@ void bank_4_cutscene_loop(void)
 			moveframes = 0;
 			abduction_cutscene_step = ABDUCTION_BEAM;
 			cutscene_index = NAMETABLE_A;
+			attribute_bytes_written = 0;
 			nametable_index = 0;
 		}
 		// 600 frames for guy to smoke cigarette, etc
@@ -1469,21 +1470,33 @@ void bank_4_cutscene_loop(void)
 		}
 		// this is just used for the beam coming down, maybe we want the guy
 		//  to anmiate here to, but not right now
-		if (nametable_index == 1024)
+		if (nametable_index == 960)
 		{
 			moveframes = 0;
 			abduction_cutscene_step = ABDUCTION_BEAM_UP;
 		}
 
 		// we want to do 1 line every 5 frames
-		if (index2 == 5 && nametable_index < 1024)
+		if (index2 == 5 && nametable_index < 960)
 		{
+			//index3 is going through the loop 2 times, because of 
+			if(index3 == 1 && attribute_bytes_written <64){
+				for(index = 0; index < 8; ++index){
+					one_vram_buffer(abduction_cutscene_beam[960+attribute_bytes_written], NAMETABLE_A_ATTR+attribute_bytes_written);
+					++attribute_bytes_written;
+				}
+				index3 = 0;
+			}
+			
+			
 			for (index = 0; index < 32; ++index)
 			{
 				one_vram_buffer(abduction_cutscene_beam[nametable_index], cutscene_index);
 				++nametable_index;
 				++cutscene_index;
 			}
+			
+			++index3;
 			index2 = 0;
 		}
 
@@ -1496,8 +1509,8 @@ void bank_4_cutscene_loop(void)
 		{
 			moveframes = 0;
 			abduction_cutscene_step = ABDUCTION_BEAM_RETRACT;
-			cutscene_index = NAMETABLE_A + 1024;
-			nametable_index = 1024;
+			cutscene_index = NAMETABLE_A + 960;
+			nametable_index = 960;
 		}
 		oam_clear();
 		// draw space ship:
@@ -1876,9 +1889,8 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	game_mode = MODE_ALIEN_STARFIELD;
-	banked_call(BANK_5, bank_5_starfield_init);
-	
+	game_mode = MODE_ABDUCTION_CUTSCENE;
+	banked_call(BANK_4, bank_4_cutscene_init);	
 
 	while (1)
 	{

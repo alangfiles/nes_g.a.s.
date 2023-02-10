@@ -155,6 +155,7 @@ unsigned char y;
 unsigned char num_holder;
 unsigned char index = 0;
 unsigned char index2;
+unsigned char index3 = 0;
 unsigned char scroll_per_nmi;
 int largeindex;
 

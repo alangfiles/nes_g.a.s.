@@ -44,6 +44,12 @@
 #include "BACKGROUNDS/evaluation_rle.h"
 #include "BACKGROUNDS/talkingtime_rle.h"
 
+const unsigned char starfield_palette[16]={ 0x0f,0x11,0x29,0x10,0x0f,0x21,0x11,0x10,0x0f,0x16,0x05,0x38,0x0f,0x24,0x13,0x14 };
+
+const unsigned char gameover_palette[16]={ 0x15,0x20,0x16,0x36,0x15,0x05,0x16,0x36,0x15,0x00,0x1b,0x30,0x15,0x09,0x19,0x38 };
+
+const unsigned char futurepump_sprite_palette[16]={ 0x0f,0x12,0x15,0x38,0x0f,0x13,0x23,0x31,0x0f,0x23,0x16,0x26,0x0f,0x09,0x19,0x29 };
+
 const unsigned char gaspump_palette[16] = {
 		0x2c, 0x05, 0x10, 0x15,
 		0x2c, 0x05, 0x37, 0x15,
@@ -1686,7 +1692,7 @@ void bank_5_gameover_init(void)
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 
-	pal_bg(futurepump_palette);
+	pal_bg(gameover_palette);
 	set_chr_bank_0(GAMEOVER_CHR_0);
 	set_chr_bank_1(GAMEOVER_CHR_1);
 	scroll(0, 0); // reset scrolling
@@ -1723,7 +1729,7 @@ void bank_5_starfield_init(void)
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 
-	pal_bg(futurepump_palette);
+	pal_bg(starfield_palette);
 	set_chr_bank_0(STARFIELD_CHR_0);
 	set_chr_bank_1(STARFIELD_CHR_1);
 	scroll(0, 0); // reset scrolling

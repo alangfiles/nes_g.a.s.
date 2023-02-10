@@ -1884,13 +1884,14 @@ void main(void)
 
 	// debug, actually allow this:
 	banked_call(BANK_1, bank_1_title_init);
+	game_mode = MODE_TITLE;
 
 	// debug to the level I want to test
 	/*
 		DEBUG ONLY!!!!
 	*/
-	game_mode = MODE_ABDUCTION_CUTSCENE;
-	banked_call(BANK_4, bank_4_cutscene_init);	
+	// game_mode = MODE_TITLE;
+	// banked_call(BANK_4, bank_4_cutscene_init);	
 
 	while (1)
 	{

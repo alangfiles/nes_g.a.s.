@@ -350,6 +350,7 @@ sounds_data:
 	.incbin "CHRS/cutsceneabduction.chr"
 	.incbin "CHRS/gameover.chr"
 	.incbin "CHRS/starfield.chr"
+	.incbin "CHRS/FutureTalkingtime.chr"
 ; the CHARS segment is much bigger, and I could have 
 ; incbin-ed many more chr files
 	

@@ -1172,3 +1172,13 @@ const unsigned char abduction_cigarette_7[] = {
 		128
 
 };
+
+const unsigned char spaceship[] = {
+		0, 0, 0x40, 0,
+		128
+};
+
+const unsigned char white_shot[] = {
+		0, 0, 0x21, 0,
+		128
+};

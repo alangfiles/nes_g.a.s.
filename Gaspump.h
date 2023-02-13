@@ -136,7 +136,9 @@ enum
 	GAMEOVER_CHR_0,
 	GAMEOVER_CHR_1,
 	STARFIELD_CHR_0,
-	STARFIELD_CHR_1
+	STARFIELD_CHR_1,
+	FUTURETALK_CHR_0,
+	FUTURETALK_CHR_1
 };
 
 const unsigned char *pointer;
@@ -154,6 +156,11 @@ unsigned char x;
 unsigned char y;
 unsigned char num_holder;
 unsigned char index = 0;
+unsigned char nametable_selected = 0;
+unsigned char shooting_mode = 0;
+unsigned char spaceship_x = 0;
+unsigned char spaceship_y = 100;
+
 unsigned char index2;
 unsigned char index3 = 0;
 unsigned char scroll_per_nmi;

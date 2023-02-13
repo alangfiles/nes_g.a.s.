@@ -41,10 +41,14 @@
 #include "Metatiles.h"
 #include "BACKGROUNDS/main_gas_level.h"
 
-#include "BACKGROUNDS/evaluation_rle.h"
-#include "BACKGROUNDS/talkingtime_rle.h"
+#include "BACKGROUNDS/evaluation.h"
+#include "BACKGROUNDS/talkingtime.h"
 
-const unsigned char starfield_palette[16]={ 0x0f,0x11,0x29,0x10,0x0f,0x21,0x11,0x10,0x0f,0x16,0x05,0x38,0x0f,0x24,0x13,0x14 };
+const unsigned char starfield_palette[16]={ 
+	0x0f,0x11,0x29,0x10,
+	0x0f,0x21,0x11,0x10,
+	0x0f,0x16,0x05,0x38,
+	0x0f,0x24,0x13,0x14 };
 
 const unsigned char gameover_palette[16]={ 0x15,0x20,0x16,0x36,0x15,0x05,0x16,0x36,0x15,0x00,0x1b,0x30,0x15,0x09,0x19,0x38 };
 
@@ -55,6 +59,8 @@ const unsigned char gaspump_palette[16] = {
 		0x2c, 0x05, 0x37, 0x15,
 		0x2c, 0x0f, 0x3d, 0x11,
 		0x2c, 0x19, 0x2a, 0x0f};
+
+const unsigned char futuretalk_palette[16]={ 0x0f,0x00,0x10,0x30,0x0f,0x13,0x23,0x31,0x0f,0x00,0x11,0x30,0x0f,0x09,0x19,0x29 };
 
 const unsigned char futurepump_palette[16] = {
 		0x0f, 0x00, 0x10, 0x30,
@@ -548,8 +554,16 @@ void bank_1_instructions_init(void)
 	pal_bg(talking_time_palette);
 
 	vram_adr(NAMETABLE_A);
-	vram_unrle(talkingtime_rle);
-	flush_vram_update2();
+for (largeindex = 0; largeindex < 1024; ++largeindex)
+	{
+		vram_put(talkingtime[largeindex]); // todo fix this
+		++index;
+		if (index > 40)
+		{ // don't put too much in the vram_buffer
+			flush_vram_update2();
+			index = 0;
+		}
+	}
 
 	// random gas goal (commenting out for now)
 	// index = get_frame_count() & 4; // returns 0,1,2,3
@@ -715,6 +729,7 @@ void bank_1_title_init(void)
 
 const unsigned char level_0_max[] = "Bit too much, bub.";
 const unsigned char level_0_good[] = "!!! WOW !!!\nYou've got it kid!";
+const unsigned char level_3_preabduction[] = "You're as good as\nI hoped. Wait \noutside. I've gotta\ncall my boss.";
 const unsigned char level_0_ok[] = "Hmmmmm....\nPump harder.";
 const unsigned char level_0_bad[] = "You just don't\nhave what it takes...";
 
@@ -734,7 +749,18 @@ void bank_2_init_level_one_end(void)
 	pal_bg(talking_time_palette);
 
 	vram_adr(NAMETABLE_A);
-	vram_unrle(evaluation_rle);
+	for (largeindex = 0; largeindex < 1024; ++largeindex)
+	{
+		vram_put(evaluation[largeindex]); // todo fix this
+		++index;
+		if (index > 40)
+		{ // don't put too much in the vram_buffer
+			flush_vram_update2();
+			index = 0;
+		}
+	}
+
+	
 	gas_pumped = 0;
 	for (index = 0; index < gas3; ++index)
 	{
@@ -783,6 +809,12 @@ void bank_2_init_level_one_end(void)
 		++levels_complete;
 		pointer = level_0_good;
 		text_length = sizeof(level_0_good);
+		if(alien_level){
+			pointer = level_3_preabduction;
+			text_length = sizeof(level_3_preabduction);
+		} else {
+
+		}
 	}
 	else if (gas_pumped >= gas_goal_hundreds - 100)
 	{
@@ -1286,6 +1318,9 @@ void bank_3_level_loop(void)
 #include "BACKGROUNDS/future_pump.h"
 #include "BACKGROUNDS/abduction_cutscene.h"
 #include "BACKGROUNDS/abduction_cutscene_beam.h"
+#include "BACKGROUNDS/futuretalk.h"
+
+void bank_5_starfield_init(void); //prototype
 
 void bank_4_cutscene_init(void)
 {
@@ -1354,15 +1389,41 @@ void bank_4_alien_level_init(void)
 
 void bank_4_instruction_init(void)
 {
+	scroll(0, 0); // reset scrolling
+	index = 0;
+	ppu_off();	 // screen off
+	oam_clear(); // clear all sprites
+	pal_bg(futuretalk_palette);
+	
+	set_chr_bank_0(FUTURETALK_CHR_0);
+	set_chr_bank_1(FUTURETALK_CHR_1);
+	vram_adr(NAMETABLE_A); // Nametable A;
 
-	// todo init the instruction screen and display stuff;
+	for (largeindex = 0; largeindex < 1024; ++largeindex)
+	{
+		vram_put(futuretalk[largeindex]); // todo fix this
+		++index;
+		if (index > 40)
+		{ // don't put too much in the vram_buffer
+			flush_vram_update2();
+			index = 0;
+		}
+	}
+	pal_fade_to(0, 4);
+	ppu_on_all();
 	game_mode = MODE_ALIEN_INSTRUCTION;
 }
 
 void bank_4_instruction_loop(void)
 {
 	ppu_wait_nmi();
-	banked_call(BANK_4, bank_4_alien_level_init);
+
+	read_input();
+	if(trigger_clicked){
+		banked_call(BANK_4, bank_4_alien_level_init);
+		game_mode = MODE_ALIEN_LEVEL;
+	}
+
 }
 
 void bank_4_cutscene_loop(void)
@@ -1661,6 +1722,11 @@ void bank_4_alien_level_loop(void)
 {
 	ppu_wait_nmi();
 	// this probaly looks a lot like the main level loop
+	read_input();
+	if(trigger_clicked){
+		banked_call(BANK_5, bank_5_starfield_init);
+		game_mode = MODE_ALIEN_STARFIELD;
+	}
 }
 
 #pragma endregion
@@ -1725,7 +1791,7 @@ void bank_5_gameover_loop(void)
 
 void bank_5_starfield_init(void)
 {
-	
+	set_mirroring(MIRROR_VERTICAL);
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 
@@ -1737,8 +1803,9 @@ void bank_5_starfield_init(void)
 	scroll_x = 0;
 	moveframes = 0;
 	scroll_page = 0;
+	nametable_selected = 1;
 
-	vram_adr(NAMETABLE_A); // Nametable A;
+	vram_adr(NAMETABLE_A); 
 
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
@@ -1751,7 +1818,7 @@ void bank_5_starfield_init(void)
 		}
 	}
 
-	vram_adr(NAMETABLE_C); // Nametable C;
+	vram_adr(NAMETABLE_B);
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
 		vram_put(starfield2[largeindex]); // todo fix this
@@ -1768,14 +1835,16 @@ void bank_5_starfield_init(void)
 	game_mode = MODE_ALIEN_STARFIELD;
 	pointer = starfield3;
 	nametable_index = NAMETABLE_A;
+	attribute_table_index = NAMETABLE_A_ATTR;
+	attribute_bytes_written = 0;
 }
 
 unsigned char column_pixel_counter = 0;
 unsigned char row_column_index = 0;
 
 void bank_5_draw_screen_right(void){
-if (column_pixel_counter > 7 )
-	{ // after we've scrolled 8 pixels, lets draw the next column
+	if (column_pixel_counter > 7 ) { 
+		// after we've scrolled 8 pixels, lets draw the next column
 		for (largeindex = 0; largeindex <= 960; largeindex += 32)
 		{
 			//draw a column of sprites.
@@ -1783,15 +1852,30 @@ if (column_pixel_counter > 7 )
 		}
 		column_pixel_counter = 0;
 		++row_column_index;
+		if (attribute_bytes_written < 64)
+		{
+			one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
+			++attribute_bytes_written;
+			++attribute_table_index;
+			one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
+			++attribute_bytes_written;
+			++attribute_table_index;
+		}
 	}
 
-	if(row_column_index > 31) {
+	if(row_column_index >= 32) {
 		//we've drawn the full screen now, let's pick a new background.
 
-		if(nametable_index > NAMETABLE_B){
+		if(nametable_selected == 0) {
+			attribute_table_index = NAMETABLE_A_ATTR;
 			nametable_index = NAMETABLE_A;
+			attribute_bytes_written = 0;
+			nametable_selected = 1;
 		} else {
 			nametable_index = NAMETABLE_B;
+			attribute_table_index = NAMETABLE_B_ATTR;
+			attribute_bytes_written = 0;
+			nametable_selected = 0;
 		}
 
 		//randomly pick a new starfield
@@ -1820,23 +1904,48 @@ if (column_pixel_counter > 7 )
 	}
 }
 
+void bank_5_draw_starfield_sprites(void){
+	//move the sprite
+	++spaceship_x;
+	if(shooting_mode == 1){
+		oam_meta_spr(spaceship_x, spaceship_y, white_shot);
+	} else {
+		oam_meta_spr(spaceship_x, spaceship_y, spaceship);
+	}
+}
+
 void bank_5_starfield_loop(void)
 {
 	ppu_wait_nmi();
-	
-	if(moveframes == 1)
-	{
-		++scroll_x;
-		++column_pixel_counter;
-		scroll(scroll_x, 0);
-		moveframes = 0;
-	}
-	bank_5_draw_screen_right();
-	
+	oam_clear();
 
+	scroll_x+=2;
+	column_pixel_counter+=2;
+	scroll(scroll_x, 0);
+	bank_5_draw_screen_right();
+	bank_5_draw_starfield_sprites();
 	
-	++moveframes;
+	read_input();
+	if(trigger_clicked){
+		shooting_mode = 1;
+		ppu_mask(0x16); // BG off, won't happen till NEXT frame
+		ppu_wait_nmi(); // wait till the top of the next frame
+		oam_clear();
+		// draw white blocks
+		bank_5_draw_starfield_sprites();
+		zap_read(0);
+		ppu_wait_nmi();
+		shooting_mode = 0;
+		ppu_mask(0x1e); // bg on, won't happen till NEXT frame
+	}
+
+	// if(done){
+	// 	banked_call(BANK_5, bank_5_gameover_init);
+	// 	game_mode = MODE_GAME_OVER;
+	// }
+	
 }
+
 
 #pragma endregion
 
@@ -1897,7 +2006,7 @@ void main(void)
 		DEBUG ONLY!!!!
 	*/
 	// game_mode = MODE_TITLE;
-	// banked_call(BANK_4, bank_4_cutscene_init);	
+	banked_call(BANK_4, bank_4_instruction_init);	
 
 	while (1)
 	{
@@ -1950,11 +2059,13 @@ void main(void)
 		if (game_mode == MODE_ALIEN_LEVEL)
 		{
 			// todo
+			// get number sprites, do number sprite work.
 			banked_call(BANK_4, bank_4_alien_level_loop);
 		}
 		if (game_mode == MODE_ALIEN_EVALUATION)
 		{
 			// todo
+			// 
 		}
 		if (game_mode == MODE_ALIEN_STARFIELD)
 		{
@@ -1964,6 +2075,7 @@ void main(void)
 		if (game_mode == MODE_GAME_ENDING)
 		{
 			// todo
+			// 
 		}
 		if (game_mode == MODE_GAME_OVER)
 		{

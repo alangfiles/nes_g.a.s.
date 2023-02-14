@@ -19,7 +19,9 @@
     "abduction_cutscene_beam.h": "c",
     "starfieldearth.h": "c",
     "intro_scroll_4.h": "c",
-    "intro_scroll_3.h": "c"
+    "intro_scroll_3.h": "c",
+    "middleshiny.h": "c",
+    "intro_cutscene_1.h": "c"
   },
   "editor.formatOnSave": false
 }

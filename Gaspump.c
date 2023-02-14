@@ -1319,6 +1319,9 @@ void bank_3_level_loop(void)
 #include "BACKGROUNDS/abduction_cutscene.h"
 #include "BACKGROUNDS/abduction_cutscene_beam.h"
 #include "BACKGROUNDS/futuretalk.h"
+#include "BACKGROUNDS/intro_cutscene_1x.h"
+#include "BACKGROUNDS/intro_cutscene_2x.h"
+#include "BACKGROUNDS/intro_cutscene_3x.h"
 
 void bank_5_starfield_init(void); //prototype
 
@@ -1338,7 +1341,20 @@ void bank_4_cutscene_init(void)
 
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(abduction_cutscene[largeindex]); // todo fix this
+		vram_put(abduction_cutscene[largeindex]); 
+		++index;
+		if (index > 40)
+		{ // don't put too much in the vram_buffer
+			flush_vram_update2();
+			index = 0;
+		}
+	}
+
+	vram_adr(NAMETABLE_C);
+
+	for (largeindex = 0; largeindex < 1024; ++largeindex)
+	{
+		vram_put(intro_cutscene_2x[largeindex]);
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -1573,24 +1589,31 @@ void bank_4_cutscene_loop(void)
 		}else if (moveframes < 500){
 			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
 			oam_meta_spr(166, 182, abduction_cigarette_7);
+			moveframes2 = 0;
 		}
 		else if (moveframes < 510)
 		{
 			//ufo comes down
-			oam_meta_spr(192, 2+(moveframes-500), sprite_pointer);
+			oam_meta_spr(192, 2+moveframes2, sprite_pointer);
 			oam_meta_spr(201, 180, abduction_guy_12); //hand going down
 			oam_meta_spr(166, 182, abduction_cigarette_7);
+		} 
+		else if(moveframes < 511){
+			oam_meta_spr(192, 2+moveframes2, sprite_pointer);
+			oam_meta_spr(201, 180, abduction_guy_12); //hand going down
+			oam_meta_spr(166, 182, abduction_cigarette_7);
+			moveframes2 = 0;
 		}
 		else if (moveframes < 520)
 		{
 			//then ufo slides left
-			oam_meta_spr(192-moveframes-510, 12, sprite_pointer);
+			oam_meta_spr(192-moveframes2, 12, sprite_pointer);
 			oam_meta_spr(201, 180, abduction_guy_13);
 			oam_meta_spr(166, 182, abduction_cigarette_7);
 		}
 		else if (moveframes < 530)
 		{
-			oam_meta_spr(182-moveframes-520, 12, sprite_pointer);
+			oam_meta_spr(182-moveframes2, 12, sprite_pointer);
 			oam_meta_spr(201, 180, abduction_guy_14);
 			oam_meta_spr(166, 182, abduction_cigarette_7);
 		}
@@ -1608,6 +1631,7 @@ void bank_4_cutscene_loop(void)
 		}
 		//the ship needs to come in here, from the right
 		++moveframes;
+		++moveframes2;
 	}
 
 	if (abduction_cutscene_step == ABDUCTION_BEAM)
@@ -1637,7 +1661,7 @@ void bank_4_cutscene_loop(void)
 		if (index2 == 5 && nametable_index < 960)
 		{
 			//index3 is going through the loop 2 times, because of 
-			if(index3 == 1 && attribute_bytes_written <64){
+			if(index3 == 3 && attribute_bytes_written <64){
 				for(index = 0; index < 8; ++index){
 					one_vram_buffer(abduction_cutscene_beam[960+attribute_bytes_written], NAMETABLE_A_ATTR+attribute_bytes_written);
 					++attribute_bytes_written;
@@ -1661,13 +1685,6 @@ void bank_4_cutscene_loop(void)
 	}
 	if (abduction_cutscene_step == ABDUCTION_BEAM_UP)
 	{
-		if (moveframes > 210)
-		{
-			moveframes = 0;
-			abduction_cutscene_step = ABDUCTION_BEAM_RETRACT;
-			cutscene_index = NAMETABLE_A + 960;
-			nametable_index = 960;
-		}
 		oam_clear();
 		//cigarette on the ground
 		oam_meta_spr(166, 182, abduction_cigarette_7); 
@@ -1735,53 +1752,105 @@ void bank_4_cutscene_loop(void)
 		// question mark over his head is 35-38
 		// guy goes 24 and 25 (to 'scratch' is head)
 		// hand back down is 24-18
-		// then the abduction below
 		else if (moveframes < 110)
 		{
 			// moveframes between 100 and 110
-			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_45);
+			oam_meta_spr(201, 150, Cutscene_35_data);
+			oam_meta_spr(201, 180, abduction_guy_24);
 		}
 		else if (moveframes < 120)
 		{
-			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_46);
+			// moveframes between 100 and 110
+			oam_meta_spr(201, 150, Cutscene_36_data);
+			oam_meta_spr(201, 180, abduction_guy_25);
 		}
 		else if (moveframes < 130)
 		{
-			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_47);
-		}
-		else if (moveframes < 140)
-		{
-			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_48);
-		}
-		else if (moveframes < 150)
-		{
-			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_49);
-		}
-		else if (moveframes < 160)
-		{
-			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_50);
-		}
-		else if (moveframes < 170)
-		{
-			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_51);
+			// moveframes between 100 and 110
+			oam_meta_spr(201, 150, Cutscene_37_data);
+			oam_meta_spr(201, 180, abduction_guy_24);
 		}
 		else if (moveframes < 190)
 		{
-			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_52);
+			// moveframes between 100 and 110
+			oam_meta_spr(201, 150, Cutscene_38_data);
+			oam_meta_spr(201, 180, abduction_guy_25);
+		}
+		else if (moveframes < 200)
+		{
+			// moveframes between 100 and 110
+			oam_meta_spr(201, 150, Cutscene_37_data);
+			oam_meta_spr(201, 180, abduction_guy_25);
 		}
 		else if (moveframes < 210)
 		{
-			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_53);
+			// moveframes between 100 and 110
+			oam_meta_spr(201, 150, Cutscene_36_data);
+			oam_meta_spr(201, 180, abduction_guy_25);
+		}
+		else if (moveframes < 220)
+		{
+			// moveframes between 100 and 110
+			oam_meta_spr(201, 150, Cutscene_35_data);
+			oam_meta_spr(201, 180, abduction_guy_25);
+			moveframes2 = 0;
+		}
+		// then the abduction below
+		else if (moveframes < 230)
+		{
+			oam_meta_spr(201, 180 - moveframes2, abduction_guy_45);
+		}
+		else if (moveframes < 240)
+		{
+			oam_meta_spr(201, 180 - moveframes2, abduction_guy_46);
+		}
+		else if (moveframes < 250)
+		{
+			oam_meta_spr(201, 180 - moveframes2, abduction_guy_47);
+		}
+		else if (moveframes < 260)
+		{
+			oam_meta_spr(201, 180 - moveframes2, abduction_guy_48);
+		}
+		else if (moveframes < 270)
+		{
+			oam_meta_spr(201, 180 - moveframes2, abduction_guy_49);
+		}
+		else if (moveframes < 280)
+		{
+			oam_meta_spr(201, 180 - moveframes2, abduction_guy_50);
+		}
+		else if (moveframes < 290)
+		{
+			oam_meta_spr(201, 180 - moveframes2, abduction_guy_51);
+		}
+		else if (moveframes < 300)
+		{
+			oam_meta_spr(201, 180 - moveframes2, abduction_guy_52);
+		}
+		else if (moveframes < 310)
+		{
+			oam_meta_spr(201, 180 - moveframes2, abduction_guy_53);
 		}
 		else
 		{
+			moveframes = 0;
+			abduction_cutscene_step = ABDUCTION_BEAM_RETRACT;
+			cutscene_index = NAMETABLE_A + 960;
+			nametable_index = 960;
+			attribute_bytes_written = 64;
+			attribute_table_index = NAMETABLE_A_ATTR;
 		}
 
 		++moveframes;
+		++moveframes2;
+		index3 = 0;
+		index2 = 0;
 	}
 	if (abduction_cutscene_step == ABDUCTION_BEAM_RETRACT)
 	{
 		oam_clear();
+		oam_meta_spr(166, 182, abduction_cigarette_7); 
 		if (moveframes % 4 == 0)
 		{
 			oam_meta_spr(172, 12, abduction_ship_1);
@@ -1795,18 +1864,25 @@ void bank_4_cutscene_loop(void)
 		if (nametable_index == 0)
 		{
 			moveframes = 0;
-			abduction_cutscene_step = ABDUCTION_DONE;
+			abduction_cutscene_step = ABDUCTION_SHIP_FLY_OFF;
 		}
-
 		// we want to do 1 line every 5 frames
 		if (index2 == 5 && nametable_index > 0)
 		{
+			if(index3 == 3 && attribute_bytes_written > 0){
+				for(index = 0; index < 8; ++index){
+					one_vram_buffer(abduction_cutscene[960+attribute_bytes_written-1], NAMETABLE_A_ATTR+attribute_bytes_written-1);
+					--attribute_bytes_written;
+				}
+				index3 = 0;
+			}
 			for (index = 0; index < 32; ++index)
 			{
 				one_vram_buffer(abduction_cutscene[nametable_index], cutscene_index);
 				--nametable_index;
 				--cutscene_index;
 			}
+			++index3;
 			index2 = 0;
 		}
 
@@ -1814,6 +1890,84 @@ void bank_4_cutscene_loop(void)
 		++moveframes;
 	}
 
+	if(abduction_cutscene_step == ABDUCTION_SHIP_FLY_OFF) {
+		oam_clear();
+		oam_meta_spr(166, 182, abduction_cigarette_7); 
+		if (moveframes % 4 == 0)
+		{
+			sprite_pointer = abduction_ship_1;
+		}
+		else
+		{
+			sprite_pointer = abduction_ship_2;
+		}
+
+		if(moveframes < 12){
+			oam_meta_spr(172, 12-moveframes, sprite_pointer);
+		} else {
+			// scroll(0, scroll_y);
+			// --scroll_y;
+			abduction_cutscene_step = ABDUCTION_SCROLL_UP;
+
+			set_chr_bank_0(CUTSCENE_CHR_0);
+			scroll_y = 0x1df;
+			nametable_index = 960;
+			cutscene_index = NAMETABLE_A_ATTR-1;
+			attribute_bytes_written = 0;
+			attribute_table_index = NAMETABLE_A_ATTR;
+			moveframes = 0;
+		}
+		++moveframes;
+	}
+	if(abduction_cutscene_step == ABDUCTION_SCROLL_UP) {
+		oam_clear();
+		if(scroll_y <= 0) {
+			abduction_cutscene_step = ABDUCTION_STAR_IN_SKY;
+			moveframes = 0;
+		} else {
+			scroll(0,scroll_y);
+			//draw some of the next screen
+			if(moveframes == 8) {
+				for (index = 0; index < 30; ++index)
+				{
+					one_vram_buffer(intro_cutscene_1x[nametable_index], cutscene_index);
+					--nametable_index;
+					--cutscene_index;
+				}
+
+				
+				moveframes=0;
+			}
+			if(scroll_y < 0x100 && attribute_bytes_written < 64){
+				//now we can update the attribute table
+				for (index = 0; index < 4; ++index)
+				{
+					if(attribute_bytes_written < 64){
+						one_vram_buffer(intro_cutscene_1x[960+attribute_bytes_written], attribute_table_index+attribute_bytes_written);
+					}
+					++attribute_bytes_written;
+				}
+			}
+
+		}
+		--scroll_y;
+		++moveframes;
+		
+	}
+	if(abduction_cutscene_step == ABDUCTION_STAR_IN_SKY) {
+		oam_clear();
+		if(moveframes < 100){
+			moveframes2 = 0;
+		} else if(moveframes < 140){
+			oam_meta_spr(200-moveframes2, 30, Cutscene_35_data); 
+		} else if (moveframes < 220){
+			moveframes2 = 0;
+		} else {
+			abduction_cutscene_step = ABDUCTION_DONE;
+		}
+		++moveframes;
+		moveframes2+=5;
+	}
 	if (abduction_cutscene_step == ABDUCTION_DONE) // to call at the end of everything
 	{
 		banked_call(BANK_4, bank_4_instruction_init);

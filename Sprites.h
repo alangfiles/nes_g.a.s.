@@ -1182,3 +1182,39 @@ const unsigned char white_shot[] = {
 		0, 0, 0x21, 0,
 		128
 };
+
+const unsigned char Cutscene_35_data[]={
+	  0,- 1,0x68,0,
+	128
+
+};
+
+const unsigned char Cutscene_36_data[]={
+
+	  0,- 1,0x68,0,
+	  5,- 5,0x67,0,
+	128
+
+};
+
+const unsigned char Cutscene_37_data[]={
+
+	  0,- 1,0x68,0,
+	  5,- 5,0x67,0,
+	  0,-11,0x66,0,
+	128
+
+};
+
+const unsigned char Cutscene_38_data[]={
+
+	  0,- 1,0x68,0, 
+	  5,- 5,0x67,0,
+	  0,-11,0x66,0,
+	- 5,-18,0x56,0,
+	  3,-18,0x57,0,
+	- 5,-26,0x46,0,
+	  3,-26,0x47,0,
+	128
+
+};

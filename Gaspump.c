@@ -1594,26 +1594,25 @@ void bank_4_cutscene_loop(void)
 		else if (moveframes < 510)
 		{
 			//ufo comes down
-			oam_meta_spr(192, 2+moveframes2, sprite_pointer);
+			oam_meta_spr(172, 0, sprite_pointer);
 			oam_meta_spr(201, 180, abduction_guy_12); //hand going down
 			oam_meta_spr(166, 182, abduction_cigarette_7);
 		} 
 		else if(moveframes < 511){
-			oam_meta_spr(192, 2+moveframes2, sprite_pointer);
+			oam_meta_spr(172, 1, sprite_pointer);
 			oam_meta_spr(201, 180, abduction_guy_12); //hand going down
 			oam_meta_spr(166, 182, abduction_cigarette_7);
 			moveframes2 = 0;
 		}
 		else if (moveframes < 520)
 		{
-			//then ufo slides left
-			oam_meta_spr(192-moveframes2, 12, sprite_pointer);
+			oam_meta_spr(172, 2+moveframes2, sprite_pointer);
 			oam_meta_spr(201, 180, abduction_guy_13);
 			oam_meta_spr(166, 182, abduction_cigarette_7);
 		}
-		else if (moveframes < 530)
+		else if (moveframes < 540)
 		{
-			oam_meta_spr(182-moveframes2, 12, sprite_pointer);
+			oam_meta_spr(172, 12, sprite_pointer);
 			oam_meta_spr(201, 180, abduction_guy_14);
 			oam_meta_spr(166, 182, abduction_cigarette_7);
 		}
@@ -1631,7 +1630,10 @@ void bank_4_cutscene_loop(void)
 		}
 		//the ship needs to come in here, from the right
 		++moveframes;
-		++moveframes2;
+		if(moveframes%2==0){
+			++moveframes2;
+		}
+		
 	}
 
 	if (abduction_cutscene_step == ABDUCTION_BEAM)
@@ -1963,6 +1965,7 @@ void bank_4_cutscene_loop(void)
 		} else if (moveframes < 220){
 			moveframes2 = 0;
 		} else {
+			pal_fade_to(4,0);
 			abduction_cutscene_step = ABDUCTION_DONE;
 		}
 		++moveframes;

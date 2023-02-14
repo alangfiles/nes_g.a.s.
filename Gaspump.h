@@ -142,6 +142,7 @@ enum
 };
 
 const unsigned char *pointer;
+const unsigned char *sprite_pointer;
 
 unsigned char temp1;
 unsigned char temp2;

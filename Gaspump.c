@@ -1329,7 +1329,7 @@ void bank_4_cutscene_init(void)
 	pal_bg(abduction_palette);
 	pal_spr(abduction_palette);
 	// TODO change this to the right CHR
-	set_chr_bank_0(CUTSCENE_ABDUCTION_CHR_0);
+	set_chr_bank_0(CUTSCENE_ABDUCTION_CHR_0);  
 	set_chr_bank_1(CUTSCENE_ABDUCTION_CHR_1);
 	scroll(0, 0); // reset scrolling
 	index = 0;
@@ -1434,8 +1434,171 @@ void bank_4_cutscene_loop(void)
 
 	if (abduction_cutscene_step == ABDUCTION_START)
 	{
-		if (moveframes > 250) // ending condition
+		// 600 frames for guy to smoke cigarette, etc
+		// draw sprites:
+		oam_clear();
+		//ufo
+		if (moveframes % 4 == 0)
 		{
+			sprite_pointer = abduction_ship_1;
+		}
+		else
+		{
+			sprite_pointer = abduction_ship_2;
+		}
+
+		//guy
+		if (moveframes < 100)
+		{
+			oam_meta_spr(201, 180, abduction_guy_0);
+		}
+		else if (moveframes < 110)
+		{
+			oam_meta_spr(201, 180, abduction_guy_1);
+		}
+		else if (moveframes < 120)
+		{
+			oam_meta_spr(201, 180, abduction_guy_2);
+		}
+		else if (moveframes < 130)
+		{
+			oam_meta_spr(201, 180, abduction_guy_3);
+		}
+		else if (moveframes < 140)
+		{
+			oam_meta_spr(201, 180, abduction_guy_4);
+		}
+		else if (moveframes < 150)
+		{
+			oam_meta_spr(201, 180, abduction_guy_5);
+		}
+		else if (moveframes < 160)
+		{
+			oam_meta_spr(201, 180, abduction_guy_6);
+		}
+		else if (moveframes < 170)
+		{
+			oam_meta_spr(201, 180, abduction_guy_7);
+		}
+		else if (moveframes < 180)
+		{
+			oam_meta_spr(201, 180, abduction_guy_8);
+		}
+		else if (moveframes < 190)
+		{
+			oam_meta_spr(201, 180, abduction_guy_9);
+		}
+		else if (moveframes < 200)
+		{
+			oam_meta_spr(201, 180, abduction_guy_10);
+		} //end of smoking 
+		else if (moveframes < 210)
+		{
+			oam_meta_spr(201, 180, abduction_guy_3);
+		} 
+		else if (moveframes < 220)
+		{
+			oam_meta_spr(201, 180, abduction_guy_2);
+		} 
+		else if (moveframes < 230)
+		{
+			oam_meta_spr(201, 180, abduction_guy_1);
+		} 
+		else if (moveframes < 300)
+		{
+			oam_meta_spr(201, 180, abduction_guy_0);
+		} 
+		else if (moveframes < 310) //second puff of cigarette
+		{
+			oam_meta_spr(201, 180, abduction_guy_1);
+		}
+		else if (moveframes < 320)
+		{
+			oam_meta_spr(201, 180, abduction_guy_2);
+		}
+		else if (moveframes < 330)
+		{
+			oam_meta_spr(201, 180, abduction_guy_3);
+		}
+		else if (moveframes < 340)
+		{
+			oam_meta_spr(201, 180, abduction_guy_4);
+		}
+		else if (moveframes < 350)
+		{
+			oam_meta_spr(201, 180, abduction_guy_5);
+		}
+		else if (moveframes < 360)
+		{
+			oam_meta_spr(201, 180, abduction_guy_6);
+		}
+		else if (moveframes < 370)
+		{
+			oam_meta_spr(201, 180, abduction_guy_7);
+		}
+		else if (moveframes < 380)
+		{
+			oam_meta_spr(201, 180, abduction_guy_8);
+		}
+		else if (moveframes < 390)
+		{
+			oam_meta_spr(201, 180, abduction_guy_9);
+		}
+		else if (moveframes < 400)
+		{
+			oam_meta_spr(201, 180, abduction_guy_10);
+		} //end of second puff
+		else if (moveframes < 440)
+		{
+			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+			oam_meta_spr(194, 170, abduction_cigarette_0);
+		} else if (moveframes < 445){
+			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+			oam_meta_spr(186, 172, abduction_cigarette_1);
+		}else if (moveframes < 450){
+			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+			oam_meta_spr(180, 174, abduction_cigarette_2);
+		}else if (moveframes < 460){
+			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+			oam_meta_spr(176, 176, abduction_cigarette_3);
+		}else if (moveframes < 470){
+			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+			oam_meta_spr(170, 178, abduction_cigarette_4);
+		}else if (moveframes < 480){
+			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+			oam_meta_spr(168, 180, abduction_cigarette_5);
+		}else if (moveframes < 490){
+			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+			oam_meta_spr(167, 181, abduction_cigarette_6);
+		}else if (moveframes < 500){
+			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+			oam_meta_spr(166, 182, abduction_cigarette_7);
+		}
+		else if (moveframes < 510)
+		{
+			//ufo comes down
+			oam_meta_spr(192, 2+(moveframes-500), sprite_pointer);
+			oam_meta_spr(201, 180, abduction_guy_12); //hand going down
+			oam_meta_spr(166, 182, abduction_cigarette_7);
+		}
+		else if (moveframes < 520)
+		{
+			//then ufo slides left
+			oam_meta_spr(192-moveframes-510, 12, sprite_pointer);
+			oam_meta_spr(201, 180, abduction_guy_13);
+			oam_meta_spr(166, 182, abduction_cigarette_7);
+		}
+		else if (moveframes < 530)
+		{
+			oam_meta_spr(182-moveframes-520, 12, sprite_pointer);
+			oam_meta_spr(201, 180, abduction_guy_14);
+			oam_meta_spr(166, 182, abduction_cigarette_7);
+		}
+		else
+		{
+			oam_meta_spr(172, 12, sprite_pointer);
+			oam_meta_spr(201, 180, abduction_guy_14);
+			oam_meta_spr(166, 182, abduction_cigarette_7);
 			// init next step
 			moveframes = 0;
 			abduction_cutscene_step = ABDUCTION_BEAM;
@@ -1443,98 +1606,24 @@ void bank_4_cutscene_loop(void)
 			attribute_bytes_written = 0;
 			nametable_index = 0;
 		}
-		// 600 frames for guy to smoke cigarette, etc
-		// draw sprites:
-		oam_clear();
-		if (moveframes % 4 == 0)
-		{
-			oam_meta_spr(172, 12, abduction_ship_1);
-		}
-		else
-		{
-			oam_meta_spr(172, 12, abduction_ship_2);
-		}
-
-		if (moveframes < 100)
-		{
-			oam_meta_spr(200, 190, abduction_guy_0);
-		}
-		else if (moveframes < 110)
-		{
-			oam_meta_spr(200, 190, abduction_guy_1);
-		}
-		else if (moveframes < 120)
-		{
-			oam_meta_spr(200, 190, abduction_guy_2);
-		}
-		else if (moveframes < 130)
-		{
-			oam_meta_spr(200, 190, abduction_guy_3);
-		}
-		else if (moveframes < 140)
-		{
-			oam_meta_spr(200, 190, abduction_guy_4);
-		}
-		else if (moveframes < 150)
-		{
-			oam_meta_spr(200, 190, abduction_guy_5);
-		}
-		else if (moveframes < 160)
-		{
-			oam_meta_spr(200, 190, abduction_guy_6);
-		}
-		else if (moveframes < 170)
-		{
-			oam_meta_spr(200, 190, abduction_guy_7);
-		}
-		else if (moveframes < 180)
-		{
-			oam_meta_spr(200, 190, abduction_guy_8);
-		}
-		else if (moveframes < 190)
-		{
-			oam_meta_spr(200, 190, abduction_guy_9);
-		}
-		else if (moveframes < 200)
-		{
-			oam_meta_spr(200, 190, abduction_guy_10);
-		}
-		else if (moveframes < 210)
-		{
-			oam_meta_spr(200, 190, abduction_guy_11);
-		}
-		else if (moveframes < 220)
-		{
-			oam_meta_spr(200, 190, abduction_guy_12);
-		}
-		else if (moveframes < 230)
-		{
-			oam_meta_spr(200, 190, abduction_guy_13);
-		}
-		else if (moveframes < 240)
-		{
-			oam_meta_spr(200, 190, abduction_guy_14);
-		}
-		else
-		{
-			oam_meta_spr(200, 190, abduction_guy_14);
-		}
+		//the ship needs to come in here, from the right
 		++moveframes;
 	}
 
 	if (abduction_cutscene_step == ABDUCTION_BEAM)
 	{
 		oam_clear();
+		oam_meta_spr(166, 182, abduction_cigarette_7); //cigarette on the ground
+		oam_meta_spr(201, 180, abduction_guy_14);
 		if (moveframes % 4 == 0)
 		{
 			oam_meta_spr(172, 12, abduction_ship_1);
-			oam_meta_spr(200, 190, abduction_guy_14);
 		}
 		else
 		{
 			oam_meta_spr(172, 12, abduction_ship_2);
-			oam_meta_spr(200, 190, abduction_guy_14);
 		}
+
 		// this is just used for the beam coming down, maybe we want the guy
 		//  to anmiate here to, but not right now
 		if (nametable_index == 960)
@@ -1543,6 +1632,7 @@ void bank_4_cutscene_loop(void)
 			abduction_cutscene_step = ABDUCTION_BEAM_UP;
 		}
 
+		//todo: need sprite of beam coming down
 		// we want to do 1 line every 5 frames
 		if (index2 == 5 && nametable_index < 960)
 		{
@@ -1554,7 +1644,6 @@ void bank_4_cutscene_loop(void)
 				}
 				index3 = 0;
 			}
-			
 			
 			for (index = 0; index < 32; ++index)
 			{
@@ -1580,6 +1669,8 @@ void bank_4_cutscene_loop(void)
 			nametable_index = 960;
 		}
 		oam_clear();
+		//cigarette on the ground
+		oam_meta_spr(166, 182, abduction_cigarette_7); 
 		// draw space ship:
 		if (moveframes % 4 == 0)
 		{
@@ -1592,84 +1683,95 @@ void bank_4_cutscene_loop(void)
 
 		if (moveframes < 0)
 		{
-			oam_meta_spr(200, 190, abduction_guy_15);
+			oam_meta_spr(201, 180, abduction_guy_15);
 		}
 		else if (moveframes < 10)
 		{
-			oam_meta_spr(200, 190, abduction_guy_16);
+			oam_meta_spr(201, 180, abduction_guy_16);
 		}
 		else if (moveframes < 20)
 		{
-			oam_meta_spr(200, 190, abduction_guy_17);
+			oam_meta_spr(201, 180, abduction_guy_17);
 		}
 		else if (moveframes < 30)
 		{
-			oam_meta_spr(200, 190, abduction_guy_18);
+			oam_meta_spr(193, 162, abduction_guy_hat);
+			oam_meta_spr(201, 180, abduction_guy_18); 
 		}
 		else if (moveframes < 40)
 		{
-			oam_meta_spr(200, 190, abduction_guy_19);
+			oam_meta_spr(193, 162-(2*(moveframes-30)), abduction_guy_hat);
+			oam_meta_spr(201, 180, abduction_guy_19);
 		}
 		else if (moveframes < 50)
 		{
-			oam_meta_spr(200, 190, abduction_guy_20);
+			oam_meta_spr(193, 162-(2*(moveframes-30)), abduction_guy_hat);
+			oam_meta_spr(201, 180, abduction_guy_20);
 		}
 		else if (moveframes < 60)
 		{
-			oam_meta_spr(200, 190, abduction_guy_21); // this is cigarette flick
+			oam_meta_spr(193, 162-(2*(moveframes-30)), abduction_guy_hat);
+			oam_meta_spr(201, 180, abduction_guy_21);
 		}
 		else if (moveframes < 70)
 		{
-			oam_meta_spr(200, 190, abduction_guy_22);
+			oam_meta_spr(193, 162-(2*(moveframes-30)), abduction_guy_hat);
+			oam_meta_spr(201, 180, abduction_guy_22);
 		}
 		else if (moveframes < 80)
 		{
-			oam_meta_spr(200, 190, abduction_guy_23);
+			oam_meta_spr(193, 162-(2*(moveframes-30)), abduction_guy_hat);
+			oam_meta_spr(201, 180, abduction_guy_23);
 		}
 		else if (moveframes < 90)
 		{
-			oam_meta_spr(200, 190, abduction_guy_24);
+			oam_meta_spr(193, 162-(2*(moveframes-30)), abduction_guy_hat);
+			oam_meta_spr(201, 180, abduction_guy_24);
 		}
 		else if (moveframes < 100)
 		{
-			oam_meta_spr(200, 190, abduction_guy_25);
-		}
+			oam_meta_spr(201, 180, abduction_guy_25);
+		} 
+		// question mark over his head is 35-38
+		// guy goes 24 and 25 (to 'scratch' is head)
+		// hand back down is 24-18
+		// then the abduction below
 		else if (moveframes < 110)
 		{
 			// moveframes between 100 and 110
-			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_45);
+			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_45);
 		}
 		else if (moveframes < 120)
 		{
-			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_46);
+			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_46);
 		}
 		else if (moveframes < 130)
 		{
-			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_47);
+			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_47);
 		}
 		else if (moveframes < 140)
 		{
-			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_48);
+			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_48);
 		}
 		else if (moveframes < 150)
 		{
-			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_49);
+			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_49);
 		}
 		else if (moveframes < 160)
 		{
-			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_50);
+			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_50);
 		}
 		else if (moveframes < 170)
 		{
-			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_51);
+			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_51);
 		}
 		else if (moveframes < 190)
 		{
-			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_52);
+			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_52);
 		}
 		else if (moveframes < 210)
 		{
-			oam_meta_spr(200, 190 - moveframes + 100, abduction_guy_53);
+			oam_meta_spr(201, 180 - moveframes + 100, abduction_guy_53);
 		}
 		else
 		{
@@ -2006,7 +2108,7 @@ void main(void)
 		DEBUG ONLY!!!!
 	*/
 	// game_mode = MODE_TITLE;
-	banked_call(BANK_4, bank_4_instruction_init);	
+	banked_call(BANK_4, bank_4_cutscene_init);	
 
 	while (1)
 	{

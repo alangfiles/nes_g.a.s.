@@ -42,6 +42,12 @@ unsigned char gas3_changed;
 unsigned char gas2_changed;
 unsigned char gas1_changed;
 
+unsigned char aliengas3;
+unsigned char aliengas2;
+unsigned char aliengas1;
+unsigned char temp;
+
+
 unsigned char alien_level;
 unsigned int gas_goal;
 unsigned int gas_goal_hundreds;

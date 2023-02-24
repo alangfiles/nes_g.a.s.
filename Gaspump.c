@@ -1382,7 +1382,7 @@ void bank_4_alien_level_init(void)
 
 	pal_bg(futurepump_palette);
 	set_chr_bank_0(FUTUREPUMP_CHR_0);
-	set_chr_bank_1(FUTUREPUMP_CHR_1);
+	set_chr_bank_1(FUTUREPUMP_CHR_0);
 	scroll(0, 0); // reset scrolling
 	index = 0;
 
@@ -1401,6 +1401,8 @@ void bank_4_alien_level_init(void)
 
 	pal_fade_to(0, 4);
 	ppu_on_all();
+	started_pumping = 0;
+	gas_goal = 14;
 	game_mode = MODE_ALIEN_LEVEL;
 }
 
@@ -1994,15 +1996,84 @@ void bank_4_cutscene_loop(void)
 	}
 }
 
+void bank_4_alien_number_sprites(void){
+	switch(temp){
+		case 1: 
+			pointer = AlienNumber1;
+			break;
+		case 2:
+			pointer = AlienNumber2;
+			break;
+		case 3:
+			pointer = AlienNumber3;
+			break;
+		default:
+			pointer = AlienNumber0;
+	}
+}
+
 void bank_4_alien_level_loop(void)
 {
+	++moveframes;
 	ppu_wait_nmi();
-	// this probaly looks a lot like the main level loop
-	read_input();
-	if(trigger_clicked){
-		banked_call(BANK_5, bank_5_starfield_init);
-		game_mode = MODE_ALIEN_STARFIELD;
+	oam_clear();
+
+	//draw_gliboons_count as sprites
+	temp = aliengas1;
+	banked_call(BANK_4, bank_4_alien_number_sprites);
+	oam_meta_spr(176, 14, pointer);
+	temp = aliengas2;
+	banked_call(BANK_4, bank_4_alien_number_sprites);
+	oam_meta_spr(160, 14, pointer);
+	temp = aliengas3;
+	banked_call(BANK_4, bank_4_alien_number_sprites);
+	oam_meta_spr(144, 14, pointer);
+	
+
+	read_input(); // sets input_active
+
+	if (trigger_pulled)
+	{
+		started_pumping = 1; // actually only need to set this once
+
+		//add gas every X frameas
+		if(moveframes > 16){
+			++aliengas1;
+			moveframes = 0;
+		}
+
+		//roll up numbers
+		if (aliengas1 > 3)
+		{
+			aliengas1 = 0;
+			++aliengas2;
+			if (aliengas2 > 3)
+			{
+				aliengas2 = 0;
+				++aliengas3;
+				if (aliengas3 > 3)
+				{
+					aliengas3 = 0;
+					aliengas2 = 0;
+					aliengas1 = 0;
+				}
+			}
+		}
+
 	}
+	else
+	{
+		if (started_pumping == 1)
+		{
+			// todo: fix this to go to conversation page with different text.
+			// if they pump the right amount, go to the starfield, else the gameover
+	// probably back to the instruction screen.
+			// trigger ending
+			wait_a_little();
+			banked_call(BANK_5, bank_5_starfield_init);
+		}
+	}
+
 }
 
 #pragma endregion
@@ -2282,7 +2353,8 @@ void main(void)
 		DEBUG ONLY!!!!
 	*/
 	// game_mode = MODE_TITLE;
-	banked_call(BANK_4, bank_4_cutscene_init);	
+	// banked_call(BANK_4, bank_4_alien_level_init);
+		
 
 	while (1)
 	{

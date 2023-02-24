@@ -1218,3 +1218,48 @@ const unsigned char Cutscene_38_data[]={
 	128
 
 };
+
+const unsigned char AlienNumber0[] = {
+		0, 0, 0xd2, 0,
+		8, 0, 0xd3, 0,
+		0, 8, 0xd2, 0,
+		8, 8, 0xd3, 0,
+		0, 16, 0xd2, 0,
+		8, 16, 0xd3, 0,
+		0, 24, 0xd2, 0,
+		8, 24, 0xd3, 0,
+		128};
+
+
+const unsigned char AlienNumber1[] = {
+		0, 0, 0x4e, 0,
+		8, 0, 0x4f, 0,
+		0, 8, 0x5e, 0,
+		8, 8, 0x5f, 0,
+		0, 16, 0x6e, 0,
+		8, 16, 0x6f, 0,
+		0, 24, 0x7e, 0,
+		8, 24, 0x7f, 0,
+		128};
+
+const unsigned char AlienNumber2[] = {
+		0, 0, 0xd2, 0,
+		8, 0, 0xd3, 0,
+		0, 8, 0xe2, 0,
+		8, 8, 0xe3, 0,
+		0, 16, 0xf2, 0,
+		8, 16, 0xf3, 0,
+		0, 24, 0xd2, 0,
+		8, 24, 0xd3, 0,
+		128};
+
+const unsigned char AlienNumber3[] = {
+		0, 0, 0x4c, 0,
+		8, 0, 0x4d, 0,
+		0, 8, 0x5c, 0,
+		8, 8, 0x5d, 0,
+		0, 16, 0x6c, 0,
+		8, 16, 0x6d, 0,
+		0, 24, 0x7c, 0,
+		8, 24, 0x7d, 0,
+		128};

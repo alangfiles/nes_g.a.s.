@@ -1322,6 +1322,7 @@ void bank_3_level_loop(void)
 #include "BACKGROUNDS/intro_cutscene_1x.h"
 #include "BACKGROUNDS/intro_cutscene_2x.h"
 #include "BACKGROUNDS/intro_cutscene_3x.h"
+const unsigned char alien_instruction_text[] = "Welcome to Planet Gardok\nWe modified our pump\njust for you.\n\nWe just need 019 Glibloons\n\nPump, human!\nThe Battle BEGINS!";
 
 void bank_5_starfield_init(void); //prototype
 
@@ -1427,12 +1428,28 @@ void bank_4_instruction_init(void)
 	}
 	pal_fade_to(0, 4);
 	ppu_on_all();
+
+	//init instructions
+	text_x_start = 3;
+	text_y_start = 4;
+	reset_text_values();
+	
+	pointer = alien_instruction_text;
+	text_length = sizeof(alien_instruction_text);
+	
+
 	game_mode = MODE_ALIEN_INSTRUCTION;
 }
 
 void bank_4_instruction_loop(void)
 {
 	ppu_wait_nmi();
+	//write text
+	
+	if (text_row < 9)
+	{
+		typewriter();
+	}
 
 	read_input();
 	if(trigger_clicked){
@@ -2310,9 +2327,6 @@ void main(void)
 		}
 		if (game_mode == MODE_ALIEN_INSTRUCTION)
 		{
-			// todo
-			//  add instruction screen
-			// for now this just passes through.
 			banked_call(BANK_4, bank_4_instruction_loop);
 		}
 		if (game_mode == MODE_ALIEN_LEVEL)

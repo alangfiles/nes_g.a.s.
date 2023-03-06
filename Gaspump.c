@@ -3,20 +3,25 @@
 
 /*  Development todo:
  *
- * [] cleanup palettes everywhere
- * [] get space level in
- * [] update "evaluation page" (do we even need it?)
- * [] look into putting all functions in banks (main back getting full)
- * [] Add text for successful/unsuccessful level
+ *
+ * MINIMAL LIST:
+ * [] Add score for goal/speed/accuracy/style (add total?)
+ * [] fix tiles for score on alien level
+ * [] fix sprites for Al
+ * [] add sprites to gasboy (evaluation + level?)
+ * [] fix palettes on abduction scroll up 
  * [] Add ending scroll
- * [] Add last level scroll
  * [] Add sound effects
  * [] add music
- * [] add things flying in levels
- * [] fill in scaffolding for game flow (including missing parts)
- * [] futurepump palette
- * [] main gas pump palette
+ * 
+ * POLISH:
+ * [] add sprites to pump levels (cars, birds, spaceships)
+ * [] add shootables to last level scroll
  *
+ * BUGS:
+ * [] Attribute weirdness in main game scroll (fix by offseting scroll)
+ * [] Fix planet scrolling attribute tables
+ * 
  * game flow:
  * title->intro_scroll->intro_cutscene->
  * talking_time(level1)->level1->evaluation(level1)-> (repeat if failed)
@@ -556,7 +561,7 @@ void bank_1_instructions_init(void)
 	vram_adr(NAMETABLE_A);
 for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(talkingtime[largeindex]); // todo fix this
+		vram_put(talkingtime[largeindex]); 
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -624,7 +629,7 @@ void bank_1_gas_level_init(void)
 
 	vram_unrle(LEVEL_1_PUMP);
 	// for(largeindex = 0; largeindex < 1024; ++largeindex){
-	// 	vram_put(level1[largeindex]); //todo fix this
+	// 	vram_put(level1[largeindex]); 
 	// 	++index;
 	// 	if(index > 40) { //don't put too much in the vram_buffer
 	// 		flush_vram_update2();
@@ -688,7 +693,6 @@ void bank_1_title_init(void)
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 
-	// todo: update these to the right banks
 	pal_bg(intro_cutscene_palette);
 
 	// bird_x = 0;
@@ -751,7 +755,7 @@ void bank_2_init_level_one_end(void)
 	vram_adr(NAMETABLE_A);
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(evaluation[largeindex]); // todo fix this
+		vram_put(evaluation[largeindex]); 
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -1323,8 +1327,11 @@ void bank_3_level_loop(void)
 #include "BACKGROUNDS/intro_cutscene_2x.h"
 #include "BACKGROUNDS/intro_cutscene_3x.h"
 const unsigned char alien_instruction_text[] = "Welcome to Planet Gardok\nWe modified our pump\njust for you.\n\nWe just need 019 Glibloons\n\nPump, human!\nThe Battle BEGINS!";
+const unsigned char alien_evaluation_text_bad[] = "Well...\nThat's your best?\n\nYou're earth's best?!\nIt's not good enough.\n\nWe're doomed.";
+const unsigned char alien_evaluation_text_good[] = "Perfect pumping!\nI knew you could do it.\n\nI'm fueled up and ready\nto go! Now hop on!!\n\nLet's stop Lord ZARKAQ!";
 
 void bank_5_starfield_init(void); //prototype
+void bank_5_gameover_init(void); //prototype
 
 void bank_4_cutscene_init(void)
 {
@@ -1390,7 +1397,7 @@ void bank_4_alien_level_init(void)
 
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(FUTURE_PUMP_LEVEL[largeindex]); // todo fix this
+		vram_put(FUTURE_PUMP_LEVEL[largeindex]); 
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -1402,7 +1409,9 @@ void bank_4_alien_level_init(void)
 	pal_fade_to(0, 4);
 	ppu_on_all();
 	started_pumping = 0;
+	//todo, set actual gas goal here.
 	gas_goal = 14;
+	gas_pumped = 0;
 	game_mode = MODE_ALIEN_LEVEL;
 }
 
@@ -1420,7 +1429,7 @@ void bank_4_instruction_init(void)
 
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(futuretalk[largeindex]); // todo fix this
+		vram_put(futuretalk[largeindex]); 
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -1436,10 +1445,25 @@ void bank_4_instruction_init(void)
 	text_y_start = 4;
 	reset_text_values();
 	
-	pointer = alien_instruction_text;
-	text_length = sizeof(alien_instruction_text);
-	
 
+	if(alien_level_status == ALIEN_INITIAL_INSTRUCTION){
+		pointer = alien_instruction_text;
+		text_length = sizeof(alien_instruction_text);
+		alien_level_status = ALIEN_EVALUATION; //used for next time
+	}
+
+	if(alien_level_status == ALIEN_EVALUATION){
+		if(gas_pumped > gas_goal-5 && gas_pumped < gas_goal+5){
+			pointer = alien_evaluation_text_good;
+			text_length = sizeof(alien_evaluation_text_good);
+			alien_level_cleared = 1;
+		} else {
+			pointer = alien_evaluation_text_bad;
+			text_length = sizeof(alien_evaluation_text_bad);
+			alien_level_failed = 1;
+		}
+	}
+	
 	game_mode = MODE_ALIEN_INSTRUCTION;
 }
 
@@ -1455,8 +1479,14 @@ void bank_4_instruction_loop(void)
 
 	read_input();
 	if(trigger_clicked){
-		banked_call(BANK_4, bank_4_alien_level_init);
-		game_mode = MODE_ALIEN_LEVEL;
+		if(alien_level_cleared){
+			banked_call(BANK_5, bank_5_starfield_init);
+		} else if(alien_level_failed){
+			banked_call(BANK_5,bank_5_gameover_init);
+		} else {
+			banked_call(BANK_4, bank_4_alien_level_init);
+		}
+		
 	}
 
 }
@@ -1992,6 +2022,7 @@ void bank_4_cutscene_loop(void)
 	}
 	if (abduction_cutscene_step == ABDUCTION_DONE) // to call at the end of everything
 	{
+		alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 		banked_call(BANK_4, bank_4_instruction_init);
 	}
 }
@@ -2038,6 +2069,8 @@ void bank_4_alien_level_loop(void)
 
 		//add gas every X frameas
 		if(moveframes > 16){
+			++gas_pumped; //<--total gas
+
 			++aliengas1;
 			moveframes = 0;
 		}
@@ -2065,12 +2098,8 @@ void bank_4_alien_level_loop(void)
 	{
 		if (started_pumping == 1)
 		{
-			// todo: fix this to go to conversation page with different text.
-			// if they pump the right amount, go to the starfield, else the gameover
-	// probably back to the instruction screen.
-			// trigger ending
 			wait_a_little();
-			banked_call(BANK_5, bank_5_starfield_init);
+			banked_call(BANK_4, bank_4_instruction_init);
 		}
 	}
 
@@ -2115,7 +2144,7 @@ void bank_5_gameover_init(void)
 
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(gameover[largeindex]); // todo fix this
+		vram_put(gameover[largeindex]); 
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -2134,6 +2163,7 @@ void bank_5_gameover_loop(void)
 {
 	ppu_wait_nmi();
 	//wait for keybaord input, then restart the whole game
+	//I like the idea of just having this screen tell them they have to reset the game.
 }
 
 void bank_5_starfield_init(void)
@@ -2156,7 +2186,7 @@ void bank_5_starfield_init(void)
 
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(starfield1[largeindex]); // todo fix this
+		vram_put(starfield1[largeindex]); 
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -2168,7 +2198,7 @@ void bank_5_starfield_init(void)
 	vram_adr(NAMETABLE_B);
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(starfield2[largeindex]); // todo fix this
+		vram_put(starfield2[largeindex]); 
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -2201,6 +2231,10 @@ void bank_5_draw_screen_right(void){
 		++row_column_index;
 		if (attribute_bytes_written < 64)
 		{
+			//todo: fix this attribute stuff being bad
+			// either shift the screen forward before drawing more
+			// or just draw all the attributes buffer at once
+			
 			one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
 			++attribute_bytes_written;
 			++attribute_table_index;
@@ -2388,13 +2422,11 @@ void main(void)
 			banked_call(BANK_2, bank_2_evaluation_loop);
 		}
 		if (game_mode == MODE_GAME)
-		{ // this is game pumping mode, either level 1 or alien level
+		{ // this is game pumping mode, 
 			banked_call(BANK_3, bank_3_level_loop);
 		}
 		if (game_mode == MODE_ABDUCTION_CUTSCENE)
 		{
-			// todo
-			// draw cutscene
 			banked_call(BANK_4, bank_4_cutscene_loop);
 		}
 		if (game_mode == MODE_ALIEN_INSTRUCTION)
@@ -2409,12 +2441,12 @@ void main(void)
 		}
 		if (game_mode == MODE_ALIEN_EVALUATION)
 		{
-			// todo
-			// 
+			// we don't need this anymore, we just use instruction both times.
 		}
 		if (game_mode == MODE_ALIEN_STARFIELD)
 		{
 			// todo
+			// add actual shooting and more sprites.
 			banked_call(BANK_5, bank_5_starfield_loop);
 		}
 		if (game_mode == MODE_GAME_ENDING)
@@ -2424,6 +2456,7 @@ void main(void)
 		}
 		if (game_mode == MODE_GAME_OVER)
 		{
+			//todo brian has better content here eventually
 			banked_call(BANK_5, bank_5_gameover_loop);
 		}
 	}

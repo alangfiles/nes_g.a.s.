@@ -49,6 +49,8 @@ unsigned char temp;
 
 
 unsigned char alien_level;
+unsigned char alien_level_cleared;
+unsigned char alien_level_failed;
 unsigned int gas_goal;
 unsigned int gas_goal_hundreds;
 const unsigned char gas_goal_array[] = {1, 2, 3, 4};
@@ -129,6 +131,12 @@ enum
 
 enum
 {
+	ALIEN_INITIAL_INSTRUCTION,
+	ALIEN_EVALUATION,
+};
+
+enum
+{
 	GASPUMP_CHR_0,
 	GASPUMP_CHR_1,
 	TALKING_TIME_CHR_0,
@@ -181,6 +189,7 @@ unsigned char text_row;
 unsigned char text_col;
 unsigned char text_x_start;
 unsigned char text_y_start;
+unsigned char alien_level_status;
 
 unsigned int moveframes;
 unsigned int moveframes2;

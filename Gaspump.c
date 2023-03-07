@@ -12,7 +12,23 @@
  * [] fix palettes on abduction scroll up 
  * [] Add ending scroll
  * [] Add sound effects
+ *   *  Glug Glug
+ *   *  Shooting
+ *   *  Ding for the perfect pump amount?
+ *   *  Good job fanfare
+ *   *  Bad job fanfare
  * [] add music
+ *   *  Title Screen
+ *   *  Intro Scroll
+ *   *  Intro Cutscene
+ *   *  Talking Time
+ *   *  Earth Gas Pump
+ *   *  Evaluation good/bad/medium
+ *   *  Abduction Cutscene
+ *   *  Alien Talking Time
+ *   *  Ending Level
+ *   *  Ending Scroll
+ * 
  * 
  * POLISH:
  * [] add sprites to pump levels (cars, birds, spaceships)
@@ -229,6 +245,7 @@ void bank_0_intro_scroll_init(void)
 	ppu_on_all(); // turn on screen
 	pal_fade_to(0, 4);
 	game_mode = MODE_INTRO_SCROLL;
+	music_play(SONG_INTROSCROLL);
 }
 
 void bank_0_title_loop(void)
@@ -358,6 +375,7 @@ void bank_0_intro_cutscene_init(void)
 	ppu_on_all(); // turn on screen
 	game_mode = MODE_INTRO_CUTSCENE;
 	pal_fade_to(0, 4);
+	music_play(SONG_INTROCUTSCENE);
 }
 
 void bank_0_intro_scroll_loop(void)
@@ -466,7 +484,6 @@ void bank_0_intro_cutscene_loop(void)
 {
 	ppu_wait_nmi();
 	++moveframes;
-	++line_counter;
 
 	if (stop_scrolling == 0 && moveframes > 0)
 	{
@@ -643,6 +660,7 @@ void bank_1_gas_level_init(void)
 	wait_a_little();
 	game_mode = MODE_GAME;
 	started_pumping = 0;
+	music_play(SONG_GASPUMP);
 }
 
 void bank_1_instructions_loop(void)
@@ -718,6 +736,7 @@ void bank_1_title_init(void)
 	levels_complete = 0;
 	perfect_levels = 0;
 	reset_game_variables();
+	music_play(SONG_TITLE);
 
 	// todo: add title music
 }
@@ -834,6 +853,7 @@ void bank_2_init_level_one_end(void)
 	ppu_on_all(); // turn on screen
 	game_mode = MODE_EVALUATION_TIME;
 	game_level = LEVEL_ONE_COMPLETE;
+	music_play(SONG_TALKINGTIME);
 }
 
 void bank_2_evaluation_loop(void)
@@ -1379,6 +1399,7 @@ void bank_4_cutscene_init(void)
 	moveframes = 0;
 
 	abduction_cutscene_step = ABDUCTION_START;
+	music_play(SONG_ABDUCTIONCUTSCENE);
 }
 
 void bank_4_alien_level_init(void)
@@ -1413,6 +1434,7 @@ void bank_4_alien_level_init(void)
 	gas_goal = 14;
 	gas_pumped = 0;
 	game_mode = MODE_ALIEN_LEVEL;
+	music_play(SONG_ALIENPUMP);
 }
 
 void bank_4_instruction_init(void)
@@ -1465,6 +1487,7 @@ void bank_4_instruction_init(void)
 	}
 	
 	game_mode = MODE_ALIEN_INSTRUCTION;
+	music_play(SONG_ALIENTALKINGTIME);
 }
 
 void bank_4_instruction_loop(void)
@@ -2156,6 +2179,7 @@ void bank_5_gameover_init(void)
 	pal_fade_to(0, 4);
 	ppu_on_all();
 	game_mode = MODE_GAME_OVER;
+	music_play(SONG_ASCENTIONOFZ);
 	
 }
 
@@ -2214,6 +2238,7 @@ void bank_5_starfield_init(void)
 	nametable_index = NAMETABLE_A;
 	attribute_table_index = NAMETABLE_A_ATTR;
 	attribute_bytes_written = 0;
+	music_play(SONG_ENDINGSPACE);
 }
 
 unsigned char column_pixel_counter = 0;
@@ -2409,6 +2434,7 @@ void main(void)
 		}
 		if (game_mode == MODE_INTRO_CUTSCENE)
 		{ // city scroll (scrolls down from the sky)
+			music_play(SONG_INTROCUTSCENE);
 			banked_call(BANK_0, bank_0_intro_cutscene_loop);
 		}
 

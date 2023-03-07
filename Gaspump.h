@@ -81,6 +81,21 @@ unsigned char levels_complete;
 unsigned char perfect_levels;
 unsigned char abduction_cutscene_step;
 
+enum 
+{
+	SONG_TITLE,
+	SONG_INTROSCROLL,
+	SONG_INTROCUTSCENE,
+	SONG_TALKINGTIME,
+	SONG_GASPUMP,
+	SONG_ABDUCTIONCUTSCENE,
+	SONG_ALIENTALKINGTIME,
+	SONG_ALIENPUMP,
+	SONG_ENDINGSPACE,
+	SONG_ENDINGSCROLL,
+	SONG_ASCENTIONOFZ,
+};
+
 enum
 {
 	ABDUCTION_START,

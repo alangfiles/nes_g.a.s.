@@ -40,7 +40,7 @@ al 00D26C ._Two
 al 00D374 ._Zero
 al 008000 .__BANK0_LOAD__
 al 008000 .__BANK0_RUN__
-al 002DEC .__BANK0_SIZE__
+al 002DF2 .__BANK0_SIZE__
 al 008000 .__BANK1_LOAD__
 al 008000 .__BANK1_RUN__
 al 00068D .__BANK1_SIZE__
@@ -72,7 +72,7 @@ al 00EC92 .__ONCE_LOAD__
 al 00EC92 .__ONCE_RUN__
 al 000000 .__ONCE_SIZE__
 al 000010 .__PRG0_FILEOFFS__
-al 00ADEC .__PRG0_LAST__
+al 00ADF2 .__PRG0_LAST__
 al 004000 .__PRG0_SIZE__
 al 008000 .__PRG0_START__
 al 004010 .__PRG1_FILEOFFS__
@@ -194,9 +194,9 @@ al 00030B ._attribute_table_index
 al 000313 ._bankBuffer
 al 000312 ._bankLevel
 al 00AA18 ._bank_0_intro_cutscene_init
-al 00ACF1 ._bank_0_intro_cutscene_loop
+al 00ACF4 ._bank_0_intro_cutscene_loop
 al 00A800 ._bank_0_intro_scroll_init
-al 00AAFF ._bank_0_intro_scroll_loop
+al 00AB02 ._bank_0_intro_scroll_loop
 al 00A924 ._bank_0_title_loop
 al 0084AA ._bank_1_gas_level_init
 al 0083DF ._bank_1_instructions_init

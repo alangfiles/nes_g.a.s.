@@ -371,6 +371,7 @@ void bank_0_intro_cutscene_init(void)
 
 	cutscene_index = NAMETABLE_A;
 	nametable_index = 0;
+	line_counter = 0;
 
 	ppu_on_all(); // turn on screen
 	game_mode = MODE_INTRO_CUTSCENE;
@@ -525,6 +526,7 @@ void bank_0_intro_cutscene_loop(void)
 			scroll_y = 0;
 		}
 		scroll(0, scroll_y);
+		++line_counter;
 		moveframes = 0;
 	}
 

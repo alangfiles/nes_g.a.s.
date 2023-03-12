@@ -2434,8 +2434,7 @@ void main(void)
 		}
 		if (game_mode == MODE_INTRO_CUTSCENE)
 		{ // city scroll (scrolls down from the sky)
-			music_play(SONG_INTROCUTSCENE);
-			banked_call(BANK_0, bank_0_intro_cutscene_loop);
+		  banked_call(BANK_0, bank_0_intro_cutscene_loop);
 		}
 
 		if (game_mode == MODE_INTRO_INSTRUCTION)

@@ -95,6 +95,8 @@ const unsigned char talking_time_palette[] = {
 		0x0f, 0x00, 0x1b, 0x30,
 		0x0f, 0x09, 0x19, 0x38};
 
+		const unsigned char talking_time_sp_palette[16]={ 0x0f,0x20,0x16,0x36,0x0f,0x05,0x16,0x36,0x0f,0x2a,0x19,0x08,0x0f,0x11,0x15,0x30 };
+
 const unsigned char intro_cutscene_gun_palette[16] = {
 		0x0f, 0x10, 0x2a, 0x15,
 		0x0f, 0x10, 0x16, 0x26,
@@ -568,9 +570,10 @@ void bank_1_instructions_init(void)
 	reset_game_variables();
 
 	set_chr_bank_0(TALKING_TIME_CHR_0);
-	set_chr_bank_1(TALKING_TIME_CHR_0);
+	set_chr_bank_1(TALKING_TIME_CHR_1);
 	// clear_background();
 	pal_bg(talking_time_palette);
+	pal_spr(talking_time_sp_palette);
 
 	vram_adr(NAMETABLE_A);
 for (largeindex = 0; largeindex < 1024; ++largeindex)
@@ -606,7 +609,6 @@ for (largeindex = 0; largeindex < 1024; ++largeindex)
 		pointer = level_2_text;
 		text_length = sizeof(level_2_text);
 		gas_goal = 1;
-		alien_level = 1;
 		break;
 	default:
 		break;
@@ -665,31 +667,45 @@ void bank_1_instructions_loop(void)
 	ppu_wait_nmi();
 	++moveframes;
 
-	if (text_row < 6)
-	{
-		typewriter();
-	}
-
-	if (moveframes > 60)
-	{
-		moveframes = 0;
-	}
-
-#pragma region instructions_sprites
 	oam_clear(); // clear all sprites
 	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
-	oam_meta_spr(0xc0, 0xa8, BigAlsEyes);
 
-	// big al loop:
-	if (moveframes >= 0 && moveframes < 30)
+	
+	if (text_row < 6)
 	{
-		oam_meta_spr(0xb8, 0xbf, BigAlTalkClosedMouth);
+		if(moveframes%4==0){
+			typewriter();	
+		}
 	}
-	if (moveframes >= 30 && moveframes < 61)
-	{
-		oam_meta_spr(0xb8, 0xbf, BigAlTalkMidMouth);
-	}
-#pragma endregion
+
+	if (moveframes < 10){
+			oam_meta_spr(0xc2, 0xa8, altalks_30_data);
+		} else if(moveframes < 20){
+			oam_meta_spr(0xc2, 0xa8, altalks_31_data);
+		} else if(moveframes < 30){
+			oam_meta_spr(0xc2, 0xa8, altalks_32_data);
+		} else if(moveframes < 40){
+			oam_meta_spr(0xc2, 0xa8, altalks_33_data);
+		} else if(moveframes < 50){
+			oam_meta_spr(0xc2, 0xa8, altalks_34_data);
+		} else if(moveframes < 60){
+			oam_meta_spr(0xc2, 0xa8, altalks_35_data);
+		} else if(moveframes < 70){
+			oam_meta_spr(0xc2, 0xa8, altalks_36_data);
+		} else if(moveframes < 80){
+			oam_meta_spr(0xc2, 0xa8, altalks_37_data);
+		} else if(moveframes < 90){
+			oam_meta_spr(0xc2, 0xa8, altalks_38_data);
+		} else if(moveframes < 100){
+			oam_meta_spr(0xc2, 0xa8, altalks_39_data);
+		} else if(moveframes < 110){
+			oam_meta_spr(0xc2, 0xa8, altalks_40_data);
+		} else {
+			oam_meta_spr(0xc2, 0xa8, altalks_40_data);
+			if(text_rendered != text_length) {
+				moveframes = 0; //cycle while text is writing
+			}
+		}
 
 	read_input();
 
@@ -829,7 +845,9 @@ void bank_2_init_level_one_end(void)
 		++levels_complete;
 		pointer = level_0_good;
 		text_length = sizeof(level_0_good);
-		if(alien_level){
+		if(levels_complete == 3){
+			//it's good, go to alien level
+			alien_level = 1;
 			pointer = level_3_preabduction;
 			text_length = sizeof(level_3_preabduction);
 		} else {
@@ -1354,7 +1372,7 @@ void bank_4_cutscene_init(void)
 {
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
-	// pal_bg(abduction_palette);
+	// pal_bg(abduction_palette); //idk where I got this palette before.
 	pal_bg(intro_cutscene_palette);
 	pal_spr(abduction_palette);
 	// TODO change this to the right CHR
@@ -2408,7 +2426,7 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	banked_call(BANK_4, bank_4_cutscene_init);
+	banked_call(BANK_1, bank_1_instructions_init);
 		
 
 	while (1)
@@ -2598,7 +2616,7 @@ void typewriter(void)
 		else
 		{
 			one_vram_buffer(pointer[text_rendered], NTADR_A(text_x_start + text_col, text_y_start + text_row));
-			delay(1);
+			// delay(1);
 			++text_col;
 
 			if (text_col == 27) // wrap to next row

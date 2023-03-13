@@ -21,7 +21,8 @@
     "intro_scroll_4.h": "c",
     "intro_scroll_3.h": "c",
     "middleshiny.h": "c",
-    "intro_cutscene_1.h": "c"
+    "intro_cutscene_1.h": "c",
+    "cutscenegun_small_arrow.h": "c"
   },
   "editor.formatOnSave": false
 }

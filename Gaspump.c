@@ -17,7 +17,7 @@
  *   *  Ding for the perfect pump amount?
  *   *  Good job fanfare
  *   *  Bad job fanfare
- * [] add music
+ * [x] add music
  *   *  Title Screen
  *   *  Intro Scroll
  *   *  Intro Cutscene
@@ -184,8 +184,8 @@ enum
 
 void bank_1_instructions_init(void); // prototype (needed to get call from bank_1)
 int cutscene_index = NAMETABLE_A;
-int nametable_index = 0;
-int attribute_table_index = 0;
+int nametable_index = 0;  
+int attribute_table_index = 0;  
 
 unsigned char attribute_bytes_written = 0;
 unsigned char line_counter = 0;
@@ -199,13 +199,13 @@ void bank_0_intro_scroll_init(void)
 	moveframes = 0;
 	line_counter = 0;
 	screen_line_counter = 0;
-	scroll_page = 0;
-	scroll_page_end = 4; // this is for the 3 page scroll
+	scroll_wait_lines = 32; //wait this many lines before drawing (not working)
+	scroll_page = 1; //we load in page 1 at the start here
+	scroll_page_end = 5; // this is for the 3 page scroll
 	// scroll_page_end = 3; //this is for the 3 page scroll
 	// scroll_page_end = 1; //this is for the 1 page scroll
-	cutscene_index = NAMETABLE_C;
-	// pointer = intro_single_page;
-	pointer = intro_scroll_1;
+
+	
 	scroll(0, 0); // reset scrolling
 	set_mirroring(MIRROR_HORIZONTAL);
 	// reset changed values so they redraw
@@ -219,25 +219,26 @@ void bank_0_intro_scroll_init(void)
 	// multi_vram_buffer_horz("Pull the Trigger", 16, NTADR_A(4,10));
 	// multi_vram_buffer_horz("But don't click it", 18, NTADR_A(4,12));
 
+	//load the gun
 	vram_adr(NAMETABLE_A);
 	for (nametable_index = 0; nametable_index < 1024; ++nametable_index)
 	{
 		vram_put(cutscenegun_small_arrow[nametable_index]);
 		flush_vram_update2();
 	}
-	nametable_index = 0;
-	// put in the attribute table for the intro_scroll before showing it.
-	attribute_table_index = NAMETABLE_C_ATTR;
-	attribute_bytes_written = 0;
-	while (attribute_bytes_written < 64)
+
+	//load the first page of text
+	vram_adr(NAMETABLE_C);
+	for (nametable_index = 0; nametable_index < 1024; ++nametable_index)
 	{
-		one_vram_buffer(intro_scroll_1[960 + attribute_bytes_written], attribute_table_index);
-		++attribute_bytes_written;
-		++attribute_table_index;
-		one_vram_buffer(intro_scroll_1[960 + attribute_bytes_written], attribute_table_index);
-		++attribute_bytes_written;
-		++attribute_table_index;
+		vram_put(intro_scroll_1[nametable_index]);
+		flush_vram_update2();
 	}
+	nametable_index = 0;
+	cutscene_index = NAMETABLE_A;
+	attribute_table_index = NAMETABLE_A_ATTR;
+	attribute_bytes_written = 0;
+	pointer = intro_scroll_2;
 
 	set_chr_bank_0(CUTSCENE_GUN_CHR_0);
 	set_chr_bank_1(CUTSCENE_GUN_CHR_1);
@@ -382,16 +383,38 @@ void bank_0_intro_cutscene_init(void)
 void bank_0_intro_scroll_loop(void)
 {
 	ppu_wait_nmi();
-	// ++moveframes; //count up each frame
 
-	read_input();
+	if (scroll_page == scroll_page_end)
+	{ // we're done here
+		for (index = 0; index < 60; ++index)
+		{
+			ppu_wait_nmi();
+		}
+		pal_fade_to(4, 0);
+		bank_0_intro_cutscene_init();
+		return;
+	}
 
-	if (trigger_pulled)
-	{
-		++line_counter;				 // count 1 line up for each frame, so we know when we'd done 8 frames, and card draw
-		++screen_line_counter; // count each screen line
-		++scroll_y;
-		// moveframes = 0;
+	if (line_counter == 8 && nametable_index <= 960)
+	{ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
+		//need to call this 30 times
+		for (index = 0; index < 32; ++index)
+		{
+			one_vram_buffer(pointer[nametable_index], cutscene_index);
+			++nametable_index;
+			++cutscene_index;
+		}
+		
+		if (attribute_bytes_written < 64)
+		{  
+			one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
+			++attribute_bytes_written;
+			++attribute_table_index;
+			one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
+			++attribute_bytes_written;
+			++attribute_table_index;
+		}
+		line_counter = 0;
 	}
 
 	if (screen_line_counter > 240)
@@ -429,56 +452,28 @@ void bank_0_intro_scroll_loop(void)
 		}
 	}
 
-	if (scroll_page == scroll_page_end)
-	{ // we're done here
-		for (index = 0; index < 60; ++index)
-		{
-			ppu_wait_nmi();
-		}
-		pal_fade_to(4, 0);
-		bank_0_intro_cutscene_init();
-		return;
-	}
-
-	if (line_counter == 8 && nametable_index < 1024)
-	{ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
-		for (index = 0; index < 32; ++index)
-		{
-			one_vram_buffer(pointer[nametable_index], cutscene_index);
-			++nametable_index;
-			++cutscene_index;
-		}
-		// lets also add in a line from the attribute table
-		//  16 attribute table entries
-		if (attribute_bytes_written < 64)
-		{
-			one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
-			++attribute_bytes_written;
-			++attribute_table_index;
-			one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
-			++attribute_bytes_written;
-			++attribute_table_index;
-		}
-		line_counter = 0;
-	}
 
 	if (scroll_y > 0x1df)
 	{
 		scroll_y = 0;
 	}
 
-	if (moveframes == 0)
-	{
-		scroll(0, scroll_y);
-	}
+	scroll(0, scroll_y);
+
 	read_input();
-	if (trigger_clicked) // allow cutscene to be skipped
+	if (trigger_pulled)
 	{
-		// debug, just go to game
-		wait_a_little();
-		set_scroll_y(0);
-		banked_call(BANK_0, bank_0_intro_cutscene_init);
+		++line_counter;				 // count 1 line up for each frame, so we know when we'd done 8 frames, and card draw
+		++screen_line_counter; // count each screen line
+		++scroll_y;
 	}
+	// if (trigger_clicked) // allow cutscene to be skipped
+	// {
+	// 	// debug, just go to game
+	// 	wait_a_little();
+	// 	set_scroll_y(0);
+	// 	banked_call(BANK_0, bank_0_intro_cutscene_init);
+	// }
 }
 
 void bank_0_intro_cutscene_loop(void)
@@ -1474,9 +1469,7 @@ void bank_4_instruction_init(void)
 		pointer = alien_instruction_text;
 		text_length = sizeof(alien_instruction_text);
 		alien_level_status = ALIEN_EVALUATION; //used for next time
-	}
-
-	if(alien_level_status == ALIEN_EVALUATION){
+	} else if(alien_level_status == ALIEN_EVALUATION){
 		if(gas_pumped > gas_goal-5 && gas_pumped < gas_goal+5){
 			pointer = alien_evaluation_text_good;
 			text_length = sizeof(alien_evaluation_text_good);
@@ -2413,8 +2406,8 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	// game_mode = MODE_TITLE;
-	// banked_call(BANK_4, bank_4_alien_level_init);
+	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
+	// banked_call(BANK_4, bank_4_instruction_init);
 		
 
 	while (1)
@@ -2478,7 +2471,7 @@ void main(void)
 		}
 		if (game_mode == MODE_GAME_ENDING)
 		{
-			// todo
+			// todo, just gonna be a scroll.
 			// 
 		}
 		if (game_mode == MODE_GAME_OVER)

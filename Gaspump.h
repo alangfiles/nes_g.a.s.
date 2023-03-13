@@ -17,6 +17,7 @@ unsigned char scrolled_past_once;
 unsigned char scroll_page;
 unsigned char scroll_page_end;
 unsigned char stop_scrolling;
+unsigned char scroll_wait_lines;
 
 unsigned char option;
 

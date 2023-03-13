@@ -1354,7 +1354,8 @@ void bank_4_cutscene_init(void)
 {
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
-	pal_bg(abduction_palette);
+	// pal_bg(abduction_palette);
+	pal_bg(intro_cutscene_palette);
 	pal_spr(abduction_palette);
 	// TODO change this to the right CHR
 	set_chr_bank_0(CUTSCENE_ABDUCTION_CHR_0);  
@@ -1979,6 +1980,7 @@ void bank_4_cutscene_loop(void)
 			abduction_cutscene_step = ABDUCTION_SCROLL_UP;
 
 			set_chr_bank_0(CUTSCENE_CHR_0);
+			pal_bg(intro_cutscene_palette);
 			scroll_y = 0x1df;
 			nametable_index = 960;
 			cutscene_index = NAMETABLE_A_ATTR-1;
@@ -2406,8 +2408,7 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
-	// banked_call(BANK_4, bank_4_instruction_init);
+	banked_call(BANK_4, bank_4_cutscene_init);
 		
 
 	while (1)

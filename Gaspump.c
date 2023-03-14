@@ -95,7 +95,7 @@ const unsigned char talking_time_palette[] = {
 		0x0f, 0x00, 0x1b, 0x30,
 		0x0f, 0x09, 0x19, 0x38};
 
-		const unsigned char talking_time_sp_palette[16]={ 0x0f,0x20,0x16,0x36,0x0f,0x05,0x16,0x36,0x0f,0x2a,0x19,0x08,0x0f,0x11,0x15,0x30 };
+const unsigned char talking_time_sp_palette[16]={ 0x0f,0x20,0x16,0x36,0x0f,0x05,0x16,0x36,0x0f,0x00,0x11,0x30,0x0f,0x09,0x19,0x38 };
 
 const unsigned char intro_cutscene_gun_palette[16] = {
 		0x0f, 0x10, 0x2a, 0x15,
@@ -103,7 +103,7 @@ const unsigned char intro_cutscene_gun_palette[16] = {
 		0x0f, 0x00, 0x1b, 0x30,
 		0x0f, 0x26, 0x00, 0x10};
 
-const unsigned char intro_cutscene_palette[16] = {
+const unsigned char intro_cutscene_palette[16] = { 
 		0x0f, 0x00, 0x10, 0x30,
 		0x0f, 0x06, 0x21, 0x31,
 		0x0f, 0x06, 0x00, 0x38,
@@ -612,7 +612,8 @@ for (largeindex = 0; largeindex < 1024; ++largeindex)
 	}
 
 	ppu_on_all(); // turn on screen
-
+	pal_fade_to(0, 4);
+	music_play(SONG_TALKINGTIME);
 	game_mode = MODE_INTRO_INSTRUCTION;
 }
 
@@ -676,29 +677,29 @@ void bank_1_instructions_loop(void)
 	}
 
 	if (moveframes < 10){
-			oam_meta_spr(0xc2, 0xa8, altalks_30_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_30_data);
 		} else if(moveframes < 20){
-			oam_meta_spr(0xc2, 0xa8, altalks_31_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_31_data);
 		} else if(moveframes < 30){
-			oam_meta_spr(0xc2, 0xa8, altalks_32_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_32_data);
 		} else if(moveframes < 40){
-			oam_meta_spr(0xc2, 0xa8, altalks_33_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_33_data);
 		} else if(moveframes < 50){
-			oam_meta_spr(0xc2, 0xa8, altalks_34_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_34_data);
 		} else if(moveframes < 60){
-			oam_meta_spr(0xc2, 0xa8, altalks_35_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_35_data);
 		} else if(moveframes < 70){
-			oam_meta_spr(0xc2, 0xa8, altalks_36_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_36_data);
 		} else if(moveframes < 80){
-			oam_meta_spr(0xc2, 0xa8, altalks_37_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_37_data);
 		} else if(moveframes < 90){
-			oam_meta_spr(0xc2, 0xa8, altalks_38_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_38_data);
 		} else if(moveframes < 100){
-			oam_meta_spr(0xc2, 0xa8, altalks_39_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_39_data);
 		} else if(moveframes < 110){
-			oam_meta_spr(0xc2, 0xa8, altalks_40_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_40_data);
 		} else {
-			oam_meta_spr(0xc2, 0xa8, altalks_40_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_40_data);
 			if(text_rendered != text_length) {
 				moveframes = 0; //cycle while text is writing
 			}
@@ -889,29 +890,29 @@ void bank_2_evaluation_loop(void)
 	// draw_talking_time_sprites();
 	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
 	if (moveframes < 10){
-			oam_meta_spr(0xc2, 0xa8, altalks_30_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_30_data);
 		} else if(moveframes < 20){
-			oam_meta_spr(0xc2, 0xa8, altalks_31_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_31_data);
 		} else if(moveframes < 30){
-			oam_meta_spr(0xc2, 0xa8, altalks_32_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_32_data);
 		} else if(moveframes < 40){
-			oam_meta_spr(0xc2, 0xa8, altalks_33_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_33_data);
 		} else if(moveframes < 50){
-			oam_meta_spr(0xc2, 0xa8, altalks_34_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_34_data);
 		} else if(moveframes < 60){
-			oam_meta_spr(0xc2, 0xa8, altalks_35_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_35_data);
 		} else if(moveframes < 70){
-			oam_meta_spr(0xc2, 0xa8, altalks_36_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_36_data);
 		} else if(moveframes < 80){
-			oam_meta_spr(0xc2, 0xa8, altalks_37_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_37_data);
 		} else if(moveframes < 90){
-			oam_meta_spr(0xc2, 0xa8, altalks_38_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_38_data);
 		} else if(moveframes < 100){
-			oam_meta_spr(0xc2, 0xa8, altalks_39_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_39_data);
 		} else if(moveframes < 110){
-			oam_meta_spr(0xc2, 0xa8, altalks_40_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_40_data);
 		} else {
-			oam_meta_spr(0xc2, 0xa8, altalks_40_data);
+			oam_meta_spr(0xc0, 0xa7, altalks_40_data);
 			if(text_rendered != text_length) {
 				moveframes = 0; //cycle while text is writing
 			}
@@ -2441,7 +2442,7 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	banked_call(BANK_1, bank_1_instructions_init);
+	// banked_call(BANK_1, bank_1_instructions_init);
 		
 
 	while (1)

@@ -309,11 +309,7 @@ void bank_0_title_loop(void)
 				}
 
 				pal_bg(fade_2);
-				for (index = 0; index < 15; ++index)
-				{
-					ppu_wait_nmi();
-				}
-				pal_fade_to(4, 0);
+				wait_and_fade_out();
 				banked_call(BANK_0, bank_0_intro_scroll_init);
 			}
 			else
@@ -392,7 +388,7 @@ void bank_0_intro_scroll_loop(void)
 		{
 			ppu_wait_nmi();
 		}
-		pal_fade_to(4, 0);
+		wait_and_fade_out();
 		bank_0_intro_cutscene_init();
 		return;
 	}
@@ -530,18 +526,19 @@ void bank_0_intro_cutscene_loop(void)
 	if (stop_scrolling == 1 && moveframes == 100)
 	{
 		// wait for a while after scrolling down, then do instructions.
+		wait_and_fade_out();
 		banked_call(BANK_1, bank_1_instructions_init);
 	}
 
 	read_input();
 
-	if (trigger_clicked) // allow cutscene to be skipped
-	{
-		// debug, just go to game
-		wait_a_little();
-		set_scroll_y(0);
-		banked_call(BANK_1, bank_1_instructions_init);
-	}
+	// if (trigger_clicked) // allow cutscene to be skipped
+	// {
+	// 	// debug, just go to game
+	// 	wait_and_fade_out();
+	// 	set_scroll_y(0);
+	// 	banked_call(BANK_1, bank_1_instructions_init);
+	// }
 }
 
 #pragma endregion
@@ -711,8 +708,7 @@ void bank_1_instructions_loop(void)
 
 	if (trigger_clicked)
 	{
-		pal_fade_to(4, 0);
-		wait_a_little();
+		wait_and_fade_out();
 		banked_call(BANK_1, bank_1_gas_level_init);
 	}
 }
@@ -772,7 +768,7 @@ const unsigned char level_0_bad[] = "You just don't\nhave what it takes...";
 void bank_1_instructions_init(void); // prototype
 void bank_4_cutscene_init(void);		 // prototype
 
-void bank_2_init_level_one_end(void)
+void bank_2_evaluation_init(void)
 {
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
@@ -780,9 +776,10 @@ void bank_2_init_level_one_end(void)
 	gas_goal_hundreds = 0;
 
 	set_chr_bank_0(TALKING_TIME_CHR_0);
-	set_chr_bank_1(TALKING_TIME_CHR_0);
+	set_chr_bank_1(TALKING_TIME_CHR_1);
 	// clear_background();
 	pal_bg(talking_time_palette);
+	pal_spr(talking_time_sp_palette);
 
 	vram_adr(NAMETABLE_A);
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
@@ -868,6 +865,7 @@ void bank_2_init_level_one_end(void)
 	ppu_on_all(); // turn on screen
 	game_mode = MODE_EVALUATION_TIME;
 	game_level = LEVEL_ONE_COMPLETE;
+	pal_fade_to(0, 4);
 	music_play(SONG_TALKINGTIME);
 }
 
@@ -884,32 +882,46 @@ void bank_2_evaluation_loop(void)
 	if (text_row < 6)
 	{
 		typewriter();
-		if (moveframes >= 0 && moveframes < 30)
-		{
-			oam_meta_spr(0xb0, 0xaf, BigAlTalkClosedMouth);
-		}
-		if (moveframes >= 30 && moveframes < 61)
-		{
-			oam_meta_spr(0xb0, 0xaf, BigAlTalkMidMouth);
-		}
 	}
 	// //big al loop:
 	oam_clear(); // clear all sprites
 
 	// draw_talking_time_sprites();
-	oam_meta_spr(0xa8, 0xb8, BigAlsShirt);
-	oam_meta_spr(0xb8, 0x98, BigAlsEyes);
+	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
+	if (moveframes < 10){
+			oam_meta_spr(0xc2, 0xa8, altalks_30_data);
+		} else if(moveframes < 20){
+			oam_meta_spr(0xc2, 0xa8, altalks_31_data);
+		} else if(moveframes < 30){
+			oam_meta_spr(0xc2, 0xa8, altalks_32_data);
+		} else if(moveframes < 40){
+			oam_meta_spr(0xc2, 0xa8, altalks_33_data);
+		} else if(moveframes < 50){
+			oam_meta_spr(0xc2, 0xa8, altalks_34_data);
+		} else if(moveframes < 60){
+			oam_meta_spr(0xc2, 0xa8, altalks_35_data);
+		} else if(moveframes < 70){
+			oam_meta_spr(0xc2, 0xa8, altalks_36_data);
+		} else if(moveframes < 80){
+			oam_meta_spr(0xc2, 0xa8, altalks_37_data);
+		} else if(moveframes < 90){
+			oam_meta_spr(0xc2, 0xa8, altalks_38_data);
+		} else if(moveframes < 100){
+			oam_meta_spr(0xc2, 0xa8, altalks_39_data);
+		} else if(moveframes < 110){
+			oam_meta_spr(0xc2, 0xa8, altalks_40_data);
+		} else {
+			oam_meta_spr(0xc2, 0xa8, altalks_40_data);
+			if(text_rendered != text_length) {
+				moveframes = 0; //cycle while text is writing
+			}
+		}
 
 	read_input();
 
 	if (trigger_clicked)
 	{
-
-		// wait 10 frames before starting the next section
-		for (index = 0; index < 10; ++index)
-		{
-			ppu_wait_nmi();
-		}
+		wait_and_fade_out();
 
 		if (alien_level == 1)
 		{
@@ -1341,8 +1353,8 @@ void bank_3_level_loop(void)
 		if (started_pumping == 1)
 		{
 			// trigger ending
-			wait_a_little();
-			banked_call(BANK_2, bank_2_init_level_one_end);
+			wait_and_fade_out();
+			banked_call(BANK_2, bank_2_evaluation_init);
 		}
 	}
 }
@@ -1475,7 +1487,6 @@ void bank_4_instruction_init(void)
 			index = 0;
 		}
 	}
-	pal_fade_to(0, 4);
 	ppu_on_all();
 
 	//init instructions
@@ -1501,6 +1512,7 @@ void bank_4_instruction_init(void)
 	}
 	
 	game_mode = MODE_ALIEN_INSTRUCTION;
+	pal_fade_to(0, 4);
 	music_play(SONG_ALIENTALKINGTIME);
 }
 
@@ -1516,6 +1528,7 @@ void bank_4_instruction_loop(void)
 
 	read_input();
 	if(trigger_clicked){
+		wait_and_fade_out();
 		if(alien_level_cleared){
 			banked_call(BANK_5, bank_5_starfield_init);
 		} else if(alien_level_failed){
@@ -2060,6 +2073,7 @@ void bank_4_cutscene_loop(void)
 	}
 	if (abduction_cutscene_step == ABDUCTION_DONE) // to call at the end of everything
 	{
+		wait_and_fade_out();
 		alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 		banked_call(BANK_4, bank_4_instruction_init);
 	}
@@ -2136,7 +2150,7 @@ void bank_4_alien_level_loop(void)
 	{
 		if (started_pumping == 1)
 		{
-			wait_a_little();
+			wait_and_fade_out();
 			banked_call(BANK_4, bank_4_instruction_init);
 		}
 	}
@@ -2191,8 +2205,8 @@ void bank_5_gameover_init(void)
 		}
 	}
 
-	pal_fade_to(0, 4);
 	ppu_on_all();
+	pal_fade_to(0, 4);
 	game_mode = MODE_GAME_OVER;
 	music_play(SONG_ASCENTIONOFZ);
 	
@@ -2361,6 +2375,7 @@ void bank_5_starfield_loop(void)
 	}
 
 	// if(done){
+	//  wait_and_fade_out();
 	// 	banked_call(BANK_5, bank_5_gameover_init);
 	// 	game_mode = MODE_GAME_OVER;
 	// }
@@ -2628,5 +2643,17 @@ void typewriter(void)
 		++text_rendered;
 	}
 }
+
+void wait_and_fade_out(){
+// wait 10 frames before starting the next section
+		
+		music_stop();
+		for (index = 0; index < 10; ++index)
+		{
+			ppu_wait_nmi();
+		}
+		pal_fade_to(4, 0);
+}
+
 
 #pragma endregion

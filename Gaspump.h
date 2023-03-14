@@ -243,6 +243,7 @@ void reset_game_variables(void);
 void wait_a_little(void);
 void draw_title_background(void);
 void level_end_loop(void);
+void wait_and_fade_out(void);
 // void new_star(void);
 // void draw_box(void);
 // void draw_star(void);

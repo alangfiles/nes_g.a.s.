@@ -551,6 +551,8 @@ void bank_0_intro_cutscene_loop(void)
 #pragma rodata-name("BANK1")
 #pragma code-name("BANK1")
 
+#include "SPRITES/al.h"
+
 const unsigned char level_0_text[] = "So you wanna pump gas ?!?\nGive me 1 gallons\n Just pull the trigger\nBut don't click it.";
 const unsigned char level_1_text[] = "You're starting to believe\nbut you have much to learn.\n\nNow give me 1 gallons!\nand make it quick!!!";
 const unsigned char level_2_text[] = "I can't deny it...\nYou were born to do this.\nOne last test...\nCan you do 1 gallons?\n\nI'm watching closely...";
@@ -751,14 +753,6 @@ void bank_1_title_init(void)
 	// todo: add title music
 }
 
-#pragma endregion
-
-/*
- * Bank 2 is used for evaluation time stuff
- */
-#pragma region BANK2
-#pragma rodata-name("BANK2")
-#pragma code-name("BANK2")
 
 const unsigned char level_0_max[] = "Bit too much, bub.";
 const unsigned char level_0_good[] = "!!! WOW !!!\nYou've got it kid!";
@@ -766,10 +760,9 @@ const unsigned char level_3_preabduction[] = "You're as good as\nI hoped. Wait \
 const unsigned char level_0_ok[] = "Hmmmmm....\nPump harder.";
 const unsigned char level_0_bad[] = "You just don't\nhave what it takes...";
 
-void bank_1_instructions_init(void); // prototype
 void bank_4_cutscene_init(void);		 // prototype
 
-void bank_2_evaluation_init(void)
+void bank_1_evaluation_init(void)
 {
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
@@ -870,7 +863,7 @@ void bank_2_evaluation_init(void)
 	music_play(SONG_TALKINGTIME);
 }
 
-void bank_2_evaluation_loop(void)
+void bank_1_evaluation_loop(void)
 {
 	ppu_wait_nmi();
 	++moveframes;
@@ -934,6 +927,16 @@ void bank_2_evaluation_loop(void)
 		}
 	}
 }
+
+#pragma endregion
+
+/*
+ * Bank 2 is unused for evaluation time stuff
+ */
+#pragma region BANK2
+#pragma rodata-name("BANK2")
+#pragma code-name("BANK2")
+
 #pragma endregion
 
 /*
@@ -1355,7 +1358,7 @@ void bank_3_level_loop(void)
 		{
 			// trigger ending
 			wait_and_fade_out();
-			banked_call(BANK_2, bank_2_evaluation_init);
+			banked_call(BANK_1, bank_1_evaluation_init);
 		}
 	}
 }
@@ -2478,8 +2481,8 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	alien_level_status = ALIEN_INITIAL_INSTRUCTION;
-	banked_call(BANK_4, bank_4_instruction_init);
+	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
+	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 		
 
@@ -2512,7 +2515,7 @@ void main(void)
 
 		if (game_mode == MODE_EVALUATION_TIME)
 		{ // Al tells you how good you did
-			banked_call(BANK_2, bank_2_evaluation_loop);
+			banked_call(BANK_1, bank_1_evaluation_loop);
 		}
 		if (game_mode == MODE_GAME)
 		{ // this is game pumping mode, 

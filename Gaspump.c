@@ -1377,6 +1377,7 @@ void bank_3_level_loop(void)
 const unsigned char alien_instruction_text[] = "Welcome to Planet Gardok\nWe modified our pump\njust for you.\n\nWe just need 019 Glibloons\n\nPump, human!\nThe Battle BEGINS!";
 const unsigned char alien_evaluation_text_bad[] = "Well...\nThat's your best?\n\nYou're earth's best?!\nIt's not good enough.\n\nWe're doomed.";
 const unsigned char alien_evaluation_text_good[] = "Perfect pumping!\nI knew you could do it.\n\nI'm fueled up and ready\nto go! Now hop on!!\n\nLet's stop Lord ZARKAQ!";
+#include "SPRITES/gasboy.h"
 
 void bank_5_starfield_init(void); //prototype
 void bank_5_gameover_init(void); //prototype
@@ -1520,12 +1521,47 @@ void bank_4_instruction_init(void)
 void bank_4_instruction_loop(void)
 {
 	ppu_wait_nmi();
+	moveframes++;
 	//write text
 	
 	if (text_row < 9)
 	{
 		typewriter();
 	}
+
+	oam_clear();
+
+	if (moveframes < 5)
+	{
+		oam_meta_spr(190, 193, alien_gas_mouth_0);
+	} else if (moveframes < 10){
+		oam_meta_spr(190, 193, alien_gas_mouth_1);
+	} else if (moveframes < 15){
+		oam_meta_spr(190, 193, alien_gas_mouth_2);
+	} else if (moveframes < 20){
+		oam_meta_spr(190, 193, alien_gas_mouth_3);
+	} else if (moveframes < 25){
+		oam_meta_spr(190, 193, alien_gas_mouth_4);
+	} else if (moveframes < 30){
+		oam_meta_spr(190, 193, alien_gas_mouth_5);
+	} else if (moveframes < 35){
+		oam_meta_spr(190, 193, alien_gas_mouth_6);
+	} else if (moveframes < 40){
+		oam_meta_spr(190, 193, alien_gas_mouth_7);
+	} else if (moveframes < 45){
+		oam_meta_spr(190, 193, alien_gas_mouth_8);
+	} else {
+		oam_meta_spr(190, 193, alien_gas_mouth_0);
+		moveframes = 0;
+	}
+
+	
+	if(moveframes < 30){
+		oam_meta_spr(185, 178, alien_eyes_10);
+	} else {
+		oam_meta_spr(185, 178, alien_eyes_17);
+	} 
+	
 
 	read_input();
 	if(trigger_clicked){
@@ -2442,6 +2478,8 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
+	alien_level_status = ALIEN_INITIAL_INSTRUCTION;
+	banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 		
 

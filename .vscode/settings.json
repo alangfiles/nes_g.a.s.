@@ -22,7 +22,9 @@
     "intro_scroll_3.h": "c",
     "middleshiny.h": "c",
     "intro_cutscene_1.h": "c",
-    "cutscenegun_small_arrow.h": "c"
+    "cutscenegun_small_arrow.h": "c",
+    "ending_scroll_1.h": "c",
+    "gasboy.h": "c"
   },
   "editor.formatOnSave": false
 }

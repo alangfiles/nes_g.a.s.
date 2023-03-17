@@ -229,3 +229,50 @@ const unsigned char alien_eyes_22[]={
 	128
 
 };
+
+
+
+const unsigned char AlienNumber0[] = {
+		0, 0, 0x08, 0,
+		8, 0, 0x09, 0,
+		0, 8, 0x18, 0,
+		8, 8, 0x19, 0,
+		0, 16, 0x28, 0,
+		8, 16, 0x29, 0,
+		0, 24, 0x38, 0,
+		8, 24, 0x39, 0,
+		128};
+
+
+const unsigned char AlienNumber1[] = {
+		0, 0, 0x0a, 0,
+		8, 0, 0x0b, 0,
+		0, 8, 0x1a, 0,
+		8, 8, 0x1b, 0,
+		0, 16, 0x2a, 0,
+		8, 16, 0x2b, 0,
+		0, 24, 0x3a, 0,
+		8, 24, 0x3b, 0,
+		128};
+
+const unsigned char AlienNumber2[] = {
+		0, 0, 0x0c, 0,
+		8, 0, 0x0d, 0,
+		0, 8, 0x1c, 0,
+		8, 8, 0x1d, 0,
+		0, 16, 0x2c, 0,
+		8, 16, 0x2d, 0,
+		0, 24, 0x3c, 0,
+		8, 24, 0x3d, 0,
+		128};
+
+const unsigned char AlienNumber3[] = {
+		0, 0, 0x0e, 0,
+		8, 0, 0x0f, 0,
+		0, 8, 0x1e, 0,
+		8, 8, 0x1f, 0,
+		0, 16, 0x2e, 0,
+		8, 16, 0x2f, 0,
+		0, 24, 0x3e, 0,
+		8, 24, 0x3f, 0,
+		128};

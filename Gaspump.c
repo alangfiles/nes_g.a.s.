@@ -8,8 +8,6 @@
  * [] Add score for goal/speed/accuracy/style (add total?)
  * [] fix tiles for score on alien level
  * [] fix sprites for Al
- * [] add sprites to gasboy (evaluation + level?)
- * [] fix palettes on abduction scroll up 
  * [] Add ending scroll
  * [] Add sound effects
  *   *  Glug Glug
@@ -931,11 +929,166 @@ void bank_1_evaluation_loop(void)
 #pragma endregion
 
 /*
- * Bank 2 is unused for evaluation time stuff
+ * Bank 2 is ending stuff
  */
 #pragma region BANK2
 #pragma rodata-name("BANK2")
 #pragma code-name("BANK2")
+
+#include "BACKGROUNDS/ending_scroll_1.h"
+#include "BACKGROUNDS/ending_scroll_2.h"
+// #include "BACKGROUNDS/ending_scroll_3.h"
+
+
+void bank_2_ending_scroll_init(void)
+{
+	nametable_index = 0;
+	scrolled_past_once = 0;   
+	stop_scrolling = 0;
+	moveframes = 0;
+	line_counter = 0;
+	screen_line_counter = 0;
+	scroll_wait_lines = 32; //wait this many lines before drawing (not working)
+	scroll_page = 1; //we load in page 1 at the start here
+	scroll_page_end = 2; // this is for the 3 page scroll
+	// scroll_page_end = 3; //this is for the 3 page scroll
+	// scroll_page_end = 1; //this is for the 1 page scroll
+
+	
+	scroll(0, 0); // reset scrolling
+	set_mirroring(MIRROR_HORIZONTAL);
+	// reset changed values so they redraw
+	ppu_off();	 // screen off
+	oam_clear(); // clear all sprites
+
+	pal_bg(intro_cutscene_gun_palette);
+	clear_background();
+	// scroll_y = 0x080;
+	// scroll(0,scroll_y);
+	// multi_vram_buffer_horz("Pull the Trigger", 16, NTADR_A(4,10));
+	// multi_vram_buffer_horz("But don't click it", 18, NTADR_A(4,12));
+
+	//load the gun
+	vram_adr(NAMETABLE_A);
+	for (nametable_index = 0; nametable_index < 1024; ++nametable_index)
+	{
+		vram_put(ending_scroll_1[nametable_index]);
+		flush_vram_update2();
+	}
+
+	//load the first page of text
+	vram_adr(NAMETABLE_C);
+	for (nametable_index = 0; nametable_index < 1024; ++nametable_index)
+	{
+		vram_put(ending_scroll_2[nametable_index]);
+		flush_vram_update2();
+	}
+	nametable_index = 0;
+	cutscene_index = NAMETABLE_A;
+	attribute_table_index = NAMETABLE_A_ATTR;
+	attribute_bytes_written = 0;
+	pointer = ending_scroll_2;
+
+	set_chr_bank_0(CUTSCENE_CHR_0);
+	set_chr_bank_1(CUTSCENE_CHR_1);
+
+	ppu_on_all(); // turn on screen
+	pal_fade_to(0, 4);
+	game_mode = MODE_INTRO_SCROLL;
+	music_play(SONG_INTROSCROLL);
+}
+
+void bank_2_ending_scroll_loop(void)
+{
+	ppu_wait_nmi();
+
+	if (scroll_page == scroll_page_end)
+	{ // we're done here loop forever.
+		ppu_wait_nmi();
+		return;
+	}
+
+	if (line_counter == 8 && nametable_index <= 960)
+	{ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
+		//need to call this 30 times
+		for (index = 0; index < 32; ++index)
+		{
+			one_vram_buffer(pointer[nametable_index], cutscene_index);
+			++nametable_index;
+			++cutscene_index;
+		}
+		
+		if (attribute_bytes_written < 64)
+		{  
+			one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
+			++attribute_bytes_written;
+			++attribute_table_index;
+			one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
+			++attribute_bytes_written;
+			++attribute_table_index;
+		}
+		line_counter = 0;
+	}
+
+	if (screen_line_counter > 240)
+	{
+		set_chr_bank_0(CUTSCENE_CHR_0);
+		set_chr_bank_1(CUTSCENE_CHR_1);
+		++scroll_page;
+		screen_line_counter = 0;
+		nametable_index = 0;
+		attribute_bytes_written = 0;
+		// update where we're pointing
+		if (scroll_page == 1)
+		{
+			attribute_table_index = NAMETABLE_A_ATTR;
+			cutscene_index = NAMETABLE_A;
+			pointer = intro_scroll_2;
+		}
+		if (scroll_page == 2)
+		{
+			attribute_table_index = NAMETABLE_C_ATTR;
+			cutscene_index = NAMETABLE_C;
+			pointer = intro_scroll_3;
+		}
+		if (scroll_page == 3)
+		{
+			attribute_table_index = NAMETABLE_A_ATTR;
+			cutscene_index = NAMETABLE_A;
+			pointer = intro_scroll_4;
+		}
+		if (scroll_page == 4)
+		{
+			attribute_table_index = NAMETABLE_C_ATTR;
+			cutscene_index = NAMETABLE_C;
+			pointer = intro_scroll_5;
+		}
+	}
+
+
+	if (scroll_y > 0x1df)
+	{
+		scroll_y = 0;
+	}
+
+	scroll(0, scroll_y);
+
+	read_input();
+	if (trigger_pulled)
+	{
+		++line_counter;				 // count 1 line up for each frame, so we know when we'd done 8 frames, and card draw
+		++screen_line_counter; // count each screen line
+		++scroll_y;
+	}
+	// if (trigger_clicked) // allow cutscene to be skipped
+	// {
+	// 	// debug, just go to game
+	// 	wait_a_little();
+	// 	set_scroll_y(0);
+	// 	banked_call(BANK_0, bank_0_intro_cutscene_init);
+	// }
+}
+
 
 #pragma endregion
 
@@ -1377,7 +1530,7 @@ void bank_3_level_loop(void)
 #include "BACKGROUNDS/intro_cutscene_1x.h"
 #include "BACKGROUNDS/intro_cutscene_2x.h"
 #include "BACKGROUNDS/intro_cutscene_3x.h"
-const unsigned char alien_instruction_text[] = "Welcome to Planet Gardok\nWe modified our pump\njust for you.\n\nWe just need 019 Glibloons\n\nPump, human!\nThe Battle BEGINS!";
+const unsigned char alien_instruction_text[] = "Welcome to Planet Gardok\nWe modified our pump\njust for you.\n\nJust pump to the goal\nnumber on the left\n\nPump, human!\nThe Battle BEGINS!";
 const unsigned char alien_evaluation_text_bad[] = "Well...\nThat's your best?\n\nYou're earth's best?!\nIt's not good enough.\n\nWe're doomed.";
 const unsigned char alien_evaluation_text_good[] = "Perfect pumping!\nI knew you could do it.\n\nI'm fueled up and ready\nto go! Now hop on!!\n\nLet's stop Lord ZARKAQ!";
 #include "SPRITES/gasboy.h"
@@ -1442,8 +1595,9 @@ void bank_4_alien_level_init(void)
 	oam_clear(); // clear all sprites
 
 	pal_bg(futurepump_palette);
+	pal_spr(futurepump_palette);
 	set_chr_bank_0(FUTUREPUMP_CHR_0);
-	set_chr_bank_1(FUTUREPUMP_CHR_0);
+	set_chr_bank_1(FUTUREPUMP_CHR_1);
 	scroll(0, 0); // reset scrolling
 	index = 0;
 
@@ -1460,11 +1614,52 @@ void bank_4_alien_level_init(void)
 		}
 	}
 
+	//debug, for now I'm gonna manually put the goal numbers in too.
+	vram_adr(0x2048);
+	vram_put(0xbe);
+	vram_put(0xbf);
+	vram_adr(0x2068);
+	vram_put(0xce);
+	vram_put(0xcf); 
+	vram_adr(0x2088);
+	vram_put(0xde);
+	vram_put(0xdf); 
+	vram_adr(0x20a8);
+	vram_put(0xee);
+	vram_put(0xef); 
+	flush_vram_update2();
+	vram_adr(0x204a);
+	vram_put(0xbc);
+	vram_put(0xbd);
+	vram_adr(0x206a);
+	vram_put(0xcc);
+	vram_put(0xcd); 
+	vram_adr(0x208a);
+	vram_put(0xdc);
+	vram_put(0xdd); 
+	vram_adr(0x20aa);
+	vram_put(0xec);
+	vram_put(0xed); 
+	flush_vram_update2();
+	vram_adr(0x204c);
+	vram_put(0xbe);
+	vram_put(0xbf);
+	vram_adr(0x206c);
+	vram_put(0xce);
+	vram_put(0xcf); 
+	vram_adr(0x208c);
+	vram_put(0xde);
+	vram_put(0xdf); 
+	vram_adr(0x20ac);
+	vram_put(0xee);
+	vram_put(0xef); 
+	flush_vram_update2();
+
 	pal_fade_to(0, 4);
 	ppu_on_all();
 	started_pumping = 0;
 	//todo, set actual gas goal here.
-	gas_goal = 14;
+	gas_goal = 59;
 	gas_pumped = 0;
 	game_mode = MODE_ALIEN_LEVEL;
 	music_play(SONG_ALIENPUMP);
@@ -2122,7 +2317,7 @@ void bank_4_cutscene_loop(void)
 void bank_4_alien_number_sprites(void){
 	switch(temp){
 		case 1: 
-			pointer = AlienNumber1;
+			pointer = AlienNumber1;  
 			break;
 		case 2:
 			pointer = AlienNumber2;
@@ -2140,6 +2335,35 @@ void bank_4_alien_level_loop(void)
 	++moveframes;
 	ppu_wait_nmi();
 	oam_clear();
+
+
+	// if (moveframes < 5)
+	// {
+	// 	oam_meta_spr(124, 130, alien_gas_mouth_0);
+	// } else if (moveframes < 10){
+	// 	oam_meta_spr(124, 130, alien_gas_mouth_1);
+	// } else if (moveframes < 15){
+	// 	oam_meta_spr(124, 130, alien_gas_mouth_2);
+	// } else if (moveframes < 20){
+	// 	oam_meta_spr(124, 130, alien_gas_mouth_3);
+	// } else if (moveframes < 25){
+	// 	oam_meta_spr(124, 130, alien_gas_mouth_4);
+	// } else if (moveframes < 30){
+	// 	oam_meta_spr(124, 130, alien_gas_mouth_5);
+	// } else {
+	// 	oam_meta_spr(124, 130, alien_gas_mouth_0);
+	// }
+
+	// if(moveframes > 90){
+	// 	moveframes = 0;
+	// }
+
+	
+	// if(moveframes < 30){
+	// 	oam_meta_spr(120, 110, alien_eyes_10);
+	// } else {
+	// 	oam_meta_spr(120, 110, alien_eyes_17);
+	// } 
 
 	//draw_gliboons_count as sprites
 	temp = aliengas1;
@@ -2414,11 +2638,12 @@ void bank_5_starfield_loop(void)
 		ppu_mask(0x1e); // bg on, won't happen till NEXT frame
 	}
 
-	// if(done){
-	//  wait_and_fade_out();
-	// 	banked_call(BANK_5, bank_5_gameover_init);
-	// 	game_mode = MODE_GAME_OVER;
-	// }
+	++moveframes;
+	if(moveframes > 400){
+	 	wait_and_fade_out();
+		banked_call(BANK_2, bank_2_ending_scroll_init);
+		game_mode = MODE_GAME_ENDING;
+	}
 	
 }
 
@@ -2481,6 +2706,7 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
+// banked_call(BANK_4, bank_4_alien_level_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
@@ -2549,6 +2775,7 @@ void main(void)
 		{
 			// todo, just gonna be a scroll.
 			// 
+			banked_call(BANK_2, bank_2_ending_scroll_loop);
 		}
 		if (game_mode == MODE_GAME_OVER)
 		{

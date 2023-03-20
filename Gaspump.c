@@ -6,10 +6,11 @@
  * 
  * POLISH:
  * [] add sprites to pump levels (cars, birds, spaceships)
+ * * [] Last level, if they miss it, flash red and start them at 0, 3 tries, perfect pump or die
+ * * [] Add score for goal/speed/accuracy/style (add total?)
+ * * [] fix sprites for Al (add to init)
  * [] add shootables to last level scroll
- * [] Add score for goal/speed/accuracy/style (add total?)
- * [] fix sprites for Al (add to init)
- *  * [] Add sound effects
+ * [] Add sound effects
  *   *  Glug Glug
  *   *  Shooting
  *   *  Ding for the perfect pump amount?
@@ -595,6 +596,10 @@ for (largeindex = 0; largeindex < 1024; ++largeindex)
 		break;
 	}
 
+	//base sprites for Al
+	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
+	oam_meta_spr(0xc0, 0xa7, altalks_30_data);
+
 	ppu_on_all(); // turn on screen
 	pal_fade_to(0, 4);
 	music_play(SONG_TALKINGTIME);
@@ -837,6 +842,10 @@ void bank_1_evaluation_init(void)
 		pointer = level_0_bad;
 		text_length = sizeof(level_0_bad);
 	}
+
+	//base for Al
+	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
+	oam_meta_spr(0xc0, 0xa7, altalks_30_data);
 
 	ppu_on_all(); // turn on screen
 	game_mode = MODE_EVALUATION_TIME;

@@ -6,9 +6,7 @@
  *
  * POLISH:
  * [] add sprites to pump levels (cars, birds, spaceships)
- * * [] Last level, if they miss it, flash red and start them at 0, 3 tries, perfect pump or die
  * * [] Add score for goal/speed/accuracy/style (add total?)
- * * [] fix sprites for Al (add to init)
  * [] add shootables to last level scroll
  * [] Add sound effects
  *   *  Glug Glug
@@ -2918,8 +2916,8 @@ void main(void)
 		DEBUG ONLY!!!!
 	*/
 	// banked_call(BANK_4, bank_4_alien_level_init);
-	alien_level_status = ALIEN_INITIAL_INSTRUCTION;
-	banked_call(BANK_4, bank_4_instruction_init);
+	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
+	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 
 	while (1)

@@ -100,6 +100,46 @@ const unsigned char gaspump_sprite_palette[] = {
 
 const unsigned char abduction_palette[16] = {0x0f, 0x16, 0x3d, 0x30, 0x0f, 0x10, 0x21, 0x00, 0x0f, 0x05, 0x00, 0x38, 0x0f, 0x24, 0x0c, 0x2a};
 
+
+const unsigned char alert_1[16] = {
+		0x0f,
+		0x07,
+		0x16,
+		0x25,
+		0x0f,
+		0x07,
+		0x16,
+		0x25,
+		0x0f,
+		0x07,
+		0x16,
+		0x25,
+		0x0f,
+		0x07,
+		0x16,
+		0x25
+};
+
+
+const unsigned char alert_2[16] = {
+		0x0f,
+		0x17,
+		0x27,
+		0x38,
+		0x0f,
+		0x17,
+		0x27,
+		0x38,
+		0x0f,
+		0x17,
+		0x27,
+		0x38,
+		0x0f,
+		0x17,
+		0x27,
+		0x38
+};
+
 const unsigned char fade_1[16] = {
 		0x0f,
 		0x04,
@@ -1702,7 +1742,7 @@ void bank_4_alien_level_init(void)
 	ppu_on_all();
 	started_pumping = 0;
 	// todo, set actual gas goal here.
-	gas_goal = 59;
+	gas_goal = LAST_LEVEL_GOAL;
 	gas_pumped = 0;
 	game_mode = MODE_ALIEN_LEVEL;
 	music_play(SONG_ALIENPUMP);
@@ -1745,7 +1785,7 @@ void bank_4_instruction_init(void)
 	}
 	else if (alien_level_status == ALIEN_EVALUATION)
 	{
-		if (gas_pumped > gas_goal - 5 && gas_pumped < gas_goal + 5)
+		if (gas_pumped > LAST_LEVEL_GOAL - 5 && gas_pumped < LAST_LEVEL_GOAL + 5)
 		{
 			pointer = alien_evaluation_text_good;
 			text_length = sizeof(alien_evaluation_text_good);
@@ -2535,8 +2575,38 @@ void bank_4_alien_level_loop(void)
 	{
 		if (started_pumping == 1)
 		{
-			wait_and_fade_out();
-			banked_call(BANK_4, bank_4_instruction_init);
+			//if the number was wrong, flash the screen, and set the number to 0, give 3 tries
+			if(gas_pumped != LAST_LEVEL_GOAL){
+				pal_bg(alert_2);
+				for (index = 0; index < 15; ++index)
+				{
+					ppu_wait_nmi();
+				}
+				pal_bg(alert_1);
+				for (index = 0; index < 15; ++index)
+				{
+					ppu_wait_nmi();
+				}
+				
+				//play_sfx() alert
+				--lives;	
+				if(lives > 0){
+					started_pumping = 0;
+					gas_pumped = 0;
+					aliengas3 = 0;
+					aliengas2 = 0;
+					aliengas1 = 0;
+					pal_bg(futurepump_palette);
+				} else {
+					wait_and_fade_out();
+					banked_call(BANK_4, bank_4_instruction_init);
+				}
+			} else {
+				wait_and_fade_out();
+				banked_call(BANK_4, bank_4_instruction_init);
+			}
+
+			
 		}
 	}
 }
@@ -2848,8 +2918,8 @@ void main(void)
 		DEBUG ONLY!!!!
 	*/
 	// banked_call(BANK_4, bank_4_alien_level_init);
-	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
-	// banked_call(BANK_4, bank_4_instruction_init);
+	alien_level_status = ALIEN_INITIAL_INSTRUCTION;
+	banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 
 	while (1)
@@ -2999,6 +3069,7 @@ void reset_game_variables()
 {
 	gas1 = gas2 = gas3 = gas4 = gas5 = 0;
 	cost1 = cost2 = cost3 = cost4 = cost5 = 0;
+	lives = 3;
 }
 
 void wait_a_little()

@@ -5,11 +5,14 @@
 #define NAMETABLE_C_ATTR 0x2BC0
 #define NAMETABLE_D_ATTR 0x2FC0
 
+const unsigned int LAST_LEVEL_GOAL = 59;
+
 #pragma bss-name(push, "ZEROPAGE")
 unsigned char pad1_zapper;
 unsigned char zapper_ready; // wait till it's 0
 unsigned char hit_detected;
 const unsigned char debug_mode = 1;
+
 
 unsigned int scroll_y;
 unsigned int scroll_x;
@@ -193,6 +196,8 @@ unsigned char nametable_selected = 0;
 unsigned char shooting_mode = 0;
 unsigned char spaceship_x = 0;
 unsigned char spaceship_y = 100;
+
+unsigned char lives = 3;
 
 unsigned char index2;
 unsigned char index3 = 0;

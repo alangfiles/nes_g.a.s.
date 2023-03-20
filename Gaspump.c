@@ -2,8 +2,8 @@
  */
 
 /*  Development todo:
- * 
- * 
+ *
+ *
  * POLISH:
  * [] add sprites to pump levels (cars, birds, spaceships)
  * * [] Last level, if they miss it, flash red and start them at 0, 3 tries, perfect pump or die
@@ -20,7 +20,7 @@
  * BUGS:
  * [] Fix planet scrolling attribute tables
  * [] fix ending scroll bad chars and ?
- * 
+ *
  * game flow:
  * title->intro_scroll->intro_cutscene->
  * talking_time(level1)->level1->evaluation(level1)-> (repeat if failed)
@@ -48,15 +48,15 @@
 #include "BACKGROUNDS/evaluation.h"
 #include "BACKGROUNDS/talkingtime.h"
 
-const unsigned char starfield_palette[16]={ 
-	0x0f,0x11,0x29,0x10,
-	0x0f,0x21,0x11,0x10,
-	0x0f,0x16,0x05,0x38,
-	0x0f,0x24,0x13,0x14 };
+const unsigned char starfield_palette[16] = {
+		0x0f, 0x11, 0x29, 0x10,
+		0x0f, 0x21, 0x11, 0x10,
+		0x0f, 0x16, 0x05, 0x38,
+		0x0f, 0x24, 0x13, 0x14};
 
-const unsigned char gameover_palette[16]={ 0x15,0x20,0x16,0x36,0x15,0x05,0x16,0x36,0x15,0x00,0x1b,0x30,0x15,0x09,0x19,0x38 };
+const unsigned char gameover_palette[16] = {0x15, 0x20, 0x16, 0x36, 0x15, 0x05, 0x16, 0x36, 0x15, 0x00, 0x1b, 0x30, 0x15, 0x09, 0x19, 0x38};
 
-const unsigned char futurepump_sprite_palette[16]={ 0x0f,0x12,0x15,0x38,0x0f,0x13,0x23,0x31,0x0f,0x23,0x16,0x26,0x0f,0x09,0x19,0x29 };
+const unsigned char futurepump_sprite_palette[16] = {0x0f, 0x12, 0x15, 0x38, 0x0f, 0x13, 0x23, 0x31, 0x0f, 0x23, 0x16, 0x26, 0x0f, 0x09, 0x19, 0x29};
 
 const unsigned char gaspump_palette[16] = {
 		0x2c, 0x05, 0x10, 0x15,
@@ -64,7 +64,7 @@ const unsigned char gaspump_palette[16] = {
 		0x2c, 0x0f, 0x3d, 0x11,
 		0x2c, 0x19, 0x2a, 0x0f};
 
-const unsigned char futuretalk_palette[16]={ 0x0f,0x00,0x10,0x30,0x0f,0x13,0x23,0x31,0x0f,0x00,0x11,0x30,0x0f,0x09,0x19,0x29 };
+const unsigned char futuretalk_palette[16] = {0x0f, 0x00, 0x10, 0x30, 0x0f, 0x13, 0x23, 0x31, 0x0f, 0x00, 0x11, 0x30, 0x0f, 0x09, 0x19, 0x29};
 
 const unsigned char futurepump_palette[16] = {
 		0x0f, 0x00, 0x10, 0x30,
@@ -78,7 +78,7 @@ const unsigned char talking_time_palette[] = {
 		0x0f, 0x00, 0x1b, 0x30,
 		0x0f, 0x09, 0x19, 0x38};
 
-const unsigned char talking_time_sp_palette[16]={ 0x0f,0x20,0x16,0x36,0x0f,0x05,0x16,0x36,0x0f,0x00,0x11,0x30,0x0f,0x09,0x19,0x38 };
+const unsigned char talking_time_sp_palette[16] = {0x0f, 0x20, 0x16, 0x36, 0x0f, 0x05, 0x16, 0x36, 0x0f, 0x00, 0x11, 0x30, 0x0f, 0x09, 0x19, 0x38};
 
 const unsigned char intro_cutscene_gun_palette[16] = {
 		0x0f, 0x10, 0x2a, 0x15,
@@ -86,7 +86,7 @@ const unsigned char intro_cutscene_gun_palette[16] = {
 		0x0f, 0x00, 0x1b, 0x30,
 		0x0f, 0x26, 0x00, 0x10};
 
-const unsigned char intro_cutscene_palette[16] = { 
+const unsigned char intro_cutscene_palette[16] = {
 		0x0f, 0x00, 0x10, 0x30,
 		0x0f, 0x06, 0x21, 0x31,
 		0x0f, 0x06, 0x00, 0x38,
@@ -169,8 +169,8 @@ enum
 
 void bank_1_instructions_init(void); // prototype (needed to get call from bank_1)
 int cutscene_index = NAMETABLE_A;
-int nametable_index = 0;  
-int attribute_table_index = 0;  
+int nametable_index = 0;
+int attribute_table_index = 0;
 
 unsigned char attribute_bytes_written = 0;
 unsigned char line_counter = 0;
@@ -184,13 +184,12 @@ void bank_0_intro_scroll_init(void)
 	moveframes = 0;
 	line_counter = 0;
 	screen_line_counter = 0;
-	scroll_wait_lines = 32; //wait this many lines before drawing (not working)
-	scroll_page = 1; //we load in page 1 at the start here
-	scroll_page_end = 5; // this is for the 3 page scroll
+	scroll_wait_lines = 32; // wait this many lines before drawing (not working)
+	scroll_page = 1;				// we load in page 1 at the start here
+	scroll_page_end = 5;		// this is for the 3 page scroll
 	// scroll_page_end = 3; //this is for the 3 page scroll
 	// scroll_page_end = 1; //this is for the 1 page scroll
 
-	
 	scroll(0, 0); // reset scrolling
 	set_mirroring(MIRROR_HORIZONTAL);
 	// reset changed values so they redraw
@@ -204,7 +203,7 @@ void bank_0_intro_scroll_init(void)
 	// multi_vram_buffer_horz("Pull the Trigger", 16, NTADR_A(4,10));
 	// multi_vram_buffer_horz("But don't click it", 18, NTADR_A(4,12));
 
-	//load the gun
+	// load the gun
 	vram_adr(NAMETABLE_A);
 	for (nametable_index = 0; nametable_index < 1024; ++nametable_index)
 	{
@@ -212,7 +211,7 @@ void bank_0_intro_scroll_init(void)
 		flush_vram_update2();
 	}
 
-	//load the first page of text
+	// load the first page of text
 	vram_adr(NAMETABLE_C);
 	for (nametable_index = 0; nametable_index < 1024; ++nametable_index)
 	{
@@ -378,16 +377,16 @@ void bank_0_intro_scroll_loop(void)
 
 	if (line_counter == 8 && nametable_index <= 960)
 	{ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
-		//need to call this 30 times
+		// need to call this 30 times
 		for (index = 0; index < 32; ++index)
 		{
 			one_vram_buffer(pointer[nametable_index], cutscene_index);
 			++nametable_index;
 			++cutscene_index;
 		}
-		
+
 		if (attribute_bytes_written < 64)
-		{  
+		{
 			one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
 			++attribute_bytes_written;
 			++attribute_table_index;
@@ -432,7 +431,6 @@ void bank_0_intro_scroll_loop(void)
 			pointer = intro_scroll_5;
 		}
 	}
-
 
 	if (scroll_y > 0x1df)
 	{
@@ -558,9 +556,9 @@ void bank_1_instructions_init(void)
 	pal_spr(talking_time_sp_palette);
 
 	vram_adr(NAMETABLE_A);
-for (largeindex = 0; largeindex < 1024; ++largeindex)
+	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(talkingtime[largeindex]); 
+		vram_put(talkingtime[largeindex]);
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -596,7 +594,7 @@ for (largeindex = 0; largeindex < 1024; ++largeindex)
 		break;
 	}
 
-	//base sprites for Al
+	// base sprites for Al
 	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
 	oam_meta_spr(0xc0, 0xa7, altalks_30_data);
 
@@ -632,7 +630,7 @@ void bank_1_gas_level_init(void)
 
 	vram_unrle(LEVEL_1_PUMP);
 	// for(largeindex = 0; largeindex < 1024; ++largeindex){
-	// 	vram_put(level1[largeindex]); 
+	// 	vram_put(level1[largeindex]);
 	// 	++index;
 	// 	if(index > 40) { //don't put too much in the vram_buffer
 	// 		flush_vram_update2();
@@ -657,42 +655,66 @@ void bank_1_instructions_loop(void)
 	oam_clear(); // clear all sprites
 	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
 
-	
 	if (text_row < 6)
 	{
-		if(moveframes%4==0){
-			typewriter();	
+		if (moveframes % 4 == 0)
+		{
+			typewriter();
 		}
 	}
 
-	if (moveframes < 10){
-			oam_meta_spr(0xc0, 0xa7, altalks_30_data);
-		} else if(moveframes < 20){
-			oam_meta_spr(0xc0, 0xa7, altalks_31_data);
-		} else if(moveframes < 30){
-			oam_meta_spr(0xc0, 0xa7, altalks_32_data);
-		} else if(moveframes < 40){
-			oam_meta_spr(0xc0, 0xa7, altalks_33_data);
-		} else if(moveframes < 50){
-			oam_meta_spr(0xc0, 0xa7, altalks_34_data);
-		} else if(moveframes < 60){
-			oam_meta_spr(0xc0, 0xa7, altalks_35_data);
-		} else if(moveframes < 70){
-			oam_meta_spr(0xc0, 0xa7, altalks_36_data);
-		} else if(moveframes < 80){
-			oam_meta_spr(0xc0, 0xa7, altalks_37_data);
-		} else if(moveframes < 90){
-			oam_meta_spr(0xc0, 0xa7, altalks_38_data);
-		} else if(moveframes < 100){
-			oam_meta_spr(0xc0, 0xa7, altalks_39_data);
-		} else if(moveframes < 110){
-			oam_meta_spr(0xc0, 0xa7, altalks_40_data);
-		} else {
-			oam_meta_spr(0xc0, 0xa7, altalks_40_data);
-			if(text_rendered != text_length) {
-				moveframes = 0; //cycle while text is writing
-			}
+	if (moveframes < 10)
+	{
+		oam_meta_spr(0xc0, 0xa7, altalks_30_data);
+	}
+	else if (moveframes < 20)
+	{
+		oam_meta_spr(0xc0, 0xa7, altalks_31_data);
+	}
+	else if (moveframes < 30)
+	{
+		oam_meta_spr(0xc0, 0xa7, altalks_32_data);
+	}
+	else if (moveframes < 40)
+	{
+		oam_meta_spr(0xc0, 0xa7, altalks_33_data);
+	}
+	else if (moveframes < 50)
+	{
+		oam_meta_spr(0xc0, 0xa7, altalks_34_data);
+	}
+	else if (moveframes < 60)
+	{
+		oam_meta_spr(0xc0, 0xa7, altalks_35_data);
+	}
+	else if (moveframes < 70)
+	{
+		oam_meta_spr(0xc0, 0xa7, altalks_36_data);
+	}
+	else if (moveframes < 80)
+	{
+		oam_meta_spr(0xc0, 0xa7, altalks_37_data);
+	}
+	else if (moveframes < 90)
+	{
+		oam_meta_spr(0xc0, 0xa7, altalks_38_data);
+	}
+	else if (moveframes < 100)
+	{
+		oam_meta_spr(0xc0, 0xa7, altalks_39_data);
+	}
+	else if (moveframes < 110)
+	{
+		oam_meta_spr(0xc0, 0xa7, altalks_40_data);
+	}
+	else
+	{
+		oam_meta_spr(0xc0, 0xa7, altalks_40_data);
+		if (text_rendered != text_length)
+		{
+			moveframes = 0; // cycle while text is writing
 		}
+	}
 
 	read_input();
 
@@ -740,14 +762,13 @@ void bank_1_title_init(void)
 	// todo: add title music
 }
 
-
 const unsigned char level_0_max[] = "Bit too much, bub.";
 const unsigned char level_0_good[] = "!!! WOW !!!\nYou've got it kid!";
 const unsigned char level_3_preabduction[] = "You're as good as\nI hoped. Wait \noutside. I've gotta\ncall my boss.";
 const unsigned char level_0_ok[] = "Hmmmmm....\nPump harder.";
 const unsigned char level_0_bad[] = "You just don't\nhave what it takes...";
 
-void bank_4_cutscene_init(void);		 // prototype
+void bank_4_cutscene_init(void); // prototype
 
 void bank_1_evaluation_init(void)
 {
@@ -765,7 +786,7 @@ void bank_1_evaluation_init(void)
 	vram_adr(NAMETABLE_A);
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(evaluation[largeindex]); 
+		vram_put(evaluation[largeindex]);
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -774,7 +795,6 @@ void bank_1_evaluation_init(void)
 		}
 	}
 
-	
 	gas_pumped = 0;
 	for (index = 0; index < gas3; ++index)
 	{
@@ -823,13 +843,15 @@ void bank_1_evaluation_init(void)
 		++levels_complete;
 		pointer = level_0_good;
 		text_length = sizeof(level_0_good);
-		if(levels_complete == 3){
-			//it's good, go to alien level
+		if (levels_complete == 3)
+		{
+			// it's good, go to alien level
 			alien_level = 1;
 			pointer = level_3_preabduction;
 			text_length = sizeof(level_3_preabduction);
-		} else {
-
+		}
+		else
+		{
 		}
 	}
 	else if (gas_pumped >= gas_goal_hundreds - 100)
@@ -843,7 +865,7 @@ void bank_1_evaluation_init(void)
 		text_length = sizeof(level_0_bad);
 	}
 
-	//base for Al
+	// base for Al
 	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
 	oam_meta_spr(0xc0, 0xa7, altalks_30_data);
 
@@ -868,39 +890,71 @@ void bank_1_evaluation_loop(void)
 	{
 		typewriter();
 	}
-	// //big al loop:
-	oam_clear(); // clear all sprites
 
-	// draw_talking_time_sprites();
+	oam_clear(); // clear all sprites
+	
+	//always draw the shirt:
 	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
-	if (moveframes < 10){
+
+	if (text_rendered != text_length)
+	{
+		// draw_talking_time_sprites();
+		oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
+		if (moveframes < 10)
+		{
 			oam_meta_spr(0xc0, 0xa7, altalks_30_data);
-		} else if(moveframes < 20){
+		}
+		else if (moveframes < 20)
+		{
 			oam_meta_spr(0xc0, 0xa7, altalks_31_data);
-		} else if(moveframes < 30){
+		}
+		else if (moveframes < 30)
+		{
 			oam_meta_spr(0xc0, 0xa7, altalks_32_data);
-		} else if(moveframes < 40){
+		}
+		else if (moveframes < 40)
+		{
 			oam_meta_spr(0xc0, 0xa7, altalks_33_data);
-		} else if(moveframes < 50){
+		}
+		else if (moveframes < 50)
+		{
 			oam_meta_spr(0xc0, 0xa7, altalks_34_data);
-		} else if(moveframes < 60){
+		}
+		else if (moveframes < 60)
+		{
 			oam_meta_spr(0xc0, 0xa7, altalks_35_data);
-		} else if(moveframes < 70){
+		}
+		else if (moveframes < 70)
+		{
 			oam_meta_spr(0xc0, 0xa7, altalks_36_data);
-		} else if(moveframes < 80){
+		}
+		else if (moveframes < 80)
+		{
 			oam_meta_spr(0xc0, 0xa7, altalks_37_data);
-		} else if(moveframes < 90){
+		}
+		else if (moveframes < 90)
+		{
 			oam_meta_spr(0xc0, 0xa7, altalks_38_data);
-		} else if(moveframes < 100){
+		}
+		else if (moveframes < 100)
+		{
 			oam_meta_spr(0xc0, 0xa7, altalks_39_data);
-		} else if(moveframes < 110){
+		}
+		else if (moveframes < 110)
+		{
 			oam_meta_spr(0xc0, 0xa7, altalks_40_data);
-		} else {
+		}
+		else
+		{
 			oam_meta_spr(0xc0, 0xa7, altalks_40_data);
-			if(text_rendered != text_length) {
-				moveframes = 0; //cycle while text is writing
+			if (text_rendered != text_length)
+			{
+				moveframes = 0; // cycle while text is writing
 			}
 		}
+	} else {
+		oam_meta_spr(0xc0, 0xa7, altalks_30_data);
+	}
 
 	read_input();
 
@@ -932,22 +986,20 @@ void bank_1_evaluation_loop(void)
 #include "BACKGROUNDS/ending_scroll_2.h"
 // #include "BACKGROUNDS/ending_scroll_3.h"
 
-
 void bank_2_ending_scroll_init(void)
 {
 	nametable_index = 0;
-	scrolled_past_once = 0;   
+	scrolled_past_once = 0;
 	stop_scrolling = 0;
 	moveframes = 0;
 	line_counter = 0;
 	screen_line_counter = 0;
-	scroll_wait_lines = 32; //wait this many lines before drawing (not working)
-	scroll_page = 1; //we load in page 1 at the start here
-	scroll_page_end = 2; // this is for the 3 page scroll
+	scroll_wait_lines = 32; // wait this many lines before drawing (not working)
+	scroll_page = 1;				// we load in page 1 at the start here
+	scroll_page_end = 2;		// this is for the 3 page scroll
 	// scroll_page_end = 3; //this is for the 3 page scroll
 	// scroll_page_end = 1; //this is for the 1 page scroll
 
-	
 	scroll(0, 0); // reset scrolling
 	set_mirroring(MIRROR_HORIZONTAL);
 	// reset changed values so they redraw
@@ -961,7 +1013,7 @@ void bank_2_ending_scroll_init(void)
 	// multi_vram_buffer_horz("Pull the Trigger", 16, NTADR_A(4,10));
 	// multi_vram_buffer_horz("But don't click it", 18, NTADR_A(4,12));
 
-	//load the gun
+	// load the gun
 	vram_adr(NAMETABLE_A);
 	for (nametable_index = 0; nametable_index < 1024; ++nametable_index)
 	{
@@ -969,7 +1021,7 @@ void bank_2_ending_scroll_init(void)
 		flush_vram_update2();
 	}
 
-	//load the first page of text
+	// load the first page of text
 	vram_adr(NAMETABLE_C);
 	for (nametable_index = 0; nametable_index < 1024; ++nametable_index)
 	{
@@ -1003,16 +1055,16 @@ void bank_2_ending_scroll_loop(void)
 
 	if (line_counter == 8 && nametable_index <= 960)
 	{ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
-		//need to call this 30 times
+		// need to call this 30 times
 		for (index = 0; index < 32; ++index)
 		{
 			one_vram_buffer(pointer[nametable_index], cutscene_index);
 			++nametable_index;
 			++cutscene_index;
 		}
-		
+
 		if (attribute_bytes_written < 64)
-		{  
+		{
 			one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
 			++attribute_bytes_written;
 			++attribute_table_index;
@@ -1058,7 +1110,6 @@ void bank_2_ending_scroll_loop(void)
 		}
 	}
 
-
 	if (scroll_y > 0x1df)
 	{
 		scroll_y = 0;
@@ -1081,7 +1132,6 @@ void bank_2_ending_scroll_loop(void)
 	// 	banked_call(BANK_0, bank_0_intro_cutscene_init);
 	// }
 }
-
 
 #pragma endregion
 
@@ -1528,8 +1578,8 @@ const unsigned char alien_evaluation_text_bad[] = "Well...\nThat's your best?\n\
 const unsigned char alien_evaluation_text_good[] = "Perfect pumping!\nI knew you could do it.\n\nI'm fueled up and ready\nto go! Now hop on!!\n\nLet's stop Lord ZARKAQ!";
 #include "SPRITES/gasboy.h"
 
-void bank_5_starfield_init(void); //prototype
-void bank_5_gameover_init(void); //prototype
+void bank_5_starfield_init(void); // prototype
+void bank_5_gameover_init(void);	// prototype
 
 void bank_4_cutscene_init(void)
 {
@@ -1539,7 +1589,7 @@ void bank_4_cutscene_init(void)
 	pal_bg(intro_cutscene_palette);
 	pal_spr(abduction_palette);
 	// TODO change this to the right CHR
-	set_chr_bank_0(CUTSCENE_ABDUCTION_CHR_0);  
+	set_chr_bank_0(CUTSCENE_ABDUCTION_CHR_0);
 	set_chr_bank_1(CUTSCENE_ABDUCTION_CHR_1);
 	scroll(0, 0); // reset scrolling
 	index = 0;
@@ -1548,7 +1598,7 @@ void bank_4_cutscene_init(void)
 
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(abduction_cutscene[largeindex]); 
+		vram_put(abduction_cutscene[largeindex]);
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -1598,7 +1648,7 @@ void bank_4_alien_level_init(void)
 
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(FUTURE_PUMP_LEVEL[largeindex]); 
+		vram_put(FUTURE_PUMP_LEVEL[largeindex]);
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -1607,51 +1657,51 @@ void bank_4_alien_level_init(void)
 		}
 	}
 
-	//debug, for now I'm gonna manually put the goal numbers in too.
+	// debug, for now I'm gonna manually put the goal numbers in too.
 	vram_adr(0x2048);
 	vram_put(0xbe);
 	vram_put(0xbf);
 	vram_adr(0x2068);
 	vram_put(0xce);
-	vram_put(0xcf); 
+	vram_put(0xcf);
 	vram_adr(0x2088);
 	vram_put(0xde);
-	vram_put(0xdf); 
+	vram_put(0xdf);
 	vram_adr(0x20a8);
 	vram_put(0xee);
-	vram_put(0xef); 
+	vram_put(0xef);
 	flush_vram_update2();
 	vram_adr(0x204a);
 	vram_put(0xbc);
 	vram_put(0xbd);
 	vram_adr(0x206a);
 	vram_put(0xcc);
-	vram_put(0xcd); 
+	vram_put(0xcd);
 	vram_adr(0x208a);
 	vram_put(0xdc);
-	vram_put(0xdd); 
+	vram_put(0xdd);
 	vram_adr(0x20aa);
 	vram_put(0xec);
-	vram_put(0xed); 
+	vram_put(0xed);
 	flush_vram_update2();
 	vram_adr(0x204c);
 	vram_put(0xbe);
 	vram_put(0xbf);
 	vram_adr(0x206c);
 	vram_put(0xce);
-	vram_put(0xcf); 
+	vram_put(0xcf);
 	vram_adr(0x208c);
 	vram_put(0xde);
-	vram_put(0xdf); 
+	vram_put(0xdf);
 	vram_adr(0x20ac);
 	vram_put(0xee);
-	vram_put(0xef); 
+	vram_put(0xef);
 	flush_vram_update2();
 
 	pal_fade_to(0, 4);
 	ppu_on_all();
 	started_pumping = 0;
-	//todo, set actual gas goal here.
+	// todo, set actual gas goal here.
 	gas_goal = 59;
 	gas_pumped = 0;
 	game_mode = MODE_ALIEN_LEVEL;
@@ -1665,14 +1715,14 @@ void bank_4_instruction_init(void)
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 	pal_bg(futuretalk_palette);
-	
+
 	set_chr_bank_0(FUTURETALK_CHR_0);
 	set_chr_bank_1(FUTURETALK_CHR_1);
 	vram_adr(NAMETABLE_A); // Nametable A;
 
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(futuretalk[largeindex]); 
+		vram_put(futuretalk[largeindex]);
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -1682,28 +1732,33 @@ void bank_4_instruction_init(void)
 	}
 	ppu_on_all();
 
-	//init instructions
+	// init instructions
 	text_x_start = 3;
 	text_y_start = 4;
 	reset_text_values();
-	
 
-	if(alien_level_status == ALIEN_INITIAL_INSTRUCTION){
+	if (alien_level_status == ALIEN_INITIAL_INSTRUCTION)
+	{
 		pointer = alien_instruction_text;
 		text_length = sizeof(alien_instruction_text);
-		alien_level_status = ALIEN_EVALUATION; //used for next time
-	} else if(alien_level_status == ALIEN_EVALUATION){
-		if(gas_pumped > gas_goal-5 && gas_pumped < gas_goal+5){
+		alien_level_status = ALIEN_EVALUATION; // used for next time
+	}
+	else if (alien_level_status == ALIEN_EVALUATION)
+	{
+		if (gas_pumped > gas_goal - 5 && gas_pumped < gas_goal + 5)
+		{
 			pointer = alien_evaluation_text_good;
 			text_length = sizeof(alien_evaluation_text_good);
 			alien_level_cleared = 1;
-		} else {
+		}
+		else
+		{
 			pointer = alien_evaluation_text_bad;
 			text_length = sizeof(alien_evaluation_text_bad);
 			alien_level_failed = 1;
 		}
 	}
-	
+
 	game_mode = MODE_ALIEN_INSTRUCTION;
 	pal_fade_to(0, 4);
 	music_play(SONG_ALIENTALKINGTIME);
@@ -1713,8 +1768,8 @@ void bank_4_instruction_loop(void)
 {
 	ppu_wait_nmi();
 	moveframes++;
-	//write text
-	
+	// write text
+
 	if (text_row < 9)
 	{
 		typewriter();
@@ -1725,48 +1780,71 @@ void bank_4_instruction_loop(void)
 	if (moveframes < 5)
 	{
 		oam_meta_spr(190, 193, alien_gas_mouth_0);
-	} else if (moveframes < 10){
+	}
+	else if (moveframes < 10)
+	{
 		oam_meta_spr(190, 193, alien_gas_mouth_1);
-	} else if (moveframes < 15){
+	}
+	else if (moveframes < 15)
+	{
 		oam_meta_spr(190, 193, alien_gas_mouth_2);
-	} else if (moveframes < 20){
+	}
+	else if (moveframes < 20)
+	{
 		oam_meta_spr(190, 193, alien_gas_mouth_3);
-	} else if (moveframes < 25){
+	}
+	else if (moveframes < 25)
+	{
 		oam_meta_spr(190, 193, alien_gas_mouth_4);
-	} else if (moveframes < 30){
+	}
+	else if (moveframes < 30)
+	{
 		oam_meta_spr(190, 193, alien_gas_mouth_5);
-	} else if (moveframes < 35){
+	}
+	else if (moveframes < 35)
+	{
 		oam_meta_spr(190, 193, alien_gas_mouth_6);
-	} else if (moveframes < 40){
+	}
+	else if (moveframes < 40)
+	{
 		oam_meta_spr(190, 193, alien_gas_mouth_7);
-	} else if (moveframes < 45){
+	}
+	else if (moveframes < 45)
+	{
 		oam_meta_spr(190, 193, alien_gas_mouth_8);
-	} else {
+	}
+	else
+	{
 		oam_meta_spr(190, 193, alien_gas_mouth_0);
 		moveframes = 0;
 	}
 
-	
-	if(moveframes < 30){
+	if (moveframes < 30)
+	{
 		oam_meta_spr(185, 178, alien_eyes_10);
-	} else {
+	}
+	else
+	{
 		oam_meta_spr(185, 178, alien_eyes_17);
-	} 
-	
-
-	read_input();
-	if(trigger_clicked){
-		wait_and_fade_out();
-		if(alien_level_cleared){
-			banked_call(BANK_5, bank_5_starfield_init);
-		} else if(alien_level_failed){
-			banked_call(BANK_5,bank_5_gameover_init);
-		} else {
-			banked_call(BANK_4, bank_4_alien_level_init);
-		}
-		
 	}
 
+	read_input();
+	if (trigger_clicked)
+	{
+		wait_and_fade_out();
+		if (alien_level_cleared)
+		{
+			banked_call(BANK_5, bank_5_starfield_init);
+		}
+		else if (alien_level_failed)
+		{
+			banked_call(BANK_5, bank_5_gameover_init);
+		}
+		else
+		{
+			banked_call(BANK_4, bank_4_alien_level_init);
+		}
+	}
 }
 
 void bank_4_cutscene_loop(void)
@@ -1780,7 +1858,7 @@ void bank_4_cutscene_loop(void)
 		// 600 frames for guy to smoke cigarette, etc
 		// draw sprites:
 		oam_clear();
-		//ufo
+		// ufo
 		if (moveframes % 4 == 0)
 		{
 			sprite_pointer = abduction_ship_1;
@@ -1790,7 +1868,7 @@ void bank_4_cutscene_loop(void)
 			sprite_pointer = abduction_ship_2;
 		}
 
-		//guy
+		// guy
 		if (moveframes < 100)
 		{
 			oam_meta_spr(201, 180, abduction_guy_0);
@@ -1834,24 +1912,24 @@ void bank_4_cutscene_loop(void)
 		else if (moveframes < 200)
 		{
 			oam_meta_spr(201, 180, abduction_guy_10);
-		} //end of smoking 
+		} // end of smoking
 		else if (moveframes < 210)
 		{
 			oam_meta_spr(201, 180, abduction_guy_3);
-		} 
+		}
 		else if (moveframes < 220)
 		{
 			oam_meta_spr(201, 180, abduction_guy_2);
-		} 
+		}
 		else if (moveframes < 230)
 		{
 			oam_meta_spr(201, 180, abduction_guy_1);
-		} 
+		}
 		else if (moveframes < 300)
 		{
 			oam_meta_spr(201, 180, abduction_guy_0);
-		} 
-		else if (moveframes < 310) //second puff of cigarette
+		}
+		else if (moveframes < 310) // second puff of cigarette
 		{
 			oam_meta_spr(201, 180, abduction_guy_1);
 		}
@@ -1890,50 +1968,65 @@ void bank_4_cutscene_loop(void)
 		else if (moveframes < 400)
 		{
 			oam_meta_spr(201, 180, abduction_guy_10);
-		} //end of second puff
+		} // end of second puff
 		else if (moveframes < 440)
 		{
-			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+			oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 			oam_meta_spr(194, 170, abduction_cigarette_0);
-		} else if (moveframes < 445){
-			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+		}
+		else if (moveframes < 445)
+		{
+			oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 			oam_meta_spr(186, 172, abduction_cigarette_1);
-		}else if (moveframes < 450){
-			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+		}
+		else if (moveframes < 450)
+		{
+			oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 			oam_meta_spr(180, 174, abduction_cigarette_2);
-		}else if (moveframes < 460){
-			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+		}
+		else if (moveframes < 460)
+		{
+			oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 			oam_meta_spr(176, 176, abduction_cigarette_3);
-		}else if (moveframes < 470){
-			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+		}
+		else if (moveframes < 470)
+		{
+			oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 			oam_meta_spr(170, 178, abduction_cigarette_4);
-		}else if (moveframes < 480){
-			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+		}
+		else if (moveframes < 480)
+		{
+			oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 			oam_meta_spr(168, 180, abduction_cigarette_5);
-		}else if (moveframes < 490){
-			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+		}
+		else if (moveframes < 490)
+		{
+			oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 			oam_meta_spr(167, 181, abduction_cigarette_6);
-		}else if (moveframes < 500){
-			oam_meta_spr(201, 180, abduction_guy_11); //empty hand / cigarette flip
+		}
+		else if (moveframes < 500)
+		{
+			oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 			oam_meta_spr(166, 182, abduction_cigarette_7);
 			moveframes2 = 0;
 		}
 		else if (moveframes < 510)
 		{
-			//ufo comes down
+			// ufo comes down
 			oam_meta_spr(172, 0, sprite_pointer);
-			oam_meta_spr(201, 180, abduction_guy_12); //hand going down
+			oam_meta_spr(201, 180, abduction_guy_12); // hand going down
 			oam_meta_spr(166, 182, abduction_cigarette_7);
-		} 
-		else if(moveframes < 511){
+		}
+		else if (moveframes < 511)
+		{
 			oam_meta_spr(172, 1, sprite_pointer);
-			oam_meta_spr(201, 180, abduction_guy_12); //hand going down
+			oam_meta_spr(201, 180, abduction_guy_12); // hand going down
 			oam_meta_spr(166, 182, abduction_cigarette_7);
 			moveframes2 = 0;
 		}
 		else if (moveframes < 520)
 		{
-			oam_meta_spr(172, 2+moveframes2, sprite_pointer);
+			oam_meta_spr(172, 2 + moveframes2, sprite_pointer);
 			oam_meta_spr(201, 180, abduction_guy_13);
 			oam_meta_spr(166, 182, abduction_cigarette_7);
 		}
@@ -1955,18 +2048,18 @@ void bank_4_cutscene_loop(void)
 			attribute_bytes_written = 0;
 			nametable_index = 0;
 		}
-		//the ship needs to come in here, from the right
+		// the ship needs to come in here, from the right
 		++moveframes;
-		if(moveframes%2==0){
+		if (moveframes % 2 == 0)
+		{
 			++moveframes2;
 		}
-		
 	}
 
 	if (abduction_cutscene_step == ABDUCTION_BEAM)
 	{
 		oam_clear();
-		oam_meta_spr(166, 182, abduction_cigarette_7); //cigarette on the ground
+		oam_meta_spr(166, 182, abduction_cigarette_7); // cigarette on the ground
 		oam_meta_spr(201, 180, abduction_guy_14);
 		if (moveframes % 4 == 0)
 		{
@@ -1985,26 +2078,28 @@ void bank_4_cutscene_loop(void)
 			abduction_cutscene_step = ABDUCTION_BEAM_UP;
 		}
 
-		//todo: need sprite of beam coming down
-		// we want to do 1 line every 5 frames
+		// todo: need sprite of beam coming down
+		//  we want to do 1 line every 5 frames
 		if (index2 == 5 && nametable_index < 960)
 		{
-			//index3 is going through the loop 2 times, because of 
-			if(index3 == 3 && attribute_bytes_written <64){
-				for(index = 0; index < 8; ++index){
-					one_vram_buffer(abduction_cutscene_beam[960+attribute_bytes_written], NAMETABLE_A_ATTR+attribute_bytes_written);
+			// index3 is going through the loop 2 times, because of
+			if (index3 == 3 && attribute_bytes_written < 64)
+			{
+				for (index = 0; index < 8; ++index)
+				{
+					one_vram_buffer(abduction_cutscene_beam[960 + attribute_bytes_written], NAMETABLE_A_ATTR + attribute_bytes_written);
 					++attribute_bytes_written;
 				}
 				index3 = 0;
 			}
-			
+
 			for (index = 0; index < 32; ++index)
 			{
 				one_vram_buffer(abduction_cutscene_beam[nametable_index], cutscene_index);
 				++nametable_index;
 				++cutscene_index;
 			}
-			
+
 			++index3;
 			index2 = 0;
 		}
@@ -2015,8 +2110,8 @@ void bank_4_cutscene_loop(void)
 	if (abduction_cutscene_step == ABDUCTION_BEAM_UP)
 	{
 		oam_clear();
-		//cigarette on the ground
-		oam_meta_spr(166, 182, abduction_cigarette_7); 
+		// cigarette on the ground
+		oam_meta_spr(166, 182, abduction_cigarette_7);
 		// draw space ship:
 		if (moveframes % 4 == 0)
 		{
@@ -2042,42 +2137,42 @@ void bank_4_cutscene_loop(void)
 		else if (moveframes < 30)
 		{
 			oam_meta_spr(193, 162, abduction_guy_hat);
-			oam_meta_spr(201, 180, abduction_guy_18); 
+			oam_meta_spr(201, 180, abduction_guy_18);
 		}
 		else if (moveframes < 40)
 		{
-			oam_meta_spr(193, 162-(2*(moveframes-30)), abduction_guy_hat);
+			oam_meta_spr(193, 162 - (2 * (moveframes - 30)), abduction_guy_hat);
 			oam_meta_spr(201, 180, abduction_guy_19);
 		}
 		else if (moveframes < 50)
 		{
-			oam_meta_spr(193, 162-(2*(moveframes-30)), abduction_guy_hat);
+			oam_meta_spr(193, 162 - (2 * (moveframes - 30)), abduction_guy_hat);
 			oam_meta_spr(201, 180, abduction_guy_20);
 		}
 		else if (moveframes < 60)
 		{
-			oam_meta_spr(193, 162-(2*(moveframes-30)), abduction_guy_hat);
+			oam_meta_spr(193, 162 - (2 * (moveframes - 30)), abduction_guy_hat);
 			oam_meta_spr(201, 180, abduction_guy_21);
 		}
 		else if (moveframes < 70)
 		{
-			oam_meta_spr(193, 162-(2*(moveframes-30)), abduction_guy_hat);
+			oam_meta_spr(193, 162 - (2 * (moveframes - 30)), abduction_guy_hat);
 			oam_meta_spr(201, 180, abduction_guy_22);
 		}
 		else if (moveframes < 80)
 		{
-			oam_meta_spr(193, 162-(2*(moveframes-30)), abduction_guy_hat);
+			oam_meta_spr(193, 162 - (2 * (moveframes - 30)), abduction_guy_hat);
 			oam_meta_spr(201, 180, abduction_guy_23);
 		}
 		else if (moveframes < 90)
 		{
-			oam_meta_spr(193, 162-(2*(moveframes-30)), abduction_guy_hat);
+			oam_meta_spr(193, 162 - (2 * (moveframes - 30)), abduction_guy_hat);
 			oam_meta_spr(201, 180, abduction_guy_24);
 		}
 		else if (moveframes < 100)
 		{
 			oam_meta_spr(201, 180, abduction_guy_25);
-		} 
+		}
 		// question mark over his head is 35-38
 		// guy goes 24 and 25 (to 'scratch' is head)
 		// hand back down is 24-18
@@ -2179,7 +2274,7 @@ void bank_4_cutscene_loop(void)
 	if (abduction_cutscene_step == ABDUCTION_BEAM_RETRACT)
 	{
 		oam_clear();
-		oam_meta_spr(166, 182, abduction_cigarette_7); 
+		oam_meta_spr(166, 182, abduction_cigarette_7);
 		if (moveframes % 4 == 0)
 		{
 			oam_meta_spr(172, 12, abduction_ship_1);
@@ -2198,9 +2293,11 @@ void bank_4_cutscene_loop(void)
 		// we want to do 1 line every 5 frames
 		if (index2 == 5 && nametable_index > 0)
 		{
-			if(index3 == 3 && attribute_bytes_written > 0){
-				for(index = 0; index < 8; ++index){
-					one_vram_buffer(abduction_cutscene[960+attribute_bytes_written-1], NAMETABLE_A_ATTR+attribute_bytes_written-1);
+			if (index3 == 3 && attribute_bytes_written > 0)
+			{
+				for (index = 0; index < 8; ++index)
+				{
+					one_vram_buffer(abduction_cutscene[960 + attribute_bytes_written - 1], NAMETABLE_A_ATTR + attribute_bytes_written - 1);
 					--attribute_bytes_written;
 				}
 				index3 = 0;
@@ -2219,9 +2316,10 @@ void bank_4_cutscene_loop(void)
 		++moveframes;
 	}
 
-	if(abduction_cutscene_step == ABDUCTION_SHIP_FLY_OFF) {
+	if (abduction_cutscene_step == ABDUCTION_SHIP_FLY_OFF)
+	{
 		oam_clear();
-		oam_meta_spr(166, 182, abduction_cigarette_7); 
+		oam_meta_spr(166, 182, abduction_cigarette_7);
 		if (moveframes % 4 == 0)
 		{
 			sprite_pointer = abduction_ship_1;
@@ -2231,9 +2329,12 @@ void bank_4_cutscene_loop(void)
 			sprite_pointer = abduction_ship_2;
 		}
 
-		if(moveframes < 12){
-			oam_meta_spr(172, 12-moveframes, sprite_pointer);
-		} else {
+		if (moveframes < 12)
+		{
+			oam_meta_spr(172, 12 - moveframes, sprite_pointer);
+		}
+		else
+		{
 			// scroll(0, scroll_y);
 			// --scroll_y;
 			abduction_cutscene_step = ABDUCTION_SCROLL_UP;
@@ -2242,22 +2343,27 @@ void bank_4_cutscene_loop(void)
 			pal_bg(intro_cutscene_palette);
 			scroll_y = 0x1df;
 			nametable_index = 960;
-			cutscene_index = NAMETABLE_A_ATTR-1;
+			cutscene_index = NAMETABLE_A_ATTR - 1;
 			attribute_bytes_written = 0;
 			attribute_table_index = NAMETABLE_A_ATTR;
 			moveframes = 0;
 		}
 		++moveframes;
 	}
-	if(abduction_cutscene_step == ABDUCTION_SCROLL_UP) {
+	if (abduction_cutscene_step == ABDUCTION_SCROLL_UP)
+	{
 		oam_clear();
-		if(scroll_y <= 0) {
+		if (scroll_y <= 0)
+		{
 			abduction_cutscene_step = ABDUCTION_STAR_IN_SKY;
 			moveframes = 0;
-		} else {
-			scroll(0,scroll_y);
-			//draw some of the next screen
-			if(moveframes == 8) {
+		}
+		else
+		{
+			scroll(0, scroll_y);
+			// draw some of the next screen
+			if (moveframes == 8)
+			{
 				for (index = 0; index < 30; ++index)
 				{
 					one_vram_buffer(intro_cutscene_1x[nametable_index], cutscene_index);
@@ -2265,39 +2371,46 @@ void bank_4_cutscene_loop(void)
 					--cutscene_index;
 				}
 
-				
-				moveframes=0;
+				moveframes = 0;
 			}
-			if(scroll_y < 0x100 && attribute_bytes_written < 64){
-				//now we can update the attribute table
+			if (scroll_y < 0x100 && attribute_bytes_written < 64)
+			{
+				// now we can update the attribute table
 				for (index = 0; index < 4; ++index)
 				{
-					if(attribute_bytes_written < 64){
-						one_vram_buffer(intro_cutscene_1x[960+attribute_bytes_written], attribute_table_index+attribute_bytes_written);
+					if (attribute_bytes_written < 64)
+					{
+						one_vram_buffer(intro_cutscene_1x[960 + attribute_bytes_written], attribute_table_index + attribute_bytes_written);
 					}
 					++attribute_bytes_written;
 				}
 			}
-
 		}
 		--scroll_y;
 		++moveframes;
-		
 	}
-	if(abduction_cutscene_step == ABDUCTION_STAR_IN_SKY) {
+	if (abduction_cutscene_step == ABDUCTION_STAR_IN_SKY)
+	{
 		oam_clear();
-		if(moveframes < 100){
+		if (moveframes < 100)
+		{
 			moveframes2 = 0;
-		} else if(moveframes < 140){
-			oam_meta_spr(200-moveframes2, 30, Cutscene_35_data); 
-		} else if (moveframes < 220){
+		}
+		else if (moveframes < 140)
+		{
+			oam_meta_spr(200 - moveframes2, 30, Cutscene_35_data);
+		}
+		else if (moveframes < 220)
+		{
 			moveframes2 = 0;
-		} else {
-			pal_fade_to(4,0);
+		}
+		else
+		{
+			pal_fade_to(4, 0);
 			abduction_cutscene_step = ABDUCTION_DONE;
 		}
 		++moveframes;
-		moveframes2+=5;
+		moveframes2 += 5;
 	}
 	if (abduction_cutscene_step == ABDUCTION_DONE) // to call at the end of everything
 	{
@@ -2307,19 +2420,21 @@ void bank_4_cutscene_loop(void)
 	}
 }
 
-void bank_4_alien_number_sprites(void){
-	switch(temp){
-		case 1: 
-			pointer = AlienNumber1;  
-			break;
-		case 2:
-			pointer = AlienNumber2;
-			break;
-		case 3:
-			pointer = AlienNumber3;
-			break;
-		default:
-			pointer = AlienNumber0;
+void bank_4_alien_number_sprites(void)
+{
+	switch (temp)
+	{
+	case 1:
+		pointer = AlienNumber1;
+		break;
+	case 2:
+		pointer = AlienNumber2;
+		break;
+	case 3:
+		pointer = AlienNumber3;
+		break;
+	default:
+		pointer = AlienNumber0;
 	}
 }
 
@@ -2329,36 +2444,50 @@ void bank_4_alien_level_loop(void)
 	ppu_wait_nmi();
 	oam_clear();
 
-
 	if (moveframes < 5)
 	{
 		oam_meta_spr(124, 130, alien_gas_mouth_0);
-	} else if (moveframes < 10){
+	}
+	else if (moveframes < 10)
+	{
 		oam_meta_spr(124, 130, alien_gas_mouth_1);
-	} else if (moveframes < 15){
+	}
+	else if (moveframes < 15)
+	{
 		oam_meta_spr(124, 130, alien_gas_mouth_2);
-	} else if (moveframes < 20){
+	}
+	else if (moveframes < 20)
+	{
 		oam_meta_spr(124, 130, alien_gas_mouth_3);
-	} else if (moveframes < 25){
+	}
+	else if (moveframes < 25)
+	{
 		oam_meta_spr(124, 130, alien_gas_mouth_4);
-	} else if (moveframes < 30){
+	}
+	else if (moveframes < 30)
+	{
 		oam_meta_spr(124, 130, alien_gas_mouth_5);
-	} else {
+	}
+	else
+	{
 		oam_meta_spr(124, 130, alien_gas_mouth_0);
 	}
 
-	if(moveframes > 90){
+	if (moveframes > 90)
+	{
 		moveframes = 0;
 	}
 
-	
-	if(moveframes < 30){
+	if (moveframes < 30)
+	{
 		oam_meta_spr(120, 110, alien_eyes_10);
-	} else {
+	}
+	else
+	{
 		oam_meta_spr(120, 110, alien_eyes_17);
-	} 
+	}
 
-	//draw_gliboons_count as sprites
+	// draw_gliboons_count as sprites
 	temp = aliengas1;
 	banked_call(BANK_4, bank_4_alien_number_sprites);
 	oam_meta_spr(176, 14, pointer);
@@ -2368,7 +2497,6 @@ void bank_4_alien_level_loop(void)
 	temp = aliengas3;
 	banked_call(BANK_4, bank_4_alien_number_sprites);
 	oam_meta_spr(144, 14, pointer);
-	
 
 	read_input(); // sets input_active
 
@@ -2376,15 +2504,16 @@ void bank_4_alien_level_loop(void)
 	{
 		started_pumping = 1; // actually only need to set this once
 
-		//add gas every X frameas
-		if(moveframes > 16){
+		// add gas every X frameas
+		if (moveframes > 16)
+		{
 			++gas_pumped; //<--total gas
 
 			++aliengas1;
 			moveframes = 0;
 		}
 
-		//roll up numbers
+		// roll up numbers
 		if (aliengas1 > 3)
 		{
 			aliengas1 = 0;
@@ -2401,7 +2530,6 @@ void bank_4_alien_level_loop(void)
 				}
 			}
 		}
-
 	}
 	else
 	{
@@ -2411,7 +2539,6 @@ void bank_4_alien_level_loop(void)
 			banked_call(BANK_4, bank_4_instruction_init);
 		}
 	}
-
 }
 
 #pragma endregion
@@ -2435,8 +2562,7 @@ void bank_4_alien_level_loop(void)
 #include "BACKGROUNDS/starfieldearth.h"
 
 const unsigned char Starfields[8] = {
-	STARFIELD1,STARFIELD2,STARFIELD3,STARFIELD4,STARFIELD5,STARFIELD6,STARFIELD7,STARFIELD8
-};
+		STARFIELD1, STARFIELD2, STARFIELD3, STARFIELD4, STARFIELD5, STARFIELD6, STARFIELD7, STARFIELD8};
 
 void bank_5_gameover_init(void)
 {
@@ -2453,7 +2579,7 @@ void bank_5_gameover_init(void)
 
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(gameover[largeindex]); 
+		vram_put(gameover[largeindex]);
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -2466,14 +2592,13 @@ void bank_5_gameover_init(void)
 	pal_fade_to(0, 4);
 	game_mode = MODE_GAME_OVER;
 	music_play(SONG_ASCENTIONOFZ);
-	
 }
 
 void bank_5_gameover_loop(void)
 {
 	ppu_wait_nmi();
-	//wait for keybaord input, then restart the whole game
-	//I like the idea of just having this screen tell them they have to reset the game.
+	// wait for keybaord input, then restart the whole game
+	// I like the idea of just having this screen tell them they have to reset the game.
 }
 
 void bank_5_starfield_init(void)
@@ -2492,11 +2617,11 @@ void bank_5_starfield_init(void)
 	scroll_page = 0;
 	nametable_selected = 1;
 
-	vram_adr(NAMETABLE_A); 
+	vram_adr(NAMETABLE_A);
 
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(starfield1[largeindex]); 
+		vram_put(starfield1[largeindex]);
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -2508,7 +2633,7 @@ void bank_5_starfield_init(void)
 	vram_adr(NAMETABLE_B);
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(starfield2[largeindex]); 
+		vram_put(starfield2[largeindex]);
 		++index;
 		if (index > 40)
 		{ // don't put too much in the vram_buffer
@@ -2530,22 +2655,24 @@ void bank_5_starfield_init(void)
 unsigned char column_pixel_counter = 0;
 unsigned char row_column_index = 0;
 
-void bank_5_draw_screen_right(void){
-	if (column_pixel_counter > 7 ) { 
+void bank_5_draw_screen_right(void)
+{
+	if (column_pixel_counter > 7)
+	{
 		// after we've scrolled 8 pixels, lets draw the next column
 		for (largeindex = 0; largeindex <= 960; largeindex += 32)
 		{
-			//draw a column of sprites.
-			one_vram_buffer(pointer[largeindex+row_column_index], nametable_index+largeindex+row_column_index);
+			// draw a column of sprites.
+			one_vram_buffer(pointer[largeindex + row_column_index], nametable_index + largeindex + row_column_index);
 		}
 		column_pixel_counter = 0;
 		++row_column_index;
 		if (attribute_bytes_written < 64)
 		{
-			//todo: fix this attribute stuff being bad
-			// either shift the screen forward before drawing more
-			// or just draw all the attributes buffer at once
-			
+			// todo: fix this attribute stuff being bad
+			//  either shift the screen forward before drawing more
+			//  or just draw all the attributes buffer at once
+
 			one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
 			++attribute_bytes_written;
 			++attribute_table_index;
@@ -2555,53 +2682,74 @@ void bank_5_draw_screen_right(void){
 		}
 	}
 
-	if(row_column_index >= 32) {
-		//we've drawn the full screen now, let's pick a new background.
+	if (row_column_index >= 32)
+	{
+		// we've drawn the full screen now, let's pick a new background.
 
-		if(nametable_selected == 0) {
+		if (nametable_selected == 0)
+		{
 			attribute_table_index = NAMETABLE_A_ATTR;
 			nametable_index = NAMETABLE_A;
 			attribute_bytes_written = 0;
 			nametable_selected = 1;
-		} else {
+		}
+		else
+		{
 			nametable_index = NAMETABLE_B;
 			attribute_table_index = NAMETABLE_B_ATTR;
 			attribute_bytes_written = 0;
 			nametable_selected = 0;
 		}
 
-		//randomly pick a new starfield
+		// randomly pick a new starfield
 		temp1 = rand8(); // 0 - 255
-		if(temp1 < 32){
+		if (temp1 < 32)
+		{
 			pointer = starfield1;
-		} else if(temp1 < 64){
+		}
+		else if (temp1 < 64)
+		{
 			pointer = starfield2;
-		}else if(temp1 < 96){
+		}
+		else if (temp1 < 96)
+		{
 			pointer = starfield3;
-		}else if(temp1 < 128){
+		}
+		else if (temp1 < 128)
+		{
 			pointer = starfield4;
-		}else if(temp1 < 160){
+		}
+		else if (temp1 < 160)
+		{
 			pointer = starfield5;
-		}else if(temp1 < 192){
+		}
+		else if (temp1 < 192)
+		{
 			pointer = starfield6;
-		}else if(temp1 < 224){
+		}
+		else if (temp1 < 224)
+		{
 			pointer = starfield7;
-		}else {
+		}
+		else
+		{
 			pointer = starfieldearth;
 		}
-		
 
 		row_column_index = 0;
-
 	}
 }
 
-void bank_5_draw_starfield_sprites(void){
-	//move the sprite
+void bank_5_draw_starfield_sprites(void)
+{
+	// move the sprite
 	++spaceship_x;
-	if(shooting_mode == 1){
+	if (shooting_mode == 1)
+	{
 		oam_meta_spr(spaceship_x, spaceship_y, white_shot);
-	} else {
+	}
+	else
+	{
 		oam_meta_spr(spaceship_x, spaceship_y, spaceship);
 	}
 }
@@ -2611,14 +2759,15 @@ void bank_5_starfield_loop(void)
 	ppu_wait_nmi();
 	oam_clear();
 
-	scroll_x+=2;
-	column_pixel_counter+=2;
+	scroll_x += 2;
+	column_pixel_counter += 2;
 	scroll(scroll_x, 0);
 	bank_5_draw_screen_right();
 	bank_5_draw_starfield_sprites();
-	
+
 	read_input();
-	if(trigger_clicked){
+	if (trigger_clicked)
+	{
 		shooting_mode = 1;
 		ppu_mask(0x16); // BG off, won't happen till NEXT frame
 		ppu_wait_nmi(); // wait till the top of the next frame
@@ -2632,14 +2781,13 @@ void bank_5_starfield_loop(void)
 	}
 
 	++moveframes;
-	if(moveframes > 400){
-	 	wait_and_fade_out();
+	if (moveframes > 400)
+	{
+		wait_and_fade_out();
 		banked_call(BANK_2, bank_2_ending_scroll_init);
 		game_mode = MODE_GAME_ENDING;
 	}
-	
 }
-
 
 #pragma endregion
 
@@ -2699,11 +2847,10 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-// banked_call(BANK_4, bank_4_alien_level_init);
+	// banked_call(BANK_4, bank_4_alien_level_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
-		
 
 	while (1)
 	{
@@ -2724,7 +2871,7 @@ void main(void)
 		}
 		if (game_mode == MODE_INTRO_CUTSCENE)
 		{ // city scroll (scrolls down from the sky)
-		  banked_call(BANK_0, bank_0_intro_cutscene_loop);
+			banked_call(BANK_0, bank_0_intro_cutscene_loop);
 		}
 
 		if (game_mode == MODE_INTRO_INSTRUCTION)
@@ -2737,7 +2884,7 @@ void main(void)
 			banked_call(BANK_1, bank_1_evaluation_loop);
 		}
 		if (game_mode == MODE_GAME)
-		{ // this is game pumping mode, 
+		{ // this is game pumping mode,
 			banked_call(BANK_3, bank_3_level_loop);
 		}
 		if (game_mode == MODE_ABDUCTION_CUTSCENE)
@@ -2767,12 +2914,12 @@ void main(void)
 		if (game_mode == MODE_GAME_ENDING)
 		{
 			// todo, just gonna be a scroll.
-			// 
+			//
 			banked_call(BANK_2, bank_2_ending_scroll_loop);
 		}
 		if (game_mode == MODE_GAME_OVER)
 		{
-			//todo brian has better content here eventually
+			// todo brian has better content here eventually
 			banked_call(BANK_5, bank_5_gameover_loop);
 		}
 	}
@@ -2906,16 +3053,16 @@ void typewriter(void)
 	}
 }
 
-void wait_and_fade_out(){
-// wait 10 frames before starting the next section
-		
-		music_stop();
-		for (index = 0; index < 10; ++index)
-		{
-			ppu_wait_nmi();
-		}
-		pal_fade_to(4, 0);
-}
+void wait_and_fade_out()
+{
+	// wait 10 frames before starting the next section
 
+	music_stop();
+	for (index = 0; index < 10; ++index)
+	{
+		ppu_wait_nmi();
+	}
+	pal_fade_to(4, 0);
+}
 
 #pragma endregion

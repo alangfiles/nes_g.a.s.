@@ -19159,10 +19159,10 @@ _ending_scroll_1:
 	.byte	$20
 	.byte	$20
 	.byte	$F3
-	.byte	$3F
+	.byte	$3E
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -19194,7 +19194,7 @@ _ending_scroll_1:
 	.byte	$40
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -19226,7 +19226,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$59
@@ -19258,7 +19258,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -19290,7 +19290,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$79
@@ -19322,7 +19322,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -19354,7 +19354,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$66
@@ -19386,7 +19386,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -19418,7 +19418,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -19450,7 +19450,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$4F
@@ -19482,7 +19482,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -19514,7 +19514,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$74
@@ -19546,7 +19546,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -19578,7 +19578,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$73
@@ -19610,7 +19610,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -19642,7 +19642,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -19674,7 +19674,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$49
@@ -19706,7 +19706,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -19738,7 +19738,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$68
@@ -19770,7 +19770,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -19802,14 +19802,14 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$65
 	.byte	$76
 	.byte	$69
 	.byte	$6C
-	.byte	$3F
+	.byte	$3E
 	.byte	$20
 	.byte	$57
 	.byte	$61
@@ -19834,7 +19834,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -19866,7 +19866,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$61
@@ -19891,14 +19891,14 @@ _ending_scroll_1:
 	.byte	$6C
 	.byte	$61
 	.byte	$6E
-	.byte	$3F
+	.byte	$3E
 	.byte	$21
-	.byte	$3F
+	.byte	$3E
 	.byte	$00
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -19930,7 +19930,7 @@ _ending_scroll_1:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$41
@@ -20027,7 +20027,7 @@ _ending_scroll_1:
 	.byte	$0A
 _ending_scroll_2:
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20059,7 +20059,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20091,7 +20091,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$67
@@ -20123,7 +20123,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20155,7 +20155,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20187,7 +20187,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20196,9 +20196,9 @@ _ending_scroll_2:
 	.byte	$45
 	.byte	$52
 	.byte	$4F
-	.byte	$3F
+	.byte	$3E
 	.byte	$21
-	.byte	$3F
+	.byte	$3E
 	.byte	$20
 	.byte	$56
 	.byte	$49
@@ -20208,9 +20208,9 @@ _ending_scroll_2:
 	.byte	$49
 	.byte	$4E
 	.byte	$20
-	.byte	$3F
+	.byte	$3E
 	.byte	$21
-	.byte	$3F
+	.byte	$3E
 	.byte	$21
 	.byte	$20
 	.byte	$20
@@ -20219,7 +20219,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20251,7 +20251,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20283,7 +20283,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$45
@@ -20293,7 +20293,7 @@ _ending_scroll_2:
 	.byte	$6E
 	.byte	$6F
 	.byte	$6C
-	.byte	$3F
+	.byte	$3E
 	.byte	$20
 	.byte	$44
 	.byte	$69
@@ -20301,7 +20301,7 @@ _ending_scroll_2:
 	.byte	$73
 	.byte	$65
 	.byte	$6C
-	.byte	$3F
+	.byte	$3E
 	.byte	$20
 	.byte	$4C
 	.byte	$65
@@ -20309,13 +20309,13 @@ _ending_scroll_2:
 	.byte	$64
 	.byte	$65
 	.byte	$64
-	.byte	$3F
+	.byte	$3E
 	.byte	$20
 	.byte	$00
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20347,7 +20347,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$49
@@ -20379,7 +20379,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20411,7 +20411,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$45
@@ -20443,7 +20443,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20475,7 +20475,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20507,7 +20507,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20539,7 +20539,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20571,7 +20571,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$59
@@ -20603,7 +20603,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20635,7 +20635,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$74
@@ -20667,7 +20667,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20699,7 +20699,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20731,7 +20731,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20763,7 +20763,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20
@@ -20795,7 +20795,7 @@ _ending_scroll_2:
 	.byte	$CD
 	.byte	$00
 	.byte	$00
-	.byte	$AB
+	.byte	$CD
 	.byte	$00
 	.byte	$00
 	.byte	$20

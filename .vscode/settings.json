@@ -26,7 +26,8 @@
     "ending_scroll_1.h": "c",
     "gasboy.h": "c",
     "futuretalk.h": "c",
-    "intro_cutscene_1x.h": "c"
+    "intro_cutscene_1x.h": "c",
+    "neslib.h": "c"
   },
   "editor.formatOnSave": false
 }

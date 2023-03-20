@@ -2,39 +2,23 @@
  */
 
 /*  Development todo:
- *
- *
- * MINIMAL LIST:
- * [] Add score for goal/speed/accuracy/style (add total?)
- * [] fix tiles for score on alien level
- * [] fix sprites for Al
- * [] Add ending scroll
- * [] Add sound effects
- *   *  Glug Glug
- *   *  Shooting
- *   *  Ding for the perfect pump amount?
- *   *  Good job fanfare
- *   *  Bad job fanfare
- * [x] add music
- *   *  Title Screen
- *   *  Intro Scroll
- *   *  Intro Cutscene
- *   *  Talking Time
- *   *  Earth Gas Pump
- *   *  Evaluation good/bad/medium
- *   *  Abduction Cutscene
- *   *  Alien Talking Time
- *   *  Ending Level
- *   *  Ending Scroll
  * 
  * 
  * POLISH:
  * [] add sprites to pump levels (cars, birds, spaceships)
  * [] add shootables to last level scroll
+ * [] Add score for goal/speed/accuracy/style (add total?)
+ * [] fix sprites for Al (add to init)
+ *  * [] Add sound effects
+ *   *  Glug Glug
+ *   *  Shooting
+ *   *  Ding for the perfect pump amount?
+ *   *  Good job fanfare
+ *   *  Bad job fanfare
  *
  * BUGS:
- * [] Attribute weirdness in main game scroll (fix by offseting scroll)
  * [] Fix planet scrolling attribute tables
+ * [] fix ending scroll bad chars and ?
  * 
  * game flow:
  * title->intro_scroll->intro_cutscene->
@@ -2337,33 +2321,33 @@ void bank_4_alien_level_loop(void)
 	oam_clear();
 
 
-	// if (moveframes < 5)
-	// {
-	// 	oam_meta_spr(124, 130, alien_gas_mouth_0);
-	// } else if (moveframes < 10){
-	// 	oam_meta_spr(124, 130, alien_gas_mouth_1);
-	// } else if (moveframes < 15){
-	// 	oam_meta_spr(124, 130, alien_gas_mouth_2);
-	// } else if (moveframes < 20){
-	// 	oam_meta_spr(124, 130, alien_gas_mouth_3);
-	// } else if (moveframes < 25){
-	// 	oam_meta_spr(124, 130, alien_gas_mouth_4);
-	// } else if (moveframes < 30){
-	// 	oam_meta_spr(124, 130, alien_gas_mouth_5);
-	// } else {
-	// 	oam_meta_spr(124, 130, alien_gas_mouth_0);
-	// }
+	if (moveframes < 5)
+	{
+		oam_meta_spr(124, 130, alien_gas_mouth_0);
+	} else if (moveframes < 10){
+		oam_meta_spr(124, 130, alien_gas_mouth_1);
+	} else if (moveframes < 15){
+		oam_meta_spr(124, 130, alien_gas_mouth_2);
+	} else if (moveframes < 20){
+		oam_meta_spr(124, 130, alien_gas_mouth_3);
+	} else if (moveframes < 25){
+		oam_meta_spr(124, 130, alien_gas_mouth_4);
+	} else if (moveframes < 30){
+		oam_meta_spr(124, 130, alien_gas_mouth_5);
+	} else {
+		oam_meta_spr(124, 130, alien_gas_mouth_0);
+	}
 
-	// if(moveframes > 90){
-	// 	moveframes = 0;
-	// }
+	if(moveframes > 90){
+		moveframes = 0;
+	}
 
 	
-	// if(moveframes < 30){
-	// 	oam_meta_spr(120, 110, alien_eyes_10);
-	// } else {
-	// 	oam_meta_spr(120, 110, alien_eyes_17);
-	// } 
+	if(moveframes < 30){
+		oam_meta_spr(120, 110, alien_eyes_10);
+	} else {
+		oam_meta_spr(120, 110, alien_eyes_17);
+	} 
 
 	//draw_gliboons_count as sprites
 	temp = aliengas1;

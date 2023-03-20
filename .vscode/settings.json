@@ -24,7 +24,9 @@
     "intro_cutscene_1.h": "c",
     "cutscenegun_small_arrow.h": "c",
     "ending_scroll_1.h": "c",
-    "gasboy.h": "c"
+    "gasboy.h": "c",
+    "futuretalk.h": "c",
+    "intro_cutscene_1x.h": "c"
   },
   "editor.formatOnSave": false
 }

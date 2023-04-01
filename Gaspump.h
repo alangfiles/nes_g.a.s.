@@ -52,6 +52,7 @@ unsigned char aliengas1;
 unsigned char temp;
 
 
+unsigned char gas_pump_level_quality;
 unsigned char alien_level;
 unsigned char alien_level_cleared;
 unsigned char alien_level_failed;
@@ -84,6 +85,17 @@ unsigned char game_level;
 unsigned char levels_complete;
 unsigned char perfect_levels;
 unsigned char abduction_cutscene_step;
+
+
+
+enum 
+{
+	AWFUL_PUMP,
+	BAD_PUMP,
+	GOOD_PUMP,
+	PERFECT_PUMP,
+	OVER_PUMP
+};
 
 enum 
 {

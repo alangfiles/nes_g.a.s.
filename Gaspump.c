@@ -6,9 +6,9 @@
  *
  * POLISH:
  * [] add sprites to pump levels (cars, birds, spaceships)
- * [] Add score for goal/speed/accuracy/style (add total?)
- * [] second controller can shoot the whole time?
  * [] add shootables to last level scroll
+ * [] fix Al's face palletes and talking
+ * [] remove skipping the talking time
  * [] Add sound effects
  *   *  Glug Glug
  *   *  Shooting
@@ -17,6 +17,11 @@
  *   *  Good job fanfare
  *   *  Bad job fanfare
  *
+ * Other ideas:
+ * [] Add score for goal/speed/accuracy/style (add total?)
+ * [] second controller can shoot the whole time?
+ * [] give amounts in dollars instead of gallons sometimes?
+ * 
  * BUGS:
  * [] Fix planet scrolling attribute tables
  *
@@ -801,11 +806,25 @@ void bank_1_title_init(void)
 	// todo: add title music
 }
 
-const unsigned char level_0_max[] = "Bit too much, bub.";
-const unsigned char level_0_good[] = "!!! WOW !!!\nYou've got it kid!";
-const unsigned char level_3_preabduction[] = "You're as good as\nI hoped. Wait \noutside. I've gotta\ncall my boss.";
-const unsigned char level_0_ok[] = "Hmmmmm....\nPump harder.";
-const unsigned char level_0_bad[] = "You just don't\nhave what it takes...";
+const unsigned char level_0_awful[] = "Don't click\n\nKeep the flow\n\ngoing...";
+const unsigned char level_0_bad[] = "Don't get distracted\n\nPump'n'Focus";
+const unsigned char level_0_good[] = "Rough around the\n\nedges, but we can\n\nwork together.";
+const unsigned char level_0_perfect[] = "Jumping Gardoks!\n\nThat's perfect!";
+const unsigned char level_0_over[] = "Bit too much\n\nBub.";
+
+const unsigned char level_1_awful[] = "You clicked it...\n\nDidn't you?\nTry Again\n";
+const unsigned char level_1_bad[] = "That's not near\n\nenough gas.\n\nPump Harder.";
+const unsigned char level_1_good[] = "Not perfect...\n\nBut that'll do\n\njust fine.";
+const unsigned char level_1_perfect[] = "WOW!!!\n\nIt wasn't a fluke\nYou've got skill.";
+const unsigned char level_1_over[] = "Pump that much\n\nand it spills out.";
+
+const unsigned char level_2_awful[] = "You clicked it...\n\nDidn't you?\nNot Again\n";
+const unsigned char level_2_bad[] = "Your finger may\n\nhurt, but pump\n\nthrough the pain.";
+const unsigned char level_2_good[] = "You're as good as\nI hoped. Wait \noutside. I've gotta\ncall my boss.";
+const unsigned char level_2_perfect[] = "Bumping Barthoids!\nYou're great!\nMaybe... just maybe...\nWait outside willya?";
+const unsigned char level_2_over[] = "You have no regard\n\nfor the gas you spill...";
+
+
 
 void bank_4_cutscene_init(void); // prototype
 
@@ -863,6 +882,7 @@ void bank_1_evaluation_init(void)
 	multi_vram_buffer_horz(">>>", 3, NTADR_A(21, 6));
 	flush_vram_update2();
 	// accuracy
+	one_vram_buffer(gas4 + 48, NTADR_A(20, 8));
 	one_vram_buffer(gas3 + 48, NTADR_A(21, 8));
 	one_vram_buffer('.', NTADR_A(22, 8));
 	one_vram_buffer(gas2 + 48, NTADR_A(23, 8));
@@ -877,37 +897,99 @@ void bank_1_evaluation_init(void)
 	text_y_start = 18;
 	reset_text_values();
 	//debug gas goals
-	if (gas_pumped > gas_goal_hundreds + 5)
-	{
-		pointer = level_0_max;
-		text_length = sizeof(level_0_max);
+
+	if (gas_pumped >= gas_goal_hundreds - 1 && gas_pumped <= gas_goal_hundreds + 1 ){
+		gas_pump_level_quality = PERFECT_PUMP;
+	} else if(gas_pumped >= gas_goal_hundreds - 5 && gas_pumped <= gas_goal_hundreds + 5 ){
+		gas_pump_level_quality = GOOD_PUMP;
+	} else if(gas_pumped >= gas_goal_hundreds - 100){
+		gas_pump_level_quality = BAD_PUMP;
+	} else if(gas_pumped >= gas_goal_hundreds +5){
+			gas_pump_level_quality = OVER_PUMP;
+	} else {
+		gas_pump_level_quality = AWFUL_PUMP;
 	}
-	else if (gas_pumped >= gas_goal_hundreds - 5)
-	{
-		++levels_complete;
-		pointer = level_0_good;
-		text_length = sizeof(level_0_good);
-		if (levels_complete == 3)
-		{
-			// it's good, go to alien level
-			alien_level = 1;
-			pointer = level_3_preabduction;
-			text_length = sizeof(level_3_preabduction);
+
+	if(levels_complete == 0){
+		switch(gas_pump_level_quality){
+			case PERFECT_PUMP:
+				pointer = level_0_perfect;
+				text_length = sizeof(level_0_perfect);
+				break;
+			case GOOD_PUMP:
+				pointer = level_0_good;
+				text_length = sizeof(level_0_good);
+				break;
+			case BAD_PUMP:
+				pointer = level_0_bad;
+				text_length = sizeof(level_0_bad);
+				break;
+			case OVER_PUMP:
+				pointer = level_0_over;
+				text_length = sizeof(level_0_over);
+				break;
+			case AWFUL_PUMP:
+				pointer = level_0_awful;
+				text_length = sizeof(level_0_awful);
+				break;
+			default:
+				break;
 		}
-		else
-		{
+	}
+
+	if(levels_complete == 1){
+		switch(gas_pump_level_quality){
+			case PERFECT_PUMP:
+				pointer = level_1_perfect;
+				text_length = sizeof(level_1_perfect);
+				break;
+			case GOOD_PUMP:
+				pointer = level_1_good;
+				text_length = sizeof(level_1_good);
+				break;
+			case BAD_PUMP:
+				pointer = level_1_bad;
+				text_length = sizeof(level_1_bad);
+				break;
+			case OVER_PUMP:
+				pointer = level_1_over;
+				text_length = sizeof(level_1_over);
+				break;
+			case AWFUL_PUMP:
+				pointer = level_1_awful;
+				text_length = sizeof(level_1_awful);
+				break;
+			default:
+				break;
 		}
 	}
-	else if (gas_pumped >= gas_goal_hundreds - 100)
-	{
-		pointer = level_0_ok;
-		text_length = sizeof(level_0_ok);
+	if(levels_complete == 2){
+		switch(gas_pump_level_quality){
+			case PERFECT_PUMP:
+				pointer = level_2_perfect;
+				text_length = sizeof(level_2_perfect);
+				break;
+			case GOOD_PUMP:
+				pointer = level_2_good;
+				text_length = sizeof(level_2_good);
+				break;
+			case BAD_PUMP:
+				pointer = level_2_bad;
+				text_length = sizeof(level_2_bad);
+				break;
+			case OVER_PUMP:
+				pointer = level_2_over;
+				text_length = sizeof(level_2_over);
+				break;
+			case AWFUL_PUMP:
+				pointer = level_2_awful;
+				text_length = sizeof(level_2_awful);
+				break;
+			default:
+				break;
+		}
 	}
-	else
-	{
-		pointer = level_0_bad;
-		text_length = sizeof(level_0_bad);
-	}
+
 
 	// base for Al
 	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
@@ -2951,7 +3033,7 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	// banked_call(BANK_4, bank_4_alien_level_init);
+	banked_call(BANK_1, bank_1_instructions_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);

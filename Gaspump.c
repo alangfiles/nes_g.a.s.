@@ -6,18 +6,19 @@
  *
  * POLISH:
  * [] add sprites to pump levels (cars, birds, spaceships)
- * * [] Add score for goal/speed/accuracy/style (add total?)
+ * [] Add score for goal/speed/accuracy/style (add total?)
+ * [] second controller can shoot the whole time?
  * [] add shootables to last level scroll
  * [] Add sound effects
  *   *  Glug Glug
  *   *  Shooting
  *   *  Ding for the perfect pump amount?
+ *   *  bad pump ending
  *   *  Good job fanfare
  *   *  Bad job fanfare
  *
  * BUGS:
  * [] Fix planet scrolling attribute tables
- * [] fix ending scroll bad chars and ?
  *
  * game flow:
  * title->intro_scroll->intro_cutscene->
@@ -572,9 +573,9 @@ void bank_0_intro_cutscene_loop(void)
 
 #include "SPRITES/al.h"
 
-const unsigned char level_0_text[] = "So you wanna pump gas ?!?\nGive me 1 gallons\n Just pull the trigger\nBut don't click it.";
-const unsigned char level_1_text[] = "You're starting to believe\nbut you have much to learn.\n\nNow give me 1 gallons!\nand make it quick!!!";
-const unsigned char level_2_text[] = "I can't deny it...\nYou were born to do this.\nOne last test...\nCan you do 1 gallons?\n\nI'm watching closely...";
+const unsigned char level_0_text[] = "So you wanna pump gas ?!?\nGive me 2 gallons\n Just pull the trigger\nBut don't click it.";
+const unsigned char level_1_text[] = "You're starting to believe\nbut you have much to learn.\n\nNow give me 8 gallons!\nand make it quick!!!";
+const unsigned char level_2_text[] = "I can't deny it...\nYou were born to do this.\nOne last test...\nCan you do 17 gallons?\n\nI'm watching closely...";
 // const unsigned char level_3_text[] = "You've got it. \n I believe in you.\n Only you can save our space people.\n\n Follow me to my galaxy.";
 void bank_4_cutscene_init(void);					// prototype (needed to get call from bank_4)
 void bank_3_draw_level_one_sprites(void); // prototype
@@ -616,17 +617,17 @@ void bank_1_instructions_init(void)
 	case 0:
 		pointer = level_0_text;
 		text_length = sizeof(level_0_text);
-		gas_goal = 1;
+		gas_goal = 2;
 		break;
 	case 1:
 		pointer = level_1_text;
 		text_length = sizeof(level_1_text);
-		gas_goal = 1;
+		gas_goal = 8;
 		break;
 	case 2:
 		pointer = level_2_text;
 		text_length = sizeof(level_2_text);
-		gas_goal = 1;
+		gas_goal = 17;
 		break;
 	default:
 		break;
@@ -834,6 +835,10 @@ void bank_1_evaluation_init(void)
 	}
 
 	gas_pumped = 0;
+	for (index = 0; index < gas4; ++index)
+	{
+		gas_pumped += 1000;
+	}
 	for (index = 0; index < gas3; ++index)
 	{
 		gas_pumped += 100;
@@ -871,6 +876,7 @@ void bank_1_evaluation_init(void)
 	text_x_start = 2;
 	text_y_start = 18;
 	reset_text_values();
+	//debug gas goals
 	if (gas_pumped > gas_goal_hundreds + 5)
 	{
 		pointer = level_0_max;
@@ -1615,6 +1621,7 @@ const unsigned char alien_instruction_text[] = "Welcome to Planet Gardok\nWe mod
 const unsigned char alien_evaluation_text_bad[] = "Well...\nThat's your best?\n\nYou're earth's best?!\nIt's not good enough.\n\nWe're doomed.";
 const unsigned char alien_evaluation_text_good[] = "Perfect pumping!\nI knew you could do it.\n\nI'm fueled up and ready\nto go! Now hop on!!\n\nLet's stop Lord ZARKAQ!";
 #include "SPRITES/gasboy.h"
+#include "SPRITES/spacepump.h"
 
 void bank_5_starfield_init(void); // prototype
 void bank_5_gameover_init(void);	// prototype
@@ -2476,11 +2483,40 @@ void bank_4_alien_number_sprites(void)
 	}
 }
 
+unsigned char spacelevel_sprites[] = {0,1,2};
+unsigned char spacelevel_sprites_x[] = {0, 120, 50};
+unsigned char spacelevel_sprites_y[] = {0, 0, 60};
+
 void bank_4_alien_level_loop(void)
 {
 	++moveframes;
 	ppu_wait_nmi();
 	oam_clear();
+
+	for(index = 0; index < 3; index++){
+		if(index == 0){
+			oam_meta_spr(spacelevel_sprites_x[index], spacelevel_sprites_y[index], tinyship0);
+			spacelevel_sprites_x[index] = spacelevel_sprites_x[index] + 1;
+			spacelevel_sprites_y[index] = spacelevel_sprites_y[index] + 1;
+		}
+		if(index == 1){
+			oam_meta_spr(spacelevel_sprites_x[index], spacelevel_sprites_y[index], asteroidship0);
+			spacelevel_sprites_x[index] = spacelevel_sprites_x[index] - 1;
+			spacelevel_sprites_y[index] = spacelevel_sprites_y[index] + 1;
+		}
+		if(index == 2){
+			if(moveframes%2 == 0){
+				oam_meta_spr(spacelevel_sprites_x[index], spacelevel_sprites_y[index], jellyfish0);
+			} else {
+				oam_meta_spr(spacelevel_sprites_x[index], spacelevel_sprites_y[index], jellyfish1);
+			}
+			
+			spacelevel_sprites_x[index] = spacelevel_sprites_x[index] - 1;
+			spacelevel_sprites_y[index] = spacelevel_sprites_y[index] - 1;
+		}
+		
+	}
+	
 
 	if (moveframes < 5)
 	{

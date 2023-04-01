@@ -185,7 +185,9 @@ enum
 	STARFIELD_CHR_0,
 	STARFIELD_CHR_1,
 	FUTURETALK_CHR_0,
-	FUTURETALK_CHR_1
+	FUTURETALK_CHR_1,
+	GASPUMP_ALT_CHR_0,
+	GASPUMP_ALT_CHR_1,
 };
 
 const unsigned char *pointer;
@@ -208,6 +210,7 @@ unsigned char nametable_selected = 0;
 unsigned char shooting_mode = 0;
 unsigned char spaceship_x = 0;
 unsigned char spaceship_y = 100;
+unsigned char chr_bank=0;
 
 unsigned char lives = 3;
 

@@ -1642,6 +1642,7 @@ void bank_3_adjust_cost(void)
 
 void bank_3_level_loop(void)
 {
+	++moveframes;
 	ppu_wait_nmi(); // wait till beginning of the frame
 	bank_3_draw_level_one_sprites();
 	bank_3_draw_gas();
@@ -1651,6 +1652,21 @@ void bank_3_level_loop(void)
 
 	// is trigger pulled?
 	read_input(); // sets input_active
+
+	if(moveframes > 30){
+
+		if(chr_bank == 0)
+		{
+			set_chr_bank_0(GASPUMP_ALT_CHR_0);
+			chr_bank = 1;
+			
+		} else {
+			set_chr_bank_0(GASPUMP_CHR_0);
+			chr_bank = 0;
+		}
+		moveframes = 0;
+			
+	}
 
 	// multi_vram_buffer_horz("Gas Pumped:", 11, NTADR_A(10,7));
 	// multi_vram_buffer_horz("Cost:", 11, NTADR_A(10,9));

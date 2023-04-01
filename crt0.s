@@ -352,6 +352,10 @@ sounds_data:
 	.incbin "CHRS/starfield.chr"
 	.incbin "CHRS/FutureTalkingtime.chr"	
 	.incbin "CHRS/Gaspump_alt.chr"
+	.incbin "CHRS/Futurepump_alt.chr"
+	.incbin "CHRS/Futurepump_alt_2.chr"
+	
+	
 ; the CHARS segment is much bigger, and I could have 
 ; incbin-ed many more chr files
 	

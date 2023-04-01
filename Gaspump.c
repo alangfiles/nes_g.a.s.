@@ -2590,30 +2590,49 @@ void bank_4_alien_level_loop(void)
 {
 	++moveframes;
 	ppu_wait_nmi();
-	oam_clear();
+	oam_clear();  
 
 	for(index = 0; index < 3; index++){
 		if(index == 0){
 			oam_meta_spr(spacelevel_sprites_x[index], spacelevel_sprites_y[index], tinyship0);
-			spacelevel_sprites_x[index] = spacelevel_sprites_x[index] + 1;
-			spacelevel_sprites_y[index] = spacelevel_sprites_y[index] + 1;
+			spacelevel_sprites_x[index] = spacelevel_sprites_x[index] - 1;
+			spacelevel_sprites_y[index] = spacelevel_sprites_y[index] - 1;
 		}
 		if(index == 1){
 			oam_meta_spr(spacelevel_sprites_x[index], spacelevel_sprites_y[index], asteroidship0);
-			spacelevel_sprites_x[index] = spacelevel_sprites_x[index] - 1;
-			spacelevel_sprites_y[index] = spacelevel_sprites_y[index] + 1;
+			spacelevel_sprites_x[index] = spacelevel_sprites_x[index] + 1;
+			spacelevel_sprites_y[index] = spacelevel_sprites_y[index] - 1;
 		}
 		if(index == 2){
-			if(moveframes%2 == 0){
+			if(moveframes%8 == 0){
 				oam_meta_spr(spacelevel_sprites_x[index], spacelevel_sprites_y[index], jellyfish0);
 			} else {
 				oam_meta_spr(spacelevel_sprites_x[index], spacelevel_sprites_y[index], jellyfish1);
 			}
 			
-			spacelevel_sprites_x[index] = spacelevel_sprites_x[index] - 1;
-			spacelevel_sprites_y[index] = spacelevel_sprites_y[index] - 1;
+			spacelevel_sprites_x[index] = spacelevel_sprites_x[index] + 1;
+			spacelevel_sprites_y[index] = spacelevel_sprites_y[index] + 1;
 		}
 		
+	}
+
+
+	
+	if(moveframes2 > 20){
+
+		if(chr_bank == 0)
+		{
+			set_chr_bank_0(FUTUREPUMP_ALT_CHR_0);
+			chr_bank = 1;
+			
+		} else if(chr_bank==1){
+			set_chr_bank_0(FUTUREPUMP_ALT_2_CHR_0);
+			chr_bank = 2;
+		}else {
+			set_chr_bank_0(FUTUREPUMP_CHR_0);
+			chr_bank = 0;
+		}	
+		moveframes2 = 0;
 	}
 	
 
@@ -2671,10 +2690,11 @@ void bank_4_alien_level_loop(void)
 	banked_call(BANK_4, bank_4_alien_number_sprites);
 	oam_meta_spr(144, 14, pointer);
 
-	read_input(); // sets input_active
+	read_input(); // sets input_active  
 
 	if (trigger_pulled)
 	{
+		++moveframes2;
 		started_pumping = 1; // actually only need to set this once
 
 		// add gas every X frameas
@@ -3050,9 +3070,9 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	banked_call(BANK_1, bank_1_instructions_init);
-	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
-	// banked_call(BANK_4, bank_4_instruction_init);
+	// banked_call(BANK_1, bank_1_instructions_init);
+	alien_level_status = ALIEN_INITIAL_INSTRUCTION;
+	banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 
 	while (1)

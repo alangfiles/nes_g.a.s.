@@ -34,949 +34,511 @@
 		48, 16, 0x7e, 0,
 		56, 16, 0x7f, 0,
 		128};
-		
-// 		const unsigned char altalks_0_data[]={
 
-// 	  0,  0,0x18,0,
-// 	  8,  0,0x19,0,
-// 	 24,  0,0x18,0|OAM_FLIP_H,
-// 	 16,  0,0x19,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xf8,1,
-// 	  8,- 8,0xf9,1,
-// 	 16,- 8,0xfa,1,
-// 	 24,- 8,0xfb,1,
-// 	  8, 24,0x0d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x0e,1,
-// 	 24, 24,0x0f,1,
-// 	  8, 26,0x4a,3,
-// 	 16, 26,0x4b,3,
-// 	  9, 24,0x4c,3,
-// 	128
+		const unsigned char metasprite_0_data[]={
 
-// };
-
-// const unsigned char altalks_1_data[]={
-
-// 	  0,  0,0x18,0,
-// 	  8,  0,0x19,0,
-// 	 24,  0,0x18,0|OAM_FLIP_H,
-// 	 16,  0,0x19,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xf8,1,
-// 	  8,- 8,0xf9,1,
-// 	 16,- 8,0xfa,1,
-// 	 24,- 8,0xfb,1,
-// 	  8, 24,0x1d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x1e,1,
-// 	 24, 24,0x0f,1,
-// 	  8, 26,0x4a,3,
-// 	 16, 26,0x4b,3,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_2_data[]={
-
-// 	  0,  0,0x18,0,
-// 	  8,  0,0x19,0,
-// 	 24,  0,0x18,0|OAM_FLIP_H,
-// 	 16,  0,0x19,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xf8,1,
-// 	  8,- 8,0xf9,1,
-// 	 16,- 8,0xfa,1,
-// 	 24,- 8,0xfb,1,
-// 	  8, 24,0x2d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x2e,1,
-// 	 24, 24,0x0f,1,
-// 	  8, 26,0x4a,3,
-// 	 16, 26,0x4b,3,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_3_data[]={
-
-// 	  0,  0,0x18,0,
-// 	  8,  0,0x19,0,
-// 	 24,  0,0x18,0|OAM_FLIP_H,
-// 	 16,  0,0x19,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xf8,1,
-// 	  8,- 8,0xf9,1,
-// 	 16,- 8,0xfa,1,
-// 	 24,- 8,0xfb,1,
-// 	  8, 24,0x3d,1,
-// 	  0, 24,0x3c,1,
-// 	 24, 24,0x3f,1,
-// 	 16, 24,0x3e,1,
-// 	  8, 26,0x4a,3,
-// 	 16, 26,0x4b,3,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_4_data[]={
-
-// 	  0,  0,0x18,0,
-// 	  8,  0,0x19,0,
-// 	 24,  0,0x18,0|OAM_FLIP_H,
-// 	 16,  0,0x19,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xf8,1,
-// 	  8,- 8,0xf9,1,
-// 	 16,- 8,0xfa,1,
-// 	 24,- 8,0xfb,1,
-// 	  8, 24,0xad,1,
-// 	  0, 24,0xac,1,
-// 	 16, 24,0xae,1,
-// 	 24, 24,0xaf,1,
-// 	 16, 32,0xbe,1,
-// 	  8, 32,0xbd,1,
-// 	 16, 26,0x3b,3,
-// 	  8, 26,0x3a,3,
-// 	  0, 32,0xbc,1,
-// 	 24, 32,0xbf,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_5_data[]={
-
-// 	  0,  0,0x18,0,
-// 	  8,  0,0x19,0,
-// 	 24,  0,0x18,0|OAM_FLIP_H,
-// 	 16,  0,0x19,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xf8,1,
-// 	  8,- 8,0xf9,1,
-// 	 16,- 8,0xfa,1,
-// 	 24,- 8,0xfb,1,
-// 	  8, 24,0x0d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x0e,1,
-// 	 24, 24,0x0f,1,
-// 	 11, 24,0x4c,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_6_data[]={
-
-// 	  0,  0,0x18,0,
-// 	  8,  0,0x19,0,
-// 	 24,  0,0x18,0|OAM_FLIP_H,
-// 	 16,  0,0x19,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xf8,1,
-// 	  8,- 8,0xf9,1,
-// 	 16,- 8,0xfa,1,
-// 	 24,- 8,0xfb,1,
-// 	  8, 24,0x1d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x1e,1,
-// 	 24, 24,0x0f,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_7_data[]={
-
-// 	  0,  0,0x18,0,
-// 	  8,  0,0x19,0,
-// 	 24,  0,0x18,0|OAM_FLIP_H,
-// 	 16,  0,0x19,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xf8,1,
-// 	  8,- 8,0xf9,1,
-// 	 16,- 8,0xfa,1,
-// 	 24,- 8,0xfb,1,
-// 	  8, 24,0x2d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x2e,1,
-// 	 24, 24,0x0f,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_8_data[]={
-
-// 	  0,  0,0x18,0,
-// 	  8,  0,0x19,0,
-// 	 24,  0,0x18,0|OAM_FLIP_H,
-// 	 16,  0,0x19,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xf8,1,
-// 	  8,- 8,0xf9,1,
-// 	 16,- 8,0xfa,1,
-// 	 24,- 8,0xfb,1,
-// 	  8, 24,0x3d,1,
-// 	  0, 24,0x3c,1,
-// 	 16, 24,0x3e,1,
-// 	 24, 24,0x3f,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_9_data[]={
-
-// 	  0,  0,0x18,0,
-// 	  8,  0,0x19,0,
-// 	 24,  0,0x18,0|OAM_FLIP_H,
-// 	 16,  0,0x19,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xf8,1,
-// 	  8,- 8,0xf9,1,
-// 	 16,- 8,0xfa,1,
-// 	 24,- 8,0xfb,1,
-// 	  8, 24,0xad,1,
-// 	  0, 24,0xac,1,
-// 	 16, 24,0xae,1,
-// 	 24, 24,0xaf,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	  8, 32,0xbd,1,
-// 	 16, 32,0xbe,1,
-// 	  0, 32,0xbc,1,
-// 	 24, 32,0xbf,1,
-// 	128
-
-// };
-
-// const unsigned char altalks_10_data[]={
-
-// 	  0,  0,0x18,0,
-// 	  8,  0,0x19,0,
-// 	 24,  0,0x18,0|OAM_FLIP_H,
-// 	 16,  0,0x19,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xf8,1,
-// 	  8,- 8,0xf9,1,
-// 	 16,- 8,0xfa,1,
-// 	 24,- 8,0xfb,1,
-// 	  8, 24,0x0d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x0e,1,
-// 	 24, 24,0x0f,1,
-// 	128
-
-// };
-
-// const unsigned char altalks_11_data[]={
-
-// 	  0,  0,0x08,0,
-// 	  8,  0,0x09,0,
-// 	 24,  0,0x08,0|OAM_FLIP_H,
-// 	 16,  0,0x09,0|OAM_FLIP_H,
-// 	  4,- 2,0x2a,3,
-// 	 20,- 2,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xfc,1,
-// 	  8,- 8,0xfd,1,
-// 	 16,- 8,0xfe,1,
-// 	 24,- 8,0xff,1,
-// 	  8, 24,0x0d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x0e,1,
-// 	 24, 24,0x0f,1,
-// 	  8, 26,0x4a,3,
-// 	 16, 26,0x4b,3,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_12_data[]={
-
-// 	  0,  0,0x08,0,
-// 	  8,  0,0x09,0,
-// 	 24,  0,0x08,0|OAM_FLIP_H,
-// 	 16,  0,0x09,0|OAM_FLIP_H,
-// 	  4,- 2,0x2a,3,
-// 	 20,- 2,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xfc,1,
-// 	  8,- 8,0xfd,1,
-// 	 16,- 8,0xfe,1,
-// 	 24,- 8,0xff,1,
-// 	  8, 24,0x1d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x1e,1,
-// 	 24, 24,0x0f,1,
-// 	  8, 26,0x4a,3,
-// 	 16, 26,0x4b,3,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_13_data[]={
-
-// 	  0,  0,0x08,0,
-// 	  8,  0,0x09,0,
-// 	 24,  0,0x08,0|OAM_FLIP_H,
-// 	 16,  0,0x09,0|OAM_FLIP_H,
-// 	  4,- 2,0x2a,3,
-// 	 20,- 2,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xfc,1,
-// 	  8,- 8,0xfd,1,
-// 	 16,- 8,0xfe,1,
-// 	 24,- 8,0xff,1,
-// 	  8, 24,0x2d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x2e,1,
-// 	 24, 24,0x0f,1,
-// 	  8, 26,0x4a,3,
-// 	 16, 26,0x4b,3,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_14_data[]={
-
-// 	 16, 24,0x3e,1,
-// 	  0,  0,0x08,0,
-// 	  8,  0,0x09,0,
-// 	 24,  0,0x08,0|OAM_FLIP_H,
-// 	 16,  0,0x09,0|OAM_FLIP_H,
-// 	  4,- 2,0x2a,3,
-// 	 20,- 2,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xfc,1,
-// 	  8,- 8,0xfd,1,
-// 	 16,- 8,0xfe,1,
-// 	 24,- 8,0xff,1,
-// 	  8, 24,0x3d,1,
-// 	  0, 24,0x3c,1,
-// 	 24, 24,0x3f,1,
-// 	  8, 26,0x4a,3,
-// 	 16, 26,0x4b,3,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_15_data[]={
-
-// 	 16, 24,0xae,1,
-// 	  0,  0,0x08,0,
-// 	  8,  0,0x09,0,
-// 	 24,  0,0x08,0|OAM_FLIP_H,
-// 	 16,  0,0x09,0|OAM_FLIP_H,
-// 	  4,- 2,0x2a,3,
-// 	 20,- 2,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xfc,1,
-// 	  8,- 8,0xfd,1,
-// 	 16,- 8,0xfe,1,
-// 	  8, 24,0xad,1,
-// 	 24,- 8,0xff,1,
-// 	  0, 24,0xac,1,
-// 	 24, 24,0xaf,1,
-// 	 16, 32,0xbe,1,
-// 	  8, 32,0xbd,1,
-// 	 16, 26,0x3b,3,
-// 	 17, 24,0x4d,3,
-// 	  8, 26,0x3a,3,
-// 	 24, 32,0xbf,1,
-// 	  0, 32,0xbc,1,
-// 	  9, 24,0x4c,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_16_data[]={
-
-// 	  0,  0,0x08,0,
-// 	  8,  0,0x09,0,
-// 	 24,  0,0x08,0|OAM_FLIP_H,
-// 	 16,  0,0x09,0|OAM_FLIP_H,
-// 	  4,- 2,0x2a,3,
-// 	 20,- 2,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xfc,1,
-// 	  8,- 8,0xfd,1,
-// 	 16,- 8,0xfe,1,
-// 	 24,- 8,0xff,1,
-// 	  8, 24,0x0d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x0e,1,
-// 	 24, 24,0x0f,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_17_data[]={
-
-// 	  0,  0,0x08,0,
-// 	  8,  0,0x09,0,
-// 	 24,  0,0x08,0|OAM_FLIP_H,
-// 	 16,  0,0x09,0|OAM_FLIP_H,
-// 	  4,- 2,0x2a,3,
-// 	 20,- 2,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xfc,1,
-// 	  8,- 8,0xfd,1,
-// 	 16,- 8,0xfe,1,
-// 	 24,- 8,0xff,1,
-// 	  8, 24,0x1d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x1e,1,
-// 	 24, 24,0x0f,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_18_data[]={
-
-// 	  0,  0,0x08,0,
-// 	  8,  0,0x09,0,
-// 	 24,  0,0x08,0|OAM_FLIP_H,
-// 	 16,  0,0x09,0|OAM_FLIP_H,
-// 	  4,- 2,0x2a,3,
-// 	 20,- 2,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xfc,1,
-// 	  8,- 8,0xfd,1,
-// 	 16,- 8,0xfe,1,
-// 	 24,- 8,0xff,1,
-// 	  8, 24,0x2d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x2e,1,
-// 	 24, 24,0x0f,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_19_data[]={
-
-// 	  0,  0,0x08,0,
-// 	  8,  0,0x09,0,
-// 	 24,  0,0x08,0|OAM_FLIP_H,
-// 	 16,  0,0x09,0|OAM_FLIP_H,
-// 	  4,- 2,0x2a,3,
-// 	 20,- 2,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xfc,1,
-// 	  8,- 8,0xfd,1,
-// 	 16,- 8,0xfe,1,
-// 	 24,- 8,0xff,1,
-// 	  8, 24,0x3d,1,
-// 	  0, 24,0x3c,1,
-// 	 16, 24,0x3e,1,
-// 	 24, 24,0x3f,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_20_data[]={
-
-// 	  0,  0,0x08,0,
-// 	  8,  0,0x09,0,
-// 	 24,  0,0x08,0|OAM_FLIP_H,
-// 	 16,  0,0x09,0|OAM_FLIP_H,
-// 	  4,- 2,0x2a,3,
-// 	 20,- 2,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xfc,1,
-// 	  8,- 8,0xfd,1,
-// 	 16,- 8,0xfe,1,
-// 	 24,- 8,0xff,1,
-// 	  8, 24,0xad,1,
-// 	  0, 24,0xac,1,
-// 	 16, 24,0xae,1,
-// 	 24, 24,0xaf,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	  8, 32,0xbd,1,
-// 	 16, 32,0xbe,1,
-// 	 24, 32,0xbf,1,
-// 	  0, 32,0xbc,1,
-// 	128
-
-// };
-
-// const unsigned char altalks_21_data[]={
-
-// 	  0,  0,0x08,0,
-// 	  8,  0,0x09,0,
-// 	 24,  0,0x08,0|OAM_FLIP_H,
-// 	 16,  0,0x09,0|OAM_FLIP_H,
-// 	  4,- 2,0x2a,3,
-// 	 20,- 2,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xfc,1,
-// 	  8,- 8,0xfd,1,
-// 	 16,- 8,0xfe,1,
-// 	 24,- 8,0xff,1,
-// 	  8, 24,0x0d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x0e,1,
-// 	 24, 24,0x0f,1,
-// 	128
-
-// };
-
-// const unsigned char altalks_22_data[]={
-
-// 	  0,  0,0x28,0,
-// 	  8,  0,0x29,0,
-// 	 24,  0,0x28,0|OAM_FLIP_H,
-// 	 16,  0,0x29,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xec,1,
-// 	  8,- 8,0xed,1,
-// 	 16,- 8,0xee,1,
-// 	 24,- 8,0xef,1,
-// 	  8, 24,0x2d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x2e,1,
-// 	 24, 24,0x0f,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_23_data[]={
-
-// 	  0,  0,0x38,0,
-// 	  8,  0,0x39,0,
-// 	 24,  0,0x38,0|OAM_FLIP_H,
-// 	 16,  0,0x39,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xec,1,
-// 	  8,- 8,0xed,1,
-// 	 16,- 8,0xee,1,
-// 	 24,- 8,0xef,1,
-// 	  8, 24,0x2d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x2e,1,
-// 	 24, 24,0x0f,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_24_data[]={
-
-// 	  0,  0,0x48,0,
-// 	  8,  0,0x49,0,
-// 	 24,  0,0x48,0|OAM_FLIP_H,
-// 	 16,  0,0x49,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xec,1,
-// 	  8,- 8,0xed,1,
-// 	 16,- 8,0xee,1,
-// 	 24,- 8,0xef,1,
-// 	  8, 24,0x2d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x2e,1,
-// 	 24, 24,0x0f,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_25_data[]={
-
-// 	  0,  0,0x0a,0,
-// 	  8,  0,0x0b,0,
-// 	 24,  0,0x0a,0|OAM_FLIP_H,
-// 	 16,  0,0x0b,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xec,1,
-// 	  8,- 8,0xed,1,
-// 	 16,- 8,0xee,1,
-// 	 24,- 8,0xef,1,
-// 	  8, 24,0x2d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x2e,1,
-// 	 24, 24,0x0f,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_26_data[]={
-
-// 	  0,  0,0x1a,0,
-// 	  8,  0,0x1b,0,
-// 	 24,  0,0x1a,0|OAM_FLIP_H,
-// 	 16,  0,0x1b,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xec,1,
-// 	  8,- 8,0xed,1,
-// 	 16,- 8,0xee,1,
-// 	 24,- 8,0xef,1,
-// 	  8, 24,0x2d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x2e,1,
-// 	 24, 24,0x0f,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_27_data[]={
-
-// 	  0,  0,0x1a,0,
-// 	  8,  0,0x1b,0,
-// 	 24,  0,0x1a,0|OAM_FLIP_H,
-// 	 16,  0,0x1b,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xec,1,
-// 	  8,- 8,0xed,1,
-// 	 16,- 8,0xee,1,
-// 	 24,- 8,0xef,1,
-// 	  8, 24,0x3d,1,
-// 	  0, 24,0x3c,1,
-// 	 16, 24,0x3e,1,
-// 	 24, 24,0x3f,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_28_data[]={
-
-// 	  0,  0,0x1a,0,
-// 	  8,  0,0x1b,0,
-// 	 24,  0,0x1a,0|OAM_FLIP_H,
-// 	 16,  0,0x1b,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x2a,3|OAM_FLIP_H,
-// 	  0,- 8,0xec,1,
-// 	  8,- 8,0xed,1,
-// 	 16,- 8,0xee,1,
-// 	 24,- 8,0xef,1,
-// 	  8, 24,0x1d,1,
-// 	  0, 24,0x1c,1,
-// 	 16, 24,0x1e,1,
-// 	 24, 24,0x1f,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-// const unsigned char altalks_29_data[]={
-
-// 	  0,  0,0x1a,0,
-// 	  8,  0,0x1b,0,
-// 	 24,  0,0x1a,0|OAM_FLIP_H,
-// 	 16,  0,0x1b,0|OAM_FLIP_H,
-// 	  4,  0,0x2a,3,
-// 	 20,  0,0x0d,3|OAM_FLIP_H,
-// 	  0,- 8,0xec,1,
-// 	  8,- 8,0xed,1,
-// 	 16,- 8,0xee,1,
-// 	 24,- 8,0xef,1,
-// 	  8, 24,0x0d,1,
-// 	  0, 24,0x0c,1,
-// 	 16, 24,0x0e,1,
-// 	 24, 24,0x0f,1,
-// 	  9, 24,0x4c,3,
-// 	 17, 24,0x4d,3,
-// 	128
-
-// };
-
-const unsigned char altalks_30_data[]={
-
-	  0,  0,0x28,0,
-	  8,  0,0x29,0,
-	 24,  0,0x28,0|OAM_FLIP_H,
-	 16,  0,0x29,0|OAM_FLIP_H,
-	  4,  0,0x2a,3,
-	 20,  0,0x2a,3|OAM_FLIP_H,
-	  0,- 8,0xec,1,
-	  8,- 8,0xed,1,
-	 16,- 8,0xee,1,
-	 24,- 8,0xef,1,
-	  8, 24,0x0d,1,
-	  0, 24,0x0c,1,
-	 16, 24,0x0e,1,
-	 24, 24,0x0f,1,
-	  8, 26,0x4a,3,
-	 16, 26,0x4b,3,
-	  9, 24,0x4c,3,
-	128
+ 0,  0,0xe8,1,
+ 8,  0,0xe9,1,
+16,  0,0xe9,1|OAM_FLIP_H,
+24,  0,0xe8,1|OAM_FLIP_H,
+128
 
 };
 
-const unsigned char altalks_31_data[]={
+const unsigned char metasprite_1_data[]={
 
-	  0,  0,0x28,0,
-	  8,  0,0x29,0,
-	 24,  0,0x28,0|OAM_FLIP_H,
-	 16,  0,0x29,0|OAM_FLIP_H,
-	  4,  0,0x2a,3,
-	 20,  0,0x2a,3|OAM_FLIP_H,
-	  0,- 8,0xec,1,
-	  8,- 8,0xed,1,
-	 16,- 8,0xee,1,
-	 24,- 8,0xef,1,
-	  8, 24,0x1d,1,
-	  0, 24,0x0c,1,
-	 16, 24,0x1e,1,
-	 24, 24,0x0f,1,
-	  8, 26,0x4a,3,
-	 16, 26,0x4b,3,
-	  9, 24,0x4c,3,
-	 17, 24,0x4d,3,
-	128
+ 0,  0,0xe8,1,
+ 8,  0,0xe9,1,
+16,  0,0xea,1,
+24,  0,0xeb,1,
+128
 
 };
 
-const unsigned char altalks_32_data[]={
+const unsigned char metasprite_2_data[]={
 
-	  0,  0,0x28,0,
-	  8,  0,0x29,0,
-	 24,  0,0x28,0|OAM_FLIP_H,
-	 16,  0,0x29,0|OAM_FLIP_H,
-	  4,  0,0x2a,3,
-	 20,  0,0x2a,3|OAM_FLIP_H,
-	  0,- 8,0xec,1,
-	  8,- 8,0xed,1,
-	 16,- 8,0xee,1,
-	 24,- 8,0xef,1,
-	  8, 24,0x2d,1,
-	  0, 24,0x0c,1,
-	 16, 24,0x2e,1,
-	 24, 24,0x0f,1,
-	  8, 26,0x4a,3,
-	 16, 26,0x4b,3,
-	  9, 24,0x4c,3,
-	128
+24,  0,0xe8,1|OAM_FLIP_H,
+16,  0,0xe9,1|OAM_FLIP_H,
+ 8,  0,0xea,1|OAM_FLIP_H,
+ 0,  0,0xeb,1|OAM_FLIP_H,
+128
 
 };
 
-const unsigned char altalks_33_data[]={
+const unsigned char metasprite_3_data[]={
 
-	 16, 24,0x3e,1,
-	  0,  0,0x28,0,
-	  8,  0,0x29,0,
-	 24,  0,0x28,0|OAM_FLIP_H,
-	 16,  0,0x29,0|OAM_FLIP_H,
-	  4,  0,0x2a,3,
-	 20,  0,0x2a,3|OAM_FLIP_H,
-	  0,- 8,0xec,1,
-	  8,- 8,0xed,1,
-	 16,- 8,0xee,1,
-	 24,- 8,0xef,1,
-	  8, 24,0x3d,1,
-	  0, 24,0x3c,1,
-	 24, 24,0x3f,1,
-	  8, 26,0x4a,3,
-	 16, 26,0x4b,3,
-	  9, 24,0x4c,3,
-	 17, 24,0x4d,3,
-	128
+16,  0,0xea,1,
+24,  0,0xeb,1,
+ 8,  0,0xea,1|OAM_FLIP_H,
+ 0,  0,0xeb,1|OAM_FLIP_H,
+128
 
 };
 
-const unsigned char altalks_34_data[]={
+const unsigned char metasprite_4_data[]={
 
-	  0,  0,0x28,0,
-	  8,  0,0x29,0,
-	  8, 24,0xad,1,
-	 24,  0,0x28,0|OAM_FLIP_H,
-	 16,  0,0x29,0|OAM_FLIP_H,
-	  4,  0,0x2a,3,
-	 20,  0,0x2a,3|OAM_FLIP_H,
-	  0,- 8,0xec,1,
-	  8,- 8,0xed,1,
-	 16,- 8,0xee,1,
-	 24,- 8,0xef,1,
-	  0, 24,0xac,1,
-	 24, 24,0xaf,1,
-	  8, 32,0xbd,1,
-	 16, 32,0xbe,1,
-	 16, 24,0xae,1,
-	  8, 26,0x3a,3,
-	 16, 26,0x3b,3,
-	  9, 26,0x4c,3,
-	 24, 32,0xbf,1,
-	  0, 32,0xbc,1,
-	 17, 26,0x4d,3,
-	128
+ 0,  0,0xf8,1,
+ 8,  0,0xf9,1,
+16,  0,0xfa,1,
+24,  0,0xfb,1,
+128
 
 };
 
-const unsigned char altalks_35_data[]={
+const unsigned char metasprite_5_data[]={
 
-	  0,  0,0x28,0,
-	  8,  0,0x29,0,
-	 24,  0,0x28,0|OAM_FLIP_H,
-	 16,  0,0x29,0|OAM_FLIP_H,
-	  4,  0,0x2a,3,
-	 20,  0,0x2a,3|OAM_FLIP_H,
-	  0,- 8,0xec,1,
-	  8,- 8,0xed,1,
-	 16,- 8,0xee,1,
-	 24,- 8,0xef,1,
-	  8, 24,0x0d,1,
-	  0, 24,0x0c,1,
-	 16, 24,0x0e,1,
-	 24, 24,0x0f,1,
-	  9, 24,0x4c,3,
-	 17, 24,0x4d,3,
-	128
+ 0,  0,0xf8,1,
+ 8,  0,0xf9,1,
+16,  0,0xea,1,
+24,  0,0xeb,1,
+128
 
 };
 
-const unsigned char altalks_36_data[]={
+const unsigned char metasprite_6_data[]={
 
-	  0,  0,0x28,0,
-	  8,  0,0x29,0,
-	 24,  0,0x28,0|OAM_FLIP_H,
-	 16,  0,0x29,0|OAM_FLIP_H,
-	  4,  0,0x2a,3,
-	 20,  0,0x2a,3|OAM_FLIP_H,
-	  0,- 8,0xec,1,
-	  8,- 8,0xed,1,
-	 16,- 8,0xee,1,
-	 24,- 8,0xef,1,
-	  8, 24,0x1d,1,
-	  0, 24,0x0c,1,
-	 16, 24,0x1e,1,
-	 24, 24,0x0f,1,
-	  9, 24,0x4c,3,
-	 17, 24,0x4d,3,
-	128
+ 0,  0,0xeb,1|OAM_FLIP_H,
+ 8,  0,0xea,1|OAM_FLIP_H,
+16,  0,0xfa,1,
+24,  0,0xfb,1,
+128
 
 };
 
-const unsigned char altalks_37_data[]={
+const unsigned char metasprite_7_data[]={
 
-	  0,  0,0x28,0,
-	  8,  0,0x29,0,
-	 24,  0,0x28,0|OAM_FLIP_H,
-	 16,  0,0x29,0|OAM_FLIP_H,
-	  4,  0,0x2a,3,
-	 20,  0,0x2a,3|OAM_FLIP_H,
-	  0,- 8,0xec,1,
-	  8,- 8,0xed,1,
-	 16,- 8,0xee,1,
-	 24,- 8,0xef,1,
-	  8, 24,0x2d,1,
-	  0, 24,0x0c,1,
-	 16, 24,0x2e,1,
-	 24, 24,0x0f,1,
-	  9, 24,0x4c,3,
-	128
+ 0,  0,0xe8,1,
+ 8,  0,0xe9,1,
+16,  0,0xfa,1,
+24,  0,0xfb,1,
+128
 
 };
 
-const unsigned char altalks_38_data[]={
+const unsigned char metasprite_8_data[]={
 
-	 16, 24,0x3e,1,
-	  0,  0,0x28,0,
-	  8,  0,0x29,0,
-	 24,  0,0x28,0|OAM_FLIP_H,
-	 16,  0,0x29,0|OAM_FLIP_H,
-	  4,  0,0x2a,3,
-	 20,  0,0x2a,3|OAM_FLIP_H,
-	  0,- 8,0xec,1,
-	  8,- 8,0xed,1,
-	 16,- 8,0xee,1,
-	 24,- 8,0xef,1,
-	  8, 24,0x3d,1,
-	  0, 24,0x3c,1,
-	 24, 24,0x3f,1,
-	  9, 24,0x4c,3,
-	 17, 24,0x4d,3,
-	128
+ 0,  0,0xf8,1,
+ 8,  0,0xf9,1,
+16,  0,0xe9,1|OAM_FLIP_H,
+24,  0,0xe8,1|OAM_FLIP_H,
+128
 
 };
 
-const unsigned char altalks_39_data[]={
+const unsigned char metasprite_9_data[]={
 
-	  0,  0,0x28,0,
-	  8,  0,0x29,0,
-	  8, 24,0xad,1,
-	 24,  0,0x28,0|OAM_FLIP_H,
-	 16,  0,0x29,0|OAM_FLIP_H,
-	  4,  0,0x2a,3,
-	 20,  0,0x2a,3|OAM_FLIP_H,
-	  0,- 8,0xec,1,
-	  8,- 8,0xed,1,
-	 16,- 8,0xee,1,
-	 24,- 8,0xef,1,
-	  0, 24,0xac,1,
-	 24, 24,0xaf,1,
-	  8, 32,0xbd,1,
-	 16, 32,0xbe,1,
-	 16, 24,0xae,1,
-	  9, 24,0x4c,3,
-	 24, 32,0xbf,1,
-	  0, 32,0xbc,1,
-	 17, 24,0x4d,3,
-	128
+16,  0,0xee,1,
+24,  0,0xef,1,
+ 8,  0,0xee,1|OAM_FLIP_H,
+ 0,  0,0xef,1|OAM_FLIP_H,
+128
 
 };
 
-const unsigned char altalks_40_data[]={
+const unsigned char metasprite_10_data[]={
 
-	  0,  0,0x28,0,
-	  8,  0,0x29,0,
-	 24,  0,0x28,0|OAM_FLIP_H,
-	 16,  0,0x29,0|OAM_FLIP_H,
-	  4,  0,0x2a,3,
-	 20,  0,0x2a,3|OAM_FLIP_H,
-	  0,- 8,0xec,1,
-	  8,- 8,0xed,1,
-	 16,- 8,0xee,1,
-	 24,- 8,0xef,1,
-	  8, 24,0x0d,1,
-	  0, 24,0x0c,1,
-	 16, 24,0x0e,1,
-	 24, 24,0x0f,1,
-	128
+16,  0,0xee,1,
+24,  0,0xef,1,
+ 8,  0,0xed,1,
+ 0,  0,0xec,1,
+128
+
+};
+
+const unsigned char metasprite_11_data[]={
+
+16,  0,0xed,1|OAM_FLIP_H,
+24,  0,0xec,1|OAM_FLIP_H,
+ 8,  0,0xee,1|OAM_FLIP_H,
+ 0,  0,0xef,1|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_12_data[]={
+
+ 0,  0,0xec,1,
+ 8,  0,0xed,1,
+16,  0,0xed,1|OAM_FLIP_H,
+24,  0,0xec,1|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_13_data[]={
+
+ 0,  0,0xfc,1,
+ 8,  0,0xfd,1,
+24,  0,0xfc,1|OAM_FLIP_H,
+16,  0,0xfd,1|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_14_data[]={
+
+ 0,  0,0xfc,1,
+ 8,  0,0xfd,1,
+24,  0,0xff,1,
+16,  0,0xfe,1,
+128
+
+};
+
+const unsigned char metasprite_15_data[]={
+
+ 0,  0,0xff,1|OAM_FLIP_H,
+ 8,  0,0xfe,1|OAM_FLIP_H,
+24,  0,0xfc,1|OAM_FLIP_H,
+16,  0,0xfd,1|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_16_data[]={
+
+ 0,  0,0xff,1|OAM_FLIP_H,
+ 8,  0,0xfe,1|OAM_FLIP_H,
+24,  0,0xff,1,
+16,  0,0xfe,1,
+128
+
+};
+
+const unsigned char metasprite_17_data[]={
+
+ 0,  0,0x18,0,
+ 8,  0,0x19,0,
+16,  0,0x19,0|OAM_FLIP_H,
+24,  0,0x18,0|OAM_FLIP_H,
+ 4,  0,0x2a,3,
+20,  0,0x2a,3|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_18_data[]={
+
+ 0,  0,0x18,0,
+ 8,  0,0x19,0,
+16,  0,0x29,0|OAM_FLIP_H,
+24,  0,0x28,0|OAM_FLIP_H,
+ 4,  0,0x2a,3,
+20,  0,0x2a,3|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_19_data[]={
+
+ 0,  0,0x28,0,
+ 8,  0,0x29,0,
+16,  0,0x19,0|OAM_FLIP_H,
+24,  0,0x18,0|OAM_FLIP_H,
+ 4,  0,0x2a,3,
+20,  0,0x2a,3|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_20_data[]={
+
+ 0,  0,0x4e,0,
+ 8,  0,0x4f,0,
+16,  0,0x4f,0|OAM_FLIP_H,
+24,  0,0x4e,0|OAM_FLIP_H,
+ 4,  0,0x2a,3,
+20,  0,0x2a,3|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_21_data[]={
+
+ 0,  0,0x4e,0,
+ 8,  0,0x4f,0,
+16,  0,0x09,0|OAM_FLIP_H,
+24,  0,0x08,0|OAM_FLIP_H,
+ 4,  0,0x2a,3,
+20,- 2,0x2a,3|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_22_data[]={
+
+24,  0,0x4e,0|OAM_FLIP_H,
+16,  0,0x4f,0|OAM_FLIP_H,
+ 8,  0,0x09,0,
+ 0,  0,0x08,0,
+20,  0,0x2a,3|OAM_FLIP_H,
+ 4,- 2,0x2a,3,
+128
+
+};
+
+const unsigned char metasprite_23_data[]={
+
+ 0,  0,0x08,0,
+ 8,  0,0x09,0,
+16,  0,0x08,0,
+24,  0,0x09,0,
+ 4,- 2,0x2a,3,
+20,- 2,0x2a,3|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_24_data[]={
+
+ 0,  0,0x18,0,
+ 8,  0,0x19,0,
+16,  0,0x08,0,
+24,  0,0x09,0,
+ 4,  0,0x2a,3,
+20,- 2,0x2a,3|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_25_data[]={
+
+ 0,  0,0x28,0,
+ 8,  0,0x29,0,
+16,  0,0x29,0|OAM_FLIP_H,
+24,  0,0x28,0|OAM_FLIP_H,
+ 4,  0,0x2a,3,
+20,  0,0x2a,3|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_26_data[]={
+
+ 0,  0,0x38,0,
+ 8,  0,0x39,0,
+16,  0,0x39,0|OAM_FLIP_H,
+24,  0,0x38,0|OAM_FLIP_H,
+ 4,  0,0x2a,3,
+20,  0,0x2a,3|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_27_data[]={
+
+ 0,  0,0x48,0,
+ 8,  0,0x49,0,
+16,  0,0x49,0|OAM_FLIP_H,
+24,  0,0x48,0|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_28_data[]={
+
+ 0,  0,0x0a,0,
+ 8,  0,0x0b,0,
+16,  0,0x0b,0|OAM_FLIP_H,
+24,  0,0x0a,0|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_29_data[]={
+
+ 0,  0,0x1a,0,
+ 8,  0,0x1b,0,
+16,  0,0x1b,0|OAM_FLIP_H,
+24,  0,0x1a,0|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char metasprite_30_data[]={
+
+ 0,  0,0x0c,1,
+ 8,  0,0x0d,1,
+16,  0,0x0e,1,
+24,  0,0x0f,1,
+128
+
+};
+
+const unsigned char metasprite_31_data[]={
+
+ 0,  0,0x1c,1,
+ 8,  0,0x1d,1,
+16,  0,0x1e,1,
+24,  0,0x1f,1,
+128
+
+};
+
+const unsigned char metasprite_32_data[]={
+
+ 0,  0,0x2c,1,
+ 8,  0,0x2d,1,
+16,  0,0x2e,1,
+24,  0,0x2f,1,
+128
+
+};
+
+const unsigned char metasprite_33_data[]={
+
+ 0,  0,0x3c,1,
+ 8,  0,0x3d,1,
+16,  0,0x3e,1,
+24,  0,0x3f,1,
+128
+
+};
+
+const unsigned char metasprite_34_data[]={
+
+ 0,  0,0xac,1,
+ 8,  0,0xad,1,
+16,  0,0xae,1,
+24,  0,0xaf,1,
+ 0,  8,0xbc,1,
+ 8,  8,0xbd,1,
+16,  8,0xbe,1,
+24,  8,0xbf,1,
+128
+
+};
+
+const unsigned char metasprite_35_data[]={
+
+ 0,  0,0x0c,1,
+ 8,  0,0x0d,1,
+16,  0,0x0e,1,
+24,  0,0x0f,2,
+13,  0,0x4b,3|OAM_FLIP_V,
+128
+
+};
+
+const unsigned char metasprite_36_data[]={
+
+ 0,  0,0x1c,2,
+ 8,  0,0x1d,2,
+16,  0,0x1e,2,
+24,  0,0x1f,2,
+ 8,  0,0x4a,3,
+15,  3,0x4b,3,
+128
+
+};
+
+const unsigned char metasprite_37_data[]={
+
+ 0,  0,0x2c,1,
+ 8,  0,0x2d,1,
+16,  0,0x2e,1,
+24,  0,0x2f,1,
+ 8,  0,0x4a,3,
+16,  0,0x4b,3,
+128
+
+};
+
+const unsigned char metasprite_38_data[]={
+
+ 0,  0,0x3c,1,
+ 8,  0,0x3d,1,
+16,  0,0x3e,1,
+24,  0,0x3f,1,
+16,  2,0x4b,3,
+ 8,  2,0x4a,3,
+128
+
+};
+
+const unsigned char metasprite_39_data[]={
+
+ 0,  0,0xac,1,
+ 8,  0,0xad,1,
+16,  0,0xae,1,
+24,  0,0xaf,1,
+ 0,  8,0xbc,1,
+ 8,  8,0xbd,1,
+16,  8,0xbe,1,
+24,  8,0xbf,1,
+ 8,  2,0x3a,3,
+16,  2,0x3b,3,
+128
+
+};
+
+const unsigned char metasprite_40_data[]={
+
+ 0,  0,0x0c,1,
+ 8,  0,0x0d,1,
+16,  0,0x0e,1,
+24,  0,0x0f,2,
+13,  0,0x4b,3|OAM_FLIP_V,
+11,  0,0x4c,3,
+128
+
+};
+
+const unsigned char metasprite_41_data[]={
+
+ 0,  0,0x1c,2,
+ 8,  0,0x1d,2,
+16,  0,0x1e,2,
+24,  0,0x1f,2,
+ 8,  0,0x4a,3,
+15,  3,0x4b,3,
+ 8,  0,0x4c,3,
+16,  0,0x4d,3,
+128
+
+};
+
+const unsigned char metasprite_42_data[]={
+
+ 0,  0,0x2c,1,
+ 8,  0,0x2d,1,
+16,  0,0x2e,1,
+24,  0,0x2f,1,
+ 8,  0,0x4a,3,
+16,  0,0x4b,3,
+128
+
+};
+
+const unsigned char metasprite_43_data[]={
+
+ 0,  0,0x3c,1,
+ 8,  0,0x3d,1,
+16,  0,0x3e,1,
+24,  0,0x3f,1,
+16,  2,0x4b,3,
+ 8,  2,0x4a,3,
+ 9,  0,0x4c,3,
+17,  0,0x4d,3,
+128
+
+};
+
+const unsigned char metasprite_44_data[]={
+
+ 0,  0,0xac,1,
+ 8,  0,0xad,1,
+16,  0,0xae,1,
+24,  0,0xaf,1,
+ 0,  8,0xbc,1,
+ 8,  8,0xbd,1,
+16,  8,0xbe,1,
+24,  8,0xbf,1,
+ 8,  2,0x3a,3,
+16,  2,0x3b,3,
+ 9,  2,0x4c,3,
+16,  2,0x4d,3,
+128
 
 };
 

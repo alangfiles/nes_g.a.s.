@@ -9,13 +9,13 @@
  * [] add shootables to last level scroll
  * [] fix Al's face palletes and talking
  * [] remove skipping the talking time
- * [] Add sound effects
- *   *  Glug Glug
- *   *  Shooting
- *   *  Ding for the perfect pump amount?
- *   *  bad pump ending
- *   *  Good job fanfare
- *   *  Bad job fanfare
+	* [] Add sound effects
+	*   *  Glug Glug
+	*   *  Shooting
+	*   *  Ding for the perfect pump amount?
+	*   *  bad pump ending
+	*   *  Good job fanfare
+	*   *  Bad job fanfare
  *
  * Other ideas:
  * [] Add score for goal/speed/accuracy/style (add total?)
@@ -100,7 +100,7 @@ const unsigned char gaspump_sprite_palette[] = {
 		0x0f, 0x20, 0x16, 0x36,
 		0x0f, 0x05, 0x2c, 0x36,
 		0x0f, 0x2c, 0x21, 0x11,
-		0x0f, 0x09, 0x19, 0x29};
+		0x0f,0x05,0x1a,0x38 };
 
 const unsigned char abduction_palette[16] = {0x0f, 0x16, 0x3d, 0x30, 0x0f, 0x10, 0x21, 0x00, 0x0f, 0x05, 0x00, 0x38, 0x0f, 0x24, 0x0c, 0x2a};
 
@@ -1274,24 +1274,14 @@ void bank_2_ending_scroll_loop(void)
 const unsigned char GasShoulder[] = {
 		0, 0, 0x80, 1,
 		8, 0, 0x81, 1,
-		16, 0, 0x82, 1,
-		24, 0, 0x83, 1,
+		// 16, 0, 0x82, 1,
 		128};
 
 const unsigned char GasShoulderReverse[] = {
 		24, 0, 0x80, 1 | OAM_FLIP_H,
 		16, 0, 0x81, 1 | OAM_FLIP_H,
-		8, 0, 0x82, 1 | OAM_FLIP_H,
-		0, 0, 0x83, 1 | OAM_FLIP_H,
-		128};
-
-const unsigned char Bird[] = {
-		0, 0, 0xa2, 0 | OAM_BEHIND,
-		8, 0, 0xa3, 0 | OAM_BEHIND,
-		16, 0, 0xa4, 0 | OAM_BEHIND,
-		0, 8, 0xb2, 0 | OAM_BEHIND,
-		8, 8, 0xb3, 0 | OAM_BEHIND,
-		16, 8, 0xb4, 0 | OAM_BEHIND,
+		// 8, 0, 0x82, 1 | OAM_FLIP_H,
+		// 0, 0, 0x83, 1 | OAM_FLIP_H,  
 		128};
 
 const unsigned char Decimal[] = {
@@ -1640,9 +1630,16 @@ void bank_3_adjust_cost(void)
 	}
 }
 
+unsigned char pumplevel_sprites[] = {0,1,2};
+unsigned char pumplevel_sprites_x[] = {0, 240, 50};
+unsigned char pumplevel_sprites_y[] = {0, 20, 60};
+
+#include "SPRITES/gaspump.h"
+
 void bank_3_level_loop(void)
 {
 	++moveframes;
+	++moveframes2;
 	ppu_wait_nmi(); // wait till beginning of the frame
 	bank_3_draw_level_one_sprites();
 	bank_3_draw_gas();
@@ -1654,7 +1651,6 @@ void bank_3_level_loop(void)
 	read_input(); // sets input_active
 
 	if(moveframes > 30){
-
 		if(chr_bank == 0)
 		{
 			set_chr_bank_0(GASPUMP_ALT_CHR_0);
@@ -1664,12 +1660,48 @@ void bank_3_level_loop(void)
 			set_chr_bank_0(GASPUMP_CHR_0);
 			chr_bank = 0;
 		}
-		moveframes = 0;
-			
+		moveframes = 0;		
 	}
 
-	// multi_vram_buffer_horz("Gas Pumped:", 11, NTADR_A(10,7));
-	// multi_vram_buffer_horz("Cost:", 11, NTADR_A(10,9));
+	for(index = 0; index < 3; index++){
+		if(index == 0){
+			// if(moveframes2 < 8){
+			// 	oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], smallduck0);
+			// } else if(moveframes2 < 16) {
+			// 	oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], smallduck1);
+			// } else {
+			// 	oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], smallduck2);
+			// 	moveframes2 = 0;
+			// }
+			// pumplevel_sprites_x[index] = pumplevel_sprites_x[index] + 1;
+			// pumplevel_sprites_y[index] = pumplevel_sprites_y[index] - 1;
+		}
+		if(index == 1){
+			if(moveframes2%2==0){
+				oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], blimp0);
+			} else {
+				oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], blimp1);
+			}
+			
+			pumplevel_sprites_x[index] = pumplevel_sprites_x[index] - 1;
+			// pumplevel_sprites_y[index] = pumplevel_sprites_y[index];
+		}
+		if(index == 2){
+			if(moveframes2 < 8){
+				oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], bigduck0);
+			} else if(moveframes2 < 16) {
+				oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], bigduck1);
+			} else {
+				oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], bigduck2);
+				moveframes2 = 0;
+			}
+			pumplevel_sprites_x[index] = pumplevel_sprites_x[index] + 1;
+			pumplevel_sprites_y[index] = pumplevel_sprites_y[index] - 1;
+		}
+		
+	}
+
+
 
 	if (trigger_pulled)
 	{
@@ -2624,7 +2656,6 @@ void bank_4_alien_level_loop(void)
 		{
 			set_chr_bank_0(FUTUREPUMP_ALT_CHR_0);
 			chr_bank = 1;
-			
 		} else if(chr_bank==1){
 			set_chr_bank_0(FUTUREPUMP_ALT_2_CHR_0);
 			chr_bank = 2;
@@ -3070,9 +3101,9 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	// banked_call(BANK_1, bank_1_instructions_init);
-	alien_level_status = ALIEN_INITIAL_INSTRUCTION;
-	banked_call(BANK_4, bank_4_instruction_init);
+	banked_call(BANK_1, bank_1_instructions_init);
+	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
+	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 
 	while (1)

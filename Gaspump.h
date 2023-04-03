@@ -234,6 +234,8 @@ unsigned char alien_level_status;
 unsigned int moveframes;
 unsigned int moveframes2;
 
+unsigned char sc_eye_frames;
+unsigned char sc_mouth_frames;
 
 #pragma bss-name(push, "BSS")
 

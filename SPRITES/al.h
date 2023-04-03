@@ -35,6 +35,80 @@
 		56, 16, 0x7f, 0,
 		128};
 
+	const unsigned char al_eyebrows_base[] = {
+ 0,  0,0xee,1,
+ 8,  0,0xef,1,
+16,  0,0xef,1|OAM_FLIP_H,
+24,  0,0xee,1|OAM_FLIP_H,
+128
+
+		};
+
+		const unsigned char al_open_eyes[] = {
+
+ 0,  0,0x28,1,
+ 8,  0,0x29,1,
+16,  0,0x29,1|OAM_FLIP_H,
+24,  0,0x28,1|OAM_FLIP_H,
+128
+
+		};
+
+		const unsigned char al_blink_1[] = {
+
+ 0,  0,0x48,1,
+ 8,  0,0x49,1,
+16,  0,0x49,1|OAM_FLIP_H,
+24,  0,0x48,1|OAM_FLIP_H,
+128
+
+		};
+
+		const unsigned char al_blink_2[] = {
+
+ 0,  0,0x1a,1,
+ 8,  0,0x1b,1,
+16,  0,0x1b,1|OAM_FLIP_H,
+24,  0,0x1a,1|OAM_FLIP_H,
+128
+
+		};
+
+			const unsigned char al_mouth_base[] = {
+
+ 0,  0,0x0c,1,
+ 8,  0,0x2d,1,
+16,  0,0x2e,1,
+24,  0,0x0f,2,
+128
+		};
+
+		const unsigned char al_mouth_open_1[] = {
+
+ 0,  0,0x0c,1,
+ 8,  0,0x1d,1,
+16,  0,0x1e,1,
+24,  0,0x0f,2,
+128
+		};
+
+		const unsigned char al_mouth_open_wide[] = {
+
+ 0,  0,0x3c,1,
+ 8,  0,0x3d,1,
+16,  0,0x3e,1,
+24,  0,0x3f,2,
+128
+		};
+				const unsigned char al_mouth_open_oh[] = {
+
+0,  0,0x0c,1,
+ 8,  0,0x0d,1,
+16,  0,0x0e,1,
+24,  0,0x0f,2,
+128
+		};
+
 		const unsigned char metasprite_0_data[]={
 
  0,  0,0xe8,1,

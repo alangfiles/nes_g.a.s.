@@ -58,7 +58,11 @@ const unsigned char starfield_palette[16] = {
 		0x0f, 0x16, 0x05, 0x38,
 		0x0f, 0x24, 0x13, 0x14};
 
-const unsigned char gameover_palette[16] = {0x15, 0x20, 0x16, 0x36, 0x15, 0x05, 0x16, 0x36, 0x15, 0x00, 0x1b, 0x30, 0x15, 0x09, 0x19, 0x38};
+const unsigned char gameover_palette[16] = {
+	0x15,0x00,0x3d,0x30,
+	0x15,0x05,0x16,0x36,
+	0x15,0x00,0x3d,0x2d,
+	0x15,0x09,0x19,0x38};
 
 const unsigned char futurepump_sprite_palette[16] = {0x0f, 0x12, 0x15, 0x38, 0x0f, 0x13, 0x23, 0x31, 0x0f, 0x23, 0x16, 0x26, 0x0f, 0x09, 0x19, 0x29};
 
@@ -700,6 +704,8 @@ void bank_1_instructions_loop(void)
 {
 	ppu_wait_nmi();
 	++moveframes;
+	++sc_eye_frames;
+	++sc_mouth_frames;
 
 	oam_clear(); // clear all sprites
 	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
@@ -710,6 +716,48 @@ void bank_1_instructions_loop(void)
 		{
 			typewriter();
 		}
+	}
+	 
+	oam_meta_spr(0xc0, 0xa0, al_eyebrows_base);
+	// oam_meta_spr(0xc0, 0xc0, al_mouth_base);
+	
+	
+	if(sc_eye_frames <140){
+		oam_meta_spr(0xc0, 0xa8, al_open_eyes);
+	} else if (sc_eye_frames < 144){
+		oam_meta_spr(0xc0, 0xa8, al_blink_1);
+	} else if (sc_eye_frames < 149){
+		oam_meta_spr(0xc0, 0xa8, al_blink_2);
+	} else if(sc_eye_frames < 154) {
+		oam_meta_spr(0xc0, 0xa8, al_blink_1);
+	} else {
+		oam_meta_spr(0xc0, 0xa8, al_open_eyes);
+		sc_eye_frames = 0;
+	}
+
+	if(sc_mouth_frames < 20){
+		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
+	} else if (sc_mouth_frames < 28) {
+		oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
+	} else if (sc_mouth_frames < 36) {
+		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
+	} else if (sc_mouth_frames < 48) {
+		oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
+	} else if (sc_mouth_frames < 59) {
+		oam_meta_spr(0xc0, 0xc0, al_mouth_open_oh);
+	} else if (sc_mouth_frames < 70) {
+		oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
+	} else if (sc_mouth_frames < 79) {
+		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
+	} else if (sc_mouth_frames < 86) {
+		oam_meta_spr(0xc0, 0xc0, al_mouth_open_wide);
+	} else if (sc_mouth_frames < 99) {
+		oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
+	} else if (sc_mouth_frames < 110) {
+		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
+	}else {
+		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
+		sc_mouth_frames = 0;
 	}
 
 	// if (moveframes < 10)
@@ -3089,7 +3137,7 @@ void main(void)
 	// this sets a start position on the BG, top left of screen
 	// vram_adr() and vram_unrle() need to be done with the screen OFF
 
-	ppu_wait_nmi(); // wait
+	ppu_wait_nmi(); // wait  
 
 	//	music_play(0); // silence
 
@@ -3105,10 +3153,12 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	banked_call(BANK_1, bank_1_instructions_init);
+	// banked_call(BANK_1, bank_1_instructions_init);
+	banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
+	// banked_call(BANK_4, bank_4_instruction_init);
 
 	while (1)
 	{

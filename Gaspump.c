@@ -709,6 +709,8 @@ void bank_1_gas_level_init(void)
 	game_mode = MODE_GAME;
 	started_pumping = 0;
 	music_play(SONG_GASPUMP);
+	moveframes = 0;
+	moveframes2 = 0;
 }
 
 
@@ -1657,45 +1659,95 @@ void bank_3_adjust_cost(void)
 	}
 }
 
-unsigned char pumplevel_sprites_x[] = {160, 240, 50};
-unsigned char pumplevel_sprites_y[] = {20, 20, 60};
+unsigned char blimp_x = 160;
+unsigned char blimp_y = 20;
+unsigned char duck_0_x = 20;
+unsigned char duck_0_y = 100;
 unsigned char x_direction = 0;
 unsigned char y_direction = 0;
+unsigned char duck_hit_top = 0;
 
 #include "SPRITES/gaspump.h"
 
 void bank_3_level_sprites(void){
+	++moveframes;
+	++moveframes2;
 
-	if(levels_complete == 0){
-		++moveframes;
-		++moveframes2;
+	if(levels_complete == 10){
+		
 		if(moveframes > 100){
 			if(moveframes2 > 20){
-				pumplevel_sprites_x[0] = pumplevel_sprites_x[0] - 1;
-				if(pumplevel_sprites_y[0] == 10){
+				--blimp_x;
+				if(blimp_y == 10){
 					y_direction = 0;
 				}
-				if(pumplevel_sprites_y[0] == 20){
+				if(blimp_y == 20){
 					y_direction = 1;
 				}
 				if(y_direction){
-					pumplevel_sprites_y[0] = pumplevel_sprites_y[0] - 1;
+					--blimp_y;
 				} else {
-					pumplevel_sprites_y[0] = pumplevel_sprites_y[0] + 1;
+					++blimp_y;
 				}
 				moveframes2 = 0;
 			}
 			
 			if(moveframes2%2==0){
-				oam_meta_spr(pumplevel_sprites_x[0], pumplevel_sprites_y[0], blimp0);
+				oam_meta_spr(blimp_x, blimp_y, blimp0);
 			} else {
-				oam_meta_spr(pumplevel_sprites_x[0], pumplevel_sprites_y[0], blimp1);
+				oam_meta_spr(blimp_x, blimp_y, blimp1);
 			}
 			
 		}
-		
-		//move blimp across near the end.
+	}
+	if(levels_complete == 0){ //level_complete ==1
+		//birds for level 2
+		if(moveframes > 100){ //wait a bit before doing anything.
 
+			//update movement
+				if(duck_0_y == 5){
+					++duck_hit_top;
+					if(duck_hit_top < 3){
+						y_direction = 0;
+					} else{
+						duck_hit_top = 0;
+					}
+				}
+				if(duck_0_y == 100){
+					y_direction = 1;
+				}
+				if(y_direction){
+					--duck_0_y;
+				} else {
+					++duck_0_y;
+				}
+
+				if(duck_0_x > 170){
+					x_direction = 0;
+				}
+				if(duck_0_x < 4){
+					x_direction = 1;
+				}
+
+				if(x_direction){
+					++duck_0_x;
+				} else {
+					--duck_0_x;
+				}
+
+			//draw duck
+			if(moveframes2 < 10){
+				oam_meta_spr(duck_0_x,duck_0_y, bigduck0);
+			} else if (moveframes2 < 20){
+				oam_meta_spr(duck_0_x,duck_0_y, bigduck1);
+			} else if (moveframes2 < 30){
+				oam_meta_spr(duck_0_x,duck_0_y, bigduck2);
+			} else {
+				oam_meta_spr(duck_0_x,duck_0_y, bigduck0);
+				moveframes2 = 0;
+			}
+			
+		}
 	}
 	// for(index = 0; index < 3; index++){
 	// 	if(index == 0){

@@ -1657,49 +1657,82 @@ void bank_3_adjust_cost(void)
 	}
 }
 
-unsigned char pumplevel_sprites[] = {0,1,2};
-unsigned char pumplevel_sprites_x[] = {0, 240, 50};
-unsigned char pumplevel_sprites_y[] = {0, 20, 60};
+unsigned char pumplevel_sprites_x[] = {160, 240, 50};
+unsigned char pumplevel_sprites_y[] = {20, 20, 60};
+unsigned char x_direction = 0;
+unsigned char y_direction = 0;
 
 #include "SPRITES/gaspump.h"
 
 void bank_3_level_sprites(void){
-	for(index = 0; index < 3; index++){
-		if(index == 0){
-			// if(moveframes2 < 8){
-			// 	oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], smallduck0);
-			// } else if(moveframes2 < 16) {
-			// 	oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], smallduck1);
-			// } else {
-			// 	oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], smallduck2);
-			// 	moveframes2 = 0;
-			// }
-			// pumplevel_sprites_x[index] = pumplevel_sprites_x[index] + 1;
-			// pumplevel_sprites_y[index] = pumplevel_sprites_y[index] - 1;
-		}
-		if(index == 1){
-			if(moveframes2%2==0){
-				oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], blimp0);
-			} else {
-				oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], blimp1);
-			}
-			
-			pumplevel_sprites_x[index] = pumplevel_sprites_x[index] - 1;
-			// pumplevel_sprites_y[index] = pumplevel_sprites_y[index];
-		}
-		if(index == 2){
-			if(moveframes2 < 8){
-				oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], bigduck0);
-			} else if(moveframes2 < 16) {
-				oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], bigduck1);
-			} else {
-				oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], bigduck2);
+
+	if(levels_complete == 0){
+		++moveframes;
+		++moveframes2;
+		if(moveframes > 100){
+			if(moveframes2 > 20){
+				pumplevel_sprites_x[0] = pumplevel_sprites_x[0] - 1;
+				if(pumplevel_sprites_y[0] == 10){
+					y_direction = 0;
+				}
+				if(pumplevel_sprites_y[0] == 20){
+					y_direction = 1;
+				}
+				if(y_direction){
+					pumplevel_sprites_y[0] = pumplevel_sprites_y[0] - 1;
+				} else {
+					pumplevel_sprites_y[0] = pumplevel_sprites_y[0] + 1;
+				}
 				moveframes2 = 0;
 			}
-			pumplevel_sprites_x[index] = pumplevel_sprites_x[index] + 1;
-			pumplevel_sprites_y[index] = pumplevel_sprites_y[index] - 1;
+			
+			if(moveframes2%2==0){
+				oam_meta_spr(pumplevel_sprites_x[0], pumplevel_sprites_y[0], blimp0);
+			} else {
+				oam_meta_spr(pumplevel_sprites_x[0], pumplevel_sprites_y[0], blimp1);
+			}
+			
 		}
+		
+		//move blimp across near the end.
+
 	}
+	// for(index = 0; index < 3; index++){
+	// 	if(index == 0){
+	// 		// if(moveframes2 < 8){
+	// 		// 	oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], smallduck0);
+	// 		// } else if(moveframes2 < 16) {
+	// 		// 	oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], smallduck1);
+	// 		// } else {
+	// 		// 	oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], smallduck2);
+	// 		// 	moveframes2 = 0;
+	// 		// }
+	// 		// pumplevel_sprites_x[index] = pumplevel_sprites_x[index] + 1;
+	// 		// pumplevel_sprites_y[index] = pumplevel_sprites_y[index] - 1;
+	// 	}
+	// 	if(index == 1){
+	// 		if(moveframes2%2==0){
+	// 			oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], blimp0);
+	// 		} else {
+	// 			oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], blimp1);
+	// 		}
+			
+	// 		pumplevel_sprites_x[index] = pumplevel_sprites_x[index] - 1;
+	// 		// pumplevel_sprites_y[index] = pumplevel_sprites_y[index];
+	// 	}
+	// 	if(index == 2){
+	// 		if(moveframes2 < 8){
+	// 			oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], bigduck0);
+	// 		} else if(moveframes2 < 16) {
+	// 			oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], bigduck1);
+	// 		} else {
+	// 			oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], bigduck2);
+	// 			moveframes2 = 0;
+	// 		}
+	// 		pumplevel_sprites_x[index] = pumplevel_sprites_x[index] + 1;
+	// 		pumplevel_sprites_y[index] = pumplevel_sprites_y[index] - 1;
+	// 	}
+	// }
 }
 
 unsigned char grass_move =0;

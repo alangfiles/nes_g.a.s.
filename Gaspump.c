@@ -730,6 +730,7 @@ void bank_1_als_eyes_sprites(void){
 }
 
 void bank_1_als_mouth_sprites(void){
+	if (text_rendered != text_length){
 	++sc_mouth_frames;
 	if(sc_mouth_frames < 20){
 		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
@@ -754,6 +755,9 @@ void bank_1_als_mouth_sprites(void){
 	}else {
 		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
 		sc_mouth_frames = 0;
+	}
+	} else {
+		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
 	}
 }
 

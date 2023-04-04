@@ -46,30 +46,30 @@
 
 		const unsigned char al_open_eyes[] = {
 
- 0,  0,0x28,1,
- 8,  0,0x29,1,
-16,  0,0x29,1|OAM_FLIP_H,
-24,  0,0x28,1|OAM_FLIP_H,
+ 0,  0,0x28,3,
+ 8,  0,0x29,3,
+16,  0,0x29,3|OAM_FLIP_H,
+24,  0,0x28,3|OAM_FLIP_H,
 128
 
 		};
 
 		const unsigned char al_blink_1[] = {
 
- 0,  0,0x48,1,
- 8,  0,0x49,1,
-16,  0,0x49,1|OAM_FLIP_H,
-24,  0,0x48,1|OAM_FLIP_H,
+ 0,  0,0x48,3,
+ 8,  0,0x49,3,
+16,  0,0x49,3|OAM_FLIP_H,
+24,  0,0x48,3|OAM_FLIP_H,
 128
 
 		};
 
 		const unsigned char al_blink_2[] = {
 
- 0,  0,0x1a,1,
- 8,  0,0x1b,1,
-16,  0,0x1b,1|OAM_FLIP_H,
-24,  0,0x1a,1|OAM_FLIP_H,
+ 0,  0,0x1a,3,
+ 8,  0,0x1b,3,
+16,  0,0x1b,3|OAM_FLIP_H,
+24,  0,0x1a,3|OAM_FLIP_H,
 128
 
 		};

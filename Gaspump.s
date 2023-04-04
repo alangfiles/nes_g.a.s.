@@ -7088,7 +7088,7 @@ _talking_time_palette:
 _talking_time_sp_palette:
 	.byte	$0F
 	.byte	$20
-	.byte	$16
+	.byte	$11
 	.byte	$36
 	.byte	$0F
 	.byte	$05
@@ -7099,9 +7099,9 @@ _talking_time_sp_palette:
 	.byte	$16
 	.byte	$36
 	.byte	$0F
-	.byte	$11
-	.byte	$15
 	.byte	$30
+	.byte	$16
+	.byte	$36
 _intro_cutscene_gun_palette:
 	.byte	$0F
 	.byte	$10
@@ -17627,55 +17627,55 @@ _al_open_eyes:
 	.byte	$00
 	.byte	$00
 	.byte	$28
-	.byte	$01
+	.byte	$03
 	.byte	$08
 	.byte	$00
 	.byte	$29
-	.byte	$01
+	.byte	$03
 	.byte	$10
 	.byte	$00
 	.byte	$29
-	.byte	$41
+	.byte	$43
 	.byte	$18
 	.byte	$00
 	.byte	$28
-	.byte	$41
+	.byte	$43
 	.byte	$80
 _al_blink_1:
 	.byte	$00
 	.byte	$00
 	.byte	$48
-	.byte	$01
+	.byte	$03
 	.byte	$08
 	.byte	$00
 	.byte	$49
-	.byte	$01
+	.byte	$03
 	.byte	$10
 	.byte	$00
 	.byte	$49
-	.byte	$41
+	.byte	$43
 	.byte	$18
 	.byte	$00
 	.byte	$48
-	.byte	$41
+	.byte	$43
 	.byte	$80
 _al_blink_2:
 	.byte	$00
 	.byte	$00
 	.byte	$1A
-	.byte	$01
+	.byte	$03
 	.byte	$08
 	.byte	$00
 	.byte	$1B
-	.byte	$01
+	.byte	$03
 	.byte	$10
 	.byte	$00
 	.byte	$1B
-	.byte	$41
+	.byte	$43
 	.byte	$18
 	.byte	$00
 	.byte	$1A
-	.byte	$41
+	.byte	$43
 	.byte	$80
 _al_mouth_base:
 	.byte	$00

@@ -594,6 +594,18 @@ const unsigned char level_2_text[] = "I can't deny it...\nYou were born to do th
 void bank_4_cutscene_init(void);					// prototype (needed to get call from bank_4)
 void bank_3_draw_level_one_sprites(void); // prototype
 
+void bank_1_als_base_sprites(void){
+	oam_meta_spr(0xc0, 0xa0, al_eyebrows_base);
+	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
+}
+
+void bank_1_als_base_init_sprites(void){
+	oam_meta_spr(0xc0, 0xa0, al_eyebrows_base);
+	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
+	oam_meta_spr(0xc0, 0xa8, al_open_eyes);
+	oam_meta_spr(0xc0, 0xc0, al_mouth_base);
+}
+
 void bank_1_instructions_init(void)
 {
 	reset_text_values();
@@ -648,8 +660,7 @@ void bank_1_instructions_init(void)
 	}
 
 	// base sprites for Al
-	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
-	// oam_meta_spr(0xc0, 0xa7, altalks_30_data);
+	banked_call(BANK_1, bank_1_als_base_init_sprites);
 
 	ppu_on_all(); // turn on screen
 	pal_fade_to(0, 4);
@@ -700,28 +711,10 @@ void bank_1_gas_level_init(void)
 	music_play(SONG_GASPUMP);
 }
 
-void bank_1_instructions_loop(void)
-{
-	ppu_wait_nmi();
-	++moveframes;
+
+
+void bank_1_als_eyes_sprites(void){
 	++sc_eye_frames;
-	++sc_mouth_frames;
-
-	oam_clear(); // clear all sprites
-	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
-
-	if (text_row < 6)
-	{
-		if (moveframes % 4 == 0)
-		{
-			typewriter();
-		}
-	}
-	 
-	oam_meta_spr(0xc0, 0xa0, al_eyebrows_base);
-	// oam_meta_spr(0xc0, 0xc0, al_mouth_base);
-	
-	
 	if(sc_eye_frames <140){
 		oam_meta_spr(0xc0, 0xa8, al_open_eyes);
 	} else if (sc_eye_frames < 144){
@@ -734,7 +727,10 @@ void bank_1_instructions_loop(void)
 		oam_meta_spr(0xc0, 0xa8, al_open_eyes);
 		sc_eye_frames = 0;
 	}
+}
 
+void bank_1_als_mouth_sprites(void){
+	++sc_mouth_frames;
 	if(sc_mouth_frames < 20){
 		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
 	} else if (sc_mouth_frames < 28) {
@@ -759,59 +755,33 @@ void bank_1_instructions_loop(void)
 		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
 		sc_mouth_frames = 0;
 	}
+}
 
-	// if (moveframes < 10)
-	// {
-	// 	oam_meta_spr(0xc0, 0xa7, altalks_30_data);
-	// }
-	// else if (moveframes < 20)
-	// {
-	// 	oam_meta_spr(0xc0, 0xa7, altalks_31_data);
-	// }
-	// else if (moveframes < 30)
-	// {
-	// 	oam_meta_spr(0xc0, 0xa7, altalks_32_data);
-	// }
-	// else if (moveframes < 40)
-	// {
-	// 	oam_meta_spr(0xc0, 0xa7, altalks_33_data);
-	// }
-	// else if (moveframes < 50)
-	// {
-	// 	oam_meta_spr(0xc0, 0xa7, altalks_34_data);
-	// }
-	// else if (moveframes < 60)
-	// {
-	// 	oam_meta_spr(0xc0, 0xa7, altalks_35_data);
-	// }
-	// else if (moveframes < 70)
-	// {
-	// 	oam_meta_spr(0xc0, 0xa7, altalks_36_data);
-	// }
-	// else if (moveframes < 80)
-	// {
-	// 	oam_meta_spr(0xc0, 0xa7, altalks_37_data);
-	// }
-	// else if (moveframes < 90)
-	// {
-	// 	oam_meta_spr(0xc0, 0xa7, altalks_38_data);
-	// }
-	// else if (moveframes < 100)
-	// {
-	// 	oam_meta_spr(0xc0, 0xa7, altalks_39_data);
-	// }
-	// else if (moveframes < 110)
-	// {
-	// 	oam_meta_spr(0xc0, 0xa7, altalks_40_data);
-	// }
-	// else
-	// {
-	// 	oam_meta_spr(0xc0, 0xa7, altalks_40_data);
-	// 	if (text_rendered != text_length)
-	// 	{
-	// 		moveframes = 0; // cycle while text is writing
-	// 	}
-	// }
+void bank_1_instructions_loop(void)
+{
+	ppu_wait_nmi();
+	++moveframes;
+	
+	
+
+	oam_clear(); // clear all sprites
+	banked_call(BANK_1, bank_1_als_base_sprites);
+
+	if (text_row < 6)
+	{
+		if (moveframes % 4 == 0)
+		{
+			typewriter();
+		}
+	}
+	 
+	
+	// oam_meta_spr(0xc0, 0xc0, al_mouth_base);
+	
+	banked_call(BANK_1, bank_1_als_eyes_sprites);
+	
+	banked_call(BANK_1, bank_1_als_mouth_sprites);
+
 
 	read_input();
 
@@ -1045,7 +1015,7 @@ void bank_1_evaluation_init(void)
 
 
 	// base for Al
-	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
+	banked_call(BANK_1, bank_1_als_base_init_sprites);
 	// oam_meta_spr(0xc0, 0xa7, altalks_30_data);
 
 	ppu_on_all(); // turn on screen
@@ -1072,8 +1042,10 @@ void bank_1_evaluation_loop(void)
 
 	oam_clear(); // clear all sprites
 	
-	//always draw the shirt:
-	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
+	banked_call(BANK_1, bank_1_als_base_sprites);
+
+	banked_call(BANK_1, bank_1_als_eyes_sprites);
+	banked_call(BANK_1, bank_1_als_mouth_sprites);
 
 	// if (text_rendered != text_length)
 	// {
@@ -3153,8 +3125,8 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	// banked_call(BANK_1, bank_1_instructions_init);
-	banked_call(BANK_5, bank_5_gameover_init);
+	banked_call(BANK_1, bank_1_instructions_init);
+	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);

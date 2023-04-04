@@ -46,10 +46,13 @@
 
 		const unsigned char al_open_eyes[] = {
 
+4, 0, 0x2a,0,
+20, 0, 0x2a,0,
  0,  0,0x28,3,
  8,  0,0x29,3,
 16,  0,0x29,3|OAM_FLIP_H,
 24,  0,0x28,3|OAM_FLIP_H,
+
 128
 
 		};

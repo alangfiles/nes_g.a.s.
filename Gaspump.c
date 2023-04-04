@@ -856,7 +856,7 @@ void bank_1_evaluation_init(void)
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 	clear_background();
-	gas_goal_hundreds = 0;
+	gas_goal_hundreds = 0;  
 	set_scroll_y(0xff);
 
 	set_chr_bank_0(TALKING_TIME_CHR_0);

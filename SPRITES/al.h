@@ -59,6 +59,8 @@
 
 		const unsigned char al_blink_1[] = {
 
+4, 0, 0x2b,0,
+20, 0, 0x2b,0,
  0,  0,0x48,3,
  8,  0,0x49,3,
 16,  0,0x49,3|OAM_FLIP_H,

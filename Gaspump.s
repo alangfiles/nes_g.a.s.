@@ -318,7 +318,7 @@
 	.export		_level_1_text
 	.export		_level_2_text
 	.export		_bank_4_cutscene_init
-	.export		_bank_3_draw_level_one_sprites
+	.export		_bank_3_draw_level_base_sprites
 	.export		_bank_1_als_base_sprites
 	.export		_bank_1_als_base_init_sprites
 	.export		_bank_1_gas_level_init
@@ -41534,19 +41534,15 @@ L7BAC:	jsr     _ppu_on_all
 .endproc
 
 ; ---------------------------------------------------------------
-; void __near__ bank_3_draw_level_one_sprites (void)
+; void __near__ bank_3_draw_level_base_sprites (void)
 ; ---------------------------------------------------------------
 
 .segment	"BANK3"
 
-.proc	_bank_3_draw_level_one_sprites: near
+.proc	_bank_3_draw_level_base_sprites: near
 
 .segment	"BANK3"
 
-;
-; oam_clear();
-;
-	jsr     _oam_clear
 ;
 ; oam_meta_spr(144, 63, GasShoulder);
 ;
@@ -41789,12 +41785,12 @@ L7BAC:	jsr     _ppu_on_all
 ;
 	jsr     _ppu_on_all
 ;
-; banked_call(BANK_3, bank_3_draw_level_one_sprites);
+; banked_call(BANK_3, bank_3_draw_level_base_sprites);
 ;
 	lda     #$03
 	jsr     pusha
-	lda     #<(_bank_3_draw_level_one_sprites)
-	ldx     #>(_bank_3_draw_level_one_sprites)
+	lda     #<(_bank_3_draw_level_base_sprites)
+	ldx     #>(_bank_3_draw_level_base_sprites)
 	jsr     _banked_call
 ;
 ; pal_fade_to(0, 4);
@@ -43930,30 +43926,30 @@ L575D:	rts
 ;
 ; }
 ;
-	jeq     L5A41
+	jeq     L5A40
 	cmp     #$01
-	beq     L5795
+	beq     L5794
 	cmp     #$02
-	jeq     L57E1
+	jeq     L57E0
 	cmp     #$03
-	jeq     L582D
+	jeq     L582C
 	cmp     #$04
-	jeq     L5879
+	jeq     L5878
 	cmp     #$05
-	jeq     L58C5
+	jeq     L58C4
 	cmp     #$06
-	jeq     L5911
+	jeq     L5910
 	cmp     #$07
-	jeq     L595D
+	jeq     L595C
 	cmp     #$08
-	jeq     L59A9
+	jeq     L59A8
 	cmp     #$09
-	jeq     L59F5
+	jeq     L59F4
 	rts
 ;
 ; one_vram_buffer(0xc0, NTADR_A(x, y));
 ;
-L5795:	lda     #$C0
+L5794:	lda     #$C0
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -43986,9 +43982,9 @@ L5795:	lda     #$C0
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L57A6
+	bcc     L57A5
 	inx
-L57A6:	ora     ptr1
+L57A5:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44009,9 +44005,9 @@ L57A6:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L57AE
+	bcc     L57AD
 	inx
-L57AE:	jsr     shlax4
+L57AD:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44033,9 +44029,9 @@ L57AE:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L57B7
+	bcc     L57B6
 	inx
-L57B7:	jsr     shlax4
+L57B6:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44044,9 +44040,9 @@ L57B7:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L57B9
+	bcc     L57B8
 	inx
-L57B9:	ora     ptr1
+L57B8:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44067,9 +44063,9 @@ L57B9:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L57C1
+	bcc     L57C0
 	inx
-L57C1:	jsr     shlax4
+L57C0:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44091,9 +44087,9 @@ L57C1:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L57CA
+	bcc     L57C9
 	inx
-L57CA:	jsr     shlax4
+L57C9:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44102,9 +44098,9 @@ L57CA:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L57CC
+	bcc     L57CB
 	inx
-L57CC:	ora     ptr1
+L57CB:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44125,9 +44121,9 @@ L57CC:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L57D4
+	bcc     L57D3
 	inx
-L57D4:	jsr     shlax4
+L57D3:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44149,9 +44145,9 @@ L57D4:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L57DD
+	bcc     L57DC
 	inx
-L57DD:	jsr     shlax4
+L57DC:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44160,9 +44156,9 @@ L57DD:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L57DF
+	bcc     L57DE
 	inx
-L57DF:	ora     ptr1
+L57DE:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44177,7 +44173,7 @@ L57DF:	ora     ptr1
 ;
 ; one_vram_buffer(0xc2, NTADR_A(x, y));
 ;
-L57E1:	lda     #$C2
+L57E0:	lda     #$C2
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -44210,9 +44206,9 @@ L57E1:	lda     #$C2
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L57F2
+	bcc     L57F1
 	inx
-L57F2:	ora     ptr1
+L57F1:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44233,9 +44229,9 @@ L57F2:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L57FA
+	bcc     L57F9
 	inx
-L57FA:	jsr     shlax4
+L57F9:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44257,9 +44253,9 @@ L57FA:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5803
+	bcc     L5802
 	inx
-L5803:	jsr     shlax4
+L5802:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44268,9 +44264,9 @@ L5803:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5805
+	bcc     L5804
 	inx
-L5805:	ora     ptr1
+L5804:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44291,9 +44287,9 @@ L5805:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L580D
+	bcc     L580C
 	inx
-L580D:	jsr     shlax4
+L580C:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44315,9 +44311,9 @@ L580D:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5816
+	bcc     L5815
 	inx
-L5816:	jsr     shlax4
+L5815:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44326,9 +44322,9 @@ L5816:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5818
+	bcc     L5817
 	inx
-L5818:	ora     ptr1
+L5817:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44349,9 +44345,9 @@ L5818:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5820
+	bcc     L581F
 	inx
-L5820:	jsr     shlax4
+L581F:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44373,9 +44369,9 @@ L5820:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5829
+	bcc     L5828
 	inx
-L5829:	jsr     shlax4
+L5828:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44384,9 +44380,9 @@ L5829:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L582B
+	bcc     L582A
 	inx
-L582B:	ora     ptr1
+L582A:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44401,7 +44397,7 @@ L582B:	ora     ptr1
 ;
 ; one_vram_buffer(0xc4, NTADR_A(x, y));
 ;
-L582D:	lda     #$C4
+L582C:	lda     #$C4
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -44434,9 +44430,9 @@ L582D:	lda     #$C4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L583E
+	bcc     L583D
 	inx
-L583E:	ora     ptr1
+L583D:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44457,9 +44453,9 @@ L583E:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5846
+	bcc     L5845
 	inx
-L5846:	jsr     shlax4
+L5845:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44481,9 +44477,9 @@ L5846:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L584F
+	bcc     L584E
 	inx
-L584F:	jsr     shlax4
+L584E:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44492,9 +44488,9 @@ L584F:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5851
+	bcc     L5850
 	inx
-L5851:	ora     ptr1
+L5850:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44515,9 +44511,9 @@ L5851:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5859
+	bcc     L5858
 	inx
-L5859:	jsr     shlax4
+L5858:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44539,9 +44535,9 @@ L5859:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5862
+	bcc     L5861
 	inx
-L5862:	jsr     shlax4
+L5861:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44550,9 +44546,9 @@ L5862:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5864
+	bcc     L5863
 	inx
-L5864:	ora     ptr1
+L5863:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44573,9 +44569,9 @@ L5864:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L586C
+	bcc     L586B
 	inx
-L586C:	jsr     shlax4
+L586B:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44597,9 +44593,9 @@ L586C:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5875
+	bcc     L5874
 	inx
-L5875:	jsr     shlax4
+L5874:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44608,9 +44604,9 @@ L5875:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5877
+	bcc     L5876
 	inx
-L5877:	ora     ptr1
+L5876:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44625,7 +44621,7 @@ L5877:	ora     ptr1
 ;
 ; one_vram_buffer(0xc6, NTADR_A(x, y));
 ;
-L5879:	lda     #$C6
+L5878:	lda     #$C6
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -44658,9 +44654,9 @@ L5879:	lda     #$C6
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L588A
+	bcc     L5889
 	inx
-L588A:	ora     ptr1
+L5889:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44681,9 +44677,9 @@ L588A:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5892
+	bcc     L5891
 	inx
-L5892:	jsr     shlax4
+L5891:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44705,9 +44701,9 @@ L5892:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L589B
+	bcc     L589A
 	inx
-L589B:	jsr     shlax4
+L589A:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44716,9 +44712,9 @@ L589B:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L589D
+	bcc     L589C
 	inx
-L589D:	ora     ptr1
+L589C:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44739,9 +44735,9 @@ L589D:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L58A5
+	bcc     L58A4
 	inx
-L58A5:	jsr     shlax4
+L58A4:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44763,9 +44759,9 @@ L58A5:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L58AE
+	bcc     L58AD
 	inx
-L58AE:	jsr     shlax4
+L58AD:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44774,9 +44770,9 @@ L58AE:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L58B0
+	bcc     L58AF
 	inx
-L58B0:	ora     ptr1
+L58AF:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44797,9 +44793,9 @@ L58B0:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L58B8
+	bcc     L58B7
 	inx
-L58B8:	jsr     shlax4
+L58B7:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44821,9 +44817,9 @@ L58B8:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L58C1
+	bcc     L58C0
 	inx
-L58C1:	jsr     shlax4
+L58C0:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44832,9 +44828,9 @@ L58C1:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L58C3
+	bcc     L58C2
 	inx
-L58C3:	ora     ptr1
+L58C2:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44849,7 +44845,7 @@ L58C3:	ora     ptr1
 ;
 ; one_vram_buffer(0xc8, NTADR_A(x, y));
 ;
-L58C5:	lda     #$C8
+L58C4:	lda     #$C8
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -44882,9 +44878,9 @@ L58C5:	lda     #$C8
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L58D6
+	bcc     L58D5
 	inx
-L58D6:	ora     ptr1
+L58D5:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44905,9 +44901,9 @@ L58D6:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L58DE
+	bcc     L58DD
 	inx
-L58DE:	jsr     shlax4
+L58DD:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44929,9 +44925,9 @@ L58DE:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L58E7
+	bcc     L58E6
 	inx
-L58E7:	jsr     shlax4
+L58E6:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44940,9 +44936,9 @@ L58E7:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L58E9
+	bcc     L58E8
 	inx
-L58E9:	ora     ptr1
+L58E8:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -44963,9 +44959,9 @@ L58E9:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L58F1
+	bcc     L58F0
 	inx
-L58F1:	jsr     shlax4
+L58F0:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44987,9 +44983,9 @@ L58F1:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L58FA
+	bcc     L58F9
 	inx
-L58FA:	jsr     shlax4
+L58F9:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -44998,9 +44994,9 @@ L58FA:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L58FC
+	bcc     L58FB
 	inx
-L58FC:	ora     ptr1
+L58FB:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45021,9 +45017,9 @@ L58FC:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5904
+	bcc     L5903
 	inx
-L5904:	jsr     shlax4
+L5903:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45045,9 +45041,9 @@ L5904:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L590D
+	bcc     L590C
 	inx
-L590D:	jsr     shlax4
+L590C:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45056,9 +45052,9 @@ L590D:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L590F
+	bcc     L590E
 	inx
-L590F:	ora     ptr1
+L590E:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45073,7 +45069,7 @@ L590F:	ora     ptr1
 ;
 ; one_vram_buffer(0xca, NTADR_A(x, y));
 ;
-L5911:	lda     #$CA
+L5910:	lda     #$CA
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -45106,9 +45102,9 @@ L5911:	lda     #$CA
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5922
+	bcc     L5921
 	inx
-L5922:	ora     ptr1
+L5921:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45129,9 +45125,9 @@ L5922:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L592A
+	bcc     L5929
 	inx
-L592A:	jsr     shlax4
+L5929:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45153,9 +45149,9 @@ L592A:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5933
+	bcc     L5932
 	inx
-L5933:	jsr     shlax4
+L5932:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45164,9 +45160,9 @@ L5933:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5935
+	bcc     L5934
 	inx
-L5935:	ora     ptr1
+L5934:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45187,9 +45183,9 @@ L5935:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L593D
+	bcc     L593C
 	inx
-L593D:	jsr     shlax4
+L593C:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45211,9 +45207,9 @@ L593D:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5946
+	bcc     L5945
 	inx
-L5946:	jsr     shlax4
+L5945:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45222,9 +45218,9 @@ L5946:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5948
+	bcc     L5947
 	inx
-L5948:	ora     ptr1
+L5947:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45245,9 +45241,9 @@ L5948:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5950
+	bcc     L594F
 	inx
-L5950:	jsr     shlax4
+L594F:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45269,9 +45265,9 @@ L5950:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5959
+	bcc     L5958
 	inx
-L5959:	jsr     shlax4
+L5958:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45280,9 +45276,9 @@ L5959:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L595B
+	bcc     L595A
 	inx
-L595B:	ora     ptr1
+L595A:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45297,7 +45293,7 @@ L595B:	ora     ptr1
 ;
 ; one_vram_buffer(0xcc, NTADR_A(x, y));
 ;
-L595D:	lda     #$CC
+L595C:	lda     #$CC
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -45330,9 +45326,9 @@ L595D:	lda     #$CC
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L596E
+	bcc     L596D
 	inx
-L596E:	ora     ptr1
+L596D:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45353,9 +45349,9 @@ L596E:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5976
+	bcc     L5975
 	inx
-L5976:	jsr     shlax4
+L5975:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45377,9 +45373,9 @@ L5976:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L597F
+	bcc     L597E
 	inx
-L597F:	jsr     shlax4
+L597E:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45388,9 +45384,9 @@ L597F:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5981
+	bcc     L5980
 	inx
-L5981:	ora     ptr1
+L5980:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45411,9 +45407,9 @@ L5981:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5989
+	bcc     L5988
 	inx
-L5989:	jsr     shlax4
+L5988:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45435,9 +45431,9 @@ L5989:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5992
+	bcc     L5991
 	inx
-L5992:	jsr     shlax4
+L5991:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45446,9 +45442,9 @@ L5992:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5994
+	bcc     L5993
 	inx
-L5994:	ora     ptr1
+L5993:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45469,9 +45465,9 @@ L5994:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L599C
+	bcc     L599B
 	inx
-L599C:	jsr     shlax4
+L599B:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45493,9 +45489,9 @@ L599C:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L59A5
+	bcc     L59A4
 	inx
-L59A5:	jsr     shlax4
+L59A4:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45504,9 +45500,9 @@ L59A5:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L59A7
+	bcc     L59A6
 	inx
-L59A7:	ora     ptr1
+L59A6:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45521,7 +45517,7 @@ L59A7:	ora     ptr1
 ;
 ; one_vram_buffer(0xce, NTADR_A(x, y));
 ;
-L59A9:	lda     #$CE
+L59A8:	lda     #$CE
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -45554,9 +45550,9 @@ L59A9:	lda     #$CE
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L59BA
+	bcc     L59B9
 	inx
-L59BA:	ora     ptr1
+L59B9:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45577,9 +45573,9 @@ L59BA:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L59C2
+	bcc     L59C1
 	inx
-L59C2:	jsr     shlax4
+L59C1:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45601,9 +45597,9 @@ L59C2:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L59CB
+	bcc     L59CA
 	inx
-L59CB:	jsr     shlax4
+L59CA:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45612,9 +45608,9 @@ L59CB:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L59CD
+	bcc     L59CC
 	inx
-L59CD:	ora     ptr1
+L59CC:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45635,9 +45631,9 @@ L59CD:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L59D5
+	bcc     L59D4
 	inx
-L59D5:	jsr     shlax4
+L59D4:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45659,9 +45655,9 @@ L59D5:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L59DE
+	bcc     L59DD
 	inx
-L59DE:	jsr     shlax4
+L59DD:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45670,9 +45666,9 @@ L59DE:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L59E0
+	bcc     L59DF
 	inx
-L59E0:	ora     ptr1
+L59DF:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45693,9 +45689,9 @@ L59E0:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L59E8
+	bcc     L59E7
 	inx
-L59E8:	jsr     shlax4
+L59E7:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45717,9 +45713,9 @@ L59E8:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L59F1
+	bcc     L59F0
 	inx
-L59F1:	jsr     shlax4
+L59F0:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45728,9 +45724,9 @@ L59F1:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L59F3
+	bcc     L59F2
 	inx
-L59F3:	ora     ptr1
+L59F2:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45745,7 +45741,7 @@ L59F3:	ora     ptr1
 ;
 ; one_vram_buffer(0x5e, NTADR_A(x, y));
 ;
-L59F5:	lda     #$5E
+L59F4:	lda     #$5E
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -45778,9 +45774,9 @@ L59F5:	lda     #$5E
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5A06
+	bcc     L5A05
 	inx
-L5A06:	ora     ptr1
+L5A05:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45801,9 +45797,9 @@ L5A06:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5A0E
+	bcc     L5A0D
 	inx
-L5A0E:	jsr     shlax4
+L5A0D:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45825,9 +45821,9 @@ L5A0E:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5A17
+	bcc     L5A16
 	inx
-L5A17:	jsr     shlax4
+L5A16:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45836,9 +45832,9 @@ L5A17:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5A19
+	bcc     L5A18
 	inx
-L5A19:	ora     ptr1
+L5A18:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45859,9 +45855,9 @@ L5A19:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5A21
+	bcc     L5A20
 	inx
-L5A21:	jsr     shlax4
+L5A20:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45883,9 +45879,9 @@ L5A21:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5A2A
+	bcc     L5A29
 	inx
-L5A2A:	jsr     shlax4
+L5A29:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45894,9 +45890,9 @@ L5A2A:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5A2C
+	bcc     L5A2B
 	inx
-L5A2C:	ora     ptr1
+L5A2B:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45917,9 +45913,9 @@ L5A2C:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5A34
+	bcc     L5A33
 	inx
-L5A34:	jsr     shlax4
+L5A33:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45941,9 +45937,9 @@ L5A34:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5A3D
+	bcc     L5A3C
 	inx
-L5A3D:	jsr     shlax4
+L5A3C:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -45952,9 +45948,9 @@ L5A3D:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5A3F
+	bcc     L5A3E
 	inx
-L5A3F:	ora     ptr1
+L5A3E:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -45969,7 +45965,7 @@ L5A3F:	ora     ptr1
 ;
 ; one_vram_buffer(0x1e, NTADR_A(x, y));
 ;
-L5A41:	lda     #$1E
+L5A40:	lda     #$1E
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -46002,9 +45998,9 @@ L5A41:	lda     #$1E
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5A52
+	bcc     L5A51
 	inx
-L5A52:	ora     ptr1
+L5A51:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -46025,9 +46021,9 @@ L5A52:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5A5A
+	bcc     L5A59
 	inx
-L5A5A:	jsr     shlax4
+L5A59:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -46049,9 +46045,9 @@ L5A5A:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5A63
+	bcc     L5A62
 	inx
-L5A63:	jsr     shlax4
+L5A62:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -46060,9 +46056,9 @@ L5A63:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5A65
+	bcc     L5A64
 	inx
-L5A65:	ora     ptr1
+L5A64:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -46083,9 +46079,9 @@ L5A65:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5A6D
+	bcc     L5A6C
 	inx
-L5A6D:	jsr     shlax4
+L5A6C:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -46107,9 +46103,9 @@ L5A6D:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5A76
+	bcc     L5A75
 	inx
-L5A76:	jsr     shlax4
+L5A75:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -46118,9 +46114,9 @@ L5A76:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5A78
+	bcc     L5A77
 	inx
-L5A78:	ora     ptr1
+L5A77:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -46141,9 +46137,9 @@ L5A78:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5A80
+	bcc     L5A7F
 	inx
-L5A80:	jsr     shlax4
+L5A7F:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -46165,9 +46161,9 @@ L5A80:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5A89
+	bcc     L5A88
 	inx
-L5A89:	jsr     shlax4
+L5A88:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -46176,9 +46172,9 @@ L5A89:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5A8B
+	bcc     L5A8A
 	inx
-L5A8B:	ora     ptr1
+L5A8A:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -46207,7 +46203,7 @@ L5A8B:	ora     ptr1
 ; if (cost3_changed)
 ;
 	lda     _cost3_changed
-	beq     L5A8E
+	beq     L5A8D
 ;
 ; num_holder = cost4;
 ;
@@ -46235,8 +46231,8 @@ L5A8B:	ora     ptr1
 ;
 ; if (cost2_changed)
 ;
-L5A8E:	lda     _cost2_changed
-	beq     L5A99
+L5A8D:	lda     _cost2_changed
+	beq     L5A98
 ;
 ; num_holder = cost3;
 ;
@@ -46264,8 +46260,8 @@ L5A8E:	lda     _cost2_changed
 ;
 ; if (cost1_changed)
 ;
-L5A99:	lda     _cost1_changed
-	beq     L5AA4
+L5A98:	lda     _cost1_changed
+	beq     L5AA3
 ;
 ; num_holder = cost2;
 ;
@@ -46293,7 +46289,7 @@ L5A99:	lda     _cost1_changed
 ;
 ; num_holder = cost1;
 ;
-L5AA4:	lda     _cost1
+L5AA3:	lda     _cost1
 	sta     _num_holder
 ;
 ; x = 27;
@@ -46326,7 +46322,7 @@ L5AA4:	lda     _cost1
 ; if (gas3_changed)
 ;
 	lda     _gas3_changed
-	beq     L5AB7
+	beq     L5AB6
 ;
 ; num_holder = gas4;
 ;
@@ -46354,8 +46350,8 @@ L5AA4:	lda     _cost1
 ;
 ; if (gas2_changed)
 ;
-L5AB7:	lda     _gas2_changed
-	beq     L5AC2
+L5AB6:	lda     _gas2_changed
+	beq     L5AC1
 ;
 ; num_holder = gas3;
 ;
@@ -46383,8 +46379,8 @@ L5AB7:	lda     _gas2_changed
 ;
 ; if (gas1_changed)
 ;
-L5AC2:	lda     _gas1_changed
-	beq     L5ACD
+L5AC1:	lda     _gas1_changed
+	beq     L5ACC
 ;
 ; num_holder = gas2;
 ;
@@ -46412,7 +46408,7 @@ L5AC2:	lda     _gas1_changed
 ;
 ; num_holder = gas1;
 ;
-L5ACD:	lda     _gas1
+L5ACC:	lda     _gas1
 	sta     _num_holder
 ;
 ; x = 27;
@@ -46448,30 +46444,30 @@ L5ACD:	lda     _gas1
 ;
 ; }
 ;
-	beq     L5AE4
+	beq     L5AE3
 	cmp     #$01
-	beq     L5AE8
+	beq     L5AE7
 	cmp     #$02
-	beq     L5AEC
+	beq     L5AEB
 	cmp     #$03
-	beq     L5AF0
+	beq     L5AEF
 	cmp     #$04
-	beq     L5AF4
+	beq     L5AF3
 	cmp     #$05
-	beq     L5AF8
+	beq     L5AF7
 	cmp     #$06
-	beq     L5AFC
+	beq     L5AFB
 	cmp     #$07
-	beq     L5B00
+	beq     L5AFF
 	cmp     #$08
-	beq     L5B04
+	beq     L5B03
 	cmp     #$09
-	beq     L5B08
+	beq     L5B07
 	rts
 ;
 ; pointer = Zero;
 ;
-L5AE4:	lda     #>(_Zero)
+L5AE3:	lda     #>(_Zero)
 	sta     _pointer+1
 	lda     #<(_Zero)
 	sta     _pointer
@@ -46482,7 +46478,7 @@ L5AE4:	lda     #>(_Zero)
 ;
 ; pointer = One;
 ;
-L5AE8:	lda     #>(_One)
+L5AE7:	lda     #>(_One)
 	sta     _pointer+1
 	lda     #<(_One)
 	sta     _pointer
@@ -46493,7 +46489,7 @@ L5AE8:	lda     #>(_One)
 ;
 ; pointer = Two;
 ;
-L5AEC:	lda     #>(_Two)
+L5AEB:	lda     #>(_Two)
 	sta     _pointer+1
 	lda     #<(_Two)
 	sta     _pointer
@@ -46504,7 +46500,7 @@ L5AEC:	lda     #>(_Two)
 ;
 ; pointer = Three;
 ;
-L5AF0:	lda     #>(_Three)
+L5AEF:	lda     #>(_Three)
 	sta     _pointer+1
 	lda     #<(_Three)
 	sta     _pointer
@@ -46515,7 +46511,7 @@ L5AF0:	lda     #>(_Three)
 ;
 ; pointer = Four;
 ;
-L5AF4:	lda     #>(_Four)
+L5AF3:	lda     #>(_Four)
 	sta     _pointer+1
 	lda     #<(_Four)
 	sta     _pointer
@@ -46526,7 +46522,7 @@ L5AF4:	lda     #>(_Four)
 ;
 ; pointer = Five;
 ;
-L5AF8:	lda     #>(_Five)
+L5AF7:	lda     #>(_Five)
 	sta     _pointer+1
 	lda     #<(_Five)
 	sta     _pointer
@@ -46537,7 +46533,7 @@ L5AF8:	lda     #>(_Five)
 ;
 ; pointer = Six;
 ;
-L5AFC:	lda     #>(_Six)
+L5AFB:	lda     #>(_Six)
 	sta     _pointer+1
 	lda     #<(_Six)
 	sta     _pointer
@@ -46548,7 +46544,7 @@ L5AFC:	lda     #>(_Six)
 ;
 ; pointer = Seven;
 ;
-L5B00:	lda     #>(_Seven)
+L5AFF:	lda     #>(_Seven)
 	sta     _pointer+1
 	lda     #<(_Seven)
 	sta     _pointer
@@ -46559,7 +46555,7 @@ L5B00:	lda     #>(_Seven)
 ;
 ; pointer = Eight;
 ;
-L5B04:	lda     #>(_Eight)
+L5B03:	lda     #>(_Eight)
 	sta     _pointer+1
 	lda     #<(_Eight)
 	sta     _pointer
@@ -46570,7 +46566,7 @@ L5B04:	lda     #>(_Eight)
 ;
 ; pointer = Nine;
 ;
-L5B08:	lda     #>(_Nine)
+L5B07:	lda     #>(_Nine)
 	sta     _pointer+1
 	lda     #<(_Nine)
 	sta     _pointer
@@ -46676,7 +46672,7 @@ LA922:	lda     _gas4
 ;
 LA923:	lda     _gas5
 	cmp     #$0A
-	bcc     L5B29
+	bcc     L5B28
 ;
 ; gas5 = 9;
 ;
@@ -46701,7 +46697,7 @@ LA923:	lda     _gas5
 ;
 ; }
 ;
-L5B29:	rts
+L5B28:	rts
 
 .endproc
 
@@ -46800,7 +46796,7 @@ LA924:	lda     _cost4
 ;
 LA925:	lda     _cost5
 	cmp     #$0A
-	bcc     L5B52
+	bcc     L5B51
 ;
 ; cost5 = 9;
 ;
@@ -46825,7 +46821,7 @@ LA925:	lda     _cost5
 ;
 ; }
 ;
-L5B52:	rts
+L5B51:	rts
 
 .endproc
 
@@ -46843,22 +46839,26 @@ L5B52:	rts
 ; ++moveframes;
 ;
 	inc     _moveframes
-	bne     L5CC5
+	bne     L5CC4
 	inc     _moveframes+1
 ;
 ; ++moveframes2;
 ;
-L5CC5:	inc     _moveframes2
-	bne     L5CC7
+L5CC4:	inc     _moveframes2
+	bne     L5CC6
 	inc     _moveframes2+1
 ;
 ; ppu_wait_nmi(); // wait till beginning of the frame
 ;
-L5CC7:	jsr     _ppu_wait_nmi
+L5CC6:	jsr     _ppu_wait_nmi
 ;
-; bank_3_draw_level_one_sprites();
+; oam_clear();
 ;
-	jsr     _bank_3_draw_level_one_sprites
+	jsr     _oam_clear
+;
+; bank_3_draw_level_base_sprites();
+;
+	jsr     _bank_3_draw_level_base_sprites
 ;
 ; bank_3_draw_gas();
 ;

@@ -592,7 +592,7 @@ const unsigned char level_1_text[] = "You're starting to believe\nbut you have m
 const unsigned char level_2_text[] = "I can't deny it...\nYou were born to do this.\nOne last test...\nCan you do 17 gallons?\n\nI'm watching closely...";
 // const unsigned char level_3_text[] = "You've got it. \n I believe in you.\n Only you can save our space people.\n\n Follow me to my galaxy.";
 void bank_4_cutscene_init(void);					// prototype (needed to get call from bank_4)
-void bank_3_draw_level_one_sprites(void); // prototype
+void bank_3_draw_level_base_sprites(void); // prototype
 
 void bank_1_als_base_sprites(void){
 	oam_meta_spr(0xc0, 0xa0, al_eyebrows_base);
@@ -703,7 +703,7 @@ void bank_1_gas_level_init(void)
 	// }
 
 	ppu_on_all(); // turn on screen
-	banked_call(BANK_3, bank_3_draw_level_one_sprites);
+	banked_call(BANK_3, bank_3_draw_level_base_sprites);
 	pal_fade_to(0, 4);
 	wait_a_little();
 	game_mode = MODE_GAME;
@@ -1317,10 +1317,8 @@ const unsigned char Decimal[] = {
 		0, 0, 0x84, 2,
 		128};
 
-void bank_3_draw_level_one_sprites()
+void bank_3_draw_level_base_sprites()
 {
-	// this is the bird/cars that go across the screen
-	oam_clear();
 	// covers for the gas pump shoulders
 	oam_meta_spr(144, 63, GasShoulder);
 	oam_meta_spr(224, 63, GasShoulderReverse);
@@ -1670,7 +1668,8 @@ void bank_3_level_loop(void)
 	++moveframes;
 	++moveframes2;
 	ppu_wait_nmi(); // wait till beginning of the frame
-	bank_3_draw_level_one_sprites();
+	oam_clear();
+	bank_3_draw_level_base_sprites();
 	bank_3_draw_gas();
 	bank_3_draw_cost();
 

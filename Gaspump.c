@@ -1663,34 +1663,7 @@ unsigned char pumplevel_sprites_y[] = {0, 20, 60};
 
 #include "SPRITES/gaspump.h"
 
-void bank_3_level_loop(void)
-{
-	++moveframes;
-	++moveframes2;
-	ppu_wait_nmi(); // wait till beginning of the frame
-	oam_clear();
-	bank_3_draw_level_base_sprites();
-	bank_3_draw_gas();
-	bank_3_draw_cost();
-
-	// zapper_ready = pad2_zapper^1; // XOR last frame, make sure it is not held down still
-
-	// is trigger pulled?
-	read_input(); // sets input_active
-
-	if(moveframes > 30){
-		if(chr_bank == 0)
-		{
-			set_chr_bank_0(GASPUMP_ALT_CHR_0);
-			chr_bank = 1;
-			
-		} else {
-			set_chr_bank_0(GASPUMP_CHR_0);
-			chr_bank = 0;
-		}
-		moveframes = 0;		
-	}
-
+void bank_3_level_sprites(void){
 	for(index = 0; index < 3; index++){
 		if(index == 0){
 			// if(moveframes2 < 8){
@@ -1726,8 +1699,41 @@ void bank_3_level_loop(void)
 			pumplevel_sprites_x[index] = pumplevel_sprites_x[index] + 1;
 			pumplevel_sprites_y[index] = pumplevel_sprites_y[index] - 1;
 		}
-		
 	}
+}
+
+unsigned char grass_move =0;
+
+void bank_3_level_loop(void)
+{
+	++grass_move;
+	++moveframes;
+	++moveframes2;
+	ppu_wait_nmi(); // wait till beginning of the frame
+	oam_clear();
+	bank_3_draw_level_base_sprites();
+	bank_3_draw_gas();
+	bank_3_draw_cost();
+
+	// zapper_ready = pad2_zapper^1; // XOR last frame, make sure it is not held down still
+
+	// is trigger pulled?
+	read_input(); // sets input_active
+
+	if(grass_move > 30){
+		if(chr_bank == 0)
+		{
+			set_chr_bank_0(GASPUMP_ALT_CHR_0);
+			chr_bank = 1;
+			
+		} else {
+			set_chr_bank_0(GASPUMP_CHR_0);
+			chr_bank = 0;
+		}
+		grass_move = 0;		
+	}
+
+	banked_call(BANK_3, bank_3_level_sprites);
 
 
 

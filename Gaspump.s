@@ -7206,21 +7206,21 @@ _talking_time_palette:
 	.byte	$30
 _talking_time_sp_palette:
 	.byte	$0F
-	.byte	$10
-	.byte	$00
-	.byte	$15
-	.byte	$0F
-	.byte	$0F
-	.byte	$10
-	.byte	$38
-	.byte	$0F
-	.byte	$00
-	.byte	$10
 	.byte	$20
+	.byte	$11
+	.byte	$36
 	.byte	$0F
 	.byte	$05
-	.byte	$1A
-	.byte	$38
+	.byte	$16
+	.byte	$36
+	.byte	$0F
+	.byte	$20
+	.byte	$08
+	.byte	$36
+	.byte	$0F
+	.byte	$30
+	.byte	$16
+	.byte	$36
 _intro_cutscene_gun_palette:
 	.byte	$0F
 	.byte	$10

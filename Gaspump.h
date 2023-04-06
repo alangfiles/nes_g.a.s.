@@ -212,8 +212,6 @@ unsigned char num_holder;
 unsigned char index = 0;
 unsigned char nametable_selected = 0;
 unsigned char shooting_mode = 0;
-unsigned char spaceship_x = 0;
-unsigned char spaceship_y = 100;
 unsigned char chr_bank=0;
 
 unsigned char lives = 3;

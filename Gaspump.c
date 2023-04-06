@@ -90,7 +90,8 @@ const unsigned char talking_time_sp_palette[16] = {
 	0x0f,0x20,0x11,0x36,
 	0x0f,0x05,0x16,0x36,
 	0x0f,0x21,0x16,0x36,
-	0x0f,0x30,0x16,0x36 };
+	0x0f,0x30,0x16,0x36 
+	};
 
 const unsigned char intro_cutscene_gun_palette[16] = {
 		0x0f, 0x10, 0x2a, 0x15,
@@ -1693,9 +1694,9 @@ void bank_3_level_sprites(void){
 			}
 			
 			if(moveframes2%2==0){
-				oam_meta_spr(blimp_x, blimp_y, blimp0);
+				oam_meta_spr(blimp_x, blimp_y, blimp_0);
 			} else {
-				oam_meta_spr(blimp_x, blimp_y, blimp1);
+				oam_meta_spr(blimp_x, blimp_y, blimp_1);
 			}
 			
 		}
@@ -1729,21 +1730,58 @@ void bank_3_level_sprites(void){
 					x_direction = 1;
 				}
 
-				if(x_direction){
-					++duck_0_x;
-				} else {
-					--duck_0_x;
+				if((get_frame_count() & 2) == 0){
+					if(x_direction){
+						++duck_0_x;
+					} else {
+						--duck_0_x;
+					}
 				}
 
 			//draw duck
 			if(moveframes2 < 10){
-				oam_meta_spr(duck_0_x,duck_0_y, bigduck0);
+				if(x_direction){
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_0);
+				} else {
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_0); 
+				}  
+				
 			} else if (moveframes2 < 20){
-				oam_meta_spr(duck_0_x,duck_0_y, bigduck1);
+				if(x_direction){
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_1);
+				} else {
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_1);
+				}
 			} else if (moveframes2 < 30){
-				oam_meta_spr(duck_0_x,duck_0_y, bigduck2);
+				if(x_direction){
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_2);
+				} else {
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_2);
+				}
+			}else if (moveframes2 < 40){
+				if(x_direction){
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_3);
+				} else {
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_3);
+				}
+			}else if (moveframes2 < 50){
+				if(x_direction){
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_4);
+				} else {
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_4);
+				}
+			} else if (moveframes2 < 60){
+				if(x_direction){
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_5);
+				} else {
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_5);
+				}
 			} else {
-				oam_meta_spr(duck_0_x,duck_0_y, bigduck0);
+				if(x_direction){
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_0);
+				} else {
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_0);
+				}
 				moveframes2 = 0;
 			}
 			
@@ -3113,17 +3151,63 @@ void bank_5_draw_screen_right(void)
 	}
 }
 
+#include "SPRITES/starfield.h"
+
+unsigned char player_x = 40;
+unsigned char player_y = 100;
+unsigned char player_x_direction = 0;
+unsigned char player_y_direction = 0;
+
+void bank_5_draw_starfield_player_sprite(void){
+	if(player_y < 30){
+		player_y_direction = 1;
+	}
+	if(player_y > 170){
+		player_y_direction = 0;
+	}
+
+	if(player_y_direction){
+		++player_y;
+	} else {
+		--player_y;
+	}
+	oam_meta_spr(player_x, player_y, rocket_rider_right);
+}
+
+unsigned char spaceship_1_x = 230;
+unsigned char spaceship_1_y = 100;
+unsigned char spaceship_1_frames = 0;
+unsigned char spaceship_destroyed = 0;
+
 void bank_5_draw_starfield_sprites(void)
 {
+	++spaceship_1_frames;
+	if(spaceship_destroyed && spaceship_1_frames < 30){
+			oam_meta_spr(spaceship_1_x, spaceship_1_y, ufo_ship_destroy1);	
+			return;
+	}
+	if(spaceship_destroyed && spaceship_1_frames == 30){
+		//after 30 frames, reset it.
+		spaceship_destroyed = 0;
+		spaceship_1_x = 230;
+		spaceship_1_y = 100;
+		spaceship_1_frames = 0;
+	}
+
+
+	
+
 	// move the sprite
-	++spaceship_x;
+	--spaceship_1_x;
+
+	//draw the sprite
 	if (shooting_mode == 1)
 	{
-		oam_meta_spr(spaceship_x, spaceship_y, white_shot);
-	}
-	else
+		oam_meta_spr(spaceship_1_x, spaceship_1_y, white_ufo_ship);
+	}    
+	else  
 	{
-		oam_meta_spr(spaceship_x, spaceship_y, spaceship);
+		oam_meta_spr(spaceship_1_x, spaceship_1_y, ufo_ship);	
 	}
 }
 
@@ -3136,6 +3220,8 @@ void bank_5_starfield_loop(void)
 	column_pixel_counter += 2;
 	scroll(scroll_x, 0);
 	bank_5_draw_screen_right();
+
+	// bank_5_draw_starfield_player_sprite();
 	bank_5_draw_starfield_sprites();
 
 	read_input();
@@ -3147,19 +3233,23 @@ void bank_5_starfield_loop(void)
 		oam_clear();
 		// draw white blocks
 		bank_5_draw_starfield_sprites();
-		zap_read(0);
+
+		if(hit_detected){
+			spaceship_destroyed = 1;
+			spaceship_1_frames = 0;
+		}
 		ppu_wait_nmi();
 		shooting_mode = 0;
 		ppu_mask(0x1e); // bg on, won't happen till NEXT frame
 	}
 
 	++moveframes;
-	if (moveframes > 400)
-	{
-		wait_and_fade_out();
-		banked_call(BANK_2, bank_2_ending_scroll_init);
-		game_mode = MODE_GAME_ENDING;
-	}
+	// if (moveframes > 400)
+	// {
+	// 	wait_and_fade_out();
+	// 	banked_call(BANK_2, bank_2_ending_scroll_init);
+	// 	game_mode = MODE_GAME_ENDING;
+	// }
 }
 
 #pragma endregion
@@ -3226,6 +3316,7 @@ void main(void)
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
+	// banked_call(BANK_5, bank_5_starfield_init);
 
 	while (1)
 	{

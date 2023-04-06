@@ -1,4 +1,12 @@
-const unsigned char victorylapsprites_0[]={
+const unsigned char white_shot[] = {
+		0, 0, 0x0f, 0,
+		0, 8, 0x0f, 0,
+		8, 0, 0x0f, 0,
+		8, 8, 0x0f, 0,
+		128
+};
+
+const unsigned char rocket_rider_left[]={
 
 	  7,  0,0x00,0,
 	  9,  7,0x03,0,
@@ -13,7 +21,7 @@ const unsigned char victorylapsprites_0[]={
 
 };
 
-const unsigned char victorylapsprites_1[]={
+const unsigned char rocket_rider_right[]={
 
 	-15,  0,0x00,0|OAM_FLIP_H,
 	-17,  7,0x03,0|OAM_FLIP_H,
@@ -28,7 +36,7 @@ const unsigned char victorylapsprites_1[]={
 
 };
 
-const unsigned char victorylapsprites_2[]={
+const unsigned char victorylapsprites_2_data[]={
 
 	  8,  7,0x25,0,
 	  0,  7,0x24,0,
@@ -40,7 +48,7 @@ const unsigned char victorylapsprites_2[]={
 
 };
 
-const unsigned char victorylapsprites_3[]={
+const unsigned char victorylapsprites_3_data[]={
 
 	-16,  7,0x25,0|OAM_FLIP_H,
 	- 8,  7,0x24,0|OAM_FLIP_H,
@@ -52,7 +60,7 @@ const unsigned char victorylapsprites_3[]={
 
 };
 
-const unsigned char victorylapsprites_4[]={
+const unsigned char victorylapsprites_4_data[]={
 
 	  0,  0,0x26,0,
 	  0,  0,0x16,2,
@@ -62,7 +70,7 @@ const unsigned char victorylapsprites_4[]={
 
 };
 
-const unsigned char victorylapsprites_5[]={
+const unsigned char victorylapsprites_5_data[]={
 
 	- 8,  0,0x26,0|OAM_FLIP_H,
 	- 8,  0,0x16,2|OAM_FLIP_H,
@@ -72,7 +80,7 @@ const unsigned char victorylapsprites_5[]={
 
 };
 
-const unsigned char victorylapsprites_6[]={
+const unsigned char victorylapsprites_6_data[]={
 
 	- 1,  0,0x27,0,
 	  0,  0,0x18,2,
@@ -80,7 +88,7 @@ const unsigned char victorylapsprites_6[]={
 
 };
 
-const unsigned char victorylapsprites_7[]={
+const unsigned char victorylapsprites_7_data[]={
 
 	- 7,  0,0x27,0|OAM_FLIP_H,
 	- 8,  0,0x18,2|OAM_FLIP_H,
@@ -88,14 +96,14 @@ const unsigned char victorylapsprites_7[]={
 
 };
 
-const unsigned char victorylapsprites_8[]={
+const unsigned char victorylapsprites_8_data[]={
 
 	  1,  0,0x28,2,
 	128
 
 };
 
-const unsigned char victorylapsprites_9[]={
+const unsigned char ufo_ship[]={
 
 	  0,  0,0xdb,2,
 	  8,  0,0xdc,2,
@@ -117,7 +125,50 @@ const unsigned char victorylapsprites_9[]={
 
 };
 
-const unsigned char victorylapsprites_10[]={
+
+const unsigned char ufo_ship_destroy1[]={
+
+	  0,  0,0xec,2,
+	  8,  0,0xdc,2,
+	  0,- 8,0xbb,2,
+	  8,- 8,0xc0,2,
+	  0,  8,0x28,2,
+	  8,  8,0xec,2,
+	  0, 16,0xfb,2,
+	  8, 16,0xf0,2,
+	 24,  8,0xb1,2|OAM_FLIP_H,
+	 24,  0,0x01,2|OAM_FLIP_H,
+	 16,  8,0xcc,2|OAM_FLIP_H,
+	 16,  0,0xdd,2|OAM_FLIP_H,
+	 16,- 8,0x05,2|OAM_FLIP_H,
+	 24,- 8,0xa2,2|OAM_FLIP_H,
+	 16, 16,0xfc,2|OAM_FLIP_H,
+	 24, 16,0x2c,2|OAM_FLIP_H,
+	128
+
+};
+
+const unsigned char white_ufo_ship[]={
+	0,  0,0x0f,0,
+	  8,  0,0x0f,0,
+	  0,- 8,0x0f,0,
+	  8,- 8,0x0f,0,
+	  0,  8,0x0f,0,
+	  8,  8,0x0f,0,
+	  0, 16,0x0f,0,
+	  8, 16,0x0f,0,
+	 24,  8,0x0f,0,
+	 24,  0,0x0f,0,
+	 16,  8,0x0f,0,
+	 16,  0,0x0f,0,
+	 16,- 8,0x0f,0,
+	 24,- 8,0x0f,0,
+	 16, 16,0x0f,0,
+	 24, 16,0x0f,0,
+	 128
+};
+
+const unsigned char victorylapsprites_10_data[]={
 
 	  0,  8,0xeb,2,
 	  8,  8,0xec,2,
@@ -147,7 +198,7 @@ const unsigned char victorylapsprites_10[]={
 
 };
 
-const unsigned char victorylapsprites_11[]={
+const unsigned char victorylapsprites_11_data[]={
 
 	  0,-16,0x80,1,
 	  0,- 8,0x90,1,
@@ -166,7 +217,7 @@ const unsigned char victorylapsprites_11[]={
 
 };
 
-const unsigned char victorylapsprites_12[]={
+const unsigned char victorylapsprites_12_data[]={
 
 	  0,-16,0x80,1,
 	  0,- 8,0x90,1,
@@ -185,7 +236,7 @@ const unsigned char victorylapsprites_12[]={
 
 };
 
-const unsigned char victorylapsprites_13[]={
+const unsigned char victorylapsprites_13_data[]={
 
 	  0,  0,0xc2,1,
 	  8,  0,0xc3,1,
@@ -195,33 +246,13 @@ const unsigned char victorylapsprites_13[]={
 
 };
 
-const unsigned char victorylapsprites_14[]={
+const unsigned char victorylapsprites_14_data[]={
 
 	  8,  0,0xc2,1|OAM_FLIP_H,
 	  0,  0,0xc3,1|OAM_FLIP_H,
 	  8,  8,0xd2,1|OAM_FLIP_H,
 	  0,  8,0xd3,1|OAM_FLIP_H,
 	128
-
-};
-
-const unsigned char* const victorylapsprites_list[]={
-
-	victorylapsprites_0,
-	victorylapsprites_1,
-	victorylapsprites_2,
-	victorylapsprites_3,
-	victorylapsprites_4,
-	victorylapsprites_5,
-	victorylapsprites_6,
-	victorylapsprites_7,
-	victorylapsprites_8,
-	victorylapsprites_9,
-	victorylapsprites_10,
-	victorylapsprites_11,
-	victorylapsprites_12,
-	victorylapsprites_13,
-	victorylapsprites_14
 
 };
 

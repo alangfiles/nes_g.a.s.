@@ -1116,10 +1116,7 @@ const unsigned char spaceship[] = {
 		128
 };
 
-const unsigned char white_shot[] = {
-		0, 0, 0x21, 0,
-		128
-};
+
 
 const unsigned char Cutscene_35_data[]={
 	  0,- 1,0x68,0,

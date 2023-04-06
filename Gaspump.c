@@ -77,7 +77,7 @@ const unsigned char futuretalk_palette[16] = {0x0f, 0x00, 0x10, 0x30, 0x0f, 0x13
 const unsigned char futurepump_palette[16] = {
 		0x0f, 0x00, 0x10, 0x30,
 		0x0f, 0x13, 0x23, 0x31, 
-		0x0f, 0x23, 0x16, 0x26,  
+		0x0f, 0x23, 0x16, 0x26,   
 		0x0f, 0x09, 0x19, 0x29};  
 
 const unsigned char talking_time_palette[] = {
@@ -614,6 +614,7 @@ void bank_1_instructions_init(void)
 	oam_clear(); // clear all sprites
 	clear_background();
 	reset_game_variables();
+	set_scroll_y(0xff);
 
 	set_chr_bank_0(TALKING_TIME_CHR_0);
 	set_chr_bank_1(TALKING_TIME_CHR_1);
@@ -682,8 +683,6 @@ void bank_1_gas_level_init(void)
 	pal_bg(gaspump_palette);
 	pal_spr(gaspump_sprite_palette); //	load the palette
 
-	bird_x = 0;
-
 	set_chr_bank_0(GASPUMP_CHR_0);
 	set_chr_bank_1(GASPUMP_CHR_1);
 	// draw_bg: draw background code
@@ -692,16 +691,7 @@ void bank_1_gas_level_init(void)
 
 	index = 0;
 	vram_adr(NAMETABLE_A); // Nametable A;
-
 	vram_unrle(LEVEL_1_PUMP);
-	// for(largeindex = 0; largeindex < 1024; ++largeindex){
-	// 	vram_put(level1[largeindex]);
-	// 	++index;
-	// 	if(index > 40) { //don't put too much in the vram_buffer
-	// 		flush_vram_update2();
-	// 		index = 0;
-	// 	}
-	// }
 
 	ppu_on_all(); // turn on screen
 	banked_call(BANK_3, bank_3_draw_level_base_sprites);
@@ -712,6 +702,8 @@ void bank_1_gas_level_init(void)
 	music_play(SONG_GASPUMP);
 	moveframes = 0;
 	moveframes2 = 0;
+
+	reset_level = 1;
 }
 
 
@@ -851,7 +843,7 @@ const unsigned char level_1_over[] = "Pump that much\n\nand it spills out.";
 const unsigned char level_2_awful[] = "You clicked it...\n\nDidn't you?\nNot Again\n";
 const unsigned char level_2_bad[] = "Your finger may\n\nhurt, but pump\n\nthrough the pain.";
 const unsigned char level_2_good[] = "You're as good as\nI hoped. Wait \noutside. I've gotta\ncall my boss.";
-const unsigned char level_2_perfect[] = "Bumping Barthoids!\nYou're great!\nMaybe... just maybe...\nWait outside willya?";
+const unsigned char level_2_perfect[] = "Bumping Barthoids!\nYou're great!\nMaybe...just maybe...\nWait outside willya?";
 const unsigned char level_2_over[] = "You have no regard\n\nfor the gas you spill...";
 
 
@@ -933,10 +925,10 @@ void bank_1_evaluation_init(void)
 		gas_pump_level_quality = PERFECT_PUMP;
 	} else if(gas_pumped >= gas_goal_hundreds - 5 && gas_pumped <= gas_goal_hundreds + 5 ){
 		gas_pump_level_quality = GOOD_PUMP;
+	} else if(gas_pumped >= gas_goal_hundreds +5){
+		gas_pump_level_quality = OVER_PUMP;
 	} else if(gas_pumped >= gas_goal_hundreds - 100){
 		gas_pump_level_quality = BAD_PUMP;
-	} else if(gas_pumped >= gas_goal_hundreds +5){
-			gas_pump_level_quality = OVER_PUMP;
 	} else {
 		gas_pump_level_quality = AWFUL_PUMP;
 	}
@@ -946,10 +938,12 @@ void bank_1_evaluation_init(void)
 			case PERFECT_PUMP:
 				pointer = level_0_perfect;
 				text_length = sizeof(level_0_perfect);
+				++levels_complete;
 				break;
 			case GOOD_PUMP:
 				pointer = level_0_good;
 				text_length = sizeof(level_0_good);
+				++levels_complete;
 				break;
 			case BAD_PUMP:
 				pointer = level_0_bad;
@@ -966,17 +960,17 @@ void bank_1_evaluation_init(void)
 			default:
 				break;
 		}
-	}
-
-	if(levels_complete == 1){
+	} else if(levels_complete == 1){
 		switch(gas_pump_level_quality){
 			case PERFECT_PUMP:
 				pointer = level_1_perfect;
 				text_length = sizeof(level_1_perfect);
+				++levels_complete;
 				break;
 			case GOOD_PUMP:
 				pointer = level_1_good;
 				text_length = sizeof(level_1_good);
+				++levels_complete;
 				break;
 			case BAD_PUMP:
 				pointer = level_1_bad;
@@ -993,16 +987,17 @@ void bank_1_evaluation_init(void)
 			default:
 				break;
 		}
-	}
-	if(levels_complete == 2){
+	} else if(levels_complete == 2){
 		switch(gas_pump_level_quality){
 			case PERFECT_PUMP:
 				pointer = level_2_perfect;
 				text_length = sizeof(level_2_perfect);
+				++levels_complete;
 				break;
 			case GOOD_PUMP:
 				pointer = level_2_good;
 				text_length = sizeof(level_2_good);
+				++levels_complete;
 				break;
 			case BAD_PUMP:
 				pointer = level_2_bad;
@@ -1670,11 +1665,23 @@ unsigned char duck_hit_top = 0;
 
 #include "SPRITES/gaspump.h"
 
+unsigned char blimp_frames = 0;
 void bank_3_level_sprites(void){
+	if(reset_level){
+		blimp_x = 160;
+		blimp_y = 20;
+		duck_0_x = 20;
+		duck_0_y = 100;
+		x_direction = 0;
+		y_direction = 0;
+		duck_hit_top = 0;
+		reset_level = 0;
+	}
 	++moveframes;
 	++moveframes2;
 
-	if(levels_complete == 10){
+	if(levels_complete == 0){
+		++blimp_frames;
 		
 		if(moveframes > 100){
 			if(moveframes2 > 20){
@@ -1693,15 +1700,30 @@ void bank_3_level_sprites(void){
 				moveframes2 = 0;
 			}
 			
-			if(moveframes2%2==0){
+			if(blimp_frames < 20){
 				oam_meta_spr(blimp_x, blimp_y, blimp_0);
-			} else {
+			} else if(blimp_frames < 40){
 				oam_meta_spr(blimp_x, blimp_y, blimp_1);
+			} else if(blimp_frames < 60){
+				oam_meta_spr(blimp_x, blimp_y, blimp_2);
+			} else if(blimp_frames < 80){
+				oam_meta_spr(blimp_x, blimp_y, blimp_3);
+			} else if(blimp_frames < 100){
+				oam_meta_spr(blimp_x, blimp_y, blimp_4);
+			} else if(blimp_frames < 120){
+				oam_meta_spr(blimp_x, blimp_y, blimp_5);
+			} else if(blimp_frames < 140){
+				oam_meta_spr(blimp_x, blimp_y, blimp_6);
+			} else if(blimp_frames < 160){
+				oam_meta_spr(blimp_x, blimp_y, blimp_7);
+			} else {
+				oam_meta_spr(blimp_x, blimp_y, blimp_0);
+				blimp_frames = 0;
 			}
 			
 		}
 	}
-	if(levels_complete == 0){ //level_complete ==1
+	if(levels_complete == 1){ //level_complete ==1
 		//birds for level 2
 		if(moveframes > 100){ //wait a bit before doing anything.
 
@@ -1739,42 +1761,66 @@ void bank_3_level_sprites(void){
 				}
 
 			//draw duck
-			if(moveframes2 < 10){
+			if(moveframes2 < 5){
 				if(x_direction){
 					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_0);
 				} else {
 					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_0); 
 				}  
 				
-			} else if (moveframes2 < 20){
+			} else if (moveframes2 < 10){
 				if(x_direction){
 					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_1);
 				} else {
 					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_1);
 				}
-			} else if (moveframes2 < 30){
+			} else if (moveframes2 < 15){
 				if(x_direction){
 					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_2);
 				} else {
 					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_2);
 				}
-			}else if (moveframes2 < 40){
+			}else if (moveframes2 < 20){
 				if(x_direction){
 					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_3);
 				} else {
 					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_3);
 				}
-			}else if (moveframes2 < 50){
+			}else if (moveframes2 < 25){
 				if(x_direction){
 					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_4);
 				} else {
 					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_4);
 				}
-			} else if (moveframes2 < 60){
+			} else if (moveframes2 < 30){
 				if(x_direction){
 					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_5);
 				} else {
 					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_5);
+				}
+			} else if (moveframes2 < 35){
+				if(x_direction){
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_4);
+				} else {
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_4);
+				}
+			} else if (moveframes2 < 40){
+				if(x_direction){
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_3);
+				} else {
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_3);
+				}
+			} else if (moveframes2 < 45){
+				if(x_direction){
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_2);
+				} else {
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_2);
+				}
+			} else if (moveframes2 < 50){
+				if(x_direction){
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_l_1);
+				} else {
+					oam_meta_spr(duck_0_x,duck_0_y, bigduck_r_1);
 				}
 			} else {
 				if(x_direction){
@@ -3310,7 +3356,7 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	banked_call(BANK_1, bank_1_instructions_init);
+	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);

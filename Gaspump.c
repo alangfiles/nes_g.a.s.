@@ -14,7 +14,6 @@
 [] both?: redo some songs (maybe remove from talking time, etc)
 [] alan: add score/speed/accuracy stuff to evaluation
 
- * [] fix Al's face palletes and talking
  * [] remove skipping the talking time
 	* [] Add sound effects
 	*   *  Glug Glug
@@ -25,12 +24,12 @@
 	*   *  Bad job fanfare
  *
  * Other ideas:
- * [] Add score for goal/speed/accuracy/style (add total?)
  * [] second controller can shoot the whole time?
  * [] give amounts in dollars instead of gallons sometimes?
  * 
  * BUGS:
  * [] Fix planet scrolling attribute tables
+ * [] check all of al's text
  *
  * game flow:
  * title->intro_scroll->intro_cutscene->
@@ -3039,6 +3038,28 @@ void bank_5_gameover_loop(void)
 	// I like the idea of just having this screen tell them they have to reset the game.
 }
 
+
+unsigned char spaceship_1_x = 230;
+unsigned char spaceship_1_y = 100;
+unsigned char spaceship_1_frames = 0;
+unsigned char spaceship_destroyed = 0;
+unsigned char spaceship_1_x_speed = 1;
+const unsigned char ship_speeds[] = {200, 100, 255, 180, 50};
+
+void bank_5_spaceship_generator(){
+	spaceship_destroyed = 0;
+		spaceship_1_x = 230;
+		spaceship_1_y = 100;
+		spaceship_1_frames = 0;
+		++enemies_hit;
+		++starfield_enemies;
+		index = get_frame_count() & 4;
+		temp = ship_speeds[index];
+		x_speed = spaceship_1_x;
+		x_speed = spaceship_1_x<<8;
+		y_speed = 0;
+}
+
 void bank_5_starfield_init(void)
 {
 	set_mirroring(MIRROR_VERTICAL);
@@ -3090,6 +3111,7 @@ void bank_5_starfield_init(void)
 	attribute_table_index = NAMETABLE_A_ATTR;
 	attribute_bytes_written = 0;
 	music_play(SONG_ENDINGSPACE);
+	bank_5_spaceship_generator();
 }
 
 unsigned char column_pixel_counter = 0;
@@ -3203,11 +3225,6 @@ void bank_5_draw_starfield_player_sprite(void){
 	oam_meta_spr(player_x, player_y, rocket_rider_right);
 }
 
-unsigned char spaceship_1_x = 230;
-unsigned char spaceship_1_y = 100;
-unsigned char spaceship_1_frames = 0;
-unsigned char spaceship_destroyed = 0;
-unsigned char spaceship_1_x_speed = 1;
 
 void bank_5_draw_starfield_sprites(void)
 {
@@ -3218,14 +3235,7 @@ void bank_5_draw_starfield_sprites(void)
 	}
 	if(spaceship_destroyed && spaceship_1_frames == 30){
 		//after 30 frames, reset it.
-		spaceship_destroyed = 0;
-		spaceship_1_x = 230;
-		spaceship_1_y = 100;
-		spaceship_1_frames = 0;
-		++enemies_hit;
-		++starfield_enemies;
-		spaceship_1_x_speed = get_frame_count()%2;
-		++spaceship_1_x_speed;
+		banked_call(BANK_5,bank_5_spaceship_generator);
 	}
 
 	if(spaceship_1_x < 5){
@@ -3236,7 +3246,12 @@ void bank_5_draw_starfield_sprites(void)
 	
 
 	// move the sprite
-	spaceship_1_x = spaceship_1_x-spaceship_1_x_speed;
+	x_speed -= temp;
+	x_speed -= temp;
+	
+	spaceship_1_x = high_byte(x_speed);
+
+	// spaceship_1_y = spaceship_1_y-spaceship_1_y_speed;
 
 	//draw the sprite
 	if (shooting_mode == 1)

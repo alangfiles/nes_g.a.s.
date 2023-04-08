@@ -50,6 +50,7 @@ unsigned char aliengas3;
 unsigned char aliengas2;
 unsigned char aliengas1;
 unsigned char temp;
+unsigned char temp2;
 
 
 unsigned char gas_pump_level_quality = 255;
@@ -233,6 +234,10 @@ unsigned char alien_level_status;
 
 unsigned int moveframes;
 unsigned int moveframes2;
+
+unsigned int x_speed;
+unsigned int y_speed;
+
 
 unsigned char reset_level;
 unsigned char sc_eye_frames;

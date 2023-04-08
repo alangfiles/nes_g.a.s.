@@ -1663,7 +1663,7 @@ void bank_3_level_sprites(void){
 	++moveframes;
 	++moveframes2;
 
-	if(levels_complete == 0){
+	if(levels_complete == 0){  
 		++blimp_frames;
 		
 		if(moveframes > 100){
@@ -3064,25 +3064,20 @@ void bank_5_gameover_loop(void)
 }
 
 
-unsigned char spaceship_1_x = 230;
-unsigned char spaceship_1_y = 100;
+unsigned int spaceship_1_x = 230<<8;
+unsigned int spaceship_1_y = 100<<8;
 unsigned char spaceship_1_frames = 0;
 unsigned char spaceship_destroyed = 0;
-unsigned char spaceship_1_x_speed = 1;
-const unsigned char ship_speeds[] = {200, 100, 255, 180, 50};
+const unsigned char ship_speeds[] = {200, 130, 255, 180, 90};
 
 void bank_5_spaceship_generator(){
 	spaceship_destroyed = 0;
-		spaceship_1_x = 230;
-		spaceship_1_y = 100;
+		spaceship_1_x = 230<<8;
+		spaceship_1_y = 100<<8;
 		spaceship_1_frames = 0;
-		++enemies_hit;
 		++starfield_enemies;
 		index = get_frame_count() & 4;
 		temp = ship_speeds[index];
-		x_speed = spaceship_1_x;
-		x_speed = spaceship_1_x<<8;
-		y_speed = 0;
 }
 
 void bank_5_starfield_init(void)
@@ -3257,45 +3252,48 @@ void bank_5_draw_starfield_sprites(void)
 	if(spaceship_destroyed && spaceship_1_frames < 30){
 		if(starfield_enemies %2 == 0){
 			if(spaceship_1_frames < 4){
-				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_0);		
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_0);		
 			}
 			else if(spaceship_1_frames < 8){
-				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_1);		
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_1);		
 			}
 			else if(spaceship_1_frames < 12){
-				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_2);		
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_2);		
 			}
-			else if(spaceship_1_frames < 26){
-				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_3);		
+			else if(spaceship_1_frames < 23){
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_3);		
+			}
+			else if (spaceship_1_frames < 30){
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_23);	
 			}
 			return;
 		
 		} 
 		else {  
 			if(spaceship_1_frames < 3){
-				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_15);	
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_15);	
 			}
 			else if(spaceship_1_frames < 6){
-				oam_meta_spr(--spaceship_1_x, spaceship_1_y, explosion_16);	
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_16);	
 			}
 			else if(spaceship_1_frames < 9){
-				oam_meta_spr(--spaceship_1_x, spaceship_1_y, explosion_17);	
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_17);	
 			}
 			else if(spaceship_1_frames < 12){
-				oam_meta_spr(--spaceship_1_x, spaceship_1_y, explosion_18);	
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_18);	
 			}
 			else if(spaceship_1_frames < 15){
-				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_19);	
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_19);	
 			}else if(spaceship_1_frames < 18){
-				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_20);	
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_20);	
 			}else if(spaceship_1_frames < 21){
-				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_21);	
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_21);	
 			}else if(spaceship_1_frames < 24){
-				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_22);	
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_22);	
 			}else if(spaceship_1_frames < 27){
-				oam_meta_spr(--spaceship_1_x, spaceship_1_y, explosion_23);	
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_23);	
 			} else {
-				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_23);	
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_23);	
 			}
 		}
 			
@@ -3303,35 +3301,34 @@ void bank_5_draw_starfield_sprites(void)
 	}
 	if(spaceship_destroyed && spaceship_1_frames == 30){
 		//after 30 frames, reset it.
+		++enemies_hit;
 		banked_call(BANK_5,bank_5_spaceship_generator);
 	}
 
-	if(spaceship_1_x < 5){
+	if(high_byte(spaceship_1_x) < 5){
 		//shake screen? flash red?
-		++starfield_enemies;
-		spaceship_1_x = 0;
+		banked_call(BANK_5,bank_5_spaceship_generator);
 	}
 	
 
 	// move the sprite
-	x_speed -= temp;
-	x_speed -= temp;
 
-	spaceship_1_x = high_byte(x_speed);
+	spaceship_1_x -= temp;
+	spaceship_1_x -= temp;
 
 	// spaceship_1_y = spaceship_1_y-spaceship_1_y_speed;
 
 	//draw the sprite
 	if (shooting_mode == 1)
 	{
-		oam_meta_spr(spaceship_1_x, spaceship_1_y, white_ufo_ship);
+		oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), white_ufo_ship);
 	}    
 	else  
 	{
 		if(starfield_enemies%3==0){
-			oam_meta_spr(spaceship_1_x, spaceship_1_y, ufo_ship_color_1);	
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), ufo_ship_color_1);	
 		} else {
-			oam_meta_spr(spaceship_1_x, spaceship_1_y, ufo_ship);	
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), ufo_ship);	
 		}
 		
 	}
@@ -3436,13 +3433,13 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	banked_call(BANK_1, bank_1_instructions_init);
+	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
-	// banked_call(BANK_5, bank_5_starfield_init);
+	banked_call(BANK_5, bank_5_starfield_init);
 
 	while (1)
 	{

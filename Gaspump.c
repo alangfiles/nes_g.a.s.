@@ -3271,31 +3271,60 @@ void bank_5_draw_starfield_player_sprite(void){
 	oam_meta_spr(player_x, player_y, rocket_rider_right);
 }
 
+unsigned char boss_hits = 0;
 void bank_5_draw_starfield_boss(void){
 	++sprite_frames;
 	++moveframes;
 
-	if(sprite_frames == 50){
+	if(sprite_frames == 40){
 		//change the ship speed randomly
-		index = get_frame_count() & 2;
+
+		index = rand8() & 2;
 		temp = ship_speeds[index];
+		sprite_frames = 0;
 	}
 
-	if(moveframes > 600 && moveframes < 700){
-		//open up to shoot
+	if(spaceship_destroyed && boss_hits == 6){
+			if(sprite_frames < 4){
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_0);		
+			}
+			else if(sprite_frames < 8){
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_1);		
+			}
+			else if(sprite_frames < 12){
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_2);		
+			}
+			else if(sprite_frames < 23){
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_3);		
+			}
+			else if (sprite_frames < 30){
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_23);	
+			}else if (sprite_frames == 30){
+				starfield_complete = 1;
+			}
+			return;
+		}
+
+	if(moveframes > 600 && moveframes < 700 && spaceship_destroyed == 0){
+		//open up to shoot during these frames.
+		//the guy stops moving for them.
+		
+
 		
 		//draw the sprite
 		if (shooting_mode == 1)
 		{
 			//todo: smaller target for this guy
-			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), white_ufo_ship);
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), white_3_target);
 		} else {
 			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), big_boss_ship);	
 		}
 		
 	} else {
 		if(moveframes > 700){
+			//reset stuff for boss level
 			moveframes = 0;
+			spaceship_destroyed = 0;
 		}
 		if(high_byte(spaceship_1_y) == 10){
 			spaceship_y_dir = 0;
@@ -3316,6 +3345,7 @@ void bank_5_draw_starfield_boss(void){
 		} else {
 			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), ufo_ship);	
 		}
+		
 		
 	}
 	
@@ -3409,7 +3439,7 @@ void bank_5_draw_starfield_sprites(void)
 	//draw the sprite
 	if (shooting_mode == 1)
 	{
-		oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), white_ufo_ship);
+		oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), white_4_target);
 	}    
 	else  
 	{
@@ -3452,6 +3482,12 @@ void bank_5_starfield_loop(void)
 		if(hit_detected){
 			spaceship_destroyed = 1;
 			spaceship_1_frames = 0;
+			if(boss_level){
+				sprite_frames = 0;
+				++boss_hits;
+			}
+			
+			
 		}
 		ppu_wait_nmi();
 		shooting_mode = 0;

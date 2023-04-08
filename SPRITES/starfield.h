@@ -211,7 +211,20 @@ const unsigned char ufo_ship_destroy1[]={
 
 };
 
-const unsigned char white_ufo_ship[]={
+const unsigned char white_3_target[]={
+		0,  0,0x0f,0,
+		0,- 8,0x0f,0,
+		0,  8,0x0f,0,
+	  8,  0,0x0f,0,
+	  8,- 8,0x0f,0,
+	  8,  8,0x0f,0,
+	 16,  8,0x0f,0,
+	 16,  0,0x0f,0,
+	 16,- 8,0x0f,0,
+	 128
+};
+
+const unsigned char white_4_target[]={
 	0,  0,0x0f,0,
 	  8,  0,0x0f,0,
 	  0,- 8,0x0f,0,

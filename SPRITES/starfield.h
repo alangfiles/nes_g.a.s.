@@ -279,3 +279,150 @@ const unsigned char victorylapsprites_14_data[]={
 
 };
 
+const unsigned char explosion_0[]={
+	0, 0, 0x98, 1,
+	8, 0, 0x99, 1,
+	16, 0, 0x99, 1|OAM_FLIP_H,
+	24, 0, 0x98, 1|OAM_FLIP_H,
+	0, 8, 0x98, 1|OAM_FLIP_V,
+	8, 8, 0x99, 1|OAM_FLIP_V,
+	16, 8, 0x99, 1|OAM_FLIP_H|OAM_FLIP_V,
+	24, 8, 0x98, 1|OAM_FLIP_H|OAM_FLIP_V,
+	128
+};
+const unsigned char explosion_1[]={
+	0, 0, 0x9a, 1,
+	8, 0, 0x9b, 1,
+	16, 0, 0x9b, 1|OAM_FLIP_H,
+	24, 0, 0x9a, 1|OAM_FLIP_H,
+	0, 8, 0x9a, 1|OAM_FLIP_V,
+	8, 8, 0x9b, 1|OAM_FLIP_V,
+	16, 8, 0x9b, 1|OAM_FLIP_H|OAM_FLIP_V,
+	24, 8, 0x9a, 1|OAM_FLIP_H|OAM_FLIP_V,
+	8,-8, 0x8b, 1,
+	16,-8, 0x8b, 1|OAM_FLIP_H,
+	8,16, 0x8b, 1|OAM_FLIP_V,
+	16,16, 0x8b, 1|OAM_FLIP_H|OAM_FLIP_V,
+	128
+};
+const unsigned char explosion_2[]={
+	0, 0, 0xa8, 1,
+	8, 0, 0xa9, 1,
+	16, 0, 0xa9, 1|OAM_FLIP_H,
+	24, 0, 0xa8, 1|OAM_FLIP_H,
+	0, 8, 0xa8, 1|OAM_FLIP_V,
+	8, 8, 0xa9, 1|OAM_FLIP_V,
+	16, 8, 0xa9, 1|OAM_FLIP_H|OAM_FLIP_V,
+	24, 8, 0xa8, 1|OAM_FLIP_H|OAM_FLIP_V,
+	128
+};
+
+const unsigned char explosion_3[]={
+	8, 0, 0xb8, 1,
+	16, 0, 0xb8, 1|OAM_FLIP_H,
+	8, 8, 0xb8, 1|OAM_FLIP_V,
+	16, 8, 0xb8, 1|OAM_FLIP_V|OAM_FLIP_H,
+	128
+};
+
+
+const unsigned char explosion_15[]={
+
+15,  7,0xae,1,
+ 8, 17,0xad,1,
+ 8,  9,0x9e,1,
+ 8,  4,0x8d,1,
+ 1,  3,0x8c,1,
+ 7,- 1,0x8d,1,
+15,  0,0x8e,1,
+22,  1,0x8f,1,
+ 1, 11,0x9c,1,
+22, 17,0xac,1|OAM_FLIP_H,
+ 3, 23,0xbc,1,
+10, 22,0xbd,1,
+17, 23,0xbe,1,
+ 0, 16,0xaf,1|OAM_FLIP_H,
+23,  9,0x9f,1,
+15, 15,0x9d,1|OAM_FLIP_H|OAM_FLIP_V,
+128
+
+};
+
+const unsigned char explosion_16[]={
+
+21,  5,0x8f,1,
+14,  9,0xae,1,
+16, 15,0x9d,1|OAM_FLIP_H|OAM_FLIP_V,
+11, 13,0xad,1,
+ 4,  8,0x8c,1,
+ 7,  5,0x8d,1,
+14,  3,0x8e,1,
+18, 19,0xac,1|OAM_FLIP_H,
+10, 20,0xbd,1,
+ 3, 16,0xaf,1|OAM_FLIP_H,
+21, 13,0x9f,1,
+128
+
+};
+
+const unsigned char explosion_17[]={
+
+ 5, 13,0xaf,1|OAM_FLIP_H,
+20,  9,0x8f,1,
+ 8,  9,0x8d,1,
+12, 12,0xae,1,
+12, 11,0xad,1,
+12,  7,0x8e,1,
+18, 15,0xac,1|OAM_FLIP_H,
+11, 17,0xbd,1,
+128
+
+};
+
+const unsigned char explosion_18[]={
+
+ 7, 10,0xaf,1|OAM_FLIP_H,
+ 9,  6,0x8c,1,
+17,  8,0x8f,1,
+12, 12,0xbd,1,
+128
+
+};
+
+const unsigned char explosion_19[]={
+
+16,  7,0x8f,1,
+12, 11,0xbc,1,
+11,  7,0xbf,1|OAM_FLIP_H|OAM_FLIP_V,
+128
+
+};
+
+const unsigned char explosion_20[]={
+
+12, 10,0x7c,1,
+128
+
+};
+
+const unsigned char explosion_21[]={
+
+12, 10,0x7d,1,
+128
+
+};
+
+const unsigned char explosion_22[]={
+
+12, 10,0x7e,1,
+128
+
+};
+
+const unsigned char explosion_23[]={
+
+12, 10,0x7f,1,
+
+128
+
+};

@@ -11,7 +11,7 @@
 
 const unsigned char bigduck_l_0[]={
 
- 0,  8,0x50,3|OAM_BEHIND,
+ 0,  8,0x70,3|OAM_BEHIND,
  0,  0,0x40,3|OAM_BEHIND,
  8,  0,0x41,3|OAM_BEHIND,
  8,  8,0x51,3|OAM_BEHIND,
@@ -29,15 +29,15 @@ const unsigned char bigduck_l_1[]={
  8,  0,0x44,3|OAM_BEHIND,
  8,  8,0x54,3|OAM_BEHIND,
  0, 16,0x60,3|OAM_BEHIND,
-16,  8,0x52,3|OAM_BEHIND,
-24,  8,0x53,3|OAM_BEHIND,
+16,  8,0x75,3|OAM_BEHIND,
+24,  8,0x76,3|OAM_BEHIND,
 128
 
 };
 
 const unsigned char bigduck_l_2[]={
 
- 0,  8,0x50,3|OAM_BEHIND,
+ 0,  8,0x70,3|OAM_BEHIND,
  8,  0,0x45,3|OAM_BEHIND,
  8,  8,0x55,3|OAM_BEHIND,
  0, 16,0x60,3|OAM_BEHIND,
@@ -49,13 +49,15 @@ const unsigned char bigduck_l_2[]={
 
 const unsigned char bigduck_l_3[]={
 
- 0,  8,0x50,3|OAM_BEHIND,
+ 0,  8,0x70,3|OAM_BEHIND,
  8,  0,0x46,3|OAM_BEHIND,
  8,  8,0x56,3|OAM_BEHIND,
  0, 16,0x60,3|OAM_BEHIND,
 16,  8,0x52,3|OAM_BEHIND,
 24,  8,0x53,3|OAM_BEHIND,
 128
+
+
 
 };
 
@@ -65,15 +67,16 @@ const unsigned char bigduck_l_4[]={
  8,  8,0x57,3|OAM_BEHIND,
  0, 16,0x60,3|OAM_BEHIND,
  8, 16,0x67,3|OAM_BEHIND,
-16,  8,0x52,3|OAM_BEHIND,
-24,  8,0x53,3|OAM_BEHIND,
+16,  8,0x77,3|OAM_BEHIND,
+24,  8,0x78,3|OAM_BEHIND,
 128
+
 
 };
 
 const unsigned char bigduck_l_5[]={
 
- 0,  8,0x50,3|OAM_BEHIND,
+ 0,  8,0x70,3|OAM_BEHIND,
  8,  8,0x58,3|OAM_BEHIND,
  0, 16,0x60,3|OAM_BEHIND,
  8, 16,0x68,3|OAM_BEHIND,
@@ -81,11 +84,12 @@ const unsigned char bigduck_l_5[]={
 24,  8,0x53,3|OAM_BEHIND,
 128
 
+
 };
 
 const unsigned char bigduck_r_0[]={
 
-24,  8,0x50,3|OAM_FLIP_H|OAM_BEHIND,
+24,  8,0x70,3|OAM_FLIP_H|OAM_BEHIND,
 24,  0,0x40,3|OAM_FLIP_H|OAM_BEHIND,
 16,  0,0x41,3|OAM_FLIP_H|OAM_BEHIND,
 16,  8,0x51,3|OAM_FLIP_H|OAM_BEHIND,
@@ -103,33 +107,33 @@ const unsigned char bigduck_r_1[]={
 16,  0,0x44,3|OAM_FLIP_H|OAM_BEHIND,
 16,  8,0x54,3|OAM_FLIP_H|OAM_BEHIND,
 24, 16,0x60,3|OAM_FLIP_H|OAM_BEHIND,
- 8,  8,0x52,3|OAM_FLIP_H|OAM_BEHIND,
- 0,  8,0x53,3|OAM_FLIP_H|OAM_BEHIND,
+ 8,  8,0x75,3|OAM_FLIP_H|OAM_BEHIND,
+ 0,  8,0x76,3|OAM_FLIP_H|OAM_BEHIND,
 128
 
 };
 
 const unsigned char bigduck_r_2[]={
 
-24,  8,0x50,3|OAM_FLIP_H|OAM_BEHIND,
+24,  8,0x70,3|OAM_FLIP_H|OAM_BEHIND,
 16,  0,0x45,3|OAM_FLIP_H|OAM_BEHIND,
 16,  8,0x55,3|OAM_FLIP_H|OAM_BEHIND,
 24, 16,0x60,3|OAM_FLIP_H|OAM_BEHIND,
  8,  8,0x52,3|OAM_FLIP_H|OAM_BEHIND,
  0,  8,0x53,3|OAM_FLIP_H|OAM_BEHIND,
 128
-
 };
 
 const unsigned char bigduck_r_3[]={
 
-24,  8,0x50,3|OAM_FLIP_H|OAM_BEHIND,
+24,  8,0x70,3|OAM_FLIP_H|OAM_BEHIND,
 16,  0,0x46,3|OAM_FLIP_H|OAM_BEHIND,
 16,  8,0x56,3|OAM_FLIP_H|OAM_BEHIND,
 24, 16,0x60,3|OAM_FLIP_H|OAM_BEHIND,
  8,  8,0x52,3|OAM_FLIP_H|OAM_BEHIND,
  0,  8,0x53,3|OAM_FLIP_H|OAM_BEHIND,
 128
+
 
 };
 
@@ -139,21 +143,22 @@ const unsigned char bigduck_r_4[]={
 16,  8,0x57,3|OAM_FLIP_H|OAM_BEHIND,
 24, 16,0x60,3|OAM_FLIP_H|OAM_BEHIND,
 16, 16,0x67,3|OAM_FLIP_H|OAM_BEHIND,
- 8,  8,0x52,3|OAM_FLIP_H|OAM_BEHIND,
- 0,  8,0x53,3|OAM_FLIP_H|OAM_BEHIND,
+ 8,  8,0x77,3|OAM_FLIP_H|OAM_BEHIND,
+ 0,  8,0x78,3|OAM_FLIP_H|OAM_BEHIND,
 128
 
 };
 
 const unsigned char bigduck_r_5[]={
 
-24,  8,0x50,3|OAM_FLIP_H|OAM_BEHIND,
+24,  8,0x70,3|OAM_FLIP_H|OAM_BEHIND,
 16,  8,0x58,3|OAM_FLIP_H|OAM_BEHIND,
 24, 16,0x60,3|OAM_FLIP_H|OAM_BEHIND,
 16, 16,0x68,3|OAM_FLIP_H|OAM_BEHIND,
  8,  8,0x52,3|OAM_FLIP_H|OAM_BEHIND,
  0,  8,0x53,3|OAM_FLIP_H|OAM_BEHIND,
 128
+
 
 };
 

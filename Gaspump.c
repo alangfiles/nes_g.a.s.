@@ -9,7 +9,7 @@
 [x] alan: finish up starfield (12 shootables go past, then you fly to earth and get the scroll)
 [] alan: starfield ending cutscene
 [x] alan: add Al angry sprites for bad pumping
-[] both: do something for the 3rd level
+[] both: do something for the 3rd level (clouds)
 [] brian: sound effects (dcm or normal or whatever, ps I think the bird is a noise channel flap plus a dcm quack)
 [] both?: redo some songs (maybe remove from talking time, etc)
 [] alan: add score/speed/accuracy stuff to evaluation
@@ -1646,6 +1646,9 @@ unsigned char duck_hit_top = 0;
 #include "SPRITES/gaspump.h"
 
 unsigned char blimp_frames = 0;
+unsigned char cloud_frames = 0;
+unsigned int cloud_x = 20<<8;
+unsigned int cloud_y = 20<<8;
 void bank_3_level_sprites(void){
 	if(reset_level){
 		blimp_x = 160;
@@ -1705,7 +1708,7 @@ void bank_3_level_sprites(void){
 	}
 	if(levels_complete == 1){ //level_complete ==1
 		//birds for level 2
-		if(moveframes > 100){ //wait a bit before doing anything.
+		if(moveframes > 600){ //wait a bit before doing anything.
 
 			//update movement
 				if(duck_0_y == 5){
@@ -1813,6 +1816,28 @@ void bank_3_level_sprites(void){
 			
 		}
 	}
+	if(levels_complete == 2){
+		// ++cloud_frames;
+		
+		cloud_x += 7;
+		if(high_byte(cloud_y) == 18 && low_byte(cloud_y) == 100){
+			y_direction = 0;
+		}
+		if(high_byte(cloud_y) == 21 && low_byte(cloud_y) == 100){
+			y_direction = 1;
+		}
+		if(y_direction){
+			cloud_y -= 2;
+		} else {
+			cloud_y += 2;
+		}
+		// cloud_frames = 0;
+	
+			
+		oam_meta_spr(high_byte(cloud_x), high_byte(cloud_y), cloud_1);
+			
+	}
+
 	// for(index = 0; index < 3; index++){
 	// 	if(index == 0){
 	// 		// if(moveframes2 < 8){
@@ -3230,7 +3255,50 @@ void bank_5_draw_starfield_sprites(void)
 {
 	++spaceship_1_frames;
 	if(spaceship_destroyed && spaceship_1_frames < 30){
-			oam_meta_spr(spaceship_1_x, spaceship_1_y, ufo_ship_destroy1);	
+		if(starfield_enemies %2 == 0){
+			if(spaceship_1_frames < 4){
+				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_0);		
+			}
+			else if(spaceship_1_frames < 8){
+				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_1);		
+			}
+			else if(spaceship_1_frames < 12){
+				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_2);		
+			}
+			else if(spaceship_1_frames < 26){
+				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_3);		
+			}
+			return;
+		
+		} 
+		else {  
+			if(spaceship_1_frames < 3){
+				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_15);	
+			}
+			else if(spaceship_1_frames < 6){
+				oam_meta_spr(--spaceship_1_x, spaceship_1_y, explosion_16);	
+			}
+			else if(spaceship_1_frames < 9){
+				oam_meta_spr(--spaceship_1_x, spaceship_1_y, explosion_17);	
+			}
+			else if(spaceship_1_frames < 12){
+				oam_meta_spr(--spaceship_1_x, spaceship_1_y, explosion_18);	
+			}
+			else if(spaceship_1_frames < 15){
+				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_19);	
+			}else if(spaceship_1_frames < 18){
+				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_20);	
+			}else if(spaceship_1_frames < 21){
+				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_21);	
+			}else if(spaceship_1_frames < 24){
+				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_22);	
+			}else if(spaceship_1_frames < 27){
+				oam_meta_spr(--spaceship_1_x, spaceship_1_y, explosion_23);	
+			} else {
+				oam_meta_spr(spaceship_1_x, spaceship_1_y, explosion_23);	
+			}
+		}
+			
 			return;
 	}
 	if(spaceship_destroyed && spaceship_1_frames == 30){
@@ -3248,7 +3316,7 @@ void bank_5_draw_starfield_sprites(void)
 	// move the sprite
 	x_speed -= temp;
 	x_speed -= temp;
-	
+
 	spaceship_1_x = high_byte(x_speed);
 
 	// spaceship_1_y = spaceship_1_y-spaceship_1_y_speed;
@@ -3368,13 +3436,13 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	// banked_call(BANK_1, bank_1_instructions_init);
+	banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
-	banked_call(BANK_5, bank_5_starfield_init);
+	// banked_call(BANK_5, bank_5_starfield_init);
 
 	while (1)
 	{

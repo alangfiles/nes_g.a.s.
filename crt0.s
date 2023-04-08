@@ -9,7 +9,7 @@
 
 
 FT_BASE_ADR		= $0100		;page in RAM, should be $xx00
-FT_DPCM_OFF		= $f000		;$c000..$ffc0, 64-byte steps
+FT_DPCM_OFF		= $f140		;$c000..$ffc0, 64-byte steps
 FT_SFX_STREAMS	= 1			;number of sound effects played at once, 1..4;
 
 FT_THREAD       = 1		;undefine if you call sound effects in the same thread as sound update
@@ -323,13 +323,12 @@ music_data:
 	.include "MUSIC/GasMusic2.s"
 
 sounds_data:
-	.include "MUSIC/SoundFx.s"
-
+	.include "MUSIC/sfxtest1.s"
 
 	
 	
 .segment "SAMPLES"
-	.incbin "MUSIC/BassDrum.dmc"
+	.incbin "MUSIC/sfxtest1.dmc"
 
 
 

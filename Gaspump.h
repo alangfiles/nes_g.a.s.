@@ -52,7 +52,7 @@ unsigned char aliengas1;
 unsigned char temp;
 
 
-unsigned char gas_pump_level_quality;
+unsigned char gas_pump_level_quality = 255;
 unsigned char alien_level;
 unsigned char alien_level_cleared;
 unsigned char alien_level_failed;
@@ -213,6 +213,8 @@ unsigned char index = 0;
 unsigned char nametable_selected = 0;
 unsigned char shooting_mode = 0;
 unsigned char chr_bank=0;
+unsigned char starfield_enemies=0;
+unsigned char enemies_hit=0;
 
 unsigned char lives = 3;
 

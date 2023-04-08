@@ -103,6 +103,29 @@ const unsigned char victorylapsprites_8_data[]={
 
 };
 
+const unsigned char ufo_ship_color_1[]={
+
+	  0,  0,0xdb,1,
+	  8,  0,0xdc,1,
+	  0,- 8,0xcb,1,
+	  8,- 8,0xcc,1,
+	  0,  8,0xeb,1,
+	  8,  8,0xec,1,
+	  0, 16,0xfb,1,
+	  8, 16,0xfc,1,
+	 24,  8,0xeb,1|OAM_FLIP_H,
+	 24,  0,0xdb,1|OAM_FLIP_H,
+	 16,  8,0xec,1|OAM_FLIP_H,
+	 16,  0,0xdc,1|OAM_FLIP_H,
+	 16,- 8,0xcc,1|OAM_FLIP_H,
+	 24,- 8,0xcb,1|OAM_FLIP_H,
+	 16, 16,0xfc,1|OAM_FLIP_H,
+	 24, 16,0xfb,1|OAM_FLIP_H,
+	128
+
+};
+
+
 const unsigned char ufo_ship[]={
 
 	  0,  0,0xdb,2,

@@ -5,8 +5,15 @@
  *
  *
  * POLISH:
- * [] add sprites to pump levels (cars, birds, spaceships)
- * [] add shootables to last level scroll
+[] brian: exploding sprite for starfield level.
+[x] alan: finish up starfield (12 shootables go past, then you fly to earth and get the scroll)
+[] alan: starfield ending cutscene
+[x] alan: add Al angry sprites for bad pumping
+[] both: do something for the 3rd level
+[] brian: sound effects (dcm or normal or whatever, ps I think the bird is a noise channel flap plus a dcm quack)
+[] both?: redo some songs (maybe remove from talking time, etc)
+[] alan: add score/speed/accuracy stuff to evaluation
+
  * [] fix Al's face palletes and talking
  * [] remove skipping the talking time
 	* [] Add sound effects
@@ -355,6 +362,14 @@ void bank_0_title_loop(void)
 		}
 		else
 		{
+			
+			//play sfx  
+			// music_play(2);
+			// sfx_play(25,0);
+			sample_play(++moveframes);
+			++moveframes;
+			// 25,27,29,30
+	
 			if (option == 0)
 			{
 				option = 1;
@@ -596,11 +611,20 @@ void bank_4_cutscene_init(void);					// prototype (needed to get call from bank_
 void bank_3_draw_level_base_sprites(void); // prototype
 
 void bank_1_als_base_sprites(void){
-	oam_meta_spr(0xc0, 0xa0, al_eyebrows_base);
+	if(gas_pump_level_quality == PERFECT_PUMP){
+		oam_meta_spr(0xc0, 0xa0, al_eyebrows_perfect);
+	} else if(gas_pump_level_quality == BAD_PUMP){
+		oam_meta_spr(0xc0, 0xa0, al_eyebrows_angry);
+	}else if(gas_pump_level_quality == AWFUL_PUMP){
+		oam_meta_spr(0xc0, 0xa0, al_eyebrows_base);
+		// oam_meta_spr(0xc0, 0xa0, al_eyebrows_awful);
+	} else {
+		oam_meta_spr(0xc0, 0xa0, al_eyebrows_base);
+	}
 	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
-}
-
-void bank_1_als_base_init_sprites(void){
+}   
+  
+void bank_1_als_base_init_sprites(void){  
 	oam_meta_spr(0xc0, 0xa0, al_eyebrows_base);
 	oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
 	oam_meta_spr(0xc0, 0xa8, al_open_eyes);
@@ -709,9 +733,16 @@ void bank_1_gas_level_init(void)
 
 
 void bank_1_als_eyes_sprites(void){
-	++sc_eye_frames;
+
+	
+	++sc_eye_frames;   
 	if(sc_eye_frames <140){
-		oam_meta_spr(0xc0, 0xa8, al_open_eyes);
+		if(gas_pump_level_quality == PERFECT_PUMP){
+			oam_meta_spr(0xc0, 0xa8, al_perfect_open_eyes);
+		} else {
+			oam_meta_spr(0xc0, 0xa8, al_open_eyes);
+		}
+		
 	} else if (sc_eye_frames < 144){
 		oam_meta_spr(0xc0, 0xa8, al_blink_1);
 	} else if (sc_eye_frames < 149){
@@ -726,33 +757,39 @@ void bank_1_als_eyes_sprites(void){
 
 void bank_1_als_mouth_sprites(void){
 	if (text_rendered != text_length){
-	++sc_mouth_frames;
-	if(sc_mouth_frames < 20){
+		++sc_mouth_frames;
+		if(sc_mouth_frames < 20){
+			oam_meta_spr(0xc0, 0xc0, al_mouth_base);
+		} else if (sc_mouth_frames < 28) {
+			oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
+		} else if (sc_mouth_frames < 36) {
+			oam_meta_spr(0xc0, 0xc0, al_mouth_base);  
+		} else if (sc_mouth_frames < 48) {
+			oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
+		} else if (sc_mouth_frames < 59) {
+			oam_meta_spr(0xc0, 0xc0, al_mouth_open_oh);
+		} else if (sc_mouth_frames < 70) {
+			oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
+		} else if (sc_mouth_frames < 79) {
+			oam_meta_spr(0xc0, 0xc0, al_mouth_base);
+		} else if (sc_mouth_frames < 86) {
+			oam_meta_spr(0xc0, 0xc0, al_mouth_open_wide);
+		} else if (sc_mouth_frames < 99) {
+			oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
+		} else if (sc_mouth_frames < 110) {
+			oam_meta_spr(0xc0, 0xc0, al_mouth_base);
+		}else {
+			oam_meta_spr(0xc0, 0xc0, al_mouth_base);
+			sc_mouth_frames = 0;
+		}
+	} else {  
 		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
-	} else if (sc_mouth_frames < 28) {
-		oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
-	} else if (sc_mouth_frames < 36) {
-		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
-	} else if (sc_mouth_frames < 48) {
-		oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
-	} else if (sc_mouth_frames < 59) {
-		oam_meta_spr(0xc0, 0xc0, al_mouth_open_oh);
-	} else if (sc_mouth_frames < 70) {
-		oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
-	} else if (sc_mouth_frames < 79) {
-		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
-	} else if (sc_mouth_frames < 86) {
-		oam_meta_spr(0xc0, 0xc0, al_mouth_open_wide);
-	} else if (sc_mouth_frames < 99) {
-		oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
-	} else if (sc_mouth_frames < 110) {
-		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
-	}else {
-		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
-		sc_mouth_frames = 0;
-	}
-	} else {
-		oam_meta_spr(0xc0, 0xc0, al_mouth_base);
+		// if(gas_pump_level_quality == PERFECT_PUMP){  
+		// 	oam_meta_spr(0xc0, 0xc0, al_mouth_perfect);	
+		// } else {
+			
+		// }
+		
 	}
 }
 
@@ -823,7 +860,7 @@ void bank_1_title_init(void)
 	levels_complete = 0;
 	perfect_levels = 0;
 	reset_game_variables();
-	music_play(SONG_TITLE);
+	// music_play(SONG_TITLE);
 
 	// todo: add title music
 }
@@ -916,7 +953,7 @@ void bank_1_evaluation_init(void)
 	multi_vram_buffer_horz("NONE", 4, NTADR_A(21, 10));
 	flush_vram_update2();
 
-	text_x_start = 2;
+	text_x_start = 2; 
 	text_y_start = 18;
 	reset_text_values();
 	//debug gas goals
@@ -993,11 +1030,13 @@ void bank_1_evaluation_init(void)
 				pointer = level_2_perfect;
 				text_length = sizeof(level_2_perfect);
 				++levels_complete;
+				alien_level = 1;
 				break;
 			case GOOD_PUMP:
 				pointer = level_2_good;
 				text_length = sizeof(level_2_good);
 				++levels_complete;
+				alien_level = 1;
 				break;
 			case BAD_PUMP:
 				pointer = level_2_bad;
@@ -1045,75 +1084,17 @@ void bank_1_evaluation_loop(void)
 
 	oam_clear(); // clear all sprites
 	
-	banked_call(BANK_1, bank_1_als_base_sprites);
-
+	
 	banked_call(BANK_1, bank_1_als_eyes_sprites);
 	banked_call(BANK_1, bank_1_als_mouth_sprites);
-
-	// if (text_rendered != text_length)
-	// {
-		// draw_talking_time_sprites();
-		// oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
-	// 	if (moveframes < 10)
-	// 	{
-	// 		oam_meta_spr(0xc0, 0xa7, altalks_30_data);
-	// 	}
-	// 	else if (moveframes < 20)
-	// 	{
-	// 		oam_meta_spr(0xc0, 0xa7, altalks_31_data);
-	// 	}
-	// 	else if (moveframes < 30)
-	// 	{
-	// 		oam_meta_spr(0xc0, 0xa7, altalks_32_data);
-	// 	}
-	// 	else if (moveframes < 40)
-	// 	{
-	// 		oam_meta_spr(0xc0, 0xa7, altalks_33_data);
-	// 	}
-	// 	else if (moveframes < 50)
-	// 	{
-	// 		oam_meta_spr(0xc0, 0xa7, altalks_34_data);
-	// 	}
-	// 	else if (moveframes < 60)
-	// 	{
-	// 		oam_meta_spr(0xc0, 0xa7, altalks_35_data);
-	// 	}
-	// 	else if (moveframes < 70)
-	// 	{
-	// 		oam_meta_spr(0xc0, 0xa7, altalks_36_data);
-	// 	}
-	// 	else if (moveframes < 80)
-	// 	{
-	// 		oam_meta_spr(0xc0, 0xa7, altalks_37_data);
-	// 	}
-	// 	else if (moveframes < 90)
-	// 	{
-	// 		oam_meta_spr(0xc0, 0xa7, altalks_38_data);
-	// 	}
-	// 	else if (moveframes < 100)
-	// 	{
-	// 		oam_meta_spr(0xc0, 0xa7, altalks_39_data);
-	// 	}
-	// 	else if (moveframes < 110)
-	// 	{
-	// 		oam_meta_spr(0xc0, 0xa7, altalks_40_data);
-	// 	}
-	// 	else
-	// 	{
-	// 		oam_meta_spr(0xc0, 0xa7, altalks_40_data);
-	// 		if (text_rendered != text_length)
-	// 		{
-	// 			moveframes = 0; // cycle while text is writing
-	// 		}
-	// 	}
-	// } else {
-	// 	oam_meta_spr(0xc0, 0xa7, altalks_30_data);
-	// }
+	banked_call(BANK_1, bank_1_als_base_sprites);
 
 	read_input();
 
 	if (trigger_clicked)
 	{
+		//reset gas level:
+		gas_pump_level_quality = 255;
 		wait_and_fade_out();
 
 		if (alien_level == 1)
@@ -3073,6 +3054,8 @@ void bank_5_starfield_init(void)
 	moveframes = 0;
 	scroll_page = 0;
 	nametable_selected = 1;
+	starfield_enemies = 0;
+	enemies_hit = 0;
 
 	vram_adr(NAMETABLE_A);
 
@@ -3224,6 +3207,7 @@ unsigned char spaceship_1_x = 230;
 unsigned char spaceship_1_y = 100;
 unsigned char spaceship_1_frames = 0;
 unsigned char spaceship_destroyed = 0;
+unsigned char spaceship_1_x_speed = 1;
 
 void bank_5_draw_starfield_sprites(void)
 {
@@ -3238,13 +3222,21 @@ void bank_5_draw_starfield_sprites(void)
 		spaceship_1_x = 230;
 		spaceship_1_y = 100;
 		spaceship_1_frames = 0;
+		++enemies_hit;
+		++starfield_enemies;
+		spaceship_1_x_speed = get_frame_count()%2;
+		++spaceship_1_x_speed;
 	}
 
-
+	if(spaceship_1_x < 5){
+		//shake screen? flash red?
+		++starfield_enemies;
+		spaceship_1_x = 0;
+	}
 	
 
 	// move the sprite
-	--spaceship_1_x;
+	spaceship_1_x = spaceship_1_x-spaceship_1_x_speed;
 
 	//draw the sprite
 	if (shooting_mode == 1)
@@ -3253,7 +3245,12 @@ void bank_5_draw_starfield_sprites(void)
 	}    
 	else  
 	{
-		oam_meta_spr(spaceship_1_x, spaceship_1_y, ufo_ship);	
+		if(starfield_enemies%3==0){
+			oam_meta_spr(spaceship_1_x, spaceship_1_y, ufo_ship_color_1);	
+		} else {
+			oam_meta_spr(spaceship_1_x, spaceship_1_y, ufo_ship);	
+		}
+		
 	}
 }
 
@@ -3290,12 +3287,12 @@ void bank_5_starfield_loop(void)
 	}
 
 	++moveframes;
-	// if (moveframes > 400)
-	// {
-	// 	wait_and_fade_out();
-	// 	banked_call(BANK_2, bank_2_ending_scroll_init);
-	// 	game_mode = MODE_GAME_ENDING;
-	// }
+	if (starfield_enemies >= 10)
+	{
+		wait_and_fade_out();
+		banked_call(BANK_2, bank_2_ending_scroll_init);
+		game_mode = MODE_GAME_ENDING;
+	}
 }
 
 #pragma endregion
@@ -3362,7 +3359,7 @@ void main(void)
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
-	// banked_call(BANK_5, bank_5_starfield_init);
+	banked_call(BANK_5, bank_5_starfield_init);
 
 	while (1)
 	{

@@ -197,6 +197,7 @@ enum
 
 const unsigned char *pointer;
 const unsigned char *sprite_pointer;
+unsigned char boss_level;
 
 unsigned char temp1;
 unsigned char temp2;
@@ -215,6 +216,8 @@ unsigned char nametable_selected = 0;
 unsigned char shooting_mode = 0;
 unsigned char chr_bank=0;
 unsigned char starfield_enemies=0;
+
+unsigned char starfield_complete=0;
 unsigned char enemies_hit=0;
 
 unsigned char lives = 3;
@@ -242,6 +245,7 @@ unsigned int y_speed;
 unsigned char reset_level;
 unsigned char sc_eye_frames;
 unsigned char sc_mouth_frames;
+unsigned char sprite_frames;
 
 #pragma bss-name(push, "BSS")
 

@@ -125,6 +125,46 @@ const unsigned char ufo_ship_color_1[]={
 
 };
 
+const unsigned char big_boss_ship[]={
+
+0,- 24,0xcb,2,
+	  8,- 24,0xcc,2,
+		16,-24,0xcc,2|OAM_FLIP_H,
+		24,- 24,0xcb,2|OAM_FLIP_H,
+
+	  0,  -16,0xdb,2,
+	  8,  -16,0xdc,2,
+		16, -16,0xdc,2|OAM_FLIP_H,
+		24, -16,0xdb,2|OAM_FLIP_H,
+
+		0, -8,0xef,2|OAM_FLIP_H,
+	  8, -8,0xed,2,
+	 16, -8,0xee,2,
+	 24, -8,0xef,2,
+		
+
+		0, 0,0xff,2|OAM_FLIP_H,
+	  8, 0,0xfd,2,
+	 16, 0,0xfe,2,
+	 24, 0,0xff,2,
+
+	 
+
+	 
+	  0,  8,0xeb,2,
+	  8,  8,0xec,2,
+		16,  8,0xec,2|OAM_FLIP_H,
+	 24,  8,0xeb,2|OAM_FLIP_H,
+
+	  0, 16,0xfb,2,
+	  8, 16,0xfc,2,
+	 16, 16,0xfc,2|OAM_FLIP_H,
+	 24, 16,0xfb,2|OAM_FLIP_H,
+	 
+	128
+
+};
+
 
 const unsigned char ufo_ship[]={
 

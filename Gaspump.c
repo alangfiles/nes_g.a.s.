@@ -3068,16 +3068,43 @@ unsigned int spaceship_1_x = 230<<8;
 unsigned int spaceship_1_y = 100<<8;
 unsigned char spaceship_1_frames = 0;
 unsigned char spaceship_destroyed = 0;
-const unsigned char ship_speeds[] = {200, 130, 255, 180, 90};
+unsigned char spaceship_y_dir = 0;
+const unsigned char ship_speeds[] = { 90, 180, 250};
+#include "SPRITES/starfield.h"
 
 void bank_5_spaceship_generator(){
-	spaceship_destroyed = 0;
+		spaceship_destroyed = 0;
 		spaceship_1_x = 230<<8;
 		spaceship_1_y = 100<<8;
 		spaceship_1_frames = 0;
 		++starfield_enemies;
-		index = get_frame_count() & 4;
+		index = get_frame_count() & 2;
 		temp = ship_speeds[index];
+		spaceship_y_dir = (get_frame_count() & 1) == 0;
+		switch(index){
+			case 0:
+				sprite_pointer = ufo_ship;
+				break;
+			case 1:
+				sprite_pointer = ufo_ship;
+				break;  
+			case 2:  
+				sprite_pointer = ufo_ship_color_1;
+				break;
+			case 3:
+				sprite_pointer = ufo_ship_color_1;
+				break;
+			default:
+				sprite_pointer = ufo_ship;
+				break;  
+		}
+		if(starfield_enemies == 10){
+			//boss level
+			boss_level = 1;
+			sprite_pointer = big_boss_ship;
+			spaceship_1_x = 200<<8;
+			spaceship_1_y = 100<<8;
+		}
 }
 
 void bank_5_starfield_init(void)
@@ -3222,7 +3249,6 @@ void bank_5_draw_screen_right(void)
 	}
 }
 
-#include "SPRITES/starfield.h"
 
 unsigned char player_x = 40;
 unsigned char player_y = 100;
@@ -3245,9 +3271,63 @@ void bank_5_draw_starfield_player_sprite(void){
 	oam_meta_spr(player_x, player_y, rocket_rider_right);
 }
 
+void bank_5_draw_starfield_boss(void){
+	++sprite_frames;
+	++moveframes;
+
+	if(sprite_frames == 50){
+		//change the ship speed randomly
+		index = get_frame_count() & 2;
+		temp = ship_speeds[index];
+	}
+
+	if(moveframes > 600 && moveframes < 700){
+		//open up to shoot
+		
+		//draw the sprite
+		if (shooting_mode == 1)
+		{
+			//todo: smaller target for this guy
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), white_ufo_ship);
+		} else {
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), big_boss_ship);	
+		}
+		
+	} else {
+		if(moveframes > 700){
+			moveframes = 0;
+		}
+		if(high_byte(spaceship_1_y) == 10){
+			spaceship_y_dir = 0;
+		}
+		if(high_byte(spaceship_1_y) == 230){
+			spaceship_y_dir = 1;
+		}
+
+		if(spaceship_y_dir){
+			spaceship_1_y -= temp;
+		} else {
+			spaceship_1_y += temp;
+		}	
+		if (shooting_mode == 1)
+		{
+			//show nothing to shoot
+			// oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), ufo_ship);	
+		} else {
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), ufo_ship);	
+		}
+		
+	}
+	
+}
 
 void bank_5_draw_starfield_sprites(void)
 {
+	if(boss_level){
+		banked_call(BANK_5, bank_5_draw_starfield_boss);
+		return;
+	}
+	
 	++spaceship_1_frames;
 	if(spaceship_destroyed && spaceship_1_frames < 30){
 		if(starfield_enemies %2 == 0){
@@ -3313,10 +3393,18 @@ void bank_5_draw_starfield_sprites(void)
 
 	// move the sprite
 
-	spaceship_1_x -= temp;
-	spaceship_1_x -= temp;
+		spaceship_1_x -= temp;
+		spaceship_1_x -= temp;
 
-	// spaceship_1_y = spaceship_1_y-spaceship_1_y_speed;
+		if(spaceship_y_dir){
+			spaceship_1_y -= temp;
+		} else {
+			spaceship_1_y += temp;
+		}	
+
+
+	
+	
 
 	//draw the sprite
 	if (shooting_mode == 1)
@@ -3325,11 +3413,7 @@ void bank_5_draw_starfield_sprites(void)
 	}    
 	else  
 	{
-		if(starfield_enemies%3==0){
-			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), ufo_ship_color_1);	
-		} else {
-			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), ufo_ship);	
-		}
+		oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), sprite_pointer);	
 		
 	}
 }
@@ -3338,13 +3422,21 @@ void bank_5_starfield_loop(void)
 {
 	ppu_wait_nmi();
 	oam_clear();
+	
+	if (starfield_complete)
+	{
+		wait_and_fade_out();
+		banked_call(BANK_2, bank_2_ending_scroll_init);
+		game_mode = MODE_GAME_ENDING;
+	}
+	
 
 	scroll_x += 2;
 	column_pixel_counter += 2;
 	scroll(scroll_x, 0);
 	bank_5_draw_screen_right();
 
-	// bank_5_draw_starfield_player_sprite();
+	bank_5_draw_starfield_player_sprite();
 	bank_5_draw_starfield_sprites();
 
 	read_input();
@@ -3367,12 +3459,7 @@ void bank_5_starfield_loop(void)
 	}
 
 	++moveframes;
-	if (starfield_enemies >= 10)
-	{
-		wait_and_fade_out();
-		banked_call(BANK_2, bank_2_ending_scroll_init);
-		game_mode = MODE_GAME_ENDING;
-	}
+	
 }
 
 #pragma endregion

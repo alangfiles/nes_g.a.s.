@@ -245,7 +245,7 @@ unsigned int y_speed;
 unsigned char reset_level;
 unsigned char sc_eye_frames;
 unsigned char sc_mouth_frames;
-unsigned char sprite_frames;
+unsigned int sprite_frames;
 
 #pragma bss-name(push, "BSS")
 

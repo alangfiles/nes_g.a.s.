@@ -5,6 +5,11 @@
  *
  *
  * POLISH:
+ * Alan todo list
+ * [] add blimp and dataeast truck to 3rd level
+ * [] add extra scroll to starfield
+ * [] sound effects
+ * 
 [] brian: exploding sprite for starfield level.
 [x] alan: finish up starfield (12 shootables go past, then you fly to earth and get the scroll)
 [] alan: starfield ending cutscene
@@ -3242,7 +3247,8 @@ void bank_5_draw_screen_right(void)
 		}
 		else
 		{
-			pointer = starfieldearth;
+			pointer = starfield7;
+			// pointer = starfieldearth;
 		}
 
 		row_column_index = 0;
@@ -3271,12 +3277,60 @@ void bank_5_draw_starfield_player_sprite(void){
 	oam_meta_spr(player_x, player_y, rocket_rider_right);
 }
 
+void bank_5_starfield_boss_defeated(void){
+	//todo flash screen
+	ppu_wait_nmi();
+	ppu_wait_nmi();
+	ppu_wait_nmi();
+	ppu_wait_nmi();
+	ppu_off();
+
+	//flash screen
+	//redraw background
+	vram_adr(NAMETABLE_A); // Nametable A;
+
+	for (largeindex = 0; largeindex < 1024; ++largeindex)
+	{
+		vram_put(starfield1[largeindex]);
+		++index;
+		if (index > 40)
+		{ // don't put too much in the vram_buffer
+			flush_vram_update2();
+			index = 0;
+		}
+	}
+	
+
+	vram_adr(NAMETABLE_B); // Nametable A;
+
+	for (largeindex = 0; largeindex < 1024; ++largeindex)
+	{
+		vram_put(starfieldearth[largeindex]);
+		++index;
+		if (index > 40)
+		{ // don't put too much in the vram_buffer
+			flush_vram_update2();
+			index = 0;
+		}
+	}
+	player_x = 100;
+
+	//switch scroll
+	scroll_x = 0;
+	scroll(scroll_x, 0);
+	
+	ppu_on_all();
+	starfield_complete = 1;
+}
+
 unsigned char boss_hits = 0;
+unsigned char count_frames = 1;
+unsigned int zip_through = 400;
 void bank_5_draw_starfield_boss(void){
 	++sprite_frames;
 	++moveframes;
 
-	if(sprite_frames == 40){
+	if(sprite_frames == 40 && count_frames){
 		//change the ship speed randomly
 
 		index = rand8() & 2;
@@ -3284,7 +3338,7 @@ void bank_5_draw_starfield_boss(void){
 		sprite_frames = 0;
 	}
 
-	if(spaceship_destroyed && boss_hits == 6){
+	if(spaceship_destroyed && boss_hits == 2){
 			if(sprite_frames < 4){
 				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_0);		
 			}
@@ -3299,8 +3353,11 @@ void bank_5_draw_starfield_boss(void){
 			}
 			else if (sprite_frames < 30){
 				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_23);	
-			}else if (sprite_frames == 30){
-				starfield_complete = 1;
+				count_frames = 0;
+			}else if(sprite_frames < 254){
+				scroll_x += 2;
+			}else if (sprite_frames == 600){	
+				banked_call(BANK_5, bank_5_starfield_boss_defeated);
 			}
 			return;
 		}
@@ -3326,10 +3383,10 @@ void bank_5_draw_starfield_boss(void){
 			moveframes = 0;
 			spaceship_destroyed = 0;
 		}
-		if(high_byte(spaceship_1_y) == 10){
+		if(high_byte(spaceship_1_y) == 40){
 			spaceship_y_dir = 0;
 		}
-		if(high_byte(spaceship_1_y) == 230){
+		if(high_byte(spaceship_1_y) == 220){
 			spaceship_y_dir = 1;
 		}
 
@@ -3448,16 +3505,42 @@ void bank_5_draw_starfield_sprites(void)
 	}
 }
 
+unsigned char test_count = 0;
 void bank_5_starfield_loop(void)
 {
+
 	ppu_wait_nmi();
 	oam_clear();
 	
 	if (starfield_complete)
-	{
-		wait_and_fade_out();
-		banked_call(BANK_2, bank_2_ending_scroll_init);
-		game_mode = MODE_GAME_ENDING;
+	{	
+		++test_count;
+		
+		if(player_x_direction){
+			player_x -= 2;
+			scroll_x += 1;
+			oam_meta_spr(player_x, 100, rocket_rider_left);
+		} else {
+			if(test_count < 100){
+				scroll_x += 2;
+			} else {
+				scroll_x += 2;
+			}
+			player_x += 2;
+			oam_meta_spr(player_x, 100, rocket_rider_right);
+		}
+		
+		if(player_x < 8){
+			player_x_direction = 1;
+		}
+
+		if(player_x == 10){
+			wait_and_fade_out();
+			banked_call(BANK_2, bank_2_ending_scroll_init);
+			game_mode = MODE_GAME_ENDING;
+		}
+		scroll(scroll_x, 0);
+		return;		
 	}
 	
 

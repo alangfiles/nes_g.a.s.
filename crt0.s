@@ -353,6 +353,7 @@ sounds_data:
 	.incbin "CHRS/Gaspump_alt.chr"
 	.incbin "CHRS/Futurepump_alt.chr"
 	.incbin "CHRS/Futurepump_alt_2.chr"
+	.incbin "CHRS/titlescreen.chr"
 	
 	
 ; the CHARS segment is much bigger, and I could have 

@@ -75,6 +75,9 @@ const unsigned char gameover_palette[16] = {
 	0x15,0x00,0x3d,0x2d,
 	0x15,0x09,0x19,0x38};
 
+	const unsigned char title_screen_palette[16] = { 0x1b,0x0f,0x16,0x36,0x1b,0x05,0x16,0x36,0x1b,0x00,0x16,0x30,0x1b,0x09,0x2c,0x30 };
+const unsigned char title_screen_palette_alt[16] = {0x11,0x0f,0x16,0x36,0x11,0x05,0x16,0x36,0x11,0x00,0x16,0x30,0x11,0x09,0x2c,0x30  };
+
 const unsigned char futurepump_sprite_palette[16] = {0x0f, 0x12, 0x15, 0x38, 0x0f, 0x13, 0x23, 0x31, 0x0f, 0x23, 0x16, 0x26, 0x0f, 0x09, 0x19, 0x29};
 
 const unsigned char gaspump_palette[16] = {
@@ -302,16 +305,16 @@ void bank_0_title_loop(void)
 {
 	ppu_wait_nmi();
 
-	if (option == 0)
-	{
-		one_vram_buffer(0x3d, NTADR_A(6, 22));
-		one_vram_buffer(0x00, NTADR_A(6, 24));
-	}
-	else
-	{
-		one_vram_buffer(0x00, NTADR_A(6, 22));
-		one_vram_buffer(0x3d, NTADR_A(6, 24));
-	}
+	// if (option == 0)
+	// {
+	// 	one_vram_buffer(0x3d, NTADR_A(6, 22));
+	// 	one_vram_buffer(0x00, NTADR_A(6, 24));
+	// }
+	// else
+	// {
+	// 	one_vram_buffer(0x00, NTADR_A(6, 22));
+	// 	one_vram_buffer(0x3d, NTADR_A(6, 24));
+	// }
 
 	read_input();
 
@@ -358,10 +361,6 @@ void bank_0_title_loop(void)
 				pal_bg(fade_2);
 				wait_and_fade_out();
 				banked_call(BANK_0, bank_0_intro_scroll_init);
-			}
-			else
-			{
-				multi_vram_buffer_horz("No Free Pump Mode yet", 21, NTADR_A(6, 25));
 			}
 		}
 		else
@@ -832,30 +831,41 @@ void bank_1_instructions_loop(void)
 	}
 }
 
-#include "BACKGROUNDS/title_screen_rle.h";
+// #include "BACKGROUNDS/title_screen_rle.h";
+#include "BACKGROUNDS/titlescreen.h";
 
 void bank_1_title_init(void)
 {
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 
-	pal_bg(intro_cutscene_palette);
+	pal_bg(title_screen_palette_alt);
 
 	// bird_x = 0;
 
-	set_chr_bank_0(CUTSCENE_CHR_0);
-	set_chr_bank_1(CUTSCENE_CHR_0);
+	set_chr_bank_0(TITLESCREEN_CHR_0);
+	set_chr_bank_1(TITLESCREEN_CHR_0);
 
 	vram_adr(NAMETABLE_A);
-	vram_unrle(title_screen_rle);
+	for (largeindex = 0; largeindex < 1024; ++largeindex)
+	{
+		vram_put(titlescreen[largeindex]);
+		++index;
+		if (index > 40)
+		{ // don't put too much in the vram_buffer
+			flush_vram_update2();
+			index = 0;
+		}
+	}
 
-	multi_vram_buffer_horz("G.A.S.", 6, NTADR_A(12, 4));
-	multi_vram_buffer_horz("Gas Attendant Simulator", 23, NTADR_A(5, 6));
-	flush_vram_update2();
 
-	multi_vram_buffer_horz("Game Quest Mode", 15, NTADR_A(8, 22));
-	multi_vram_buffer_horz("Free Pump Mode", 14, NTADR_A(8, 24));
-	flush_vram_update2();
+	// multi_vram_buffer_horz("G.A.S.", 6, NTADR_A(12, 4));
+	// multi_vram_buffer_horz("Gas Attendant Simulator", 23, NTADR_A(5, 6));
+	// flush_vram_update2();
+
+	// multi_vram_buffer_horz("Game Quest Mode", 15, NTADR_A(8, 22));
+	// multi_vram_buffer_horz("Free Pump Mode", 14, NTADR_A(8, 24));
+	// flush_vram_update2();
 
 	ppu_on_all(); // turn on screen
 	game_mode = MODE_TITLE;
@@ -943,7 +953,7 @@ void bank_1_evaluation_init(void)
 	multi_vram_buffer_horz(".00 G", 5, NTADR_A(22, 2));
 	flush_vram_update2();
 	// speed
-	multi_vram_buffer_horz(">>>", 3, NTADR_A(21, 6));
+	// multi_vram_buffer_horz(">>>", 3, NTADR_A(21, 6));
 	flush_vram_update2();
 	// accuracy
 	one_vram_buffer(gas4 + 48, NTADR_A(20, 8));
@@ -954,7 +964,7 @@ void bank_1_evaluation_init(void)
 	one_vram_buffer('G', NTADR_A(26, 8));
 	flush_vram_update2();
 	// style
-	multi_vram_buffer_horz("NONE", 4, NTADR_A(21, 10));
+	// multi_vram_buffer_horz("NONE", 4, NTADR_A(21, 10));
 	flush_vram_update2();
 
 	text_x_start = 2; 
@@ -1837,54 +1847,106 @@ void bank_3_level_sprites(void){
 			cloud_y += 2;
 		}
 		// cloud_frames = 0;
-	
+
+		++blimp_frames;
+		
+		if(moveframes > 3600){ //wait til 1 minute in for the blimp
+			if(moveframes2 > 20){
+				--blimp_x;
+				if(blimp_y == 10){
+					y_direction = 0;
+				}
+				if(blimp_y == 20){
+					y_direction = 1;
+				}
+				if(y_direction){
+					--blimp_y;
+				} else {
+					++blimp_y;
+				}
+				moveframes2 = 0;
+			}
 			
+			if(blimp_frames < 20){
+				oam_meta_spr(blimp_x, blimp_y, blimp_0);
+			} else if(blimp_frames < 40){
+				oam_meta_spr(blimp_x, blimp_y, blimp_1);
+			} else if(blimp_frames < 60){
+				oam_meta_spr(blimp_x, blimp_y, blimp_2);
+			} else if(blimp_frames < 80){
+				oam_meta_spr(blimp_x, blimp_y, blimp_3);
+			} else if(blimp_frames < 100){
+				oam_meta_spr(blimp_x, blimp_y, blimp_4);
+			} else if(blimp_frames < 120){
+				oam_meta_spr(blimp_x, blimp_y, blimp_5);
+			} else if(blimp_frames < 140){
+				oam_meta_spr(blimp_x, blimp_y, blimp_6);
+			} else if(blimp_frames < 160){
+				oam_meta_spr(blimp_x, blimp_y, blimp_7);
+			} else {
+				oam_meta_spr(blimp_x, blimp_y, blimp_0);
+				blimp_frames = 0;
+			}
+		}
+
+		if(moveframes2 > 3600){ //wait til 1 minute in for the blimp
+			if(moveframes2 > 20){
+				--blimp_x;
+				if(blimp_y == 10){
+					y_direction = 0;
+				}
+				if(blimp_y == 20){
+					y_direction = 1;
+				}
+				if(y_direction){
+					--blimp_y;
+				} else {
+					++blimp_y;
+				}
+				moveframes2 = 0;
+			}
+			
+			if(blimp_frames < 20){
+				oam_meta_spr(blimp_x, blimp_y, blimp_0);
+			} else if(blimp_frames < 40){
+				oam_meta_spr(blimp_x, blimp_y, blimp_1);
+			} else if(blimp_frames < 60){
+				oam_meta_spr(blimp_x, blimp_y, blimp_2);
+			} else if(blimp_frames < 80){
+				oam_meta_spr(blimp_x, blimp_y, blimp_3);
+			} else if(blimp_frames < 100){
+				oam_meta_spr(blimp_x, blimp_y, blimp_4);
+			} else if(blimp_frames < 120){
+				oam_meta_spr(blimp_x, blimp_y, blimp_5);
+			} else if(blimp_frames < 140){
+				oam_meta_spr(blimp_x, blimp_y, blimp_6);
+			} else if(blimp_frames < 160){
+				oam_meta_spr(blimp_x, blimp_y, blimp_7);
+			} else {
+				oam_meta_spr(blimp_x, blimp_y, blimp_0);
+				blimp_frames = 0;
+			}
+		}
+	
+		
 		oam_meta_spr(high_byte(cloud_x), high_byte(cloud_y), cloud_1);
 			
 	}
 
-	// for(index = 0; index < 3; index++){
-	// 	if(index == 0){
-	// 		// if(moveframes2 < 8){
-	// 		// 	oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], smallduck0);
-	// 		// } else if(moveframes2 < 16) {
-	// 		// 	oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], smallduck1);
-	// 		// } else {
-	// 		// 	oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], smallduck2);
-	// 		// 	moveframes2 = 0;
-	// 		// }
-	// 		// pumplevel_sprites_x[index] = pumplevel_sprites_x[index] + 1;
-	// 		// pumplevel_sprites_y[index] = pumplevel_sprites_y[index] - 1;
-	// 	}
-	// 	if(index == 1){
-	// 		if(moveframes2%2==0){
-	// 			oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], blimp0);
-	// 		} else {
-	// 			oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], blimp1);
-	// 		}
-			
-	// 		pumplevel_sprites_x[index] = pumplevel_sprites_x[index] - 1;
-	// 		// pumplevel_sprites_y[index] = pumplevel_sprites_y[index];
-	// 	}
-	// 	if(index == 2){
-	// 		if(moveframes2 < 8){
-	// 			oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], bigduck0);
-	// 		} else if(moveframes2 < 16) {
-	// 			oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], bigduck1);
-	// 		} else {
-	// 			oam_meta_spr(pumplevel_sprites_x[index], pumplevel_sprites_y[index], bigduck2);
-	// 			moveframes2 = 0;
-	// 		}
-	// 		pumplevel_sprites_x[index] = pumplevel_sprites_x[index] + 1;
-	// 		pumplevel_sprites_y[index] = pumplevel_sprites_y[index] - 1;
-	// 	}
-	// }
 }
 
-unsigned char grass_move =0;
+unsigned char grass_move = 0;
 
 void bank_3_level_loop(void)
 {
+	if(moveframes == 0){
+		//moveframes is set on the level_init, so we can initailize variables here.
+		blimp_x = 160;
+		blimp_y = 20;
+		duck_0_x = 20;
+		duck_0_y = 100;
+	}
+
 	++grass_move;
 	++moveframes;
 	++moveframes2;
@@ -3074,7 +3136,7 @@ unsigned int spaceship_1_y = 100<<8;
 unsigned char spaceship_1_frames = 0;
 unsigned char spaceship_destroyed = 0;
 unsigned char spaceship_y_dir = 0;
-const unsigned char ship_speeds[] = { 90, 180, 250};
+const unsigned char ship_speeds[] = { 90, 180, 250, 200};
 #include "SPRITES/starfield.h"
 
 void bank_5_spaceship_generator(){
@@ -3083,21 +3145,21 @@ void bank_5_spaceship_generator(){
 		spaceship_1_y = 100<<8;
 		spaceship_1_frames = 0;
 		++starfield_enemies;
-		index = get_frame_count() & 2;
+		index = get_frame_count() % 4;
 		temp = ship_speeds[index];
 		spaceship_y_dir = (get_frame_count() & 1) == 0;
 		switch(index){
 			case 0:
-				sprite_pointer = ufo_ship;
+				sprite_pointer = rocket_ship_0;
 				break;
 			case 1:
 				sprite_pointer = ufo_ship;
 				break;  
 			case 2:  
-				sprite_pointer = ufo_ship_color_1;
+				sprite_pointer = small_ufo_0;
 				break;
 			case 3:
-				sprite_pointer = ufo_ship_color_1;
+				sprite_pointer = spacesquid_0;
 				break;
 			default:
 				sprite_pointer = ufo_ship;
@@ -3645,7 +3707,7 @@ void main(void)
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
-	banked_call(BANK_5, bank_5_starfield_init);
+	// banked_call(BANK_5, bank_5_starfield_init);
 
 	while (1)
 	{

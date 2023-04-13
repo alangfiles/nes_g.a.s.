@@ -323,7 +323,7 @@ music_data:
 	.include "MUSIC/GasMusic2.s"
 
 sounds_data:
-	.include "MUSIC/sfxtest1.s"
+	.include "MUSIC/GASsfx.s"
 
 	
 	

@@ -1,6 +1,6 @@
 @echo off
 
-set name="Zapper"
+set name="Gaspump"
 
 set path=%path%;..\bin\
 

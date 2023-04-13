@@ -3018,37 +3018,37 @@ const unsigned char gasblimp_27[]={
 
 };
 
-const unsigned char gasblimp_28[]={
+// const unsigned char gasblimp_28[]={
 
-0, 8,0xd0,0| OAM_BEHIND,
-8, 0,0xc1,0| OAM_BEHIND,
-16, 0,0xc2,0| OAM_BEHIND,
-24, 0,0xc3,0| OAM_BEHIND,
-32, 0,0xc4,0| OAM_BEHIND,
-40, 0,0xc5,0| OAM_BEHIND,
-48, 0,0xc6,0| OAM_BEHIND,
-0, 16,0xe0,0| OAM_BEHIND,
-8, 24,0xf1,0| OAM_BEHIND,
-16, 24,0xf2,0| OAM_BEHIND,
-24, 24,0xf3,0| OAM_BEHIND,
-32, 24,0xf4,0| OAM_BEHIND,
-40, 24,0xf5,0| OAM_BEHIND,
-48, 24,0xf6,0| OAM_BEHIND,
+// 0, 8,0xd0,0| OAM_BEHIND,
+// 8, 0,0xc1,0| OAM_BEHIND,
+// 16, 0,0xc2,0| OAM_BEHIND,
+// 24, 0,0xc3,0| OAM_BEHIND,
+// 32, 0,0xc4,0| OAM_BEHIND,
+// 40, 0,0xc5,0| OAM_BEHIND,
+// 48, 0,0xc6,0| OAM_BEHIND,
+// 0, 16,0xe0,0| OAM_BEHIND,
+// 8, 24,0xf1,0| OAM_BEHIND,
+// 16, 24,0xf2,0| OAM_BEHIND,
+// 24, 24,0xf3,0| OAM_BEHIND,
+// 32, 24,0xf4,0| OAM_BEHIND,
+// 40, 24,0xf5,0| OAM_BEHIND,
+// 48, 24,0xf6,0| OAM_BEHIND,
 
-48, 16,0xe6,0| OAM_BEHIND,
-48, 8,0xd6,0| OAM_BEHIND,
-40, 8,0xd5,0| OAM_BEHIND,
-40, 16,0xe5,0| OAM_BEHIND,
-0, 0,0xc0,0| OAM_BEHIND,
-0, 24,0xf0,0| OAM_BEHIND,
-16, 8,0xd1,1| OAM_BEHIND,
-16, 16,0xe1,1| OAM_BEHIND,
-32, 8,0xd1,1| OAM_BEHIND,
-32, 16,0xe1,1| OAM_BEHIND,
-8, 8,0xa1,1| OAM_BEHIND,
-8, 16,0xb1,1| OAM_BEHIND,
-24, 8,0xd1,1| OAM_BEHIND,
-24, 16,0xe1,1| OAM_BEHIND,
-128
+// 48, 16,0xe6,0| OAM_BEHIND,
+// 48, 8,0xd6,0| OAM_BEHIND,
+// 40, 8,0xd5,0| OAM_BEHIND,
+// 40, 16,0xe5,0| OAM_BEHIND,
+// 0, 0,0xc0,0| OAM_BEHIND,
+// 0, 24,0xf0,0| OAM_BEHIND,
+// 16, 8,0xd1,1| OAM_BEHIND,
+// 16, 16,0xe1,1| OAM_BEHIND,
+// 32, 8,0xd1,1| OAM_BEHIND,
+// 32, 16,0xe1,1| OAM_BEHIND,
+// 8, 8,0xa1,1| OAM_BEHIND,
+// 8, 16,0xb1,1| OAM_BEHIND,
+// 24, 8,0xd1,1| OAM_BEHIND,
+// 24, 16,0xe1,1| OAM_BEHIND,
+// 128
 
-};
+// };

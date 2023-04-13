@@ -2142,7 +2142,7 @@ void bank_3_level_sprites(void)
 				}
 				else if (blimp_frames < 255)
 				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_28);
+					// oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_28);
 				}
 				else
 				{

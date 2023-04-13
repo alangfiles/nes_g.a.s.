@@ -354,7 +354,7 @@ void bank_0_title_loop(void)
 					ppu_wait_nmi();
 				}
 
-				pal_bg(fade_2);
+				pal_bg(fade_2);  
 				wait_and_fade_out();
 				banked_call(BANK_0, bank_0_intro_scroll_init);
 			}
@@ -365,7 +365,7 @@ void bank_0_title_loop(void)
 			// play sfx
 			//  music_play(2);
 			//  sfx_play(25,0);
-			sample_play(++moveframes);
+			// sample_play(7);
 			++moveframes;
 			// 25,27,29,30
 
@@ -4025,7 +4025,7 @@ void main(void)
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);
-	banked_call(BANK_1, bank_1_instructions_init);
+	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_5, bank_5_starfield_init);
 

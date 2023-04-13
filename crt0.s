@@ -324,12 +324,12 @@ music_data:
 
 sounds_data:
 	.include "MUSIC/GASsfx.s"
-
-	
 	
 .segment "SAMPLES"
-	.incbin "MUSIC/sfxtest1.dmc"
-
+	.incbin "MUSIC/fillerup.dmc"
+	; .incbin "MUSIC/whatwasthat.dmc"
+	; .incbin "MUSIC/heyou2.dmc"
+	; .incbin "MUSIC/gadzooks.dmc"
 
 
 .segment "VECTORS"

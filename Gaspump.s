@@ -59267,12 +59267,12 @@ L82CD:	lda     #$02
 ;
 L82D5:	inc     _blimp_frames
 ;
-; if (moveframes > 3600)
+; if (moveframes > 13000)
 ;
 	lda     _moveframes
-	cmp     #$11
+	cmp     #$C9
 	lda     _moveframes+1
-	sbc     #$0E
+	sbc     #$32
 	jcc     L83F6
 ;
 ; ++blimp_frames;
@@ -59946,12 +59946,12 @@ L83EE:	jsr     decsp2
 	lda     #$00
 	sta     _blimp_frames
 ;
-; if (moveframes2 > 8000)
+; if (moveframes2 > 3600)
 ;
 L83F6:	lda     _moveframes2
-	cmp     #$41
+	cmp     #$11
 	lda     _moveframes2+1
-	sbc     #$1F
+	sbc     #$0E
 	bcs     LD8A5
 ;
 ; }

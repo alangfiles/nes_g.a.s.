@@ -2002,7 +2002,7 @@ void bank_3_level_sprites(void)
 
 		++blimp_frames;
 
-		if (moveframes > 3600)
+		if (moveframes > 13000)
 		{ // wait til 1 minute in for the blimp
 			++blimp_frames;
 
@@ -2151,7 +2151,7 @@ void bank_3_level_sprites(void)
 			}
 		}
 
-		if (moveframes2 > 8000)
+		if (moveframes2 > 3600)
 		{ // wait til 2 minute in for the truck
 
 			if(high_byte(truck_x) < 67){

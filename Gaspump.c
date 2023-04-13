@@ -1875,6 +1875,7 @@ void bank_3_level_sprites(void)
 			}
 			else if (moveframes2 < 15)
 			{
+				sfx_play(SFX_DUCK,0);
 				if (x_direction)
 				{
 					oam_meta_spr(duck_0_x, duck_0_y, bigduck_l_2);

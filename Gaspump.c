@@ -3050,7 +3050,7 @@ void bank_4_cutscene_loop(void)
 	}
 	if (abduction_cutscene_step == ABDUCTION_DONE) // to call at the end of everything
 	{
-		wait_and_fade_out();
+		// wait_and_fade_out(); //alangfiles
 		alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 		banked_call(BANK_4, bank_4_instruction_init);
 	}
@@ -3956,6 +3956,7 @@ void main(void)
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);
+		banked_call(BANK_4, bank_4_cutscene_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_5, bank_5_starfield_init);

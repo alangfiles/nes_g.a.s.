@@ -770,7 +770,7 @@ void bank_1_instructions_loop(void)
 
 	if (text_row < 6)
 	{
-		if (moveframes % 4 == 0)
+		if (moveframes % 5 == 0)
 		{
 			typewriter();
 		}
@@ -1066,7 +1066,10 @@ void bank_1_evaluation_loop(void)
 
 	if (text_row < 6)
 	{
-		typewriter();
+		if (moveframes % 5 == 0)
+		{
+			typewriter();
+		}
 	}
 
 	oam_clear(); // clear all sprites

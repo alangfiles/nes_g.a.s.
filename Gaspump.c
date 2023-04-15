@@ -3076,8 +3076,10 @@ unsigned char spacelevel_sprites[] = {0, 1, 2};
 unsigned char spacelevel_sprites_x[] = {0, 120, 50};
 unsigned char spacelevel_sprites_y[] = {0, 0, 60};
 
+unsigned char alien_face_frames = 0;
 void bank_4_alien_level_loop(void)
 {
+	++alien_face_frames;
 	++moveframes;
 	ppu_wait_nmi();
 	oam_clear();
@@ -3133,32 +3135,33 @@ void bank_4_alien_level_loop(void)
 		moveframes2 = 0;
 	}
 
-	if (moveframes < 5)
+	if (alien_face_frames < 5)
 	{
 		oam_meta_spr(124, 130, alien_gas_mouth_0);
 	}
-	else if (moveframes < 10)
+	else if (alien_face_frames < 10)
 	{
 		oam_meta_spr(124, 130, alien_gas_mouth_1);
 	}
-	else if (moveframes < 15)
+	else if (alien_face_frames < 15)
 	{
 		oam_meta_spr(124, 130, alien_gas_mouth_2);
 	}
-	else if (moveframes < 20)
+	else if (alien_face_frames < 20)
 	{
 		oam_meta_spr(124, 130, alien_gas_mouth_3);
 	}
-	else if (moveframes < 25)
+	else if (alien_face_frames < 25)
 	{
 		oam_meta_spr(124, 130, alien_gas_mouth_4);
 	}
-	else if (moveframes < 30)
+	else if (alien_face_frames < 30)
 	{
 		oam_meta_spr(124, 130, alien_gas_mouth_5);
 	}
 	else
 	{
+		alien_face_frames = 0;
 		oam_meta_spr(124, 130, alien_gas_mouth_0);
 	}
 

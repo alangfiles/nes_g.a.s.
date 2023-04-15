@@ -66579,6 +66579,10 @@ LD6AD:	lda     _player_x
 	lda     #$0C
 	sta     _game_mode
 ;
+; return;
+;
+	rts
+;
 ; scroll(scroll_x, 0);
 ;
 LD42F:	lda     _scroll_x

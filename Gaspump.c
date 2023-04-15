@@ -6,16 +6,17 @@
  *
  * POLISH:
  * Alan todo list
- * [] add extra scroll to starfield
  * [] sound effects
- *
-[x] alan: finish up starfield (12 shootables go past, then you fly to earth and get the scroll)
-[] alan: starfield ending cutscene
-[x] alan: add Al angry sprites for bad pumping
+ * [] songs
+ * level 1, hot air baloon
+ * level 2, ducks, add small ducks
+ * level 3, brokedown truck, blimp.
+ * 
+ * 
+ * 
 [] both: do something for the 3rd level (clouds)
 [] brian: sound effects (dcm or normal or whatever, ps I think the bird is a noise channel flap plus a dcm quack)
 [] both?: redo some songs (maybe remove from talking time, etc)
-[] alan: add score/speed/accuracy stuff to evaluation
 
  * [] remove skipping the talking time
 	* [] Add sound effects
@@ -3880,6 +3881,7 @@ void bank_5_starfield_loop(void)
 			wait_and_fade_out();
 			banked_call(BANK_2, bank_2_ending_scroll_init);
 			game_mode = MODE_GAME_ENDING;
+			return;
 		}
 		scroll(scroll_x, 0);
 		return;

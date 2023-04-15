@@ -12,7 +12,7 @@ file	id=8,name="MUSIC/gasjazz.s",size=12115,mtime=0x64386ACB,mod=0
 file	id=9,name="MUSIC/GASsfx.s",size=2382,mtime=0x64375AEF,mod=0
 file	id=10,name="MUSIC/gasjazz.dmc",size=4800,mtime=0x64386ACA,mod=0
 file	id=11,name="CHRS/Gaspump.chr",size=8192,mtime=0x643746F8,mod=0
-file	id=12,name="CHRS/talkingtime.chr",size=8192,mtime=0x643A07B3,mod=0
+file	id=12,name="CHRS/talkingtime.chr",size=8192,mtime=0x643A0AD4,mod=0
 file	id=13,name="CHRS/cutscenegun.chr",size=8192,mtime=0x63DBA952,mod=0
 file	id=14,name="CHRS/cutscene.chr",size=8192,mtime=0x6433697E,mod=0
 file	id=15,name="CHRS/futurepump.chr",size=8192,mtime=0x6427A29F,mod=0
@@ -24,7 +24,7 @@ file	id=20,name="CHRS/Gaspump_alt.chr",size=8192,mtime=0x64318EC3,mod=0
 file	id=21,name="CHRS/Futurepump_alt.chr",size=8192,mtime=0x6427A2A0,mod=0
 file	id=22,name="CHRS/Futurepump_alt_2.chr",size=8192,mtime=0x6427A2A1,mod=0
 file	id=23,name="CHRS/titlescreen.chr",size=8192,mtime=0x6437E6AE,mod=0
-file	id=24,name="Gaspump.s",size=837590,mtime=0x643A0AA0,mod=1
+file	id=24,name="Gaspump.s",size=837590,mtime=0x643A0B87,mod=1
 file	id=25,name="/usr/local/Cellar/cc65/2.19/share/cc65/asminc/longbranch.mac",size=2632,mtime=0x5ED2ADF3,mod=1
 file	id=26,name="/private/tmp/cc65-20211029-72602-uqb2uc/cc65-2.19/asminc/cpu.mac",size=843,mtime=0x5ED2ADF3,mod=10+13+15+19
 file	id=27,name="/private/tmp/cc65-20211029-72602-uqb2uc/cc65-2.19/asminc/zeropage.inc",size=721,mtime=0x5ED2ADF3,mod=23

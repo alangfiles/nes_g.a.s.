@@ -5285,9 +5285,9 @@ _evaluation:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-	.byte	$87
 	.byte	$00
-	.byte	$87
+	.byte	$00
+	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -5456,7 +5456,7 @@ _evaluation:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-	.byte	$20
+	.byte	$87
 	.byte	$00
 	.byte	$12
 	.byte	$00
@@ -5736,7 +5736,7 @@ _evaluation:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-	.byte	$87
+	.byte	$00
 	.byte	$D7
 	.byte	$16
 	.byte	$00
@@ -5769,7 +5769,7 @@ _evaluation:
 	.byte	$84
 	.byte	$85
 	.byte	$86
-	.byte	$87
+	.byte	$00
 	.byte	$16
 	.byte	$00
 	.byte	$00
@@ -6132,7 +6132,7 @@ _evaluation:
 	.byte	$AA
 	.byte	$AA
 	.byte	$AA
-	.byte	$FA
+	.byte	$AA
 	.byte	$FF
 	.byte	$FF
 	.byte	$FA
@@ -6140,7 +6140,7 @@ _evaluation:
 	.byte	$AA
 	.byte	$AA
 	.byte	$AA
-	.byte	$AE
+	.byte	$AA
 	.byte	$AF
 	.byte	$AF
 	.byte	$AF
@@ -6729,7 +6729,7 @@ _talkingtime:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-	.byte	$87
+	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -6794,7 +6794,7 @@ _talkingtime:
 	.byte	$84
 	.byte	$85
 	.byte	$86
-	.byte	$87
+	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -6826,7 +6826,7 @@ _talkingtime:
 	.byte	$94
 	.byte	$95
 	.byte	$96
-	.byte	$97
+	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -7186,7 +7186,7 @@ _talkingtime:
 	.byte	$AA
 	.byte	$AA
 	.byte	$AA
-	.byte	$5A
+	.byte	$6A
 	.byte	$5A
 	.byte	$9A
 	.byte	$AA
@@ -7194,7 +7194,7 @@ _talkingtime:
 	.byte	$AA
 	.byte	$AA
 	.byte	$AA
-	.byte	$55
+	.byte	$66
 	.byte	$50
 	.byte	$99
 	.byte	$AA
@@ -7202,7 +7202,7 @@ _talkingtime:
 	.byte	$AA
 	.byte	$AA
 	.byte	$AA
-	.byte	$02
+	.byte	$22
 	.byte	$00
 	.byte	$88
 	.byte	$0A
@@ -7399,7 +7399,7 @@ _intro_scroll_gun_palette:
 	.byte	$0F
 	.byte	$26
 	.byte	$00
-	.byte	$2A
+	.byte	$10
 _intro_cutscene_palette:
 	.byte	$0F
 	.byte	$00
@@ -53827,7 +53827,7 @@ L4EE3:	lda     _gas_goal
 	beq     L4F05
 	jmp     L4EEF
 ;
-; one_vram_buffer(2+48, NTADR_A(22, 4));
+; one_vram_buffer(2+48, NTADR_A(22, 5));
 ;
 L4EF1:	lda     #$32
 ;
@@ -53835,7 +53835,7 @@ L4EF1:	lda     #$32
 ;
 	jmp     LD7C8
 ;
-; one_vram_buffer(8+48, NTADR_A(22, 4));
+; one_vram_buffer(8+48, NTADR_A(22, 5));
 ;
 L4EFB:	lda     #$38
 ;
@@ -53843,23 +53843,23 @@ L4EFB:	lda     #$38
 ;
 	jmp     LD7C8
 ;
-; one_vram_buffer(7+48, NTADR_A(21, 4));
+; one_vram_buffer(7+48, NTADR_A(21, 5));
 ;
 L4F05:	lda     #$37
 	jsr     pusha
 	ldx     #$20
-	lda     #$95
+	lda     #$B5
 	jsr     _one_vram_buffer
 ;
-; one_vram_buffer(7+48, NTADR_A(22, 4));
+; one_vram_buffer(7+48, NTADR_A(22, 5));
 ;
 	lda     #$37
 LD7C8:	jsr     pusha
 	ldx     #$20
-	lda     #$96
+	lda     #$B6
 	jsr     _one_vram_buffer
 ;
-; multi_vram_buffer_horz(".00", 5, NTADR_A(23, 4));
+; multi_vram_buffer_horz(".00", 5, NTADR_A(23, 5));
 ;
 L4EEF:	jsr     decsp3
 	lda     #<(L4F18)
@@ -53872,7 +53872,7 @@ L4EEF:	jsr     decsp3
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$20
-	lda     #$97
+	lda     #$B7
 	jsr     _multi_vram_buffer_horz
 ;
 ; flush_vram_update2();
@@ -53903,12 +53903,12 @@ L4EEF:	jsr     decsp3
 	lda     #$36
 	jsr     _one_vram_buffer
 ;
-; one_vram_buffer('.', NTADR_A(23, 8));
+; one_vram_buffer('.', NTADR_A(23, 9));
 ;
 	lda     #$2E
 	jsr     pusha
 	ldx     #$21
-	lda     #$17
+	lda     #$37
 	jsr     _one_vram_buffer
 ;
 ; one_vram_buffer(gas2 + 48, NTADR_A(24, 9));

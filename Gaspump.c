@@ -98,11 +98,11 @@ const unsigned char talking_time_palette[] = {
 const unsigned char talking_time_sp_palette[16] = {
 		0x0f, 0x20, 0x11, 0x36,
 		0x0f, 0x05, 0x16, 0x36,
-		0x0f, 0x20, 0x08, 0x36,
+		0x0f, 0x20, 0x08, 0x36,  
 		0x0f, 0x30, 0x16, 0x36};
 
 const unsigned char intro_scroll_gun_palette[16] = {
-		0x0f,0x10,0x2a,0x15,0x0f,0x10,0x16,0x26,0x0f,0x00,0x11,0x30,0x0f,0x26,0x00,0x2a };
+		0x0f,0x10,0x2a,0x15,0x0f,0x10,0x16,0x26,0x0f,0x00,0x11,0x30,0x0f,0x26,0x00,0x10};
 
 const unsigned char intro_cutscene_palette[16] = {
 		0x0f, 0x00, 0x10, 0x30,
@@ -902,26 +902,26 @@ void bank_1_evaluation_init(void)
 	// goal
 	switch(gas_goal){
 		case 2: 
-		one_vram_buffer(2+48, NTADR_A(22, 4));
+		one_vram_buffer(2+48, NTADR_A(22, 5));
 		break;
 		case 8:
-		one_vram_buffer(8+48, NTADR_A(22, 4));
+		one_vram_buffer(8+48, NTADR_A(22, 5));
 		break;
 		case 17:
-		one_vram_buffer(7+48, NTADR_A(21, 4));
-		one_vram_buffer(7+48, NTADR_A(22, 4));
+		one_vram_buffer(7+48, NTADR_A(21, 5));
+		one_vram_buffer(7+48, NTADR_A(22, 5));
 		break;
 		default:
 		break;
 	}
-	multi_vram_buffer_horz(".00", 5, NTADR_A(23, 4));
+	multi_vram_buffer_horz(".00", 5, NTADR_A(23, 5));
 	flush_vram_update2();
 	// speed
 	flush_vram_update2();
 	// accuracy
 	one_vram_buffer(gas4 + 48, NTADR_A(21, 9));
 	one_vram_buffer(gas3 + 48, NTADR_A(22, 9));
-	one_vram_buffer('.', NTADR_A(23, 8));
+	one_vram_buffer('.', NTADR_A(23, 9));
 	one_vram_buffer(gas2 + 48, NTADR_A(24, 9));
 	one_vram_buffer(gas1 + 48, NTADR_A(25, 9));
 	flush_vram_update2();

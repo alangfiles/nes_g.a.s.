@@ -320,16 +320,13 @@ detectNTSC:
 	.include "MUSIC/famitone2.s"
 
 music_data:
-	.include "MUSIC/GasMusic2.s"
+	.include "MUSIC/gasjazz.s"
 
 sounds_data:
 	.include "MUSIC/GASsfx.s"
 	
 .segment "SAMPLES"
-	.incbin "MUSIC/fillerup.dmc"
-	; .incbin "MUSIC/whatwasthat.dmc"
-	; .incbin "MUSIC/heyou2.dmc"
-	; .incbin "MUSIC/gadzooks.dmc"
+	.incbin "MUSIC/gasjazz.dmc"
 
 
 .segment "VECTORS"

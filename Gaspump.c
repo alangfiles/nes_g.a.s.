@@ -6,11 +6,9 @@
  *
  * POLISH:
  * Alan todo list
- * [] add blimp and dataeast truck to 3rd level
  * [] add extra scroll to starfield
  * [] sound effects
  *
-[] brian: exploding sprite for starfield level.
 [x] alan: finish up starfield (12 shootables go past, then you fly to earth and get the scroll)
 [] alan: starfield ending cutscene
 [x] alan: add Al angry sprites for bad pumping
@@ -301,84 +299,12 @@ void bank_0_title_loop(void)
 {
 	ppu_wait_nmi();
 
-	// if (option == 0)
-	// {
-	// 	one_vram_buffer(0x3d, NTADR_A(6, 22));
-	// 	one_vram_buffer(0x00, NTADR_A(6, 24));
-	// }
-	// else
-	// {
-	// 	one_vram_buffer(0x00, NTADR_A(6, 22));
-	// 	one_vram_buffer(0x3d, NTADR_A(6, 24));
-	// }
-
 	read_input();
 
 	if (trigger_clicked) // if((pad2_zapper)&&(zapper_ready)){
 	{
-
-		// bg off, project white boxes
-		oam_clear();
-		// white_background();
-		pal_col(0, 0x30); // set color to white
-		// ppu_mask(0x16); // BG off, won't happen till NEXT frame
-
-		ppu_wait_nmi(); // wait till the top of the next frame
-		// this frame will display no BG and a white box
-
-		oam_clear(); // clear the NEXT frame
-
-		// draw_title_background();
-		// ppu_mask(0x1e); // bg on, won't happen till NEXT frame
-		read_input();
-		// hit_detected = zap_read(1);
-
-		// hit_detected = zap_read(1); // look for light in zapper, port 2
-		pal_col(0, 0x0f); // back to transparent
-
-		if (hit_detected)
-		{
-			if (option == 0)
-			{
-				// debug, just go to game
-				wait_a_little();
-				// flash colors:
-				// 0x0f,0x01,0x14,0x30,
-
-				pal_bg(fade_1);
-				// pal_col(1, 0x04);
-				// pal_col(2, 0x07);
-				// pal_col(3, 0x10);
-				for (index = 0; index < 15; ++index)
-				{
-					ppu_wait_nmi();
-				}
-
-				pal_bg(fade_2);  
-				wait_and_fade_out();
-				banked_call(BANK_0, bank_0_intro_scroll_init);
-			}
-		}
-		else
-		{
-
-			// play sfx
-			//  music_play(2);
-			//  sfx_play(25,0);
-			// sample_play(7);
-			++moveframes;
-			// 25,27,29,30
-
-			if (option == 0)
-			{
-				option = 1;
-			}
-			else
-			{
-				option = 0;
-			}
-			multi_vram_buffer_horz("                     ", 21, NTADR_A(6, 25));
-		}
+		wait_and_fade_out();
+		banked_call(BANK_0, bank_0_intro_scroll_init);
 	}
 }
 
@@ -1875,7 +1801,9 @@ void bank_3_level_sprites(void)
 			}
 			else if (moveframes2 < 15)
 			{
-				sfx_play(SFX_DUCK,0);
+				if(duck_0_y < 100){ //duck is on screen at at less than 100
+					sfx_play(SFX_DUCK,0);
+				}
 				if (x_direction)
 				{
 					oam_meta_spr(duck_0_x, duck_0_y, bigduck_l_2);

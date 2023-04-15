@@ -3077,12 +3077,70 @@ unsigned char spacelevel_sprites_x[] = {0, 120, 50};
 unsigned char spacelevel_sprites_y[] = {0, 0, 60};
 
 unsigned char alien_face_frames = 0;
+unsigned char alien_eye_frames = 0;
 void bank_4_alien_level_loop(void)
 {
 	++alien_face_frames;
+	++alien_eye_frames;
 	++moveframes;
 	ppu_wait_nmi();
 	oam_clear();
+
+	//face, eyes, and numebrs are most important sprites here:
+
+	if (alien_face_frames < 5)
+	{
+		oam_meta_spr(124, 130, alien_gas_mouth_0);
+	}
+	else if (alien_face_frames < 10)
+	{
+		oam_meta_spr(124, 130, alien_gas_mouth_1);
+	}
+	else if (alien_face_frames < 15)
+	{
+		oam_meta_spr(124, 130, alien_gas_mouth_2);
+	}
+	else if (alien_face_frames < 20)
+	{
+		oam_meta_spr(124, 130, alien_gas_mouth_3);
+	}
+	else if (alien_face_frames < 25)
+	{
+		oam_meta_spr(124, 130, alien_gas_mouth_4);
+	}
+	else if (alien_face_frames < 30)
+	{
+		oam_meta_spr(124, 130, alien_gas_mouth_5);
+	}
+	else
+	{
+		alien_face_frames = 0;
+		oam_meta_spr(124, 130, alien_gas_mouth_0);
+	}
+
+
+	if (alien_eye_frames < 30)
+	{
+		oam_meta_spr(120, 110, alien_eyes_10);
+	}
+	else
+	{
+		oam_meta_spr(120, 110, alien_eyes_17);
+		alien_eye_frames = 0;
+	}
+
+	// draw_gliboons_count as sprites
+	temp = aliengas1;
+	banked_call(BANK_4, bank_4_alien_number_sprites);
+	oam_meta_spr(176, 14, pointer);
+	temp = aliengas2;
+	banked_call(BANK_4, bank_4_alien_number_sprites);
+	oam_meta_spr(160, 14, pointer);
+	temp = aliengas3;
+	banked_call(BANK_4, bank_4_alien_number_sprites);
+	oam_meta_spr(144, 14, pointer);
+
+
 
 	for (index = 0; index < 3; index++)
 	{
@@ -3135,60 +3193,10 @@ void bank_4_alien_level_loop(void)
 		moveframes2 = 0;
 	}
 
-	if (alien_face_frames < 5)
-	{
-		oam_meta_spr(124, 130, alien_gas_mouth_0);
-	}
-	else if (alien_face_frames < 10)
-	{
-		oam_meta_spr(124, 130, alien_gas_mouth_1);
-	}
-	else if (alien_face_frames < 15)
-	{
-		oam_meta_spr(124, 130, alien_gas_mouth_2);
-	}
-	else if (alien_face_frames < 20)
-	{
-		oam_meta_spr(124, 130, alien_gas_mouth_3);
-	}
-	else if (alien_face_frames < 25)
-	{
-		oam_meta_spr(124, 130, alien_gas_mouth_4);
-	}
-	else if (alien_face_frames < 30)
-	{
-		oam_meta_spr(124, 130, alien_gas_mouth_5);
-	}
-	else
-	{
-		alien_face_frames = 0;
-		oam_meta_spr(124, 130, alien_gas_mouth_0);
-	}
-
 	if (moveframes > 90)
 	{
 		moveframes = 0;
 	}
-
-	if (moveframes < 30)
-	{
-		oam_meta_spr(120, 110, alien_eyes_10);
-	}
-	else
-	{
-		oam_meta_spr(120, 110, alien_eyes_17);
-	}
-
-	// draw_gliboons_count as sprites
-	temp = aliengas1;
-	banked_call(BANK_4, bank_4_alien_number_sprites);
-	oam_meta_spr(176, 14, pointer);
-	temp = aliengas2;
-	banked_call(BANK_4, bank_4_alien_number_sprites);
-	oam_meta_spr(160, 14, pointer);
-	temp = aliengas3;
-	banked_call(BANK_4, bank_4_alien_number_sprites);
-	oam_meta_spr(144, 14, pointer);
 
 	read_input(); // sets input_active
 

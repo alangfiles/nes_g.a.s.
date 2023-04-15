@@ -633,6 +633,8 @@ void bank_1_gas_level_init(void)
 
 	// reset changed values so they redraw
 
+	sample_play(SAMPLE_FILLERUP);
+	delay(30);
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 
@@ -660,6 +662,8 @@ void bank_1_gas_level_init(void)
 	music_play(SONG_GASPUMP);
 	moveframes = 0;
 	moveframes2 = 0;
+
+	
 
 	reset_level = 1;
 }
@@ -1054,6 +1058,23 @@ void bank_1_evaluation_init(void)
 		default:
 			break;
 		}
+	}
+
+	switch(gas_pump_level_quality){
+		case PERFECT_PUMP:
+			pointer = level_0_perfect;
+			text_length = sizeof(level_0_perfect);
+			sample_play(SAMPLE_GADZOOKS);
+			++levels_complete;
+			break;
+		case BAD_PUMP:
+			sample_play(SAMPLE_WHATWASTHAT);
+			break;
+		case AWFUL_PUMP:
+			sample_play(SAMPLE_WHATWASTHAT);
+			break;
+		default:
+			break;
 	}
 
 	// base for Al
@@ -3981,14 +4002,14 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	// banked_call(BANK_1, bank_1_instructions_init);
+	banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_4, bank_4_cutscene_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
-	banked_call(BANK_5, bank_5_starfield_init);
+	// banked_call(BANK_5, bank_5_starfield_init);
 
 	while (1)
 	{

@@ -5,6 +5,14 @@
 #define NAMETABLE_C_ATTR 0x2BC0
 #define NAMETABLE_D_ATTR 0x2FC0
 
+//samples
+#define SAMPLE_FILLERUP 25
+#define SAMPLE_HEHEHE 27
+#define SAMPLE_GADZOOKS 29
+#define SAMPLE_WHATWASTHAT 32
+#define SAMPLE_QUACK 32
+
+
 const unsigned int LAST_LEVEL_GOAL = 59;
 
 #pragma bss-name(push, "ZEROPAGE")

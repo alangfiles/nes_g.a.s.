@@ -67,6 +67,11 @@ const unsigned char starfield_palette[16] = {
 		0x0f, 0x16, 0x05, 0x38,
 		0x0f, 0x24, 0x13, 0x14};
 
+
+const unsigned char starfield_sp_palette[16] = {
+		0x0f,0x0c,0x2a,0x10,0x0f,0x05,0x10,0x30,0x0f,0x05,0x00,0x38,0x0f,0x24,0x2a,0x0c};
+		
+
 const unsigned char gameover_palette[16] = {
 		0x15,0x00,0x3d,0x20,0x15,0x05,0x16,0x36,0x15,0x00,0x3d,0x2d,0x15,0x09,0x19,0x38 };
 
@@ -90,15 +95,15 @@ const unsigned char futurepump_palette[16] = {
 		0x0f, 0x09, 0x19, 0x29};
 
 const unsigned char talking_time_palette[] = {
-		0x0f, 0x31, 0x16, 0x36,
-		0x0f, 0x06, 0x16, 0x36,
-		0x0f, 0x00, 0x11, 0x20,
-		0x0f, 0x11, 0x15, 0x30};
+		0x0f,0x31,0x16,0x36,
+		0x0f,0x05,0x16,0x36,
+		0x0f,0x00,0x12,0x30,
+		0x0f,0x2c,0x3c,0x15};
 
 const unsigned char talking_time_sp_palette[16] = {
-		0x0f, 0x20, 0x11, 0x36,
-		0x0f, 0x05, 0x16, 0x36,
-		0x0f, 0x20, 0x08, 0x36,  
+	 0x0f, 0x20, 0x11, 0x36,
+		0x0f, 0x05, 0x16, 0x36,     
+		0x0f, 0x20, 0x08, 0x36,
 		0x0f, 0x30, 0x16, 0x36};
 
 const unsigned char intro_scroll_gun_palette[16] = {
@@ -111,10 +116,10 @@ const unsigned char intro_cutscene_palette[16] = {
 		0x0f, 0x06, 0x19, 0x29};
 
 const unsigned char gaspump_sprite_palette[] = {
-		0x0f, 0x20, 0x16, 0x36,
-		0x0f, 0x05, 0x2c, 0x36,
-		0x0f, 0x2c, 0x21, 0x11,
-		0x0f, 0x05, 0x1a, 0x38};
+		0x0f,0x10,0x00,0x15,
+		0x0f,0x0f,0x10,0x38,
+		0x0f,0x00,0x2c,0x11,  
+		0x0f,0x05,0x1a,0x38};
 
 const unsigned char abduction_palette[16] = {0x0f, 0x16, 0x3d, 0x30, 0x0f, 0x10, 0x21, 0x00, 0x0f, 0x05, 0x00, 0x38, 0x0f, 0x24, 0x0c, 0x2a};
 
@@ -522,8 +527,8 @@ void bank_0_intro_cutscene_loop(void)
 
 #include "SPRITES/al.h"
 
-const unsigned char level_0_text[] = "So you wanna pump gas ?!?\nGive me 2 gallons\n Just pull the trigger\nBut don't click it.";
-const unsigned char level_1_text[] = "You're starting to believe\nbut you have much to learn.\n\nNow give me 8 gallons!\nand make it quick!!!";
+const unsigned char level_0_text[] = "So you wanna pump gas?!?\nGive me 2 gallons.\n\nJust pull the trigger,\nbut don't click it.";
+const unsigned char level_1_text[] = "I'm starting to believe,\nbut you have much to learn.\n\nNow give me 8 gallons!!";
 const unsigned char level_2_text[] = "I can't deny it...\nYou were born to do this.\nOne last test...\nCan you do 17 gallons?\n\nI'm watching closely...";
 // const unsigned char level_3_text[] = "You've got it. \n I believe in you.\n Only you can save our space people.\n\n Follow me to my galaxy.";
 void bank_4_cutscene_init(void);					 // prototype (needed to get call from bank_4)
@@ -847,7 +852,7 @@ const unsigned char level_1_over[] = "Pump that much\n\nand it spills out.";
 const unsigned char level_2_awful[] = "To pump on not\n\nto pump, that is\n\nthe question.";
 const unsigned char level_2_bad[] = "Your finger may\n\nhurt, but pump\n\nthrough the pain.";
 const unsigned char level_2_good[] = "You're as good as\nI hoped. Wait \noutside. I've gotta\ncall my boss.";
-const unsigned char level_2_perfect[] = "Bumping Barthoids!\nYou're great!\nMaybe...just maybe..\nWait outside willya?";
+const unsigned char level_2_perfect[] = "Bumping Barthoids!\nYou're great!\nMaybe...just maybe..\n\nWait outside willya?";
 const unsigned char level_2_over[] = "You have no regard\n\nfor the gas\n\nyou spill...";
 
 void bank_4_cutscene_init(void); // prototype
@@ -902,13 +907,15 @@ void bank_1_evaluation_init(void)
 	// goal
 	switch(gas_goal){
 		case 2: 
+		one_vram_buffer(48, NTADR_A(21, 5));
 		one_vram_buffer(2+48, NTADR_A(22, 5));
 		break;
 		case 8:
+		one_vram_buffer(48, NTADR_A(21, 5));
 		one_vram_buffer(8+48, NTADR_A(22, 5));
 		break;
 		case 17:
-		one_vram_buffer(7+48, NTADR_A(21, 5));
+		one_vram_buffer(1+48, NTADR_A(21, 5));
 		one_vram_buffer(7+48, NTADR_A(22, 5));
 		break;
 		default:
@@ -1274,14 +1281,14 @@ void bank_2_ending_scroll_loop(void)
 #pragma code-name("BANK3")
 
 const unsigned char GasShoulder[] = {
-		0, 0, 0x80, 1,
-		8, 0, 0x81, 1,
+		0, 0, 0x80, 2,
+		8, 0, 0x81, 2,
 		// 16, 0, 0x82, 1,
-		128};
+		128}; 
 
 const unsigned char GasShoulderReverse[] = {
-		24, 0, 0x80, 1 | OAM_FLIP_H,
-		16, 0, 0x81, 1 | OAM_FLIP_H,
+		24, 0, 0x80, 2 | OAM_FLIP_H,
+		16, 0, 0x81, 2 | OAM_FLIP_H,
 		// 8, 0, 0x82, 1 | OAM_FLIP_H,
 		// 0, 0, 0x83, 1 | OAM_FLIP_H,
 		128};
@@ -1642,7 +1649,7 @@ unsigned char duck_hit_top = 0;
 
 #include "SPRITES/gaspump.h"
 
-unsigned char blimp_frames = 0;
+unsigned int blimp_frames = 0;
 unsigned char cloud_frames = 0;
 unsigned char truck_frames = 0;
 unsigned int cloud_x = 20 << 8;
@@ -1916,7 +1923,7 @@ void bank_3_level_sprites(void)
 	{
 		// ++cloud_frames;
 
-		cloud_x += 7;
+		cloud_x += 7; 
 		if (high_byte(cloud_y) == 18 && low_byte(cloud_y) == 100)
 		{
 			y_direction = 0;
@@ -1939,7 +1946,7 @@ void bank_3_level_sprites(void)
 
 		++blimp_frames;
 
-		if (moveframes > 13000)
+		if (moveframes > 8000)
 		{ // wait til 1 minute in for the blimp
 			++blimp_frames;
 
@@ -1961,167 +1968,166 @@ void bank_3_level_sprites(void)
 				blimp_y += 13;
 			}
 
-			if (moveframes > 100)
-			{
-
-				if (blimp_frames < 9)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_0);
-				}
-				else if (blimp_frames < 9*2)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_1);
-				}
-				else if (blimp_frames < 9*3)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_2);
-				}
-				else if (blimp_frames < 9*4)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_3);
-				}
-				else if (blimp_frames < 9*5)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_4);
-				}
-				else if (blimp_frames < 9*6)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_5);
-				}
-				else if (blimp_frames < 9*7)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_6);
-				}	
-				else if (blimp_frames < 9*8)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_7);
-				}
-				else if (blimp_frames < 9*9)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_8);
-				}
-				else if (blimp_frames < 9*10)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_9);
-				}
-				else if (blimp_frames < 9*11)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_10);
-				}
-				else if (blimp_frames < 9*12)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_11);
-				}
-				else if (blimp_frames < 9*13)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_12);
-				}
-				else if (blimp_frames < 9*14)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_13);
-				}
-				else if (blimp_frames < 9*15)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_14);
-				}
-				else if (blimp_frames < 9*16)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_15);
-				}
-				else if (blimp_frames < 9*17)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_16);
-				}
-				else if (blimp_frames < 9*18)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_17);
-				}
-				else if (blimp_frames < 9*19)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_18);
-				}
-				else if (blimp_frames < 9*20)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_19);
-				}
-				else if (blimp_frames < 9*21)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_20);
-				}
-				else if (blimp_frames < 9*22)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_21);
-				}
-				else if (blimp_frames < 9*23)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_22);
-				}
-				else if (blimp_frames < 9*24)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_23);
-				}
-				else if (blimp_frames < 9*25)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_24);
-				}
-				else if (blimp_frames < 9*26)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_25);
-				}
-				else if (blimp_frames < 9*27)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_26);
-				}
-				else if (blimp_frames < 9*28)
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_27);
-				}
-				else if (blimp_frames < 255)
-				{
-					// oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_28);
-				}
-				else
-				{
-					oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_0);
-					blimp_frames = 0;
-				}
-			}
-		}
-
-		if (moveframes2 > 3600)
-		{ // wait til 2 minute in for the truck
-
-			if(high_byte(truck_x) < 67){
-				truck_x += 200;
-				++truck_frames;
-			}
 			
-			
-			if (truck_frames < 10)
+
+			if (blimp_frames < 20)
 			{
-				oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_0);
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_0);
 			}
-			else if (truck_frames < 20)
+			else if (blimp_frames < 20*2)
 			{
-				oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_1);
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_1);
 			}
-			else if (truck_frames < 30)
+			else if (blimp_frames < 20*3)
 			{
-				oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_2);
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_2);
 			}
-			else if (truck_frames < 40)
+			else if (blimp_frames < 20*4)
 			{
-				oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_3);
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_3);
+			}
+			else if (blimp_frames < 20*5)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_4);
+			}
+			else if (blimp_frames < 20*6)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_5);
+			}
+			else if (blimp_frames < 20*7)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_6);
+			}	
+			else if (blimp_frames < 20*8)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_7);
+			}
+			else if (blimp_frames < 20*9)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_8);
+			}
+			else if (blimp_frames < 20*10)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_9);
+			}
+			else if (blimp_frames < 20*11)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_10);
+			}
+			else if (blimp_frames < 20*12)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_11);
+			}
+			else if (blimp_frames < 20*13)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_12);
+			}
+			else if (blimp_frames < 20*14)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_13);
+			}
+			else if (blimp_frames < 20*15)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_14);
+			}
+			else if (blimp_frames < 20*16)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_15);
+			}
+			else if (blimp_frames < 20*17)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_16);
+			}
+			else if (blimp_frames < 20*18)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_17);
+			}
+			else if (blimp_frames < 20*19)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_18);
+			}
+			else if (blimp_frames < 20*20)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_19);
+			}
+			else if (blimp_frames < 20*21)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_20);
+			}
+			else if (blimp_frames < 20*22)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_21);
+			}
+			else if (blimp_frames < 20*23)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_22);
+			}
+			else if (blimp_frames < 20*24)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_23);
+			}
+			else if (blimp_frames < 20*25)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_24);
+			}
+			else if (blimp_frames < 20*26)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_25);
+			}
+			else if (blimp_frames < 20*27)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_26);
+			}
+			else if (blimp_frames < 20*28)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_27);
+			}
+			else if (blimp_frames < 20*29)
+			{
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_28);
 			}
 			else
 			{
-				oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_0);
-				if(high_byte(truck_x) < 67){
-					truck_frames = 0;
-				}
-				
+				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_0);
+				blimp_frames = 0;
 			}
+			
 		}
+
+		// if (moveframes2 > 3600)
+		// { // wait til 2 minute in for the truck
+
+		// 	if(high_byte(truck_x) < 67){
+		// 		truck_x += 200;
+		// 		++truck_frames;
+		// 	}
+			
+			
+		// 	if (truck_frames < 10)
+		// 	{
+		// 		oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_0);
+		// 	}
+		// 	else if (truck_frames < 20)
+		// 	{
+		// 		oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_1);
+		// 	}
+		// 	else if (truck_frames < 30)
+		// 	{
+		// 		oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_2);
+		// 	}
+		// 	else if (truck_frames < 40)
+		// 	{
+		// 		oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_3);
+		// 	}
+		// 	else
+		// 	{
+		// 		oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_0);
+		// 		if(high_byte(truck_x) < 67){
+		// 			truck_frames = 0;
+		// 		}
+				
+		// 	}
+		// }
 
 		
 	}
@@ -2356,6 +2362,7 @@ void bank_4_instruction_init(void)
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 	pal_bg(futuretalk_palette);
+	pal_spr(futurepump_palette);
 
 	set_chr_bank_0(FUTURETALK_CHR_0);
 	set_chr_bank_1(FUTURETALK_CHR_1);
@@ -3393,7 +3400,8 @@ void bank_5_starfield_init(void)
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 
-	pal_bg(starfield_palette);
+	pal_bg(starfield_palette);  
+	pal_spr(starfield_sp_palette);
 	set_chr_bank_0(STARFIELD_CHR_0);
 	set_chr_bank_1(STARFIELD_CHR_1);
 	scroll(0, 0); // reset scrolling
@@ -3559,11 +3567,6 @@ void bank_5_draw_starfield_player_sprite(void)
 
 void bank_5_starfield_boss_defeated(void)
 {
-	// todo flash screen
-	ppu_wait_nmi();
-	ppu_wait_nmi();
-	ppu_wait_nmi();
-	ppu_wait_nmi();
 	ppu_off();
 
 	// flash screen
@@ -3593,11 +3596,12 @@ void bank_5_starfield_boss_defeated(void)
 			index = 0;
 		}
 	}
-	player_x = 100;
+	player_x = 40;
 
 	// switch scroll
 	scroll_x = 0;
 	scroll(scroll_x, 0);
+	player_y = 100;
 
 	ppu_on_all();
 	starfield_complete = 1;
@@ -3647,7 +3651,7 @@ void bank_5_draw_starfield_boss(void)
 		{
 			scroll_x += 2;
 		}
-		else if (sprite_frames == 600)
+		else if (sprite_frames == 255)
 		{
 			banked_call(BANK_5, bank_5_starfield_boss_defeated);
 		}
@@ -3826,7 +3830,8 @@ void bank_5_draw_starfield_sprites(void)
 	}
 }
 
-unsigned char test_count = 0;
+// unsigned char test_count = 0;
+unsigned char turns = 0;
 void bank_5_starfield_loop(void)
 {
 
@@ -3835,34 +3840,41 @@ void bank_5_starfield_loop(void)
 
 	if (starfield_complete)
 	{
-		++test_count;
+
+		if(scroll_x < 250){
+				scroll_x += 2;
+			}
 
 		if (player_x_direction)
 		{
 			player_x -= 2;
-			scroll_x += 1;
 			oam_meta_spr(player_x, 100, rocket_rider_left);
 		}
 		else
 		{
-			if (test_count < 100)
-			{
-				scroll_x += 2;
+			if(turns < 1){
+				player_x += 2;
+				oam_meta_spr(player_x, 100, rocket_rider_right);	
 			}
-			else
-			{
-				scroll_x += 2;
+			else {
+				player_x += 1;
+				oam_meta_spr(player_x, 100, rocket_rider_right_small);
 			}
-			player_x += 2;
-			oam_meta_spr(player_x, 100, rocket_rider_right);
+			
 		}
 
-		if (player_x < 8)
+		if (player_x == 20 && turns < 3)
+		{
+			player_x_direction = 0;
+			++turns;
+		}
+		if (player_x == 220 && turns < 3)
 		{
 			player_x_direction = 1;
+			++turns;
 		}
 
-		if (player_x == 10)
+		if (player_x == 140 && turns == 2)
 		{
 			wait_and_fade_out();
 			banked_call(BANK_2, bank_2_ending_scroll_init);

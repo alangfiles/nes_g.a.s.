@@ -1829,214 +1829,214 @@ const unsigned char cloud_0[]={
 
 };
 
-const unsigned char cloud_1[]={
+// const unsigned char cloud_1[]={
 
- 2,  1,0x49,2|OAM_BEHIND,
- 0, 16,0x49,2|OAM_FLIP_V|OAM_BEHIND,
- 0,  8,0x69,2|OAM_BEHIND,
-10,  1,0x4a,2|OAM_BEHIND,
-34,  4,0x4b,2|OAM_BEHIND,
- 8,  8,0x48,2|OAM_BEHIND,
-18,  0,0x6a,2|OAM_BEHIND,
-26,  1,0x7a,2|OAM_FLIP_V|OAM_BEHIND,
-33,  9,0x49,2|OAM_FLIP_H|OAM_BEHIND,
- 8, 18,0x7a,2|OAM_BEHIND,
-16, 17,0x5a,2|OAM_BEHIND,
-24, 19,0x7b,2|OAM_BEHIND,
-29, 14,0x5b,2|OAM_BEHIND,
- 8, 11,0x48,2|OAM_BEHIND,
-16,  7,0x48,2|OAM_BEHIND,
-16, 13,0x48,2|OAM_BEHIND,
-22,  8,0x48,2|OAM_BEHIND,
-26,  8,0x48,2|OAM_BEHIND,
-22, 12,0x48,2|OAM_BEHIND,
-128
+//  2,  1,0x49,2|OAM_BEHIND,
+//  0, 16,0x49,2|OAM_FLIP_V|OAM_BEHIND,
+//  0,  8,0x69,2|OAM_BEHIND,
+// 10,  1,0x4a,2|OAM_BEHIND,
+// 34,  4,0x4b,2|OAM_BEHIND,
+//  8,  8,0x48,2|OAM_BEHIND,
+// 18,  0,0x6a,2|OAM_BEHIND,
+// 26,  1,0x7a,2|OAM_FLIP_V|OAM_BEHIND,
+// 33,  9,0x49,2|OAM_FLIP_H|OAM_BEHIND,
+//  8, 18,0x7a,2|OAM_BEHIND,
+// 16, 17,0x5a,2|OAM_BEHIND,
+// 24, 19,0x7b,2|OAM_BEHIND,
+// 29, 14,0x5b,2|OAM_BEHIND,
+//  8, 11,0x48,2|OAM_BEHIND,
+// 16,  7,0x48,2|OAM_BEHIND,
+// 16, 13,0x48,2|OAM_BEHIND,
+// 22,  8,0x48,2|OAM_BEHIND,
+// 26,  8,0x48,2|OAM_BEHIND,
+// 22, 12,0x48,2|OAM_BEHIND,
+// 128
 
-};
+// };
 
-const unsigned char cloud_2[]={
+// const unsigned char cloud_2[]={
 
- 0,  0,0x49,2|OAM_BEHIND,
- 6,  2,0x4b,2|OAM_BEHIND,
- 2,  7,0x79,2|OAM_BEHIND,
-128
+//  0,  0,0x49,2|OAM_BEHIND,
+//  6,  2,0x4b,2|OAM_BEHIND,
+//  2,  7,0x79,2|OAM_BEHIND,
+// 128
 
-};
+// };
 
-const unsigned char cloud_3[]={
+// const unsigned char cloud_3[]={
 
-10,  2,0x6a,2|OAM_BEHIND,
-10, 10,0x7a,2|OAM_BEHIND,
- 3,  1,0x49,2|OAM_BEHIND,
- 2,  9,0x79,2|OAM_BEHIND,
-15,  6,0x5b,2|OAM_BEHIND,
-128
+// 10,  2,0x6a,2|OAM_BEHIND,
+// 10, 10,0x7a,2|OAM_BEHIND,
+//  3,  1,0x49,2|OAM_BEHIND,
+//  2,  9,0x79,2|OAM_BEHIND,
+// 15,  6,0x5b,2|OAM_BEHIND,
+// 128
 
-};
+// };
 
-const unsigned char cloud_4[]={
+// const unsigned char cloud_4[]={
 
- 0,  4,0x7a,2|OAM_BEHIND,
- 0,  1,0x4a,2|OAM_BEHIND,
- 3,  2,0x4b,2|OAM_BEHIND,
-- 2,  1,0x49,2|OAM_BEHIND,
-128
+//  0,  4,0x7a,2|OAM_BEHIND,
+//  0,  1,0x4a,2|OAM_BEHIND,
+//  3,  2,0x4b,2|OAM_BEHIND,
+// - 2,  1,0x49,2|OAM_BEHIND,
+// 128
 
-};
+// };
 
 
-const unsigned char truck_0[]={
+// const unsigned char truck_0[]={
 
- 0,  0,0x88,0,
- 8,  0,0x89,0,
-16,  0,0x8a,0,
-24,  0,0x8b,0,
-32,  0,0x8c,0,
-40,  0,0x8d,0,
-48,  0,0x8e,0,
-56,  0,0x8f,0,
- 0,  8,0x98,0,
- 8,  8,0x99,0,
-16,  8,0x9a,0,
-24,  8,0x9b,0,
-32,  8,0x9c,0,
-40,  8,0x9d,0,
-48,  8,0x9e,0,
-56,  8,0x9f,0,
- 0, 16,0xa8,0,
- 8, 16,0xa9,0,
-16, 16,0xaa,0,
-24, 16,0xab,0,
-32, 16,0xac,0,
-40, 16,0xad,0,
-48, 16,0xae,0,
-56, 16,0xaf,0,
- 0, 24,0xb8,0,
- 8, 24,0xb9,0,
-16, 24,0xba,0,
-24, 24,0xbb,0,
-32, 24,0xbc,0,
-40, 24,0xbd,0,
-48, 24,0xbe,0,
-56, 24,0xbf,0,
-128
+//  0,  0,0x88,0,
+//  8,  0,0x89,0,
+// 16,  0,0x8a,0,
+// 24,  0,0x8b,0,
+// 32,  0,0x8c,0,
+// 40,  0,0x8d,0,
+// 48,  0,0x8e,0,
+// 56,  0,0x8f,0,
+//  0,  8,0x98,0,
+//  8,  8,0x99,0,
+// 16,  8,0x9a,0,
+// 24,  8,0x9b,0,
+// 32,  8,0x9c,0,
+// 40,  8,0x9d,0,
+// 48,  8,0x9e,0,
+// 56,  8,0x9f,0,
+//  0, 16,0xa8,0,
+//  8, 16,0xa9,0,
+// 16, 16,0xaa,0,
+// 24, 16,0xab,0,
+// 32, 16,0xac,0,
+// 40, 16,0xad,0,
+// 48, 16,0xae,0,
+// 56, 16,0xaf,0,
+//  0, 24,0xb8,0,
+//  8, 24,0xb9,0,
+// 16, 24,0xba,0,
+// 24, 24,0xbb,0,
+// 32, 24,0xbc,0,
+// 40, 24,0xbd,0,
+// 48, 24,0xbe,0,
+// 56, 24,0xbf,0,
+// 128
 
-};
+// };
 
-const unsigned char truck_1[]={
+// const unsigned char truck_1[]={
 
- 0,  0,0x88,0,
- 8,  0,0x89,0,
-16,  0,0x8a,0,
-24,  0,0x8b,0,
-32,  0,0x8c,0,
-40,  0,0x8d,0,
-48,  0,0x8e,0,
-56,  0,0x8f,0,
- 0,  8,0x98,0,
- 8,  8,0x99,0,
-16,  8,0x9a,0,
-24,  8,0x9b,0,
-32,  8,0x9c,0,
-40,  8,0x9d,0,
-48,  8,0x9e,0,
-56,  8,0x9f,0,
- 0, 16,0xa8,0,
- 8, 16,0xa9,0,
-16, 16,0xaa,0,
-24, 16,0xab,0,
-32, 16,0xac,0,
-40, 16,0xad,0,
-48, 16,0xae,0,
-56, 16,0xaf,0,
- 0, 24,0xb8,0,
- 8, 24,0xc9,0,
-16, 24,0xba,0,
-24, 24,0xcb,0,
-32, 24,0xcc,0,
-40, 24,0xcd,0,
-48, 24,0xbe,0,
-56, 24,0xcf,0,
-128
+//  0,  0,0x88,0,
+//  8,  0,0x89,0,
+// 16,  0,0x8a,0,
+// 24,  0,0x8b,0,
+// 32,  0,0x8c,0,
+// 40,  0,0x8d,0,
+// 48,  0,0x8e,0,
+// 56,  0,0x8f,0,
+//  0,  8,0x98,0,
+//  8,  8,0x99,0,
+// 16,  8,0x9a,0,
+// 24,  8,0x9b,0,
+// 32,  8,0x9c,0,
+// 40,  8,0x9d,0,
+// 48,  8,0x9e,0,
+// 56,  8,0x9f,0,
+//  0, 16,0xa8,0,
+//  8, 16,0xa9,0,
+// 16, 16,0xaa,0,
+// 24, 16,0xab,0,
+// 32, 16,0xac,0,
+// 40, 16,0xad,0,
+// 48, 16,0xae,0,
+// 56, 16,0xaf,0,
+//  0, 24,0xb8,0,
+//  8, 24,0xc9,0,
+// 16, 24,0xba,0,
+// 24, 24,0xcb,0,
+// 32, 24,0xcc,0,
+// 40, 24,0xcd,0,
+// 48, 24,0xbe,0,
+// 56, 24,0xcf,0,
+// 128
 
-};
+// };
 
-const unsigned char truck_2[]={
+// const unsigned char truck_2[]={
 
- 0,  0,0x88,0,
- 8,  0,0x89,0,
-16,  0,0x8a,0,
-24,  0,0x8b,0,
-32,  0,0x8c,0,
-40,  0,0x8d,0,
-48,  0,0x8e,0,
-56,  0,0x8f,0,
- 0,  8,0x98,0,
- 8,  8,0x99,0,
-16,  8,0x9a,0,
-24,  8,0x9b,0,
-32,  8,0x9c,0,
-40,  8,0x9d,0,
-48,  8,0x9e,0,
-56,  8,0x9f,0,
- 0, 16,0xa8,0,
- 8, 16,0xa9,0,
-16, 16,0xaa,0,
-24, 16,0xab,0,
-32, 16,0xac,0,
-40, 16,0xad,0,
-48, 16,0xae,0,
-56, 16,0xaf,0,
- 0, 24,0xb8,0,
- 8, 24,0xd9,0,
-16, 24,0xba,0,
-24, 24,0xdb,0,
-32, 24,0xdc,0,
-40, 24,0xdd,0,
-48, 24,0xde,0,
-56, 24,0xdf,0,
-128
+//  0,  0,0x88,0,
+//  8,  0,0x89,0,
+// 16,  0,0x8a,0,
+// 24,  0,0x8b,0,
+// 32,  0,0x8c,0,
+// 40,  0,0x8d,0,
+// 48,  0,0x8e,0,
+// 56,  0,0x8f,0,
+//  0,  8,0x98,0,
+//  8,  8,0x99,0,
+// 16,  8,0x9a,0,
+// 24,  8,0x9b,0,
+// 32,  8,0x9c,0,
+// 40,  8,0x9d,0,
+// 48,  8,0x9e,0,
+// 56,  8,0x9f,0,
+//  0, 16,0xa8,0,
+//  8, 16,0xa9,0,
+// 16, 16,0xaa,0,
+// 24, 16,0xab,0,
+// 32, 16,0xac,0,
+// 40, 16,0xad,0,
+// 48, 16,0xae,0,
+// 56, 16,0xaf,0,
+//  0, 24,0xb8,0,
+//  8, 24,0xd9,0,
+// 16, 24,0xba,0,
+// 24, 24,0xdb,0,
+// 32, 24,0xdc,0,
+// 40, 24,0xdd,0,
+// 48, 24,0xde,0,
+// 56, 24,0xdf,0,
+// 128
 
-};
+// };
 
-const unsigned char truck_3[]={
+// const unsigned char truck_3[]={
 
- 0,  0,0x88,0,
- 8,  0,0x89,0,
-16,  0,0x8a,0,
-24,  0,0x8b,0,
-32,  0,0x8c,0,
-40,  0,0x8d,0,
-48,  0,0x8e,0,
-56,  0,0x8f,0,
- 0,  8,0x98,0,
- 8,  8,0x99,0,
-16,  8,0x9a,0,
-24,  8,0x9b,0,
-32,  8,0x9c,0,
-40,  8,0x9d,0,
-48,  8,0x9e,0,
-56,  8,0x9f,0,
- 0, 16,0xa8,0,
- 8, 16,0xa9,0,
-16, 16,0xaa,0,
-24, 16,0xab,0,
-32, 16,0xac,0,
-40, 16,0xad,0,
-48, 16,0xae,0,
-56, 16,0xaf,0,
- 0, 24,0xb8,0,
- 8, 24,0xe9,0,
-16, 24,0xba,0,
-24, 24,0xeb,0,
-32, 24,0xec,0,
-40, 24,0xed,0,
-48, 24,0xee,0,
-56, 24,0xdf,0,
+//  0,  0,0x88,0,
+//  8,  0,0x89,0,
+// 16,  0,0x8a,0,
+// 24,  0,0x8b,0,
+// 32,  0,0x8c,0,
+// 40,  0,0x8d,0,
+// 48,  0,0x8e,0,
+// 56,  0,0x8f,0,
+//  0,  8,0x98,0,
+//  8,  8,0x99,0,
+// 16,  8,0x9a,0,
+// 24,  8,0x9b,0,
+// 32,  8,0x9c,0,
+// 40,  8,0x9d,0,
+// 48,  8,0x9e,0,
+// 56,  8,0x9f,0,
+//  0, 16,0xa8,0,
+//  8, 16,0xa9,0,
+// 16, 16,0xaa,0,
+// 24, 16,0xab,0,
+// 32, 16,0xac,0,
+// 40, 16,0xad,0,
+// 48, 16,0xae,0,
+// 56, 16,0xaf,0,
+//  0, 24,0xb8,0,
+//  8, 24,0xe9,0,
+// 16, 24,0xba,0,
+// 24, 24,0xeb,0,
+// 32, 24,0xec,0,
+// 40, 24,0xed,0,
+// 48, 24,0xee,0,
+// 56, 24,0xdf,0,
 
-128
+// 128
 
-};
+// };
 
 
 const unsigned char gasblimp_0[]={
@@ -3018,37 +3018,37 @@ const unsigned char gasblimp_27[]={
 
 };
 
-// const unsigned char gasblimp_28[]={
+const unsigned char gasblimp_28[]={
 
-// 0, 8,0xd0,0| OAM_BEHIND,
-// 8, 0,0xc1,0| OAM_BEHIND,
-// 16, 0,0xc2,0| OAM_BEHIND,
-// 24, 0,0xc3,0| OAM_BEHIND,
-// 32, 0,0xc4,0| OAM_BEHIND,
-// 40, 0,0xc5,0| OAM_BEHIND,
-// 48, 0,0xc6,0| OAM_BEHIND,
-// 0, 16,0xe0,0| OAM_BEHIND,
-// 8, 24,0xf1,0| OAM_BEHIND,
-// 16, 24,0xf2,0| OAM_BEHIND,
-// 24, 24,0xf3,0| OAM_BEHIND,
-// 32, 24,0xf4,0| OAM_BEHIND,
-// 40, 24,0xf5,0| OAM_BEHIND,
-// 48, 24,0xf6,0| OAM_BEHIND,
+0, 8,0xd0,0| OAM_BEHIND,
+8, 0,0xc1,0| OAM_BEHIND,
+16, 0,0xc2,0| OAM_BEHIND,
+24, 0,0xc3,0| OAM_BEHIND,
+32, 0,0xc4,0| OAM_BEHIND,
+40, 0,0xc5,0| OAM_BEHIND,
+48, 0,0xc6,0| OAM_BEHIND,
+0, 16,0xe0,0| OAM_BEHIND,
+8, 24,0xf1,0| OAM_BEHIND,
+16, 24,0xf2,0| OAM_BEHIND,
+24, 24,0xf3,0| OAM_BEHIND,
+32, 24,0xf4,0| OAM_BEHIND,
+40, 24,0xf5,0| OAM_BEHIND,
+48, 24,0xf6,0| OAM_BEHIND,
 
-// 48, 16,0xe6,0| OAM_BEHIND,
-// 48, 8,0xd6,0| OAM_BEHIND,
-// 40, 8,0xd5,0| OAM_BEHIND,
-// 40, 16,0xe5,0| OAM_BEHIND,
-// 0, 0,0xc0,0| OAM_BEHIND,
-// 0, 24,0xf0,0| OAM_BEHIND,
-// 16, 8,0xd1,1| OAM_BEHIND,
-// 16, 16,0xe1,1| OAM_BEHIND,
-// 32, 8,0xd1,1| OAM_BEHIND,
-// 32, 16,0xe1,1| OAM_BEHIND,
-// 8, 8,0xa1,1| OAM_BEHIND,
-// 8, 16,0xb1,1| OAM_BEHIND,
-// 24, 8,0xd1,1| OAM_BEHIND,
-// 24, 16,0xe1,1| OAM_BEHIND,
-// 128
+48, 16,0xe6,0| OAM_BEHIND,
+48, 8,0xd6,0| OAM_BEHIND,
+40, 8,0xd5,0| OAM_BEHIND,
+40, 16,0xe5,0| OAM_BEHIND,
+0, 0,0xc0,0| OAM_BEHIND,
+0, 24,0xf0,0| OAM_BEHIND,
+16, 8,0xd1,1| OAM_BEHIND,
+16, 16,0xe1,1| OAM_BEHIND,
+32, 8,0xd1,1| OAM_BEHIND,
+32, 16,0xe1,1| OAM_BEHIND,
+8, 8,0xa1,1| OAM_BEHIND,
+8, 16,0xb1,1| OAM_BEHIND,
+24, 8,0xd1,1| OAM_BEHIND,
+24, 16,0xe1,1| OAM_BEHIND,
+128
 
-// };
+};

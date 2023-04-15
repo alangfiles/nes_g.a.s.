@@ -18,6 +18,14 @@ const unsigned char rocket_rider_left[]={
 
 };
 
+const unsigned char rocket_rider_right_small[]={	
+- 8,  0,0x26,0|OAM_FLIP_H,
+- 8,  0,0x16,2|OAM_FLIP_H,
+- 8,- 8,0x06,2|OAM_FLIP_H,
+-16,  0,0x17,2|OAM_FLIP_H,
+128
+};
+
 const unsigned char rocket_rider_right[]={	
  9,  1,0x00,0|OAM_FLIP_H,
  8,  8,0x62,2|OAM_FLIP_H,

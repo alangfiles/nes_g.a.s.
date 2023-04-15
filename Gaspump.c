@@ -2979,7 +2979,7 @@ void bank_4_cutscene_loop(void)
 			pal_bg(intro_cutscene_palette);
 			scroll_y = 0x1df;
 			nametable_index = 960;
-			cutscene_index = NAMETABLE_A_ATTR - 1;
+			cutscene_index = NAMETABLE_A+960;
 			attribute_bytes_written = 0;
 			attribute_table_index = NAMETABLE_A_ATTR;
 			moveframes = 0;
@@ -2998,7 +2998,7 @@ void bank_4_cutscene_loop(void)
 		{
 			scroll(0, scroll_y);
 			// draw some of the next screen
-			if (moveframes == 8)
+			if (scroll_y < 0x100)
 			{
 				for (index = 0; index < 30; ++index)
 				{
@@ -3006,8 +3006,6 @@ void bank_4_cutscene_loop(void)
 					--nametable_index;
 					--cutscene_index;
 				}
-
-				moveframes = 0;
 			}
 			if (scroll_y < 0x100 && attribute_bytes_written < 64)
 			{
@@ -3956,7 +3954,7 @@ void main(void)
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);
-		banked_call(BANK_4, bank_4_cutscene_init);
+	banked_call(BANK_4, bank_4_cutscene_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_5, bank_5_starfield_init);

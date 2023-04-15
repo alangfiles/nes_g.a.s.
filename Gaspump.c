@@ -900,19 +900,30 @@ void bank_1_evaluation_init(void)
 
 	// pump scores:
 	// goal
-	one_vram_buffer(gas_goal + 48, NTADR_A(21, 2));
-	multi_vram_buffer_horz(".00 G", 5, NTADR_A(22, 2));
+	switch(gas_goal){
+		case 2: 
+		one_vram_buffer(2+48, NTADR_A(22, 4));
+		break;
+		case 8:
+		one_vram_buffer(8+48, NTADR_A(22, 4));
+		break;
+		case 17:
+		one_vram_buffer(7+48, NTADR_A(21, 4));
+		one_vram_buffer(7+48, NTADR_A(22, 4));
+		break;
+		default:
+		break;
+	}
+	multi_vram_buffer_horz(".00", 5, NTADR_A(23, 4));
 	flush_vram_update2();
 	// speed
-	// multi_vram_buffer_horz(">>>", 3, NTADR_A(21, 6));
 	flush_vram_update2();
 	// accuracy
-	one_vram_buffer(gas4 + 48, NTADR_A(20, 8));
-	one_vram_buffer(gas3 + 48, NTADR_A(21, 8));
-	one_vram_buffer('.', NTADR_A(22, 8));
-	one_vram_buffer(gas2 + 48, NTADR_A(23, 8));
-	one_vram_buffer(gas1 + 48, NTADR_A(24, 8));
-	one_vram_buffer('G', NTADR_A(26, 8));
+	one_vram_buffer(gas4 + 48, NTADR_A(21, 9));
+	one_vram_buffer(gas3 + 48, NTADR_A(22, 9));
+	one_vram_buffer('.', NTADR_A(23, 8));
+	one_vram_buffer(gas2 + 48, NTADR_A(24, 9));
+	one_vram_buffer(gas1 + 48, NTADR_A(25, 9));
 	flush_vram_update2();
 	// style
 	// multi_vram_buffer_horz("NONE", 4, NTADR_A(21, 10));

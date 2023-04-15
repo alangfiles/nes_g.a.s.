@@ -1124,6 +1124,7 @@ void bank_1_evaluation_loop(void)
 
 void bank_2_ending_scroll_init(void)
 {
+	ppu_off();
 	nametable_index = 0;
 	scrolled_past_once = 0;
 	stop_scrolling = 0;
@@ -3847,7 +3848,7 @@ void bank_5_starfield_loop(void)
 
 		if (player_x_direction)
 		{
-			player_x -= 2;
+			player_x -= 3;
 			oam_meta_spr(player_x, 100, rocket_rider_left);
 		}
 		else
@@ -3863,18 +3864,18 @@ void bank_5_starfield_loop(void)
 			
 		}
 
-		if (player_x == 20 && turns < 3)
+		if (player_x < 20 && turns < 3)
 		{
 			player_x_direction = 0;
 			++turns;
 		}
-		if (player_x == 220 && turns < 3)
+		if (player_x > 220 && turns < 3)
 		{
 			player_x_direction = 1;
 			++turns;
 		}
 
-		if (player_x == 140 && turns == 2)
+		if (player_x > 140 && turns ==3)
 		{
 			wait_and_fade_out();
 			banked_call(BANK_2, bank_2_ending_scroll_init);
@@ -3985,7 +3986,7 @@ void main(void)
 	// banked_call(BANK_4, bank_4_cutscene_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
-	// banked_call(BANK_5, bank_5_starfield_init);
+	banked_call(BANK_5, bank_5_starfield_init);
 
 	while (1)
 	{

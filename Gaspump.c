@@ -632,7 +632,7 @@ void bank_1_gas_level_init(void)
 {
 
 	// reset changed values so they redraw
-
+  
 	sample_play(SAMPLE_FILLERUP);
 	delay(30);
 	ppu_off();	 // screen off
@@ -837,9 +837,8 @@ void bank_1_title_init(void)
 	levels_complete = 0;
 	perfect_levels = 0;
 	reset_game_variables();
-	// music_play(SONG_TITLE);
+	music_play(SONG_TITLE);
 
-	// todo: add title music
 }
 
 const unsigned char level_0_awful[] = "Don't click\n\nKeep the flow\n\ngoing...";
@@ -1062,10 +1061,7 @@ void bank_1_evaluation_init(void)
 
 	switch(gas_pump_level_quality){
 		case PERFECT_PUMP:
-			pointer = level_0_perfect;
-			text_length = sizeof(level_0_perfect);
 			sample_play(SAMPLE_GADZOOKS);
-			++levels_complete;
 			break;
 		case BAD_PUMP:
 			sample_play(SAMPLE_WHATWASTHAT);
@@ -1085,7 +1081,7 @@ void bank_1_evaluation_init(void)
 	game_mode = MODE_EVALUATION_TIME;
 	game_level = LEVEL_ONE_COMPLETE;
 	pal_fade_to(0, 4);
-	music_play(SONG_TALKINGTIME);
+	// music_play(SONG_TALKINGTIME);
 }
 
 void bank_1_evaluation_loop(void)
@@ -1199,7 +1195,8 @@ void bank_2_ending_scroll_init(void)
 	ppu_on_all(); // turn on screen
 	pal_fade_to(0, 4);
 	game_mode = MODE_INTRO_SCROLL;
-	music_play(SONG_INTROSCROLL);
+	// music_play(SONG_INTROSCROLL);
+	music_play(SONG_TALKINGTIME);
 }
 
 void bank_2_ending_scroll_loop(void)
@@ -1782,6 +1779,8 @@ void bank_3_level_sprites(void)
 			}
 			if (duck_0_y == 100)
 			{
+				//play quack when it comes out?
+				sample_play(SAMPLE_QUACK);
 				y_direction = 1;
 			}
 			if (y_direction)
@@ -3366,9 +3365,12 @@ void bank_5_gameover_init(void)
 
 void bank_5_gameover_loop(void)
 {
+	++moveframes;
 	ppu_wait_nmi();
-	// wait for keybaord input, then restart the whole game
-	// I like the idea of just having this screen tell them they have to reset the game.
+	if(moveframes > 200){
+		sample_play(SAMPLE_HEHEHE);
+		moveframes = 0;
+	}
 }
 
 unsigned int spaceship_1_x = 230 << 8;
@@ -4002,7 +4004,7 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	banked_call(BANK_1, bank_1_instructions_init);
+	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);

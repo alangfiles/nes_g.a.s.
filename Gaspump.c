@@ -6,27 +6,15 @@
  *
  * POLISH:
  * Alan todo list
- * [] sound effects
+ * [] add all sound effects
  * [] songs
+ * 
  * level 1, hot air baloon
  * level 2, ducks, add small ducks
  * level 3, brokedown truck, blimp.
  * 
  * 
- * 
-[] both: do something for the 3rd level (clouds)
-[] brian: sound effects (dcm or normal or whatever, ps I think the bird is a noise channel flap plus a dcm quack)
-[] both?: redo some songs (maybe remove from talking time, etc)
-
- * [] remove skipping the talking time
-	* [] Add sound effects
-	*   *  Glug Glug
-	*   *  Shooting
-	*   *  Ding for the perfect pump amount?
-	*   *  bad pump ending
-	*   *  Good job fanfare
-	*   *  Bad job fanfare
- *
+ * * 
  * Other ideas:
  * [] second controller can shoot the whole time?
  * [] give amounts in dollars instead of gallons sometimes?
@@ -34,6 +22,7 @@
  * BUGS:
  * [] Fix planet scrolling attribute tables
  * [] check all of al's text
+ * [] weird bg tiles changes on second time through level?
  *
  * game flow:
  * title->intro_scroll->intro_cutscene->
@@ -530,7 +519,7 @@ void bank_0_intro_cutscene_loop(void)
 
 const unsigned char level_0_text[] = "So you wanna pump gas?!?\nGive me 2 gallons.\n\nJust pull the trigger,\nbut don't click it.";
 const unsigned char level_1_text[] = "I'm starting to believe,\nbut you have much to learn.\n\nNow give me 8 gallons!!";
-const unsigned char level_2_text[] = "I can't deny it...\nYou were born to do this.\nOne last test...\nCan you do 17 gallons?\n\nI'm watching closely...";
+const unsigned char level_2_text[] = "I can't deny it...\nYou were born to do this.\nOne last test...\nCan you do 17 gallons?\n\nI'm watching 1sely...";
 // const unsigned char level_3_text[] = "You've got it. \n I believe in you.\n Only you can save our space people.\n\n Follow me to my galaxy.";
 void bank_4_cutscene_init(void);					 // prototype (needed to get call from bank_4)
 void bank_3_draw_level_base_sprites(void); // prototype
@@ -567,6 +556,7 @@ void bank_1_als_base_init_sprites(void)
 
 void bank_1_instructions_init(void)
 {
+	//todo we may need to reset a lot of other values here
 	reset_text_values();
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
@@ -1319,16 +1309,9 @@ const unsigned char Decimal[] = {
 
 void bank_3_draw_level_base_sprites()
 {
-	// covers for the gas pump shoulders
-	oam_meta_spr(144, 63, GasShoulder);
-	oam_meta_spr(224, 63, GasShoulderReverse);
-
 	// decimals
 	oam_meta_spr(0xc4, 0x88, Decimal); // decimal for dollars
 	oam_meta_spr(0xc4, 0xb8, Decimal); // decimal for gas
-																		 // bird_x += 1;
-																		 // bird_y = 0x20;
-																		 // oam_meta_spr(bird_x, bird_y, Bird);
 }
 
 void bank_3_draw_number_as_bg_tile(void)
@@ -1659,6 +1642,8 @@ void bank_3_adjust_cost(void)
 
 unsigned int blimp_x = 160 << 8;
 unsigned int blimp_y = 20 << 8;
+unsigned int sprite_1_x = 160 << 8;
+unsigned int sprite_1_y = 80 << 8;
 unsigned int truck_x = 0 << 8;
 unsigned int truck_y = 100 << 8;
 unsigned char duck_0_x = 20;
@@ -1678,6 +1663,8 @@ void bank_3_level_sprites(void)
 {
 	if (reset_level)
 	{
+		sprite_1_x = 230 << 8;
+ 		sprite_1_y = 90 << 8;
 		truck_x = 0 << 8;
 		truck_y = 100 << 8;
 		blimp_frames = 0;
@@ -1698,65 +1685,39 @@ void bank_3_level_sprites(void)
 	{
 		++blimp_frames;
 
-		blimp_x -= 13;
-		if (high_byte(blimp_y) == 10)
-		{
-			y_direction = 0;
-		}
-		if (high_byte(blimp_y) == 20)
-		{
-			y_direction = 1;
-		}
-		if (y_direction)
-		{
-			blimp_y -= 13;
-		}
-		else
-		{
-			blimp_y += 13;
-		}
+		
 
-		if (moveframes > 100)
-		{
-
-			if (blimp_frames < 20)
+		
+			sprite_1_x += 19;
+			if (high_byte(sprite_1_y) < 25)
 			{
-				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), blimp_0);
+				y_direction = 0;
 			}
-			else if (blimp_frames < 40)
+			if (high_byte(sprite_1_y) > 35)
 			{
-				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), blimp_1);
+				y_direction = 1;
 			}
-			else if (blimp_frames < 60)
+			if (y_direction)
 			{
-				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), blimp_2);
-			}
-			else if (blimp_frames < 80)
-			{
-				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), blimp_3);
-			}
-			else if (blimp_frames < 100)
-			{
-				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), blimp_4);
-			}
-			else if (blimp_frames < 120)
-			{
-				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), blimp_5);
-			}
-			else if (blimp_frames < 140)
-			{
-				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), blimp_6);
-			}
-			else if (blimp_frames < 160)
-			{
-				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), blimp_7);
+				sprite_1_y -= 17;
 			}
 			else
 			{
-				oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), blimp_0);
+				sprite_1_y += 17;
+			}
+
+			if (blimp_frames < 20)  
+			{
+				oam_meta_spr(high_byte(sprite_1_x), high_byte(sprite_1_y), balloon_0);
+			}
+			else if (blimp_frames < 39){
+				oam_meta_spr(high_byte(sprite_1_x), high_byte(sprite_1_y), balloon_1);
+			} else {
+				oam_meta_spr(high_byte(sprite_1_x), high_byte(sprite_1_y), balloon_1);
 				blimp_frames = 0;
 			}
-		}
+
+		
 	}
 	if (levels_complete == 1)
 	{ // level_complete ==1
@@ -2195,6 +2156,10 @@ void bank_3_level_loop(void)
 	}
 
 	banked_call(BANK_3, bank_3_level_sprites);
+
+	// covers for the gas pump shoulders (adding last for low priority)
+	oam_meta_spr(144, 63, GasShoulder);
+	oam_meta_spr(224, 63, GasShoulderReverse);
 
 	if (trigger_pulled)
 	{
@@ -3921,6 +3886,7 @@ void bank_5_starfield_loop(void)
 	read_input();
 	if (trigger_clicked)
 	{
+		sfx_play(SFX_SHOT,0);
 		shooting_mode = 1;
 		ppu_mask(0x16); // BG off, won't happen till NEXT frame
 		ppu_wait_nmi(); // wait till the top of the next frame
@@ -3930,6 +3896,7 @@ void bank_5_starfield_loop(void)
 
 		if (hit_detected)
 		{
+			sfx_play(SFX_EXPLOSION,0);
 			spaceship_destroyed = 1;
 			spaceship_1_frames = 0;
 			if (boss_level)
@@ -4004,7 +3971,7 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	// banked_call(BANK_1, bank_1_instructions_init);
+	banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);

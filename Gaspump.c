@@ -281,7 +281,8 @@ void bank_0_intro_scroll_init(void)
 	ppu_on_all(); // turn on screen
 	pal_fade_to(0, 4);
 	game_mode = MODE_INTRO_SCROLL;
-	music_play(SONG_INTROSCROLL);
+	// music_play(SONG_INTROSCROLL); //this is the greenselves songs, getting rid of it
+	music_play(SONG_TALKINGTIME);
 }
 
 void bank_0_title_loop(void)
@@ -614,7 +615,7 @@ void bank_1_instructions_init(void)
 
 	ppu_on_all(); // turn on screen
 	pal_fade_to(0, 4);
-	music_play(SONG_TALKINGTIME);
+	// music_play(SONG_TALKINGTIME);  //removing songs for talking time, will have sfx for talking
 	game_mode = MODE_INTRO_INSTRUCTION;
 }
 
@@ -828,6 +829,7 @@ void bank_1_title_init(void)
 	perfect_levels = 0;
 	reset_game_variables();
 	music_play(SONG_TITLE);
+	// music_play(SONG_TALKINGTIME);
 
 }
 
@@ -1186,7 +1188,7 @@ void bank_2_ending_scroll_init(void)
 	pal_fade_to(0, 4);
 	game_mode = MODE_INTRO_SCROLL;
 	// music_play(SONG_INTROSCROLL);
-	music_play(SONG_TALKINGTIME);
+	music_play(SONG_TALKINGTIME); //todo replace with ending music?
 }
 
 void bank_2_ending_scroll_loop(void)
@@ -3971,7 +3973,7 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	banked_call(BANK_1, bank_1_instructions_init);
+	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);

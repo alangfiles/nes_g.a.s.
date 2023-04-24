@@ -1685,11 +1685,7 @@ void bank_3_level_sprites(void)
 
 	if (levels_complete == 0)
 	{
-		++blimp_frames;
-
-		
-
-		
+		++blimp_frames; //using blimpframes to count here, shouldn't be an issue		
 			sprite_1_x += 19;
 			if (high_byte(sprite_1_y) < 25)
 			{
@@ -1728,19 +1724,15 @@ void bank_3_level_sprites(void)
 		{ // wait a bit before doing anything.
 
 			// update movement
-			if (duck_0_y == 5)
+			if (duck_0_y == 5 ) //ducks at top of screen
 			{
-				++duck_hit_top;
-				if (duck_hit_top < 3)
+				++duck_hit_top;  
+				if ((duck_hit_top % 3) != 0)
 				{
 					y_direction = 0;
 				}
-				else
-				{
-					duck_hit_top = 0;
-				}
 			}
-			if (duck_0_y == 100)
+			if (duck_0_y == 100) //out of bushes
 			{
 				//play quack when it comes out?
 				sample_play(SAMPLE_QUACK);
@@ -1776,8 +1768,65 @@ void bank_3_level_sprites(void)
 				}
 			}
 
-			// draw duck
-			if (moveframes2 < 5)
+			if(duck_hit_top >= 12 && duck_hit_top < 21){
+				if(x_direction){
+					if(moveframes2 < 10){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_l_0);
+					} else if(moveframes2 < 20){
+						if(duck_0_y < 100){ //duck is on screen at at less than 100
+							sfx_play(SFX_DUCK,0);
+						}
+						oam_meta_spr(duck_0_x, duck_0_y, flock_l_1);
+					} else if(moveframes2 < 30){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_l_2);
+					} else if(moveframes2 < 40){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_l_3);
+					} else if(moveframes2 < 50){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_l_4);
+					} else if(moveframes2 < 60){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_l_5);
+					} else if(moveframes2 < 70){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_l_6);
+					} else if(moveframes2 < 80){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_l_7);
+					} else if(moveframes2 < 90){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_l_8);
+					} else {
+						oam_meta_spr(duck_0_x, duck_0_y, flock_l_0);
+						moveframes2 = 0;
+					}
+
+				} else {
+					if(moveframes2 < 10){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_r_1);
+					} else if(moveframes2 < 20){
+						if(duck_0_y < 100){ //duck is on screen at at less than 100
+							sfx_play(SFX_DUCK,0);
+						}
+						oam_meta_spr(duck_0_x, duck_0_y, flock_r_2);
+					} else if(moveframes2 < 30){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_r_3);
+					} else if(moveframes2 < 40){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_r_4);
+					} else if(moveframes2 < 50){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_r_5);
+					} else if(moveframes2 < 60){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_r_6);
+					} else if(moveframes2 < 70){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_r_7);
+					} else if(moveframes2 < 80){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_r_8);
+					} else if(moveframes2 < 90){
+						oam_meta_spr(duck_0_x, duck_0_y, flock_r_9);
+					} else {
+						oam_meta_spr(duck_0_x, duck_0_y, flock_r_1);
+						moveframes2 = 0;
+					}
+					
+				}
+				
+					
+			} else if (moveframes2 < 5)
 			{
 				if (x_direction)
 				{
@@ -3973,7 +4022,7 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!
 	*/
-	// banked_call(BANK_1, bank_1_instructions_init);
+	banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);

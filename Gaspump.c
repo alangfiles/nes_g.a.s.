@@ -3701,7 +3701,10 @@ void bank_5_draw_starfield_player_sprite(void)
 		player_y_direction = 0;
 	}
 
-	if (player_y_direction)
+	if(final_boss_beat && player_y == 100){
+
+		player_y = 100;//keep player at this y location
+	} else if (player_y_direction)
 	{
 		++player_y;
 	}
@@ -3773,6 +3776,7 @@ void bank_5_draw_starfield_boss(void)
 
 	if (spaceship_destroyed && boss_hits == 2)
 	{
+		final_boss_beat = 1;
 		if (sprite_frames < 4)
 		{
 			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_0);
@@ -3796,7 +3800,7 @@ void bank_5_draw_starfield_boss(void)
 		}
 		else if (sprite_frames < 254)
 		{
-			scroll_x += 2;
+			scroll_x += 2; 
 		}
 		else if (sprite_frames == 255)
 		{
@@ -4010,18 +4014,18 @@ void bank_5_starfield_loop(void)
 			
 		}
 
-		if (player_x < 20 && turns < 3)
+		if (player_x < 34 && turns < 3)
 		{
 			player_x_direction = 0;
 			++turns;
 		}
-		if (player_x > 220 && turns < 3)
+		if (player_x > 240 && turns < 3)
 		{
 			player_x_direction = 1;
 			++turns;
 		}
 
-		if (player_x > 140 && turns ==3)
+		if (player_x > 140 && turns == 3)
 		{
 			wait_and_fade_out();
 			banked_call(BANK_2, bank_2_ending_scroll_init);
@@ -4135,7 +4139,7 @@ void main(void)
 	// banked_call(BANK_4, bank_4_cutscene_init);
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
-	// banked_call(BANK_5, bank_5_starfield_init);
+	banked_call(BANK_5, bank_5_starfield_init);
 
 	while (1)
 	{

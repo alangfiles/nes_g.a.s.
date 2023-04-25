@@ -73,6 +73,7 @@ const unsigned char gas_goal_array[] = {1, 2, 3, 4};
 unsigned int gas_speed;
 unsigned int cost_speed;
 unsigned int gas_pumped;
+unsigned char final_boss_beat = 0;
 
 #define GAS_STEP 50
 #define COST_STEP 80

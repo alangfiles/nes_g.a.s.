@@ -3595,6 +3595,7 @@ void bank_5_draw_screen_right(void)
 		column_pixel_counter = 0;
 		++row_column_index;
 		
+		//still not great, but better.
 		if(row_column_index > 26 && attribute_bytes_written < 64){
 			for(index2 = 0; index2 < 11; ++index2){
 				if(attribute_bytes_written < 64){
@@ -3628,31 +3629,31 @@ void bank_5_draw_screen_right(void)
 
 		// randomly pick a new starfield
 		temp1 = rand8(); // 0 - 255
-		if (temp1 < 32)
+		if (temp1 < 36)
 		{
 			pointer = starfield1;
 		}
-		else if (temp1 < 64)
+		else if (temp1 < 72)
 		{
 			pointer = starfield2;
 		}
-		else if (temp1 < 96)
+		else if (temp1 < 108)
 		{
 			pointer = starfield3;
 		}
-		else if (temp1 < 128)
+		else if (temp1 < 144)
 		{
 			pointer = starfield4;
 		}
-		else if (temp1 < 160)
+		else if (temp1 < 180)
 		{
 			pointer = starfield5;
 		}
-		else if (temp1 < 192)
+		else if (temp1 < 216)
 		{
 			pointer = starfield6;
 		}
-		else if (temp1 < 224)
+		else if (temp1 < 252)
 		{
 			pointer = starfield7;
 		}

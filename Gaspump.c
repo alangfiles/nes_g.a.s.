@@ -3518,6 +3518,7 @@ void bank_5_spaceship_generator()
 	{
 		// boss level
 		boss_level = 1;
+		moveframes = 0; //this is so the boss opens up after x frames
 		sprite_pointer = big_boss_ship;
 		spaceship_1_x = 200 << 8;
 		spaceship_1_y = 100 << 8;

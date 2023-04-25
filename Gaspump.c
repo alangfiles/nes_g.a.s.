@@ -3500,7 +3500,7 @@ unsigned int spaceship_1_y = 100 << 8;
 unsigned char spaceship_1_frames = 0;
 unsigned char spaceship_destroyed = 0;
 unsigned char spaceship_y_dir = 0;
-const unsigned char ship_speeds[] = {145, 180, 250, 200};
+const unsigned char ship_speeds[] = {210, 180, 250, 200};
 #include "SPRITES/starfield.h"
 
 void bank_5_spaceship_generator()
@@ -3594,23 +3594,21 @@ void bank_5_draw_screen_right(void)
 		}
 		column_pixel_counter = 0;
 		++row_column_index;
-		if (attribute_bytes_written < 64)
-		{
-			// todo: fix this attribute stuff being bad
-			//  either shift the screen forward before drawing more
-			//  or just draw all the attributes buffer at once
-
-			one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
-			++attribute_bytes_written;
-			++attribute_table_index;
-			one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
-			++attribute_bytes_written;
-			++attribute_table_index;
+		
+		if(row_column_index > 26 && attribute_bytes_written < 64){
+			for(index2 = 0; index2 < 11; ++index2){
+				if(attribute_bytes_written < 64){
+					one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
+				}
+					++attribute_bytes_written;
+					++attribute_table_index;
+			}
 		}
 	}
 
 	if (row_column_index >= 32)
 	{
+		
 		// we've drawn the full screen now, let's pick a new background.
 
 		if (nametable_selected == 0)
@@ -4063,8 +4061,15 @@ void bank_5_starfield_loop(void)
 		return;
 	}
 
-	scroll_x += 2;
-	column_pixel_counter += 2;
+	if(final_boss_beat){
+		scroll_x += 4;
+		column_pixel_counter += 4;
+	} else {
+		scroll_x += 2;
+		column_pixel_counter += 2;
+	}
+	
+	
 	scroll(scroll_x, 0);
 	bank_5_draw_screen_right();
 

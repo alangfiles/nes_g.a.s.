@@ -3500,7 +3500,7 @@ unsigned int spaceship_1_y = 100 << 8;
 unsigned char spaceship_1_frames = 0;
 unsigned char spaceship_destroyed = 0;
 unsigned char spaceship_y_dir = 0;
-const unsigned char ship_speeds[] = {90, 180, 250, 200};
+const unsigned char ship_speeds[] = {145, 180, 250, 200};
 #include "SPRITES/starfield.h"
 
 void bank_5_spaceship_generator()
@@ -3513,24 +3513,7 @@ void bank_5_spaceship_generator()
 	index = get_frame_count() % 4;
 	temp = ship_speeds[index];
 	spaceship_y_dir = (get_frame_count() & 1) == 0;
-	switch (index)
-	{
-	case 0:
-		sprite_pointer = rocket_ship_0;
-		break;
-	case 1:
-		sprite_pointer = ufo_ship;
-		break;
-	case 2:
-		sprite_pointer = small_ufo_0;
-		break;
-	case 3:
-		sprite_pointer = spacesquid_0;
-		break;
-	default:
-		sprite_pointer = ufo_ship;
-		break;
-	}
+	
 	if (starfield_enemies == 10)
 	{
 		// boss level
@@ -3977,6 +3960,50 @@ void bank_5_draw_starfield_sprites(void)
 	}
 	else
 	{
+		++blimp_frames; //reusing this
+		switch (index) //if this is buggy, move it off index
+		{
+		case 0:
+			if(blimp_frames < 10){
+				sprite_pointer = rocket_ship_0;
+			} else if(blimp_frames < 20){
+				sprite_pointer = rocket_ship_1;
+			} else {
+				sprite_pointer = rocket_ship_0;
+				blimp_frames = 0;
+			}
+			
+			break;
+		case 1:
+			sprite_pointer = ufo_ship;
+			break;
+		case 2:
+			if(blimp_frames < 50){
+				sprite_pointer = small_ufo_0;
+			} else if(blimp_frames < 100){
+				sprite_pointer = small_ufo_1;
+			} else {
+				sprite_pointer = small_ufo_0;
+				blimp_frames = 0;
+			}
+			
+			break;
+		case 3:
+			if(blimp_frames < 10){
+				sprite_pointer = spacesquid_0;
+			} else if(blimp_frames < 20){
+				sprite_pointer = spacesquid_1;
+			} else if(blimp_frames < 30){
+				sprite_pointer = spacesquid_2;
+			} else {
+				sprite_pointer = spacesquid_0;
+				blimp_frames = 0;
+			}
+			break;
+		default:
+			sprite_pointer = ufo_ship;
+			break;
+		}
 		oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), sprite_pointer);
 	}
 }
@@ -3999,7 +4026,7 @@ void bank_5_starfield_loop(void)
 		if (player_x_direction)
 		{
 			player_x -= 3;
-			oam_meta_spr(player_x, 100, rocket_rider_left);
+			oam_meta_spr(player_x, 105, rocket_rider_left);
 		}
 		else
 		{
@@ -4009,7 +4036,7 @@ void bank_5_starfield_loop(void)
 			}
 			else {
 				player_x += 1;
-				oam_meta_spr(player_x, 100, rocket_rider_right_small);
+				oam_meta_spr(player_x, 110, rocket_rider_right_small);
 			}
 			
 		}

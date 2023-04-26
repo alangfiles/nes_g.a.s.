@@ -8,6 +8,7 @@
  * Alan todo list
  * [] add all sound effects
  * [] songs
+ * [] alien instruction mouth moves
  * 
  * level 1, hot air baloon
  * level 2, ducks, add small ducks
@@ -1970,51 +1971,63 @@ void bank_3_level_sprites(void)
 
 
 		//tumbleweed
-		if(moveframes > 1000 && moveframes < 3000 && high_byte(tumble_1_x) < 130){
-			 ++sprite_1_frames;
-				//move tumbleweed
-			tumble_1_x += 40;	
-			if(high_byte(tumble_1_y) == 100){
-				y_direction = 0;
-			} 
-			if(high_byte(tumble_1_y) == 110){
-				y_direction = 1;
-			} 
-			if(y_direction){
-				tumble_1_y += 5;
-			} else {
-				tumble_1_y -= 5;
-			}
+		if(moveframes > 2000 && high_byte(tumble_1_x) < 130){
+			if((moveframes > 2000 && moveframes < 3000 )|| moveframes > 3600){
+				++sprite_1_frames;
+					//move tumbleweed
+				tumble_1_x += 40;	
+				if(high_byte(tumble_1_y) == 100){
+					y_direction = 0;
+				} 
+				if(high_byte(tumble_1_y) == 110){
+					y_direction = 1;
+				} 
+				if(y_direction){
+					tumble_1_y += 5;
+				} else {
+					tumble_1_y -= 5;
+				}
 
-			if(sprite_1_frames < 10){
-				oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_0);
-			} else if (sprite_1_frames < 20){
-				oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_1);
-			} else if (sprite_1_frames < 30){
-				oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_2);
-			} else if (sprite_1_frames < 40){
-				oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_3);
-			} else if (sprite_1_frames < 50){
-				oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_4);
-			} else if (sprite_1_frames < 60){
-				oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_5);
-			} else if (sprite_1_frames < 70){
-				oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_6);
-			} else if (sprite_1_frames < 80){
-				oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_7);
+				if(sprite_1_frames < 10){
+					oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_0);
+				} else if (sprite_1_frames < 20){
+					oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_1);
+				} else if (sprite_1_frames < 30){
+					oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_2);
+				} else if (sprite_1_frames < 40){
+					oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_3);
+				} else if (sprite_1_frames < 50){
+					oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_4);
+				} else if (sprite_1_frames < 60){
+					oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_5);
+				} else if (sprite_1_frames < 70){
+					oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_6);
+				} else if (sprite_1_frames < 80){
+					oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_7);
+				} else {
+					oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_0);
+					sprite_1_frames = 0;
+				}
 			} else {
-				oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_0);
-				sprite_1_frames = 0;
+				//tumbleweed stays still
+				oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_2);
 			}
 		}
-
 		//truck
-		if (moveframes2 > 6000) // wait for the truck
+		if (moveframes2 > 7000) // wait for the truck
 		{ 
 			++truck_frames;
-			if(high_byte(truck_x) < 67){
-				truck_x += 200;
-			}
+			if(high_byte(truck_x) < 50){
+				truck_x += 200; //goes fast
+			} else if(high_byte(truck_x) < 57){
+				truck_x += 100; //starts to slow
+			} else if(high_byte(truck_x) < 62){
+				truck_x += 120; //starts to slow
+			} else if(high_byte(truck_x) < 65){
+				truck_x += 50; //starts to slow
+			} else if(high_byte(truck_x) < 67){
+				truck_x += 100;
+			} 
 			
 			
 			//truck rolls in
@@ -2022,88 +2035,95 @@ void bank_3_level_sprites(void)
 
 				if (truck_frames < 10)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_0);
+					sprite_pointer = truck_0;
 				}
 				else if (truck_frames < 20)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_1);
+					sprite_pointer = truck_1;
 				}
 				else if (truck_frames < 30)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_2);
+					sprite_pointer = truck_2;
 				}
 				else
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_0);
+					sprite_pointer = truck_0;
+					
 					if(high_byte(truck_x) < 67){
 						truck_frames = 0;
 					} else {
-						truck_breakdown = 1;
+						if(moveframes > 7000+400) {
+							truck_breakdown = 1;
+						}
+						
 					}
 				}
+				oam_meta_spr(high_byte(truck_x), high_byte(truck_y), sprite_pointer);
 			} 
 			if(truck_breakdown == 1) {
 				if (truck_frames < 30)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_breakdown_0);
+					sprite_pointer = truck_breakdown_0;
 				}
 				else if (truck_frames < 60)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_breakdown_1);
+					sprite_pointer = truck_breakdown_1;
 				}
 				else if (truck_frames < 90)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_breakdown_2);
+					sprite_pointer = truck_breakdown_2;
 				}
 				else if (truck_frames < 120)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_breakdown_3);
+					sprite_pointer = truck_breakdown_3;
 				}
 				else if (truck_frames < 150)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_breakdown_4);
+					sprite_pointer = truck_breakdown_4;
 				}
 				else if (truck_frames < 180)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_breakdown_5);
+					sprite_pointer = truck_breakdown_5;
 				}
 				else if (truck_frames < 210)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_breakdown_6);
+					sprite_pointer = truck_breakdown_6;
 				}
 				else if (truck_frames < 240)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_breakdown_7);
+					sprite_pointer = truck_breakdown_7;
 				}
 				else if (truck_frames < 270)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_breakdown_8);
+					sprite_pointer = truck_breakdown_8;
 				}
 				else if (truck_frames < 300)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_breakdown_9);
+					sprite_pointer = truck_breakdown_9;
 				}
 				else if (truck_frames < 330)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_breakdown_10);
+					sprite_pointer = truck_breakdown_10;
 				}
 				else if (truck_frames < 360)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_breakdown_11);
+					sprite_pointer = truck_breakdown_11;
 				}
 				else if (truck_frames < 390)
 				{
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_breakdown_12);
+					sprite_pointer = truck_breakdown_12;
 				}
 				else
 				{
+					sprite_pointer = truck_breakdown_12;
 					truck_breakdown = 2;
-					oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_breakdown_12);
+					
 				}
+				oam_meta_spr(high_byte(truck_x), high_byte(truck_y), sprite_pointer);
 			}
 
 			if(truck_breakdown == 2){
-				if(truck_frames == 3000 && moveframes < 12000){
+				if(truck_frames == 1000 && moveframes < 12000){
 					 truck_breakdown = 1;
 					 truck_frames = 0;  //more smoke every once in a while
 				} else {
@@ -2111,15 +2131,12 @@ void bank_3_level_sprites(void)
 				}
 				
 			}
-
-
-
 		}
 
 		
 
 		//blimp
-		if (moveframes > 12000) //wait to display the blimp
+		if (moveframes > 12500) //wait to display the blimp
 		{ 
 			++blimp_frames;
 
@@ -4176,9 +4193,10 @@ void main(void)
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_4, bank_4_cutscene_init);
-	// banked_call(BANK_1, bank_1_instructions_init);
+	levels_complete = 2;
+	banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
-	banked_call(BANK_5, bank_5_starfield_init);
+	// banked_call(BANK_5, bank_5_starfield_init);
 
 	while (1)
 	{

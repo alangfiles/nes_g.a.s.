@@ -3668,7 +3668,7 @@ void bank_5_draw_screen_right(void)
 	}
 }
 
-unsigned char player_x = 40;
+unsigned int player_x = 40<<8;
 unsigned char player_y = 100;
 unsigned char player_x_direction = 0;
 unsigned char player_y_direction = 0;
@@ -3695,7 +3695,7 @@ void bank_5_draw_starfield_player_sprite(void)
 	{
 		--player_y;
 	}
-	oam_meta_spr(player_x, player_y, rocket_rider_right);
+	oam_meta_spr(high_byte(player_x), player_y, rocket_rider_right);
 }
 
 void bank_5_starfield_boss_defeated(void)
@@ -3729,7 +3729,7 @@ void bank_5_starfield_boss_defeated(void)
 			index = 0;
 		}
 	}
-	player_x = 40;
+	player_x = 40<<8;
 
 	// switch scroll
 	scroll_x = 0;
@@ -4025,34 +4025,39 @@ void bank_5_starfield_loop(void)
 
 		if (player_x_direction)
 		{
-			player_x -= 3;
-			oam_meta_spr(player_x, 105, rocket_rider_left);
+			player_x -= 400;
+			oam_meta_spr(high_byte(player_x), 105, rocket_rider_left);
 		}
 		else
 		{
 			if(turns < 1){
-				player_x += 2;
-				oam_meta_spr(player_x, 100, rocket_rider_right);	
+				player_x += 400;
+				oam_meta_spr(high_byte(player_x), 100, rocket_rider_right);	
 			}
 			else {
-				player_x += 1;
-				oam_meta_spr(player_x, 110, rocket_rider_right_small);
+				if(high_byte(player_x) < 100){
+					player_x += 200;	
+				} else {
+					player_x += 130;
+				}
+				
+				oam_meta_spr(high_byte(player_x), 110, rocket_rider_right_small);
 			}
 			
 		}
 
-		if (player_x < 34 && turns < 3)
+		if (high_byte(player_x) < 34 && turns < 3)
 		{
 			player_x_direction = 0;
 			++turns;
 		}
-		if (player_x > 240 && turns < 3)
+		if (high_byte(player_x) > 240 && turns < 3)
 		{
 			player_x_direction = 1;
 			++turns;
 		}
 
-		if (player_x > 140 && turns == 3)
+		if (high_byte(player_x) > 140 && turns == 2)
 		{
 			wait_and_fade_out();
 			banked_call(BANK_2, bank_2_ending_scroll_init);

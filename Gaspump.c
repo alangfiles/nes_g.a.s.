@@ -2570,71 +2570,89 @@ void bank_4_instruction_init(void)
 
 	game_mode = MODE_ALIEN_INSTRUCTION;
 	pal_fade_to(0, 4);
-	music_play(SONG_ALIENTALKINGTIME);
+	// music_play(SONG_ALIENTALKINGTIME); //no music for talking times?
 }
 
+unsigned char eye_frames = 0;
 void bank_4_instruction_loop(void)
 {
 	ppu_wait_nmi();
 	moveframes++;
 	// write text
 
-	if (text_row < 9)
-	{
-		typewriter();
-	}
-
 	oam_clear();
 
-	if (moveframes < 5)
+		
+	if (text_rendered != text_length)
 	{
-		oam_meta_spr(190, 193, alien_gas_mouth_0);
-	}
-	else if (moveframes < 10)
-	{
-		oam_meta_spr(190, 193, alien_gas_mouth_1);
-	}
-	else if (moveframes < 15)
-	{
-		oam_meta_spr(190, 193, alien_gas_mouth_2);
-	}
-	else if (moveframes < 20)
-	{
-		oam_meta_spr(190, 193, alien_gas_mouth_3);
-	}
-	else if (moveframes < 25)
-	{
-		oam_meta_spr(190, 193, alien_gas_mouth_4);
-	}
-	else if (moveframes < 30)
-	{
-		oam_meta_spr(190, 193, alien_gas_mouth_5);
-	}
-	else if (moveframes < 35)
-	{
-		oam_meta_spr(190, 193, alien_gas_mouth_6);
-	}
-	else if (moveframes < 40)
-	{
-		oam_meta_spr(190, 193, alien_gas_mouth_7);
-	}
-	else if (moveframes < 45)
-	{
-		oam_meta_spr(190, 193, alien_gas_mouth_8);
-	}
-	else
-	{
-		oam_meta_spr(190, 193, alien_gas_mouth_0);
-		moveframes = 0;
+		if (moveframes % 5 == 0)
+		{
+			typewriter();
+		}
+
+		if (moveframes < 10)
+		{
+			oam_meta_spr(190, 193, alien_gas_mouth_6);
+		}
+		else if (moveframes < 20)
+		{
+			oam_meta_spr(190, 193, alien_gas_mouth_7);
+		}
+		else if (moveframes < 30)
+		{
+			oam_meta_spr(190, 193, alien_gas_mouth_8);
+		} else {
+			oam_meta_spr(190, 193, alien_gas_mouth_8);
+			moveframes = 0;
+		}
+
+		//alien talking animations 
+	} else {
+		if (moveframes < 50)
+		{
+			oam_meta_spr(190, 193, alien_gas_mouth_0);
+		}
+		else if (moveframes < 55)
+		{
+			oam_meta_spr(190, 193, alien_gas_mouth_1);
+		}
+		else if (moveframes < 60)
+		{
+			oam_meta_spr(190, 193, alien_gas_mouth_2);
+		}
+		else if (moveframes < 65)
+		{
+			oam_meta_spr(190, 193, alien_gas_mouth_3);
+		}
+		else if (moveframes < 70)
+		{
+			oam_meta_spr(190, 193, alien_gas_mouth_4);
+		}
+		else if (moveframes < 75)
+		{
+			oam_meta_spr(190, 193, alien_gas_mouth_5);
+		}
+		else
+		{
+			oam_meta_spr(190, 193, alien_gas_mouth_0);
+			moveframes = 0;
+		}
 	}
 
-	if (moveframes < 30)
+
+	//else alien mouth wabble animations
+	
+	++eye_frames;
+	if (eye_frames < 80)
 	{
 		oam_meta_spr(185, 178, alien_eyes_10);
 	}
-	else
-	{
+	else if (eye_frames < 90)
+	{ 
 		oam_meta_spr(185, 178, alien_eyes_17);
+	} else {
+		oam_meta_spr(185, 178, alien_eyes_10);
+		eye_frames = 0;
 	}
 
 	read_input();
@@ -4190,11 +4208,11 @@ void main(void)
 	*/
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
-	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
-	// banked_call(BANK_4, bank_4_instruction_init);
+	alien_level_status = ALIEN_INITIAL_INSTRUCTION;
+	banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_4, bank_4_cutscene_init);
-	levels_complete = 2;
-	banked_call(BANK_1, bank_1_instructions_init);
+	// levels_complete = 2;
+	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_5, bank_5_starfield_init);
 

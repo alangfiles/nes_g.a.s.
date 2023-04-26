@@ -2640,8 +2640,6 @@ void bank_4_instruction_loop(void)
 	}
 
 
-	//else alien mouth wabble animations
-	
 	++eye_frames;
 	if (eye_frames < 80)
 	{
@@ -3269,6 +3267,9 @@ unsigned char spacelevel_sprites_y[] = {0, 0, 60};
 
 unsigned char alien_face_frames = 0;
 unsigned char alien_eye_frames = 0;
+unsigned char spaceship_frames = 0;
+unsigned int eyeroll_frames = 0;
+unsigned char missed_guess = 0;
 void bank_4_alien_level_loop(void)
 {
 	++alien_face_frames;
@@ -3279,27 +3280,27 @@ void bank_4_alien_level_loop(void)
 
 	//face, eyes, and numebrs are most important sprites here:
 
-	if (alien_face_frames < 5)
+	if (alien_face_frames < 50)
 	{
 		oam_meta_spr(124, 130, alien_gas_mouth_0);
 	}
-	else if (alien_face_frames < 10)
+	else if (alien_face_frames < 55)
 	{
 		oam_meta_spr(124, 130, alien_gas_mouth_1);
 	}
-	else if (alien_face_frames < 15)
+	else if (alien_face_frames < 60)
 	{
 		oam_meta_spr(124, 130, alien_gas_mouth_2);
 	}
-	else if (alien_face_frames < 20)
+	else if (alien_face_frames < 65)
 	{
 		oam_meta_spr(124, 130, alien_gas_mouth_3);
 	}
-	else if (alien_face_frames < 25)
+	else if (alien_face_frames < 70)
 	{
 		oam_meta_spr(124, 130, alien_gas_mouth_4);
 	}
-	else if (alien_face_frames < 30)
+	else if (alien_face_frames < 75)
 	{
 		oam_meta_spr(124, 130, alien_gas_mouth_5);
 	}
@@ -3309,16 +3310,70 @@ void bank_4_alien_level_loop(void)
 		oam_meta_spr(124, 130, alien_gas_mouth_0);
 	}
 
+	++eyeroll_frames;
+	if(missed_guess){
+		if(alien_eye_frames < 4){
+			oam_meta_spr(120, 110, alien_eyes_17);
+		} else if(alien_eye_frames < 8){
+			oam_meta_spr(120, 110, alien_eyes_18);
+		} else if(alien_eye_frames < 12){
+			oam_meta_spr(120, 110, alien_eyes_19);
+		} else if(alien_eye_frames < 16){
+			oam_meta_spr(120, 110, alien_eyes_20);
+		} else if(alien_eye_frames < 20){
+			oam_meta_spr(120, 110, alien_eyes_21);
+		} else if(alien_eye_frames < 24){
+			oam_meta_spr(120, 110, alien_eyes_22);
+		} else {
+			missed_guess = 0;
+			alien_eye_frames = 0;
+			eye_frames = 0;
+			oam_meta_spr(120, 110, alien_eyes_22);
+		}
 
-	if (alien_eye_frames < 30)
-	{
-		oam_meta_spr(120, 110, alien_eyes_10);
 	}
-	else
-	{
-		oam_meta_spr(120, 110, alien_eyes_17);
-		alien_eye_frames = 0;
+	else if(eyeroll_frames < 300){
+		if (alien_eye_frames < 90)
+		{
+			oam_meta_spr(120, 110, alien_eyes_10);
+			//suspicious eyes, might be good after a missed guess?
+		// } else if(alien_eye_frames < 34){
+		// 	oam_meta_spr(120, 110, alien_eyes_17);
+		// } else if(alien_eye_frames < 38){
+		// 	oam_meta_spr(120, 110, alien_eyes_18);
+		// } else if(alien_eye_frames < 42){
+		// 	oam_meta_spr(120, 110, alien_eyes_19);
+		// } else if(alien_eye_frames < 46){
+		// 	oam_meta_spr(120, 110, alien_eyes_20);
+		// } else if(alien_eye_frames < 50){
+		// 	oam_meta_spr(120, 110, alien_eyes_21);
+		// } else if(alien_eye_frames < 54){
+		// 	oam_meta_spr(120, 110, alien_eyes_22);
+		} else if(alien_eye_frames < 95){
+			oam_meta_spr(120, 110, alien_eyes_17);
+		} else {
+			oam_meta_spr(120, 110, alien_eyes_17);
+			alien_eye_frames = 0;
+		}
+	} else {
+		if(eyeroll_frames < 305){
+			oam_meta_spr(120, 110, alien_eyes_11);
+		} else if(eyeroll_frames < 310){
+			oam_meta_spr(120, 110, alien_eyes_12);
+		} else if(eyeroll_frames < 315){
+			oam_meta_spr(120, 110, alien_eyes_13);
+		} else if(eyeroll_frames < 320){
+			oam_meta_spr(120, 110, alien_eyes_14);
+		} else if(eyeroll_frames < 325){
+			oam_meta_spr(120, 110, alien_eyes_15);
+		} else if(eyeroll_frames < 330){
+			oam_meta_spr(120, 110, alien_eyes_16);
+		} else {
+			oam_meta_spr(120, 110, alien_eyes_16);
+			eyeroll_frames = 0;
+		}
 	}
+
 
 	// draw_gliboons_count as sprites
 	temp = aliengas1;
@@ -3333,6 +3388,7 @@ void bank_4_alien_level_loop(void)
 
 
 
+	++spaceship_frames;
 	for (index = 0; index < 3; index++)
 	{
 		if (index == 0)
@@ -3349,12 +3405,15 @@ void bank_4_alien_level_loop(void)
 		}
 		if (index == 2)
 		{
-			if (moveframes % 8 == 0)
+			if (spaceship_frames < 10)
 			{
 				oam_meta_spr(spacelevel_sprites_x[index], spacelevel_sprites_y[index], jellyfish0);
 			}
-			else
+			else if (spaceship_frames < 20)
 			{
+				oam_meta_spr(spacelevel_sprites_x[index], spacelevel_sprites_y[index], jellyfish1);
+			} else {
+				spaceship_frames = 0;
 				oam_meta_spr(spacelevel_sprites_x[index], spacelevel_sprites_y[index], jellyfish1);
 			}
 
@@ -3430,6 +3489,9 @@ void bank_4_alien_level_loop(void)
 			// if the number was wrong, flash the screen, and set the number to 0, give 3 tries
 			if (gas_pumped != LAST_LEVEL_GOAL)
 			{
+				missed_guess = 1;
+				alien_eye_frames=0;
+				sfx_play(SFX_BADJOB,0); //need an ALERT SOUND, todo
 				pal_bg(alert_2);
 				for (index = 0; index < 15; ++index)
 				{

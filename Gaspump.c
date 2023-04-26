@@ -3270,6 +3270,11 @@ unsigned char alien_eye_frames = 0;
 unsigned char spaceship_frames = 0;
 unsigned int eyeroll_frames = 0;
 unsigned char missed_guess = 0;
+unsigned int eye_x = 120 << 8;
+unsigned int eye_y = 116 << 8;
+unsigned char eye_direction_y = 0;
+unsigned char eye_direction_x = 0;
+
 void bank_4_alien_level_loop(void)
 {
 	++alien_face_frames;
@@ -3278,7 +3283,34 @@ void bank_4_alien_level_loop(void)
 	ppu_wait_nmi();
 	oam_clear();
 
-	//face, eyes, and numebrs are most important sprites here:
+	//face, eyes, and numbers are most important sprites here:
+
+	//slowy drift around eyeball.
+
+	if(high_byte(eye_y) < 112){
+		eye_direction_y = 1;
+	}
+	if(high_byte(eye_x) > 120){
+		eye_direction_y = 0;
+	}
+	if(eye_direction_y){
+		eye_y += 1;
+	} else {
+		eye_y -= 1;
+	}
+
+	if(high_byte(eye_x) < 115){
+		eye_direction_x = 1;
+	}
+	if(high_byte(eye_x) > 125){
+		eye_direction_x = 0;
+	}
+
+	if(eye_direction_x){
+		eye_x += 4;
+	} else {
+		eye_x -= 4;
+	}
 
 	if (alien_face_frames < 50)
 	{
@@ -3313,63 +3345,63 @@ void bank_4_alien_level_loop(void)
 	++eyeroll_frames;
 	if(missed_guess){
 		if(alien_eye_frames < 4){
-			oam_meta_spr(120, 110, alien_eyes_17);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_17);
 		} else if(alien_eye_frames < 8){
-			oam_meta_spr(120, 110, alien_eyes_18);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_18);
 		} else if(alien_eye_frames < 12){
-			oam_meta_spr(120, 110, alien_eyes_19);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_19);
 		} else if(alien_eye_frames < 16){
-			oam_meta_spr(120, 110, alien_eyes_20);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_20);
 		} else if(alien_eye_frames < 20){
-			oam_meta_spr(120, 110, alien_eyes_21);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_21);
 		} else if(alien_eye_frames < 24){
-			oam_meta_spr(120, 110, alien_eyes_22);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_22);
 		} else {
 			missed_guess = 0;
 			alien_eye_frames = 0;
 			eye_frames = 0;
-			oam_meta_spr(120, 110, alien_eyes_22);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_22);
 		}
 
 	}
 	else if(eyeroll_frames < 300){
 		if (alien_eye_frames < 90)
 		{
-			oam_meta_spr(120, 110, alien_eyes_10);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_10);
 			//suspicious eyes, might be good after a missed guess?
 		// } else if(alien_eye_frames < 34){
-		// 	oam_meta_spr(120, 110, alien_eyes_17);
+		// 	oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_17);
 		// } else if(alien_eye_frames < 38){
-		// 	oam_meta_spr(120, 110, alien_eyes_18);
+		// 	oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_18);
 		// } else if(alien_eye_frames < 42){
-		// 	oam_meta_spr(120, 110, alien_eyes_19);
+		// 	oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_19);
 		// } else if(alien_eye_frames < 46){
-		// 	oam_meta_spr(120, 110, alien_eyes_20);
+		// 	oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_20);
 		// } else if(alien_eye_frames < 50){
-		// 	oam_meta_spr(120, 110, alien_eyes_21);
+		// 	oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_21);
 		// } else if(alien_eye_frames < 54){
-		// 	oam_meta_spr(120, 110, alien_eyes_22);
+		// 	oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_22);
 		} else if(alien_eye_frames < 95){
-			oam_meta_spr(120, 110, alien_eyes_17);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_17);
 		} else {
-			oam_meta_spr(120, 110, alien_eyes_17);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_17);
 			alien_eye_frames = 0;
 		}
 	} else {
 		if(eyeroll_frames < 305){
-			oam_meta_spr(120, 110, alien_eyes_11);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_11);
 		} else if(eyeroll_frames < 310){
-			oam_meta_spr(120, 110, alien_eyes_12);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_12);
 		} else if(eyeroll_frames < 315){
-			oam_meta_spr(120, 110, alien_eyes_13);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_13);
 		} else if(eyeroll_frames < 320){
-			oam_meta_spr(120, 110, alien_eyes_14);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_14);
 		} else if(eyeroll_frames < 325){
-			oam_meta_spr(120, 110, alien_eyes_15);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_15);
 		} else if(eyeroll_frames < 330){
-			oam_meta_spr(120, 110, alien_eyes_16);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_16);
 		} else {
-			oam_meta_spr(120, 110, alien_eyes_16);
+			oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_16);
 			eyeroll_frames = 0;
 		}
 	}

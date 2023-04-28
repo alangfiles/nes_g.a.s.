@@ -216,6 +216,7 @@ enum
 #include "BACKGROUNDS/intro_scroll_3.h"
 #include "BACKGROUNDS/intro_scroll_4.h"
 #include "BACKGROUNDS/intro_scroll_5.h"
+#include "BACKGROUNDS/intro_scroll_6.h"
 #include "BACKGROUNDS/intro_single_page.h"
 #include "BACKGROUNDS/cutscenegun_small_arrow.h"
 
@@ -349,7 +350,7 @@ void bank_0_intro_scroll_loop(void)
 {
 	ppu_wait_nmi();
 
-	if (scroll_page == scroll_page_end)
+	if ((scroll_page == scroll_page_end) && scroll_y > 150)
 	{ // we're done here
 		for (index = 0; index < 60; ++index)
 		{
@@ -413,7 +414,13 @@ void bank_0_intro_scroll_loop(void)
 		{
 			attribute_table_index = NAMETABLE_C_ATTR;
 			cutscene_index = NAMETABLE_C;
-			pointer = intro_scroll_5;
+			pointer = intro_scroll_6;
+		}
+		if (scroll_page == 5)
+		{
+			attribute_table_index = NAMETABLE_A_ATTR;
+			cutscene_index = NAMETABLE_A;
+			pointer = intro_scroll_6;
 		}
 	}
 
@@ -4302,8 +4309,8 @@ void main(void)
 	*/
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
-	alien_level_status = ALIEN_INITIAL_INSTRUCTION;
-	banked_call(BANK_4, bank_4_instruction_init);
+	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
+	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_4, bank_4_cutscene_init);
 	// levels_complete = 2;
 	// banked_call(BANK_1, bank_1_instructions_init);

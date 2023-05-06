@@ -63,14 +63,14 @@ GasMusic_music_data:
 	.byte $00+.lobyte(FT_DPCM_PTR),$00,$00	;26
 	.byte $12+.lobyte(FT_DPCM_PTR),$5c,$08	;27
 	.byte $00+.lobyte(FT_DPCM_PTR),$00,$00	;28
-	.byte $2a+.lobyte(FT_DPCM_PTR),$37,$08	;29
+	.byte $00+.lobyte(FT_DPCM_PTR),$00,$00	;29
 	.byte $00+.lobyte(FT_DPCM_PTR),$00,$00	;30
 	.byte $00+.lobyte(FT_DPCM_PTR),$00,$00	;31
-	.byte $49+.lobyte(FT_DPCM_PTR),$15,$06	;32
+	.byte $35+.lobyte(FT_DPCM_PTR),$15,$06	;32
 	.byte $00+.lobyte(FT_DPCM_PTR),$00,$00	;33
-	.byte $38+.lobyte(FT_DPCM_PTR),$43,$06	;34
-	.byte $60+.lobyte(FT_DPCM_PTR),$44,$04	;35
-	.byte $4f+.lobyte(FT_DPCM_PTR),$43,$05	;36
+	.byte $2a+.lobyte(FT_DPCM_PTR),$28,$06	;34
+	.byte $46+.lobyte(FT_DPCM_PTR),$44,$04	;35
+	.byte $3b+.lobyte(FT_DPCM_PTR),$2b,$02	;36
 	.byte $00+.lobyte(FT_DPCM_PTR),$00,$00	;37
 	.byte $00+.lobyte(FT_DPCM_PTR),$00,$00	;38
 	.byte $00+.lobyte(FT_DPCM_PTR),$00,$00	;39

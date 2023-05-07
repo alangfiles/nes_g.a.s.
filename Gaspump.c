@@ -83,7 +83,12 @@ const unsigned char futurepump_palette[16] = {
 		0x0f, 0x00, 0x10, 0x30,
 		0x0f, 0x13, 0x23, 0x31,
 		0x0f, 0x23, 0x16, 0x26,
-		0x0f, 0x09, 0x19, 0x29};
+		0x0f, 0x09, 0x19, 0x29};  
+
+const unsigned char futurepump_spr_palette[16] = {
+	
+	0x0f,0x00,0x10,0x30,0x0f,0x01,0x21,0x31,0x0f,0x06,0x16,0x38,0x0f,0x09,0x19,0x29 };
+
 
 const unsigned char talking_time_palette[] = {
 		0x0f,0x31,0x16,0x36,
@@ -284,7 +289,7 @@ void bank_0_intro_scroll_init(void)
 	pal_fade_to(0, 4);
 	game_mode = MODE_INTRO_SCROLL;
 	// music_play(SONG_INTROSCROLL); //this is the greenselves songs, getting rid of it
-	music_play(SONG_TALKINGTIME);
+	music_play(SONG_INTROCUTSCENE);
 }
 
 void bank_0_title_loop(void)
@@ -296,6 +301,8 @@ void bank_0_title_loop(void)
 	if (trigger_clicked) // if((pad2_zapper)&&(zapper_ready)){
 	{
 		wait_and_fade_out();
+		sample_play(SAMPLE_FILLERUP);
+		delay(30);
 		banked_call(BANK_0, bank_0_intro_scroll_init);
 	}
 }
@@ -343,7 +350,7 @@ void bank_0_intro_cutscene_init(void)
 	ppu_on_all(); // turn on screen
 	game_mode = MODE_INTRO_CUTSCENE;
 	pal_fade_to(0, 4);
-	music_play(SONG_INTROCUTSCENE);
+	// music_play(SONG_INTROCUTSCENE);
 }
 
 void bank_0_intro_scroll_loop(void)
@@ -631,9 +638,6 @@ void bank_1_gas_level_init(void)
 {
 
 	// reset changed values so they redraw
-  
-	sample_play(SAMPLE_FILLERUP);
-	delay(30);
 	ppu_off();	 // screen off
 	oam_clear(); // clear all sprites
 
@@ -771,7 +775,7 @@ void bank_1_instructions_loop(void)
 	oam_clear(); // clear all sprites
 	banked_call(BANK_1, bank_1_als_base_sprites);
 
-	if (text_row < 6)
+	if (text_rendered != text_length)
 	{
 		if (moveframes % 5 == 0)
 		{
@@ -836,7 +840,7 @@ void bank_1_title_init(void)
 	levels_complete = 0;
 	perfect_levels = 0;
 	reset_game_variables();
-	music_play(SONG_TITLE);
+	music_play(SONG_GASSJAZZINTRO);
 	// music_play(SONG_TALKINGTIME);
 
 }
@@ -1062,12 +1066,11 @@ void bank_1_evaluation_init(void)
 	switch(gas_pump_level_quality){
 		case PERFECT_PUMP:
 			sample_play(SAMPLE_GADZOOKS);
+			delay(30);
 			break;
 		case BAD_PUMP:
-			sample_play(SAMPLE_WHATWASTHAT);
 			break;
 		case AWFUL_PUMP:
-			sample_play(SAMPLE_WHATWASTHAT);
 			break;
 		default:
 			break;
@@ -1196,7 +1199,7 @@ void bank_2_ending_scroll_init(void)
 	pal_fade_to(0, 4);
 	game_mode = MODE_INTRO_SCROLL;
 	// music_play(SONG_INTROSCROLL);
-	music_play(SONG_TALKINGTIME); //todo replace with ending music?
+	music_play(SONG_SCROLL); //todo replace with ending music?
 }
 
 void bank_2_ending_scroll_loop(void)
@@ -2453,7 +2456,7 @@ void bank_4_alien_level_init(void)
 	oam_clear(); // clear all sprites
 
 	pal_bg(futurepump_palette);
-	pal_spr(futurepump_palette);
+	pal_spr(futurepump_spr_palette);
 	set_chr_bank_0(FUTUREPUMP_CHR_0);
 	set_chr_bank_1(FUTUREPUMP_CHR_1);
 	scroll(0, 0); // reset scrolling
@@ -3530,7 +3533,9 @@ void bank_4_alien_level_loop(void)
 			{
 				missed_guess = 1;
 				alien_eye_frames=0;
-				sfx_play(SFX_BADJOB,0); //need an ALERT SOUND, todo
+				sfx_play(SFX_ALARM, 0);
+				delay(20);
+
 				pal_bg(alert_2);
 				for (index = 0; index < 15; ++index)
 				{
@@ -3588,6 +3593,7 @@ void bank_4_alien_level_loop(void)
 #include "BACKGROUNDS/starfield7.h"
 #include "BACKGROUNDS/starfieldearth.h"
 
+unsigned char space_enemy_pointer = 0;
 const unsigned char Starfields[8] = {
 		STARFIELD1, STARFIELD2, STARFIELD3, STARFIELD4, STARFIELD5, STARFIELD6, STARFIELD7, STARFIELD8};
 
@@ -3625,8 +3631,8 @@ void bank_5_gameover_loop(void)
 {
 	++moveframes;
 	ppu_wait_nmi();
-	if(moveframes > 200){
-		sample_play(SAMPLE_HEHEHE);
+	if(moveframes > 400){
+		sample_play(SAMPLE_HAHA);
 		moveframes = 0;
 	}
 }
@@ -3650,12 +3656,12 @@ void bank_5_spaceship_generator()
 	temp = ship_speeds[index];
 	spaceship_y_dir = (get_frame_count() & 1) == 0;
 	
-	if (starfield_enemies == 10)
+	if (starfield_enemies == 14) //MAX_STARFIELD_ENEMIES_SHOT
 	{
 		// boss level
 		boss_level = 1;
 		moveframes = 0; //this is so the boss opens up after x frames
-		sprite_pointer = big_boss_ship;
+		sprite_pointer = boss_ship_0;
 		spaceship_1_x = 200 << 8;
 		spaceship_1_y = 100 << 8;
 	}
@@ -3893,45 +3899,87 @@ void bank_5_draw_starfield_boss(void)
 		sprite_frames = 0;
 	}
 
-	if (spaceship_destroyed && boss_hits == 2)
+	if (spaceship_destroyed && boss_hits == 5)
 	{
 		final_boss_beat = 1;
-		if (sprite_frames < 4)
+		if(sprite_frames == 1){
+			sample_play(SAMPLE_NOOO);
+		}
+		//new explosion
+		spaceship_1_x -= 80;
+		if (sprite_frames < 8)
 		{
 			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_0);
 		}
-		else if (sprite_frames < 8)
+		else if (sprite_frames < 16)
 		{
 			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_1);
 		}
-		else if (sprite_frames < 12)
+		else if (sprite_frames < 24)
 		{
 			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_2);
 		}
-		else if (sprite_frames < 23)
+		else if (sprite_frames < 32)
 		{
-			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_3);
-		}
-		else if (sprite_frames < 30)
-		{
-			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_23);
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_15);
 			count_frames = 0;
 		}
-		else if (sprite_frames < 254)
+		else if (sprite_frames < 40)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_16);
+		}
+		else if (sprite_frames < 48)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_17);
+		}
+		else if (sprite_frames < 56)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_18);
+		}
+		else if (sprite_frames < 64)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_19);
+		}
+		else if (sprite_frames < 72)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_20);
+		}
+		else if (sprite_frames < 80)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_21);
+		}
+		else if (sprite_frames < 88)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_22);
+		}
+		else if (sprite_frames < 96)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_23);
+			
+		}
+
+
+		// new explosion done	
+		else if (sprite_frames < 300)
+		{
+			// stay still for a second 
+		} 
+		else if (sprite_frames < 500)
 		{
 			scroll_x += 2; 
-		}
-		else if (sprite_frames == 255)
+		} 
+		else if (sprite_frames == 500)
 		{
 			banked_call(BANK_5, bank_5_starfield_boss_defeated);
 		}
 		return;
 	}
 
-	if (moveframes > 600 && moveframes < 700 && spaceship_destroyed == 0)
+	if (moveframes > 600 && moveframes < 800 && spaceship_destroyed == 0)
 	{
 		// open up to shoot during these frames.
 		// the guy stops moving for them.
+		
 
 		// draw the sprite
 		if (shooting_mode == 1)
@@ -3941,7 +3989,14 @@ void bank_5_draw_starfield_boss(void)
 		}
 		else
 		{
-			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), big_boss_ship);
+			if(moveframes < 620 || moveframes > 780){
+				if(moveframes < 620){
+					sample_play(SAMPLE_HAHA);
+				}
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), boss_ship_1);
+			} else {
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), boss_ship_2);
+			}
 		}
 	}
 	else
@@ -3980,6 +4035,7 @@ void bank_5_draw_starfield_boss(void)
 		}
 	}
 }
+
 
 void bank_5_draw_starfield_sprites(void)
 {
@@ -4097,7 +4153,7 @@ void bank_5_draw_starfield_sprites(void)
 	else
 	{
 		++blimp_frames; //reusing this
-		switch (index) //if this is buggy, move it off index
+		switch (space_enemy_pointer) //if this is buggy, move it off index
 		{
 		case 0:
 			if(blimp_frames < 10){
@@ -4111,7 +4167,26 @@ void bank_5_draw_starfield_sprites(void)
 			
 			break;
 		case 1:
-			sprite_pointer = ufo_ship;
+			if(blimp_frames < 7){
+				sprite_pointer = spaceduck_0;
+			} else if(blimp_frames < 14){
+				sprite_pointer = spaceduck_1;
+			} else if(blimp_frames < 21){
+				sprite_pointer = spaceduck_2;
+			} else if(blimp_frames < 28){
+				sprite_pointer = spaceduck_3;
+			} else if(blimp_frames < 35){
+				sprite_pointer = spaceduck_4;
+			} else if(blimp_frames < 42){
+				sprite_pointer = spaceduck_3;
+			} else if(blimp_frames < 49){
+				sprite_pointer = spaceduck_2;
+			} else if(blimp_frames < 56){
+				sprite_pointer = spaceduck_1;
+			} else {
+				sprite_pointer = spaceduck_0;
+				blimp_frames = 0;
+			}
 			break;
 		case 2:
 			if(blimp_frames < 50){
@@ -4234,6 +4309,10 @@ void bank_5_starfield_loop(void)
 		{
 			sfx_play(SFX_EXPLOSION,0);
 			spaceship_destroyed = 1;
+			++space_enemy_pointer;
+			if(space_enemy_pointer > 4){ //MAX SPACE ENEMIES, MAX_SPACE_ENEMIES
+				space_enemy_pointer = 0;
+			}
 			spaceship_1_frames = 0;
 			if (boss_level)
 			{
@@ -4305,15 +4384,16 @@ void main(void)
 
 	// debug to the level I want to test
 	/*
-		DEBUG ONLY!!!!
-	*/
+		DEBUG ONLY!!!!  
+	*/     
+	// music_stop();
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_4, bank_4_cutscene_init);
 	// levels_complete = 2;
-	// banked_call(BANK_1, bank_1_instructions_init);
+	banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_5, bank_5_starfield_init);
 
@@ -4342,11 +4422,15 @@ void main(void)
 		if (game_mode == MODE_INTRO_INSTRUCTION)
 		{ // Al tells you to pump gas
 			banked_call(BANK_1, bank_1_instructions_loop);
+			play_talking();
+		
 		}
 
 		if (game_mode == MODE_EVALUATION_TIME)
 		{ // Al tells you how good you did
 			banked_call(BANK_1, bank_1_evaluation_loop);
+			play_talking();
+			
 		}
 		if (game_mode == MODE_GAME)
 		{ // this is game pumping mode,
@@ -4359,12 +4443,25 @@ void main(void)
 		if (game_mode == MODE_ALIEN_INSTRUCTION)
 		{
 			banked_call(BANK_4, bank_4_instruction_loop);
+			++temp_frames;
+			if (text_rendered < text_length){	
+					temp = rand8() % 2;
+					if(temp_frames > 40){
+						if(temp == 0){
+							sfx_play(SFX_TALKING0, 0);
+						} else {
+							sfx_play(SFX_TALKING1, 0);
+						}
+						temp_frames = 0 ;
+					}
+			}
 		}
 		if (game_mode == MODE_ALIEN_LEVEL)
 		{
 			// todo
 			// get number sprites, do number sprite work.
 			banked_call(BANK_4, bank_4_alien_level_loop);
+			
 		}
 		if (game_mode == MODE_ALIEN_EVALUATION)
 		{
@@ -4517,6 +4614,44 @@ void typewriter(void)
 		}
 		++text_rendered;
 	}
+}
+
+void play_talking(){
+	++temp_frames;
+	if (text_rendered != text_length)
+				{	
+					if(temp_frames > 40){
+						temp = get_frame_count() % 8;
+						switch(temp){
+							case 0:
+							sfx_play(SFX_TALKING0, 0);
+							break;
+							case 1:
+							sfx_play(SFX_TALKING1, 0);
+							break;
+							case 2:
+							sfx_play(SFX_TALKING2, 0);
+							break;
+							case 3:
+							sfx_play(SFX_TALKING3, 0);
+							break;
+							case 4:
+							sfx_play(SFX_TALKING4, 0);
+							break;
+							case 5:
+							sfx_play(SFX_TALKING5, 0);
+							break;
+							case 6:
+							sfx_play(SFX_TALKING6, 0);
+							break;
+							case 7:
+							sfx_play(SFX_TALKING7, 0);
+							break;
+							default: break;
+						}
+						temp_frames = 0 ;
+					}
+			}
 }
 
 void wait_and_fade_out()

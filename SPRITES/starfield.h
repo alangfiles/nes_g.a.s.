@@ -215,126 +215,6 @@ const unsigned char ufo_ship_color_1[]={
 
 };
 
-const unsigned char big_boss_ship_opening[]={
-
- 0,  8,0xeb,2,
- 8,  8,0xec,2,
- 0, 16,0xfb,2,
- 8, 16,0xfc,2,
-24,  8,0xeb,2|OAM_FLIP_H,
-16,  8,0xec,2|OAM_FLIP_H,
-16, 16,0xfc,2|OAM_FLIP_H,
-24, 16,0xfb,2|OAM_FLIP_H,
-24,  0,0xff,2,
-24,- 8,0xdf,2,
- 0,  0,0xff,2|OAM_FLIP_H,
- 0,- 8,0xdf,2|OAM_FLIP_H,
- 8,- 8,0xdc,2,
-16,- 8,0xdc,2|OAM_FLIP_H,
- 8,  0,0xfd,2,
-16,  0,0xfe,2,
- 8,-16,0xcc,2,
- 0,-16,0xcb,2,
-16,-16,0xcc,2|OAM_FLIP_H,
-24,-16,0xcb,2|OAM_FLIP_H,
-128
-
-};
-
-
-const unsigned char big_boss_ship_closed[]={
-
- 0,  0,0xdb,2,
- 8,  0,0xdc,2,
- 0,- 8,0xcb,2,
- 8,- 8,0xcc,2,
- 0,  8,0xeb,2,
- 8,  8,0xec,2,
- 0, 16,0xfb,2,
- 8, 16,0xfc,2,
-24,  8,0xeb,2|OAM_FLIP_H,
-24,  0,0xdb,2|OAM_FLIP_H,
-16,  8,0xec,2|OAM_FLIP_H,
-16,  0,0xdc,2|OAM_FLIP_H,
-16,- 8,0xcc,2|OAM_FLIP_H,
-24,- 8,0xcb,2|OAM_FLIP_H,
-16, 16,0xfc,2|OAM_FLIP_H,
-24, 16,0xfb,2|OAM_FLIP_H,
-128
-
-};
-
-const unsigned char big_boss_ship[]={
-
-0,- 24,0xcb,2,
-	  8,- 24,0xcc,2,
-		16,-24,0xcc,2|OAM_FLIP_H,
-		24,- 24,0xcb,2|OAM_FLIP_H,
-
-	  0,  -16,0xdb,2,
-	  8,  -16,0xdc,2,
-		16, -16,0xdc,2|OAM_FLIP_H,
-		24, -16,0xdb,2|OAM_FLIP_H,
-
-		0, -8,0xef,2|OAM_FLIP_H,
-	  8, -8,0xed,2,
-	 16, -8,0xee,2,
-	 24, -8,0xef,2,
-		
-
-		0, 0,0xff,2|OAM_FLIP_H,
-	  8, 0,0xfd,2,
-	 16, 0,0xfe,2,
-	 24, 0,0xff,2,
-
-	 
-
-	 
-	  0,  8,0xeb,2,
-	  8,  8,0xec,2,
-		16,  8,0xec,2|OAM_FLIP_H,
-	 24,  8,0xeb,2|OAM_FLIP_H,
-
-	  0, 16,0xfb,2,
-	  8, 16,0xfc,2,
-	 16, 16,0xfc,2|OAM_FLIP_H,
-	 24, 16,0xfb,2|OAM_FLIP_H,
-	 
-	128
-
-};
-
-const unsigned char big_boss_ship_open[]={
-
- 0,  8,0xeb,2,
- 8,  8,0xec,2,
- 0, 16,0xfb,2,
- 8, 16,0xfc,2,
-24,  8,0xeb,2|OAM_FLIP_H,
-16,  8,0xec,2|OAM_FLIP_H,
-16, 16,0xfc,2|OAM_FLIP_H,
-24, 16,0xfb,2|OAM_FLIP_H,
-24,  0,0xff,2,
-24,- 8,0xef,2,
-24,-16,0xdf,2,
- 0,  0,0xff,2|OAM_FLIP_H,
- 0,- 8,0xef,2|OAM_FLIP_H,
- 0,-16,0xdf,2|OAM_FLIP_H,
- 8,-16,0xdc,2,
-16,-16,0xdc,2|OAM_FLIP_H,
- 8,-24,0xcc,2,
- 0,-24,0xcb,2,
-16,-24,0xcc,2|OAM_FLIP_H,
-24,-24,0xcb,2|OAM_FLIP_H,
- 8,- 8,0xed,2,
-16,- 8,0xee,2,
- 8,  0,0xfd,2,
-16,  0,0xfe,2,
-128
-
-};
-
-
 const unsigned char ufo_ship[]={
 
 	  0,  0,0xdb,2,
@@ -645,6 +525,173 @@ const unsigned char explosion_23[]={
 
 12, 10,0x7f,1,
 
+128
+
+};
+
+
+const unsigned char spaceduck_0[]={
+
+0, 8,0xe7,2,
+0, 0,0xf7,2,
+8, 0,0xd8,2,
+8, 8,0xe8,2,
+16, 8,0xe9,2,
+16, 0,0xd9,2,
+24, 0,0xda,2,
+24, 8,0xf8,2,
+24, 16,0xfa,2,
+128
+
+};
+
+const unsigned char spaceduck_1[]={
+
+0, 8,0xe7,2,
+0, 0,0xf7,2,
+8, 0,0xd8,2,
+8, 8,0xe8,2,
+16, 8,0xe6,2,
+16, 0,0xd6,2,
+24, 0,0xd7,2,
+24, 8,0xea,2,
+24, 16,0xfa,2,
+128
+
+};
+
+const unsigned char spaceduck_2[]={
+
+0, 8,0xe7,2,
+0, 0,0xf7,2,
+8, 0,0xd8,2,
+8, 8,0xe8,2,
+16, 8,0xe5,2,
+16, 0,0xd5,2,
+24, 8,0xf8,2,
+24, 16,0xfa,2,
+128
+
+};
+
+const unsigned char spaceduck_3[]={
+
+0, 8,0xe7,2,
+0, 0,0xf7,2,
+8, 0,0xd8,2,
+8, 8,0xe8,2,
+16, 8,0xe4,2,
+16, 0,0xd4,2,
+24, 8,0xf8,2,
+24, 16,0xfa,2,
+128
+
+};
+
+const unsigned char spaceduck_4[]={
+
+0, 8,0xe7,2,
+0, 0,0xf7,2,
+8, 0,0xd8,2,
+8, 8,0xe8,2,
+16, 8,0xe3,2,
+16, 0,0xd3,2,
+24, 8,0xea,2,
+24, 16,0xfa,2,
+16, 16,0xf3,2,
+128
+
+};
+
+const unsigned char spaceduck_5[]={
+
+0, 8,0xe7,2,
+0, 0,0xf7,2,
+8, 0,0xd8,2,
+8, 8,0xe8,2,
+16, 8,0xe2,2,
+16, 0,0xd2,2,
+24, 8,0xf8,2,
+24, 16,0xfa,2,
+16, 16,0xf2,2,
+128
+
+};
+
+const unsigned char boss_ship_0[]={
+
+0, 0,0xdb,2,
+8, 0,0xdc,2,
+0,- 8,0xcb,2,
+8,- 8,0xcc,2,
+0, 8,0xeb,2,
+8, 8,0xec,2,
+0, 16,0xfb,2,
+8, 16,0xfc,2,
+24, 8,0xeb,2|OAM_FLIP_H,
+24, 0,0xdb,2|OAM_FLIP_H,
+16, 8,0xec,2|OAM_FLIP_H,
+16, 0,0xdc,2|OAM_FLIP_H,
+16,- 8,0xcc,2|OAM_FLIP_H,
+24,- 8,0xcb,2|OAM_FLIP_H,
+16, 16,0xfc,2|OAM_FLIP_H,
+24, 16,0xfb,2|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char boss_ship_1[]={
+
+0, 8,0xeb,2,
+8, 8,0xec,2,
+0, 16,0xfb,2,
+8, 16,0xfc,2,
+24, 8,0xeb,2|OAM_FLIP_H,
+16, 8,0xec,2|OAM_FLIP_H,
+16, 16,0xfc,2|OAM_FLIP_H,
+24, 16,0xfb,2|OAM_FLIP_H,
+24, 0,0xff,2,
+24,- 8,0xdf,2,
+0, 0,0xff,2|OAM_FLIP_H,
+0,- 8,0xdf,2|OAM_FLIP_H,
+8,- 8,0xdc,2,
+16,- 8,0xdc,2|OAM_FLIP_H,
+8, 0,0xdd,0,
+16, 0,0xde,0,
+8,-16,0xcc,2,
+0,-16,0xcb,2,
+16,-16,0xcc,2|OAM_FLIP_H,
+24,-16,0xcb,2|OAM_FLIP_H,
+128
+
+};
+
+const unsigned char boss_ship_2[]={
+
+0, 8,0xeb,2,
+8, 8,0xec,2,
+0, 16,0xfb,2,
+8, 16,0xfc,2,
+24, 8,0xeb,2|OAM_FLIP_H,
+16, 8,0xec,2|OAM_FLIP_H,
+16, 16,0xfc,2|OAM_FLIP_H,
+24, 16,0xfb,2|OAM_FLIP_H,
+24, 0,0xff,2,
+24,- 8,0xef,2,
+24,-16,0xdf,2,
+0, 0,0xff,2|OAM_FLIP_H,
+0,- 8,0xef,2|OAM_FLIP_H,
+0,-16,0xdf,2|OAM_FLIP_H,
+8,-16,0xdc,2,
+16,-16,0xdc,2|OAM_FLIP_H,
+8,-24,0xcc,2,
+0,-24,0xcb,2,
+16,-24,0xcc,2|OAM_FLIP_H,
+24,-24,0xcb,2|OAM_FLIP_H,
+8,- 8,0xcd,0,
+16,- 8,0xce,0,
+8, 0,0xdd,0,
+16, 0,0xde,0,
 128
 
 };

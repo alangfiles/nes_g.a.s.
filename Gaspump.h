@@ -319,6 +319,7 @@ void draw_title_background(void);
 void level_end_loop(void);
 void wait_and_fade_out(void);
 void play_talking(void);
+void play_alien_talking(void);
 // void new_star(void);
 // void draw_box(void);
 // void draw_star(void);

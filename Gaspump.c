@@ -4375,12 +4375,25 @@ void main(void)
 		if (game_mode == MODE_ALIEN_INSTRUCTION)
 		{
 			banked_call(BANK_4, bank_4_instruction_loop);
+			++temp_frames;
+			if (text_rendered < text_length){	
+					temp = rand8() % 2;
+					if(temp_frames > 40){
+						if(temp == 0){
+							sfx_play(SFX_TALKING0, 0);
+						} else {
+							sfx_play(SFX_TALKING1, 0);
+						}
+						temp_frames = 0 ;
+					}
+			}
 		}
 		if (game_mode == MODE_ALIEN_LEVEL)
 		{
 			// todo
 			// get number sprites, do number sprite work.
 			banked_call(BANK_4, bank_4_alien_level_loop);
+			
 		}
 		if (game_mode == MODE_ALIEN_EVALUATION)
 		{

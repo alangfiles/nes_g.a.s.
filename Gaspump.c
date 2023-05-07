@@ -3656,7 +3656,7 @@ void bank_5_spaceship_generator()
 	temp = ship_speeds[index];
 	spaceship_y_dir = (get_frame_count() & 1) == 0;
 	
-	if (starfield_enemies == 10)
+	if (starfield_enemies == 14) //MAX_STARFIELD_ENEMIES_SHOT
 	{
 		// boss level
 		boss_level = 1;

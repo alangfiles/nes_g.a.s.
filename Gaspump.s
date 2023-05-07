@@ -66812,10 +66812,10 @@ LCD57:	rts
 	jsr     booleq
 	sta     _spaceship_y_dir
 ;
-; if (starfield_enemies == 10)
+; if (starfield_enemies == 14) //MAX_STARFIELD_ENEMIES_SHOT
 ;
 	lda     _starfield_enemies
-	cmp     #$0A
+	cmp     #$0E
 	bne     LD41C
 ;
 ; boss_level = 1;
@@ -69279,12 +69279,12 @@ LD7EE:	rts
 	lda     #$00
 	sta     _game_mode
 ;
-; banked_call(BANK_5, bank_5_starfield_init);
+; banked_call(BANK_1, bank_1_instructions_init);
 ;
-	lda     #$05
+	lda     #$01
 	jsr     pusha
-	lda     #<(_bank_5_starfield_init)
-	ldx     #>(_bank_5_starfield_init)
+	lda     #<(_bank_1_instructions_init)
+	ldx     #>(_bank_1_instructions_init)
 LDAE6:	jsr     _banked_call
 ;
 ; if (game_mode == MODE_TITLE)

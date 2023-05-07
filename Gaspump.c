@@ -4385,7 +4385,7 @@ void main(void)
 	// debug to the level I want to test
 	/*
 		DEBUG ONLY!!!!  
-	*/   
+	*/     
 	// music_stop();
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
@@ -4393,9 +4393,9 @@ void main(void)
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_4, bank_4_cutscene_init);
 	// levels_complete = 2;
-	// banked_call(BANK_1, bank_1_instructions_init);
+	banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
-	banked_call(BANK_5, bank_5_starfield_init);
+	// banked_call(BANK_5, bank_5_starfield_init);
 
 	while (1)
 	{

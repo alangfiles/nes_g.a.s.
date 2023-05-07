@@ -50,7 +50,7 @@ al 008000 .__BANK4_RUN__
 al 003DEA .__BANK4_SIZE__
 al 008000 .__BANK5_LOAD__
 al 008000 .__BANK5_RUN__
-al 0038A3 .__BANK5_SIZE__
+al 003898 .__BANK5_SIZE__
 al 008000 .__BANK6_LOAD__
 al 008000 .__BANK6_RUN__
 al 002473 .__BANK6_SIZE__
@@ -87,7 +87,7 @@ al 00BDEA .__PRG4_LAST__
 al 004000 .__PRG4_SIZE__
 al 008000 .__PRG4_START__
 al 014010 .__PRG5_FILEOFFS__
-al 00B8A3 .__PRG5_LAST__
+al 00B898 .__PRG5_LAST__
 al 004000 .__PRG5_SIZE__
 al 008000 .__PRG5_START__
 al 018010 .__PRG6_FILEOFFS__
@@ -267,13 +267,13 @@ al 00A2B3 ._bank_4_instruction_loop
 al 00ACBA ._bank_5_draw_screen_right
 al 00AF2E ._bank_5_draw_starfield_boss
 al 00AE2A ._bank_5_draw_starfield_player_sprite
-al 00B28B ._bank_5_draw_starfield_sprites
+al 00B280 ._bank_5_draw_starfield_sprites
 al 00ABBC ._bank_5_gameover_init
 al 00AC3A ._bank_5_gameover_loop
 al 00AC59 ._bank_5_spaceship_generator
 al 00AE79 ._bank_5_starfield_boss_defeated
 al 00AAAE ._bank_5_starfield_init
-al 00B6F4 ._bank_5_starfield_loop
+al 00B6E9 ._bank_5_starfield_loop
 al 00C4FE ._bank_bg
 al 00CC88 ._bank_pop
 al 00CC62 ._bank_push

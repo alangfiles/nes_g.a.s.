@@ -3906,7 +3906,7 @@ void bank_5_draw_starfield_boss(void)
 			sample_play(SAMPLE_NOOO);
 		}
 		//new explosion
-		spaceship_1_x -= 40;
+		spaceship_1_x -= 80;
 		if (sprite_frames < 8)
 		{
 			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_0);
@@ -3959,20 +3959,16 @@ void bank_5_draw_starfield_boss(void)
 		}
 
 
-		// new explosion done
-
-
-	
+		// new explosion done	
 		else if (sprite_frames < 300)
 		{
-			// stay still for a second
-			scroll_x -= 1;
+			// stay still for a second 
 		} 
-		else if (sprite_frames < 600)
+		else if (sprite_frames < 500)
 		{
 			scroll_x += 2; 
 		} 
-		else if (sprite_frames == 600)
+		else if (sprite_frames == 500)
 		{
 			banked_call(BANK_5, bank_5_starfield_boss_defeated);
 		}

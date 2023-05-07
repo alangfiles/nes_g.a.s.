@@ -3899,38 +3899,80 @@ void bank_5_draw_starfield_boss(void)
 		sprite_frames = 0;
 	}
 
-	if (spaceship_destroyed && boss_hits == 2)
+	if (spaceship_destroyed && boss_hits == 5)
 	{
 		final_boss_beat = 1;
 		if(sprite_frames == 1){
 			sample_play(SAMPLE_NOOO);
 		}
-		if (sprite_frames < 4)
+		//new explosion
+		spaceship_1_x -= 40;
+		if (sprite_frames < 8)
 		{
 			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_0);
 		}
-		else if (sprite_frames < 8)
+		else if (sprite_frames < 16)
 		{
 			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_1);
 		}
-		else if (sprite_frames < 12)
+		else if (sprite_frames < 24)
 		{
 			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_2);
 		}
-		else if (sprite_frames < 23)
+		else if (sprite_frames < 32)
 		{
-			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_3);
-		}
-		else if (sprite_frames < 30)
-		{
-			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_23);
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_15);
 			count_frames = 0;
 		}
-		else if (sprite_frames < 254)
+		else if (sprite_frames < 40)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_16);
+		}
+		else if (sprite_frames < 48)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_17);
+		}
+		else if (sprite_frames < 56)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_18);
+		}
+		else if (sprite_frames < 64)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_19);
+		}
+		else if (sprite_frames < 72)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_20);
+		}
+		else if (sprite_frames < 80)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_21);
+		}
+		else if (sprite_frames < 88)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_22);
+		}
+		else if (sprite_frames < 96)
+		{
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_23);
+			
+		}
+
+
+		// new explosion done
+
+
+	
+		else if (sprite_frames < 300)
+		{
+			// stay still for a second
+			scroll_x -= 1;
+		} 
+		else if (sprite_frames < 600)
 		{
 			scroll_x += 2; 
-		}
-		else if (sprite_frames == 255)
+		} 
+		else if (sprite_frames == 600)
 		{
 			banked_call(BANK_5, bank_5_starfield_boss_defeated);
 		}

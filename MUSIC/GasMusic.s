@@ -22,16 +22,22 @@ GasMusic_music_data:
 	.word @env1,@env0,@env0
 	.byte $00
 	.byte $70 ;instrument $03
-	.word @env2,@env0,@env4
+	.word @env2,@env0,@env5
 	.byte $00
 	.byte $30 ;instrument $05
 	.word @env3,@env0,@env0
 	.byte $00
 	.byte $30 ;instrument $06
-	.word @env0,@env0,@env0
+	.word @env2,@env0,@env0
 	.byte $00
 	.byte $b0 ;instrument $08
 	.word @env1,@env0,@env0
+	.byte $00
+	.byte $f0 ;instrument $0a
+	.word @env2,@env0,@env0
+	.byte $00
+	.byte $f0 ;instrument $0b
+	.word @env4,@env0,@env0
 	.byte $00
 
 @samples:
@@ -102,12 +108,14 @@ GasMusic_music_data:
 @env0:
 	.byte $c0,$00,$00
 @env1:
-	.byte $c4,$c6,$c9,$c8,$c7,$c6,$c5,$c4,$c3,$c2,$c1,$00,$0a
+	.byte $c0,$c6,$c9,$c8,$c7,$c6,$c5,$c4,$c3,$c2,$c1,$00,$0a
 @env2:
 	.byte $c8,$ce,$cc,$ca,$c9,$c8,$c7,$c6,$c5,$c4,$c3,$c2,$c0,$00,$0c
 @env3:
 	.byte $c3,$c6,$c2,$00,$02
 @env4:
+	.byte $c9,$cf,$ce,$cd,$cb,$ca,$c8,$c6,$00,$07
+@env5:
 	.byte $b8,$c3,$c3,$00,$02
 
 
@@ -409,7 +417,7 @@ GasMusic_music_data:
 @ref40:
 	.byte $bf
 @ref41:
-	.byte $8f,$88,$22,$85,$24,$85,$1a,$95,$22,$85
+	.byte $8f,$8e,$22,$85,$24,$85,$1a,$95,$22,$85
 @ref42:
 	.byte $87,$1e,$8d,$1a,$8d,$22,$85,$24,$85,$1a,$85
 	.byte $fd
@@ -431,7 +439,7 @@ GasMusic_music_data:
 @song7ch3:
 @song7ch3loop:
 @ref47:
-	.byte $82,$08,$95,$0a,$95,$0a,$85,$0a,$85
+	.byte $8c,$08,$95,$0a,$95,$0a,$85,$0a,$85
 @ref48:
 	.byte $87,$08,$8d,$0a,$95,$08,$8d
 @ref49:

@@ -363,10 +363,11 @@ void bank_0_intro_scroll_loop(void)
 		{
 			ppu_wait_nmi();
 		}
-		wait_and_fade_out();
+		// wait_and_fade_out();
+		pal_fade_to(4, 0);
 		bank_0_intro_cutscene_init();
 		return;
-	}
+	} 
 
 	if (line_counter == 8 && nametable_index <= 960)
 	{ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
@@ -662,12 +663,13 @@ void bank_1_gas_level_init(void)
 	wait_a_little();
 	game_mode = MODE_GAME;
 	started_pumping = 0;
+	// sfx_play(SFX_BELL, 0);
 	music_play(SONG_GASPUMP);
 	moveframes = 0;
 	moveframes2 = 0;
 
 	
-
+	
 	reset_level = 1;
 }
 
@@ -4393,7 +4395,7 @@ void main(void)
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_4, bank_4_cutscene_init);
 	// levels_complete = 2;
-	banked_call(BANK_1, bank_1_instructions_init);
+	// banked_call/(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_5, bank_5_starfield_init);
 
@@ -4448,9 +4450,9 @@ void main(void)
 					temp = rand8() % 2;
 					if(temp_frames > 40){
 						if(temp == 0){
-							sfx_play(SFX_TALKING0, 0);
+							sfx_play(SFX_SPACETALK1, 0);
 						} else {
-							sfx_play(SFX_TALKING1, 0);
+							sfx_play(SFX_SPACETALK2, 0);
 						}
 						temp_frames = 0 ;
 					}

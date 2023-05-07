@@ -3593,6 +3593,7 @@ void bank_4_alien_level_loop(void)
 #include "BACKGROUNDS/starfield7.h"
 #include "BACKGROUNDS/starfieldearth.h"
 
+unsigned char space_enemy_pointer = 0;
 const unsigned char Starfields[8] = {
 		STARFIELD1, STARFIELD2, STARFIELD3, STARFIELD4, STARFIELD5, STARFIELD6, STARFIELD7, STARFIELD8};
 
@@ -3660,7 +3661,7 @@ void bank_5_spaceship_generator()
 		// boss level
 		boss_level = 1;
 		moveframes = 0; //this is so the boss opens up after x frames
-		sprite_pointer = big_boss_ship;
+		sprite_pointer = boss_ship_0;
 		spaceship_1_x = 200 << 8;
 		spaceship_1_y = 100 << 8;
 	}
@@ -3936,13 +3937,11 @@ void bank_5_draw_starfield_boss(void)
 		return;
 	}
 
-	if (moveframes > 600 && moveframes < 700 && spaceship_destroyed == 0)
+	if (moveframes > 600 && moveframes < 800 && spaceship_destroyed == 0)
 	{
-		if(moveframes == 601){
-			sample_play(SAMPLE_HAHA);
-		}
 		// open up to shoot during these frames.
 		// the guy stops moving for them.
+		
 
 		// draw the sprite
 		if (shooting_mode == 1)
@@ -3952,7 +3951,14 @@ void bank_5_draw_starfield_boss(void)
 		}
 		else
 		{
-			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), big_boss_ship);
+			if(moveframes < 620 || moveframes > 780){
+				if(moveframes < 620){
+					sample_play(SAMPLE_HAHA);
+				}
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), boss_ship_1);
+			} else {
+				oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), boss_ship_2);
+			}
 		}
 	}
 	else
@@ -3991,6 +3997,7 @@ void bank_5_draw_starfield_boss(void)
 		}
 	}
 }
+
 
 void bank_5_draw_starfield_sprites(void)
 {
@@ -4108,7 +4115,7 @@ void bank_5_draw_starfield_sprites(void)
 	else
 	{
 		++blimp_frames; //reusing this
-		switch (index) //if this is buggy, move it off index
+		switch (space_enemy_pointer) //if this is buggy, move it off index
 		{
 		case 0:
 			if(blimp_frames < 10){
@@ -4122,7 +4129,26 @@ void bank_5_draw_starfield_sprites(void)
 			
 			break;
 		case 1:
-			sprite_pointer = ufo_ship;
+			if(blimp_frames < 7){
+				sprite_pointer = spaceduck_0;
+			} else if(blimp_frames < 14){
+				sprite_pointer = spaceduck_1;
+			} else if(blimp_frames < 21){
+				sprite_pointer = spaceduck_2;
+			} else if(blimp_frames < 28){
+				sprite_pointer = spaceduck_3;
+			} else if(blimp_frames < 35){
+				sprite_pointer = spaceduck_4;
+			} else if(blimp_frames < 42){
+				sprite_pointer = spaceduck_3;
+			} else if(blimp_frames < 49){
+				sprite_pointer = spaceduck_2;
+			} else if(blimp_frames < 56){
+				sprite_pointer = spaceduck_1;
+			} else {
+				sprite_pointer = spaceduck_0;
+				blimp_frames = 0;
+			}
 			break;
 		case 2:
 			if(blimp_frames < 50){
@@ -4245,6 +4271,10 @@ void bank_5_starfield_loop(void)
 		{
 			sfx_play(SFX_EXPLOSION,0);
 			spaceship_destroyed = 1;
+			++space_enemy_pointer;
+			if(space_enemy_pointer > 4){ //MAX SPACE ENEMIES, MAX_SPACE_ENEMIES
+				space_enemy_pointer = 0;
+			}
 			spaceship_1_frames = 0;
 			if (boss_level)
 			{
@@ -4316,9 +4346,9 @@ void main(void)
 
 	// debug to the level I want to test
 	/*
-		DEBUG ONLY!!!!
-	*/
-	music_stop();
+		DEBUG ONLY!!!!  
+	*/   
+	// music_stop();
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
@@ -4326,8 +4356,8 @@ void main(void)
 	// banked_call(BANK_4, bank_4_cutscene_init);
 	// levels_complete = 2;
 	// banked_call(BANK_1, bank_1_instructions_init);
-	banked_call(BANK_4, bank_4_instruction_init);
-	// banked_call(BANK_5, bank_5_starfield_init);
+	// banked_call(BANK_4, bank_4_instruction_init);
+	banked_call(BANK_5, bank_5_starfield_init);
 
 	while (1)
 	{

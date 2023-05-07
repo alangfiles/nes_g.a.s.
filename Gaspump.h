@@ -6,12 +6,11 @@
 #define NAMETABLE_D_ATTR 0x2FC0
 
 //samples
-#define SAMPLE_HEYYOU 27
-#define SAMPLE_FILLERUP 32
-#define SAMPLE_GADZOOKS 25
-#define SAMPLE_WHATWASTHAT 29
-#define SAMPLE_HEHEHE 32
-#define SAMPLE_QUACK 34
+#define SAMPLE_FILLERUP 25
+#define SAMPLE_GADZOOKS 27
+#define SAMPLE_QUACK 32
+#define SAMPLE_NOOO 35
+#define SAMPLE_HAHA 36
 
 
 const unsigned int LAST_LEVEL_GOAL = 59;
@@ -116,21 +115,37 @@ enum
 	SFX_BADJOB,
 	SFX_PERFECT,
 	SFX_SHOT,
+	SFX_ALARM,
+	SFX_ALIENTALK,
+	SFX_ABDUCTION,
+	SFX_TALKING0,
+	SFX_TALKING1,
+	SFX_TALKING2,
+	SFX_TALKING3,
+	SFX_TALKING4,
+	SFX_TALKING5,
+	SFX_TALKING6,
+	SFX_TALKING7,
+	SFX_CARENGINE,
+	SFX_TRUCKBREAKDOWN,
+	SFX_BLIMP,
+	SFX_SMOKE,
+	SFX_SPACESHIPNOISE,
+	SFX_SPACETALK1,
+	SFX_SPACETALK2,
 };
 
 enum 
 {
-	SONG_TITLE, //nesjazz
-	SONG_INTROSCROLL,
+	SONG_SCROLL,
 	SONG_INTROCUTSCENE,
-	SONG_TALKINGTIME,
 	SONG_GASPUMP,
 	SONG_ABDUCTIONCUTSCENE,
-	SONG_ALIENTALKINGTIME,
 	SONG_ALIENPUMP,
 	SONG_ENDINGSPACE,
 	SONG_ENDINGSCROLL,
 	SONG_ASCENTIONOFZ,
+	SONG_GASSJAZZINTRO,
 };
 
 enum
@@ -268,6 +283,7 @@ unsigned char reset_level;
 unsigned char sc_eye_frames;
 unsigned char sc_mouth_frames;
 unsigned int sprite_frames;
+unsigned int temp_frames;
 
 #pragma bss-name(push, "BSS")
 
@@ -302,6 +318,7 @@ void wait_a_little(void);
 void draw_title_background(void);
 void level_end_loop(void);
 void wait_and_fade_out(void);
+void play_talking(void);
 // void new_star(void);
 // void draw_box(void);
 // void draw_star(void);

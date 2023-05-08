@@ -29003,8 +29003,8 @@ _truck_2:
 	.byte	$00
 	.byte	$30
 	.byte	$00
-	.byte	$EF
-	.byte	$01
+	.byte	$8E
+	.byte	$00
 	.byte	$28
 	.byte	$18
 	.byte	$ED
@@ -59447,11 +59447,11 @@ L80FD:	bcs     L80FB
 	lda     #$00
 	jsr     _sfx_play
 ;
-; sprite_pointer = truck_0;
+; sprite_pointer = truck_2;
 ;
-	lda     #>(_truck_0)
+	lda     #>(_truck_2)
 	sta     _sprite_pointer+1
-	lda     #<(_truck_0)
+	lda     #<(_truck_2)
 	sta     _sprite_pointer
 ;
 ; else if (truck_frames < 20)
@@ -59481,22 +59481,22 @@ L8104:	lda     _truck_frames+1
 	cmp     #$1E
 L810C:	bcs     L810A
 ;
-; sprite_pointer = truck_2;
+; sprite_pointer = truck_0;
 ;
-	lda     #>(_truck_2)
+	lda     #>(_truck_0)
 	sta     _sprite_pointer+1
-	lda     #<(_truck_2)
+	lda     #<(_truck_0)
 	sta     _sprite_pointer
 ;
 ; else
 ;
 	jmp     L8118
 ;
-; sprite_pointer = truck_0;
+; sprite_pointer = truck_2;
 ;
-L810A:	lda     #>(_truck_0)
+L810A:	lda     #>(_truck_2)
 	sta     _sprite_pointer+1
-	lda     #<(_truck_0)
+	lda     #<(_truck_2)
 	sta     _sprite_pointer
 ;
 ; if(high_byte(truck_x) < 67){

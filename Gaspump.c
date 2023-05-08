@@ -2049,7 +2049,7 @@ void bank_3_level_sprites(void)
 				if (truck_frames < 10)
 				{
 					sfx_play(SFX_CARENGINE, 0);
-					sprite_pointer = truck_0;
+					sprite_pointer = truck_2;
 				}
 				else if (truck_frames < 20)
 				{
@@ -2057,11 +2057,11 @@ void bank_3_level_sprites(void)
 				}
 				else if (truck_frames < 30)
 				{
-					sprite_pointer = truck_2;
+					sprite_pointer = truck_0;
 				}
 				else
 				{
-					sprite_pointer = truck_0;
+					sprite_pointer = truck_2;
 					
 					if(high_byte(truck_x) < 67){
 						truck_frames = 0;

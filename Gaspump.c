@@ -4418,7 +4418,7 @@ void main(void)
 	set_vram_buffer(); // points ppu update to vram_buffer, do this at least once
 
 	ppu_on_all(); // turn on screen
-
+   
 	// debug, actually allow this:
 	banked_call(BANK_1, bank_1_title_init);
 	game_mode = MODE_TITLE;

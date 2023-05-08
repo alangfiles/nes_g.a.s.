@@ -20,11 +20,11 @@ file	id=16,name="CHRS/cutsceneabduction.chr",size=8192,mtime=0x643A03E6,mod=0
 file	id=17,name="CHRS/gameover.chr",size=8192,mtime=0x642A1133,mod=0
 file	id=18,name="CHRS/starfield.chr",size=8192,mtime=0x64582991,mod=0
 file	id=19,name="CHRS/FutureTalkingtime.chr",size=8192,mtime=0x64105C05,mod=0
-file	id=20,name="CHRS/Gaspump_alt.chr",size=8192,mtime=0x645828CA,mod=0
+file	id=20,name="CHRS/Gaspump_alt.chr",size=8192,mtime=0x64585C5C,mod=0
 file	id=21,name="CHRS/Futurepump_alt.chr",size=8192,mtime=0x6427A2A0,mod=0
 file	id=22,name="CHRS/Futurepump_alt_2.chr",size=8192,mtime=0x6427A2A1,mod=0
 file	id=23,name="CHRS/titlescreen.chr",size=8192,mtime=0x6437E6AE,mod=0
-file	id=24,name="Gaspump.s",size=878505,mtime=0x6458597E,mod=1
+file	id=24,name="Gaspump.s",size=878505,mtime=0x64585C6B,mod=1
 file	id=25,name="/usr/local/Cellar/cc65/2.19/share/cc65/asminc/longbranch.mac",size=2632,mtime=0x5ED2ADF3,mod=1
 file	id=26,name="/private/tmp/cc65-20211029-72602-uqb2uc/cc65-2.19/asminc/cpu.mac",size=843,mtime=0x5ED2ADF3,mod=10+13+15+19
 file	id=27,name="/private/tmp/cc65-20211029-72602-uqb2uc/cc65-2.19/asminc/zeropage.inc",size=721,mtime=0x5ED2ADF3,mod=23

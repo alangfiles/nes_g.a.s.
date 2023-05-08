@@ -2138,7 +2138,7 @@ void bank_3_level_sprites(void)
 				oam_meta_spr(high_byte(truck_x), high_byte(truck_y), sprite_pointer);
 			}
 
-			if(truck_breakdown == 2){
+			if(truck_breakdown == 2){  
 				if(truck_frames == 1000 && moveframes < 12000){
 					 truck_breakdown = 1;
 					 truck_frames = 0;  //more smoke every once in a while

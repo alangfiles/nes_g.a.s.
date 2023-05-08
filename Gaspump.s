@@ -29003,11 +29003,11 @@ _truck_2:
 	.byte	$00
 	.byte	$30
 	.byte	$00
-	.byte	$8E
-	.byte	$00
+	.byte	$EF
+	.byte	$01
 	.byte	$28
 	.byte	$18
-	.byte	$DD
+	.byte	$ED
 	.byte	$00
 	.byte	$20
 	.byte	$18
@@ -29015,7 +29015,7 @@ _truck_2:
 	.byte	$00
 	.byte	$18
 	.byte	$18
-	.byte	$DB
+	.byte	$EB
 	.byte	$00
 	.byte	$10
 	.byte	$18
@@ -29023,7 +29023,7 @@ _truck_2:
 	.byte	$00
 	.byte	$08
 	.byte	$18
-	.byte	$D9
+	.byte	$E9
 	.byte	$00
 	.byte	$00
 	.byte	$18
@@ -59803,7 +59803,7 @@ L8174:	jsr     decsp2
 	ldx     _sprite_pointer+1
 	jsr     _oam_meta_spr
 ;
-; if(truck_breakdown == 2){
+; if(truck_breakdown == 2){  
 ;
 LDA7D:	lda     _truck_breakdown
 	cmp     #$02

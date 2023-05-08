@@ -4447,12 +4447,16 @@ void main(void)
 			banked_call(BANK_4, bank_4_instruction_loop);
 			++temp_frames;
 			if (text_rendered < text_length){	
-					temp = rand8() % 2;
+					temp = rand8() % 4;
 					if(temp_frames > 40){
 						if(temp == 0){
 							sfx_play(SFX_SPACETALK1, 0);
-						} else {
+						} else if(temp == 1){
 							sfx_play(SFX_SPACETALK2, 0);
+						} else if(temp == 2){
+							sfx_play(SFX_SPACETALK3, 0);
+						} else {
+							sfx_play(SFX_SPACETALK4, 0);
 						}
 						temp_frames = 0 ;
 					}
@@ -4498,41 +4502,6 @@ void clear_background(void)
 		vram_put(0x00);
 		flush_vram_update2();
 	}
-}
-
-void white_background(void)
-{
-	// draw all 0x00 into the bg
-	vram_adr(NAMETABLE_A);
-	for (tempint = 0; tempint < 960; ++tempint)
-	{
-		vram_put(0x00);
-		flush_vram_update2();
-	}
-}
-
-void draw_talking_time(void)
-{
-
-	temp1 = 0x2044; // vram addr for start of box
-
-	for (temp2 = 0; temp2 < 6; ++temp2)
-	{
-		ppu_wait_nmi();
-
-		vram_adr(temp1); // Nametable A starting block
-		for (index = 0; index < 9; ++index)
-		{
-
-			vram_put(0x00);
-		}
-		flush_vram_update2();
-
-		temp1 += 16;
-	}
-	flush_vram_update2();
-
-	talking_time = 1;
 }
 
 void read_input(void)
@@ -4620,7 +4589,7 @@ void typewriter(void)
 
 void play_talking(){
 	++temp_frames;
-	if (text_rendered != text_length)
+	if (text_rendered < (text_length-20))
 				{	
 					if(temp_frames > 40){
 						temp = get_frame_count() % 8;

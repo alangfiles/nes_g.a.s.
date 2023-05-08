@@ -2726,7 +2726,6 @@ void bank_4_cutscene_loop(void)
 		else if (moveframes < 130)
 		{
 			oam_meta_spr(201, 180, abduction_guy_3);
-			sfx_play(SFX_SMOKE,0);
 		}
 		else if (moveframes < 140)
 		{
@@ -2735,6 +2734,7 @@ void bank_4_cutscene_loop(void)
 		else if (moveframes < 150)
 		{
 			oam_meta_spr(201, 180, abduction_guy_5);
+			sfx_play(SFX_SMOKE,0);
 		}
 		else if (moveframes < 160)
 		{
@@ -2784,7 +2784,6 @@ void bank_4_cutscene_loop(void)
 		else if (moveframes < 330)
 		{
 			oam_meta_spr(201, 180, abduction_guy_3);
-			sfx_play(SFX_SMOKE,0);
 		}
 		else if (moveframes < 340)
 		{
@@ -2793,6 +2792,7 @@ void bank_4_cutscene_loop(void)
 		else if (moveframes < 350)
 		{
 			oam_meta_spr(201, 180, abduction_guy_5);
+			sfx_play(SFX_SMOKE,0);
 		}
 		else if (moveframes < 360)
 		{
@@ -2990,7 +2990,7 @@ void bank_4_cutscene_loop(void)
 		}
 		else if (moveframes < 40)
 		{
-			// sfx_play(SFX_ABDUCTION,0);
+			sfx_play(SFX_ABDUCTION,0);
 			oam_meta_spr(193, 162 - (2 * (moveframes - 30)), abduction_guy_hat);
 			oam_meta_spr(201, 180, abduction_guy_19);
 		}
@@ -3001,7 +3001,7 @@ void bank_4_cutscene_loop(void)
 		}
 		else if (moveframes < 60)
 		{
-			// sfx_play(SFX_SPACESHIPNOISE,0);
+			sfx_play(SFX_ABDUCTION,0);
 			oam_meta_spr(193, 162 - (2 * (moveframes - 30)), abduction_guy_hat);
 			oam_meta_spr(201, 180, abduction_guy_21);
 		}
@@ -3012,7 +3012,7 @@ void bank_4_cutscene_loop(void)
 		}
 		else if (moveframes < 80)
 		{
-			// sfx_play(SFX_SPACESHIPNOISE,0);
+			sfx_play(SFX_ABDUCTION,0);
 			oam_meta_spr(193, 162 - (2 * (moveframes - 30)), abduction_guy_hat);
 			oam_meta_spr(201, 180, abduction_guy_23);
 		}
@@ -3074,7 +3074,7 @@ void bank_4_cutscene_loop(void)
 		// then the abduction below
 		else if (moveframes < 230)
 		{
-			sfx_play(SFX_SPACESHIPNOISE,0);
+			sfx_play(SFX_ABDUCTION,0);
 			oam_meta_spr(201, 180 - moveframes2, abduction_guy_45);
 		}
 		else if (moveframes < 240)
@@ -3087,7 +3087,7 @@ void bank_4_cutscene_loop(void)
 		}
 		else if (moveframes < 260)
 		{
-			sfx_play(SFX_SPACESHIPNOISE,0);
+			sfx_play(SFX_ABDUCTION,0);
 			oam_meta_spr(201, 180 - moveframes2, abduction_guy_48);
 		}
 		else if (moveframes < 270)
@@ -3100,7 +3100,6 @@ void bank_4_cutscene_loop(void)
 		}
 		else if (moveframes < 290)
 		{
-			// sfx_play(SFX_SPACESHIPNOISE,0);
 			oam_meta_spr(201, 180 - moveframes2, abduction_guy_51);
 		}
 		else if (moveframes < 300)

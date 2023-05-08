@@ -44,6 +44,8 @@ unsigned char cost3_changed;
 unsigned char cost2_changed;
 unsigned char cost1_changed;
 
+unsigned char changes_in_frame;
+
 unsigned char gas5;
 unsigned char gas4;
 unsigned char gas3;

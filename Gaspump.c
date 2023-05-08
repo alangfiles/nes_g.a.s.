@@ -64,7 +64,23 @@ const unsigned char starfield_sp_palette[16] = {
 		
 
 const unsigned char gameover_palette[16] = {
-		0x15,0x00,0x3d,0x20,0x15,0x05,0x16,0x36,0x15,0x00,0x3d,0x2d,0x15,0x09,0x19,0x38 };
+		0x15,0x00,0x3d,0x20,
+		0x15,0x05,0x16,0x36,
+		0x15,0x00,0x3d,0x2d,
+		0x15,0x09,0x19,0x38 };
+
+const unsigned char gameover_palette3[16] = {
+		0x15,0x16,0x3d,0x20,
+		0x15,0x05,0x16,0x36,
+		0x15,0x16,0x3d,0x26,
+		0x15,0x09,0x19,0x38 };
+
+const unsigned char gameover_palette2[16] = {
+		0x15,0x18,0x3d,0x20,
+		0x15,0x05,0x16,0x36,
+		0x15,0x18,0x3d,0x37,
+		0x15,0x09,0x19,0x38 };
+
 
 const unsigned char title_screen_palette[16] = {0x1b, 0x0f, 0x16, 0x36, 0x1b, 0x05, 0x16, 0x36, 0x1b, 0x00, 0x16, 0x30, 0x1b, 0x09, 0x2c, 0x30};
 const unsigned char title_screen_palette_alt[16] = {0x11, 0x0f, 0x16, 0x36, 0x11, 0x05, 0x16, 0x36, 0x11, 0x00, 0x16, 0x30, 0x11, 0x09, 0x2c, 0x30};
@@ -1456,6 +1472,7 @@ void bank_3_draw_cost(void)
 		y = 14;
 		bank_3_draw_number_as_bg_tile();
 		cost3_changed = 0;
+		++changes_in_frame;
 	}
 
 	if (cost2_changed)
@@ -1465,21 +1482,26 @@ void bank_3_draw_cost(void)
 		y = 14;
 		bank_3_draw_number_as_bg_tile();
 		cost2_changed = 0;
+		++changes_in_frame;
 	}
 
-	if (cost1_changed)
+	if (cost1_changed && changes_in_frame < 3)
 	{
 		num_holder = cost2;
 		x = 25;
 		y = 14;
 		bank_3_draw_number_as_bg_tile();
 		cost1_changed = 0;
+		++changes_in_frame;
 	}
 
-	num_holder = cost1;
-	x = 27;
-	y = 14;
-	bank_3_draw_number_as_bg_tile();
+	if(changes_in_frame < 2){ //only draw the last number if there aren't a ton of changes
+		num_holder = cost1;
+		x = 27;
+		y = 14;
+		bank_3_draw_number_as_bg_tile();
+	}
+	
 
 	// sprite_cost = cost1;
 	// find_sprite();
@@ -1516,6 +1538,7 @@ void bank_3_draw_gas(void)
 		y = 20;
 		bank_3_draw_number_as_bg_tile();
 		gas3_changed = 0;
+		++changes_in_frame;
 	}
 
 	if (gas2_changed)
@@ -1525,6 +1548,7 @@ void bank_3_draw_gas(void)
 		y = 20;
 		bank_3_draw_number_as_bg_tile();
 		gas2_changed = 0;
+		++changes_in_frame;
 	}
 
 	if (gas1_changed)
@@ -1534,6 +1558,7 @@ void bank_3_draw_gas(void)
 		y = 20;
 		bank_3_draw_number_as_bg_tile();
 		gas1_changed = 0;
+		++changes_in_frame;
 	}
 
 	num_holder = gas1;
@@ -2324,9 +2349,9 @@ void bank_3_level_loop(void)
 	ppu_wait_nmi(); // wait till beginning of the frame
 	oam_clear();
 	bank_3_draw_level_base_sprites();
+	changes_in_frame = 0; 
 	bank_3_draw_gas();
 	bank_3_draw_cost();
-
 	// zapper_ready = pad2_zapper^1; // XOR last frame, make sure it is not held down still
 
 	// is trigger pulled?
@@ -3655,7 +3680,17 @@ void bank_5_gameover_init(void)
 void bank_5_gameover_loop(void)
 {
 	++moveframes;
+	++blimp_frames;
 	ppu_wait_nmi();
+	if(blimp_frames < 50){
+		pal_bg(gameover_palette);
+	} else if (blimp_frames < 100){
+		pal_bg(gameover_palette2);
+	}else if (blimp_frames < 150){
+		pal_bg(gameover_palette3);
+	} else {
+		blimp_frames = 0;
+	}
 	if(moveframes > 400){
 		sample_play(SAMPLE_HAHA);
 		moveframes = 0;

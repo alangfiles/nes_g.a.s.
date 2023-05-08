@@ -2044,9 +2044,11 @@ void bank_3_level_sprites(void)
 			
 			//truck rolls in
 			if(truck_breakdown == 0){
+			
 
 				if (truck_frames < 10)
 				{
+					sfx_play(SFX_CARENGINE, 0);
 					sprite_pointer = truck_0;
 				}
 				else if (truck_frames < 20)
@@ -2075,6 +2077,7 @@ void bank_3_level_sprites(void)
 			if(truck_breakdown == 1) {
 				if (truck_frames < 30)
 				{
+					
 					sprite_pointer = truck_breakdown_0;
 				}
 				else if (truck_frames < 60)
@@ -2083,6 +2086,7 @@ void bank_3_level_sprites(void)
 				}
 				else if (truck_frames < 90)
 				{
+					sfx_play(SFX_TRUCKBREAKDOWN, 0);
 					sprite_pointer = truck_breakdown_2;
 				}
 				else if (truck_frames < 120)
@@ -2582,6 +2586,7 @@ void bank_4_instruction_init(void)
 
 	game_mode = MODE_ALIEN_INSTRUCTION;
 	pal_fade_to(0, 4);
+	music_stop();
 	// music_play(SONG_ALIENTALKINGTIME); //no music for talking times?
 }
 
@@ -2721,6 +2726,7 @@ void bank_4_cutscene_loop(void)
 		else if (moveframes < 130)
 		{
 			oam_meta_spr(201, 180, abduction_guy_3);
+			sfx_play(SFX_SMOKE,0);
 		}
 		else if (moveframes < 140)
 		{
@@ -2753,6 +2759,7 @@ void bank_4_cutscene_loop(void)
 		else if (moveframes < 210)
 		{
 			oam_meta_spr(201, 180, abduction_guy_3);
+			
 		}
 		else if (moveframes < 220)
 		{
@@ -2777,6 +2784,7 @@ void bank_4_cutscene_loop(void)
 		else if (moveframes < 330)
 		{
 			oam_meta_spr(201, 180, abduction_guy_3);
+			sfx_play(SFX_SMOKE,0);
 		}
 		else if (moveframes < 340)
 		{
@@ -2907,6 +2915,8 @@ void bank_4_cutscene_loop(void)
 			oam_meta_spr(172, 12, abduction_ship_2);
 		}
 
+		
+
 		// this is just used for the beam coming down, maybe we want the guy
 		//  to anmiate here to, but not right now
 		if (nametable_index == 960)
@@ -2922,6 +2932,7 @@ void bank_4_cutscene_loop(void)
 			// index3 is going through the loop 2 times, because of
 			if (index3 == 3 && attribute_bytes_written < 64)
 			{
+				sfx_play(SFX_SPACESHIPNOISE,0);
 				for (index = 0; index < 8; ++index)
 				{
 					one_vram_buffer(abduction_cutscene_beam[960 + attribute_bytes_written], NAMETABLE_A_ATTR + attribute_bytes_written);
@@ -2969,6 +2980,7 @@ void bank_4_cutscene_loop(void)
 		}
 		else if (moveframes < 20)
 		{
+			sfx_play(SFX_SPACESHIPNOISE,0);
 			oam_meta_spr(201, 180, abduction_guy_17);
 		}
 		else if (moveframes < 30)
@@ -2978,6 +2990,7 @@ void bank_4_cutscene_loop(void)
 		}
 		else if (moveframes < 40)
 		{
+			// sfx_play(SFX_ABDUCTION,0);
 			oam_meta_spr(193, 162 - (2 * (moveframes - 30)), abduction_guy_hat);
 			oam_meta_spr(201, 180, abduction_guy_19);
 		}
@@ -2988,6 +3001,7 @@ void bank_4_cutscene_loop(void)
 		}
 		else if (moveframes < 60)
 		{
+			// sfx_play(SFX_SPACESHIPNOISE,0);
 			oam_meta_spr(193, 162 - (2 * (moveframes - 30)), abduction_guy_hat);
 			oam_meta_spr(201, 180, abduction_guy_21);
 		}
@@ -2998,6 +3012,7 @@ void bank_4_cutscene_loop(void)
 		}
 		else if (moveframes < 80)
 		{
+			// sfx_play(SFX_SPACESHIPNOISE,0);
 			oam_meta_spr(193, 162 - (2 * (moveframes - 30)), abduction_guy_hat);
 			oam_meta_spr(201, 180, abduction_guy_23);
 		}
@@ -3059,6 +3074,7 @@ void bank_4_cutscene_loop(void)
 		// then the abduction below
 		else if (moveframes < 230)
 		{
+			sfx_play(SFX_SPACESHIPNOISE,0);
 			oam_meta_spr(201, 180 - moveframes2, abduction_guy_45);
 		}
 		else if (moveframes < 240)
@@ -3071,6 +3087,7 @@ void bank_4_cutscene_loop(void)
 		}
 		else if (moveframes < 260)
 		{
+			sfx_play(SFX_SPACESHIPNOISE,0);
 			oam_meta_spr(201, 180 - moveframes2, abduction_guy_48);
 		}
 		else if (moveframes < 270)
@@ -3083,6 +3100,7 @@ void bank_4_cutscene_loop(void)
 		}
 		else if (moveframes < 290)
 		{
+			// sfx_play(SFX_SPACESHIPNOISE,0);
 			oam_meta_spr(201, 180 - moveframes2, abduction_guy_51);
 		}
 		else if (moveframes < 300)
@@ -3120,6 +3138,10 @@ void bank_4_cutscene_loop(void)
 		{
 			oam_meta_spr(172, 12, abduction_ship_2);
 		}
+
+		// if(moveframes % 20 == 0){
+			
+		// }
 		// this is just used for the beam coming down, maybe we want the guy
 		//  to anmiate here to, but not right now
 		if (nametable_index == 0)
@@ -3132,6 +3154,7 @@ void bank_4_cutscene_loop(void)
 		{
 			if (index3 == 3 && attribute_bytes_written > 0)
 			{
+				sfx_play(SFX_SPACESHIPNOISE,0);
 				for (index = 0; index < 8; ++index)
 				{
 					one_vram_buffer(abduction_cutscene[960 + attribute_bytes_written - 1], NAMETABLE_A_ATTR + attribute_bytes_written - 1);
@@ -3250,6 +3273,7 @@ void bank_4_cutscene_loop(void)
 	if (abduction_cutscene_step == ABDUCTION_DONE) // to call at the end of everything
 	{
 		// wait_and_fade_out(); //alangfiles
+
 		alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 		banked_call(BANK_4, bank_4_instruction_init);
 	}
@@ -4169,6 +4193,9 @@ void bank_5_draw_starfield_sprites(void)
 			
 			break;
 		case 1:
+			if(blimp_frames == 1){
+				sample_play(SAMPLE_QUACK);
+			}
 			if(blimp_frames < 7){
 				sprite_pointer = spaceduck_0;
 			} else if(blimp_frames < 14){
@@ -4406,9 +4433,9 @@ void main(void)
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);
-	// banked_call(BANK_4, bank_4_cutscene_init);
+	banked_call(BANK_4, bank_4_cutscene_init);
 	// levels_complete = 2;
-	// banked_call/(BANK_1, bank_1_instructions_init);
+	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_5, bank_5_starfield_init);
 

@@ -8,6 +8,7 @@
 //samples
 #define SAMPLE_FILLERUP 25
 #define SAMPLE_GADZOOKS 27
+#define SAMPLE_X 29
 #define SAMPLE_QUACK 32
 #define SAMPLE_NOOO 35
 #define SAMPLE_HAHA 36

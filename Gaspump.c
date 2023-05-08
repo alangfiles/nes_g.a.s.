@@ -4033,7 +4033,7 @@ void bank_5_draw_starfield_boss(void)
 		}
 		else
 		{
-			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), ufo_ship);
+			oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), boss_ship_0);
 		}
 	}
 }
@@ -4213,6 +4213,19 @@ void bank_5_draw_starfield_sprites(void)
 				blimp_frames = 0;
 			}
 			break;
+		case 4:
+			if(blimp_frames < 6){
+				sprite_pointer = dino_0;
+			} else if(blimp_frames < 12){
+				sprite_pointer = dino_1;
+			} else if(blimp_frames < 18){
+				sprite_pointer = dino_2;
+			} else {
+				sprite_pointer = dino_0;
+				blimp_frames = 0;
+			}
+			break;
+			
 		default:
 			sprite_pointer = ufo_ship;
 			break;
@@ -4388,7 +4401,7 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!  
 	*/     
-	// music_stop();
+	music_stop();
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
@@ -4446,7 +4459,7 @@ void main(void)
 		{
 			banked_call(BANK_4, bank_4_instruction_loop);
 			++temp_frames;
-			if (text_rendered < text_length){	
+			if (text_rendered < (text_length-10)){	
 					temp = rand8() % 4;
 					if(temp_frames > 40){
 						if(temp == 0){
@@ -4589,7 +4602,7 @@ void typewriter(void)
 
 void play_talking(){
 	++temp_frames;
-	if (text_rendered < (text_length-20))
+	if (text_rendered < (text_length-10))
 				{	
 					if(temp_frames > 40){
 						temp = get_frame_count() % 8;

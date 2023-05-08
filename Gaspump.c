@@ -4428,12 +4428,12 @@ void main(void)
 	/*
 		DEBUG ONLY!!!!  
 	*/     
-	music_stop();
+	// music_stop();
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 	// banked_call(BANK_4, bank_4_instruction_init);
-	banked_call(BANK_4, bank_4_cutscene_init);
+	// banked_call(BANK_4, bank_4_cutscene_init);
 	// levels_complete = 2;
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);

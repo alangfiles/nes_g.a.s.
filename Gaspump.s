@@ -69398,12 +69398,12 @@ LD880:	rts
 ;
 	jsr     _music_stop
 ;
-; banked_call(BANK_4, bank_4_cutscene_init);
+; banked_call(BANK_1, bank_1_instructions_init);
 ;
-	lda     #$04
+	lda     #$01
 	jsr     pusha
-	lda     #<(_bank_4_cutscene_init)
-	ldx     #>(_bank_4_cutscene_init)
+	lda     #<(_bank_1_instructions_init)
+	ldx     #>(_bank_1_instructions_init)
 LDB58:	jsr     _banked_call
 ;
 ; if (game_mode == MODE_TITLE)

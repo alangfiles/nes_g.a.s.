@@ -10857,14 +10857,14 @@ _intro_scroll_1:
 	.byte	$00
 	.byte	$00
 	.byte	$00
+	.byte	$00
 	.byte	$5A
 	.byte	$41
 	.byte	$52
 	.byte	$51
 	.byte	$41
+	.byte	$48
 	.byte	$4B
-	.byte	$27
-	.byte	$53
 	.byte	$00
 	.byte	$43
 	.byte	$48
@@ -69554,7 +69554,7 @@ LD8CD:	rts
 	ldx     #>(_bank_1_title_init)
 	jsr     _banked_call
 ;
-; game_mode = MODE_TITLE;
+; game_mode = MODE_TITLE;   
 ;
 	lda     #$00
 	sta     _game_mode

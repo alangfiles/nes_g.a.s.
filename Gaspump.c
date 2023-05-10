@@ -4580,21 +4580,22 @@ void clear_background(void)
 
 void read_input(void)
 {
+	//zapper in 0 and pad in 1
 	hit_detected = 0;
 	// just a debug to include the a button for now.
 	// right now this is using 1 as the zapper
-	pad1 = pad_poll(0);				 // read the first controller
-	pad1_new = get_pad_new(0); // newly pressed button. do pad_poll first
+	pad1 = pad_poll(1);				 // read the first controller
+	pad1_new = get_pad_new(1); // newly pressed button. do pad_poll first
 
 	zapper_ready = pad1_zapper ^ 1; // XOR last frame, make sure not held down still
-	pad1_zapper = zap_shoot(1);			// controller slot 2
+	pad1_zapper = zap_shoot(0);			// controller slot 2
 
-	trigger_pulled = (pad1 & PAD_B) || (pad1 & PAD_A) || zap_shoot(1);															 // controller slot 1 zapper
+	trigger_pulled = (pad1 & PAD_B) || (pad1 & PAD_A) || zap_shoot(0);															 // controller slot 1 zapper
 	trigger_clicked = (pad1_new & PAD_A) || (pad1_new & PAD_B) || ((pad1_zapper) && (zapper_ready)); // needs to check last frame for blank
 
 	if ((pad1_zapper) && (zapper_ready))
 	{
-		hit_detected = zap_read(1);
+		hit_detected = zap_read(0);
 	}
 	if (debug_mode && hit_detected == 0)
 	{

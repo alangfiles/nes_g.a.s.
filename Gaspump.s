@@ -50253,14 +50253,15 @@ L0011:	rts
 	lda     #$00
 	sta     _hit_detected
 ;
-; pad1 = pad_poll(0);     // read the first controller
+; pad1 = pad_poll(1);     // read the first controller
 ;
+	lda     #$01
 	jsr     _pad_poll
 	sta     _pad1
 ;
-; pad1_new = get_pad_new(0); // newly pressed button. do pad_poll first
+; pad1_new = get_pad_new(1); // newly pressed button. do pad_poll first
 ;
-	lda     #$00
+	lda     #$01
 	jsr     _get_pad_new
 	sta     _pad1_new
 ;
@@ -50270,13 +50271,13 @@ L0011:	rts
 	eor     #$01
 	sta     _zapper_ready
 ;
-; pad1_zapper = zap_shoot(1);   // controller slot 2
+; pad1_zapper = zap_shoot(0);   // controller slot 2
 ;
-	lda     #$01
+	lda     #$00
 	jsr     _zap_shoot
 	sta     _pad1_zapper
 ;
-; trigger_pulled = (pad1 & PAD_B) || (pad1 & PAD_A) || zap_shoot(1);                // controller slot 1 zapper
+; trigger_pulled = (pad1 & PAD_B) || (pad1 & PAD_A) || zap_shoot(0);                // controller slot 1 zapper
 ;
 	lda     _pad1
 	and     #$40
@@ -50284,7 +50285,6 @@ L0011:	rts
 	lda     _pad1
 	and     #$80
 	bne     LDA1E
-	lda     #$01
 	jsr     _zap_shoot
 	tax
 	beq     LDA1F
@@ -50313,9 +50313,9 @@ LDA26:	sta     _trigger_clicked
 	lda     _zapper_ready
 	beq     LD980
 ;
-; hit_detected = zap_read(1);
+; hit_detected = zap_read(0);
 ;
-	lda     #$01
+	lda     #$00
 	jsr     _zap_read
 	sta     _hit_detected
 ;

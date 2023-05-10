@@ -878,7 +878,7 @@ const unsigned char level_1_over[] = "Pump that much\n\nand it spills out.";
 const unsigned char level_2_awful[] = "To pump on not\n\nto pump, that is\n\nthe question.";
 const unsigned char level_2_bad[] = "Your finger may\n\nhurt, but pump\n\nthrough the pain.";
 const unsigned char level_2_good[] = "You're as good as\nI hoped. Wait \noutside. I've gotta\ncall my boss.";
-const unsigned char level_2_perfect[] = "Bumping Barthoids!\nYou're great!\nMaybe...just maybe..\n\nWait outside willya?";
+const unsigned char level_2_perfect[] = "Bumping Barthoids!\nYou're great!\nMaybe...just maybe..\n\nWait outside okay?";
 const unsigned char level_2_over[] = "You have no regard\n\nfor the gas\n\nyou spill...";
 
 void bank_4_cutscene_init(void); // prototype

@@ -369,6 +369,7 @@
 	.export		_bank_1_evaluation_loop
 	.export		_ending_scroll_1
 	.export		_ending_scroll_2
+	.export		_ending_scroll_3
 	.export		_bank_2_ending_scroll_init
 	.export		_bank_2_ending_scroll_loop
 	.export		_GasShoulder
@@ -21377,8 +21378,8 @@ _level_0_awful:
 	.byte	$67,$2E,$2E,$2E,$00
 _level_0_bad:
 	.byte	$44,$6F,$6E,$27,$74,$20,$67,$65,$74,$20,$64,$69,$73,$74,$72,$61
-	.byte	$63,$74,$65,$64,$2C,$0A,$0A,$50,$75,$6D,$70,$27,$6E,$27,$46,$6F
-	.byte	$63,$75,$73,$2E,$00
+	.byte	$63,$74,$65,$64,$0A,$0A,$50,$75,$6D,$70,$27,$6E,$27,$46,$6F,$63
+	.byte	$75,$73,$2E,$00
 _level_0_good:
 	.byte	$52,$6F,$75,$67,$68,$20,$61,$72,$6F,$75,$6E,$64,$20,$74,$68,$65
 	.byte	$0A,$0A,$65,$64,$67,$65,$73,$2C,$20,$62,$75,$74,$20,$77,$65,$20
@@ -23488,6 +23489,1031 @@ _ending_scroll_2:
 	.byte	$0A
 	.byte	$0A
 	.byte	$0A
+_ending_scroll_3:
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$54
+	.byte	$48
+	.byte	$45
+	.byte	$20
+	.byte	$45
+	.byte	$4E
+	.byte	$44
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$52
+	.byte	$45
+	.byte	$43
+	.byte	$45
+	.byte	$49
+	.byte	$50
+	.byte	$54
+	.byte	$20
+	.byte	$59
+	.byte	$2F
+	.byte	$4E
+	.byte	$3A
+	.byte	$20
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$50
+	.byte	$6C
+	.byte	$65
+	.byte	$61
+	.byte	$73
+	.byte	$65
+	.byte	$20
+	.byte	$73
+	.byte	$65
+	.byte	$65
+	.byte	$20
+	.byte	$63
+	.byte	$61
+	.byte	$73
+	.byte	$68
+	.byte	$69
+	.byte	$65
+	.byte	$72
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
 .segment	"BANK3"
 _GasShoulder:
 	.byte	$00
@@ -50281,37 +51307,37 @@ L0011:	rts
 ;
 	lda     _pad1
 	and     #$40
-	bne     LDA1E
+	bne     LDE21
 	lda     _pad1
 	and     #$80
-	bne     LDA1E
+	bne     LDE21
 	jsr     _zap_shoot
 	tax
-	beq     LDA1F
-LDA1E:	lda     #$01
-LDA1F:	sta     _trigger_pulled
+	beq     LDE22
+LDE21:	lda     #$01
+LDE22:	sta     _trigger_pulled
 ;
 ; trigger_clicked = (pad1_new & PAD_A) || (pad1_new & PAD_B) || ((pad1_zapper) && (zapper_ready)); // needs to check last frame for blank
 ;
 	lda     _pad1_new
 	and     #$80
-	bne     LDA25
+	bne     LDE28
 	lda     _pad1_new
 	and     #$40
-	bne     LDA25
+	bne     LDE28
 	lda     _pad1_zapper
-	beq     LDA26
+	beq     LDE29
 	lda     _zapper_ready
-	beq     LDA26
-LDA25:	lda     #$01
-LDA26:	sta     _trigger_clicked
+	beq     LDE29
+LDE28:	lda     #$01
+LDE29:	sta     _trigger_clicked
 ;
 ; if ((pad1_zapper) && (zapper_ready))
 ;
 	lda     _pad1_zapper
-	beq     LD980
+	beq     LDD83
 	lda     _zapper_ready
-	beq     LD980
+	beq     LDD83
 ;
 ; hit_detected = zap_read(0);
 ;
@@ -50321,15 +51347,15 @@ LDA26:	sta     _trigger_clicked
 ;
 ; if (debug_mode && hit_detected == 0)
 ;
-LD980:	lda     _debug_mode
-	beq     LD98B
+LDD83:	lda     _debug_mode
+	beq     LDD8E
 	lda     _hit_detected
-	beq     LDA2A
-LD98B:	rts
+	beq     LDE2D
+LDD8E:	rts
 ;
 ; hit_detected = (pad1 & PAD_A);
 ;
-LDA2A:	lda     _pad1
+LDE2D:	lda     _pad1
 	and     #$80
 	sta     _hit_detected
 ;
@@ -50354,7 +51380,7 @@ LDA2A:	lda     _pad1
 ;
 	lda     _text_length
 	cmp     _text_rendered
-	bne     LDA35
+	bne     LDE38
 ;
 ; }
 ;
@@ -50362,7 +51388,7 @@ LDA2A:	lda     _pad1
 ;
 ; if (pointer[text_rendered] == '\n')
 ;
-LDA35:	lda     _pointer
+LDE38:	lda     _pointer
 	ldx     _pointer+1
 	ldy     _text_rendered
 	sta     ptr1
@@ -50372,7 +51398,7 @@ LDA35:	lda     _pointer
 ;
 ; else if (pointer[text_rendered] == '\t')
 ;
-	beq     LDA34
+	beq     LDE37
 	lda     _pointer
 	ldx     _pointer+1
 	ldy     _text_rendered
@@ -50380,7 +51406,7 @@ LDA35:	lda     _pointer
 	stx     ptr1+1
 	lda     (ptr1),y
 	cmp     #$09
-	bne     LD9BA
+	bne     LDDBD
 ;
 ; text_col += 4;
 ;
@@ -50392,15 +51418,15 @@ LDA35:	lda     _pointer
 ; if (text_col >= 27) // wrap to next row
 ;
 	cmp     #$1B
-	bcc     LDA32
+	bcc     LDE35
 ;
 ; else
 ;
-	jmp     LDA34
+	jmp     LDE37
 ;
 ; one_vram_buffer(pointer[text_rendered], NTADR_A(text_x_start + text_col, text_y_start + text_row));
 ;
-LD9BA:	lda     _pointer
+LDDBD:	lda     _pointer
 	ldx     _pointer+1
 	ldy     _text_rendered
 	sta     ptr1
@@ -50411,9 +51437,9 @@ LD9BA:	lda     _pointer
 	lda     _text_y_start
 	clc
 	adc     _text_row
-	bcc     LDA2E
+	bcc     LDE31
 	inx
-LDA2E:	jsr     shlax4
+LDE31:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -50422,9 +51448,9 @@ LDA2E:	jsr     shlax4
 	lda     _text_x_start
 	clc
 	adc     _text_col
-	bcc     LDA2F
+	bcc     LDE32
 	inx
-LDA2F:	ora     ptr1
+LDE32:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -50445,11 +51471,11 @@ LDA2F:	ora     ptr1
 ;
 	lda     _text_col
 	cmp     #$1B
-	bne     LDA32
+	bne     LDE35
 ;
 ; ++text_row;
 ;
-LDA34:	inc     _text_row
+LDE37:	inc     _text_row
 ;
 ; text_col = 0;
 ;
@@ -50458,7 +51484,7 @@ LDA34:	inc     _text_row
 ;
 ; ++text_rendered;
 ;
-LDA32:	inc     _text_rendered
+LDE35:	inc     _text_rendered
 ;
 ; }
 ;
@@ -50518,13 +51544,13 @@ LDA32:	inc     _text_rendered
 	lda     #$00
 	sta     _tempint
 	sta     _tempint+1
-LD955:	lda     _tempint
+LDD58:	lda     _tempint
 	cmp     #$00
 	lda     _tempint+1
 	sbc     #$04
-	bvc     LD95C
+	bvc     LDD5F
 	eor     #$80
-LD95C:	bpl     LD956
+LDD5F:	bpl     LDD59
 ;
 ; vram_put(0x00);
 ;
@@ -50538,13 +51564,13 @@ LD95C:	bpl     LD956
 ; for (tempint = 0; tempint < 1024; ++tempint)
 ;
 	inc     _tempint
-	bne     LD955
+	bne     LDD58
 	inc     _tempint+1
-	jmp     LD955
+	jmp     LDD58
 ;
 ; }
 ;
-LD956:	rts
+LDD59:	rts
 
 .endproc
 
@@ -50602,9 +51628,9 @@ LD956:	rts
 ;
 	lda     #$00
 	sta     _index
-LDA36:	lda     _index
+LDE39:	lda     _index
 	cmp     #$19
-	bcs     LD9A1
+	bcs     LDDA4
 ;
 ; ppu_wait_nmi();
 ;
@@ -50613,11 +51639,11 @@ LDA36:	lda     _index
 ; for (index = 0; index < 25; ++index)
 ;
 	inc     _index
-	jmp     LDA36
+	jmp     LDE39
 ;
 ; }
 ;
-LD9A1:	rts
+LDDA4:	rts
 
 .endproc
 
@@ -50640,9 +51666,9 @@ LD9A1:	rts
 ;
 	lda     #$00
 	sta     _index
-LDA37:	lda     _index
+LDE3A:	lda     _index
 	cmp     #$0A
-	bcs     LDA11
+	bcs     LDE14
 ;
 ; ppu_wait_nmi();
 ;
@@ -50651,11 +51677,11 @@ LDA37:	lda     _index
 ; for (index = 0; index < 10; ++index)
 ;
 	inc     _index
-	jmp     LDA37
+	jmp     LDE3A
 ;
 ; pal_fade_to(4, 0);
 ;
-LDA11:	lda     #$04
+LDE14:	lda     #$04
 	jsr     pusha
 	lda     #$00
 	jmp     _pal_fade_to
@@ -50676,20 +51702,20 @@ LDA11:	lda     #$04
 ; ++temp_frames;
 ;
 	inc     _temp_frames
-	bne     LD9D7
+	bne     LDDDA
 	inc     _temp_frames+1
 ;
 ; if (text_rendered < (text_length-10))
 ;
-LD9D7:	lda     _text_rendered
+LDDDA:	lda     _text_rendered
 	jsr     pusha0
 	lda     _text_length
 	sec
 	sbc     #$0A
-	bcs     LD9DB
+	bcs     LDDDE
 	ldx     #$FF
-LD9DB:	jsr     tosicmp
-	bcs     LD9DC
+LDDDE:	jsr     tosicmp
+	bcs     LDDDF
 ;
 ; if(temp_frames > 40){
 ;
@@ -50697,7 +51723,7 @@ LD9DB:	jsr     tosicmp
 	cmp     #$29
 	lda     _temp_frames+1
 	sbc     #$00
-	bcc     LD9DC
+	bcc     LDDDF
 ;
 ; temp = get_frame_count() % 8;
 ;
@@ -50711,95 +51737,95 @@ LD9DB:	jsr     tosicmp
 ;
 ; }
 ;
-	beq     LD9E4
+	beq     LDDE7
 	cmp     #$01
-	beq     LD9E9
+	beq     LDDEC
 	cmp     #$02
-	beq     LD9EE
+	beq     LDDF1
 	cmp     #$03
-	beq     LD9F3
+	beq     LDDF6
 	cmp     #$04
-	beq     LD9F8
+	beq     LDDFB
 	cmp     #$05
-	beq     LD9FD
+	beq     LDE00
 	cmp     #$06
-	beq     LDA02
+	beq     LDE05
 	cmp     #$07
-	beq     LDA07
-	jmp     LDA38
+	beq     LDE0A
+	jmp     LDE3B
 ;
 ; sfx_play(SFX_TALKING0, 0);
 ;
-LD9E4:	lda     #$09
+LDDE7:	lda     #$09
 ;
 ; break;
 ;
-	jmp     LDA3B
+	jmp     LDE3E
 ;
 ; sfx_play(SFX_TALKING1, 0);
 ;
-LD9E9:	lda     #$0A
+LDDEC:	lda     #$0A
 ;
 ; break;
 ;
-	jmp     LDA3B
+	jmp     LDE3E
 ;
 ; sfx_play(SFX_TALKING2, 0);
 ;
-LD9EE:	lda     #$0B
+LDDF1:	lda     #$0B
 ;
 ; break;
 ;
-	jmp     LDA3B
+	jmp     LDE3E
 ;
 ; sfx_play(SFX_TALKING3, 0);
 ;
-LD9F3:	lda     #$0C
+LDDF6:	lda     #$0C
 ;
 ; break;
 ;
-	jmp     LDA3B
+	jmp     LDE3E
 ;
 ; sfx_play(SFX_TALKING4, 0);
 ;
-LD9F8:	lda     #$0D
+LDDFB:	lda     #$0D
 ;
 ; break;
 ;
-	jmp     LDA3B
+	jmp     LDE3E
 ;
 ; sfx_play(SFX_TALKING5, 0);
 ;
-LD9FD:	lda     #$0E
+LDE00:	lda     #$0E
 ;
 ; break;
 ;
-	jmp     LDA3B
+	jmp     LDE3E
 ;
 ; sfx_play(SFX_TALKING6, 0);
 ;
-LDA02:	lda     #$0F
+LDE05:	lda     #$0F
 ;
 ; break;
 ;
-	jmp     LDA3B
+	jmp     LDE3E
 ;
 ; sfx_play(SFX_TALKING7, 0);
 ;
-LDA07:	lda     #$10
-LDA3B:	jsr     pusha
+LDE0A:	lda     #$10
+LDE3E:	jsr     pusha
 	lda     #$00
 	jsr     _sfx_play
 ;
 ; temp_frames = 0 ;
 ;
-LDA38:	lda     #$00
+LDE3B:	lda     #$00
 	sta     _temp_frames
 	sta     _temp_frames+1
 ;
 ; }
 ;
-LD9DC:	rts
+LDDDF:	rts
 
 .endproc
 
@@ -50879,7 +51905,7 @@ L4DAA:	lda     _largeindex
 	sbc     #$04
 	bvc     L4DB1
 	eor     #$80
-L4DB1:	bpl     LDA3C
+L4DB1:	bpl     LDE3F
 ;
 ; vram_put(talkingtime[largeindex]);
 ;
@@ -50921,7 +51947,7 @@ L4DAC:	inc     _largeindex
 ;
 ; text_x_start = 3;
 ;
-LDA3C:	lda     #$03
+LDE3F:	lda     #$03
 	sta     _text_x_start
 ;
 ; text_y_start = 6;
@@ -50961,7 +51987,7 @@ L4DC5:	lda     #>(_level_0_text)
 ;
 ; break;
 ;
-	jmp     LDA3E
+	jmp     LDE41
 ;
 ; pointer = level_1_text;
 ;
@@ -50982,7 +52008,7 @@ L4DCE:	lda     #>(_level_1_text)
 ;
 ; break;
 ;
-	jmp     LDA3E
+	jmp     LDE41
 ;
 ; pointer = level_2_text;
 ;
@@ -51000,7 +52026,7 @@ L4DD7:	lda     #>(_level_2_text)
 ;
 	ldx     #$00
 	lda     #$11
-LDA3E:	sta     _gas_goal
+LDE41:	sta     _gas_goal
 	stx     _gas_goal+1
 ;
 ; banked_call(BANK_1, bank_1_als_base_init_sprites);
@@ -51175,7 +52201,7 @@ L46E6:	lda     _nametable_index
 	eor     #$80
 L46ED:	asl     a
 	lda     #$00
-	bcc     LDA40
+	bcc     LDE43
 ;
 ; vram_put(intro_scroll_1[nametable_index]);
 ;
@@ -51202,7 +52228,7 @@ L46ED:	asl     a
 ;
 ; nametable_index = 0;
 ;
-LDA40:	sta     _nametable_index
+LDE43:	sta     _nametable_index
 	sta     _nametable_index+1
 ;
 ; cutscene_index = NAMETABLE_A;
@@ -51530,18 +52556,18 @@ L4746:	ldx     #$20
 ;
 	lda     _scroll_page_end
 	cmp     _scroll_page
-	bne     LDA45
+	bne     LDE48
 	lda     _scroll_y
 	cmp     #$97
 	lda     _scroll_y+1
 	sbc     #$00
-	bcc     LDA45
+	bcc     LDE48
 ;
 ; for (index = 0; index < 60; ++index)
 ;
 	lda     #$00
 	sta     _index
-LDA44:	lda     _index
+LDE47:	lda     _index
 	cmp     #$3C
 	bcs     L4767
 ;
@@ -51552,7 +52578,7 @@ LDA44:	lda     _index
 ; for (index = 0; index < 60; ++index)
 ;
 	inc     _index
-	jmp     LDA44
+	jmp     LDE47
 ;
 ; pal_fade_to(4, 0);
 ;
@@ -51567,24 +52593,24 @@ L4767:	lda     #$04
 ;
 ; if (line_counter == 8 && nametable_index <= 960)
 ;
-LDA45:	lda     _line_counter
+LDE48:	lda     _line_counter
 	cmp     #$08
-	jne     LDA4B
+	jne     LDE4E
 	lda     _nametable_index
 	cmp     #$C1
 	lda     _nametable_index+1
 	sbc     #$03
 	bvc     L4776
 	eor     #$80
-L4776:	jpl     LDA4B
+L4776:	jpl     LDE4E
 ;
 ; for (index = 0; index < 32; ++index)
 ;
 	lda     #$00
 	sta     _index
-LDA48:	lda     _index
+LDE4B:	lda     _index
 	cmp     #$20
-	bcs     LDA49
+	bcs     LDE4C
 ;
 ; one_vram_buffer(pointer[nametable_index], cutscene_index);
 ;
@@ -51617,13 +52643,13 @@ L4785:	inc     _cutscene_index
 ; for (index = 0; index < 32; ++index)
 ;
 L4787:	inc     _index
-	jmp     LDA48
+	jmp     LDE4B
 ;
 ; if (attribute_bytes_written < 64)
 ;
-LDA49:	lda     _attribute_bytes_written
+LDE4C:	lda     _attribute_bytes_written
 	cmp     #$40
-	bcs     LDA4A
+	bcs     LDE4D
 ;
 ; one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
 ;
@@ -51687,17 +52713,17 @@ L4790:	lda     _attribute_bytes_written
 ; ++attribute_table_index;
 ;
 	inc     _attribute_table_index
-	bne     LDA4A
+	bne     LDE4D
 	inc     _attribute_table_index+1
 ;
 ; line_counter = 0;
 ;
-LDA4A:	lda     #$00
+LDE4D:	lda     #$00
 	sta     _line_counter
 ;
 ; if (screen_line_counter > 240)
 ;
-LDA4B:	lda     _screen_line_counter
+LDE4E:	lda     _screen_line_counter
 	cmp     #$F1
 	jcc     L47C7
 ;
@@ -51733,7 +52759,7 @@ LDA4B:	lda     _screen_line_counter
 ;
 	lda     _scroll_page
 	cmp     #$01
-	bne     LDA4C
+	bne     LDE4F
 ;
 ; attribute_table_index = NAMETABLE_A_ATTR;
 ;
@@ -51758,9 +52784,9 @@ LDA4B:	lda     _screen_line_counter
 ;
 ; if (scroll_page == 2)
 ;
-LDA4C:	lda     _scroll_page
+LDE4F:	lda     _scroll_page
 	cmp     #$02
-	bne     LDA4D
+	bne     LDE50
 ;
 ; attribute_table_index = NAMETABLE_C_ATTR;
 ;
@@ -51785,9 +52811,9 @@ LDA4C:	lda     _scroll_page
 ;
 ; if (scroll_page == 3)
 ;
-LDA4D:	lda     _scroll_page
+LDE50:	lda     _scroll_page
 	cmp     #$03
-	bne     LDA4E
+	bne     LDE51
 ;
 ; attribute_table_index = NAMETABLE_A_ATTR;
 ;
@@ -51812,9 +52838,9 @@ LDA4D:	lda     _scroll_page
 ;
 ; if (scroll_page == 4)
 ;
-LDA4E:	lda     _scroll_page
+LDE51:	lda     _scroll_page
 	cmp     #$04
-	bne     LDA4F
+	bne     LDE52
 ;
 ; attribute_table_index = NAMETABLE_C_ATTR;
 ;
@@ -51839,7 +52865,7 @@ LDA4E:	lda     _scroll_page
 ;
 ; if (scroll_page == 5)
 ;
-LDA4F:	lda     _scroll_page
+LDE52:	lda     _scroll_page
 	cmp     #$05
 	bne     L47C7
 ;
@@ -51871,7 +52897,7 @@ L47C7:	lda     _scroll_y
 	lda     _scroll_y+1
 	sbc     #$01
 	lda     #$00
-	bcc     LDA51
+	bcc     LDE54
 ;
 ; scroll_y = 0;
 ;
@@ -51880,7 +52906,7 @@ L47C7:	lda     _scroll_y
 ;
 ; scroll(0, scroll_y);
 ;
-LDA51:	jsr     push0
+LDE54:	jsr     push0
 	lda     _scroll_y
 	ldx     _scroll_y+1
 	jsr     _scroll
@@ -51938,10 +52964,10 @@ L47D7:	rts
 ; if (stop_scrolling == 0 && moveframes > 0)
 ;
 L47E0:	lda     _stop_scrolling
-	jne     LDA5D
+	jne     LDE60
 	lda     _moveframes
 	ora     _moveframes+1
-	jeq     LDA5D
+	jeq     LDE60
 ;
 ; scroll_y += 1;
 ;
@@ -51953,12 +52979,12 @@ L47E0:	lda     _stop_scrolling
 ;
 L47E8:	lda     _scrolled_past_once
 	cmp     #$01
-	bne     LDA56
+	bne     LDE59
 	lda     _scroll_y
 	cmp     #$E0
 	lda     _scroll_y+1
 	sbc     #$01
-	bcc     LDA56
+	bcc     LDE59
 ;
 ; stop_scrolling = 1;
 ;
@@ -51973,7 +52999,7 @@ L47E8:	lda     _scrolled_past_once
 ;
 ; if (line_counter == 8 && nametable_index < 1024)
 ;
-LDA56:	lda     _line_counter
+LDE59:	lda     _line_counter
 	cmp     #$08
 	bne     L47F1
 	lda     _nametable_index
@@ -51988,9 +53014,9 @@ L47F4:	bpl     L47F1
 ;
 	lda     #$00
 	sta     _index
-LDA59:	lda     _index
+LDE5C:	lda     _index
 	cmp     #$20
-	bcs     LDA5A
+	bcs     LDE5D
 ;
 ; one_vram_buffer(intro_cutscene_3[nametable_index], cutscene_index);
 ;
@@ -52022,11 +53048,11 @@ L4803:	inc     _cutscene_index
 ; for (index = 0; index < 32; ++index)
 ;
 L4805:	inc     _index
-	jmp     LDA59
+	jmp     LDE5C
 ;
 ; line_counter = 0;
 ;
-LDA5A:	lda     #$00
+LDE5D:	lda     #$00
 	sta     _line_counter
 ;
 ; if (scroll_y == 0x0ff)
@@ -52049,7 +53075,7 @@ L4808:	lda     _scroll_y
 	lda     _scroll_y+1
 	sbc     #$01
 	lda     #$00
-	bcc     LDA5C
+	bcc     LDE5F
 ;
 ; scroll_y = 0;
 ;
@@ -52058,7 +53084,7 @@ L4808:	lda     _scroll_y
 ;
 ; scroll(0, scroll_y);
 ;
-LDA5C:	jsr     push0
+LDE5F:	jsr     push0
 	lda     _scroll_y
 	ldx     _scroll_y+1
 	jsr     _scroll
@@ -52075,19 +53101,19 @@ LDA5C:	jsr     push0
 ;
 ; if (stop_scrolling == 1 && moveframes == 100)
 ;
-LDA5D:	lda     _stop_scrolling
+LDE60:	lda     _stop_scrolling
 	cmp     #$01
 	bne     L4817
 	lda     _moveframes+1
-	bne     LDA60
+	bne     LDE63
 	lda     _moveframes
 	cmp     #$64
-	beq     LDA5F
-LDA60:	jmp     _read_input
+	beq     LDE62
+LDE63:	jmp     _read_input
 ;
 ; wait_and_fade_out();
 ;
-LDA5F:	jsr     _wait_and_fade_out
+LDE62:	jsr     _wait_and_fade_out
 ;
 ; banked_call(BANK_1, bank_1_instructions_init);
 ;
@@ -52164,13 +53190,13 @@ L4817:	jmp     _read_input
 	lda     #$00
 	sta     _largeindex
 	sta     _largeindex+1
-LA191:	lda     _largeindex
+LA591:	lda     _largeindex
 	cmp     #$00
 	lda     _largeindex+1
 	sbc     #$04
-	bvc     LA198
+	bvc     LA598
 	eor     #$80
-LA198:	bpl     LA192
+LA598:	bpl     LA592
 ;
 ; vram_put(abduction_cutscene[largeindex]);
 ;
@@ -52192,7 +53218,7 @@ LA198:	bpl     LA192
 ;
 	lda     _index
 	cmp     #$29
-	bcc     LA193
+	bcc     LA593
 ;
 ; flush_vram_update2();
 ;
@@ -52205,14 +53231,14 @@ LA198:	bpl     LA192
 ;
 ; for (largeindex = 0; largeindex < 1024; ++largeindex)
 ;
-LA193:	inc     _largeindex
-	bne     LA191
+LA593:	inc     _largeindex
+	bne     LA591
 	inc     _largeindex+1
-	jmp     LA191
+	jmp     LA591
 ;
 ; vram_adr(NAMETABLE_C);
 ;
-LA192:	ldx     #$28
+LA592:	ldx     #$28
 	lda     #$00
 	jsr     _vram_adr
 ;
@@ -52221,13 +53247,13 @@ LA192:	ldx     #$28
 	lda     #$00
 	sta     _largeindex
 	sta     _largeindex+1
-LA1A6:	lda     _largeindex
+LA5A6:	lda     _largeindex
 	cmp     #$00
 	lda     _largeindex+1
 	sbc     #$04
-	bvc     LA1AD
+	bvc     LA5AD
 	eor     #$80
-LA1AD:	bpl     LA1A7
+LA5AD:	bpl     LA5A7
 ;
 ; vram_put(intro_cutscene_2x[largeindex]);
 ;
@@ -52249,7 +53275,7 @@ LA1AD:	bpl     LA1A7
 ;
 	lda     _index
 	cmp     #$29
-	bcc     LA1A8
+	bcc     LA5A8
 ;
 ; flush_vram_update2();
 ;
@@ -52262,14 +53288,14 @@ LA1AD:	bpl     LA1A7
 ;
 ; for (largeindex = 0; largeindex < 1024; ++largeindex)
 ;
-LA1A8:	inc     _largeindex
-	bne     LA1A6
+LA5A8:	inc     _largeindex
+	bne     LA5A6
 	inc     _largeindex+1
-	jmp     LA1A6
+	jmp     LA5A6
 ;
 ; ppu_on_all();
 ;
-LA1A7:	jsr     _ppu_on_all
+LA5A7:	jsr     _ppu_on_all
 ;
 ; pal_fade_to(0, 4);
 ;
@@ -52362,7 +53388,7 @@ LA1A7:	jsr     _ppu_on_all
 ;
 	lda     _gas_pump_level_quality
 	cmp     #$03
-	bne     LDA62
+	bne     LDE65
 ;
 ; oam_meta_spr(0xc0, 0xa0, al_eyebrows_perfect);
 ;
@@ -52378,10 +53404,10 @@ LA1A7:	jsr     _ppu_on_all
 ;
 ; else if (gas_pump_level_quality == BAD_PUMP)
 ;
-	jmp     LDA61
-LDA62:	lda     _gas_pump_level_quality
+	jmp     LDE64
+LDE65:	lda     _gas_pump_level_quality
 	cmp     #$01
-	bne     LDA63
+	bne     LDE66
 ;
 ; oam_meta_spr(0xc0, 0xa0, al_eyebrows_angry);
 ;
@@ -52397,11 +53423,11 @@ LDA62:	lda     _gas_pump_level_quality
 ;
 ; else if (gas_pump_level_quality == AWFUL_PUMP)
 ;
-	jmp     LDA61
+	jmp     LDE64
 ;
 ; oam_meta_spr(0xc0, 0xa0, al_eyebrows_base);
 ;
-LDA63:	jsr     decsp2
+LDE66:	jsr     decsp2
 	lda     #$C0
 	ldy     #$01
 	sta     (sp),y
@@ -52410,7 +53436,7 @@ LDA63:	jsr     decsp2
 	sta     (sp),y
 	lda     #<(_al_eyebrows_base)
 	ldx     #>(_al_eyebrows_base)
-LDA61:	jsr     _oam_meta_spr
+LDE64:	jsr     _oam_meta_spr
 ;
 ; oam_meta_spr(0xb0, 0xc8, BigAlsShirt);
 ;
@@ -52646,7 +53672,7 @@ LDA61:	jsr     _oam_meta_spr
 ;
 	lda     _sc_eye_frames
 	cmp     #$8C
-	bcs     LDA6C
+	bcs     LDE6F
 ;
 ; if (gas_pump_level_quality == PERFECT_PUMP)
 ;
@@ -52682,9 +53708,9 @@ L4E1B:	jsr     decsp2
 ;
 ; else if (sc_eye_frames < 144)
 ;
-LDA6C:	lda     _sc_eye_frames
+LDE6F:	lda     _sc_eye_frames
 	cmp     #$90
-	bcs     LDA6D
+	bcs     LDE70
 ;
 ; oam_meta_spr(0xc0, 0xa8, al_blink_1);
 ;
@@ -52701,9 +53727,9 @@ LDA6C:	lda     _sc_eye_frames
 ;
 ; else if (sc_eye_frames < 149)
 ;
-LDA6D:	lda     _sc_eye_frames
+LDE70:	lda     _sc_eye_frames
 	cmp     #$95
-	bcs     LDA6E
+	bcs     LDE71
 ;
 ; oam_meta_spr(0xc0, 0xa8, al_blink_2);
 ;
@@ -52720,7 +53746,7 @@ LDA6D:	lda     _sc_eye_frames
 ;
 ; else if (sc_eye_frames < 154)
 ;
-LDA6E:	lda     _sc_eye_frames
+LDE71:	lda     _sc_eye_frames
 	cmp     #$9A
 	bcs     L4E35
 ;
@@ -52786,7 +53812,7 @@ L4E35:	jsr     decsp2
 ;
 	lda     _sc_mouth_frames
 	cmp     #$14
-	bcs     LDA70
+	bcs     LDE73
 ;
 ; oam_meta_spr(0xc0, 0xc0, al_mouth_base);
 ;
@@ -52802,9 +53828,9 @@ L4E35:	jsr     decsp2
 ;
 ; else if (sc_mouth_frames < 28)
 ;
-LDA70:	lda     _sc_mouth_frames
+LDE73:	lda     _sc_mouth_frames
 	cmp     #$1C
-	bcs     LDA71
+	bcs     LDE74
 ;
 ; oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
 ;
@@ -52820,9 +53846,9 @@ LDA70:	lda     _sc_mouth_frames
 ;
 ; else if (sc_mouth_frames < 36)
 ;
-LDA71:	lda     _sc_mouth_frames
+LDE74:	lda     _sc_mouth_frames
 	cmp     #$24
-	bcs     LDA72
+	bcs     LDE75
 ;
 ; oam_meta_spr(0xc0, 0xc0, al_mouth_base);
 ;
@@ -52838,9 +53864,9 @@ LDA71:	lda     _sc_mouth_frames
 ;
 ; else if (sc_mouth_frames < 48)
 ;
-LDA72:	lda     _sc_mouth_frames
+LDE75:	lda     _sc_mouth_frames
 	cmp     #$30
-	bcs     LDA73
+	bcs     LDE76
 ;
 ; oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
 ;
@@ -52856,9 +53882,9 @@ LDA72:	lda     _sc_mouth_frames
 ;
 ; else if (sc_mouth_frames < 59)
 ;
-LDA73:	lda     _sc_mouth_frames
+LDE76:	lda     _sc_mouth_frames
 	cmp     #$3B
-	bcs     LDA74
+	bcs     LDE77
 ;
 ; oam_meta_spr(0xc0, 0xc0, al_mouth_open_oh);
 ;
@@ -52874,9 +53900,9 @@ LDA73:	lda     _sc_mouth_frames
 ;
 ; else if (sc_mouth_frames < 70)
 ;
-LDA74:	lda     _sc_mouth_frames
+LDE77:	lda     _sc_mouth_frames
 	cmp     #$46
-	bcs     LDA75
+	bcs     LDE78
 ;
 ; oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
 ;
@@ -52892,9 +53918,9 @@ LDA74:	lda     _sc_mouth_frames
 ;
 ; else if (sc_mouth_frames < 79)
 ;
-LDA75:	lda     _sc_mouth_frames
+LDE78:	lda     _sc_mouth_frames
 	cmp     #$4F
-	bcs     LDA76
+	bcs     LDE79
 ;
 ; oam_meta_spr(0xc0, 0xc0, al_mouth_base);
 ;
@@ -52910,9 +53936,9 @@ LDA75:	lda     _sc_mouth_frames
 ;
 ; else if (sc_mouth_frames < 86)
 ;
-LDA76:	lda     _sc_mouth_frames
+LDE79:	lda     _sc_mouth_frames
 	cmp     #$56
-	bcs     LDA77
+	bcs     LDE7A
 ;
 ; oam_meta_spr(0xc0, 0xc0, al_mouth_open_wide);
 ;
@@ -52928,9 +53954,9 @@ LDA76:	lda     _sc_mouth_frames
 ;
 ; else if (sc_mouth_frames < 99)
 ;
-LDA77:	lda     _sc_mouth_frames
+LDE7A:	lda     _sc_mouth_frames
 	cmp     #$63
-	bcs     LDA78
+	bcs     LDE7B
 ;
 ; oam_meta_spr(0xc0, 0xc0, al_mouth_open_1);
 ;
@@ -52946,7 +53972,7 @@ LDA77:	lda     _sc_mouth_frames
 ;
 ; else if (sc_mouth_frames < 110)
 ;
-LDA78:	lda     _sc_mouth_frames
+LDE7B:	lda     _sc_mouth_frames
 	cmp     #$6E
 	bcs     L4E85
 ;
@@ -53300,7 +54326,7 @@ L5300:	lda     _largeindex
 L5307:	asl     a
 	lda     #$00
 	tax
-	bcc     LDA7C
+	bcc     LDE7F
 ;
 ; vram_put(evaluation[largeindex]);
 ;
@@ -53342,17 +54368,17 @@ L5302:	inc     _largeindex
 ;
 ; gas_pumped = 0;
 ;
-LDA7C:	sta     _gas_pumped
+LDE7F:	sta     _gas_pumped
 	sta     _gas_pumped+1
 ;
 ; for (index = 0; index < gas4; ++index)
 ;
 	sta     _index
-LDA7D:	lda     _index
+LDE80:	lda     _index
 	cmp     _gas4
 	txa
 	sbc     #$00
-	bcs     LDA7E
+	bcs     LDE81
 ;
 ; gas_pumped += 1000;
 ;
@@ -53367,17 +54393,17 @@ LDA7D:	lda     _index
 ; for (index = 0; index < gas4; ++index)
 ;
 	inc     _index
-	jmp     LDA7D
+	jmp     LDE80
 ;
 ; for (index = 0; index < gas3; ++index)
 ;
-LDA7E:	lda     #$00
+LDE81:	lda     #$00
 	sta     _index
-LDA7F:	lda     _index
+LDE82:	lda     _index
 	cmp     _gas3
 	txa
 	sbc     #$00
-	bcs     LDA80
+	bcs     LDE83
 ;
 ; gas_pumped += 100;
 ;
@@ -53391,17 +54417,17 @@ LDA7F:	lda     _index
 ; for (index = 0; index < gas3; ++index)
 ;
 L5329:	inc     _index
-	jmp     LDA7F
+	jmp     LDE82
 ;
 ; for (index = 0; index < gas2; ++index)
 ;
-LDA80:	lda     #$00
+LDE83:	lda     #$00
 	sta     _index
-LDA81:	lda     _index
+LDE84:	lda     _index
 	cmp     _gas2
 	txa
 	sbc     #$00
-	bcs     LDA82
+	bcs     LDE85
 ;
 ; gas_pumped += 10;
 ;
@@ -53415,11 +54441,11 @@ LDA81:	lda     _index
 ; for (index = 0; index < gas2; ++index)
 ;
 L5334:	inc     _index
-	jmp     LDA81
+	jmp     LDE84
 ;
 ; gas_pumped += gas1;
 ;
-LDA82:	lda     _gas1
+LDE85:	lda     _gas1
 	clc
 	adc     _gas_pumped
 	sta     _gas_pumped
@@ -53431,7 +54457,7 @@ LDA82:	lda     _gas1
 ;
 	lda     #$00
 	sta     _index
-LDA83:	lda     _index
+LDE86:	lda     _index
 	cmp     _gas_goal
 	txa
 	sbc     _gas_goal+1
@@ -53449,7 +54475,7 @@ LDA83:	lda     _index
 ; for (index = 0; index < gas_goal; ++index)
 ;
 L5341:	inc     _index
-	jmp     LDA83
+	jmp     LDE86
 ;
 ; switch(gas_goal){
 ;
@@ -53482,7 +54508,7 @@ L5346:	lda     #$30
 ;
 ; break;
 ;
-	jmp     LDA8C
+	jmp     LDE8F
 ;
 ; one_vram_buffer(48, NTADR_A(21, 5));
 ;
@@ -53498,7 +54524,7 @@ L5358:	lda     #$30
 ;
 ; break;
 ;
-	jmp     LDA8C
+	jmp     LDE8F
 ;
 ; one_vram_buffer(1+48, NTADR_A(21, 5));
 ;
@@ -53511,7 +54537,7 @@ L536A:	lda     #$31
 ; one_vram_buffer(7+48, NTADR_A(22, 5));
 ;
 	lda     #$37
-LDA8C:	jsr     pusha
+LDE8F:	jsr     pusha
 	ldx     #$20
 	lda     #$B6
 	jsr     _one_vram_buffer
@@ -53642,7 +54668,7 @@ L53BC:	lda     #$03
 ;
 ; else if (gas_pumped >= gas_goal_hundreds - 5 && gas_pumped <= gas_goal_hundreds + 5)
 ;
-	jmp     LDA7A
+	jmp     LDE7D
 L53BB:	lda     _gas_pumped
 	ldx     _gas_pumped+1
 	jsr     pushax
@@ -53673,7 +54699,7 @@ L53C5:	lda     #$02
 ;
 ; else if (gas_pumped >= gas_goal_hundreds + 5)
 ;
-	jmp     LDA7A
+	jmp     LDE7D
 L53C4:	lda     _gas_pumped
 	ldx     _gas_pumped+1
 	jsr     pushax
@@ -53692,7 +54718,7 @@ L53CF:	jsr     tosicmp
 ;
 ; else if (gas_pumped >= gas_goal_hundreds - 100)
 ;
-	jmp     LDA7A
+	jmp     LDE7D
 L53CD:	lda     _gas_pumped
 	ldx     _gas_pumped+1
 	jsr     pushax
@@ -53711,17 +54737,17 @@ L53D5:	jsr     tosicmp
 ;
 ; else
 ;
-	jmp     LDA7A
+	jmp     LDE7D
 ;
 ; gas_pump_level_quality = AWFUL_PUMP;
 ;
 L53D3:	lda     #$00
-LDA7A:	sta     _gas_pump_level_quality
+LDE7D:	sta     _gas_pump_level_quality
 ;
 ; if (levels_complete == 0)
 ;
 	lda     _levels_complete
-	bne     LDA84
+	bne     LDE87
 ;
 ; switch (gas_pump_level_quality)
 ;
@@ -53738,7 +54764,7 @@ LDA7A:	sta     _gas_pump_level_quality
 	beq     L53E1
 	cmp     #$04
 	beq     L53F8
-	jmp     LDA86
+	jmp     LDE89
 ;
 ; pointer = level_0_perfect;
 ;
@@ -53758,7 +54784,7 @@ L53E1:	lda     #>(_level_0_perfect)
 ;
 ; break;
 ;
-	jmp     LDA86
+	jmp     LDE89
 ;
 ; pointer = level_0_good;
 ;
@@ -53778,7 +54804,7 @@ L53E9:	lda     #>(_level_0_good)
 ;
 ; break;
 ;
-	jmp     LDA86
+	jmp     LDE89
 ;
 ; pointer = level_0_bad;
 ;
@@ -53789,11 +54815,11 @@ L53F1:	lda     #>(_level_0_bad)
 ;
 ; text_length = sizeof(level_0_bad);
 ;
-	lda     #$25
+	lda     #$24
 ;
 ; break;
 ;
-	jmp     LDA89
+	jmp     LDE8C
 ;
 ; pointer = level_0_over;
 ;
@@ -53808,7 +54834,7 @@ L53F8:	lda     #>(_level_0_over)
 ;
 ; break;
 ;
-	jmp     LDA89
+	jmp     LDE8C
 ;
 ; pointer = level_0_awful;
 ;
@@ -53823,13 +54849,13 @@ L53FF:	lda     #>(_level_0_awful)
 ;
 ; break;
 ;
-	jmp     LDA89
+	jmp     LDE8C
 ;
 ; else if (levels_complete == 1)
 ;
-LDA84:	lda     _levels_complete
+LDE87:	lda     _levels_complete
 	cmp     #$01
-	bne     LDA85
+	bne     LDE88
 ;
 ; switch (gas_pump_level_quality)
 ;
@@ -53846,7 +54872,7 @@ LDA84:	lda     _levels_complete
 	beq     L540D
 	cmp     #$04
 	beq     L5424
-	jmp     LDA86
+	jmp     LDE89
 ;
 ; pointer = level_1_perfect;
 ;
@@ -53866,7 +54892,7 @@ L540D:	lda     #>(_level_1_perfect)
 ;
 ; break;
 ;
-	jmp     LDA86
+	jmp     LDE89
 ;
 ; pointer = level_1_good;
 ;
@@ -53886,7 +54912,7 @@ L5415:	lda     #>(_level_1_good)
 ;
 ; break;
 ;
-	jmp     LDA86
+	jmp     LDE89
 ;
 ; pointer = level_1_bad;
 ;
@@ -53901,7 +54927,7 @@ L541D:	lda     #>(_level_1_bad)
 ;
 ; break;
 ;
-	jmp     LDA89
+	jmp     LDE8C
 ;
 ; pointer = level_1_over;
 ;
@@ -53916,7 +54942,7 @@ L5424:	lda     #>(_level_1_over)
 ;
 ; break;
 ;
-	jmp     LDA89
+	jmp     LDE8C
 ;
 ; pointer = level_1_awful;
 ;
@@ -53931,13 +54957,13 @@ L542B:	lda     #>(_level_1_awful)
 ;
 ; break;
 ;
-	jmp     LDA89
+	jmp     LDE8C
 ;
 ; else if (levels_complete == 2)
 ;
-LDA85:	lda     _levels_complete
+LDE88:	lda     _levels_complete
 	cmp     #$02
-	bne     LDA86
+	bne     LDE89
 ;
 ; switch (gas_pump_level_quality)
 ;
@@ -53954,7 +54980,7 @@ LDA85:	lda     _levels_complete
 	beq     L5439
 	cmp     #$04
 	beq     L5454
-	jmp     LDA86
+	jmp     LDE89
 ;
 ; pointer = level_2_perfect;
 ;
@@ -53979,7 +55005,7 @@ L5439:	lda     #>(_level_2_perfect)
 ;
 ; break;
 ;
-	jmp     LDA86
+	jmp     LDE89
 ;
 ; pointer = level_2_good;
 ;
@@ -54004,7 +55030,7 @@ L5443:	lda     #>(_level_2_good)
 ;
 ; break;
 ;
-	jmp     LDA86
+	jmp     LDE89
 ;
 ; pointer = level_2_bad;
 ;
@@ -54019,7 +55045,7 @@ L544D:	lda     #>(_level_2_bad)
 ;
 ; break;
 ;
-	jmp     LDA89
+	jmp     LDE8C
 ;
 ; pointer = level_2_over;
 ;
@@ -54034,7 +55060,7 @@ L5454:	lda     #>(_level_2_over)
 ;
 ; break;
 ;
-	jmp     LDA89
+	jmp     LDE8C
 ;
 ; pointer = level_2_awful;
 ;
@@ -54046,17 +55072,17 @@ L545B:	lda     #>(_level_2_awful)
 ; text_length = sizeof(level_2_awful);
 ;
 	lda     #$30
-LDA89:	sta     _text_length
+LDE8C:	sta     _text_length
 ;
 ; switch(gas_pump_level_quality){
 ;
-LDA86:	lda     _gas_pump_level_quality
+LDE89:	lda     _gas_pump_level_quality
 ;
 ; }
 ;
 	beq     L5464
 	cmp     #$01
-	beq     LDA87
+	beq     LDE8A
 	cmp     #$03
 	bne     L5464
 ;
@@ -54073,7 +55099,7 @@ LDA86:	lda     _gas_pump_level_quality
 ; banked_call(BANK_1, bank_1_als_base_init_sprites);
 ;
 L5464:	lda     #$01
-LDA87:	jsr     pusha
+LDE8A:	jsr     pusha
 	lda     #<(_bank_1_als_base_init_sprites)
 	ldx     #>(_bank_1_als_base_init_sprites)
 	jsr     _banked_call
@@ -54128,7 +55154,7 @@ L547E:	lda     _moveframes
 	cmp     #$3D
 	lda     _moveframes+1
 	sbc     #$00
-	bcc     LDA8D
+	bcc     LDE90
 ;
 ; moveframes = 0;
 ;
@@ -54138,7 +55164,7 @@ L547E:	lda     _moveframes
 ;
 ; if (text_row < 6)
 ;
-LDA8D:	lda     _text_row
+LDE90:	lda     _text_row
 	cmp     #$06
 	bcs     L5485
 ;
@@ -54284,9 +55310,9 @@ L549E:	rts
 	lda     #$01
 	sta     _scroll_page
 ;
-; scroll_page_end = 2;  // this is for the 3 page scroll
+; scroll_page_end = 3;  // this is for the 3 page scroll
 ;
-	lda     #$02
+	lda     #$03
 	sta     _scroll_page_end
 ;
 ; scroll(0, 0); // reset scrolling
@@ -54328,13 +55354,13 @@ L549E:	rts
 	lda     #$00
 	sta     _nametable_index
 	sta     _nametable_index+1
-L5CC8:	lda     _nametable_index
+L60C9:	lda     _nametable_index
 	cmp     #$00
 	lda     _nametable_index+1
 	sbc     #$04
-	bvc     L5CCF
+	bvc     L60D0
 	eor     #$80
-L5CCF:	bpl     L5CC9
+L60D0:	bpl     L60CA
 ;
 ; vram_put(ending_scroll_1[nametable_index]);
 ;
@@ -54355,13 +55381,13 @@ L5CCF:	bpl     L5CC9
 ; for (nametable_index = 0; nametable_index < 1024; ++nametable_index)
 ;
 	inc     _nametable_index
-	bne     L5CC8
+	bne     L60C9
 	inc     _nametable_index+1
-	jmp     L5CC8
+	jmp     L60C9
 ;
 ; vram_adr(NAMETABLE_C);
 ;
-L5CC9:	ldx     #$28
+L60CA:	ldx     #$28
 	lda     #$00
 	jsr     _vram_adr
 ;
@@ -54370,15 +55396,15 @@ L5CC9:	ldx     #$28
 	lda     #$00
 	sta     _nametable_index
 	sta     _nametable_index+1
-L5CD8:	lda     _nametable_index
+L60D9:	lda     _nametable_index
 	cmp     #$00
 	lda     _nametable_index+1
 	sbc     #$04
-	bvc     L5CDF
+	bvc     L60E0
 	eor     #$80
-L5CDF:	asl     a
+L60E0:	asl     a
 	lda     #$00
-	bcc     LDA8F
+	bcc     LDE92
 ;
 ; vram_put(ending_scroll_2[nametable_index]);
 ;
@@ -54399,13 +55425,13 @@ L5CDF:	asl     a
 ; for (nametable_index = 0; nametable_index < 1024; ++nametable_index)
 ;
 	inc     _nametable_index
-	bne     L5CD8
+	bne     L60D9
 	inc     _nametable_index+1
-	jmp     L5CD8
+	jmp     L60D9
 ;
 ; nametable_index = 0;
 ;
-LDA8F:	sta     _nametable_index
+LDE92:	sta     _nametable_index
 	sta     _nametable_index+1
 ;
 ; cutscene_index = NAMETABLE_A;
@@ -54426,21 +55452,21 @@ LDA8F:	sta     _nametable_index
 	lda     #$00
 	sta     _attribute_bytes_written
 ;
-; pointer = ending_scroll_2;
+; pointer = ending_scroll_3;
 ;
-	lda     #>(_ending_scroll_2)
+	lda     #>(_ending_scroll_3)
 	sta     _pointer+1
-	lda     #<(_ending_scroll_2)
+	lda     #<(_ending_scroll_3)
 	sta     _pointer
 ;
-; set_chr_bank_0(CUTSCENE_CHR_0);
+; set_chr_bank_0(GAMEOVER_CHR_1);
 ;
-	lda     #$06
+	lda     #$0D
 	jsr     _set_chr_bank_0
 ;
-; set_chr_bank_1(CUTSCENE_CHR_1);
+; set_chr_bank_1(GAMEOVER_CHR_1);
 ;
-	lda     #$07
+	lda     #$0D
 	jsr     _set_chr_bank_1
 ;
 ; ppu_on_all(); // turn on screen
@@ -54454,9 +55480,9 @@ LDA8F:	sta     _nametable_index
 	lda     #$04
 	jsr     _pal_fade_to
 ;
-; game_mode = MODE_INTRO_SCROLL;
+; game_mode = MODE_GAME_ENDING;
 ;
-	lda     #$03
+	lda     #$0C
 	sta     _game_mode
 ;
 ; music_play(SONG_SCROLL); //todo replace with ending music?
@@ -54477,39 +55503,129 @@ LDA8F:	sta     _nametable_index
 .segment	"BANK2"
 
 ;
+; ppu_wait_nmi();  
+;
+	jsr     _ppu_wait_nmi
+;
+; if ((scroll_page == scroll_page_end) && scroll_y > 8)
+;
+	lda     _scroll_page_end
+	cmp     _scroll_page
+	jne     LDE97
+	lda     _scroll_y
+	cmp     #$09
+	lda     _scroll_y+1
+	sbc     #$00
+	bcc     LDE97
+;
+; for(largeindex = 0; largeindex < 600; ++largeindex){
+;
+	lda     #$00
+	sta     _largeindex
+	sta     _largeindex+1
+L6104:	lda     _largeindex
+	cmp     #$58
+	lda     _largeindex+1
+	sbc     #$02
+	bvc     L610B
+	eor     #$80
+L610B:	bpl     L6105
+;
 ; ppu_wait_nmi();
 ;
 	jsr     _ppu_wait_nmi
 ;
-; if (scroll_page == scroll_page_end)
+; for(largeindex = 0; largeindex < 600; ++largeindex){
 ;
-	lda     _scroll_page_end
-	cmp     _scroll_page
+	inc     _largeindex
+	bne     L6104
+	inc     _largeindex+1
+	jmp     L6104
+;
+; music_stop();
+;
+L6105:	jsr     _music_stop
+;
+; for(largeindex = 0; largeindex < 100; ++largeindex){
+;
+	lda     #$00
+	sta     _largeindex
+	sta     _largeindex+1
+L6110:	lda     _largeindex
+	cmp     #$64
+	lda     _largeindex+1
+	sbc     #$00
+	bvc     L6117
+	eor     #$80
+L6117:	bpl     L6111
 ;
 ; ppu_wait_nmi();
 ;
-	jeq     _ppu_wait_nmi
+	jsr     _ppu_wait_nmi
+;
+; for(largeindex = 0; largeindex < 100; ++largeindex){
+;
+	inc     _largeindex
+	bne     L6110
+	inc     _largeindex+1
+	jmp     L6110
+;
+; sample_play(SAMPLE_HAHA);
+;
+L6111:	lda     #$24
+	jsr     _sample_play
+;
+; for(index = 0; index < 26; ++index){
+;
+	lda     #$00
+	sta     _index
+LDE96:	lda     _index
+	cmp     #$1A
+	bcs     L611E
+;
+; ppu_wait_nmi();
+;
+	jsr     _ppu_wait_nmi
+;
+; for(index = 0; index < 26; ++index){
+;
+	inc     _index
+	jmp     LDE96
+;
+; sample_play(SAMPLE_HAHA);
+;
+L611E:	lda     #$24
+	jsr     _sample_play
+;
+; game_mode = MODE_GAME_ENDLOOP;
+;
+	lda     #$0F
+	sta     _game_mode
+;
+; return;
+;
+	rts
 ;
 ; if (line_counter == 8 && nametable_index <= 960)
 ;
-	lda     _line_counter
+LDE97:	lda     _line_counter
 	cmp     #$08
-	jne     LDA97
+	jne     L612A
 	lda     _nametable_index
 	cmp     #$C1
 	lda     _nametable_index+1
 	sbc     #$03
-	bvc     L5D04
+	bvc     L612D
 	eor     #$80
-L5D04:	jpl     LDA97
+L612D:	jpl     L612A
 ;
 ; for (index = 0; index < 32; ++index)
 ;
 	lda     #$00
 	sta     _index
-LDA94:	lda     _index
+LDE9A:	lda     _index
 	cmp     #$20
-	bcs     LDA95
+	bcs     LDE9B
 ;
 ; one_vram_buffer(pointer[nametable_index], cutscene_index);
 ;
@@ -54530,25 +55646,25 @@ LDA94:	lda     _index
 ; ++nametable_index;
 ;
 	inc     _nametable_index
-	bne     L5D13
+	bne     L613C
 	inc     _nametable_index+1
 ;
 ; ++cutscene_index;
 ;
-L5D13:	inc     _cutscene_index
-	bne     L5D15
+L613C:	inc     _cutscene_index
+	bne     L613E
 	inc     _cutscene_index+1
 ;
 ; for (index = 0; index < 32; ++index)
 ;
-L5D15:	inc     _index
-	jmp     LDA94
+L613E:	inc     _index
+	jmp     LDE9A
 ;
 ; if (attribute_bytes_written < 64)
 ;
-LDA95:	lda     _attribute_bytes_written
+LDE9B:	lda     _attribute_bytes_written
 	cmp     #$40
-	bcs     LDA96
+	bcs     LDE9C
 ;
 ; one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
 ;
@@ -54579,12 +55695,12 @@ LDA95:	lda     _attribute_bytes_written
 ; ++attribute_table_index;
 ;
 	inc     _attribute_table_index
-	bne     L5D1E
+	bne     L6147
 	inc     _attribute_table_index+1
 ;
 ; one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
 ;
-L5D1E:	lda     _attribute_bytes_written
+L6147:	lda     _attribute_bytes_written
 	clc
 	adc     #$C0
 	pha
@@ -54612,29 +55728,40 @@ L5D1E:	lda     _attribute_bytes_written
 ; ++attribute_table_index;
 ;
 	inc     _attribute_table_index
-	bne     LDA96
+	bne     LDE9C
 	inc     _attribute_table_index+1
 ;
 ; line_counter = 0;
 ;
-LDA96:	lda     #$00
+LDE9C:	lda     #$00
 	sta     _line_counter
+;
+; if (scroll_y > 0x1df)
+;
+L612A:	lda     _scroll_y
+	cmp     #$E0
+	lda     _scroll_y+1
+	sbc     #$01
+	lda     #$00
+	bcc     LDE9E
+;
+; scroll_y = 0;
+;
+	sta     _scroll_y
+	sta     _scroll_y+1
+;
+; scroll(0, scroll_y);
+;
+LDE9E:	jsr     push0
+	lda     _scroll_y
+	ldx     _scroll_y+1
+	jsr     _scroll
 ;
 ; if (screen_line_counter > 240)
 ;
-LDA97:	lda     _screen_line_counter
+	lda     _screen_line_counter
 	cmp     #$F1
-	jcc     L5D4D
-;
-; set_chr_bank_0(CUTSCENE_CHR_0);
-;
-	lda     #$06
-	jsr     _set_chr_bank_0
-;
-; set_chr_bank_1(CUTSCENE_CHR_1);
-;
-	lda     #$07
-	jsr     _set_chr_bank_1
+	bcc     L6158
 ;
 ; ++scroll_page;
 ;
@@ -54645,152 +55772,14 @@ LDA97:	lda     _screen_line_counter
 	lda     #$00
 	sta     _screen_line_counter
 ;
-; nametable_index = 0;
-;
-	sta     _nametable_index
-	sta     _nametable_index+1
-;
-; attribute_bytes_written = 0;
-;
-	sta     _attribute_bytes_written
-;
-; if (scroll_page == 1)
-;
-	lda     _scroll_page
-	cmp     #$01
-	bne     LDA98
-;
-; attribute_table_index = NAMETABLE_A_ATTR;
-;
-	ldx     #$23
-	lda     #$C0
-	sta     _attribute_table_index
-	stx     _attribute_table_index+1
-;
-; cutscene_index = NAMETABLE_A;
-;
-	ldx     #$20
-	lda     #$00
-	sta     _cutscene_index
-	stx     _cutscene_index+1
-;
-; pointer = intro_scroll_2;
-;
-	lda     #>(_intro_scroll_2)
-	sta     _pointer+1
-	lda     #<(_intro_scroll_2)
-	sta     _pointer
-;
-; if (scroll_page == 2)
-;
-LDA98:	lda     _scroll_page
-	cmp     #$02
-	bne     LDA99
-;
-; attribute_table_index = NAMETABLE_C_ATTR;
-;
-	ldx     #$2B
-	lda     #$C0
-	sta     _attribute_table_index
-	stx     _attribute_table_index+1
-;
-; cutscene_index = NAMETABLE_C;
-;
-	ldx     #$28
-	lda     #$00
-	sta     _cutscene_index
-	stx     _cutscene_index+1
-;
-; pointer = intro_scroll_3;
-;
-	lda     #>(_intro_scroll_3)
-	sta     _pointer+1
-	lda     #<(_intro_scroll_3)
-	sta     _pointer
-;
-; if (scroll_page == 3)
-;
-LDA99:	lda     _scroll_page
-	cmp     #$03
-	bne     LDA9A
-;
-; attribute_table_index = NAMETABLE_A_ATTR;
-;
-	ldx     #$23
-	lda     #$C0
-	sta     _attribute_table_index
-	stx     _attribute_table_index+1
-;
-; cutscene_index = NAMETABLE_A;
-;
-	ldx     #$20
-	lda     #$00
-	sta     _cutscene_index
-	stx     _cutscene_index+1
-;
-; pointer = intro_scroll_4;
-;
-	lda     #>(_intro_scroll_4)
-	sta     _pointer+1
-	lda     #<(_intro_scroll_4)
-	sta     _pointer
-;
-; if (scroll_page == 4)
-;
-LDA9A:	lda     _scroll_page
-	cmp     #$04
-	bne     L5D4D
-;
-; attribute_table_index = NAMETABLE_C_ATTR;
-;
-	ldx     #$2B
-	lda     #$C0
-	sta     _attribute_table_index
-	stx     _attribute_table_index+1
-;
-; cutscene_index = NAMETABLE_C;
-;
-	ldx     #$28
-	lda     #$00
-	sta     _cutscene_index
-	stx     _cutscene_index+1
-;
-; pointer = intro_scroll_5;
-;
-	lda     #>(_intro_scroll_5)
-	sta     _pointer+1
-	lda     #<(_intro_scroll_5)
-	sta     _pointer
-;
-; if (scroll_y > 0x1df)
-;
-L5D4D:	lda     _scroll_y
-	cmp     #$E0
-	lda     _scroll_y+1
-	sbc     #$01
-	lda     #$00
-	bcc     LDA9C
-;
-; scroll_y = 0;
-;
-	sta     _scroll_y
-	sta     _scroll_y+1
-;
-; scroll(0, scroll_y);
-;
-LDA9C:	jsr     push0
-	lda     _scroll_y
-	ldx     _scroll_y+1
-	jsr     _scroll
-;
 ; read_input();
 ;
-	jsr     _read_input
+L6158:	jsr     _read_input
 ;
 ; if (trigger_pulled)
 ;
 	lda     _trigger_pulled
-	beq     L5D5D
+	beq     L615E
 ;
 ; ++line_counter;     // count 1 line up for each frame, so we know when we'd done 8 frames, and card draw
 ;
@@ -54803,12 +55792,12 @@ LDA9C:	jsr     push0
 ; ++scroll_y;
 ;
 	inc     _scroll_y
-	bne     L5D5D
+	bne     L615E
 	inc     _scroll_y+1
 ;
 ; }
 ;
-L5D5D:	rts
+L615E:	rts
 
 .endproc
 
@@ -54829,30 +55818,30 @@ L5D5D:	rts
 ;
 ; }
 ;
-	jeq     L6038
+	jeq     L6439
 	cmp     #$01
-	beq     L5D8C
+	beq     L618D
 	cmp     #$02
-	jeq     L5DD8
+	jeq     L61D9
 	cmp     #$03
-	jeq     L5E24
+	jeq     L6225
 	cmp     #$04
-	jeq     L5E70
+	jeq     L6271
 	cmp     #$05
-	jeq     L5EBC
+	jeq     L62BD
 	cmp     #$06
-	jeq     L5F08
+	jeq     L6309
 	cmp     #$07
-	jeq     L5F54
+	jeq     L6355
 	cmp     #$08
-	jeq     L5FA0
+	jeq     L63A1
 	cmp     #$09
-	jeq     L5FEC
+	jeq     L63ED
 	rts
 ;
 ; one_vram_buffer(0xc0, NTADR_A(x, y));
 ;
-L5D8C:	lda     #$C0
+L618D:	lda     #$C0
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -54885,9 +55874,9 @@ L5D8C:	lda     #$C0
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5D9D
+	bcc     L619E
 	inx
-L5D9D:	ora     ptr1
+L619E:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -54908,9 +55897,9 @@ L5D9D:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5DA5
+	bcc     L61A6
 	inx
-L5DA5:	jsr     shlax4
+L61A6:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -54932,9 +55921,9 @@ L5DA5:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5DAE
+	bcc     L61AF
 	inx
-L5DAE:	jsr     shlax4
+L61AF:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -54943,9 +55932,9 @@ L5DAE:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5DB0
+	bcc     L61B1
 	inx
-L5DB0:	ora     ptr1
+L61B1:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -54966,9 +55955,9 @@ L5DB0:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5DB8
+	bcc     L61B9
 	inx
-L5DB8:	jsr     shlax4
+L61B9:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -54990,9 +55979,9 @@ L5DB8:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5DC1
+	bcc     L61C2
 	inx
-L5DC1:	jsr     shlax4
+L61C2:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55001,9 +55990,9 @@ L5DC1:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5DC3
+	bcc     L61C4
 	inx
-L5DC3:	ora     ptr1
+L61C4:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55024,9 +56013,9 @@ L5DC3:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5DCB
+	bcc     L61CC
 	inx
-L5DCB:	jsr     shlax4
+L61CC:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55048,9 +56037,9 @@ L5DCB:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5DD4
+	bcc     L61D5
 	inx
-L5DD4:	jsr     shlax4
+L61D5:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55059,9 +56048,9 @@ L5DD4:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5DD6
+	bcc     L61D7
 	inx
-L5DD6:	ora     ptr1
+L61D7:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55076,7 +56065,7 @@ L5DD6:	ora     ptr1
 ;
 ; one_vram_buffer(0xc2, NTADR_A(x, y));
 ;
-L5DD8:	lda     #$C2
+L61D9:	lda     #$C2
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -55109,9 +56098,9 @@ L5DD8:	lda     #$C2
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5DE9
+	bcc     L61EA
 	inx
-L5DE9:	ora     ptr1
+L61EA:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55132,9 +56121,9 @@ L5DE9:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5DF1
+	bcc     L61F2
 	inx
-L5DF1:	jsr     shlax4
+L61F2:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55156,9 +56145,9 @@ L5DF1:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5DFA
+	bcc     L61FB
 	inx
-L5DFA:	jsr     shlax4
+L61FB:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55167,9 +56156,9 @@ L5DFA:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5DFC
+	bcc     L61FD
 	inx
-L5DFC:	ora     ptr1
+L61FD:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55190,9 +56179,9 @@ L5DFC:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5E04
+	bcc     L6205
 	inx
-L5E04:	jsr     shlax4
+L6205:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55214,9 +56203,9 @@ L5E04:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5E0D
+	bcc     L620E
 	inx
-L5E0D:	jsr     shlax4
+L620E:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55225,9 +56214,9 @@ L5E0D:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5E0F
+	bcc     L6210
 	inx
-L5E0F:	ora     ptr1
+L6210:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55248,9 +56237,9 @@ L5E0F:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5E17
+	bcc     L6218
 	inx
-L5E17:	jsr     shlax4
+L6218:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55272,9 +56261,9 @@ L5E17:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5E20
+	bcc     L6221
 	inx
-L5E20:	jsr     shlax4
+L6221:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55283,9 +56272,9 @@ L5E20:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5E22
+	bcc     L6223
 	inx
-L5E22:	ora     ptr1
+L6223:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55300,7 +56289,7 @@ L5E22:	ora     ptr1
 ;
 ; one_vram_buffer(0xc4, NTADR_A(x, y));
 ;
-L5E24:	lda     #$C4
+L6225:	lda     #$C4
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -55333,9 +56322,9 @@ L5E24:	lda     #$C4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5E35
+	bcc     L6236
 	inx
-L5E35:	ora     ptr1
+L6236:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55356,9 +56345,9 @@ L5E35:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5E3D
+	bcc     L623E
 	inx
-L5E3D:	jsr     shlax4
+L623E:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55380,9 +56369,9 @@ L5E3D:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5E46
+	bcc     L6247
 	inx
-L5E46:	jsr     shlax4
+L6247:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55391,9 +56380,9 @@ L5E46:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5E48
+	bcc     L6249
 	inx
-L5E48:	ora     ptr1
+L6249:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55414,9 +56403,9 @@ L5E48:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5E50
+	bcc     L6251
 	inx
-L5E50:	jsr     shlax4
+L6251:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55438,9 +56427,9 @@ L5E50:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5E59
+	bcc     L625A
 	inx
-L5E59:	jsr     shlax4
+L625A:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55449,9 +56438,9 @@ L5E59:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5E5B
+	bcc     L625C
 	inx
-L5E5B:	ora     ptr1
+L625C:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55472,9 +56461,9 @@ L5E5B:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5E63
+	bcc     L6264
 	inx
-L5E63:	jsr     shlax4
+L6264:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55496,9 +56485,9 @@ L5E63:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5E6C
+	bcc     L626D
 	inx
-L5E6C:	jsr     shlax4
+L626D:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55507,9 +56496,9 @@ L5E6C:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5E6E
+	bcc     L626F
 	inx
-L5E6E:	ora     ptr1
+L626F:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55524,7 +56513,7 @@ L5E6E:	ora     ptr1
 ;
 ; one_vram_buffer(0xc6, NTADR_A(x, y));
 ;
-L5E70:	lda     #$C6
+L6271:	lda     #$C6
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -55557,9 +56546,9 @@ L5E70:	lda     #$C6
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5E81
+	bcc     L6282
 	inx
-L5E81:	ora     ptr1
+L6282:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55580,9 +56569,9 @@ L5E81:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5E89
+	bcc     L628A
 	inx
-L5E89:	jsr     shlax4
+L628A:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55604,9 +56593,9 @@ L5E89:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5E92
+	bcc     L6293
 	inx
-L5E92:	jsr     shlax4
+L6293:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55615,9 +56604,9 @@ L5E92:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5E94
+	bcc     L6295
 	inx
-L5E94:	ora     ptr1
+L6295:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55638,9 +56627,9 @@ L5E94:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5E9C
+	bcc     L629D
 	inx
-L5E9C:	jsr     shlax4
+L629D:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55662,9 +56651,9 @@ L5E9C:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5EA5
+	bcc     L62A6
 	inx
-L5EA5:	jsr     shlax4
+L62A6:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55673,9 +56662,9 @@ L5EA5:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5EA7
+	bcc     L62A8
 	inx
-L5EA7:	ora     ptr1
+L62A8:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55696,9 +56685,9 @@ L5EA7:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5EAF
+	bcc     L62B0
 	inx
-L5EAF:	jsr     shlax4
+L62B0:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55720,9 +56709,9 @@ L5EAF:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5EB8
+	bcc     L62B9
 	inx
-L5EB8:	jsr     shlax4
+L62B9:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55731,9 +56720,9 @@ L5EB8:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5EBA
+	bcc     L62BB
 	inx
-L5EBA:	ora     ptr1
+L62BB:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55748,7 +56737,7 @@ L5EBA:	ora     ptr1
 ;
 ; one_vram_buffer(0xc8, NTADR_A(x, y));
 ;
-L5EBC:	lda     #$C8
+L62BD:	lda     #$C8
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -55781,9 +56770,9 @@ L5EBC:	lda     #$C8
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5ECD
+	bcc     L62CE
 	inx
-L5ECD:	ora     ptr1
+L62CE:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55804,9 +56793,9 @@ L5ECD:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5ED5
+	bcc     L62D6
 	inx
-L5ED5:	jsr     shlax4
+L62D6:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55828,9 +56817,9 @@ L5ED5:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5EDE
+	bcc     L62DF
 	inx
-L5EDE:	jsr     shlax4
+L62DF:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55839,9 +56828,9 @@ L5EDE:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5EE0
+	bcc     L62E1
 	inx
-L5EE0:	ora     ptr1
+L62E1:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55862,9 +56851,9 @@ L5EE0:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5EE8
+	bcc     L62E9
 	inx
-L5EE8:	jsr     shlax4
+L62E9:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55886,9 +56875,9 @@ L5EE8:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5EF1
+	bcc     L62F2
 	inx
-L5EF1:	jsr     shlax4
+L62F2:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55897,9 +56886,9 @@ L5EF1:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5EF3
+	bcc     L62F4
 	inx
-L5EF3:	ora     ptr1
+L62F4:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55920,9 +56909,9 @@ L5EF3:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5EFB
+	bcc     L62FC
 	inx
-L5EFB:	jsr     shlax4
+L62FC:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55944,9 +56933,9 @@ L5EFB:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5F04
+	bcc     L6305
 	inx
-L5F04:	jsr     shlax4
+L6305:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -55955,9 +56944,9 @@ L5F04:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5F06
+	bcc     L6307
 	inx
-L5F06:	ora     ptr1
+L6307:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -55972,7 +56961,7 @@ L5F06:	ora     ptr1
 ;
 ; one_vram_buffer(0xca, NTADR_A(x, y));
 ;
-L5F08:	lda     #$CA
+L6309:	lda     #$CA
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -56005,9 +56994,9 @@ L5F08:	lda     #$CA
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5F19
+	bcc     L631A
 	inx
-L5F19:	ora     ptr1
+L631A:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56028,9 +57017,9 @@ L5F19:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5F21
+	bcc     L6322
 	inx
-L5F21:	jsr     shlax4
+L6322:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56052,9 +57041,9 @@ L5F21:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5F2A
+	bcc     L632B
 	inx
-L5F2A:	jsr     shlax4
+L632B:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56063,9 +57052,9 @@ L5F2A:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5F2C
+	bcc     L632D
 	inx
-L5F2C:	ora     ptr1
+L632D:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56086,9 +57075,9 @@ L5F2C:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5F34
+	bcc     L6335
 	inx
-L5F34:	jsr     shlax4
+L6335:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56110,9 +57099,9 @@ L5F34:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5F3D
+	bcc     L633E
 	inx
-L5F3D:	jsr     shlax4
+L633E:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56121,9 +57110,9 @@ L5F3D:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5F3F
+	bcc     L6340
 	inx
-L5F3F:	ora     ptr1
+L6340:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56144,9 +57133,9 @@ L5F3F:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5F47
+	bcc     L6348
 	inx
-L5F47:	jsr     shlax4
+L6348:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56168,9 +57157,9 @@ L5F47:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5F50
+	bcc     L6351
 	inx
-L5F50:	jsr     shlax4
+L6351:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56179,9 +57168,9 @@ L5F50:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5F52
+	bcc     L6353
 	inx
-L5F52:	ora     ptr1
+L6353:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56196,7 +57185,7 @@ L5F52:	ora     ptr1
 ;
 ; one_vram_buffer(0xcc, NTADR_A(x, y));
 ;
-L5F54:	lda     #$CC
+L6355:	lda     #$CC
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -56229,9 +57218,9 @@ L5F54:	lda     #$CC
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5F65
+	bcc     L6366
 	inx
-L5F65:	ora     ptr1
+L6366:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56252,9 +57241,9 @@ L5F65:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5F6D
+	bcc     L636E
 	inx
-L5F6D:	jsr     shlax4
+L636E:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56276,9 +57265,9 @@ L5F6D:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5F76
+	bcc     L6377
 	inx
-L5F76:	jsr     shlax4
+L6377:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56287,9 +57276,9 @@ L5F76:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5F78
+	bcc     L6379
 	inx
-L5F78:	ora     ptr1
+L6379:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56310,9 +57299,9 @@ L5F78:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5F80
+	bcc     L6381
 	inx
-L5F80:	jsr     shlax4
+L6381:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56334,9 +57323,9 @@ L5F80:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5F89
+	bcc     L638A
 	inx
-L5F89:	jsr     shlax4
+L638A:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56345,9 +57334,9 @@ L5F89:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5F8B
+	bcc     L638C
 	inx
-L5F8B:	ora     ptr1
+L638C:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56368,9 +57357,9 @@ L5F8B:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5F93
+	bcc     L6394
 	inx
-L5F93:	jsr     shlax4
+L6394:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56392,9 +57381,9 @@ L5F93:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5F9C
+	bcc     L639D
 	inx
-L5F9C:	jsr     shlax4
+L639D:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56403,9 +57392,9 @@ L5F9C:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5F9E
+	bcc     L639F
 	inx
-L5F9E:	ora     ptr1
+L639F:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56420,7 +57409,7 @@ L5F9E:	ora     ptr1
 ;
 ; one_vram_buffer(0xce, NTADR_A(x, y));
 ;
-L5FA0:	lda     #$CE
+L63A1:	lda     #$CE
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -56453,9 +57442,9 @@ L5FA0:	lda     #$CE
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5FB1
+	bcc     L63B2
 	inx
-L5FB1:	ora     ptr1
+L63B2:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56476,9 +57465,9 @@ L5FB1:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5FB9
+	bcc     L63BA
 	inx
-L5FB9:	jsr     shlax4
+L63BA:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56500,9 +57489,9 @@ L5FB9:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L5FC2
+	bcc     L63C3
 	inx
-L5FC2:	jsr     shlax4
+L63C3:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56511,9 +57500,9 @@ L5FC2:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5FC4
+	bcc     L63C5
 	inx
-L5FC4:	ora     ptr1
+L63C5:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56534,9 +57523,9 @@ L5FC4:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5FCC
+	bcc     L63CD
 	inx
-L5FCC:	jsr     shlax4
+L63CD:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56558,9 +57547,9 @@ L5FCC:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L5FD5
+	bcc     L63D6
 	inx
-L5FD5:	jsr     shlax4
+L63D6:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56569,9 +57558,9 @@ L5FD5:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5FD7
+	bcc     L63D8
 	inx
-L5FD7:	ora     ptr1
+L63D8:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56592,9 +57581,9 @@ L5FD7:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5FDF
+	bcc     L63E0
 	inx
-L5FDF:	jsr     shlax4
+L63E0:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56616,9 +57605,9 @@ L5FDF:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L5FE8
+	bcc     L63E9
 	inx
-L5FE8:	jsr     shlax4
+L63E9:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56627,9 +57616,9 @@ L5FE8:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5FEA
+	bcc     L63EB
 	inx
-L5FEA:	ora     ptr1
+L63EB:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56644,7 +57633,7 @@ L5FEA:	ora     ptr1
 ;
 ; one_vram_buffer(0x5e, NTADR_A(x, y));
 ;
-L5FEC:	lda     #$5E
+L63ED:	lda     #$5E
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -56677,9 +57666,9 @@ L5FEC:	lda     #$5E
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L5FFD
+	bcc     L63FE
 	inx
-L5FFD:	ora     ptr1
+L63FE:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56700,9 +57689,9 @@ L5FFD:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L6005
+	bcc     L6406
 	inx
-L6005:	jsr     shlax4
+L6406:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56724,9 +57713,9 @@ L6005:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L600E
+	bcc     L640F
 	inx
-L600E:	jsr     shlax4
+L640F:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56735,9 +57724,9 @@ L600E:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L6010
+	bcc     L6411
 	inx
-L6010:	ora     ptr1
+L6411:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56758,9 +57747,9 @@ L6010:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L6018
+	bcc     L6419
 	inx
-L6018:	jsr     shlax4
+L6419:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56782,9 +57771,9 @@ L6018:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L6021
+	bcc     L6422
 	inx
-L6021:	jsr     shlax4
+L6422:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56793,9 +57782,9 @@ L6021:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L6023
+	bcc     L6424
 	inx
-L6023:	ora     ptr1
+L6424:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56816,9 +57805,9 @@ L6023:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L602B
+	bcc     L642C
 	inx
-L602B:	jsr     shlax4
+L642C:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56840,9 +57829,9 @@ L602B:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L6034
+	bcc     L6435
 	inx
-L6034:	jsr     shlax4
+L6435:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56851,9 +57840,9 @@ L6034:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L6036
+	bcc     L6437
 	inx
-L6036:	ora     ptr1
+L6437:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56868,7 +57857,7 @@ L6036:	ora     ptr1
 ;
 ; one_vram_buffer(0x1e, NTADR_A(x, y));
 ;
-L6038:	lda     #$1E
+L6439:	lda     #$1E
 	jsr     pusha
 	ldx     #$00
 	lda     _y
@@ -56901,9 +57890,9 @@ L6038:	lda     #$1E
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L6049
+	bcc     L644A
 	inx
-L6049:	ora     ptr1
+L644A:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56924,9 +57913,9 @@ L6049:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L6051
+	bcc     L6452
 	inx
-L6051:	jsr     shlax4
+L6452:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56948,9 +57937,9 @@ L6051:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$01
-	bcc     L605A
+	bcc     L645B
 	inx
-L605A:	jsr     shlax4
+L645B:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -56959,9 +57948,9 @@ L605A:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L605C
+	bcc     L645D
 	inx
-L605C:	ora     ptr1
+L645D:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -56982,9 +57971,9 @@ L605C:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L6064
+	bcc     L6465
 	inx
-L6064:	jsr     shlax4
+L6465:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -57006,9 +57995,9 @@ L6064:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$02
-	bcc     L606D
+	bcc     L646E
 	inx
-L606D:	jsr     shlax4
+L646E:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -57017,9 +58006,9 @@ L606D:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L606F
+	bcc     L6470
 	inx
-L606F:	ora     ptr1
+L6470:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -57040,9 +58029,9 @@ L606F:	ora     ptr1
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L6077
+	bcc     L6478
 	inx
-L6077:	jsr     shlax4
+L6478:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -57064,9 +58053,9 @@ L6077:	jsr     shlax4
 	lda     _y
 	clc
 	adc     #$03
-	bcc     L6080
+	bcc     L6481
 	inx
-L6080:	jsr     shlax4
+L6481:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -57075,9 +58064,9 @@ L6080:	jsr     shlax4
 	lda     _x
 	clc
 	adc     #$01
-	bcc     L6082
+	bcc     L6483
 	inx
-L6082:	ora     ptr1
+L6483:	ora     ptr1
 	pha
 	txa
 	ora     tmp1
@@ -57106,7 +58095,7 @@ L6082:	ora     ptr1
 ; if (cost3_changed)
 ;
 	lda     _cost3_changed
-	beq     L6085
+	beq     L6486
 ;
 ; num_holder = cost4;
 ;
@@ -57138,8 +58127,8 @@ L6082:	ora     ptr1
 ;
 ; if (cost2_changed)
 ;
-L6085:	lda     _cost2_changed
-	beq     L6091
+L6486:	lda     _cost2_changed
+	beq     L6492
 ;
 ; num_holder = cost3;
 ;
@@ -57171,11 +58160,11 @@ L6085:	lda     _cost2_changed
 ;
 ; if (cost1_changed && changes_in_frame < 3)
 ;
-L6091:	lda     _cost1_changed
-	beq     LDA9E
+L6492:	lda     _cost1_changed
+	beq     LDEA0
 	lda     _changes_in_frame
 	cmp     #$03
-	bcs     LDA9E
+	bcs     LDEA0
 ;
 ; num_holder = cost2;
 ;
@@ -57207,9 +58196,9 @@ L6091:	lda     _cost1_changed
 ;
 ; if(changes_in_frame < 2){ //only draw the last number if there aren't a ton of changes
 ;
-LDA9E:	lda     _changes_in_frame
+LDEA0:	lda     _changes_in_frame
 	cmp     #$02
-	bcs     L60AB
+	bcs     L64AC
 ;
 ; num_holder = cost1;
 ;
@@ -57232,7 +58221,7 @@ LDA9E:	lda     _changes_in_frame
 ;
 ; }
 ;
-L60AB:	rts
+L64AC:	rts
 
 .endproc
 
@@ -57250,7 +58239,7 @@ L60AB:	rts
 ; if (gas3_changed)
 ;
 	lda     _gas3_changed
-	beq     L60B5
+	beq     L64B6
 ;
 ; num_holder = gas4;
 ;
@@ -57282,8 +58271,8 @@ L60AB:	rts
 ;
 ; if (gas2_changed)
 ;
-L60B5:	lda     _gas2_changed
-	beq     L60C1
+L64B6:	lda     _gas2_changed
+	beq     L64C2
 ;
 ; num_holder = gas3;
 ;
@@ -57315,8 +58304,8 @@ L60B5:	lda     _gas2_changed
 ;
 ; if (gas1_changed)
 ;
-L60C1:	lda     _gas1_changed
-	beq     L60CD
+L64C2:	lda     _gas1_changed
+	beq     L64CE
 ;
 ; num_holder = gas2;
 ;
@@ -57348,7 +58337,7 @@ L60C1:	lda     _gas1_changed
 ;
 ; num_holder = gas1;
 ;
-L60CD:	lda     _gas1
+L64CE:	lda     _gas1
 	sta     _num_holder
 ;
 ; x = 27;
@@ -57384,30 +58373,30 @@ L60CD:	lda     _gas1
 ;
 ; }
 ;
-	beq     L60E5
+	beq     L64E6
 	cmp     #$01
-	beq     L60E9
+	beq     L64EA
 	cmp     #$02
-	beq     L60ED
+	beq     L64EE
 	cmp     #$03
-	beq     L60F1
+	beq     L64F2
 	cmp     #$04
-	beq     L60F5
+	beq     L64F6
 	cmp     #$05
-	beq     L60F9
+	beq     L64FA
 	cmp     #$06
-	beq     L60FD
+	beq     L64FE
 	cmp     #$07
-	beq     L6101
+	beq     L6502
 	cmp     #$08
-	beq     L6105
+	beq     L6506
 	cmp     #$09
-	beq     L6109
+	beq     L650A
 	rts
 ;
 ; pointer = Zero;
 ;
-L60E5:	lda     #>(_Zero)
+L64E6:	lda     #>(_Zero)
 	sta     _pointer+1
 	lda     #<(_Zero)
 	sta     _pointer
@@ -57418,7 +58407,7 @@ L60E5:	lda     #>(_Zero)
 ;
 ; pointer = One;
 ;
-L60E9:	lda     #>(_One)
+L64EA:	lda     #>(_One)
 	sta     _pointer+1
 	lda     #<(_One)
 	sta     _pointer
@@ -57429,7 +58418,7 @@ L60E9:	lda     #>(_One)
 ;
 ; pointer = Two;
 ;
-L60ED:	lda     #>(_Two)
+L64EE:	lda     #>(_Two)
 	sta     _pointer+1
 	lda     #<(_Two)
 	sta     _pointer
@@ -57440,7 +58429,7 @@ L60ED:	lda     #>(_Two)
 ;
 ; pointer = Three;
 ;
-L60F1:	lda     #>(_Three)
+L64F2:	lda     #>(_Three)
 	sta     _pointer+1
 	lda     #<(_Three)
 	sta     _pointer
@@ -57451,7 +58440,7 @@ L60F1:	lda     #>(_Three)
 ;
 ; pointer = Four;
 ;
-L60F5:	lda     #>(_Four)
+L64F6:	lda     #>(_Four)
 	sta     _pointer+1
 	lda     #<(_Four)
 	sta     _pointer
@@ -57462,7 +58451,7 @@ L60F5:	lda     #>(_Four)
 ;
 ; pointer = Five;
 ;
-L60F9:	lda     #>(_Five)
+L64FA:	lda     #>(_Five)
 	sta     _pointer+1
 	lda     #<(_Five)
 	sta     _pointer
@@ -57473,7 +58462,7 @@ L60F9:	lda     #>(_Five)
 ;
 ; pointer = Six;
 ;
-L60FD:	lda     #>(_Six)
+L64FE:	lda     #>(_Six)
 	sta     _pointer+1
 	lda     #<(_Six)
 	sta     _pointer
@@ -57484,7 +58473,7 @@ L60FD:	lda     #>(_Six)
 ;
 ; pointer = Seven;
 ;
-L6101:	lda     #>(_Seven)
+L6502:	lda     #>(_Seven)
 	sta     _pointer+1
 	lda     #<(_Seven)
 	sta     _pointer
@@ -57495,7 +58484,7 @@ L6101:	lda     #>(_Seven)
 ;
 ; pointer = Eight;
 ;
-L6105:	lda     #>(_Eight)
+L6506:	lda     #>(_Eight)
 	sta     _pointer+1
 	lda     #<(_Eight)
 	sta     _pointer
@@ -57506,7 +58495,7 @@ L6105:	lda     #>(_Eight)
 ;
 ; pointer = Nine;
 ;
-L6109:	lda     #>(_Nine)
+L650A:	lda     #>(_Nine)
 	sta     _pointer+1
 	lda     #<(_Nine)
 	sta     _pointer
@@ -57532,7 +58521,7 @@ L6109:	lda     #>(_Nine)
 ;
 	lda     _gas1
 	cmp     #$0A
-	bcc     LDAA0
+	bcc     LDEA2
 ;
 ; gas1_changed = 1;
 ;
@@ -57552,7 +58541,7 @@ L6109:	lda     #>(_Nine)
 ;
 	lda     _gas2
 	cmp     #$0A
-	bcc     LDAA0
+	bcc     LDEA2
 ;
 ; gas2_changed = 1;
 ;
@@ -57572,7 +58561,7 @@ L6109:	lda     #>(_Nine)
 ;
 	lda     _gas3
 	cmp     #$0A
-	bcc     LDA9F
+	bcc     LDEA1
 ;
 ; gas3_changed = 1;
 ;
@@ -57590,9 +58579,9 @@ L6109:	lda     #>(_Nine)
 ;
 ; if (gas4 >= 10)
 ;
-LDA9F:	lda     _gas4
+LDEA1:	lda     _gas4
 	cmp     #$0A
-	bcc     LDAA0
+	bcc     LDEA2
 ;
 ; gas4_changed = 1;
 ;
@@ -57610,9 +58599,9 @@ LDA9F:	lda     _gas4
 ;
 ; if (gas5 >= 10)
 ;
-LDAA0:	lda     _gas5
+LDEA2:	lda     _gas5
 	cmp     #$0A
-	bcc     L612A
+	bcc     L652B
 ;
 ; gas5 = 9;
 ;
@@ -57637,7 +58626,7 @@ LDAA0:	lda     _gas5
 ;
 ; }
 ;
-L612A:	rts
+L652B:	rts
 
 .endproc
 
@@ -57656,7 +58645,7 @@ L612A:	rts
 ;
 	lda     _cost1
 	cmp     #$0A
-	bcc     LDAA2
+	bcc     LDEA4
 ;
 ; cost1_changed = 1;
 ;
@@ -57676,7 +58665,7 @@ L612A:	rts
 ;
 	lda     _cost2
 	cmp     #$0A
-	bcc     LDAA2
+	bcc     LDEA4
 ;
 ; cost2_changed = 1;
 ;
@@ -57696,7 +58685,7 @@ L612A:	rts
 ;
 	lda     _cost3
 	cmp     #$0A
-	bcc     LDAA1
+	bcc     LDEA3
 ;
 ; cost3_changed = 1;
 ;
@@ -57714,9 +58703,9 @@ L612A:	rts
 ;
 ; if (cost4 >= 10)
 ;
-LDAA1:	lda     _cost4
+LDEA3:	lda     _cost4
 	cmp     #$0A
-	bcc     LDAA2
+	bcc     LDEA4
 ;
 ; cost4_changed = 1;
 ;
@@ -57734,9 +58723,9 @@ LDAA1:	lda     _cost4
 ;
 ; if (cost5 >= 10)
 ;
-LDAA2:	lda     _cost5
+LDEA4:	lda     _cost5
 	cmp     #$0A
-	bcc     L6153
+	bcc     L6554
 ;
 ; cost5 = 9;
 ;
@@ -57761,7 +58750,7 @@ LDAA2:	lda     _cost5
 ;
 ; }
 ;
-L6153:	rts
+L6554:	rts
 
 .endproc
 
@@ -57779,7 +58768,7 @@ L6153:	rts
 ; if (reset_level)
 ;
 	lda     _reset_level
-	beq     L7E9B
+	beq     L829C
 ;
 ; sprite_1_frames = 0;
 ;
@@ -57874,41 +58863,41 @@ L6153:	rts
 ;
 ; ++moveframes;
 ;
-L7E9B:	inc     _moveframes
-	bne     L7EC2
+L829C:	inc     _moveframes
+	bne     L82C3
 	inc     _moveframes+1
 ;
 ; ++moveframes2;
 ;
-L7EC2:	inc     _moveframes2
-	bne     L7EC4
+L82C3:	inc     _moveframes2
+	bne     L82C5
 	inc     _moveframes2+1
 ;
 ; if (levels_complete == 0)
 ;
-L7EC4:	lda     _levels_complete
-	jne     LDAAA
+L82C5:	lda     _levels_complete
+	jne     LDEAC
 ;
 ; ++blimp_frames; //using blimpframes to count here, shouldn't be an issue  
 ;
 	inc     _blimp_frames
-	bne     L7EC8
+	bne     L82C9
 	inc     _blimp_frames+1
 ;
 ; sprite_1_x += 19;
 ;
-L7EC8:	lda     #$13
+L82C9:	lda     #$13
 	clc
 	adc     _sprite_1_x
 	sta     _sprite_1_x
-	bcc     L7ECB
+	bcc     L82CC
 	inc     _sprite_1_x+1
 ;
 ; if (high_byte(sprite_1_y) < 25)
 ;
-L7ECB:	lda     _sprite_1_y+1
+L82CC:	lda     _sprite_1_y+1
 	cmp     #$19
-	bcs     LDAA9
+	bcs     LDEAB
 ;
 ; y_direction = 0;
 ;
@@ -57917,9 +58906,9 @@ L7ECB:	lda     _sprite_1_y+1
 ;
 ; if (high_byte(sprite_1_y) > 35)
 ;
-LDAA9:	lda     _sprite_1_y+1
+LDEAB:	lda     _sprite_1_y+1
 	cmp     #$24
-	bcc     L7ED1
+	bcc     L82D2
 ;
 ; y_direction = 1;
 ;
@@ -57928,8 +58917,8 @@ LDAA9:	lda     _sprite_1_y+1
 ;
 ; if (y_direction)
 ;
-L7ED1:	lda     _y_direction
-	beq     L7ED6
+L82D2:	lda     _y_direction
+	beq     L82D7
 ;
 ; sprite_1_y -= 17;
 ;
@@ -57937,30 +58926,30 @@ L7ED1:	lda     _y_direction
 	sec
 	sbc     #$11
 	sta     _sprite_1_y
-	bcs     L7EDE
+	bcs     L82DF
 	dec     _sprite_1_y+1
 ;
 ; else
 ;
-	jmp     L7EDE
+	jmp     L82DF
 ;
 ; sprite_1_y += 17;
 ;
-L7ED6:	lda     #$11
+L82D7:	lda     #$11
 	clc
 	adc     _sprite_1_y
 	sta     _sprite_1_y
-	bcc     L7EDE
+	bcc     L82DF
 	inc     _sprite_1_y+1
 ;
 ; if (blimp_frames < 20)  
 ;
-L7EDE:	lda     _blimp_frames+1
+L82DF:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     L7EE1
+	bne     L82E2
 	lda     _blimp_frames
 	cmp     #$14
-L7EE1:	bcs     L7EDF
+L82E2:	bcs     L82E0
 ;
 ; oam_meta_spr(high_byte(sprite_1_x), high_byte(sprite_1_y), balloon_0);
 ;
@@ -57977,13 +58966,13 @@ L7EE1:	bcs     L7EDF
 ;
 ; else if (blimp_frames < 39){
 ;
-	jmp     LDAAA
-L7EDF:	lda     _blimp_frames+1
+	jmp     LDEAC
+L82E0:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     L7EEB
+	bne     L82EC
 	lda     _blimp_frames
 	cmp     #$27
-L7EEB:	bcs     L7EE9
+L82EC:	bcs     L82EA
 ;
 ; oam_meta_spr(high_byte(sprite_1_x), high_byte(sprite_1_y), balloon_1);
 ;
@@ -58000,11 +58989,11 @@ L7EEB:	bcs     L7EE9
 ;
 ; } else {
 ;
-	jmp     LDAAA
+	jmp     LDEAC
 ;
 ; oam_meta_spr(high_byte(sprite_1_x), high_byte(sprite_1_y), balloon_1);
 ;
-L7EE9:	jsr     decsp2
+L82EA:	jsr     decsp2
 	lda     _sprite_1_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -58023,9 +59012,9 @@ L7EE9:	jsr     decsp2
 ;
 ; if (levels_complete == 1)
 ;
-LDAAA:	lda     _levels_complete
+LDEAC:	lda     _levels_complete
 	cmp     #$01
-	jne     LDAB3
+	jne     LDEB5
 ;
 ; if (moveframes > 600)
 ;
@@ -58033,13 +59022,13 @@ LDAAA:	lda     _levels_complete
 	cmp     #$59
 	lda     _moveframes+1
 	sbc     #$02
-	jcc     LDAB3
+	jcc     LDEB5
 ;
 ; if (duck_0_y == 5 ) //ducks at top of screen
 ;
 	lda     _duck_0_y
 	cmp     #$05
-	bne     LDAAB
+	bne     LDEAD
 ;
 ; ++duck_hit_top;  
 ;
@@ -58052,20 +59041,20 @@ LDAAA:	lda     _levels_complete
 	lda     #$03
 	jsr     tosumoda0
 	cpx     #$00
-	bne     LDAC7
+	bne     LDEC9
 	cmp     #$00
-	beq     LDAAB
+	beq     LDEAD
 ;
 ; y_direction = 0;
 ;
-LDAC7:	lda     #$00
+LDEC9:	lda     #$00
 	sta     _y_direction
 ;
 ; if (duck_0_y == 100) //out of bushes
 ;
-LDAAB:	lda     _duck_0_y
+LDEAD:	lda     _duck_0_y
 	cmp     #$64
-	bne     L7F08
+	bne     L8309
 ;
 ; sample_play(SAMPLE_QUACK);
 ;
@@ -58079,8 +59068,8 @@ LDAAB:	lda     _duck_0_y
 ;
 ; if (y_direction)
 ;
-L7F08:	lda     _y_direction
-	beq     LDAAC
+L8309:	lda     _y_direction
+	beq     LDEAE
 ;
 ; --duck_0_y;
 ;
@@ -58088,17 +59077,17 @@ L7F08:	lda     _y_direction
 ;
 ; else
 ;
-	jmp     LDAA4
+	jmp     LDEA6
 ;
 ; ++duck_0_y;
 ;
-LDAAC:	inc     _duck_0_y
+LDEAE:	inc     _duck_0_y
 ;
 ; if (duck_0_x > 170)
 ;
-LDAA4:	lda     _duck_0_x
+LDEA6:	lda     _duck_0_x
 	cmp     #$AB
-	bcc     LDAAD
+	bcc     LDEAF
 ;
 ; x_direction = 0;
 ;
@@ -58107,9 +59096,9 @@ LDAA4:	lda     _duck_0_x
 ;
 ; if (duck_0_x < 4)
 ;
-LDAAD:	lda     _duck_0_x
+LDEAF:	lda     _duck_0_x
 	cmp     #$04
-	bcs     L7F17
+	bcs     L8318
 ;
 ; x_direction = 1;
 ;
@@ -58118,14 +59107,14 @@ LDAAD:	lda     _duck_0_x
 ;
 ; if ((get_frame_count() & 2) == 0)
 ;
-L7F17:	jsr     _get_frame_count
+L8318:	jsr     _get_frame_count
 	and     #$02
-	bne     LDAAF
+	bne     LDEB1
 ;
 ; if (x_direction)
 ;
 	lda     _x_direction
-	beq     LDAAE
+	beq     LDEB0
 ;
 ; ++duck_0_x;
 ;
@@ -58133,33 +59122,33 @@ L7F17:	jsr     _get_frame_count
 ;
 ; else
 ;
-	jmp     LDAAF
+	jmp     LDEB1
 ;
 ; --duck_0_x;
 ;
-LDAAE:	dec     _duck_0_x
+LDEB0:	dec     _duck_0_x
 ;
 ; if(duck_hit_top >= 12 && duck_hit_top < 21){
 ;
-LDAAF:	lda     _duck_hit_top
+LDEB1:	lda     _duck_hit_top
 	cmp     #$0C
-	jcc     L7F24
+	jcc     L8325
 	cmp     #$15
-	jcs     L7F24
+	jcs     L8325
 ;
 ; if(x_direction){
 ;
 	lda     _x_direction
-	jeq     L7F28
+	jeq     L8329
 ;
 ; if(moveframes2 < 10){
 ;
 	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7F2C
+	bne     L832D
 	lda     _moveframes2
 	cmp     #$0A
-L7F2C:	bcs     L7F2A
+L832D:	bcs     L832B
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_l_0);
 ;
@@ -58176,19 +59165,19 @@ L7F2C:	bcs     L7F2A
 ;
 ; } else if(moveframes2 < 20){
 ;
-	jmp     LDAB3
-L7F2A:	lda     _moveframes2+1
+	jmp     LDEB5
+L832B:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7F34
+	bne     L8335
 	lda     _moveframes2
 	cmp     #$14
-L7F34:	bcs     L7F32
+L8335:	bcs     L8333
 ;
 ; if(duck_0_y < 100){ //duck is on screen at at less than 100
 ;
 	lda     _duck_0_y
 	cmp     #$64
-	bcs     L7F35
+	bcs     L8336
 ;
 ; sfx_play(SFX_DUCK,0);
 ;
@@ -58199,7 +59188,7 @@ L7F34:	bcs     L7F32
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_l_1);
 ;
-L7F35:	jsr     decsp2
+L8336:	jsr     decsp2
 	lda     _duck_0_x
 	ldy     #$01
 	sta     (sp),y
@@ -58212,13 +59201,13 @@ L7F35:	jsr     decsp2
 ;
 ; } else if(moveframes2 < 30){
 ;
-	jmp     LDAB3
-L7F32:	lda     _moveframes2+1
+	jmp     LDEB5
+L8333:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7F41
+	bne     L8342
 	lda     _moveframes2
 	cmp     #$1E
-L7F41:	bcs     L7F3F
+L8342:	bcs     L8340
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_l_2);
 ;
@@ -58235,13 +59224,13 @@ L7F41:	bcs     L7F3F
 ;
 ; } else if(moveframes2 < 40){
 ;
-	jmp     LDAB3
-L7F3F:	lda     _moveframes2+1
+	jmp     LDEB5
+L8340:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7F49
+	bne     L834A
 	lda     _moveframes2
 	cmp     #$28
-L7F49:	bcs     L7F47
+L834A:	bcs     L8348
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_l_3);
 ;
@@ -58258,13 +59247,13 @@ L7F49:	bcs     L7F47
 ;
 ; } else if(moveframes2 < 50){
 ;
-	jmp     LDAB3
-L7F47:	lda     _moveframes2+1
+	jmp     LDEB5
+L8348:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7F51
+	bne     L8352
 	lda     _moveframes2
 	cmp     #$32
-L7F51:	bcs     L7F4F
+L8352:	bcs     L8350
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_l_4);
 ;
@@ -58281,13 +59270,13 @@ L7F51:	bcs     L7F4F
 ;
 ; } else if(moveframes2 < 60){
 ;
-	jmp     LDAB3
-L7F4F:	lda     _moveframes2+1
+	jmp     LDEB5
+L8350:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7F59
+	bne     L835A
 	lda     _moveframes2
 	cmp     #$3C
-L7F59:	bcs     L7F57
+L835A:	bcs     L8358
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_l_5);
 ;
@@ -58304,13 +59293,13 @@ L7F59:	bcs     L7F57
 ;
 ; } else if(moveframes2 < 70){
 ;
-	jmp     LDAB3
-L7F57:	lda     _moveframes2+1
+	jmp     LDEB5
+L8358:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7F61
+	bne     L8362
 	lda     _moveframes2
 	cmp     #$46
-L7F61:	bcs     L7F5F
+L8362:	bcs     L8360
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_l_6);
 ;
@@ -58327,13 +59316,13 @@ L7F61:	bcs     L7F5F
 ;
 ; } else if(moveframes2 < 80){
 ;
-	jmp     LDAB3
-L7F5F:	lda     _moveframes2+1
+	jmp     LDEB5
+L8360:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7F69
+	bne     L836A
 	lda     _moveframes2
 	cmp     #$50
-L7F69:	bcs     L7F67
+L836A:	bcs     L8368
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_l_7);
 ;
@@ -58350,13 +59339,13 @@ L7F69:	bcs     L7F67
 ;
 ; } else if(moveframes2 < 90){
 ;
-	jmp     LDAB3
-L7F67:	lda     _moveframes2+1
+	jmp     LDEB5
+L8368:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7F71
+	bne     L8372
 	lda     _moveframes2
 	cmp     #$5A
-L7F71:	bcs     L7F6F
+L8372:	bcs     L8370
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_l_8);
 ;
@@ -58373,11 +59362,11 @@ L7F71:	bcs     L7F6F
 ;
 ; } else {
 ;
-	jmp     LDAB3
+	jmp     LDEB5
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_l_0);
 ;
-L7F6F:	jsr     decsp2
+L8370:	jsr     decsp2
 	lda     _duck_0_x
 	ldy     #$01
 	sta     (sp),y
@@ -58389,16 +59378,16 @@ L7F6F:	jsr     decsp2
 ;
 ; } else {
 ;
-	jmp     LDAA7
+	jmp     LDEA9
 ;
 ; if(moveframes2 < 10){
 ;
-L7F28:	lda     _moveframes2+1
+L8329:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7F80
+	bne     L8381
 	lda     _moveframes2
 	cmp     #$0A
-L7F80:	bcs     L7F7E
+L8381:	bcs     L837F
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_r_1);
 ;
@@ -58415,19 +59404,19 @@ L7F80:	bcs     L7F7E
 ;
 ; } else if(moveframes2 < 20){
 ;
-	jmp     LDAB3
-L7F7E:	lda     _moveframes2+1
+	jmp     LDEB5
+L837F:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7F88
+	bne     L8389
 	lda     _moveframes2
 	cmp     #$14
-L7F88:	bcs     L7F86
+L8389:	bcs     L8387
 ;
 ; if(duck_0_y < 100){ //duck is on screen at at less than 100
 ;
 	lda     _duck_0_y
 	cmp     #$64
-	bcs     L7F89
+	bcs     L838A
 ;
 ; sfx_play(SFX_DUCK,0);
 ;
@@ -58438,7 +59427,7 @@ L7F88:	bcs     L7F86
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_r_2);
 ;
-L7F89:	jsr     decsp2
+L838A:	jsr     decsp2
 	lda     _duck_0_x
 	ldy     #$01
 	sta     (sp),y
@@ -58451,13 +59440,13 @@ L7F89:	jsr     decsp2
 ;
 ; } else if(moveframes2 < 30){
 ;
-	jmp     LDAB3
-L7F86:	lda     _moveframes2+1
+	jmp     LDEB5
+L8387:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7F95
+	bne     L8396
 	lda     _moveframes2
 	cmp     #$1E
-L7F95:	bcs     L7F93
+L8396:	bcs     L8394
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_r_3);
 ;
@@ -58474,13 +59463,13 @@ L7F95:	bcs     L7F93
 ;
 ; } else if(moveframes2 < 40){
 ;
-	jmp     LDAB3
-L7F93:	lda     _moveframes2+1
+	jmp     LDEB5
+L8394:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7F9D
+	bne     L839E
 	lda     _moveframes2
 	cmp     #$28
-L7F9D:	bcs     L7F9B
+L839E:	bcs     L839C
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_r_4);
 ;
@@ -58497,13 +59486,13 @@ L7F9D:	bcs     L7F9B
 ;
 ; } else if(moveframes2 < 50){
 ;
-	jmp     LDAB3
-L7F9B:	lda     _moveframes2+1
+	jmp     LDEB5
+L839C:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7FA5
+	bne     L83A6
 	lda     _moveframes2
 	cmp     #$32
-L7FA5:	bcs     L7FA3
+L83A6:	bcs     L83A4
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_r_5);
 ;
@@ -58520,13 +59509,13 @@ L7FA5:	bcs     L7FA3
 ;
 ; } else if(moveframes2 < 60){
 ;
-	jmp     LDAB3
-L7FA3:	lda     _moveframes2+1
+	jmp     LDEB5
+L83A4:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7FAD
+	bne     L83AE
 	lda     _moveframes2
 	cmp     #$3C
-L7FAD:	bcs     L7FAB
+L83AE:	bcs     L83AC
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_r_6);
 ;
@@ -58543,13 +59532,13 @@ L7FAD:	bcs     L7FAB
 ;
 ; } else if(moveframes2 < 70){
 ;
-	jmp     LDAB3
-L7FAB:	lda     _moveframes2+1
+	jmp     LDEB5
+L83AC:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7FB5
+	bne     L83B6
 	lda     _moveframes2
 	cmp     #$46
-L7FB5:	bcs     L7FB3
+L83B6:	bcs     L83B4
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_r_7);
 ;
@@ -58566,13 +59555,13 @@ L7FB5:	bcs     L7FB3
 ;
 ; } else if(moveframes2 < 80){
 ;
-	jmp     LDAB3
-L7FB3:	lda     _moveframes2+1
+	jmp     LDEB5
+L83B4:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7FBD
+	bne     L83BE
 	lda     _moveframes2
 	cmp     #$50
-L7FBD:	bcs     L7FBB
+L83BE:	bcs     L83BC
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_r_8);
 ;
@@ -58589,13 +59578,13 @@ L7FBD:	bcs     L7FBB
 ;
 ; } else if(moveframes2 < 90){
 ;
-	jmp     LDAB3
-L7FBB:	lda     _moveframes2+1
+	jmp     LDEB5
+L83BC:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7FC5
+	bne     L83C6
 	lda     _moveframes2
 	cmp     #$5A
-L7FC5:	bcs     L7FC3
+L83C6:	bcs     L83C4
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_r_9);
 ;
@@ -58612,11 +59601,11 @@ L7FC5:	bcs     L7FC3
 ;
 ; } else {
 ;
-	jmp     LDAB3
+	jmp     LDEB5
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, flock_r_1);
 ;
-L7FC3:	jsr     decsp2
+L83C4:	jsr     decsp2
 	lda     _duck_0_x
 	ldy     #$01
 	sta     (sp),y
@@ -58628,18 +59617,18 @@ L7FC3:	jsr     decsp2
 ;
 ; } else if (moveframes2 < 5)
 ;
-	jmp     LDAA7
-L7F24:	lda     _moveframes2+1
+	jmp     LDEA9
+L8325:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7FD4
+	bne     L83D5
 	lda     _moveframes2
 	cmp     #$05
-L7FD4:	bcs     L7FD2
+L83D5:	bcs     L83D3
 ;
 ; if (x_direction)
 ;
 	lda     _x_direction
-	beq     L7FD5
+	beq     L83D6
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_l_0);
 ;
@@ -58656,11 +59645,11 @@ L7FD4:	bcs     L7FD2
 ;
 ; else
 ;
-	jmp     LDAB3
+	jmp     LDEB5
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_r_0);
 ;
-L7FD5:	jsr     decsp2
+L83D6:	jsr     decsp2
 	lda     _duck_0_x
 	ldy     #$01
 	sta     (sp),y
@@ -58673,18 +59662,18 @@ L7FD5:	jsr     decsp2
 ;
 ; else if (moveframes2 < 10)
 ;
-	jmp     LDAB3
-L7FD2:	lda     _moveframes2+1
+	jmp     LDEB5
+L83D3:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7FE3
+	bne     L83E4
 	lda     _moveframes2
 	cmp     #$0A
-L7FE3:	bcs     L7FE1
+L83E4:	bcs     L83E2
 ;
 ; if (x_direction)
 ;
 	lda     _x_direction
-	beq     L7FE4
+	beq     L83E5
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_l_1);
 ;
@@ -58701,11 +59690,11 @@ L7FE3:	bcs     L7FE1
 ;
 ; else
 ;
-	jmp     LDAB3
+	jmp     LDEB5
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_r_1);
 ;
-L7FE4:	jsr     decsp2
+L83E5:	jsr     decsp2
 	lda     _duck_0_x
 	ldy     #$01
 	sta     (sp),y
@@ -58718,19 +59707,19 @@ L7FE4:	jsr     decsp2
 ;
 ; else if (moveframes2 < 15)
 ;
-	jmp     LDAB3
-L7FE1:	lda     _moveframes2+1
+	jmp     LDEB5
+L83E2:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L7FF2
+	bne     L83F3
 	lda     _moveframes2
 	cmp     #$0F
-L7FF2:	bcs     L7FF0
+L83F3:	bcs     L83F1
 ;
 ; if(duck_0_y < 100){ //duck is on screen at at less than 100
 ;
 	lda     _duck_0_y
 	cmp     #$64
-	bcs     L7FF3
+	bcs     L83F4
 ;
 ; sfx_play(SFX_DUCK,0);
 ;
@@ -58741,8 +59730,8 @@ L7FF2:	bcs     L7FF0
 ;
 ; if (x_direction)
 ;
-L7FF3:	lda     _x_direction
-	beq     L7FF8
+L83F4:	lda     _x_direction
+	beq     L83F9
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_l_2);
 ;
@@ -58759,11 +59748,11 @@ L7FF3:	lda     _x_direction
 ;
 ; else
 ;
-	jmp     LDAB3
+	jmp     LDEB5
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_r_2);
 ;
-L7FF8:	jsr     decsp2
+L83F9:	jsr     decsp2
 	lda     _duck_0_x
 	ldy     #$01
 	sta     (sp),y
@@ -58776,18 +59765,18 @@ L7FF8:	jsr     decsp2
 ;
 ; else if (moveframes2 < 20)
 ;
-	jmp     LDAB3
-L7FF0:	lda     _moveframes2+1
+	jmp     LDEB5
+L83F1:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L8006
+	bne     L8407
 	lda     _moveframes2
 	cmp     #$14
-L8006:	bcs     L8004
+L8407:	bcs     L8405
 ;
 ; if (x_direction)
 ;
 	lda     _x_direction
-	beq     L8007
+	beq     L8408
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_l_3);
 ;
@@ -58804,11 +59793,11 @@ L8006:	bcs     L8004
 ;
 ; else
 ;
-	jmp     LDAB3
+	jmp     LDEB5
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_r_3);
 ;
-L8007:	jsr     decsp2
+L8408:	jsr     decsp2
 	lda     _duck_0_x
 	ldy     #$01
 	sta     (sp),y
@@ -58821,18 +59810,18 @@ L8007:	jsr     decsp2
 ;
 ; else if (moveframes2 < 25)
 ;
-	jmp     LDAB3
-L8004:	lda     _moveframes2+1
+	jmp     LDEB5
+L8405:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L8015
+	bne     L8416
 	lda     _moveframes2
 	cmp     #$19
-L8015:	bcs     L8013
+L8416:	bcs     L8414
 ;
 ; if (x_direction)
 ;
 	lda     _x_direction
-	beq     L8016
+	beq     L8417
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_l_4);
 ;
@@ -58849,11 +59838,11 @@ L8015:	bcs     L8013
 ;
 ; else
 ;
-	jmp     LDAB3
+	jmp     LDEB5
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_r_4);
 ;
-L8016:	jsr     decsp2
+L8417:	jsr     decsp2
 	lda     _duck_0_x
 	ldy     #$01
 	sta     (sp),y
@@ -58866,18 +59855,18 @@ L8016:	jsr     decsp2
 ;
 ; else if (moveframes2 < 30)
 ;
-	jmp     LDAB3
-L8013:	lda     _moveframes2+1
+	jmp     LDEB5
+L8414:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L8024
+	bne     L8425
 	lda     _moveframes2
 	cmp     #$1E
-L8024:	bcs     L8022
+L8425:	bcs     L8423
 ;
 ; if (x_direction)
 ;
 	lda     _x_direction
-	beq     L8025
+	beq     L8426
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_l_5);
 ;
@@ -58894,11 +59883,11 @@ L8024:	bcs     L8022
 ;
 ; else
 ;
-	jmp     LDAB3
+	jmp     LDEB5
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_r_5);
 ;
-L8025:	jsr     decsp2
+L8426:	jsr     decsp2
 	lda     _duck_0_x
 	ldy     #$01
 	sta     (sp),y
@@ -58911,18 +59900,18 @@ L8025:	jsr     decsp2
 ;
 ; else if (moveframes2 < 35)
 ;
-	jmp     LDAB3
-L8022:	lda     _moveframes2+1
+	jmp     LDEB5
+L8423:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L8033
+	bne     L8434
 	lda     _moveframes2
 	cmp     #$23
-L8033:	bcs     L8031
+L8434:	bcs     L8432
 ;
 ; if (x_direction)
 ;
 	lda     _x_direction
-	beq     L8034
+	beq     L8435
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_l_4);
 ;
@@ -58939,11 +59928,11 @@ L8033:	bcs     L8031
 ;
 ; else
 ;
-	jmp     LDAB3
+	jmp     LDEB5
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_r_4);
 ;
-L8034:	jsr     decsp2
+L8435:	jsr     decsp2
 	lda     _duck_0_x
 	ldy     #$01
 	sta     (sp),y
@@ -58956,18 +59945,18 @@ L8034:	jsr     decsp2
 ;
 ; else if (moveframes2 < 40)
 ;
-	jmp     LDAB3
-L8031:	lda     _moveframes2+1
+	jmp     LDEB5
+L8432:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L8042
+	bne     L8443
 	lda     _moveframes2
 	cmp     #$28
-L8042:	bcs     L8040
+L8443:	bcs     L8441
 ;
 ; if (x_direction)
 ;
 	lda     _x_direction
-	beq     L8043
+	beq     L8444
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_l_3);
 ;
@@ -58984,11 +59973,11 @@ L8042:	bcs     L8040
 ;
 ; else
 ;
-	jmp     LDAB3
+	jmp     LDEB5
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_r_3);
 ;
-L8043:	jsr     decsp2
+L8444:	jsr     decsp2
 	lda     _duck_0_x
 	ldy     #$01
 	sta     (sp),y
@@ -59001,18 +59990,18 @@ L8043:	jsr     decsp2
 ;
 ; else if (moveframes2 < 45)
 ;
-	jmp     LDAB3
-L8040:	lda     _moveframes2+1
+	jmp     LDEB5
+L8441:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L8051
+	bne     L8452
 	lda     _moveframes2
 	cmp     #$2D
-L8051:	bcs     L804F
+L8452:	bcs     L8450
 ;
 ; if (x_direction)
 ;
 	lda     _x_direction
-	beq     L8052
+	beq     L8453
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_l_2);
 ;
@@ -59029,11 +60018,11 @@ L8051:	bcs     L804F
 ;
 ; else
 ;
-	jmp     LDAB3
+	jmp     LDEB5
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_r_2);
 ;
-L8052:	jsr     decsp2
+L8453:	jsr     decsp2
 	lda     _duck_0_x
 	ldy     #$01
 	sta     (sp),y
@@ -59046,18 +60035,18 @@ L8052:	jsr     decsp2
 ;
 ; else if (moveframes2 < 50)
 ;
-	jmp     LDAB3
-L804F:	lda     _moveframes2+1
+	jmp     LDEB5
+L8450:	lda     _moveframes2+1
 	cmp     #$00
-	bne     L8060
+	bne     L8461
 	lda     _moveframes2
 	cmp     #$32
-L8060:	bcs     L805E
+L8461:	bcs     L845F
 ;
 ; if (x_direction)
 ;
 	lda     _x_direction
-	beq     L8061
+	beq     L8462
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_l_1);
 ;
@@ -59074,11 +60063,11 @@ L8060:	bcs     L805E
 ;
 ; else
 ;
-	jmp     LDAB3
+	jmp     LDEB5
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_r_1);
 ;
-L8061:	jsr     decsp2
+L8462:	jsr     decsp2
 	lda     _duck_0_x
 	ldy     #$01
 	sta     (sp),y
@@ -59091,12 +60080,12 @@ L8061:	jsr     decsp2
 ;
 ; else
 ;
-	jmp     LDAB3
+	jmp     LDEB5
 ;
 ; if (x_direction)
 ;
-L805E:	lda     _x_direction
-	beq     L806D
+L845F:	lda     _x_direction
+	beq     L846E
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_l_0);
 ;
@@ -59112,11 +60101,11 @@ L805E:	lda     _x_direction
 ;
 ; else
 ;
-	jmp     LDAA7
+	jmp     LDEA9
 ;
 ; oam_meta_spr(duck_0_x, duck_0_y, bigduck_r_0);
 ;
-L806D:	jsr     decsp2
+L846E:	jsr     decsp2
 	lda     _duck_0_x
 	ldy     #$01
 	sta     (sp),y
@@ -59125,7 +60114,7 @@ L806D:	jsr     decsp2
 	sta     (sp),y
 	lda     #<(_bigduck_r_0)
 	ldx     #>(_bigduck_r_0)
-LDAA7:	jsr     _oam_meta_spr
+LDEA9:	jsr     _oam_meta_spr
 ;
 ; moveframes2 = 0;
 ;
@@ -59135,9 +60124,9 @@ LDAA7:	jsr     _oam_meta_spr
 ;
 ; if (levels_complete == 2)
 ;
-LDAB3:	lda     _levels_complete
+LDEB5:	lda     _levels_complete
 	cmp     #$02
-	jne     L82F9
+	jne     L86F9
 ;
 ; if(moveframes > 2000 && high_byte(tumble_1_x) < 130){
 ;
@@ -59145,10 +60134,10 @@ LDAB3:	lda     _levels_complete
 	cmp     #$D1
 	lda     _moveframes+1
 	sbc     #$07
-	jcc     L80F8
+	jcc     L84F9
 	lda     _tumble_1_x+1
 	cmp     #$82
-	jcs     L80F8
+	jcs     L84F9
 ;
 ; if((moveframes > 2000 && moveframes < 3000 )|| moveframes > 3600){
 ;
@@ -59156,39 +60145,39 @@ LDAB3:	lda     _levels_complete
 	cmp     #$D1
 	lda     _moveframes+1
 	sbc     #$07
-	bcc     LDAA3
+	bcc     LDEA5
 	lda     _moveframes+1
 	cmp     #$0B
-	bne     L8085
+	bne     L8486
 	lda     _moveframes
 	cmp     #$B8
-L8085:	bcc     LDABB
-LDAA3:	lda     _moveframes
+L8486:	bcc     LDEBD
+LDEA5:	lda     _moveframes
 	cmp     #$11
 	lda     _moveframes+1
 	sbc     #$0E
-	jcc     L8081
+	jcc     L8482
 ;
 ; ++sprite_1_frames;
 ;
-LDABB:	inc     _sprite_1_frames
-	bne     L8089
+LDEBD:	inc     _sprite_1_frames
+	bne     L848A
 	inc     _sprite_1_frames+1
 ;
 ; tumble_1_x += 40; 
 ;
-L8089:	lda     #$28
+L848A:	lda     #$28
 	clc
 	adc     _tumble_1_x
 	sta     _tumble_1_x
-	bcc     L808C
+	bcc     L848D
 	inc     _tumble_1_x+1
 ;
 ; if(high_byte(tumble_1_y) == 100){
 ;
-L808C:	lda     _tumble_1_y+1
+L848D:	lda     _tumble_1_y+1
 	cmp     #$64
-	bne     LDABC
+	bne     LDEBE
 ;
 ; y_direction = 0;
 ;
@@ -59197,9 +60186,9 @@ L808C:	lda     _tumble_1_y+1
 ;
 ; if(high_byte(tumble_1_y) == 110){
 ;
-LDABC:	lda     _tumble_1_y+1
+LDEBE:	lda     _tumble_1_y+1
 	cmp     #$6E
-	bne     L8092
+	bne     L8493
 ;
 ; y_direction = 1;
 ;
@@ -59208,8 +60197,8 @@ LDABC:	lda     _tumble_1_y+1
 ;
 ; if(y_direction){
 ;
-L8092:	lda     _y_direction
-	beq     L8097
+L8493:	lda     _y_direction
+	beq     L8498
 ;
 ; tumble_1_y += 5;
 ;
@@ -59217,30 +60206,30 @@ L8092:	lda     _y_direction
 	clc
 	adc     _tumble_1_y
 	sta     _tumble_1_y
-	bcc     L809F
+	bcc     L84A0
 	inc     _tumble_1_y+1
 ;
 ; } else {
 ;
-	jmp     L809F
+	jmp     L84A0
 ;
 ; tumble_1_y -= 5;
 ;
-L8097:	lda     _tumble_1_y
+L8498:	lda     _tumble_1_y
 	sec
 	sbc     #$05
 	sta     _tumble_1_y
-	bcs     L809F
+	bcs     L84A0
 	dec     _tumble_1_y+1
 ;
 ; if(sprite_1_frames < 10){
 ;
-L809F:	lda     _sprite_1_frames+1
+L84A0:	lda     _sprite_1_frames+1
 	cmp     #$00
-	bne     L80A2
+	bne     L84A3
 	lda     _sprite_1_frames
 	cmp     #$0A
-L80A2:	bcs     L80A0
+L84A3:	bcs     L84A1
 ;
 ; oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_0);
 ;
@@ -59256,13 +60245,13 @@ L80A2:	bcs     L80A0
 ;
 ; } else if (sprite_1_frames < 20){
 ;
-	jmp     LDAA8
-L80A0:	lda     _sprite_1_frames+1
+	jmp     LDEAA
+L84A1:	lda     _sprite_1_frames+1
 	cmp     #$00
-	bne     L80AC
+	bne     L84AD
 	lda     _sprite_1_frames
 	cmp     #$14
-L80AC:	bcs     L80AA
+L84AD:	bcs     L84AB
 ;
 ; oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_1);
 ;
@@ -59278,22 +60267,22 @@ L80AC:	bcs     L80AA
 ;
 ; } else if (sprite_1_frames < 30){
 ;
-	jmp     LDAA8
-L80AA:	lda     _sprite_1_frames+1
+	jmp     LDEAA
+L84AB:	lda     _sprite_1_frames+1
 	cmp     #$00
-	bne     L80B6
+	bne     L84B7
 	lda     _sprite_1_frames
 	cmp     #$1E
 ;
 ; } else if (sprite_1_frames < 40){
 ;
-L80B6:	jcc     L8081
+L84B7:	jcc     L8482
 	lda     _sprite_1_frames+1
 	cmp     #$00
-	bne     L80C0
+	bne     L84C1
 	lda     _sprite_1_frames
 	cmp     #$28
-L80C0:	bcs     L80BE
+L84C1:	bcs     L84BF
 ;
 ; oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_3);
 ;
@@ -59309,13 +60298,13 @@ L80C0:	bcs     L80BE
 ;
 ; } else if (sprite_1_frames < 50){
 ;
-	jmp     LDAA8
-L80BE:	lda     _sprite_1_frames+1
+	jmp     LDEAA
+L84BF:	lda     _sprite_1_frames+1
 	cmp     #$00
-	bne     L80CA
+	bne     L84CB
 	lda     _sprite_1_frames
 	cmp     #$32
-L80CA:	bcs     L80C8
+L84CB:	bcs     L84C9
 ;
 ; oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_4);
 ;
@@ -59331,13 +60320,13 @@ L80CA:	bcs     L80C8
 ;
 ; } else if (sprite_1_frames < 60){
 ;
-	jmp     LDAA8
-L80C8:	lda     _sprite_1_frames+1
+	jmp     LDEAA
+L84C9:	lda     _sprite_1_frames+1
 	cmp     #$00
-	bne     L80D4
+	bne     L84D5
 	lda     _sprite_1_frames
 	cmp     #$3C
-L80D4:	bcs     L80D2
+L84D5:	bcs     L84D3
 ;
 ; oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_5);
 ;
@@ -59353,13 +60342,13 @@ L80D4:	bcs     L80D2
 ;
 ; } else if (sprite_1_frames < 70){
 ;
-	jmp     LDAA8
-L80D2:	lda     _sprite_1_frames+1
+	jmp     LDEAA
+L84D3:	lda     _sprite_1_frames+1
 	cmp     #$00
-	bne     L80DE
+	bne     L84DF
 	lda     _sprite_1_frames
 	cmp     #$46
-L80DE:	bcs     L80DC
+L84DF:	bcs     L84DD
 ;
 ; oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_6);
 ;
@@ -59375,13 +60364,13 @@ L80DE:	bcs     L80DC
 ;
 ; } else if (sprite_1_frames < 80){
 ;
-	jmp     LDAA8
-L80DC:	lda     _sprite_1_frames+1
+	jmp     LDEAA
+L84DD:	lda     _sprite_1_frames+1
 	cmp     #$00
-	bne     L80E8
+	bne     L84E9
 	lda     _sprite_1_frames
 	cmp     #$50
-L80E8:	bcs     L80E6
+L84E9:	bcs     L84E7
 ;
 ; oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_7);
 ;
@@ -59397,11 +60386,11 @@ L80E8:	bcs     L80E6
 ;
 ; } else {
 ;
-	jmp     LDAA8
+	jmp     LDEAA
 ;
 ; oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_0);
 ;
-L80E6:	jsr     decsp2
+L84E7:	jsr     decsp2
 	lda     _tumble_1_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -59420,11 +60409,11 @@ L80E6:	jsr     decsp2
 ;
 ; } else {
 ;
-	jmp     L80F8
+	jmp     L84F9
 ;
 ; oam_meta_spr(high_byte(tumble_1_x), high_byte(tumble_1_y), tumbleweed_2);
 ;
-L8081:	jsr     decsp2
+L8482:	jsr     decsp2
 	lda     _tumble_1_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -59433,27 +60422,27 @@ L8081:	jsr     decsp2
 	sta     (sp),y
 	lda     #<(_tumbleweed_2)
 	ldx     #>(_tumbleweed_2)
-LDAA8:	jsr     _oam_meta_spr
+LDEAA:	jsr     _oam_meta_spr
 ;
 ; if (moveframes2 > 7000) // wait for the truck
 ;
-L80F8:	lda     _moveframes2
+L84F9:	lda     _moveframes2
 	cmp     #$59
 	lda     _moveframes2+1
 	sbc     #$1B
-	jcc     L81B7
+	jcc     L85AC
 ;
 ; ++truck_frames;
 ;
 	inc     _truck_frames
-	bne     L8102
+	bne     L8503
 	inc     _truck_frames+1
 ;
 ; if(high_byte(truck_x) < 50){
 ;
-L8102:	lda     _truck_x+1
+L8503:	lda     _truck_x+1
 	cmp     #$32
-	bcs     LDABD
+	bcs     LDEBF
 ;
 ; truck_x += 200; //goes fast
 ;
@@ -59461,15 +60450,15 @@ L8102:	lda     _truck_x+1
 ;
 ; } else if(high_byte(truck_x) < 57){
 ;
-	jmp     LDAD6
-LDABD:	lda     _truck_x+1
+	jmp     LDED8
+LDEBF:	lda     _truck_x+1
 	cmp     #$39
 ;
 ; } else if(high_byte(truck_x) < 62){
 ;
-	bcc     LDAD8
+	bcc     LDEDA
 	cmp     #$3E
-	bcs     LDABF
+	bcs     LDEC1
 ;
 ; truck_x += 120; //starts to slow
 ;
@@ -59477,10 +60466,10 @@ LDABD:	lda     _truck_x+1
 ;
 ; } else if(high_byte(truck_x) < 65){
 ;
-	jmp     LDAD6
-LDABF:	lda     _truck_x+1
+	jmp     LDED8
+LDEC1:	lda     _truck_x+1
 	cmp     #$41
-	bcs     LDAC0
+	bcs     LDEC2
 ;
 ; truck_x += 50; //starts to slow
 ;
@@ -59488,33 +60477,33 @@ LDABF:	lda     _truck_x+1
 ;
 ; } else if(high_byte(truck_x) < 67){
 ;
-	jmp     LDAD6
-LDAC0:	lda     _truck_x+1
+	jmp     LDED8
+LDEC2:	lda     _truck_x+1
 	cmp     #$43
-	bcs     LDAC1
+	bcs     LDEC3
 ;
 ; truck_x += 100;
 ;
-LDAD8:	lda     #$64
-LDAD6:	clc
+LDEDA:	lda     #$64
+LDED8:	clc
 	adc     _truck_x
 	sta     _truck_x
-	bcc     LDAC1
+	bcc     LDEC3
 	inc     _truck_x+1
 ;
 ; if(truck_breakdown == 0){
 ;
-LDAC1:	lda     _truck_breakdown
-	jne     LDAC2
+LDEC3:	lda     _truck_breakdown
+	jne     LDEC4
 ;
 ; if (truck_frames < 10)
 ;
 	lda     _truck_frames+1
 	cmp     #$00
-	bne     L8129
+	bne     L852A
 	lda     _truck_frames
 	cmp     #$0A
-L8129:	bcs     L8127
+L852A:	bcs     L8528
 ;
 ; sfx_play(SFX_CARENGINE, 0);
 ;
@@ -59532,13 +60521,13 @@ L8129:	bcs     L8127
 ;
 ; else if (truck_frames < 20)
 ;
-	jmp     L8144
-L8127:	lda     _truck_frames+1
+	jmp     L8545
+L8528:	lda     _truck_frames+1
 	cmp     #$00
-	bne     L8132
+	bne     L8533
 	lda     _truck_frames
 	cmp     #$14
-L8132:	bcs     L8130
+L8533:	bcs     L8531
 ;
 ; sprite_pointer = truck_1;
 ;
@@ -59549,13 +60538,13 @@ L8132:	bcs     L8130
 ;
 ; else if (truck_frames < 30)
 ;
-	jmp     L8144
-L8130:	lda     _truck_frames+1
+	jmp     L8545
+L8531:	lda     _truck_frames+1
 	cmp     #$00
-	bne     L8138
+	bne     L8539
 	lda     _truck_frames
 	cmp     #$1E
-L8138:	bcs     L8136
+L8539:	bcs     L8537
 ;
 ; sprite_pointer = truck_0;
 ;
@@ -59566,11 +60555,11 @@ L8138:	bcs     L8136
 ;
 ; else
 ;
-	jmp     L8144
+	jmp     L8545
 ;
 ; sprite_pointer = truck_2;
 ;
-L8136:	lda     #>(_truck_2)
+L8537:	lda     #>(_truck_2)
 	sta     _sprite_pointer+1
 	lda     #<(_truck_2)
 	sta     _sprite_pointer
@@ -59579,7 +60568,7 @@ L8136:	lda     #>(_truck_2)
 ;
 	lda     _truck_x+1
 	cmp     #$43
-	bcs     L813E
+	bcs     L853F
 ;
 ; truck_frames = 0;
 ;
@@ -59589,15 +60578,15 @@ L8136:	lda     #>(_truck_2)
 ;
 ; } else {
 ;
-	jmp     L8144
+	jmp     L8545
 ;
 ; if(moveframes > 7000+400) {
 ;
-L813E:	lda     _moveframes
+L853F:	lda     _moveframes
 	cmp     #$E9
 	lda     _moveframes+1
 	sbc     #$1C
-	bcc     L8144
+	bcc     L8545
 ;
 ; truck_breakdown = 1;
 ;
@@ -59606,7 +60595,7 @@ L813E:	lda     _moveframes
 ;
 ; oam_meta_spr(high_byte(truck_x), high_byte(truck_y), sprite_pointer);
 ;
-L8144:	jsr     decsp2
+L8545:	jsr     decsp2
 	lda     _truck_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -59619,18 +60608,18 @@ L8144:	jsr     decsp2
 ;
 ; if(truck_breakdown == 1) {
 ;
-LDAC2:	lda     _truck_breakdown
+LDEC4:	lda     _truck_breakdown
 	cmp     #$01
-	jne     LDAC3
+	jne     LDEC5
 ;
 ; if (truck_frames < 30)
 ;
 	lda     _truck_frames+1
 	cmp     #$00
-	bne     L8152
+	bne     L8553
 	lda     _truck_frames
 	cmp     #$1E
-L8152:	bcs     L8150
+L8553:	bcs     L8551
 ;
 ; sprite_pointer = truck_breakdown_0;
 ;
@@ -59641,13 +60630,13 @@ L8152:	bcs     L8150
 ;
 ; else if (truck_frames < 60)
 ;
-	jmp     L81A0
-L8150:	lda     _truck_frames+1
+	jmp     L85A1
+L8551:	lda     _truck_frames+1
 	cmp     #$00
-	bne     L8158
+	bne     L8559
 	lda     _truck_frames
 	cmp     #$3C
-L8158:	bcs     L8156
+L8559:	bcs     L8557
 ;
 ; sprite_pointer = truck_breakdown_1;
 ;
@@ -59658,13 +60647,13 @@ L8158:	bcs     L8156
 ;
 ; else if (truck_frames < 90)
 ;
-	jmp     L81A0
-L8156:	lda     _truck_frames+1
+	jmp     L85A1
+L8557:	lda     _truck_frames+1
 	cmp     #$00
-	bne     L815E
+	bne     L855F
 	lda     _truck_frames
 	cmp     #$5A
-L815E:	bcs     L815C
+L855F:	bcs     L855D
 ;
 ; sfx_play(SFX_TRUCKBREAKDOWN, 0);
 ;
@@ -59682,13 +60671,13 @@ L815E:	bcs     L815C
 ;
 ; else if (truck_frames < 120)
 ;
-	jmp     L81A0
-L815C:	lda     _truck_frames+1
+	jmp     L85A1
+L855D:	lda     _truck_frames+1
 	cmp     #$00
-	bne     L8167
+	bne     L8568
 	lda     _truck_frames
 	cmp     #$78
-L8167:	bcs     L8165
+L8568:	bcs     L8566
 ;
 ; sprite_pointer = truck_breakdown_3;
 ;
@@ -59699,13 +60688,13 @@ L8167:	bcs     L8165
 ;
 ; else if (truck_frames < 150)
 ;
-	jmp     L81A0
-L8165:	lda     _truck_frames+1
+	jmp     L85A1
+L8566:	lda     _truck_frames+1
 	cmp     #$00
-	bne     L816D
+	bne     L856E
 	lda     _truck_frames
 	cmp     #$96
-L816D:	bcs     L816B
+L856E:	bcs     L856C
 ;
 ; sprite_pointer = truck_breakdown_4;
 ;
@@ -59716,13 +60705,13 @@ L816D:	bcs     L816B
 ;
 ; else if (truck_frames < 180)
 ;
-	jmp     L81A0
-L816B:	lda     _truck_frames+1
+	jmp     L85A1
+L856C:	lda     _truck_frames+1
 	cmp     #$00
-	bne     L8173
+	bne     L8574
 	lda     _truck_frames
 	cmp     #$B4
-L8173:	bcs     L8171
+L8574:	bcs     L8572
 ;
 ; sprite_pointer = truck_breakdown_5;
 ;
@@ -59733,13 +60722,13 @@ L8173:	bcs     L8171
 ;
 ; else if (truck_frames < 210)
 ;
-	jmp     L81A0
-L8171:	lda     _truck_frames+1
+	jmp     L85A1
+L8572:	lda     _truck_frames+1
 	cmp     #$00
-	bne     L8179
+	bne     L857A
 	lda     _truck_frames
 	cmp     #$D2
-L8179:	bcs     L8177
+L857A:	bcs     L8578
 ;
 ; sprite_pointer = truck_breakdown_6;
 ;
@@ -59750,13 +60739,13 @@ L8179:	bcs     L8177
 ;
 ; else if (truck_frames < 240)
 ;
-	jmp     L81A0
-L8177:	lda     _truck_frames+1
+	jmp     L85A1
+L8578:	lda     _truck_frames+1
 	cmp     #$00
-	bne     L817F
+	bne     L8580
 	lda     _truck_frames
 	cmp     #$F0
-L817F:	bcs     L817D
+L8580:	bcs     L857E
 ;
 ; sprite_pointer = truck_breakdown_7;
 ;
@@ -59767,13 +60756,13 @@ L817F:	bcs     L817D
 ;
 ; else if (truck_frames < 270)
 ;
-	jmp     L81A0
-L817D:	lda     _truck_frames+1
+	jmp     L85A1
+L857E:	lda     _truck_frames+1
 	cmp     #$01
-	bne     L8185
+	bne     L8586
 	lda     _truck_frames
 	cmp     #$0E
-L8185:	bcs     L8183
+L8586:	bcs     L8584
 ;
 ; sprite_pointer = truck_breakdown_8;
 ;
@@ -59784,13 +60773,13 @@ L8185:	bcs     L8183
 ;
 ; else if (truck_frames < 300)
 ;
-	jmp     L81A0
-L8183:	lda     _truck_frames+1
+	jmp     L85A1
+L8584:	lda     _truck_frames+1
 	cmp     #$01
-	bne     L818B
+	bne     L858C
 	lda     _truck_frames
 	cmp     #$2C
-L818B:	bcs     L8189
+L858C:	bcs     L858A
 ;
 ; sprite_pointer = truck_breakdown_9;
 ;
@@ -59801,13 +60790,13 @@ L818B:	bcs     L8189
 ;
 ; else if (truck_frames < 330)
 ;
-	jmp     L81A0
-L8189:	lda     _truck_frames+1
+	jmp     L85A1
+L858A:	lda     _truck_frames+1
 	cmp     #$01
-	bne     L8191
+	bne     L8592
 	lda     _truck_frames
 	cmp     #$4A
-L8191:	bcs     L818F
+L8592:	bcs     L8590
 ;
 ; sprite_pointer = truck_breakdown_10;
 ;
@@ -59818,13 +60807,13 @@ L8191:	bcs     L818F
 ;
 ; else if (truck_frames < 360)
 ;
-	jmp     L81A0
-L818F:	lda     _truck_frames+1
+	jmp     L85A1
+L8590:	lda     _truck_frames+1
 	cmp     #$01
-	bne     L8197
+	bne     L8598
 	lda     _truck_frames
 	cmp     #$68
-L8197:	bcs     L8195
+L8598:	bcs     L8596
 ;
 ; sprite_pointer = truck_breakdown_11;
 ;
@@ -59835,13 +60824,13 @@ L8197:	bcs     L8195
 ;
 ; else if (truck_frames < 390)
 ;
-	jmp     L81A0
-L8195:	lda     _truck_frames+1
+	jmp     L85A1
+L8596:	lda     _truck_frames+1
 	cmp     #$01
-	bne     L819D
+	bne     L859E
 	lda     _truck_frames
 	cmp     #$86
-L819D:	bcs     L819B
+L859E:	bcs     L859C
 ;
 ; sprite_pointer = truck_breakdown_12;
 ;
@@ -59852,11 +60841,11 @@ L819D:	bcs     L819B
 ;
 ; else
 ;
-	jmp     L81A0
+	jmp     L85A1
 ;
 ; sprite_pointer = truck_breakdown_12;
 ;
-L819B:	lda     #>(_truck_breakdown_12)
+L859C:	lda     #>(_truck_breakdown_12)
 	sta     _sprite_pointer+1
 	lda     #<(_truck_breakdown_12)
 	sta     _sprite_pointer
@@ -59868,7 +60857,7 @@ L819B:	lda     #>(_truck_breakdown_12)
 ;
 ; oam_meta_spr(high_byte(truck_x), high_byte(truck_y), sprite_pointer);
 ;
-L81A0:	jsr     decsp2
+L85A1:	jsr     decsp2
 	lda     _truck_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -59881,24 +60870,24 @@ L81A0:	jsr     decsp2
 ;
 ; if(truck_breakdown == 2){  
 ;
-LDAC3:	lda     _truck_breakdown
+LDEC5:	lda     _truck_breakdown
 	cmp     #$02
-	bne     L81B7
+	bne     L85AC
 ;
 ; if(truck_frames == 1000 && moveframes < 12000){
 ;
 	lda     _truck_frames+1
 	cmp     #$03
-	bne     L81AD
+	bne     L85AE
 	lda     _truck_frames
 	cmp     #$E8
-	bne     L81AD
+	bne     L85AE
 	lda     _moveframes+1
 	cmp     #$2E
-	bne     L81B1
+	bne     L85B2
 	lda     _moveframes
 	cmp     #$E0
-L81B1:	bcs     L81AD
+L85B2:	bcs     L85AE
 ;
 ; truck_breakdown = 1;
 ;
@@ -59911,13 +60900,9 @@ L81B1:	bcs     L81AD
 	sta     _truck_frames
 	sta     _truck_frames+1
 ;
-; } else {
-;
-	jmp     L81B7
-;
 ; oam_meta_spr(high_byte(truck_x), high_byte(truck_y), truck_2);
 ;
-L81AD:	jsr     decsp2
+L85AE:	jsr     decsp2
 	lda     _truck_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -59930,32 +60915,32 @@ L81AD:	jsr     decsp2
 ;
 ; if (moveframes > 12500) //wait to display the blimp
 ;
-L81B7:	lda     _moveframes
+L85AC:	lda     _moveframes
 	cmp     #$D5
 	lda     _moveframes+1
 	sbc     #$30
-	jcc     L82F9
+	jcc     L86F9
 ;
 ; ++blimp_frames;
 ;
 	inc     _blimp_frames
-	bne     L81C1
+	bne     L85C1
 	inc     _blimp_frames+1
 ;
 ; blimp_x -= 13;
 ;
-L81C1:	lda     _blimp_x
+L85C1:	lda     _blimp_x
 	sec
 	sbc     #$0D
 	sta     _blimp_x
-	bcs     L81C4
+	bcs     L85C4
 	dec     _blimp_x+1
 ;
 ; if (high_byte(blimp_y) == 10)
 ;
-L81C4:	lda     _blimp_y+1
+L85C4:	lda     _blimp_y+1
 	cmp     #$0A
-	bne     LDAC6
+	bne     LDEC8
 ;
 ; y_direction = 0;
 ;
@@ -59964,9 +60949,9 @@ L81C4:	lda     _blimp_y+1
 ;
 ; if (high_byte(blimp_y) == 20)
 ;
-LDAC6:	lda     _blimp_y+1
+LDEC8:	lda     _blimp_y+1
 	cmp     #$14
-	bne     L81CA
+	bne     L85CA
 ;
 ; y_direction = 1;
 ;
@@ -59975,8 +60960,8 @@ LDAC6:	lda     _blimp_y+1
 ;
 ; if (y_direction)
 ;
-L81CA:	lda     _y_direction
-	beq     L81CF
+L85CA:	lda     _y_direction
+	beq     L85CF
 ;
 ; blimp_y -= 13;
 ;
@@ -59984,30 +60969,30 @@ L81CA:	lda     _y_direction
 	sec
 	sbc     #$0D
 	sta     _blimp_y
-	bcs     L81D7
+	bcs     L85D7
 	dec     _blimp_y+1
 ;
 ; else
 ;
-	jmp     L81D7
+	jmp     L85D7
 ;
 ; blimp_y += 13;
 ;
-L81CF:	lda     #$0D
+L85CF:	lda     #$0D
 	clc
 	adc     _blimp_y
 	sta     _blimp_y
-	bcc     L81D7
+	bcc     L85D7
 	inc     _blimp_y+1
 ;
 ; if (blimp_frames < 30)
 ;
-L81D7:	lda     _blimp_frames+1
+L85D7:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     L81DA
+	bne     L85DA
 	lda     _blimp_frames
 	cmp     #$1E
-L81DA:	bcs     L81D8
+L85DA:	bcs     L85D8
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_0);
 ;
@@ -60024,13 +61009,13 @@ L81DA:	bcs     L81D8
 ;
 ; else if (blimp_frames < 30*2)
 ;
-	jmp     L82F9
-L81D8:	lda     _blimp_frames+1
+	jmp     L86F9
+L85D8:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     L81E4
+	bne     L85E4
 	lda     _blimp_frames
 	cmp     #$3C
-L81E4:	bcs     L81E2
+L85E4:	bcs     L85E2
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_1);
 ;
@@ -60047,13 +61032,13 @@ L81E4:	bcs     L81E2
 ;
 ; else if (blimp_frames < 30*3)
 ;
-	jmp     L82F9
-L81E2:	lda     _blimp_frames+1
+	jmp     L86F9
+L85E2:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     L81EE
+	bne     L85EE
 	lda     _blimp_frames
 	cmp     #$5A
-L81EE:	bcs     L81EC
+L85EE:	bcs     L85EC
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_2);
 ;
@@ -60070,13 +61055,13 @@ L81EE:	bcs     L81EC
 ;
 ; else if (blimp_frames < 30*4)
 ;
-	jmp     L82F9
-L81EC:	lda     _blimp_frames+1
+	jmp     L86F9
+L85EC:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     L81F8
+	bne     L85F8
 	lda     _blimp_frames
 	cmp     #$78
-L81F8:	bcs     L81F6
+L85F8:	bcs     L85F6
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_3);
 ;
@@ -60093,13 +61078,13 @@ L81F8:	bcs     L81F6
 ;
 ; else if (blimp_frames < 30*5)
 ;
-	jmp     L82F9
-L81F6:	lda     _blimp_frames+1
+	jmp     L86F9
+L85F6:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     L8202
+	bne     L8602
 	lda     _blimp_frames
 	cmp     #$96
-L8202:	bcs     L8200
+L8602:	bcs     L8600
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_4);
 ;
@@ -60116,13 +61101,13 @@ L8202:	bcs     L8200
 ;
 ; else if (blimp_frames < 30*6)
 ;
-	jmp     L82F9
-L8200:	lda     _blimp_frames+1
+	jmp     L86F9
+L8600:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     L820C
+	bne     L860C
 	lda     _blimp_frames
 	cmp     #$B4
-L820C:	bcs     L820A
+L860C:	bcs     L860A
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_5);
 ;
@@ -60139,13 +61124,13 @@ L820C:	bcs     L820A
 ;
 ; else if (blimp_frames < 30*7)
 ;
-	jmp     L82F9
-L820A:	lda     _blimp_frames+1
+	jmp     L86F9
+L860A:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     L8216
+	bne     L8616
 	lda     _blimp_frames
 	cmp     #$D2
-L8216:	bcs     L8214
+L8616:	bcs     L8614
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_6);
 ;
@@ -60162,13 +61147,13 @@ L8216:	bcs     L8214
 ;
 ; else if (blimp_frames < 30*8)
 ;
-	jmp     L82F9
-L8214:	lda     _blimp_frames+1
+	jmp     L86F9
+L8614:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     L8220
+	bne     L8620
 	lda     _blimp_frames
 	cmp     #$F0
-L8220:	bcs     L821E
+L8620:	bcs     L861E
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_7);
 ;
@@ -60185,13 +61170,13 @@ L8220:	bcs     L821E
 ;
 ; else if (blimp_frames < 30*9)
 ;
-	jmp     L82F9
-L821E:	lda     _blimp_frames+1
+	jmp     L86F9
+L861E:	lda     _blimp_frames+1
 	cmp     #$01
-	bne     L822A
+	bne     L862A
 	lda     _blimp_frames
 	cmp     #$0E
-L822A:	bcs     L8228
+L862A:	bcs     L8628
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_8);
 ;
@@ -60208,13 +61193,13 @@ L822A:	bcs     L8228
 ;
 ; else if (blimp_frames < 30*10)
 ;
-	jmp     L82F9
-L8228:	lda     _blimp_frames+1
+	jmp     L86F9
+L8628:	lda     _blimp_frames+1
 	cmp     #$01
-	bne     L8234
+	bne     L8634
 	lda     _blimp_frames
 	cmp     #$2C
-L8234:	bcs     L8232
+L8634:	bcs     L8632
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_9);
 ;
@@ -60231,13 +61216,13 @@ L8234:	bcs     L8232
 ;
 ; else if (blimp_frames < 30*11)
 ;
-	jmp     L82F9
-L8232:	lda     _blimp_frames+1
+	jmp     L86F9
+L8632:	lda     _blimp_frames+1
 	cmp     #$01
-	bne     L823E
+	bne     L863E
 	lda     _blimp_frames
 	cmp     #$4A
-L823E:	bcs     L823C
+L863E:	bcs     L863C
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_10);
 ;
@@ -60254,13 +61239,13 @@ L823E:	bcs     L823C
 ;
 ; else if (blimp_frames < 30*12)
 ;
-	jmp     L82F9
-L823C:	lda     _blimp_frames+1
+	jmp     L86F9
+L863C:	lda     _blimp_frames+1
 	cmp     #$01
-	bne     L8248
+	bne     L8648
 	lda     _blimp_frames
 	cmp     #$68
-L8248:	bcs     L8246
+L8648:	bcs     L8646
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_11);
 ;
@@ -60277,13 +61262,13 @@ L8248:	bcs     L8246
 ;
 ; else if (blimp_frames < 30*13)
 ;
-	jmp     L82F9
-L8246:	lda     _blimp_frames+1
+	jmp     L86F9
+L8646:	lda     _blimp_frames+1
 	cmp     #$01
-	bne     L8252
+	bne     L8652
 	lda     _blimp_frames
 	cmp     #$86
-L8252:	bcs     L8250
+L8652:	bcs     L8650
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_12);
 ;
@@ -60300,13 +61285,13 @@ L8252:	bcs     L8250
 ;
 ; else if (blimp_frames < 30*14)
 ;
-	jmp     L82F9
-L8250:	lda     _blimp_frames+1
+	jmp     L86F9
+L8650:	lda     _blimp_frames+1
 	cmp     #$01
-	bne     L825C
+	bne     L865C
 	lda     _blimp_frames
 	cmp     #$A4
-L825C:	bcs     L825A
+L865C:	bcs     L865A
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_13);
 ;
@@ -60323,13 +61308,13 @@ L825C:	bcs     L825A
 ;
 ; else if (blimp_frames < 30*15)
 ;
-	jmp     L82F9
-L825A:	lda     _blimp_frames+1
+	jmp     L86F9
+L865A:	lda     _blimp_frames+1
 	cmp     #$01
-	bne     L8266
+	bne     L8666
 	lda     _blimp_frames
 	cmp     #$C2
-L8266:	bcs     L8264
+L8666:	bcs     L8664
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_14);
 ;
@@ -60346,13 +61331,13 @@ L8266:	bcs     L8264
 ;
 ; else if (blimp_frames < 30*16)
 ;
-	jmp     L82F9
-L8264:	lda     _blimp_frames+1
+	jmp     L86F9
+L8664:	lda     _blimp_frames+1
 	cmp     #$01
-	bne     L8270
+	bne     L8670
 	lda     _blimp_frames
 	cmp     #$E0
-L8270:	bcs     L826E
+L8670:	bcs     L866E
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_15);
 ;
@@ -60369,13 +61354,13 @@ L8270:	bcs     L826E
 ;
 ; else if (blimp_frames < 30*17)
 ;
-	jmp     L82F9
-L826E:	lda     _blimp_frames+1
+	jmp     L86F9
+L866E:	lda     _blimp_frames+1
 	cmp     #$01
-	bne     L827A
+	bne     L867A
 	lda     _blimp_frames
 	cmp     #$FE
-L827A:	bcs     L8278
+L867A:	bcs     L8678
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_16);
 ;
@@ -60392,13 +61377,13 @@ L827A:	bcs     L8278
 ;
 ; else if (blimp_frames < 30*18)
 ;
-	jmp     L82F9
-L8278:	lda     _blimp_frames+1
+	jmp     L86F9
+L8678:	lda     _blimp_frames+1
 	cmp     #$02
-	bne     L8284
+	bne     L8684
 	lda     _blimp_frames
 	cmp     #$1C
-L8284:	bcs     L8282
+L8684:	bcs     L8682
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_17);
 ;
@@ -60415,13 +61400,13 @@ L8284:	bcs     L8282
 ;
 ; else if (blimp_frames < 30*19)
 ;
-	jmp     L82F9
-L8282:	lda     _blimp_frames+1
+	jmp     L86F9
+L8682:	lda     _blimp_frames+1
 	cmp     #$02
-	bne     L828E
+	bne     L868E
 	lda     _blimp_frames
 	cmp     #$3A
-L828E:	bcs     L828C
+L868E:	bcs     L868C
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_18);
 ;
@@ -60438,13 +61423,13 @@ L828E:	bcs     L828C
 ;
 ; else if (blimp_frames < 30*20)
 ;
-	jmp     L82F9
-L828C:	lda     _blimp_frames+1
+	jmp     L86F9
+L868C:	lda     _blimp_frames+1
 	cmp     #$02
-	bne     L8298
+	bne     L8698
 	lda     _blimp_frames
 	cmp     #$58
-L8298:	bcs     L8296
+L8698:	bcs     L8696
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_19);
 ;
@@ -60461,13 +61446,13 @@ L8298:	bcs     L8296
 ;
 ; else if (blimp_frames < 30*21)
 ;
-	jmp     L82F9
-L8296:	lda     _blimp_frames+1
+	jmp     L86F9
+L8696:	lda     _blimp_frames+1
 	cmp     #$02
-	bne     L82A2
+	bne     L86A2
 	lda     _blimp_frames
 	cmp     #$76
-L82A2:	bcs     L82A0
+L86A2:	bcs     L86A0
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_20);
 ;
@@ -60484,13 +61469,13 @@ L82A2:	bcs     L82A0
 ;
 ; else if (blimp_frames < 30*22)
 ;
-	jmp     L82F9
-L82A0:	lda     _blimp_frames+1
+	jmp     L86F9
+L86A0:	lda     _blimp_frames+1
 	cmp     #$02
-	bne     L82AC
+	bne     L86AC
 	lda     _blimp_frames
 	cmp     #$94
-L82AC:	bcs     L82AA
+L86AC:	bcs     L86AA
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_21);
 ;
@@ -60507,13 +61492,13 @@ L82AC:	bcs     L82AA
 ;
 ; else if (blimp_frames < 30*23)
 ;
-	jmp     L82F9
-L82AA:	lda     _blimp_frames+1
+	jmp     L86F9
+L86AA:	lda     _blimp_frames+1
 	cmp     #$02
-	bne     L82B6
+	bne     L86B6
 	lda     _blimp_frames
 	cmp     #$B2
-L82B6:	bcs     L82B4
+L86B6:	bcs     L86B4
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_22);
 ;
@@ -60530,13 +61515,13 @@ L82B6:	bcs     L82B4
 ;
 ; else if (blimp_frames < 30*24)
 ;
-	jmp     L82F9
-L82B4:	lda     _blimp_frames+1
+	jmp     L86F9
+L86B4:	lda     _blimp_frames+1
 	cmp     #$02
-	bne     L82C0
+	bne     L86C0
 	lda     _blimp_frames
 	cmp     #$D0
-L82C0:	bcs     L82BE
+L86C0:	bcs     L86BE
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_23);
 ;
@@ -60553,13 +61538,13 @@ L82C0:	bcs     L82BE
 ;
 ; else if (blimp_frames < 30*25)
 ;
-	jmp     L82F9
-L82BE:	lda     _blimp_frames+1
+	jmp     L86F9
+L86BE:	lda     _blimp_frames+1
 	cmp     #$02
-	bne     L82CA
+	bne     L86CA
 	lda     _blimp_frames
 	cmp     #$EE
-L82CA:	bcs     L82C8
+L86CA:	bcs     L86C8
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_24);
 ;
@@ -60576,13 +61561,13 @@ L82CA:	bcs     L82C8
 ;
 ; else if (blimp_frames < 30*26)
 ;
-	jmp     L82F9
-L82C8:	lda     _blimp_frames+1
+	jmp     L86F9
+L86C8:	lda     _blimp_frames+1
 	cmp     #$03
-	bne     L82D4
+	bne     L86D4
 	lda     _blimp_frames
 	cmp     #$0C
-L82D4:	bcs     L82D2
+L86D4:	bcs     L86D2
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_25);
 ;
@@ -60599,13 +61584,13 @@ L82D4:	bcs     L82D2
 ;
 ; else if (blimp_frames < 30*27)
 ;
-	jmp     L82F9
-L82D2:	lda     _blimp_frames+1
+	jmp     L86F9
+L86D2:	lda     _blimp_frames+1
 	cmp     #$03
-	bne     L82DE
+	bne     L86DE
 	lda     _blimp_frames
 	cmp     #$2A
-L82DE:	bcs     L82DC
+L86DE:	bcs     L86DC
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_26);
 ;
@@ -60622,13 +61607,13 @@ L82DE:	bcs     L82DC
 ;
 ; else if (blimp_frames < 30*28)
 ;
-	jmp     L82F9
-L82DC:	lda     _blimp_frames+1
+	jmp     L86F9
+L86DC:	lda     _blimp_frames+1
 	cmp     #$03
-	bne     L82E8
+	bne     L86E8
 	lda     _blimp_frames
 	cmp     #$48
-L82E8:	bcs     L82E6
+L86E8:	bcs     L86E6
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_27);
 ;
@@ -60645,13 +61630,13 @@ L82E8:	bcs     L82E6
 ;
 ; else if (blimp_frames < 30*29)
 ;
-	jmp     L82F9
-L82E6:	lda     _blimp_frames+1
+	jmp     L86F9
+L86E6:	lda     _blimp_frames+1
 	cmp     #$03
-	bne     L82F2
+	bne     L86F2
 	lda     _blimp_frames
 	cmp     #$66
-L82F2:	bcs     L82F0
+L86F2:	bcs     L86F0
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_28);
 ;
@@ -60668,11 +61653,11 @@ L82F2:	bcs     L82F0
 ;
 ; else
 ;
-	jmp     L82F9
+	jmp     L86F9
 ;
 ; oam_meta_spr(high_byte(blimp_x), high_byte(blimp_y), gasblimp_0);
 ;
-L82F0:	jsr     decsp2
+L86F0:	jsr     decsp2
 	lda     _blimp_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -60691,7 +61676,7 @@ L82F0:	jsr     decsp2
 ;
 ; oam_meta_spr(144, 63, GasShoulder);
 ;
-L82F9:	jsr     decsp2
+L86F9:	jsr     decsp2
 	lda     #$90
 	ldy     #$01
 	sta     (sp),y
@@ -60732,7 +61717,7 @@ L82F9:	jsr     decsp2
 ;
 	lda     _moveframes
 	ora     _moveframes+1
-	bne     L830C
+	bne     L870C
 ;
 ; reset_level = 1;
 ;
@@ -60741,23 +61726,23 @@ L82F9:	jsr     decsp2
 ;
 ; ++grass_move;
 ;
-L830C:	inc     _grass_move
+L870C:	inc     _grass_move
 ;
 ; ++moveframes;
 ;
 	inc     _moveframes
-	bne     L8313
+	bne     L8713
 	inc     _moveframes+1
 ;
 ; ++moveframes2;
 ;
-L8313:	inc     _moveframes2
-	bne     L8315
+L8713:	inc     _moveframes2
+	bne     L8715
 	inc     _moveframes2+1
 ;
 ; ppu_wait_nmi(); // wait till beginning of the frame
 ;
-L8315:	jsr     _ppu_wait_nmi
+L8715:	jsr     _ppu_wait_nmi
 ;
 ; oam_clear();
 ;
@@ -60788,12 +61773,12 @@ L8315:	jsr     _ppu_wait_nmi
 ;
 	lda     _grass_move
 	cmp     #$1F
-	bcc     L831E
+	bcc     L871E
 ;
 ; if (chr_bank == 0)
 ;
 	lda     _chr_bank
-	bne     L8320
+	bne     L8720
 ;
 ; set_chr_bank_0(GASPUMP_ALT_CHR_0);
 ;
@@ -60806,17 +61791,17 @@ L8315:	jsr     _ppu_wait_nmi
 ;
 ; else
 ;
-	jmp     LDADB
+	jmp     LDEDD
 ;
 ; set_chr_bank_0(GASPUMP_CHR_0);
 ;
-L8320:	lda     #$00
+L8720:	lda     #$00
 	jsr     _set_chr_bank_0
 ;
 ; chr_bank = 0;
 ;
 	lda     #$00
-LDADB:	sta     _chr_bank
+LDEDD:	sta     _chr_bank
 ;
 ; grass_move = 0;
 ;
@@ -60825,7 +61810,7 @@ LDADB:	sta     _chr_bank
 ;
 ; banked_call(BANK_3, bank_3_level_sprites);
 ;
-L831E:	lda     #$03
+L871E:	lda     #$03
 	jsr     pusha
 	lda     #<(_bank_3_level_sprites)
 	ldx     #>(_bank_3_level_sprites)
@@ -60834,7 +61819,7 @@ L831E:	lda     #$03
 ; if (trigger_pulled)
 ;
 	lda     _trigger_pulled
-	beq     L8330
+	beq     L8730
 ;
 ; started_pumping = 1; // actually only need to set this once
 ;
@@ -60847,16 +61832,16 @@ L831E:	lda     #$03
 	clc
 	adc     _gas_speed
 	sta     _gas_speed
-	bcc     L8339
+	bcc     L8739
 	inc     _gas_speed+1
 ;
 ; while (gas_speed > 256)
 ;
-	jmp     L8339
+	jmp     L8739
 ;
 ; ++gas1;
 ;
-LDADC:	inc     _gas1
+LDEDE:	inc     _gas1
 ;
 ; gas_speed -= 256;
 ;
@@ -60870,11 +61855,11 @@ LDADC:	inc     _gas1
 ;
 ; while (gas_speed > 256)
 ;
-L8339:	lda     _gas_speed
+L8739:	lda     _gas_speed
 	cmp     #$01
 	lda     _gas_speed+1
 	sbc     #$01
-	bcs     LDADC
+	bcs     LDEDE
 ;
 ; bank_3_adjust_gas();
 ;
@@ -60886,16 +61871,16 @@ L8339:	lda     _gas_speed
 	clc
 	adc     _cost_speed
 	sta     _cost_speed
-	bcc     L8344
+	bcc     L8744
 	inc     _cost_speed+1
 ;
 ; while (cost_speed > 256)
 ;
-	jmp     L8344
+	jmp     L8744
 ;
 ; ++cost1;
 ;
-LDADD:	inc     _cost1
+LDEDF:	inc     _cost1
 ;
 ; cost_speed -= 256;
 ;
@@ -60909,11 +61894,11 @@ LDADD:	inc     _cost1
 ;
 ; while (cost_speed > 256)
 ;
-L8344:	lda     _cost_speed
+L8744:	lda     _cost_speed
 	cmp     #$01
 	lda     _cost_speed+1
 	sbc     #$01
-	bcs     LDADD
+	bcs     LDEDF
 ;
 ; bank_3_adjust_cost();
 ;
@@ -60921,9 +61906,9 @@ L8344:	lda     _cost_speed
 ;
 ; if (started_pumping == 1)
 ;
-L8330:	lda     _started_pumping
+L8730:	lda     _started_pumping
 	cmp     #$01
-	bne     L834B
+	bne     L874B
 ;
 ; wait_and_fade_out();
 ;
@@ -60939,7 +61924,7 @@ L8330:	lda     _started_pumping
 ;
 ; }
 ;
-L834B:	rts
+L874B:	rts
 
 .endproc
 
@@ -61037,13 +62022,13 @@ L834B:	rts
 	lda     #$00
 	sta     _largeindex
 	sta     _largeindex+1
-LD50A:	lda     _largeindex
+LD90A:	lda     _largeindex
 	cmp     #$00
 	lda     _largeindex+1
 	sbc     #$04
-	bvc     LD511
+	bvc     LD911
 	eor     #$80
-LD511:	bpl     LD50B
+LD911:	bpl     LD90B
 ;
 ; vram_put(starfield1[largeindex]);
 ;
@@ -61065,7 +62050,7 @@ LD511:	bpl     LD50B
 ;
 	lda     _index
 	cmp     #$29
-	bcc     LD50C
+	bcc     LD90C
 ;
 ; flush_vram_update2();
 ;
@@ -61078,14 +62063,14 @@ LD511:	bpl     LD50B
 ;
 ; for (largeindex = 0; largeindex < 1024; ++largeindex)
 ;
-LD50C:	inc     _largeindex
-	bne     LD50A
+LD90C:	inc     _largeindex
+	bne     LD90A
 	inc     _largeindex+1
-	jmp     LD50A
+	jmp     LD90A
 ;
 ; vram_adr(NAMETABLE_B);
 ;
-LD50B:	ldx     #$24
+LD90B:	ldx     #$24
 	lda     #$00
 	jsr     _vram_adr
 ;
@@ -61094,15 +62079,15 @@ LD50B:	ldx     #$24
 	lda     #$00
 	sta     _largeindex
 	sta     _largeindex+1
-LD51F:	lda     _largeindex
+LD91F:	lda     _largeindex
 	cmp     #$00
 	lda     _largeindex+1
 	sbc     #$04
-	bvc     LD526
+	bvc     LD926
 	eor     #$80
-LD526:	asl     a
+LD926:	asl     a
 	lda     #$00
-	bcc     LDADE
+	bcc     LDEE0
 ;
 ; vram_put(starfield2[largeindex]);
 ;
@@ -61124,7 +62109,7 @@ LD526:	asl     a
 ;
 	lda     _index
 	cmp     #$29
-	bcc     LD521
+	bcc     LD921
 ;
 ; flush_vram_update2();
 ;
@@ -61137,14 +62122,14 @@ LD526:	asl     a
 ;
 ; for (largeindex = 0; largeindex < 1024; ++largeindex)
 ;
-LD521:	inc     _largeindex
-	bne     LD51F
+LD921:	inc     _largeindex
+	bne     LD91F
 	inc     _largeindex+1
-	jmp     LD51F
+	jmp     LD91F
 ;
 ; pal_fade_to(0, 4);
 ;
-LDADE:	jsr     pusha
+LDEE0:	jsr     pusha
 	lda     #$04
 	jsr     _pal_fade_to
 ;
@@ -61249,13 +62234,13 @@ LDADE:	jsr     pusha
 	lda     #$00
 	sta     _largeindex
 	sta     _largeindex+1
-LCD8D:	lda     _largeindex
+LD18D:	lda     _largeindex
 	cmp     #$00
 	lda     _largeindex+1
 	sbc     #$04
-	bvc     LCD94
+	bvc     LD194
 	eor     #$80
-LCD94:	bpl     LCD8E
+LD194:	bpl     LD18E
 ;
 ; vram_put(gameover[largeindex]);
 ;
@@ -61277,7 +62262,7 @@ LCD94:	bpl     LCD8E
 ;
 	lda     _index
 	cmp     #$29
-	bcc     LCD8F
+	bcc     LD18F
 ;
 ; flush_vram_update2();
 ;
@@ -61290,14 +62275,14 @@ LCD94:	bpl     LCD8E
 ;
 ; for (largeindex = 0; largeindex < 1024; ++largeindex)
 ;
-LCD8F:	inc     _largeindex
-	bne     LCD8D
+LD18F:	inc     _largeindex
+	bne     LD18D
 	inc     _largeindex+1
-	jmp     LCD8D
+	jmp     LD18D
 ;
 ; ppu_on_all();
 ;
-LCD8E:	jsr     _ppu_on_all
+LD18E:	jsr     _ppu_on_all
 ;
 ; pal_fade_to(0, 4);
 ;
@@ -61308,7 +62293,7 @@ LCD8E:	jsr     _ppu_on_all
 ;
 ; game_mode = MODE_GAME_OVER;
 ;
-	lda     #$0D
+	lda     #$0E
 	sta     _game_mode
 ;
 ; music_play(SONG_ASCENTIONOFZ);
@@ -61379,13 +62364,13 @@ LCD8E:	jsr     _ppu_on_all
 	lda     #$00
 	sta     _largeindex
 	sta     _largeindex+1
-LA1DA:	lda     _largeindex
+LA5DA:	lda     _largeindex
 	cmp     #$00
 	lda     _largeindex+1
 	sbc     #$04
-	bvc     LA1E1
+	bvc     LA5E1
 	eor     #$80
-LA1E1:	bpl     LA1DB
+LA5E1:	bpl     LA5DB
 ;
 ; vram_put(FUTURE_PUMP_LEVEL[largeindex]);
 ;
@@ -61407,7 +62392,7 @@ LA1E1:	bpl     LA1DB
 ;
 	lda     _index
 	cmp     #$29
-	bcc     LA1DC
+	bcc     LA5DC
 ;
 ; flush_vram_update2();
 ;
@@ -61420,14 +62405,14 @@ LA1E1:	bpl     LA1DB
 ;
 ; for (largeindex = 0; largeindex < 1024; ++largeindex)
 ;
-LA1DC:	inc     _largeindex
-	bne     LA1DA
+LA5DC:	inc     _largeindex
+	bne     LA5DA
 	inc     _largeindex+1
-	jmp     LA1DA
+	jmp     LA5DA
 ;
 ; vram_adr(0x2048);
 ;
-LA1DB:	ldx     #$20
+LA5DB:	ldx     #$20
 	lda     #$48
 	jsr     _vram_adr
 ;
@@ -61732,13 +62717,13 @@ LA1DB:	ldx     #$20
 	lda     #$00
 	sta     _largeindex
 	sta     _largeindex+1
-LA258:	lda     _largeindex
+LA658:	lda     _largeindex
 	cmp     #$00
 	lda     _largeindex+1
 	sbc     #$04
-	bvc     LA25F
+	bvc     LA65F
 	eor     #$80
-LA25F:	bpl     LA259
+LA65F:	bpl     LA659
 ;
 ; vram_put(futuretalk[largeindex]);
 ;
@@ -61760,7 +62745,7 @@ LA25F:	bpl     LA259
 ;
 	lda     _index
 	cmp     #$29
-	bcc     LA25A
+	bcc     LA65A
 ;
 ; flush_vram_update2();
 ;
@@ -61773,14 +62758,14 @@ LA25F:	bpl     LA259
 ;
 ; for (largeindex = 0; largeindex < 1024; ++largeindex)
 ;
-LA25A:	inc     _largeindex
-	bne     LA258
+LA65A:	inc     _largeindex
+	bne     LA658
 	inc     _largeindex+1
-	jmp     LA258
+	jmp     LA658
 ;
 ; ppu_on_all();
 ;
-LA259:	jsr     _ppu_on_all
+LA659:	jsr     _ppu_on_all
 ;
 ; text_x_start = 3;
 ;
@@ -61799,7 +62784,7 @@ LA259:	jsr     _ppu_on_all
 ; if (alien_level_status == ALIEN_INITIAL_INSTRUCTION)
 ;
 	lda     _alien_level_status
-	bne     LDADF
+	bne     LDEE1
 ;
 ; pointer = alien_instruction_text;
 ;
@@ -61820,10 +62805,10 @@ LA259:	jsr     _ppu_on_all
 ;
 ; else if (alien_level_status == ALIEN_EVALUATION)
 ;
-	jmp     LDAE0
-LDADF:	lda     _alien_level_status
+	jmp     LDEE2
+LDEE1:	lda     _alien_level_status
 	cmp     #$01
-	bne     LDAE0
+	bne     LDEE2
 ;
 ; if (gas_pumped > LAST_LEVEL_GOAL - 5 && gas_pumped < LAST_LEVEL_GOAL + 5)
 ;
@@ -61834,11 +62819,11 @@ LDADF:	lda     _alien_level_status
 	ldx     _LAST_LEVEL_GOAL+1
 	sec
 	sbc     #$05
-	bcs     LA27F
+	bcs     LA67F
 	dex
-LA27F:	jsr     tosicmp
-	bcc     LA27D
-	beq     LA27D
+LA67F:	jsr     tosicmp
+	bcc     LA67D
+	beq     LA67D
 	lda     _gas_pumped
 	ldx     _gas_pumped+1
 	jsr     pushax
@@ -61846,10 +62831,10 @@ LA27F:	jsr     tosicmp
 	ldx     _LAST_LEVEL_GOAL+1
 	clc
 	adc     #$05
-	bcc     LA281
+	bcc     LA681
 	inx
-LA281:	jsr     tosicmp
-	bcs     LA27D
+LA681:	jsr     tosicmp
+	bcs     LA67D
 ;
 ; pointer = alien_evaluation_text_good;
 ;
@@ -61870,11 +62855,11 @@ LA281:	jsr     tosicmp
 ;
 ; else
 ;
-	jmp     LDAE0
+	jmp     LDEE2
 ;
 ; pointer = alien_evaluation_text_bad;
 ;
-LA27D:	lda     #>(_alien_evaluation_text_bad)
+LA67D:	lda     #>(_alien_evaluation_text_bad)
 	sta     _pointer+1
 	lda     #<(_alien_evaluation_text_bad)
 	sta     _pointer
@@ -61891,7 +62876,7 @@ LA27D:	lda     #>(_alien_evaluation_text_bad)
 ;
 ; game_mode = MODE_ALIEN_INSTRUCTION;
 ;
-LDAE0:	lda     #$08
+LDEE2:	lda     #$08
 	sta     _game_mode
 ;
 ; pal_fade_to(0, 4);
@@ -61928,9 +62913,9 @@ LDAE0:	lda     #$08
 	ldx     _moveframes+1
 	clc
 	adc     #$01
-	bcc     LA29C
+	bcc     LA69C
 	inx
-LA29C:	sta     _moveframes
+LA69C:	sta     _moveframes
 	stx     _moveframes+1
 ;
 ; oam_clear();
@@ -61941,7 +62926,7 @@ LA29C:	sta     _moveframes
 ;
 	lda     _text_length
 	cmp     _text_rendered
-	jeq     LA29E
+	jeq     LA69E
 ;
 ; if (moveframes % 5 == 0)
 ;
@@ -61951,9 +62936,9 @@ LA29C:	sta     _moveframes
 	lda     #$05
 	jsr     tosumoda0
 	cpx     #$00
-	bne     LA2A0
+	bne     LA6A0
 	cmp     #$00
-	bne     LA2A0
+	bne     LA6A0
 ;
 ; typewriter();
 ;
@@ -61961,12 +62946,12 @@ LA29C:	sta     _moveframes
 ;
 ; if (moveframes < 10)
 ;
-LA2A0:	lda     _moveframes+1
+LA6A0:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA2A6
+	bne     LA6A6
 	lda     _moveframes
 	cmp     #$0A
-LA2A6:	bcs     LA2A4
+LA6A6:	bcs     LA6A4
 ;
 ; oam_meta_spr(190, 193, alien_gas_mouth_6);
 ;
@@ -61983,13 +62968,13 @@ LA2A6:	bcs     LA2A4
 ;
 ; else if (moveframes < 20)
 ;
-	jmp     LA2F2
-LA2A4:	lda     _moveframes+1
+	jmp     LA6F2
+LA6A4:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA2AE
+	bne     LA6AE
 	lda     _moveframes
 	cmp     #$14
-LA2AE:	bcs     LA2AC
+LA6AE:	bcs     LA6AC
 ;
 ; oam_meta_spr(190, 193, alien_gas_mouth_7);
 ;
@@ -62006,13 +62991,13 @@ LA2AE:	bcs     LA2AC
 ;
 ; else if (moveframes < 30)
 ;
-	jmp     LA2F2
-LA2AC:	lda     _moveframes+1
+	jmp     LA6F2
+LA6AC:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA2B6
+	bne     LA6B6
 	lda     _moveframes
 	cmp     #$1E
-LA2B6:	bcs     LA2B4
+LA6B6:	bcs     LA6B4
 ;
 ; oam_meta_spr(190, 193, alien_gas_mouth_8);
 ;
@@ -62029,11 +63014,11 @@ LA2B6:	bcs     LA2B4
 ;
 ; } else {
 ;
-	jmp     LA2F2
+	jmp     LA6F2
 ;
 ; oam_meta_spr(190, 193, alien_gas_mouth_8);
 ;
-LA2B4:	jsr     decsp2
+LA6B4:	jsr     decsp2
 	lda     #$BE
 	ldy     #$01
 	sta     (sp),y
@@ -62045,16 +63030,16 @@ LA2B4:	jsr     decsp2
 ;
 ; } else {
 ;
-	jmp     LDAE6
+	jmp     LDEE8
 ;
 ; if (moveframes < 50)
 ;
-LA29E:	lda     _moveframes+1
+LA69E:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA2C5
+	bne     LA6C5
 	lda     _moveframes
 	cmp     #$32
-LA2C5:	bcs     LA2C3
+LA6C5:	bcs     LA6C3
 ;
 ; oam_meta_spr(190, 193, alien_gas_mouth_0);
 ;
@@ -62071,13 +63056,13 @@ LA2C5:	bcs     LA2C3
 ;
 ; else if (moveframes < 55)
 ;
-	jmp     LA2F2
-LA2C3:	lda     _moveframes+1
+	jmp     LA6F2
+LA6C3:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA2CD
+	bne     LA6CD
 	lda     _moveframes
 	cmp     #$37
-LA2CD:	bcs     LA2CB
+LA6CD:	bcs     LA6CB
 ;
 ; oam_meta_spr(190, 193, alien_gas_mouth_1);
 ;
@@ -62094,13 +63079,13 @@ LA2CD:	bcs     LA2CB
 ;
 ; else if (moveframes < 60)
 ;
-	jmp     LA2F2
-LA2CB:	lda     _moveframes+1
+	jmp     LA6F2
+LA6CB:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA2D5
+	bne     LA6D5
 	lda     _moveframes
 	cmp     #$3C
-LA2D5:	bcs     LA2D3
+LA6D5:	bcs     LA6D3
 ;
 ; oam_meta_spr(190, 193, alien_gas_mouth_2);
 ;
@@ -62117,13 +63102,13 @@ LA2D5:	bcs     LA2D3
 ;
 ; else if (moveframes < 65)
 ;
-	jmp     LA2F2
-LA2D3:	lda     _moveframes+1
+	jmp     LA6F2
+LA6D3:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA2DD
+	bne     LA6DD
 	lda     _moveframes
 	cmp     #$41
-LA2DD:	bcs     LA2DB
+LA6DD:	bcs     LA6DB
 ;
 ; oam_meta_spr(190, 193, alien_gas_mouth_3);
 ;
@@ -62140,13 +63125,13 @@ LA2DD:	bcs     LA2DB
 ;
 ; else if (moveframes < 70)
 ;
-	jmp     LA2F2
-LA2DB:	lda     _moveframes+1
+	jmp     LA6F2
+LA6DB:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA2E5
+	bne     LA6E5
 	lda     _moveframes
 	cmp     #$46
-LA2E5:	bcs     LA2E3
+LA6E5:	bcs     LA6E3
 ;
 ; oam_meta_spr(190, 193, alien_gas_mouth_4);
 ;
@@ -62163,13 +63148,13 @@ LA2E5:	bcs     LA2E3
 ;
 ; else if (moveframes < 75)
 ;
-	jmp     LA2F2
-LA2E3:	lda     _moveframes+1
+	jmp     LA6F2
+LA6E3:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA2ED
+	bne     LA6ED
 	lda     _moveframes
 	cmp     #$4B
-LA2ED:	bcs     LA2EB
+LA6ED:	bcs     LA6EB
 ;
 ; oam_meta_spr(190, 193, alien_gas_mouth_5);
 ;
@@ -62186,11 +63171,11 @@ LA2ED:	bcs     LA2EB
 ;
 ; else
 ;
-	jmp     LA2F2
+	jmp     LA6F2
 ;
 ; oam_meta_spr(190, 193, alien_gas_mouth_0);
 ;
-LA2EB:	jsr     decsp2
+LA6EB:	jsr     decsp2
 	lda     #$BE
 	ldy     #$01
 	sta     (sp),y
@@ -62199,7 +63184,7 @@ LA2EB:	jsr     decsp2
 	sta     (sp),y
 	lda     #<(_alien_gas_mouth_0)
 	ldx     #>(_alien_gas_mouth_0)
-LDAE6:	jsr     _oam_meta_spr
+LDEE8:	jsr     _oam_meta_spr
 ;
 ; moveframes = 0;
 ;
@@ -62209,13 +63194,13 @@ LDAE6:	jsr     _oam_meta_spr
 ;
 ; ++eye_frames;
 ;
-LA2F2:	inc     _eye_frames
+LA6F2:	inc     _eye_frames
 ;
 ; if (eye_frames < 80)
 ;
 	lda     _eye_frames
 	cmp     #$50
-	bcs     LDAE3
+	bcs     LDEE5
 ;
 ; oam_meta_spr(185, 178, alien_eyes_10);
 ;
@@ -62232,10 +63217,10 @@ LA2F2:	inc     _eye_frames
 ;
 ; else if (eye_frames < 90)
 ;
-	jmp     LA307
-LDAE3:	lda     _eye_frames
+	jmp     LA707
+LDEE5:	lda     _eye_frames
 	cmp     #$5A
-	bcs     LA301
+	bcs     LA701
 ;
 ; oam_meta_spr(185, 178, alien_eyes_17);
 ;
@@ -62252,11 +63237,11 @@ LDAE3:	lda     _eye_frames
 ;
 ; } else {
 ;
-	jmp     LA307
+	jmp     LA707
 ;
 ; oam_meta_spr(185, 178, alien_eyes_10);
 ;
-LA301:	jsr     decsp2
+LA701:	jsr     decsp2
 	lda     #$B9
 	ldy     #$01
 	sta     (sp),y
@@ -62274,12 +63259,12 @@ LA301:	jsr     decsp2
 ;
 ; read_input();
 ;
-LA307:	jsr     _read_input
+LA707:	jsr     _read_input
 ;
 ; if (trigger_clicked)
 ;
 	lda     _trigger_clicked
-	beq     LA31D
+	beq     LA71D
 ;
 ; wait_and_fade_out();
 ;
@@ -62288,7 +63273,7 @@ LA307:	jsr     _read_input
 ; if (alien_level_cleared)
 ;
 	lda     _alien_level_cleared
-	beq     LA312
+	beq     LA712
 ;
 ; banked_call(BANK_5, bank_5_starfield_init);
 ;
@@ -62300,8 +63285,8 @@ LA307:	jsr     _read_input
 ;
 ; else if (alien_level_failed)
 ;
-LA312:	lda     _alien_level_failed
-	beq     LA318
+LA712:	lda     _alien_level_failed
+	beq     LA718
 ;
 ; banked_call(BANK_5, bank_5_gameover_init);
 ;
@@ -62313,7 +63298,7 @@ LA312:	lda     _alien_level_failed
 ;
 ; banked_call(BANK_4, bank_4_alien_level_init);
 ;
-LA318:	lda     #$04
+LA718:	lda     #$04
 	jsr     pusha
 	lda     #<(_bank_4_alien_level_init)
 	ldx     #>(_bank_4_alien_level_init)
@@ -62321,7 +63306,7 @@ LA318:	lda     #$04
 ;
 ; }
 ;
-LA31D:	rts
+LA71D:	rts
 
 .endproc
 
@@ -62343,7 +63328,7 @@ LA31D:	rts
 ; if (abduction_cutscene_step == ABDUCTION_START)
 ;
 	lda     _abduction_cutscene_step
-	jne     LDAED
+	jne     LDEEF
 ;
 ; oam_clear();
 ;
@@ -62353,7 +63338,7 @@ LA31D:	rts
 ;
 	lda     _moveframes
 	and     #$03
-	bne     LA326
+	bne     LA726
 ;
 ; sprite_pointer = abduction_ship_1;
 ;
@@ -62363,23 +63348,23 @@ LA31D:	rts
 ;
 ; else
 ;
-	jmp     LDAE8
+	jmp     LDEEA
 ;
 ; sprite_pointer = abduction_ship_2;
 ;
-LA326:	lda     #>(_abduction_ship_2)
+LA726:	lda     #>(_abduction_ship_2)
 	sta     _sprite_pointer+1
 	lda     #<(_abduction_ship_2)
-LDAE8:	sta     _sprite_pointer
+LDEEA:	sta     _sprite_pointer
 ;
 ; if (moveframes < 100)
 ;
 	lda     _moveframes+1
 	cmp     #$00
-	bne     LA330
+	bne     LA730
 	lda     _moveframes
 	cmp     #$64
-LA330:	bcs     LA32E
+LA730:	bcs     LA72E
 ;
 ; oam_meta_spr(201, 180, abduction_guy_0);
 ;
@@ -62396,13 +63381,13 @@ LA330:	bcs     LA32E
 ;
 ; else if (moveframes < 110)
 ;
-	jmp     LA4A0
-LA32E:	lda     _moveframes+1
+	jmp     LA8A0
+LA72E:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA338
+	bne     LA738
 	lda     _moveframes
 	cmp     #$6E
-LA338:	bcs     LA336
+LA738:	bcs     LA736
 ;
 ; oam_meta_spr(201, 180, abduction_guy_1);
 ;
@@ -62419,13 +63404,13 @@ LA338:	bcs     LA336
 ;
 ; else if (moveframes < 120)
 ;
-	jmp     LA4A0
-LA336:	lda     _moveframes+1
+	jmp     LA8A0
+LA736:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA340
+	bne     LA740
 	lda     _moveframes
 	cmp     #$78
-LA340:	bcs     LA33E
+LA740:	bcs     LA73E
 ;
 ; oam_meta_spr(201, 180, abduction_guy_2);
 ;
@@ -62442,13 +63427,13 @@ LA340:	bcs     LA33E
 ;
 ; else if (moveframes < 130)
 ;
-	jmp     LA4A0
-LA33E:	lda     _moveframes+1
+	jmp     LA8A0
+LA73E:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA348
+	bne     LA748
 	lda     _moveframes
 	cmp     #$82
-LA348:	bcs     LA346
+LA748:	bcs     LA746
 ;
 ; oam_meta_spr(201, 180, abduction_guy_3);
 ;
@@ -62465,13 +63450,13 @@ LA348:	bcs     LA346
 ;
 ; else if (moveframes < 140)
 ;
-	jmp     LA4A0
-LA346:	lda     _moveframes+1
+	jmp     LA8A0
+LA746:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA350
+	bne     LA750
 	lda     _moveframes
 	cmp     #$8C
-LA350:	bcs     LA34E
+LA750:	bcs     LA74E
 ;
 ; oam_meta_spr(201, 180, abduction_guy_4);
 ;
@@ -62488,13 +63473,13 @@ LA350:	bcs     LA34E
 ;
 ; else if (moveframes < 150)
 ;
-	jmp     LA4A0
-LA34E:	lda     _moveframes+1
+	jmp     LA8A0
+LA74E:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA358
+	bne     LA758
 	lda     _moveframes
 	cmp     #$96
-LA358:	bcs     LA356
+LA758:	bcs     LA756
 ;
 ; oam_meta_spr(201, 180, abduction_guy_5);
 ;
@@ -62518,13 +63503,13 @@ LA358:	bcs     LA356
 ;
 ; else if (moveframes < 160)
 ;
-	jmp     LA4A0
-LA356:	lda     _moveframes+1
+	jmp     LA8A0
+LA756:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA363
+	bne     LA763
 	lda     _moveframes
 	cmp     #$A0
-LA363:	bcs     LA361
+LA763:	bcs     LA761
 ;
 ; oam_meta_spr(201, 180, abduction_guy_6);
 ;
@@ -62541,13 +63526,13 @@ LA363:	bcs     LA361
 ;
 ; else if (moveframes < 170)
 ;
-	jmp     LA4A0
-LA361:	lda     _moveframes+1
+	jmp     LA8A0
+LA761:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA36B
+	bne     LA76B
 	lda     _moveframes
 	cmp     #$AA
-LA36B:	bcs     LA369
+LA76B:	bcs     LA769
 ;
 ; oam_meta_spr(201, 180, abduction_guy_7);
 ;
@@ -62564,13 +63549,13 @@ LA36B:	bcs     LA369
 ;
 ; else if (moveframes < 180)
 ;
-	jmp     LA4A0
-LA369:	lda     _moveframes+1
+	jmp     LA8A0
+LA769:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA373
+	bne     LA773
 	lda     _moveframes
 	cmp     #$B4
-LA373:	bcs     LA371
+LA773:	bcs     LA771
 ;
 ; oam_meta_spr(201, 180, abduction_guy_8);
 ;
@@ -62587,13 +63572,13 @@ LA373:	bcs     LA371
 ;
 ; else if (moveframes < 190)
 ;
-	jmp     LA4A0
-LA371:	lda     _moveframes+1
+	jmp     LA8A0
+LA771:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA37B
+	bne     LA77B
 	lda     _moveframes
 	cmp     #$BE
-LA37B:	bcs     LA379
+LA77B:	bcs     LA779
 ;
 ; oam_meta_spr(201, 180, abduction_guy_9);
 ;
@@ -62610,13 +63595,13 @@ LA37B:	bcs     LA379
 ;
 ; else if (moveframes < 200)
 ;
-	jmp     LA4A0
-LA379:	lda     _moveframes+1
+	jmp     LA8A0
+LA779:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA383
+	bne     LA783
 	lda     _moveframes
 	cmp     #$C8
-LA383:	bcs     LA381
+LA783:	bcs     LA781
 ;
 ; oam_meta_spr(201, 180, abduction_guy_10);
 ;
@@ -62633,13 +63618,13 @@ LA383:	bcs     LA381
 ;
 ; else if (moveframes < 210)
 ;
-	jmp     LA4A0
-LA381:	lda     _moveframes+1
+	jmp     LA8A0
+LA781:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA38B
+	bne     LA78B
 	lda     _moveframes
 	cmp     #$D2
-LA38B:	bcs     LA389
+LA78B:	bcs     LA789
 ;
 ; oam_meta_spr(201, 180, abduction_guy_3);
 ;
@@ -62656,13 +63641,13 @@ LA38B:	bcs     LA389
 ;
 ; else if (moveframes < 220)
 ;
-	jmp     LA4A0
-LA389:	lda     _moveframes+1
+	jmp     LA8A0
+LA789:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA393
+	bne     LA793
 	lda     _moveframes
 	cmp     #$DC
-LA393:	bcs     LA391
+LA793:	bcs     LA791
 ;
 ; oam_meta_spr(201, 180, abduction_guy_2);
 ;
@@ -62679,13 +63664,13 @@ LA393:	bcs     LA391
 ;
 ; else if (moveframes < 230)
 ;
-	jmp     LA4A0
-LA391:	lda     _moveframes+1
+	jmp     LA8A0
+LA791:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA39B
+	bne     LA79B
 	lda     _moveframes
 	cmp     #$E6
-LA39B:	bcs     LA399
+LA79B:	bcs     LA799
 ;
 ; oam_meta_spr(201, 180, abduction_guy_1);
 ;
@@ -62702,13 +63687,13 @@ LA39B:	bcs     LA399
 ;
 ; else if (moveframes < 300)
 ;
-	jmp     LA4A0
-LA399:	lda     _moveframes+1
+	jmp     LA8A0
+LA799:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA3A3
+	bne     LA7A3
 	lda     _moveframes
 	cmp     #$2C
-LA3A3:	bcs     LA3A1
+LA7A3:	bcs     LA7A1
 ;
 ; oam_meta_spr(201, 180, abduction_guy_0);
 ;
@@ -62725,13 +63710,13 @@ LA3A3:	bcs     LA3A1
 ;
 ; else if (moveframes < 310) // second puff of cigarette
 ;
-	jmp     LA4A0
-LA3A1:	lda     _moveframes+1
+	jmp     LA8A0
+LA7A1:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA3AB
+	bne     LA7AB
 	lda     _moveframes
 	cmp     #$36
-LA3AB:	bcs     LA3A9
+LA7AB:	bcs     LA7A9
 ;
 ; oam_meta_spr(201, 180, abduction_guy_1);
 ;
@@ -62748,13 +63733,13 @@ LA3AB:	bcs     LA3A9
 ;
 ; else if (moveframes < 320)
 ;
-	jmp     LA4A0
-LA3A9:	lda     _moveframes+1
+	jmp     LA8A0
+LA7A9:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA3B3
+	bne     LA7B3
 	lda     _moveframes
 	cmp     #$40
-LA3B3:	bcs     LA3B1
+LA7B3:	bcs     LA7B1
 ;
 ; oam_meta_spr(201, 180, abduction_guy_2);
 ;
@@ -62771,13 +63756,13 @@ LA3B3:	bcs     LA3B1
 ;
 ; else if (moveframes < 330)
 ;
-	jmp     LA4A0
-LA3B1:	lda     _moveframes+1
+	jmp     LA8A0
+LA7B1:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA3BB
+	bne     LA7BB
 	lda     _moveframes
 	cmp     #$4A
-LA3BB:	bcs     LA3B9
+LA7BB:	bcs     LA7B9
 ;
 ; oam_meta_spr(201, 180, abduction_guy_3);
 ;
@@ -62794,13 +63779,13 @@ LA3BB:	bcs     LA3B9
 ;
 ; else if (moveframes < 340)
 ;
-	jmp     LA4A0
-LA3B9:	lda     _moveframes+1
+	jmp     LA8A0
+LA7B9:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA3C3
+	bne     LA7C3
 	lda     _moveframes
 	cmp     #$54
-LA3C3:	bcs     LA3C1
+LA7C3:	bcs     LA7C1
 ;
 ; oam_meta_spr(201, 180, abduction_guy_4);
 ;
@@ -62817,13 +63802,13 @@ LA3C3:	bcs     LA3C1
 ;
 ; else if (moveframes < 350)
 ;
-	jmp     LA4A0
-LA3C1:	lda     _moveframes+1
+	jmp     LA8A0
+LA7C1:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA3CB
+	bne     LA7CB
 	lda     _moveframes
 	cmp     #$5E
-LA3CB:	bcs     LA3C9
+LA7CB:	bcs     LA7C9
 ;
 ; oam_meta_spr(201, 180, abduction_guy_5);
 ;
@@ -62847,13 +63832,13 @@ LA3CB:	bcs     LA3C9
 ;
 ; else if (moveframes < 360)
 ;
-	jmp     LA4A0
-LA3C9:	lda     _moveframes+1
+	jmp     LA8A0
+LA7C9:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA3D6
+	bne     LA7D6
 	lda     _moveframes
 	cmp     #$68
-LA3D6:	bcs     LA3D4
+LA7D6:	bcs     LA7D4
 ;
 ; oam_meta_spr(201, 180, abduction_guy_6);
 ;
@@ -62870,13 +63855,13 @@ LA3D6:	bcs     LA3D4
 ;
 ; else if (moveframes < 370)
 ;
-	jmp     LA4A0
-LA3D4:	lda     _moveframes+1
+	jmp     LA8A0
+LA7D4:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA3DE
+	bne     LA7DE
 	lda     _moveframes
 	cmp     #$72
-LA3DE:	bcs     LA3DC
+LA7DE:	bcs     LA7DC
 ;
 ; oam_meta_spr(201, 180, abduction_guy_7);
 ;
@@ -62893,13 +63878,13 @@ LA3DE:	bcs     LA3DC
 ;
 ; else if (moveframes < 380)
 ;
-	jmp     LA4A0
-LA3DC:	lda     _moveframes+1
+	jmp     LA8A0
+LA7DC:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA3E6
+	bne     LA7E6
 	lda     _moveframes
 	cmp     #$7C
-LA3E6:	bcs     LA3E4
+LA7E6:	bcs     LA7E4
 ;
 ; oam_meta_spr(201, 180, abduction_guy_8);
 ;
@@ -62916,13 +63901,13 @@ LA3E6:	bcs     LA3E4
 ;
 ; else if (moveframes < 390)
 ;
-	jmp     LA4A0
-LA3E4:	lda     _moveframes+1
+	jmp     LA8A0
+LA7E4:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA3EE
+	bne     LA7EE
 	lda     _moveframes
 	cmp     #$86
-LA3EE:	bcs     LA3EC
+LA7EE:	bcs     LA7EC
 ;
 ; oam_meta_spr(201, 180, abduction_guy_9);
 ;
@@ -62939,13 +63924,13 @@ LA3EE:	bcs     LA3EC
 ;
 ; else if (moveframes < 400)
 ;
-	jmp     LA4A0
-LA3EC:	lda     _moveframes+1
+	jmp     LA8A0
+LA7EC:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA3F6
+	bne     LA7F6
 	lda     _moveframes
 	cmp     #$90
-LA3F6:	bcs     LA3F4
+LA7F6:	bcs     LA7F4
 ;
 ; oam_meta_spr(201, 180, abduction_guy_10);
 ;
@@ -62962,13 +63947,13 @@ LA3F6:	bcs     LA3F4
 ;
 ; else if (moveframes < 440)
 ;
-	jmp     LA4A0
-LA3F4:	lda     _moveframes+1
+	jmp     LA8A0
+LA7F4:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA3FE
+	bne     LA7FE
 	lda     _moveframes
 	cmp     #$B8
-LA3FE:	bcs     LA3FC
+LA7FE:	bcs     LA7FC
 ;
 ; oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 ;
@@ -62998,13 +63983,13 @@ LA3FE:	bcs     LA3FC
 ;
 ; else if (moveframes < 445)
 ;
-	jmp     LA4A0
-LA3FC:	lda     _moveframes+1
+	jmp     LA8A0
+LA7FC:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA40A
+	bne     LA80A
 	lda     _moveframes
 	cmp     #$BD
-LA40A:	bcs     LA408
+LA80A:	bcs     LA808
 ;
 ; oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 ;
@@ -63034,13 +64019,13 @@ LA40A:	bcs     LA408
 ;
 ; else if (moveframes < 450)
 ;
-	jmp     LA4A0
-LA408:	lda     _moveframes+1
+	jmp     LA8A0
+LA808:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA416
+	bne     LA816
 	lda     _moveframes
 	cmp     #$C2
-LA416:	bcs     LA414
+LA816:	bcs     LA814
 ;
 ; oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 ;
@@ -63070,13 +64055,13 @@ LA416:	bcs     LA414
 ;
 ; else if (moveframes < 460)
 ;
-	jmp     LA4A0
-LA414:	lda     _moveframes+1
+	jmp     LA8A0
+LA814:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA422
+	bne     LA822
 	lda     _moveframes
 	cmp     #$CC
-LA422:	bcs     LA420
+LA822:	bcs     LA820
 ;
 ; oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 ;
@@ -63105,13 +64090,13 @@ LA422:	bcs     LA420
 ;
 ; else if (moveframes < 470)
 ;
-	jmp     LA4A0
-LA420:	lda     _moveframes+1
+	jmp     LA8A0
+LA820:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA42E
+	bne     LA82E
 	lda     _moveframes
 	cmp     #$D6
-LA42E:	bcs     LA42C
+LA82E:	bcs     LA82C
 ;
 ; oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 ;
@@ -63141,13 +64126,13 @@ LA42E:	bcs     LA42C
 ;
 ; else if (moveframes < 480)
 ;
-	jmp     LA4A0
-LA42C:	lda     _moveframes+1
+	jmp     LA8A0
+LA82C:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA43A
+	bne     LA83A
 	lda     _moveframes
 	cmp     #$E0
-LA43A:	bcs     LA438
+LA83A:	bcs     LA838
 ;
 ; oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 ;
@@ -63177,13 +64162,13 @@ LA43A:	bcs     LA438
 ;
 ; else if (moveframes < 490)
 ;
-	jmp     LA4A0
-LA438:	lda     _moveframes+1
+	jmp     LA8A0
+LA838:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA446
+	bne     LA846
 	lda     _moveframes
 	cmp     #$EA
-LA446:	bcs     LA444
+LA846:	bcs     LA844
 ;
 ; oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 ;
@@ -63213,13 +64198,13 @@ LA446:	bcs     LA444
 ;
 ; else if (moveframes < 500)
 ;
-	jmp     LA4A0
-LA444:	lda     _moveframes+1
+	jmp     LA8A0
+LA844:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA452
+	bne     LA852
 	lda     _moveframes
 	cmp     #$F4
-LA452:	bcs     LA450
+LA852:	bcs     LA850
 ;
 ; oam_meta_spr(201, 180, abduction_guy_11); // empty hand / cigarette flip
 ;
@@ -63255,13 +64240,13 @@ LA452:	bcs     LA450
 ;
 ; else if (moveframes < 510)
 ;
-	jmp     LA4A0
-LA450:	lda     _moveframes+1
+	jmp     LA8A0
+LA850:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA460
+	bne     LA860
 	lda     _moveframes
 	cmp     #$FE
-LA460:	bcs     LA45E
+LA860:	bcs     LA85E
 ;
 ; oam_meta_spr(172, 0, sprite_pointer);
 ;
@@ -63304,13 +64289,13 @@ LA460:	bcs     LA45E
 ;
 ; else if (moveframes < 511)
 ;
-	jmp     LA4A0
-LA45E:	lda     _moveframes+1
+	jmp     LA8A0
+LA85E:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA470
+	bne     LA870
 	lda     _moveframes
 	cmp     #$FF
-LA470:	bcs     LA46E
+LA870:	bcs     LA86E
 ;
 ; oam_meta_spr(172, 1, sprite_pointer);
 ;
@@ -63359,13 +64344,13 @@ LA470:	bcs     LA46E
 ;
 ; else if (moveframes < 520)
 ;
-	jmp     LA4A0
-LA46E:	lda     _moveframes+1
+	jmp     LA8A0
+LA86E:	lda     _moveframes+1
 	cmp     #$02
-	bne     LA482
+	bne     LA882
 	lda     _moveframes
 	cmp     #$08
-LA482:	bcs     LA480
+LA882:	bcs     LA880
 ;
 ; oam_meta_spr(172, 2 + moveframes2, sprite_pointer);
 ;
@@ -63410,13 +64395,13 @@ LA482:	bcs     LA480
 ;
 ; else if (moveframes < 540)
 ;
-	jmp     LA4A0
-LA480:	lda     _moveframes+1
+	jmp     LA8A0
+LA880:	lda     _moveframes+1
 	cmp     #$02
-	bne     LA493
+	bne     LA893
 	lda     _moveframes
 	cmp     #$1C
-LA493:	bcs     LA491
+LA893:	bcs     LA891
 ;
 ; oam_meta_spr(172, 12, sprite_pointer);
 ;
@@ -63459,11 +64444,11 @@ LA493:	bcs     LA491
 ;
 ; else
 ;
-	jmp     LA4A0
+	jmp     LA8A0
 ;
 ; oam_meta_spr(172, 12, sprite_pointer);
 ;
-LA491:	jsr     decsp2
+LA891:	jsr     decsp2
 	lda     #$AC
 	ldy     #$01
 	sta     (sp),y
@@ -63529,27 +64514,27 @@ LA491:	jsr     decsp2
 ;
 ; ++moveframes;
 ;
-LA4A0:	inc     _moveframes
-	bne     LA4B8
+LA8A0:	inc     _moveframes
+	bne     LA8B8
 	inc     _moveframes+1
 ;
 ; if (moveframes % 2 == 0)
 ;
-LA4B8:	lda     _moveframes
+LA8B8:	lda     _moveframes
 	and     #$01
-	bne     LDAED
+	bne     LDEEF
 ;
 ; ++moveframes2;
 ;
 	inc     _moveframes2
-	bne     LDAED
+	bne     LDEEF
 	inc     _moveframes2+1
 ;
 ; if (abduction_cutscene_step == ABDUCTION_BEAM)
 ;
-LDAED:	lda     _abduction_cutscene_step
+LDEEF:	lda     _abduction_cutscene_step
 	cmp     #$01
-	jne     LDAF9
+	jne     LDEFB
 ;
 ; oam_clear();
 ;
@@ -63585,7 +64570,7 @@ LDAED:	lda     _abduction_cutscene_step
 ;
 	lda     _moveframes
 	and     #$03
-	bne     LA4C9
+	bne     LA8C9
 ;
 ; oam_meta_spr(172, 12, abduction_ship_1);
 ;
@@ -63601,11 +64586,11 @@ LDAED:	lda     _abduction_cutscene_step
 ;
 ; else
 ;
-	jmp     LDAE9
+	jmp     LDEEB
 ;
 ; oam_meta_spr(172, 12, abduction_ship_2);
 ;
-LA4C9:	jsr     decsp2
+LA8C9:	jsr     decsp2
 	lda     #$AC
 	ldy     #$01
 	sta     (sp),y
@@ -63614,16 +64599,16 @@ LA4C9:	jsr     decsp2
 	sta     (sp),y
 	lda     #<(_abduction_ship_2)
 	ldx     #>(_abduction_ship_2)
-LDAE9:	jsr     _oam_meta_spr
+LDEEB:	jsr     _oam_meta_spr
 ;
 ; if (nametable_index == 960)
 ;
 	lda     _nametable_index+1
 	cmp     #$03
-	bne     LA4D5
+	bne     LA8D5
 	lda     _nametable_index
 	cmp     #$C0
-	bne     LA4D5
+	bne     LA8D5
 ;
 ; moveframes = 0;
 ;
@@ -63638,31 +64623,31 @@ LDAE9:	jsr     _oam_meta_spr
 ;
 ; if (index2 == 5 && nametable_index < 960)
 ;
-LA4D5:	lda     _index2
+LA8D5:	lda     _index2
 	cmp     #$05
-	jne     LDAF8
+	jne     LDEFA
 	lda     _nametable_index
 	cmp     #$C0
 	lda     _nametable_index+1
 	sbc     #$03
-	bvc     LA4DF
+	bvc     LA8DF
 	eor     #$80
-LA4DF:	jpl     LDAF8
+LA8DF:	jpl     LDEFA
 ;
 ; if (index3 == 3 && attribute_bytes_written < 64)
 ;
 	lda     _index3
 	cmp     #$03
-	bne     LDAF0
+	bne     LDEF2
 	lda     _attribute_bytes_written
 	cmp     #$40
-	bcc     LDAF1
-LDAF0:	lda     #$00
-	jmp     LDAF5
+	bcc     LDEF3
+LDEF2:	lda     #$00
+	jmp     LDEF7
 ;
 ; sfx_play(SFX_SPACESHIPNOISE,0);
 ;
-LDAF1:	lda     #$15
+LDEF3:	lda     #$15
 	jsr     pusha
 	lda     #$00
 	jsr     _sfx_play
@@ -63671,9 +64656,9 @@ LDAF1:	lda     #$15
 ;
 	lda     #$00
 	sta     _index
-LDAF2:	lda     _index
+LDEF4:	lda     _index
 	cmp     #$08
-	bcs     LDAF3
+	bcs     LDEF5
 ;
 ; one_vram_buffer(abduction_cutscene_beam[960 + attribute_bytes_written], NAMETABLE_A_ATTR + attribute_bytes_written);
 ;
@@ -63706,19 +64691,19 @@ LDAF2:	lda     _index
 ; for (index = 0; index < 8; ++index)
 ;
 	inc     _index
-	jmp     LDAF2
+	jmp     LDEF4
 ;
 ; index3 = 0;
 ;
-LDAF3:	lda     #$00
+LDEF5:	lda     #$00
 	sta     _index3
 ;
 ; for (index = 0; index < 32; ++index)
 ;
-LDAF5:	sta     _index
-LDAF6:	lda     _index
+LDEF7:	sta     _index
+LDEF8:	lda     _index
 	cmp     #$20
-	bcs     LDAF7
+	bcs     LDEF9
 ;
 ; one_vram_buffer(abduction_cutscene_beam[nametable_index], cutscene_index);
 ;
@@ -63738,23 +64723,23 @@ LDAF6:	lda     _index
 ; ++nametable_index;
 ;
 	inc     _nametable_index
-	bne     LA504
+	bne     LA904
 	inc     _nametable_index+1
 ;
 ; ++cutscene_index;
 ;
-LA504:	inc     _cutscene_index
-	bne     LA506
+LA904:	inc     _cutscene_index
+	bne     LA906
 	inc     _cutscene_index+1
 ;
 ; for (index = 0; index < 32; ++index)
 ;
-LA506:	inc     _index
-	jmp     LDAF6
+LA906:	inc     _index
+	jmp     LDEF8
 ;
 ; ++index3;
 ;
-LDAF7:	inc     _index3
+LDEF9:	inc     _index3
 ;
 ; index2 = 0;
 ;
@@ -63763,19 +64748,19 @@ LDAF7:	inc     _index3
 ;
 ; ++index2;
 ;
-LDAF8:	inc     _index2
+LDEFA:	inc     _index2
 ;
 ; ++moveframes;
 ;
 	inc     _moveframes
-	bne     LDAF9
+	bne     LDEFB
 	inc     _moveframes+1
 ;
 ; if (abduction_cutscene_step == ABDUCTION_BEAM_UP)
 ;
-LDAF9:	lda     _abduction_cutscene_step
+LDEFB:	lda     _abduction_cutscene_step
 	cmp     #$02
-	jne     LDAFA
+	jne     LDEFC
 ;
 ; oam_clear();
 ;
@@ -63798,7 +64783,7 @@ LDAF9:	lda     _abduction_cutscene_step
 ;
 	lda     _moveframes
 	and     #$03
-	bne     LA514
+	bne     LA914
 ;
 ; oam_meta_spr(172, 12, abduction_ship_1);
 ;
@@ -63814,11 +64799,11 @@ LDAF9:	lda     _abduction_cutscene_step
 ;
 ; else
 ;
-	jmp     LDAEA
+	jmp     LDEEC
 ;
 ; oam_meta_spr(172, 12, abduction_ship_2);
 ;
-LA514:	jsr     decsp2
+LA914:	jsr     decsp2
 	lda     #$AC
 	ldy     #$01
 	sta     (sp),y
@@ -63827,12 +64812,12 @@ LA514:	jsr     decsp2
 	sta     (sp),y
 	lda     #<(_abduction_ship_2)
 	ldx     #>(_abduction_ship_2)
-LDAEA:	jsr     _oam_meta_spr
+LDEEC:	jsr     _oam_meta_spr
 ;
 ; if (moveframes < 0)
 ;
 	jsr     return0
-	beq     LA520
+	beq     LA920
 ;
 ; oam_meta_spr(201, 180, abduction_guy_15);
 ;
@@ -63849,13 +64834,13 @@ LDAEA:	jsr     _oam_meta_spr
 ;
 ; else if (moveframes < 10)
 ;
-	jmp     LA654
-LA520:	lda     _moveframes+1
+	jmp     LAA54
+LA920:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA529
+	bne     LA929
 	lda     _moveframes
 	cmp     #$0A
-LA529:	bcs     LA527
+LA929:	bcs     LA927
 ;
 ; oam_meta_spr(201, 180, abduction_guy_16);
 ;
@@ -63872,13 +64857,13 @@ LA529:	bcs     LA527
 ;
 ; else if (moveframes < 20)
 ;
-	jmp     LA654
-LA527:	lda     _moveframes+1
+	jmp     LAA54
+LA927:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA531
+	bne     LA931
 	lda     _moveframes
 	cmp     #$14
-LA531:	bcs     LA52F
+LA931:	bcs     LA92F
 ;
 ; sfx_play(SFX_SPACESHIPNOISE,0);
 ;
@@ -63902,13 +64887,13 @@ LA531:	bcs     LA52F
 ;
 ; else if (moveframes < 30)
 ;
-	jmp     LA654
-LA52F:	lda     _moveframes+1
+	jmp     LAA54
+LA92F:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA53C
+	bne     LA93C
 	lda     _moveframes
 	cmp     #$1E
-LA53C:	bcs     LA53A
+LA93C:	bcs     LA93A
 ;
 ; oam_meta_spr(193, 162, abduction_guy_hat);
 ;
@@ -63938,13 +64923,13 @@ LA53C:	bcs     LA53A
 ;
 ; else if (moveframes < 40)
 ;
-	jmp     LA654
-LA53A:	lda     _moveframes+1
+	jmp     LAA54
+LA93A:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA548
+	bne     LA948
 	lda     _moveframes
 	cmp     #$28
-LA548:	bcs     LA546
+LA948:	bcs     LA946
 ;
 ; sfx_play(SFX_ABDUCTION,0);
 ;
@@ -63965,9 +64950,9 @@ LA548:	bcs     LA546
 	ldx     _moveframes+1
 	sec
 	sbc     #$1E
-	bcs     LA551
+	bcs     LA951
 	dex
-LA551:	stx     tmp1
+LA951:	stx     tmp1
 	asl     a
 	rol     tmp1
 	ldx     tmp1
@@ -63993,13 +64978,13 @@ LA551:	stx     tmp1
 ;
 ; else if (moveframes < 50)
 ;
-	jmp     LA654
-LA546:	lda     _moveframes+1
+	jmp     LAA54
+LA946:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA55A
+	bne     LA95A
 	lda     _moveframes
 	cmp     #$32
-LA55A:	bcs     LA558
+LA95A:	bcs     LA958
 ;
 ; oam_meta_spr(193, 162 - (2 * (moveframes - 30)), abduction_guy_hat);
 ;
@@ -64013,9 +64998,9 @@ LA55A:	bcs     LA558
 	ldx     _moveframes+1
 	sec
 	sbc     #$1E
-	bcs     LA560
+	bcs     LA960
 	dex
-LA560:	stx     tmp1
+LA960:	stx     tmp1
 	asl     a
 	rol     tmp1
 	ldx     tmp1
@@ -64041,13 +65026,13 @@ LA560:	stx     tmp1
 ;
 ; else if (moveframes < 60)
 ;
-	jmp     LA654
-LA558:	lda     _moveframes+1
+	jmp     LAA54
+LA958:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA569
+	bne     LA969
 	lda     _moveframes
 	cmp     #$3C
-LA569:	bcs     LA567
+LA969:	bcs     LA967
 ;
 ; sfx_play(SFX_ABDUCTION,0);
 ;
@@ -64068,9 +65053,9 @@ LA569:	bcs     LA567
 	ldx     _moveframes+1
 	sec
 	sbc     #$1E
-	bcs     LA572
+	bcs     LA972
 	dex
-LA572:	stx     tmp1
+LA972:	stx     tmp1
 	asl     a
 	rol     tmp1
 	ldx     tmp1
@@ -64096,13 +65081,13 @@ LA572:	stx     tmp1
 ;
 ; else if (moveframes < 70)
 ;
-	jmp     LA654
-LA567:	lda     _moveframes+1
+	jmp     LAA54
+LA967:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA57B
+	bne     LA97B
 	lda     _moveframes
 	cmp     #$46
-LA57B:	bcs     LA579
+LA97B:	bcs     LA979
 ;
 ; oam_meta_spr(193, 162 - (2 * (moveframes - 30)), abduction_guy_hat);
 ;
@@ -64116,9 +65101,9 @@ LA57B:	bcs     LA579
 	ldx     _moveframes+1
 	sec
 	sbc     #$1E
-	bcs     LA581
+	bcs     LA981
 	dex
-LA581:	stx     tmp1
+LA981:	stx     tmp1
 	asl     a
 	rol     tmp1
 	ldx     tmp1
@@ -64144,13 +65129,13 @@ LA581:	stx     tmp1
 ;
 ; else if (moveframes < 80)
 ;
-	jmp     LA654
-LA579:	lda     _moveframes+1
+	jmp     LAA54
+LA979:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA58A
+	bne     LA98A
 	lda     _moveframes
 	cmp     #$50
-LA58A:	bcs     LA588
+LA98A:	bcs     LA988
 ;
 ; sfx_play(SFX_ABDUCTION,0);
 ;
@@ -64171,9 +65156,9 @@ LA58A:	bcs     LA588
 	ldx     _moveframes+1
 	sec
 	sbc     #$1E
-	bcs     LA593
+	bcs     LA993
 	dex
-LA593:	stx     tmp1
+LA993:	stx     tmp1
 	asl     a
 	rol     tmp1
 	ldx     tmp1
@@ -64199,13 +65184,13 @@ LA593:	stx     tmp1
 ;
 ; else if (moveframes < 90)
 ;
-	jmp     LA654
-LA588:	lda     _moveframes+1
+	jmp     LAA54
+LA988:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA59C
+	bne     LA99C
 	lda     _moveframes
 	cmp     #$5A
-LA59C:	bcs     LA59A
+LA99C:	bcs     LA99A
 ;
 ; oam_meta_spr(193, 162 - (2 * (moveframes - 30)), abduction_guy_hat);
 ;
@@ -64219,9 +65204,9 @@ LA59C:	bcs     LA59A
 	ldx     _moveframes+1
 	sec
 	sbc     #$1E
-	bcs     LA5A2
+	bcs     LA9A2
 	dex
-LA5A2:	stx     tmp1
+LA9A2:	stx     tmp1
 	asl     a
 	rol     tmp1
 	ldx     tmp1
@@ -64247,13 +65232,13 @@ LA5A2:	stx     tmp1
 ;
 ; else if (moveframes < 100)
 ;
-	jmp     LA654
-LA59A:	lda     _moveframes+1
+	jmp     LAA54
+LA99A:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA5AB
+	bne     LA9AB
 	lda     _moveframes
 	cmp     #$64
-LA5AB:	bcs     LA5A9
+LA9AB:	bcs     LA9A9
 ;
 ; oam_meta_spr(201, 180, abduction_guy_25);
 ;
@@ -64270,13 +65255,13 @@ LA5AB:	bcs     LA5A9
 ;
 ; else if (moveframes < 110)
 ;
-	jmp     LA654
-LA5A9:	lda     _moveframes+1
+	jmp     LAA54
+LA9A9:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA5B3
+	bne     LA9B3
 	lda     _moveframes
 	cmp     #$6E
-LA5B3:	bcs     LA5B1
+LA9B3:	bcs     LA9B1
 ;
 ; oam_meta_spr(201, 150, Cutscene_35_data);
 ;
@@ -64306,13 +65291,13 @@ LA5B3:	bcs     LA5B1
 ;
 ; else if (moveframes < 120)
 ;
-	jmp     LA654
-LA5B1:	lda     _moveframes+1
+	jmp     LAA54
+LA9B1:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA5BF
+	bne     LA9BF
 	lda     _moveframes
 	cmp     #$78
-LA5BF:	bcs     LA5BD
+LA9BF:	bcs     LA9BD
 ;
 ; oam_meta_spr(201, 150, Cutscene_36_data);
 ;
@@ -64342,13 +65327,13 @@ LA5BF:	bcs     LA5BD
 ;
 ; else if (moveframes < 130)
 ;
-	jmp     LA654
-LA5BD:	lda     _moveframes+1
+	jmp     LAA54
+LA9BD:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA5CB
+	bne     LA9CB
 	lda     _moveframes
 	cmp     #$82
-LA5CB:	bcs     LA5C9
+LA9CB:	bcs     LA9C9
 ;
 ; oam_meta_spr(201, 150, Cutscene_37_data);
 ;
@@ -64378,13 +65363,13 @@ LA5CB:	bcs     LA5C9
 ;
 ; else if (moveframes < 190)
 ;
-	jmp     LA654
-LA5C9:	lda     _moveframes+1
+	jmp     LAA54
+LA9C9:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA5D7
+	bne     LA9D7
 	lda     _moveframes
 	cmp     #$BE
-LA5D7:	bcs     LA5D5
+LA9D7:	bcs     LA9D5
 ;
 ; oam_meta_spr(201, 150, Cutscene_38_data);
 ;
@@ -64414,13 +65399,13 @@ LA5D7:	bcs     LA5D5
 ;
 ; else if (moveframes < 200)
 ;
-	jmp     LA654
-LA5D5:	lda     _moveframes+1
+	jmp     LAA54
+LA9D5:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA5E3
+	bne     LA9E3
 	lda     _moveframes
 	cmp     #$C8
-LA5E3:	bcs     LA5E1
+LA9E3:	bcs     LA9E1
 ;
 ; oam_meta_spr(201, 150, Cutscene_37_data);
 ;
@@ -64450,13 +65435,13 @@ LA5E3:	bcs     LA5E1
 ;
 ; else if (moveframes < 210)
 ;
-	jmp     LA654
-LA5E1:	lda     _moveframes+1
+	jmp     LAA54
+LA9E1:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA5EF
+	bne     LA9EF
 	lda     _moveframes
 	cmp     #$D2
-LA5EF:	bcs     LA5ED
+LA9EF:	bcs     LA9ED
 ;
 ; oam_meta_spr(201, 150, Cutscene_36_data);
 ;
@@ -64486,13 +65471,13 @@ LA5EF:	bcs     LA5ED
 ;
 ; else if (moveframes < 220)
 ;
-	jmp     LA654
-LA5ED:	lda     _moveframes+1
+	jmp     LAA54
+LA9ED:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA5FB
+	bne     LA9FB
 	lda     _moveframes
 	cmp     #$DC
-LA5FB:	bcs     LA5F9
+LA9FB:	bcs     LA9F9
 ;
 ; oam_meta_spr(201, 150, Cutscene_35_data);
 ;
@@ -64528,13 +65513,13 @@ LA5FB:	bcs     LA5F9
 ;
 ; else if (moveframes < 230)
 ;
-	jmp     LA654
-LA5F9:	lda     _moveframes+1
+	jmp     LAA54
+LA9F9:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA609
+	bne     LAA09
 	lda     _moveframes
 	cmp     #$E6
-LA609:	bcs     LA607
+LAA09:	bcs     LAA07
 ;
 ; sfx_play(SFX_ABDUCTION,0);
 ;
@@ -64564,13 +65549,13 @@ LA609:	bcs     LA607
 ;
 ; else if (moveframes < 240)
 ;
-	jmp     LA654
-LA607:	lda     _moveframes+1
+	jmp     LAA54
+LAA07:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA614
+	bne     LAA14
 	lda     _moveframes
 	cmp     #$F0
-LA614:	bcs     LA612
+LAA14:	bcs     LAA12
 ;
 ; oam_meta_spr(201, 180 - moveframes2, abduction_guy_46);
 ;
@@ -64593,13 +65578,13 @@ LA614:	bcs     LA612
 ;
 ; else if (moveframes < 250)
 ;
-	jmp     LA654
-LA612:	lda     _moveframes+1
+	jmp     LAA54
+LAA12:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA61C
+	bne     LAA1C
 	lda     _moveframes
 	cmp     #$FA
-LA61C:	bcs     LA61A
+LAA1C:	bcs     LAA1A
 ;
 ; oam_meta_spr(201, 180 - moveframes2, abduction_guy_47);
 ;
@@ -64622,13 +65607,13 @@ LA61C:	bcs     LA61A
 ;
 ; else if (moveframes < 260)
 ;
-	jmp     LA654
-LA61A:	lda     _moveframes+1
+	jmp     LAA54
+LAA1A:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA624
+	bne     LAA24
 	lda     _moveframes
 	cmp     #$04
-LA624:	bcs     LA622
+LAA24:	bcs     LAA22
 ;
 ; sfx_play(SFX_ABDUCTION,0);
 ;
@@ -64658,13 +65643,13 @@ LA624:	bcs     LA622
 ;
 ; else if (moveframes < 270)
 ;
-	jmp     LA654
-LA622:	lda     _moveframes+1
+	jmp     LAA54
+LAA22:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA62F
+	bne     LAA2F
 	lda     _moveframes
 	cmp     #$0E
-LA62F:	bcs     LA62D
+LAA2F:	bcs     LAA2D
 ;
 ; oam_meta_spr(201, 180 - moveframes2, abduction_guy_49);
 ;
@@ -64687,13 +65672,13 @@ LA62F:	bcs     LA62D
 ;
 ; else if (moveframes < 280)
 ;
-	jmp     LA654
-LA62D:	lda     _moveframes+1
+	jmp     LAA54
+LAA2D:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA637
+	bne     LAA37
 	lda     _moveframes
 	cmp     #$18
-LA637:	bcs     LA635
+LAA37:	bcs     LAA35
 ;
 ; oam_meta_spr(201, 180 - moveframes2, abduction_guy_50);
 ;
@@ -64716,13 +65701,13 @@ LA637:	bcs     LA635
 ;
 ; else if (moveframes < 290)
 ;
-	jmp     LA654
-LA635:	lda     _moveframes+1
+	jmp     LAA54
+LAA35:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA63F
+	bne     LAA3F
 	lda     _moveframes
 	cmp     #$22
-LA63F:	bcs     LA63D
+LAA3F:	bcs     LAA3D
 ;
 ; oam_meta_spr(201, 180 - moveframes2, abduction_guy_51);
 ;
@@ -64745,13 +65730,13 @@ LA63F:	bcs     LA63D
 ;
 ; else if (moveframes < 300)
 ;
-	jmp     LA654
-LA63D:	lda     _moveframes+1
+	jmp     LAA54
+LAA3D:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA647
+	bne     LAA47
 	lda     _moveframes
 	cmp     #$2C
-LA647:	bcs     LA645
+LAA47:	bcs     LAA45
 ;
 ; oam_meta_spr(201, 180 - moveframes2, abduction_guy_52);
 ;
@@ -64774,13 +65759,13 @@ LA647:	bcs     LA645
 ;
 ; else if (moveframes < 310)
 ;
-	jmp     LA654
-LA645:	lda     _moveframes+1
+	jmp     LAA54
+LAA45:	lda     _moveframes+1
 	cmp     #$01
-	bne     LA64F
+	bne     LAA4F
 	lda     _moveframes
 	cmp     #$36
-LA64F:	bcs     LA64D
+LAA4F:	bcs     LAA4D
 ;
 ; oam_meta_spr(201, 180 - moveframes2, abduction_guy_53);
 ;
@@ -64803,11 +65788,11 @@ LA64F:	bcs     LA64D
 ;
 ; else
 ;
-	jmp     LA654
+	jmp     LAA54
 ;
 ; moveframes = 0;
 ;
-LA64D:	lda     #$00
+LAA4D:	lda     #$00
 	sta     _moveframes
 	sta     _moveframes+1
 ;
@@ -64843,19 +65828,19 @@ LA64D:	lda     #$00
 ;
 ; ++moveframes;
 ;
-LA654:	inc     _moveframes
-	bne     LA662
+LAA54:	inc     _moveframes
+	bne     LAA62
 	inc     _moveframes+1
 ;
 ; ++moveframes2;
 ;
-LA662:	inc     _moveframes2
-	bne     LA664
+LAA62:	inc     _moveframes2
+	bne     LAA64
 	inc     _moveframes2+1
 ;
 ; index3 = 0;
 ;
-LA664:	lda     #$00
+LAA64:	lda     #$00
 	sta     _index3
 ;
 ; index2 = 0;
@@ -64864,9 +65849,9 @@ LA664:	lda     #$00
 ;
 ; if (abduction_cutscene_step == ABDUCTION_BEAM_RETRACT)
 ;
-LDAFA:	lda     _abduction_cutscene_step
+LDEFC:	lda     _abduction_cutscene_step
 	cmp     #$03
-	jne     LDB06
+	jne     LDF08
 ;
 ; oam_clear();
 ;
@@ -64889,7 +65874,7 @@ LDAFA:	lda     _abduction_cutscene_step
 ;
 	lda     _moveframes
 	and     #$03
-	bne     LA670
+	bne     LAA70
 ;
 ; oam_meta_spr(172, 12, abduction_ship_1);
 ;
@@ -64905,11 +65890,11 @@ LDAFA:	lda     _abduction_cutscene_step
 ;
 ; else
 ;
-	jmp     LDAEB
+	jmp     LDEED
 ;
 ; oam_meta_spr(172, 12, abduction_ship_2);
 ;
-LA670:	jsr     decsp2
+LAA70:	jsr     decsp2
 	lda     #$AC
 	ldy     #$01
 	sta     (sp),y
@@ -64918,13 +65903,13 @@ LA670:	jsr     decsp2
 	sta     (sp),y
 	lda     #<(_abduction_ship_2)
 	ldx     #>(_abduction_ship_2)
-LDAEB:	jsr     _oam_meta_spr
+LDEED:	jsr     _oam_meta_spr
 ;
 ; if (nametable_index == 0)
 ;
 	lda     _nametable_index
 	ora     _nametable_index+1
-	bne     LA67C
+	bne     LAA7C
 ;
 ; moveframes = 0;
 ;
@@ -64938,30 +65923,30 @@ LDAEB:	jsr     _oam_meta_spr
 ;
 ; if (index2 == 5 && nametable_index > 0)
 ;
-LA67C:	lda     _index2
+LAA7C:	lda     _index2
 	cmp     #$05
-	jne     LDB05
+	jne     LDF07
 	lda     _nametable_index
 	cmp     #$01
 	lda     _nametable_index+1
 	sbc     #$00
-	bvs     LA686
+	bvs     LAA86
 	eor     #$80
-LA686:	jpl     LDB05
+LAA86:	jpl     LDF07
 ;
 ; if (index3 == 3 && attribute_bytes_written > 0)
 ;
 	lda     _index3
 	cmp     #$03
-	bne     LDAFD
+	bne     LDEFF
 	lda     _attribute_bytes_written
-	bne     LDAFE
-LDAFD:	lda     #$00
-	jmp     LDB02
+	bne     LDF00
+LDEFF:	lda     #$00
+	jmp     LDF04
 ;
 ; sfx_play(SFX_SPACESHIPNOISE,0);
 ;
-LDAFE:	lda     #$15
+LDF00:	lda     #$15
 	jsr     pusha
 	lda     #$00
 	jsr     _sfx_play
@@ -64970,9 +65955,9 @@ LDAFE:	lda     #$15
 ;
 	lda     #$00
 	sta     _index
-LDAFF:	lda     _index
+LDF01:	lda     _index
 	cmp     #$08
-	bcs     LDB00
+	bcs     LDF02
 ;
 ; one_vram_buffer(abduction_cutscene[960 + attribute_bytes_written - 1], NAMETABLE_A_ATTR + attribute_bytes_written - 1);
 ;
@@ -64986,9 +65971,9 @@ LDAFF:	lda     _index
 	pla
 	sec
 	sbc     #$01
-	bcs     LA69A
+	bcs     LAA9A
 	dex
-LA69A:	sta     ptr1
+LAA9A:	sta     ptr1
 	txa
 	clc
 	adc     #>(_abduction_cutscene)
@@ -65006,9 +65991,9 @@ LA69A:	sta     ptr1
 	pla
 	sec
 	sbc     #$01
-	bcs     LA69C
+	bcs     LAA9C
 	dex
-LA69C:	jsr     _one_vram_buffer
+LAA9C:	jsr     _one_vram_buffer
 ;
 ; --attribute_bytes_written;
 ;
@@ -65017,19 +66002,19 @@ LA69C:	jsr     _one_vram_buffer
 ; for (index = 0; index < 8; ++index)
 ;
 	inc     _index
-	jmp     LDAFF
+	jmp     LDF01
 ;
 ; index3 = 0;
 ;
-LDB00:	lda     #$00
+LDF02:	lda     #$00
 	sta     _index3
 ;
 ; for (index = 0; index < 32; ++index)
 ;
-LDB02:	sta     _index
-LDB03:	lda     _index
+LDF04:	sta     _index
+LDF05:	lda     _index
 	cmp     #$20
-	bcs     LDB04
+	bcs     LDF06
 ;
 ; one_vram_buffer(abduction_cutscene[nametable_index], cutscene_index);
 ;
@@ -65052,26 +66037,26 @@ LDB03:	lda     _index
 	sec
 	sbc     #$01
 	sta     _nametable_index
-	bcs     LA6AD
+	bcs     LAAAD
 	dec     _nametable_index+1
 ;
 ; --cutscene_index;
 ;
-LA6AD:	lda     _cutscene_index
+LAAAD:	lda     _cutscene_index
 	sec
 	sbc     #$01
 	sta     _cutscene_index
-	bcs     LA6AF
+	bcs     LAAAF
 	dec     _cutscene_index+1
 ;
 ; for (index = 0; index < 32; ++index)
 ;
-LA6AF:	inc     _index
-	jmp     LDB03
+LAAAF:	inc     _index
+	jmp     LDF05
 ;
 ; ++index3;
 ;
-LDB04:	inc     _index3
+LDF06:	inc     _index3
 ;
 ; index2 = 0;
 ;
@@ -65080,19 +66065,19 @@ LDB04:	inc     _index3
 ;
 ; ++index2;
 ;
-LDB05:	inc     _index2
+LDF07:	inc     _index2
 ;
 ; ++moveframes;
 ;
 	inc     _moveframes
-	bne     LDB06
+	bne     LDF08
 	inc     _moveframes+1
 ;
 ; if (abduction_cutscene_step == ABDUCTION_SHIP_FLY_OFF)
 ;
-LDB06:	lda     _abduction_cutscene_step
+LDF08:	lda     _abduction_cutscene_step
 	cmp     #$04
-	jne     LDB08
+	jne     LDF0A
 ;
 ; oam_clear();
 ;
@@ -65115,7 +66100,7 @@ LDB06:	lda     _abduction_cutscene_step
 ;
 	lda     _moveframes
 	and     #$03
-	bne     LA6BD
+	bne     LAABD
 ;
 ; sprite_pointer = abduction_ship_1;
 ;
@@ -65125,23 +66110,23 @@ LDB06:	lda     _abduction_cutscene_step
 ;
 ; else
 ;
-	jmp     LDAEC
+	jmp     LDEEE
 ;
 ; sprite_pointer = abduction_ship_2;
 ;
-LA6BD:	lda     #>(_abduction_ship_2)
+LAABD:	lda     #>(_abduction_ship_2)
 	sta     _sprite_pointer+1
 	lda     #<(_abduction_ship_2)
-LDAEC:	sta     _sprite_pointer
+LDEEE:	sta     _sprite_pointer
 ;
 ; if (moveframes < 12)
 ;
 	lda     _moveframes+1
 	cmp     #$00
-	bne     LA6C7
+	bne     LAAC7
 	lda     _moveframes
 	cmp     #$0C
-LA6C7:	bcs     LDB07
+LAAC7:	bcs     LDF09
 ;
 ; oam_meta_spr(172, 12 - moveframes, sprite_pointer);
 ;
@@ -65164,11 +66149,11 @@ LA6C7:	bcs     LDB07
 ;
 ; else
 ;
-	jmp     LA6CC
+	jmp     LAACC
 ;
 ; abduction_cutscene_step = ABDUCTION_SCROLL_UP;
 ;
-LDB07:	lda     #$05
+LDF09:	lda     #$05
 	sta     _abduction_cutscene_step
 ;
 ; set_chr_bank_0(CUTSCENE_CHR_0);
@@ -65221,15 +66206,15 @@ LDB07:	lda     #$05
 ;
 ; ++moveframes;
 ;
-LA6CC:	inc     _moveframes
-	bne     LDB08
+LAACC:	inc     _moveframes
+	bne     LDF0A
 	inc     _moveframes+1
 ;
 ; if (abduction_cutscene_step == ABDUCTION_SCROLL_UP)
 ;
-LDB08:	lda     _abduction_cutscene_step
+LDF0A:	lda     _abduction_cutscene_step
 	cmp     #$05
-	jne     LDB0D
+	jne     LDF0F
 ;
 ; oam_clear();
 ;
@@ -65239,7 +66224,7 @@ LDB08:	lda     _abduction_cutscene_step
 ;
 	lda     _scroll_y
 	ora     _scroll_y+1
-	bne     LA6E4
+	bne     LAAE4
 ;
 ; abduction_cutscene_step = ABDUCTION_STAR_IN_SKY;
 ;
@@ -65254,11 +66239,11 @@ LDB08:	lda     _abduction_cutscene_step
 ;
 ; else
 ;
-	jmp     LA706
+	jmp     LAB06
 ;
 ; scroll(0, scroll_y);
 ;
-LA6E4:	jsr     push0
+LAAE4:	jsr     push0
 	lda     _scroll_y
 	ldx     _scroll_y+1
 	jsr     _scroll
@@ -65267,15 +66252,15 @@ LA6E4:	jsr     push0
 ;
 	ldx     _scroll_y+1
 	cpx     #$01
-	bcs     LA6F2
+	bcs     LAAF2
 ;
 ; for (index = 0; index < 30; ++index)
 ;
 	lda     #$00
 	sta     _index
-LDB09:	lda     _index
+LDF0B:	lda     _index
 	cmp     #$1E
-	bcs     LA6F2
+	bcs     LAAF2
 ;
 ; one_vram_buffer(intro_cutscene_1x[nametable_index], cutscene_index);
 ;
@@ -65298,45 +66283,45 @@ LDB09:	lda     _index
 	sec
 	sbc     #$01
 	sta     _nametable_index
-	bcs     LA6FE
+	bcs     LAAFE
 	dec     _nametable_index+1
 ;
 ; --cutscene_index;
 ;
-LA6FE:	lda     _cutscene_index
+LAAFE:	lda     _cutscene_index
 	sec
 	sbc     #$01
 	sta     _cutscene_index
-	bcs     LA700
+	bcs     LAB00
 	dec     _cutscene_index+1
 ;
 ; for (index = 0; index < 30; ++index)
 ;
-LA700:	inc     _index
-	jmp     LDB09
+LAB00:	inc     _index
+	jmp     LDF0B
 ;
 ; if (scroll_y < 0x100 && attribute_bytes_written < 64)
 ;
-LA6F2:	ldx     _scroll_y+1
+LAAF2:	ldx     _scroll_y+1
 	cpx     #$01
-	bcs     LA706
+	bcs     LAB06
 	lda     _attribute_bytes_written
 	cmp     #$40
-	bcs     LA706
+	bcs     LAB06
 ;
 ; for (index = 0; index < 4; ++index)
 ;
 	lda     #$00
 	sta     _index
-LDB0B:	lda     _index
+LDF0D:	lda     _index
 	cmp     #$04
-	bcs     LA706
+	bcs     LAB06
 ;
 ; if (attribute_bytes_written < 64)
 ;
 	lda     _attribute_bytes_written
 	cmp     #$40
-	bcs     LDB0C
+	bcs     LDF0E
 ;
 ; one_vram_buffer(intro_cutscene_1x[960 + attribute_bytes_written], attribute_table_index + attribute_bytes_written);
 ;
@@ -65355,39 +66340,39 @@ LDB0B:	lda     _index
 	ldx     _attribute_table_index+1
 	clc
 	adc     _attribute_bytes_written
-	bcc     LDAE7
+	bcc     LDEE9
 	inx
-LDAE7:	jsr     _one_vram_buffer
+LDEE9:	jsr     _one_vram_buffer
 ;
 ; ++attribute_bytes_written;
 ;
-LDB0C:	inc     _attribute_bytes_written
+LDF0E:	inc     _attribute_bytes_written
 ;
 ; for (index = 0; index < 4; ++index)
 ;
 	inc     _index
-	jmp     LDB0B
+	jmp     LDF0D
 ;
 ; --scroll_y;
 ;
-LA706:	lda     _scroll_y
+LAB06:	lda     _scroll_y
 	sec
 	sbc     #$01
 	sta     _scroll_y
-	bcs     LA715
+	bcs     LAB15
 	dec     _scroll_y+1
 ;
 ; ++moveframes;
 ;
-LA715:	inc     _moveframes
-	bne     LDB0D
+LAB15:	inc     _moveframes
+	bne     LDF0F
 	inc     _moveframes+1
 ;
 ; if (abduction_cutscene_step == ABDUCTION_STAR_IN_SKY)
 ;
-LDB0D:	lda     _abduction_cutscene_step
+LDF0F:	lda     _abduction_cutscene_step
 	cmp     #$06
-	jne     LDB0E
+	jne     LDF10
 ;
 ; oam_clear();
 ;
@@ -65397,10 +66382,10 @@ LDB0D:	lda     _abduction_cutscene_step
 ;
 	lda     _moveframes+1
 	cmp     #$00
-	bne     LA71D
+	bne     LAB1D
 	lda     _moveframes
 	cmp     #$64
-LA71D:	bcs     LA71B
+LAB1D:	bcs     LAB1B
 ;
 ; moveframes2 = 0;
 ;
@@ -65410,13 +66395,13 @@ LA71D:	bcs     LA71B
 ;
 ; else if (moveframes < 140)
 ;
-	jmp     LA72E
-LA71B:	lda     _moveframes+1
+	jmp     LAB2E
+LAB1B:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA723
+	bne     LAB23
 	lda     _moveframes
 	cmp     #$8C
-LA723:	bcs     LA721
+LAB23:	bcs     LAB21
 ;
 ; oam_meta_spr(200 - moveframes2, 30, Cutscene_35_data);
 ;
@@ -65439,13 +66424,13 @@ LA723:	bcs     LA721
 ;
 ; else if (moveframes < 220)
 ;
-	jmp     LA72E
-LA721:	lda     _moveframes+1
+	jmp     LAB2E
+LAB21:	lda     _moveframes+1
 	cmp     #$00
-	bne     LA72B
+	bne     LAB2B
 	lda     _moveframes
 	cmp     #$DC
-LA72B:	bcs     LA729
+LAB2B:	bcs     LAB29
 ;
 ; moveframes2 = 0;
 ;
@@ -65455,11 +66440,11 @@ LA72B:	bcs     LA729
 ;
 ; else
 ;
-	jmp     LA72E
+	jmp     LAB2E
 ;
 ; pal_fade_to(4, 0);
 ;
-LA729:	lda     #$04
+LAB29:	lda     #$04
 	jsr     pusha
 	lda     #$00
 	jsr     _pal_fade_to
@@ -65471,24 +66456,24 @@ LA729:	lda     #$04
 ;
 ; ++moveframes;
 ;
-LA72E:	inc     _moveframes
-	bne     LA735
+LAB2E:	inc     _moveframes
+	bne     LAB35
 	inc     _moveframes+1
 ;
 ; moveframes2 += 5;
 ;
-LA735:	lda     #$05
+LAB35:	lda     #$05
 	clc
 	adc     _moveframes2
 	sta     _moveframes2
-	bcc     LDB0E
+	bcc     LDF10
 	inc     _moveframes2+1
 ;
 ; if (abduction_cutscene_step == ABDUCTION_DONE) // to call at the end of everything
 ;
-LDB0E:	lda     _abduction_cutscene_step
+LDF10:	lda     _abduction_cutscene_step
 	cmp     #$07
-	bne     LA739
+	bne     LAB39
 ;
 ; alien_level_status = ALIEN_INITIAL_INSTRUCTION;
 ;
@@ -65505,7 +66490,7 @@ LDB0E:	lda     _abduction_cutscene_step
 ;
 ; }
 ;
-LA739:	rts
+LAB39:	rts
 
 .endproc
 
@@ -65527,49 +66512,49 @@ LA739:	rts
 ; }
 ;
 	cmp     #$01
-	beq     LA745
+	beq     LAB45
 	cmp     #$02
-	beq     LA749
+	beq     LAB49
 	cmp     #$03
-	beq     LA74D
-	jmp     LA750
+	beq     LAB4D
+	jmp     LAB50
 ;
 ; pointer = AlienNumber1;
 ;
-LA745:	lda     #>(_AlienNumber1)
+LAB45:	lda     #>(_AlienNumber1)
 	sta     _pointer+1
 	lda     #<(_AlienNumber1)
 ;
 ; break;
 ;
-	jmp     LDB0F
+	jmp     LDF11
 ;
 ; pointer = AlienNumber2;
 ;
-LA749:	lda     #>(_AlienNumber2)
+LAB49:	lda     #>(_AlienNumber2)
 	sta     _pointer+1
 	lda     #<(_AlienNumber2)
 ;
 ; break;
 ;
-	jmp     LDB0F
+	jmp     LDF11
 ;
 ; pointer = AlienNumber3;
 ;
-LA74D:	lda     #>(_AlienNumber3)
+LAB4D:	lda     #>(_AlienNumber3)
 	sta     _pointer+1
 	lda     #<(_AlienNumber3)
 ;
 ; break;
 ;
-	jmp     LDB0F
+	jmp     LDF11
 ;
 ; pointer = AlienNumber0;
 ;
-LA750:	lda     #>(_AlienNumber0)
+LAB50:	lda     #>(_AlienNumber0)
 	sta     _pointer+1
 	lda     #<(_AlienNumber0)
-LDB0F:	sta     _pointer
+LDF11:	sta     _pointer
 ;
 ; }
 ;
@@ -65599,12 +66584,12 @@ LDB0F:	sta     _pointer
 ; ++moveframes;
 ;
 	inc     _moveframes
-	bne     LA769
+	bne     LAB69
 	inc     _moveframes+1
 ;
 ; ppu_wait_nmi();
 ;
-LA769:	jsr     _ppu_wait_nmi
+LAB69:	jsr     _ppu_wait_nmi
 ;
 ; oam_clear();
 ;
@@ -65614,7 +66599,7 @@ LA769:	jsr     _ppu_wait_nmi
 ;
 	lda     _eye_y+1
 	cmp     #$70
-	bcs     LDB14
+	bcs     LDF16
 ;
 ; eye_direction_y = 1;
 ;
@@ -65623,9 +66608,9 @@ LA769:	jsr     _ppu_wait_nmi
 ;
 ; if(high_byte(eye_x) > 120){
 ;
-LDB14:	lda     _eye_x+1
+LDF16:	lda     _eye_x+1
 	cmp     #$79
-	bcc     LA771
+	bcc     LAB71
 ;
 ; eye_direction_y = 0;
 ;
@@ -65634,33 +66619,33 @@ LDB14:	lda     _eye_x+1
 ;
 ; if(eye_direction_y){
 ;
-LA771:	lda     _eye_direction_y
-	beq     LA776
+LAB71:	lda     _eye_direction_y
+	beq     LAB76
 ;
 ; eye_y += 1;
 ;
 	inc     _eye_y
-	bne     LA77E
+	bne     LAB7E
 	inc     _eye_y+1
 ;
 ; } else {
 ;
-	jmp     LA77E
+	jmp     LAB7E
 ;
 ; eye_y -= 1;
 ;
-LA776:	lda     _eye_y
+LAB76:	lda     _eye_y
 	sec
 	sbc     #$01
 	sta     _eye_y
-	bcs     LA77E
+	bcs     LAB7E
 	dec     _eye_y+1
 ;
 ; if(high_byte(eye_x) < 115){
 ;
-LA77E:	lda     _eye_x+1
+LAB7E:	lda     _eye_x+1
 	cmp     #$73
-	bcs     LDB15
+	bcs     LDF17
 ;
 ; eye_direction_x = 1;
 ;
@@ -65669,9 +66654,9 @@ LA77E:	lda     _eye_x+1
 ;
 ; if(high_byte(eye_x) > 125){
 ;
-LDB15:	lda     _eye_x+1
+LDF17:	lda     _eye_x+1
 	cmp     #$7E
-	bcc     LA784
+	bcc     LAB84
 ;
 ; eye_direction_x = 0;
 ;
@@ -65680,8 +66665,8 @@ LDB15:	lda     _eye_x+1
 ;
 ; if(eye_direction_x){
 ;
-LA784:	lda     _eye_direction_x
-	beq     LA789
+LAB84:	lda     _eye_direction_x
+	beq     LAB89
 ;
 ; eye_x += 4;
 ;
@@ -65689,32 +66674,32 @@ LA784:	lda     _eye_direction_x
 	clc
 	adc     _eye_x
 	sta     _eye_x
-	bcc     LA791
+	bcc     LAB91
 	inc     _eye_x+1
 ;
 ; } else {
 ;
-	jmp     LA791
+	jmp     LAB91
 ;
 ; eye_x -= 4;
 ;
-LA789:	lda     _eye_x
+LAB89:	lda     _eye_x
 	sec
 	sbc     #$04
 	sta     _eye_x
-	bcs     LA791
+	bcs     LAB91
 	dec     _eye_x+1
 ;
 ; if (alien_face_frames < 50)
 ;
-LA791:	lda     _alien_face_frames
+LAB91:	lda     _alien_face_frames
 	cmp     #$32
 ;
 ; else if (alien_face_frames < 55)
 ;
-	jcc     LDB40
+	jcc     LDF42
 	cmp     #$37
-	bcs     LDB17
+	bcs     LDF19
 ;
 ; oam_meta_spr(124, 130, alien_gas_mouth_1);
 ;
@@ -65730,10 +66715,10 @@ LA791:	lda     _alien_face_frames
 ;
 ; else if (alien_face_frames < 60)
 ;
-	jmp     LDB11
-LDB17:	lda     _alien_face_frames
+	jmp     LDF13
+LDF19:	lda     _alien_face_frames
 	cmp     #$3C
-	bcs     LDB18
+	bcs     LDF1A
 ;
 ; oam_meta_spr(124, 130, alien_gas_mouth_2);
 ;
@@ -65749,10 +66734,10 @@ LDB17:	lda     _alien_face_frames
 ;
 ; else if (alien_face_frames < 65)
 ;
-	jmp     LDB11
-LDB18:	lda     _alien_face_frames
+	jmp     LDF13
+LDF1A:	lda     _alien_face_frames
 	cmp     #$41
-	bcs     LDB19
+	bcs     LDF1B
 ;
 ; oam_meta_spr(124, 130, alien_gas_mouth_3);
 ;
@@ -65768,10 +66753,10 @@ LDB18:	lda     _alien_face_frames
 ;
 ; else if (alien_face_frames < 70)
 ;
-	jmp     LDB11
-LDB19:	lda     _alien_face_frames
+	jmp     LDF13
+LDF1B:	lda     _alien_face_frames
 	cmp     #$46
-	bcs     LDB1A
+	bcs     LDF1C
 ;
 ; oam_meta_spr(124, 130, alien_gas_mouth_4);
 ;
@@ -65787,10 +66772,10 @@ LDB19:	lda     _alien_face_frames
 ;
 ; else if (alien_face_frames < 75)
 ;
-	jmp     LDB11
-LDB1A:	lda     _alien_face_frames
+	jmp     LDF13
+LDF1C:	lda     _alien_face_frames
 	cmp     #$4B
-	bcs     LDB1B
+	bcs     LDF1D
 ;
 ; oam_meta_spr(124, 130, alien_gas_mouth_5);
 ;
@@ -65806,16 +66791,16 @@ LDB1A:	lda     _alien_face_frames
 ;
 ; else
 ;
-	jmp     LDB11
+	jmp     LDF13
 ;
 ; alien_face_frames = 0;
 ;
-LDB1B:	lda     #$00
+LDF1D:	lda     #$00
 	sta     _alien_face_frames
 ;
 ; oam_meta_spr(124, 130, alien_gas_mouth_0);
 ;
-LDB40:	jsr     decsp2
+LDF42:	jsr     decsp2
 	lda     #$7C
 	ldy     #$01
 	sta     (sp),y
@@ -65824,24 +66809,24 @@ LDB40:	jsr     decsp2
 	sta     (sp),y
 	lda     #<(_alien_gas_mouth_0)
 	ldx     #>(_alien_gas_mouth_0)
-LDB11:	jsr     _oam_meta_spr
+LDF13:	jsr     _oam_meta_spr
 ;
 ; ++eyeroll_frames;
 ;
 	inc     _eyeroll_frames
-	bne     LA7C3
+	bne     LABC3
 	inc     _eyeroll_frames+1
 ;
 ; if(missed_guess){
 ;
-LA7C3:	lda     _missed_guess
-	jeq     LA7C4
+LABC3:	lda     _missed_guess
+	jeq     LABC4
 ;
 ; if(alien_eye_frames < 4){
 ;
 	lda     _alien_eye_frames
 	cmp     #$04
-	bcs     LDB1C
+	bcs     LDF1E
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_17);
 ;
@@ -65858,10 +66843,10 @@ LA7C3:	lda     _missed_guess
 ;
 ; } else if(alien_eye_frames < 8){
 ;
-	jmp     LDB23
-LDB1C:	lda     _alien_eye_frames
+	jmp     LDF25
+LDF1E:	lda     _alien_eye_frames
 	cmp     #$08
-	bcs     LDB1D
+	bcs     LDF1F
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_18);
 ;
@@ -65878,10 +66863,10 @@ LDB1C:	lda     _alien_eye_frames
 ;
 ; } else if(alien_eye_frames < 12){
 ;
-	jmp     LDB23
-LDB1D:	lda     _alien_eye_frames
+	jmp     LDF25
+LDF1F:	lda     _alien_eye_frames
 	cmp     #$0C
-	bcs     LDB1E
+	bcs     LDF20
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_19);
 ;
@@ -65898,10 +66883,10 @@ LDB1D:	lda     _alien_eye_frames
 ;
 ; } else if(alien_eye_frames < 16){
 ;
-	jmp     LDB23
-LDB1E:	lda     _alien_eye_frames
+	jmp     LDF25
+LDF20:	lda     _alien_eye_frames
 	cmp     #$10
-	bcs     LDB1F
+	bcs     LDF21
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_20);
 ;
@@ -65918,10 +66903,10 @@ LDB1E:	lda     _alien_eye_frames
 ;
 ; } else if(alien_eye_frames < 20){
 ;
-	jmp     LDB23
-LDB1F:	lda     _alien_eye_frames
+	jmp     LDF25
+LDF21:	lda     _alien_eye_frames
 	cmp     #$14
-	bcs     LDB20
+	bcs     LDF22
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_21);
 ;
@@ -65938,10 +66923,10 @@ LDB1F:	lda     _alien_eye_frames
 ;
 ; } else if(alien_eye_frames < 24){
 ;
-	jmp     LDB23
-LDB20:	lda     _alien_eye_frames
+	jmp     LDF25
+LDF22:	lda     _alien_eye_frames
 	cmp     #$18
-	bcs     LDB21
+	bcs     LDF23
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_22);
 ;
@@ -65958,11 +66943,11 @@ LDB20:	lda     _alien_eye_frames
 ;
 ; } else {
 ;
-	jmp     LDB23
+	jmp     LDF25
 ;
 ; missed_guess = 0;
 ;
-LDB21:	lda     #$00
+LDF23:	lda     #$00
 	sta     _missed_guess
 ;
 ; alien_eye_frames = 0;
@@ -65988,19 +66973,19 @@ LDB21:	lda     #$00
 ;
 ; else if(eyeroll_frames < 300){
 ;
-	jmp     LDB23
-LA7C4:	lda     _eyeroll_frames+1
+	jmp     LDF25
+LABC4:	lda     _eyeroll_frames+1
 	cmp     #$01
-	bne     LA80B
+	bne     LAC0B
 	lda     _eyeroll_frames
 	cmp     #$2C
-LA80B:	bcs     LA809
+LAC0B:	bcs     LAC09
 ;
 ; if (alien_eye_frames < 90)
 ;
 	lda     _alien_eye_frames
 	cmp     #$5A
-	bcs     LDB22
+	bcs     LDF24
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_10);
 ;
@@ -66017,10 +67002,10 @@ LA80B:	bcs     LA809
 ;
 ; } else if(alien_eye_frames < 95){
 ;
-	jmp     LDB23
-LDB22:	lda     _alien_eye_frames
+	jmp     LDF25
+LDF24:	lda     _alien_eye_frames
 	cmp     #$5F
-	bcs     LA815
+	bcs     LAC15
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_17);
 ;
@@ -66037,11 +67022,11 @@ LDB22:	lda     _alien_eye_frames
 ;
 ; } else {
 ;
-	jmp     LDB23
+	jmp     LDF25
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_17);
 ;
-LA815:	jsr     decsp2
+LAC15:	jsr     decsp2
 	lda     _eye_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -66059,16 +67044,16 @@ LA815:	jsr     decsp2
 ;
 ; } else {
 ;
-	jmp     LDB23
+	jmp     LDF25
 ;
 ; if(eyeroll_frames < 305){
 ;
-LA809:	lda     _eyeroll_frames+1
+LAC09:	lda     _eyeroll_frames+1
 	cmp     #$01
-	bne     LA829
+	bne     LAC29
 	lda     _eyeroll_frames
 	cmp     #$31
-LA829:	bcs     LA827
+LAC29:	bcs     LAC27
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_11);
 ;
@@ -66085,13 +67070,13 @@ LA829:	bcs     LA827
 ;
 ; } else if(eyeroll_frames < 310){
 ;
-	jmp     LDB23
-LA827:	lda     _eyeroll_frames+1
+	jmp     LDF25
+LAC27:	lda     _eyeroll_frames+1
 	cmp     #$01
-	bne     LA833
+	bne     LAC33
 	lda     _eyeroll_frames
 	cmp     #$36
-LA833:	bcs     LA831
+LAC33:	bcs     LAC31
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_12);
 ;
@@ -66108,13 +67093,13 @@ LA833:	bcs     LA831
 ;
 ; } else if(eyeroll_frames < 315){
 ;
-	jmp     LDB23
-LA831:	lda     _eyeroll_frames+1
+	jmp     LDF25
+LAC31:	lda     _eyeroll_frames+1
 	cmp     #$01
-	bne     LA83D
+	bne     LAC3D
 	lda     _eyeroll_frames
 	cmp     #$3B
-LA83D:	bcs     LA83B
+LAC3D:	bcs     LAC3B
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_13);
 ;
@@ -66131,13 +67116,13 @@ LA83D:	bcs     LA83B
 ;
 ; } else if(eyeroll_frames < 320){
 ;
-	jmp     LDB23
-LA83B:	lda     _eyeroll_frames+1
+	jmp     LDF25
+LAC3B:	lda     _eyeroll_frames+1
 	cmp     #$01
-	bne     LA847
+	bne     LAC47
 	lda     _eyeroll_frames
 	cmp     #$40
-LA847:	bcs     LA845
+LAC47:	bcs     LAC45
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_14);
 ;
@@ -66154,13 +67139,13 @@ LA847:	bcs     LA845
 ;
 ; } else if(eyeroll_frames < 325){
 ;
-	jmp     LDB23
-LA845:	lda     _eyeroll_frames+1
+	jmp     LDF25
+LAC45:	lda     _eyeroll_frames+1
 	cmp     #$01
-	bne     LA851
+	bne     LAC51
 	lda     _eyeroll_frames
 	cmp     #$45
-LA851:	bcs     LA84F
+LAC51:	bcs     LAC4F
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_15);
 ;
@@ -66177,13 +67162,13 @@ LA851:	bcs     LA84F
 ;
 ; } else if(eyeroll_frames < 330){
 ;
-	jmp     LDB23
-LA84F:	lda     _eyeroll_frames+1
+	jmp     LDF25
+LAC4F:	lda     _eyeroll_frames+1
 	cmp     #$01
-	bne     LA85B
+	bne     LAC5B
 	lda     _eyeroll_frames
 	cmp     #$4A
-LA85B:	bcs     LA859
+LAC5B:	bcs     LAC59
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_16);
 ;
@@ -66200,11 +67185,11 @@ LA85B:	bcs     LA859
 ;
 ; } else {
 ;
-	jmp     LDB23
+	jmp     LDF25
 ;
 ; oam_meta_spr(high_byte(eye_x), high_byte(eye_y), alien_eyes_16);
 ;
-LA859:	jsr     decsp2
+LAC59:	jsr     decsp2
 	lda     _eye_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -66223,7 +67208,7 @@ LA859:	jsr     decsp2
 ;
 ; temp = aliengas1;
 ;
-LDB23:	lda     _aliengas1
+LDF25:	lda     _aliengas1
 	sta     _temp
 ;
 ; banked_call(BANK_4, bank_4_alien_number_sprites);
@@ -66307,14 +67292,14 @@ LDB23:	lda     _aliengas1
 ;
 	lda     #$00
 	sta     _index
-LDB24:	lda     _index
+LDF26:	lda     _index
 	cmp     #$03
-	jcs     LA888
+	jcs     LAC88
 ;
 ; if (index == 0)
 ;
 	lda     _index
-	bne     LDB25
+	bne     LDF27
 ;
 ; oam_meta_spr(spacelevel_sprites_x[index], spacelevel_sprites_y[index], tinyship0);
 ;
@@ -66337,9 +67322,9 @@ LDB24:	lda     _index
 	ldx     #>(_spacelevel_sprites_x)
 	clc
 	adc     _index
-	bcc     LA89B
+	bcc     LAC9B
 	inx
-LA89B:	sta     ptr1
+LAC9B:	sta     ptr1
 	stx     ptr1+1
 	ldy     _index
 	lda     _spacelevel_sprites_x,y
@@ -66354,9 +67339,9 @@ LA89B:	sta     ptr1
 	ldx     #>(_spacelevel_sprites_y)
 	clc
 	adc     _index
-	bcc     LA8A2
+	bcc     LACA2
 	inx
-LA8A2:	sta     ptr1
+LACA2:	sta     ptr1
 	stx     ptr1+1
 	ldy     _index
 	lda     _spacelevel_sprites_y,y
@@ -66367,9 +67352,9 @@ LA8A2:	sta     ptr1
 ;
 ; if (index == 1)
 ;
-LDB25:	lda     _index
+LDF27:	lda     _index
 	cmp     #$01
-	bne     LDB26
+	bne     LDF28
 ;
 ; oam_meta_spr(spacelevel_sprites_x[index], spacelevel_sprites_y[index], asteroidship0);
 ;
@@ -66392,9 +67377,9 @@ LDB25:	lda     _index
 	ldx     #>(_spacelevel_sprites_x)
 	clc
 	adc     _index
-	bcc     LA8B3
+	bcc     LACB3
 	inx
-LA8B3:	sta     ptr1
+LACB3:	sta     ptr1
 	stx     ptr1+1
 	ldy     _index
 	lda     _spacelevel_sprites_x,y
@@ -66409,9 +67394,9 @@ LA8B3:	sta     ptr1
 	ldx     #>(_spacelevel_sprites_y)
 	clc
 	adc     _index
-	bcc     LA8BA
+	bcc     LACBA
 	inx
-LA8BA:	sta     ptr1
+LACBA:	sta     ptr1
 	stx     ptr1+1
 	ldy     _index
 	lda     _spacelevel_sprites_y,y
@@ -66422,15 +67407,15 @@ LA8BA:	sta     ptr1
 ;
 ; if (index == 2)
 ;
-LDB26:	lda     _index
+LDF28:	lda     _index
 	cmp     #$02
-	jne     LDB29
+	jne     LDF2B
 ;
 ; if (spaceship_frames < 10)
 ;
 	lda     _spaceship_frames
 	cmp     #$0A
-	bcs     LDB27
+	bcs     LDF29
 ;
 ; oam_meta_spr(spacelevel_sprites_x[index], spacelevel_sprites_y[index], jellyfish0);
 ;
@@ -66448,13 +67433,13 @@ LDB26:	lda     _index
 ;
 ; else if (spaceship_frames < 20)
 ;
-	jmp     LDB12
-LDB27:	lda     _spaceship_frames
+	jmp     LDF14
+LDF29:	lda     _spaceship_frames
 	cmp     #$14
 ;
 ; } else {
 ;
-	bcc     LDB43
+	bcc     LDF45
 ;
 ; spaceship_frames = 0;
 ;
@@ -66463,7 +67448,7 @@ LDB27:	lda     _spaceship_frames
 ;
 ; oam_meta_spr(spacelevel_sprites_x[index], spacelevel_sprites_y[index], jellyfish1);
 ;
-LDB43:	jsr     decsp2
+LDF45:	jsr     decsp2
 	ldy     _index
 	lda     _spacelevel_sprites_x,y
 	ldy     #$01
@@ -66474,7 +67459,7 @@ LDB43:	jsr     decsp2
 	sta     (sp),y
 	lda     #<(_jellyfish1)
 	ldx     #>(_jellyfish1)
-LDB12:	jsr     _oam_meta_spr
+LDF14:	jsr     _oam_meta_spr
 ;
 ; spacelevel_sprites_x[index] = spacelevel_sprites_x[index] + 1;
 ;
@@ -66482,9 +67467,9 @@ LDB12:	jsr     _oam_meta_spr
 	ldx     #>(_spacelevel_sprites_x)
 	clc
 	adc     _index
-	bcc     LA8E3
+	bcc     LACE3
 	inx
-LA8E3:	sta     ptr1
+LACE3:	sta     ptr1
 	stx     ptr1+1
 	ldy     _index
 	lda     _spacelevel_sprites_x,y
@@ -66499,9 +67484,9 @@ LA8E3:	sta     ptr1
 	ldx     #>(_spacelevel_sprites_y)
 	clc
 	adc     _index
-	bcc     LA8EA
+	bcc     LACEA
 	inx
-LA8EA:	sta     ptr1
+LACEA:	sta     ptr1
 	stx     ptr1+1
 	ldy     _index
 	lda     _spacelevel_sprites_y,y
@@ -66512,21 +67497,21 @@ LA8EA:	sta     ptr1
 ;
 ; for (index = 0; index < 3; index++)
 ;
-LDB29:	inc     _index
-	jmp     LDB24
+LDF2B:	inc     _index
+	jmp     LDF26
 ;
 ; if (moveframes2 > 20)
 ;
-LA888:	lda     _moveframes2
+LAC88:	lda     _moveframes2
 	cmp     #$15
 	lda     _moveframes2+1
 	sbc     #$00
-	bcc     LA8EF
+	bcc     LACEF
 ;
 ; if (chr_bank == 0)
 ;
 	lda     _chr_bank
-	bne     LDB2A
+	bne     LDF2C
 ;
 ; set_chr_bank_0(FUTUREPUMP_ALT_CHR_0);
 ;
@@ -66539,10 +67524,10 @@ LA888:	lda     _moveframes2
 ;
 ; else if (chr_bank == 1)
 ;
-	jmp     LDB13
-LDB2A:	lda     _chr_bank
+	jmp     LDF15
+LDF2C:	lda     _chr_bank
 	cmp     #$01
-	bne     LA8F8
+	bne     LACF8
 ;
 ; set_chr_bank_0(FUTUREPUMP_ALT_2_CHR_0);
 ;
@@ -66555,17 +67540,17 @@ LDB2A:	lda     _chr_bank
 ;
 ; else
 ;
-	jmp     LDB13
+	jmp     LDF15
 ;
 ; set_chr_bank_0(FUTUREPUMP_CHR_0);
 ;
-LA8F8:	lda     #$08
+LACF8:	lda     #$08
 	jsr     _set_chr_bank_0
 ;
 ; chr_bank = 0;
 ;
 	lda     #$00
-LDB13:	sta     _chr_bank
+LDF15:	sta     _chr_bank
 ;
 ; moveframes2 = 0;
 ;
@@ -66575,11 +67560,11 @@ LDB13:	sta     _chr_bank
 ;
 ; if (moveframes > 90)
 ;
-LA8EF:	lda     _moveframes
+LACEF:	lda     _moveframes
 	cmp     #$5B
 	lda     _moveframes+1
 	sbc     #$00
-	bcc     LA905
+	bcc     LAD05
 ;
 ; moveframes = 0;
 ;
@@ -66589,22 +67574,22 @@ LA8EF:	lda     _moveframes
 ;
 ; read_input(); // sets input_active
 ;
-LA905:	jsr     _read_input
+LAD05:	jsr     _read_input
 ;
 ; if (trigger_pulled)
 ;
 	lda     _trigger_pulled
-	beq     LA90A
+	beq     LAD0A
 ;
 ; ++moveframes2;
 ;
 	inc     _moveframes2
-	bne     LA90D
+	bne     LAD0D
 	inc     _moveframes2+1
 ;
 ; started_pumping = 1; // actually only need to set this once
 ;
-LA90D:	lda     #$01
+LAD0D:	lda     #$01
 	sta     _started_pumping
 ;
 ; if (moveframes > 16)
@@ -66613,17 +67598,17 @@ LA90D:	lda     #$01
 	cmp     #$11
 	lda     _moveframes+1
 	sbc     #$00
-	bcc     LDB2B
+	bcc     LDF2D
 ;
 ; ++gas_pumped; //<--total gas
 ;
 	inc     _gas_pumped
-	bne     LA913
+	bne     LAD13
 	inc     _gas_pumped+1
 ;
 ; ++aliengas1;
 ;
-LA913:	inc     _aliengas1
+LAD13:	inc     _aliengas1
 ;
 ; moveframes = 0;
 ;
@@ -66633,9 +67618,9 @@ LA913:	inc     _aliengas1
 ;
 ; if (aliengas1 > 3)
 ;
-LDB2B:	lda     _aliengas1
+LDF2D:	lda     _aliengas1
 	cmp     #$04
-	bcs     LDB44
+	bcs     LDF46
 ;
 ; }
 ;
@@ -66643,7 +67628,7 @@ LDB2B:	lda     _aliengas1
 ;
 ; aliengas1 = 0;
 ;
-LDB44:	lda     #$00
+LDF46:	lda     #$00
 	sta     _aliengas1
 ;
 ; ++aliengas2;
@@ -66654,7 +67639,7 @@ LDB44:	lda     #$00
 ;
 	lda     _aliengas2
 	cmp     #$04
-	bcs     LDB45
+	bcs     LDF47
 ;
 ; }
 ;
@@ -66662,7 +67647,7 @@ LDB44:	lda     #$00
 ;
 ; aliengas2 = 0;
 ;
-LDB45:	lda     #$00
+LDF47:	lda     #$00
 	sta     _aliengas2
 ;
 ; ++aliengas3;
@@ -66673,7 +67658,7 @@ LDB45:	lda     #$00
 ;
 	lda     _aliengas3
 	cmp     #$04
-	bcs     LDB46
+	bcs     LDF48
 ;
 ; }
 ;
@@ -66681,7 +67666,7 @@ LDB45:	lda     #$00
 ;
 ; aliengas3 = 0;
 ;
-LDB46:	lda     #$00
+LDF48:	lda     #$00
 	sta     _aliengas3
 ;
 ; aliengas2 = 0;
@@ -66698,9 +67683,9 @@ LDB46:	lda     #$00
 ;
 ; if (started_pumping == 1)
 ;
-LA90A:	lda     _started_pumping
+LAD0A:	lda     _started_pumping
 	cmp     #$01
-	beq     LDB47
+	beq     LDF49
 ;
 ; }
 ;
@@ -66708,16 +67693,16 @@ LA90A:	lda     _started_pumping
 ;
 ; if (gas_pumped != LAST_LEVEL_GOAL)
 ;
-LDB47:	lda     _LAST_LEVEL_GOAL
+LDF49:	lda     _LAST_LEVEL_GOAL
 	ldx     _LAST_LEVEL_GOAL+1
 	cpx     _gas_pumped+1
-	bne     LDB2F
+	bne     LDF31
 	cmp     _gas_pumped
-	jeq     LA92C
+	jeq     LAD2C
 ;
 ; missed_guess = 1;
 ;
-LDB2F:	lda     #$01
+LDF31:	lda     #$01
 	sta     _missed_guess
 ;
 ; alien_eye_frames=0;
@@ -66747,9 +67732,9 @@ LDB2F:	lda     #$01
 ;
 	lda     #$00
 	sta     _index
-LDB2C:	lda     _index
+LDF2E:	lda     _index
 	cmp     #$0F
-	bcs     LA93A
+	bcs     LAD3A
 ;
 ; ppu_wait_nmi();
 ;
@@ -66758,11 +67743,11 @@ LDB2C:	lda     _index
 ; for (index = 0; index < 15; ++index)
 ;
 	inc     _index
-	jmp     LDB2C
+	jmp     LDF2E
 ;
 ; pal_bg(alert_1);
 ;
-LA93A:	lda     #<(_alert_1)
+LAD3A:	lda     #<(_alert_1)
 	ldx     #>(_alert_1)
 	jsr     _pal_bg
 ;
@@ -66770,9 +67755,9 @@ LA93A:	lda     #<(_alert_1)
 ;
 	lda     #$00
 	sta     _index
-LDB2D:	lda     _index
+LDF2F:	lda     _index
 	cmp     #$0F
-	bcs     LDB2E
+	bcs     LDF30
 ;
 ; ppu_wait_nmi();
 ;
@@ -66781,15 +67766,15 @@ LDB2D:	lda     _index
 ; for (index = 0; index < 15; ++index)
 ;
 	inc     _index
-	jmp     LDB2D
+	jmp     LDF2F
 ;
 ; --lives;
 ;
-LDB2E:	dec     _lives
+LDF30:	dec     _lives
 ;
 ; if (lives > 0)
 ;
-	beq     LA94E
+	beq     LAD4E
 ;
 ; started_pumping = 0;
 ;
@@ -66821,7 +67806,7 @@ LDB2E:	dec     _lives
 ;
 ; wait_and_fade_out();
 ;
-LA94E:	jsr     _wait_and_fade_out
+LAD4E:	jsr     _wait_and_fade_out
 ;
 ; banked_call(BANK_4, bank_4_instruction_init);
 ;
@@ -66833,7 +67818,7 @@ LA94E:	jsr     _wait_and_fade_out
 ;
 ; wait_and_fade_out();
 ;
-LA92C:	jsr     _wait_and_fade_out
+LAD2C:	jsr     _wait_and_fade_out
 ;
 ; banked_call(BANK_4, bank_4_instruction_init);
 ;
@@ -66859,27 +67844,27 @@ LA92C:	jsr     _wait_and_fade_out
 ; ++moveframes;
 ;
 	inc     _moveframes
-	bne     LCDAA
+	bne     LD1AA
 	inc     _moveframes+1
 ;
 ; ++blimp_frames;
 ;
-LCDAA:	inc     _blimp_frames
-	bne     LCDAC
+LD1AA:	inc     _blimp_frames
+	bne     LD1AC
 	inc     _blimp_frames+1
 ;
 ; ppu_wait_nmi();
 ;
-LCDAC:	jsr     _ppu_wait_nmi
+LD1AC:	jsr     _ppu_wait_nmi
 ;
 ; if(blimp_frames < 50){
 ;
 	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LCDB0
+	bne     LD1B0
 	lda     _blimp_frames
 	cmp     #$32
-LCDB0:	bcs     LCDAE
+LD1B0:	bcs     LD1AE
 ;
 ; pal_bg(gameover_palette);
 ;
@@ -66889,13 +67874,13 @@ LCDB0:	bcs     LCDAE
 ;
 ; } else if (blimp_frames < 100){
 ;
-	jmp     LCDBF
-LCDAE:	lda     _blimp_frames+1
+	jmp     LD1BF
+LD1AE:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LCDB6
+	bne     LD1B6
 	lda     _blimp_frames
 	cmp     #$64
-LCDB6:	bcs     LCDB4
+LD1B6:	bcs     LD1B4
 ;
 ; pal_bg(gameover_palette2);
 ;
@@ -66905,13 +67890,13 @@ LCDB6:	bcs     LCDB4
 ;
 ; }else if (blimp_frames < 150){
 ;
-	jmp     LCDBF
-LCDB4:	lda     _blimp_frames+1
+	jmp     LD1BF
+LD1B4:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LCDBC
+	bne     LD1BC
 	lda     _blimp_frames
 	cmp     #$96
-LCDBC:	bcs     LCDBA
+LD1BC:	bcs     LD1BA
 ;
 ; pal_bg(gameover_palette3);
 ;
@@ -66921,21 +67906,21 @@ LCDBC:	bcs     LCDBA
 ;
 ; } else {
 ;
-	jmp     LCDBF
+	jmp     LD1BF
 ;
 ; blimp_frames = 0;
 ;
-LCDBA:	lda     #$00
+LD1BA:	lda     #$00
 	sta     _blimp_frames
 	sta     _blimp_frames+1
 ;
 ; if(moveframes > 400){
 ;
-LCDBF:	lda     _moveframes
+LD1BF:	lda     _moveframes
 	cmp     #$91
 	lda     _moveframes+1
 	sbc     #$01
-	bcc     LCDC2
+	bcc     LD1C2
 ;
 ; sample_play(SAMPLE_HAHA);
 ;
@@ -66950,7 +67935,7 @@ LCDBF:	lda     _moveframes
 ;
 ; }
 ;
-LCDC2:	rts
+LD1C2:	rts
 
 .endproc
 
@@ -67013,7 +67998,7 @@ LCDC2:	rts
 ;
 	lda     _starfield_enemies
 	cmp     #$0E
-	bne     LD4DE
+	bne     LD8DE
 ;
 ; boss_level = 1;
 ;
@@ -67048,7 +68033,7 @@ LCDC2:	rts
 ;
 ; }
 ;
-LD4DE:	rts
+LD8DE:	rts
 
 .endproc
 
@@ -67067,22 +68052,22 @@ LD4DE:	rts
 ;
 	lda     _column_pixel_counter
 	cmp     #$08
-	jcc     LDB54
+	jcc     LDF56
 ;
 ; for (largeindex = 0; largeindex <= 960; largeindex += 32)
 ;
 	lda     #$00
 	sta     _largeindex
 	sta     _largeindex+1
-LD548:	lda     _largeindex
+LD948:	lda     _largeindex
 	cmp     #$C1
 	lda     _largeindex+1
 	sbc     #$03
-	bvc     LD54F
+	bvc     LD94F
 	eor     #$80
-LD54F:	asl     a
+LD94F:	asl     a
 	lda     #$00
-	bcc     LDB4E
+	bcc     LDF50
 ;
 ; one_vram_buffer(pointer[largeindex + row_column_index], nametable_index + largeindex + row_column_index);
 ;
@@ -67090,10 +68075,10 @@ LD54F:	asl     a
 	ldx     _largeindex+1
 	clc
 	adc     _row_column_index
-	bcc     LDB4C
+	bcc     LDF4E
 	inx
 	clc
-LDB4C:	adc     _pointer
+LDF4E:	adc     _pointer
 	sta     ptr1
 	txa
 	adc     _pointer+1
@@ -67111,9 +68096,9 @@ LDB4C:	adc     _pointer
 	pla
 	clc
 	adc     _row_column_index
-	bcc     LDB49
+	bcc     LDF4B
 	inx
-LDB49:	jsr     _one_vram_buffer
+LDF4B:	jsr     _one_vram_buffer
 ;
 ; for (largeindex = 0; largeindex <= 960; largeindex += 32)
 ;
@@ -67121,13 +68106,13 @@ LDB49:	jsr     _one_vram_buffer
 	clc
 	adc     _largeindex
 	sta     _largeindex
-	bcc     LD548
+	bcc     LD948
 	inc     _largeindex+1
-	jmp     LD548
+	jmp     LD948
 ;
 ; column_pixel_counter = 0;
 ;
-LDB4E:	sta     _column_pixel_counter
+LDF50:	sta     _column_pixel_counter
 ;
 ; ++row_column_index;
 ;
@@ -67137,24 +68122,24 @@ LDB4E:	sta     _column_pixel_counter
 ;
 	lda     _row_column_index
 	cmp     #$1B
-	bcc     LDB54
+	bcc     LDF56
 	lda     _attribute_bytes_written
 	cmp     #$40
-	bcs     LDB54
+	bcs     LDF56
 ;
 ; for(index2 = 0; index2 < 11; ++index2){
 ;
 	lda     #$00
 	sta     _index2
-LDB52:	lda     _index2
+LDF54:	lda     _index2
 	cmp     #$0B
-	bcs     LDB54
+	bcs     LDF56
 ;
 ; if(attribute_bytes_written < 64){
 ;
 	lda     _attribute_bytes_written
 	cmp     #$40
-	bcs     LDB53
+	bcs     LDF55
 ;
 ; one_vram_buffer(pointer[960 + attribute_bytes_written], attribute_table_index);
 ;
@@ -67180,24 +68165,24 @@ LDB52:	lda     _index2
 ;
 ; ++attribute_bytes_written;
 ;
-LDB53:	inc     _attribute_bytes_written
+LDF55:	inc     _attribute_bytes_written
 ;
 ; ++attribute_table_index;
 ;
 	inc     _attribute_table_index
-	bne     LD56E
+	bne     LD96E
 	inc     _attribute_table_index+1
 ;
 ; for(index2 = 0; index2 < 11; ++index2){
 ;
-LD56E:	inc     _index2
-	jmp     LDB52
+LD96E:	inc     _index2
+	jmp     LDF54
 ;
 ; if (row_column_index >= 32)
 ;
-LDB54:	lda     _row_column_index
+LDF56:	lda     _row_column_index
 	cmp     #$20
-	bcs     LDB5D
+	bcs     LDF5F
 ;
 ; }
 ;
@@ -67205,8 +68190,8 @@ LDB54:	lda     _row_column_index
 ;
 ; if (nametable_selected == 0)
 ;
-LDB5D:	lda     _nametable_selected
-	bne     LD571
+LDF5F:	lda     _nametable_selected
+	bne     LD971
 ;
 ; attribute_table_index = NAMETABLE_A_ATTR;
 ;
@@ -67232,11 +68217,11 @@ LDB5D:	lda     _nametable_selected
 ;
 ; else
 ;
-	jmp     LDB4A
+	jmp     LDF4C
 ;
 ; nametable_index = NAMETABLE_B;
 ;
-LD571:	ldx     #$24
+LD971:	ldx     #$24
 	lda     #$00
 	sta     _nametable_index
 	stx     _nametable_index+1
@@ -67255,7 +68240,7 @@ LD571:	ldx     #$24
 ;
 ; nametable_selected = 0;
 ;
-LDB4A:	sta     _nametable_selected
+LDF4C:	sta     _nametable_selected
 ;
 ; temp1 = rand8(); // 0 - 255
 ;
@@ -67265,7 +68250,7 @@ LDB4A:	sta     _nametable_selected
 ; if (temp1 < 36)
 ;
 	cmp     #$24
-	bcs     LDB55
+	bcs     LDF57
 ;
 ; pointer = starfield1;
 ;
@@ -67275,10 +68260,10 @@ LDB4A:	sta     _nametable_selected
 ;
 ; else if (temp1 < 72)
 ;
-	jmp     LDB4B
-LDB55:	lda     _temp1
+	jmp     LDF4D
+LDF57:	lda     _temp1
 	cmp     #$48
-	bcs     LDB56
+	bcs     LDF58
 ;
 ; pointer = starfield2;
 ;
@@ -67288,10 +68273,10 @@ LDB55:	lda     _temp1
 ;
 ; else if (temp1 < 108)
 ;
-	jmp     LDB4B
-LDB56:	lda     _temp1
+	jmp     LDF4D
+LDF58:	lda     _temp1
 	cmp     #$6C
-	bcs     LDB57
+	bcs     LDF59
 ;
 ; pointer = starfield3;
 ;
@@ -67301,10 +68286,10 @@ LDB56:	lda     _temp1
 ;
 ; else if (temp1 < 144)
 ;
-	jmp     LDB4B
-LDB57:	lda     _temp1
+	jmp     LDF4D
+LDF59:	lda     _temp1
 	cmp     #$90
-	bcs     LDB58
+	bcs     LDF5A
 ;
 ; pointer = starfield4;
 ;
@@ -67314,10 +68299,10 @@ LDB57:	lda     _temp1
 ;
 ; else if (temp1 < 180)
 ;
-	jmp     LDB4B
-LDB58:	lda     _temp1
+	jmp     LDF4D
+LDF5A:	lda     _temp1
 	cmp     #$B4
-	bcs     LDB59
+	bcs     LDF5B
 ;
 ; pointer = starfield5;
 ;
@@ -67327,10 +68312,10 @@ LDB58:	lda     _temp1
 ;
 ; else if (temp1 < 216)
 ;
-	jmp     LDB4B
-LDB59:	lda     _temp1
+	jmp     LDF4D
+LDF5B:	lda     _temp1
 	cmp     #$D8
-	bcs     LDB5A
+	bcs     LDF5C
 ;
 ; pointer = starfield6;
 ;
@@ -67340,8 +68325,8 @@ LDB59:	lda     _temp1
 ;
 ; else if (temp1 < 252)
 ;
-	jmp     LDB4B
-LDB5A:	lda     _temp1
+	jmp     LDF4D
+LDF5C:	lda     _temp1
 	cmp     #$FC
 ;
 ; pointer = starfield7;
@@ -67349,7 +68334,7 @@ LDB5A:	lda     _temp1
 	lda     #>(_starfield7)
 	sta     _pointer+1
 	lda     #<(_starfield7)
-LDB4B:	sta     _pointer
+LDF4D:	sta     _pointer
 ;
 ; row_column_index = 0;
 ;
@@ -67377,7 +68362,7 @@ LDB4B:	sta     _pointer
 ;
 	lda     _player_y
 	cmp     #$1E
-	bcs     LDB5F
+	bcs     LDF61
 ;
 ; player_y_direction = 1;
 ;
@@ -67386,9 +68371,9 @@ LDB4B:	sta     _pointer
 ;
 ; if (player_y > 170)
 ;
-LDB5F:	lda     _player_y
+LDF61:	lda     _player_y
 	cmp     #$AB
-	bcc     LD5B6
+	bcc     LD9B6
 ;
 ; player_y_direction = 0;
 ;
@@ -67397,11 +68382,11 @@ LDB5F:	lda     _player_y
 ;
 ; if(final_boss_beat && player_y == 100){
 ;
-LD5B6:	lda     _final_boss_beat
-	beq     LD5BA
+LD9B6:	lda     _final_boss_beat
+	beq     LD9BA
 	lda     _player_y
 	cmp     #$64
-	bne     LD5BA
+	bne     LD9BA
 ;
 ; player_y = 100;//keep player at this y location
 ;
@@ -67409,9 +68394,9 @@ LD5B6:	lda     _final_boss_beat
 ;
 ; } else if (player_y_direction)
 ;
-	jmp     LD5C4
-LD5BA:	lda     _player_y_direction
-	beq     LDB63
+	jmp     LD9C4
+LD9BA:	lda     _player_y_direction
+	beq     LDF65
 ;
 ; ++player_y;
 ;
@@ -67419,15 +68404,15 @@ LD5BA:	lda     _player_y_direction
 ;
 ; else
 ;
-	jmp     LD5C4
+	jmp     LD9C4
 ;
 ; --player_y;
 ;
-LDB63:	dec     _player_y
+LDF65:	dec     _player_y
 ;
 ; oam_meta_spr(high_byte(player_x), player_y, rocket_rider_right);
 ;
-LD5C4:	jsr     decsp2
+LD9C4:	jsr     decsp2
 	lda     _player_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -67466,13 +68451,13 @@ LD5C4:	jsr     decsp2
 	lda     #$00
 	sta     _largeindex
 	sta     _largeindex+1
-LD5CF:	lda     _largeindex
+LD9CF:	lda     _largeindex
 	cmp     #$00
 	lda     _largeindex+1
 	sbc     #$04
-	bvc     LD5D6
+	bvc     LD9D6
 	eor     #$80
-LD5D6:	bpl     LD5D0
+LD9D6:	bpl     LD9D0
 ;
 ; vram_put(starfield1[largeindex]);
 ;
@@ -67494,7 +68479,7 @@ LD5D6:	bpl     LD5D0
 ;
 	lda     _index
 	cmp     #$29
-	bcc     LD5D1
+	bcc     LD9D1
 ;
 ; flush_vram_update2();
 ;
@@ -67507,14 +68492,14 @@ LD5D6:	bpl     LD5D0
 ;
 ; for (largeindex = 0; largeindex < 1024; ++largeindex)
 ;
-LD5D1:	inc     _largeindex
-	bne     LD5CF
+LD9D1:	inc     _largeindex
+	bne     LD9CF
 	inc     _largeindex+1
-	jmp     LD5CF
+	jmp     LD9CF
 ;
 ; vram_adr(NAMETABLE_B); // Nametable A;
 ;
-LD5D0:	ldx     #$24
+LD9D0:	ldx     #$24
 	lda     #$00
 	jsr     _vram_adr
 ;
@@ -67523,13 +68508,13 @@ LD5D0:	ldx     #$24
 	lda     #$00
 	sta     _largeindex
 	sta     _largeindex+1
-LD5E4:	lda     _largeindex
+LD9E4:	lda     _largeindex
 	cmp     #$00
 	lda     _largeindex+1
 	sbc     #$04
-	bvc     LD5EB
+	bvc     LD9EB
 	eor     #$80
-LD5EB:	bpl     LD5E5
+LD9EB:	bpl     LD9E5
 ;
 ; vram_put(starfieldearth[largeindex]);
 ;
@@ -67551,7 +68536,7 @@ LD5EB:	bpl     LD5E5
 ;
 	lda     _index
 	cmp     #$29
-	bcc     LD5E6
+	bcc     LD9E6
 ;
 ; flush_vram_update2();
 ;
@@ -67564,14 +68549,14 @@ LD5EB:	bpl     LD5E5
 ;
 ; for (largeindex = 0; largeindex < 1024; ++largeindex)
 ;
-LD5E6:	inc     _largeindex
-	bne     LD5E4
+LD9E6:	inc     _largeindex
+	bne     LD9E4
 	inc     _largeindex+1
-	jmp     LD5E4
+	jmp     LD9E4
 ;
 ; player_x = 40<<8;
 ;
-LD5E5:	ldx     #$28
+LD9E5:	ldx     #$28
 	lda     #$00
 	sta     _player_x
 	stx     _player_x+1
@@ -67620,24 +68605,24 @@ LD5E5:	ldx     #$28
 ; ++sprite_frames;
 ;
 	inc     _sprite_frames
-	bne     LD608
+	bne     LDA08
 	inc     _sprite_frames+1
 ;
 ; ++moveframes;
 ;
-LD608:	inc     _moveframes
-	bne     LD60A
+LDA08:	inc     _moveframes
+	bne     LDA0A
 	inc     _moveframes+1
 ;
 ; if (sprite_frames == 40 && count_frames)
 ;
-LD60A:	lda     _sprite_frames+1
-	bne     LD60B
+LDA0A:	lda     _sprite_frames+1
+	bne     LDA0B
 	lda     _sprite_frames
 	cmp     #$28
-	bne     LD60B
+	bne     LDA0B
 	lda     _count_frames
-	beq     LD60B
+	beq     LDA0B
 ;
 ; index = rand8() & 2;
 ;
@@ -67659,11 +68644,11 @@ LD60A:	lda     _sprite_frames+1
 ;
 ; if (spaceship_destroyed && boss_hits == 5)
 ;
-LD60B:	lda     _spaceship_destroyed
-	jeq     LD618
+LDA0B:	lda     _spaceship_destroyed
+	jeq     LDA18
 	lda     _boss_hits
 	cmp     #$05
-	jne     LD618
+	jne     LDA18
 ;
 ; final_boss_beat = 1;
 ;
@@ -67673,10 +68658,10 @@ LD60B:	lda     _spaceship_destroyed
 ; if(sprite_frames == 1){
 ;
 	lda     _sprite_frames+1
-	bne     LD61E
+	bne     LDA1E
 	lda     _sprite_frames
 	cmp     #$01
-	bne     LD61E
+	bne     LDA1E
 ;
 ; sample_play(SAMPLE_NOOO);
 ;
@@ -67685,21 +68670,21 @@ LD60B:	lda     _spaceship_destroyed
 ;
 ; spaceship_1_x -= 80;
 ;
-LD61E:	lda     _spaceship_1_x
+LDA1E:	lda     _spaceship_1_x
 	sec
 	sbc     #$50
 	sta     _spaceship_1_x
-	bcs     LD625
+	bcs     LDA25
 	dec     _spaceship_1_x+1
 ;
 ; if (sprite_frames < 8)
 ;
-LD625:	lda     _sprite_frames+1
+LDA25:	lda     _sprite_frames+1
 	cmp     #$00
-	bne     LD628
+	bne     LDA28
 	lda     _sprite_frames
 	cmp     #$08
-LD628:	bcs     LD626
+LDA28:	bcs     LDA26
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_0);
 ;
@@ -67716,12 +68701,12 @@ LD628:	bcs     LD626
 ;
 ; else if (sprite_frames < 16)
 ;
-LD626:	lda     _sprite_frames+1
+LDA26:	lda     _sprite_frames+1
 	cmp     #$00
-	bne     LD632
+	bne     LDA32
 	lda     _sprite_frames
 	cmp     #$10
-LD632:	bcs     LD630
+LDA32:	bcs     LDA30
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_1);
 ;
@@ -67738,12 +68723,12 @@ LD632:	bcs     LD630
 ;
 ; else if (sprite_frames < 24)
 ;
-LD630:	lda     _sprite_frames+1
+LDA30:	lda     _sprite_frames+1
 	cmp     #$00
-	bne     LD63C
+	bne     LDA3C
 	lda     _sprite_frames
 	cmp     #$18
-LD63C:	bcs     LD63A
+LDA3C:	bcs     LDA3A
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_2);
 ;
@@ -67760,12 +68745,12 @@ LD63C:	bcs     LD63A
 ;
 ; else if (sprite_frames < 32)
 ;
-LD63A:	lda     _sprite_frames+1
+LDA3A:	lda     _sprite_frames+1
 	cmp     #$00
-	bne     LD646
+	bne     LDA46
 	lda     _sprite_frames
 	cmp     #$20
-LD646:	bcs     LD644
+LDA46:	bcs     LDA44
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_15);
 ;
@@ -67788,12 +68773,12 @@ LD646:	bcs     LD644
 ; else if (sprite_frames < 40)
 ;
 	rts
-LD644:	lda     _sprite_frames+1
+LDA44:	lda     _sprite_frames+1
 	cmp     #$00
-	bne     LD652
+	bne     LDA52
 	lda     _sprite_frames
 	cmp     #$28
-LD652:	bcs     LD650
+LDA52:	bcs     LDA50
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_16);
 ;
@@ -67810,12 +68795,12 @@ LD652:	bcs     LD650
 ;
 ; else if (sprite_frames < 48)
 ;
-LD650:	lda     _sprite_frames+1
+LDA50:	lda     _sprite_frames+1
 	cmp     #$00
-	bne     LD65C
+	bne     LDA5C
 	lda     _sprite_frames
 	cmp     #$30
-LD65C:	bcs     LD65A
+LDA5C:	bcs     LDA5A
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_17);
 ;
@@ -67832,12 +68817,12 @@ LD65C:	bcs     LD65A
 ;
 ; else if (sprite_frames < 56)
 ;
-LD65A:	lda     _sprite_frames+1
+LDA5A:	lda     _sprite_frames+1
 	cmp     #$00
-	bne     LD666
+	bne     LDA66
 	lda     _sprite_frames
 	cmp     #$38
-LD666:	bcs     LD664
+LDA66:	bcs     LDA64
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_18);
 ;
@@ -67854,12 +68839,12 @@ LD666:	bcs     LD664
 ;
 ; else if (sprite_frames < 64)
 ;
-LD664:	lda     _sprite_frames+1
+LDA64:	lda     _sprite_frames+1
 	cmp     #$00
-	bne     LD670
+	bne     LDA70
 	lda     _sprite_frames
 	cmp     #$40
-LD670:	bcs     LD66E
+LDA70:	bcs     LDA6E
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_19);
 ;
@@ -67876,12 +68861,12 @@ LD670:	bcs     LD66E
 ;
 ; else if (sprite_frames < 72)
 ;
-LD66E:	lda     _sprite_frames+1
+LDA6E:	lda     _sprite_frames+1
 	cmp     #$00
-	bne     LD67A
+	bne     LDA7A
 	lda     _sprite_frames
 	cmp     #$48
-LD67A:	bcs     LD678
+LDA7A:	bcs     LDA78
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_20);
 ;
@@ -67898,12 +68883,12 @@ LD67A:	bcs     LD678
 ;
 ; else if (sprite_frames < 80)
 ;
-LD678:	lda     _sprite_frames+1
+LDA78:	lda     _sprite_frames+1
 	cmp     #$00
-	bne     LD684
+	bne     LDA84
 	lda     _sprite_frames
 	cmp     #$50
-LD684:	bcs     LD682
+LDA84:	bcs     LDA82
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_21);
 ;
@@ -67920,12 +68905,12 @@ LD684:	bcs     LD682
 ;
 ; else if (sprite_frames < 88)
 ;
-LD682:	lda     _sprite_frames+1
+LDA82:	lda     _sprite_frames+1
 	cmp     #$00
-	bne     LD68E
+	bne     LDA8E
 	lda     _sprite_frames
 	cmp     #$58
-LD68E:	bcs     LD68C
+LDA8E:	bcs     LDA8C
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_22);
 ;
@@ -67942,12 +68927,12 @@ LD68E:	bcs     LD68C
 ;
 ; else if (sprite_frames < 96)
 ;
-LD68C:	lda     _sprite_frames+1
+LDA8C:	lda     _sprite_frames+1
 	cmp     #$00
-	bne     LD698
+	bne     LDA98
 	lda     _sprite_frames
 	cmp     #$60
-LD698:	bcs     LD696
+LDA98:	bcs     LDA96
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_23);
 ;
@@ -67964,15 +68949,15 @@ LD698:	bcs     LD696
 ;
 ; else if (sprite_frames < 300)
 ;
-LD696:	lda     _sprite_frames+1
+LDA96:	lda     _sprite_frames+1
 	cmp     #$01
-	bne     LD6A2
+	bne     LDAA2
 	lda     _sprite_frames
 	cmp     #$2C
 ;
 ; else if (sprite_frames < 500)
 ;
-LD6A2:	bcs     LDB71
+LDAA2:	bcs     LDF73
 ;
 ; }
 ;
@@ -67980,12 +68965,12 @@ LD6A2:	bcs     LDB71
 ;
 ; else if (sprite_frames < 500)
 ;
-LDB71:	lda     _sprite_frames+1
+LDF73:	lda     _sprite_frames+1
 	cmp     #$01
-	bne     LD6A6
+	bne     LDAA6
 	lda     _sprite_frames
 	cmp     #$F4
-LD6A6:	bcs     LD6A4
+LDAA6:	bcs     LDAA4
 ;
 ; scroll_x += 2; 
 ;
@@ -67993,15 +68978,15 @@ LD6A6:	bcs     LD6A4
 	clc
 	adc     _scroll_x
 	sta     _scroll_x
-	bcc     LD6A9
+	bcc     LDAA9
 	inc     _scroll_x+1
 ;
 ; else if (sprite_frames == 500)
 ;
-LD6A9:	rts
-LD6A4:	lda     _sprite_frames+1
+LDAA9:	rts
+LDAA4:	lda     _sprite_frames+1
 	cmp     #$01
-	beq     LDB72
+	beq     LDF74
 ;
 ; }
 ;
@@ -68009,9 +68994,9 @@ LD6A4:	lda     _sprite_frames+1
 ;
 ; else if (sprite_frames == 500)
 ;
-LDB72:	lda     _sprite_frames
+LDF74:	lda     _sprite_frames
 	cmp     #$F4
-	beq     LDB73
+	beq     LDF75
 ;
 ; }
 ;
@@ -68019,7 +69004,7 @@ LDB72:	lda     _sprite_frames
 ;
 ; banked_call(BANK_5, bank_5_starfield_boss_defeated);
 ;
-LDB73:	lda     #$05
+LDF75:	lda     #$05
 	jsr     pusha
 	lda     #<(_bank_5_starfield_boss_defeated)
 	ldx     #>(_bank_5_starfield_boss_defeated)
@@ -68027,25 +69012,25 @@ LDB73:	lda     #$05
 ;
 ; if (moveframes > 600 && moveframes < 800 && spaceship_destroyed == 0)
 ;
-LD618:	lda     _moveframes
+LDA18:	lda     _moveframes
 	cmp     #$59
 	lda     _moveframes+1
 	sbc     #$02
-	jcc     LD6B1
+	jcc     LDAB1
 	lda     _moveframes+1
 	cmp     #$03
-	bne     LD6B4
+	bne     LDAB4
 	lda     _moveframes
 	cmp     #$20
-LD6B4:	jcs     LD6B1
+LDAB4:	jcs     LDAB1
 	lda     _spaceship_destroyed
-	bne     LD6B1
+	bne     LDAB1
 ;
 ; if (shooting_mode == 1)
 ;
 	lda     _shooting_mode
 	cmp     #$01
-	bne     LD6B6
+	bne     LDAB6
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), white_3_target);
 ;
@@ -68062,26 +69047,26 @@ LD6B4:	jcs     LD6B1
 ;
 ; if(moveframes < 620 || moveframes > 780){
 ;
-LD6B6:	lda     _moveframes+1
+LDAB6:	lda     _moveframes+1
 	cmp     #$02
-	bne     LD6C1
+	bne     LDAC1
 	lda     _moveframes
 	cmp     #$6C
-LD6C1:	bcc     LDB6B
+LDAC1:	bcc     LDF6D
 	lda     _moveframes
 	cmp     #$0D
 	lda     _moveframes+1
 	sbc     #$03
-	bcc     LD6BF
+	bcc     LDABF
 ;
 ; if(moveframes < 620){
 ;
-LDB6B:	lda     _moveframes+1
+LDF6D:	lda     _moveframes+1
 	cmp     #$02
-	bne     LD6C5
+	bne     LDAC5
 	lda     _moveframes
 	cmp     #$6C
-LD6C5:	bcs     LD6C3
+LDAC5:	bcs     LDAC3
 ;
 ; sample_play(SAMPLE_HAHA);
 ;
@@ -68090,7 +69075,7 @@ LD6C5:	bcs     LD6C3
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), boss_ship_1);
 ;
-LD6C3:	jsr     decsp2
+LDAC3:	jsr     decsp2
 	lda     _spaceship_1_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -68103,7 +69088,7 @@ LD6C3:	jsr     decsp2
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), boss_ship_2);
 ;
-LD6BF:	jsr     decsp2
+LDABF:	jsr     decsp2
 	lda     _spaceship_1_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -68116,11 +69101,11 @@ LD6BF:	jsr     decsp2
 ;
 ; if (moveframes > 700)
 ;
-LD6B1:	lda     _moveframes
+LDAB1:	lda     _moveframes
 	cmp     #$BD
 	lda     _moveframes+1
 	sbc     #$02
-	bcc     LDB6C
+	bcc     LDF6E
 ;
 ; moveframes = 0;
 ;
@@ -68134,9 +69119,9 @@ LD6B1:	lda     _moveframes
 ;
 ; if (high_byte(spaceship_1_y) == 40)
 ;
-LDB6C:	lda     _spaceship_1_y+1
+LDF6E:	lda     _spaceship_1_y+1
 	cmp     #$28
-	bne     LDB6D
+	bne     LDF6F
 ;
 ; spaceship_y_dir = 0;
 ;
@@ -68145,9 +69130,9 @@ LDB6C:	lda     _spaceship_1_y+1
 ;
 ; if (high_byte(spaceship_1_y) == 220)
 ;
-LDB6D:	lda     _spaceship_1_y+1
+LDF6F:	lda     _spaceship_1_y+1
 	cmp     #$DC
-	bne     LD6E1
+	bne     LDAE1
 ;
 ; spaceship_y_dir = 1;
 ;
@@ -68156,8 +69141,8 @@ LDB6D:	lda     _spaceship_1_y+1
 ;
 ; if (spaceship_y_dir)
 ;
-LD6E1:	lda     _spaceship_y_dir
-	beq     LDB6E
+LDAE1:	lda     _spaceship_y_dir
+	beq     LDF70
 ;
 ; spaceship_1_y -= temp;
 ;
@@ -68170,16 +69155,16 @@ LD6E1:	lda     _spaceship_y_dir
 ;
 ; else
 ;
-	jmp     LDB70
+	jmp     LDF72
 ;
 ; spaceship_1_y += temp;
 ;
-LDB6E:	lda     _temp
+LDF70:	lda     _temp
 	clc
 	adc     _spaceship_1_y
 	sta     _spaceship_1_y
 	lda     #$00
-LDB70:	adc     _spaceship_1_y+1
+LDF72:	adc     _spaceship_1_y+1
 	sta     _spaceship_1_y+1
 ;
 ; if (shooting_mode == 1)
@@ -68189,7 +69174,7 @@ LDB70:	adc     _spaceship_1_y+1
 ;
 ; else
 ;
-	beq     LD6EF
+	beq     LDAEF
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), boss_ship_0);
 ;
@@ -68206,7 +69191,7 @@ LDB70:	adc     _spaceship_1_y+1
 ;
 ; }
 ;
-LD6EF:	rts
+LDAEF:	rts
 
 .endproc
 
@@ -68224,7 +69209,7 @@ LD6EF:	rts
 ; if (boss_level)
 ;
 	lda     _boss_level
-	beq     LD6F7
+	beq     LDAF7
 ;
 ; banked_call(BANK_5, bank_5_draw_starfield_boss);
 ;
@@ -68236,27 +69221,27 @@ LD6EF:	rts
 ;
 ; ++spaceship_1_frames;
 ;
-LD6F7:	inc     _spaceship_1_frames
+LDAF7:	inc     _spaceship_1_frames
 ;
 ; if (spaceship_destroyed && spaceship_1_frames < 30)
 ;
 	lda     _spaceship_destroyed
-	jeq     LD6FD
+	jeq     LDAFD
 	lda     _spaceship_1_frames
 	cmp     #$1E
-	jcs     LD6FD
+	jcs     LDAFD
 ;
 ; if (starfield_enemies % 2 == 0)
 ;
 	lda     _starfield_enemies
 	and     #$01
-	jne     LDB7D
+	jne     LDF7F
 ;
 ; if (spaceship_1_frames < 4)
 ;
 	lda     _spaceship_1_frames
 	cmp     #$04
-	bcs     LDB79
+	bcs     LDF7B
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_0);
 ;
@@ -68273,9 +69258,9 @@ LD6F7:	inc     _spaceship_1_frames
 ;
 ; else if (spaceship_1_frames < 8)
 ;
-LDB79:	lda     _spaceship_1_frames
+LDF7B:	lda     _spaceship_1_frames
 	cmp     #$08
-	bcs     LDB7A
+	bcs     LDF7C
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_1);
 ;
@@ -68292,9 +69277,9 @@ LDB79:	lda     _spaceship_1_frames
 ;
 ; else if (spaceship_1_frames < 12)
 ;
-LDB7A:	lda     _spaceship_1_frames
+LDF7C:	lda     _spaceship_1_frames
 	cmp     #$0C
-	bcs     LDB7B
+	bcs     LDF7D
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_2);
 ;
@@ -68311,9 +69296,9 @@ LDB7A:	lda     _spaceship_1_frames
 ;
 ; else if (spaceship_1_frames < 23)
 ;
-LDB7B:	lda     _spaceship_1_frames
+LDF7D:	lda     _spaceship_1_frames
 	cmp     #$17
-	bcs     LDB7C
+	bcs     LDF7E
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_3);
 ;
@@ -68330,9 +69315,9 @@ LDB7B:	lda     _spaceship_1_frames
 ;
 ; else if (spaceship_1_frames < 30)
 ;
-LDB7C:	lda     _spaceship_1_frames
+LDF7E:	lda     _spaceship_1_frames
 	cmp     #$1E
-	bcc     LDB8B
+	bcc     LDF8D
 ;
 ; }
 ;
@@ -68340,7 +69325,7 @@ LDB7C:	lda     _spaceship_1_frames
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_23);
 ;
-LDB8B:	jsr     decsp2
+LDF8D:	jsr     decsp2
 	lda     _spaceship_1_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -68353,9 +69338,9 @@ LDB8B:	jsr     decsp2
 ;
 ; if (spaceship_1_frames < 3)
 ;
-LDB7D:	lda     _spaceship_1_frames
+LDF7F:	lda     _spaceship_1_frames
 	cmp     #$03
-	bcs     LDB7E
+	bcs     LDF80
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_15);
 ;
@@ -68372,9 +69357,9 @@ LDB7D:	lda     _spaceship_1_frames
 ;
 ; else if (spaceship_1_frames < 6)
 ;
-LDB7E:	lda     _spaceship_1_frames
+LDF80:	lda     _spaceship_1_frames
 	cmp     #$06
-	bcs     LDB7F
+	bcs     LDF81
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_16);
 ;
@@ -68391,9 +69376,9 @@ LDB7E:	lda     _spaceship_1_frames
 ;
 ; else if (spaceship_1_frames < 9)
 ;
-LDB7F:	lda     _spaceship_1_frames
+LDF81:	lda     _spaceship_1_frames
 	cmp     #$09
-	bcs     LDB80
+	bcs     LDF82
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_17);
 ;
@@ -68410,9 +69395,9 @@ LDB7F:	lda     _spaceship_1_frames
 ;
 ; else if (spaceship_1_frames < 12)
 ;
-LDB80:	lda     _spaceship_1_frames
+LDF82:	lda     _spaceship_1_frames
 	cmp     #$0C
-	bcs     LDB81
+	bcs     LDF83
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_18);
 ;
@@ -68429,9 +69414,9 @@ LDB80:	lda     _spaceship_1_frames
 ;
 ; else if (spaceship_1_frames < 15)
 ;
-LDB81:	lda     _spaceship_1_frames
+LDF83:	lda     _spaceship_1_frames
 	cmp     #$0F
-	bcs     LDB82
+	bcs     LDF84
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_19);
 ;
@@ -68448,9 +69433,9 @@ LDB81:	lda     _spaceship_1_frames
 ;
 ; else if (spaceship_1_frames < 18)
 ;
-LDB82:	lda     _spaceship_1_frames
+LDF84:	lda     _spaceship_1_frames
 	cmp     #$12
-	bcs     LDB83
+	bcs     LDF85
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_20);
 ;
@@ -68467,9 +69452,9 @@ LDB82:	lda     _spaceship_1_frames
 ;
 ; else if (spaceship_1_frames < 21)
 ;
-LDB83:	lda     _spaceship_1_frames
+LDF85:	lda     _spaceship_1_frames
 	cmp     #$15
-	bcs     LDB84
+	bcs     LDF86
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_21);
 ;
@@ -68486,9 +69471,9 @@ LDB83:	lda     _spaceship_1_frames
 ;
 ; else if (spaceship_1_frames < 24)
 ;
-LDB84:	lda     _spaceship_1_frames
+LDF86:	lda     _spaceship_1_frames
 	cmp     #$18
-	bcs     LDB85
+	bcs     LDF87
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_22);
 ;
@@ -68505,9 +69490,9 @@ LDB84:	lda     _spaceship_1_frames
 ;
 ; else if (spaceship_1_frames < 27)
 ;
-LDB85:	lda     _spaceship_1_frames
+LDF87:	lda     _spaceship_1_frames
 	cmp     #$1B
-	bcs     LD779
+	bcs     LDB79
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_23);
 ;
@@ -68524,7 +69509,7 @@ LDB85:	lda     _spaceship_1_frames
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), explosion_23);
 ;
-LD779:	jsr     decsp2
+LDB79:	jsr     decsp2
 	lda     _spaceship_1_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -68537,11 +69522,11 @@ LD779:	jsr     decsp2
 ;
 ; if (spaceship_destroyed && spaceship_1_frames == 30)
 ;
-LD6FD:	lda     _spaceship_destroyed
-	beq     LDB87
+LDAFD:	lda     _spaceship_destroyed
+	beq     LDF89
 	lda     _spaceship_1_frames
 	cmp     #$1E
-	bne     LDB87
+	bne     LDF89
 ;
 ; ++enemies_hit;
 ;
@@ -68557,9 +69542,9 @@ LD6FD:	lda     _spaceship_destroyed
 ;
 ; if (high_byte(spaceship_1_x) < 5)
 ;
-LDB87:	lda     _spaceship_1_x+1
+LDF89:	lda     _spaceship_1_x+1
 	cmp     #$05
-	bcs     LDB88
+	bcs     LDF8A
 ;
 ; banked_call(BANK_5, bank_5_spaceship_generator);
 ;
@@ -68571,7 +69556,7 @@ LDB87:	lda     _spaceship_1_x+1
 ;
 ; spaceship_1_x -= temp;
 ;
-LDB88:	lda     _temp
+LDF8A:	lda     _temp
 	eor     #$FF
 	sec
 	adc     _spaceship_1_x
@@ -68594,7 +69579,7 @@ LDB88:	lda     _temp
 ; if (spaceship_y_dir)
 ;
 	lda     _spaceship_y_dir
-	beq     LD79A
+	beq     LDB9A
 ;
 ; spaceship_1_y -= temp;
 ;
@@ -68607,23 +69592,23 @@ LDB88:	lda     _temp
 ;
 ; else
 ;
-	jmp     LDB8A
+	jmp     LDF8C
 ;
 ; spaceship_1_y += temp;
 ;
-LD79A:	lda     _temp
+LDB9A:	lda     _temp
 	clc
 	adc     _spaceship_1_y
 	sta     _spaceship_1_y
 	lda     #$00
-LDB8A:	adc     _spaceship_1_y+1
+LDF8C:	adc     _spaceship_1_y+1
 	sta     _spaceship_1_y+1
 ;
 ; if (shooting_mode == 1)
 ;
 	lda     _shooting_mode
 	cmp     #$01
-	bne     LD7A1
+	bne     LDBA1
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), white_4_target);
 ;
@@ -68640,35 +69625,35 @@ LDB8A:	adc     _spaceship_1_y+1
 ;
 ; ++blimp_frames; //reusing this
 ;
-LD7A1:	inc     _blimp_frames
-	bne     LD7AB
+LDBA1:	inc     _blimp_frames
+	bne     LDBAB
 	inc     _blimp_frames+1
 ;
 ; switch (space_enemy_pointer) //if this is buggy, move it off index
 ;
-LD7AB:	lda     _space_enemy_pointer
+LDBAB:	lda     _space_enemy_pointer
 ;
 ; }
 ;
-	beq     LD7B0
+	beq     LDBB0
 	cmp     #$01
-	beq     LD7C2
+	beq     LDBC2
 	cmp     #$02
-	jeq     LD7FD
+	jeq     LDBFD
 	cmp     #$03
-	jeq     LD80F
+	jeq     LDC0F
 	cmp     #$04
-	jeq     LD827
-	jmp     LD83E
+	jeq     LDC27
+	jmp     LDC3E
 ;
 ; if(blimp_frames < 10){
 ;
-LD7B0:	lda     _blimp_frames+1
+LDBB0:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD7B3
+	bne     LDBB3
 	lda     _blimp_frames
 	cmp     #$0A
-LD7B3:	bcs     LD7B1
+LDBB3:	bcs     LDBB1
 ;
 ; sprite_pointer = rocket_ship_0;
 ;
@@ -68678,13 +69663,13 @@ LD7B3:	bcs     LD7B1
 ;
 ; } else if(blimp_frames < 20){
 ;
-	jmp     LDB75
-LD7B1:	lda     _blimp_frames+1
+	jmp     LDF77
+LDBB1:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD7B9
+	bne     LDBB9
 	lda     _blimp_frames
 	cmp     #$14
-LD7B9:	bcs     LD7B7
+LDBB9:	bcs     LDBB7
 ;
 ; sprite_pointer = rocket_ship_1;
 ;
@@ -68694,11 +69679,11 @@ LD7B9:	bcs     LD7B7
 ;
 ; } else {
 ;
-	jmp     LDB75
+	jmp     LDF77
 ;
 ; sprite_pointer = rocket_ship_0;
 ;
-LD7B7:	lda     #>(_rocket_ship_0)
+LDBB7:	lda     #>(_rocket_ship_0)
 	sta     _sprite_pointer+1
 	lda     #<(_rocket_ship_0)
 	sta     _sprite_pointer
@@ -68711,15 +69696,15 @@ LD7B7:	lda     #>(_rocket_ship_0)
 ;
 ; break;
 ;
-	jmp     LD7AE
+	jmp     LDBAE
 ;
 ; if(blimp_frames == 1){
 ;
-LD7C2:	lda     _blimp_frames+1
-	bne     LD7C3
+LDBC2:	lda     _blimp_frames+1
+	bne     LDBC3
 	lda     _blimp_frames
 	cmp     #$01
-	bne     LD7C3
+	bne     LDBC3
 ;
 ; sample_play(SAMPLE_QUACK);
 ;
@@ -68728,12 +69713,12 @@ LD7C2:	lda     _blimp_frames+1
 ;
 ; if(blimp_frames < 7){
 ;
-LD7C3:	lda     _blimp_frames+1
+LDBC3:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD7CA
+	bne     LDBCA
 	lda     _blimp_frames
 	cmp     #$07
-LD7CA:	bcs     LD7C8
+LDBCA:	bcs     LDBC8
 ;
 ; sprite_pointer = spaceduck_0;
 ;
@@ -68743,13 +69728,13 @@ LD7CA:	bcs     LD7C8
 ;
 ; } else if(blimp_frames < 14){
 ;
-	jmp     LDB75
-LD7C8:	lda     _blimp_frames+1
+	jmp     LDF77
+LDBC8:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD7D0
+	bne     LDBD0
 	lda     _blimp_frames
 	cmp     #$0E
-LD7D0:	bcs     LD7CE
+LDBD0:	bcs     LDBCE
 ;
 ; sprite_pointer = spaceduck_1;
 ;
@@ -68759,13 +69744,13 @@ LD7D0:	bcs     LD7CE
 ;
 ; } else if(blimp_frames < 21){
 ;
-	jmp     LDB75
-LD7CE:	lda     _blimp_frames+1
+	jmp     LDF77
+LDBCE:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD7D6
+	bne     LDBD6
 	lda     _blimp_frames
 	cmp     #$15
-LD7D6:	bcs     LD7D4
+LDBD6:	bcs     LDBD4
 ;
 ; sprite_pointer = spaceduck_2;
 ;
@@ -68775,13 +69760,13 @@ LD7D6:	bcs     LD7D4
 ;
 ; } else if(blimp_frames < 28){
 ;
-	jmp     LDB75
-LD7D4:	lda     _blimp_frames+1
+	jmp     LDF77
+LDBD4:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD7DC
+	bne     LDBDC
 	lda     _blimp_frames
 	cmp     #$1C
-LD7DC:	bcs     LD7DA
+LDBDC:	bcs     LDBDA
 ;
 ; sprite_pointer = spaceduck_3;
 ;
@@ -68791,13 +69776,13 @@ LD7DC:	bcs     LD7DA
 ;
 ; } else if(blimp_frames < 35){
 ;
-	jmp     LDB75
-LD7DA:	lda     _blimp_frames+1
+	jmp     LDF77
+LDBDA:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD7E2
+	bne     LDBE2
 	lda     _blimp_frames
 	cmp     #$23
-LD7E2:	bcs     LD7E0
+LDBE2:	bcs     LDBE0
 ;
 ; sprite_pointer = spaceduck_4;
 ;
@@ -68807,13 +69792,13 @@ LD7E2:	bcs     LD7E0
 ;
 ; } else if(blimp_frames < 42){
 ;
-	jmp     LDB75
-LD7E0:	lda     _blimp_frames+1
+	jmp     LDF77
+LDBE0:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD7E8
+	bne     LDBE8
 	lda     _blimp_frames
 	cmp     #$2A
-LD7E8:	bcs     LD7E6
+LDBE8:	bcs     LDBE6
 ;
 ; sprite_pointer = spaceduck_3;
 ;
@@ -68823,13 +69808,13 @@ LD7E8:	bcs     LD7E6
 ;
 ; } else if(blimp_frames < 49){
 ;
-	jmp     LDB75
-LD7E6:	lda     _blimp_frames+1
+	jmp     LDF77
+LDBE6:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD7EE
+	bne     LDBEE
 	lda     _blimp_frames
 	cmp     #$31
-LD7EE:	bcs     LD7EC
+LDBEE:	bcs     LDBEC
 ;
 ; sprite_pointer = spaceduck_2;
 ;
@@ -68839,13 +69824,13 @@ LD7EE:	bcs     LD7EC
 ;
 ; } else if(blimp_frames < 56){
 ;
-	jmp     LDB75
-LD7EC:	lda     _blimp_frames+1
+	jmp     LDF77
+LDBEC:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD7F4
+	bne     LDBF4
 	lda     _blimp_frames
 	cmp     #$38
-LD7F4:	bcs     LD7F2
+LDBF4:	bcs     LDBF2
 ;
 ; sprite_pointer = spaceduck_1;
 ;
@@ -68855,11 +69840,11 @@ LD7F4:	bcs     LD7F2
 ;
 ; } else {
 ;
-	jmp     LDB75
+	jmp     LDF77
 ;
 ; sprite_pointer = spaceduck_0;
 ;
-LD7F2:	lda     #>(_spaceduck_0)
+LDBF2:	lda     #>(_spaceduck_0)
 	sta     _sprite_pointer+1
 	lda     #<(_spaceduck_0)
 	sta     _sprite_pointer
@@ -68872,16 +69857,16 @@ LD7F2:	lda     #>(_spaceduck_0)
 ;
 ; break;
 ;
-	jmp     LD7AE
+	jmp     LDBAE
 ;
 ; if(blimp_frames < 50){
 ;
-LD7FD:	lda     _blimp_frames+1
+LDBFD:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD800
+	bne     LDC00
 	lda     _blimp_frames
 	cmp     #$32
-LD800:	bcs     LD7FE
+LDC00:	bcs     LDBFE
 ;
 ; sprite_pointer = small_ufo_0;
 ;
@@ -68891,13 +69876,13 @@ LD800:	bcs     LD7FE
 ;
 ; } else if(blimp_frames < 100){
 ;
-	jmp     LDB75
-LD7FE:	lda     _blimp_frames+1
+	jmp     LDF77
+LDBFE:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD806
+	bne     LDC06
 	lda     _blimp_frames
 	cmp     #$64
-LD806:	bcs     LD804
+LDC06:	bcs     LDC04
 ;
 ; sprite_pointer = small_ufo_1;
 ;
@@ -68907,11 +69892,11 @@ LD806:	bcs     LD804
 ;
 ; } else {
 ;
-	jmp     LDB75
+	jmp     LDF77
 ;
 ; sprite_pointer = small_ufo_0;
 ;
-LD804:	lda     #>(_small_ufo_0)
+LDC04:	lda     #>(_small_ufo_0)
 	sta     _sprite_pointer+1
 	lda     #<(_small_ufo_0)
 	sta     _sprite_pointer
@@ -68924,16 +69909,16 @@ LD804:	lda     #>(_small_ufo_0)
 ;
 ; break;
 ;
-	jmp     LD7AE
+	jmp     LDBAE
 ;
 ; if(blimp_frames < 10){
 ;
-LD80F:	lda     _blimp_frames+1
+LDC0F:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD812
+	bne     LDC12
 	lda     _blimp_frames
 	cmp     #$0A
-LD812:	bcs     LD810
+LDC12:	bcs     LDC10
 ;
 ; sprite_pointer = spacesquid_0;
 ;
@@ -68943,13 +69928,13 @@ LD812:	bcs     LD810
 ;
 ; } else if(blimp_frames < 20){
 ;
-	jmp     LDB75
-LD810:	lda     _blimp_frames+1
+	jmp     LDF77
+LDC10:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD818
+	bne     LDC18
 	lda     _blimp_frames
 	cmp     #$14
-LD818:	bcs     LD816
+LDC18:	bcs     LDC16
 ;
 ; sprite_pointer = spacesquid_1;
 ;
@@ -68959,13 +69944,13 @@ LD818:	bcs     LD816
 ;
 ; } else if(blimp_frames < 30){
 ;
-	jmp     LDB75
-LD816:	lda     _blimp_frames+1
+	jmp     LDF77
+LDC16:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD81E
+	bne     LDC1E
 	lda     _blimp_frames
 	cmp     #$1E
-LD81E:	bcs     LD81C
+LDC1E:	bcs     LDC1C
 ;
 ; sprite_pointer = spacesquid_2;
 ;
@@ -68975,11 +69960,11 @@ LD81E:	bcs     LD81C
 ;
 ; } else {
 ;
-	jmp     LDB75
+	jmp     LDF77
 ;
 ; sprite_pointer = spacesquid_0;
 ;
-LD81C:	lda     #>(_spacesquid_0)
+LDC1C:	lda     #>(_spacesquid_0)
 	sta     _sprite_pointer+1
 	lda     #<(_spacesquid_0)
 	sta     _sprite_pointer
@@ -68992,16 +69977,16 @@ LD81C:	lda     #>(_spacesquid_0)
 ;
 ; break;
 ;
-	jmp     LD7AE
+	jmp     LDBAE
 ;
 ; if(blimp_frames < 6){
 ;
-LD827:	lda     _blimp_frames+1
+LDC27:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD82A
+	bne     LDC2A
 	lda     _blimp_frames
 	cmp     #$06
-LD82A:	bcs     LD828
+LDC2A:	bcs     LDC28
 ;
 ; sprite_pointer = dino_0;
 ;
@@ -69011,13 +69996,13 @@ LD82A:	bcs     LD828
 ;
 ; } else if(blimp_frames < 12){
 ;
-	jmp     LDB75
-LD828:	lda     _blimp_frames+1
+	jmp     LDF77
+LDC28:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD830
+	bne     LDC30
 	lda     _blimp_frames
 	cmp     #$0C
-LD830:	bcs     LD82E
+LDC30:	bcs     LDC2E
 ;
 ; sprite_pointer = dino_1;
 ;
@@ -69027,13 +70012,13 @@ LD830:	bcs     LD82E
 ;
 ; } else if(blimp_frames < 18){
 ;
-	jmp     LDB75
-LD82E:	lda     _blimp_frames+1
+	jmp     LDF77
+LDC2E:	lda     _blimp_frames+1
 	cmp     #$00
-	bne     LD836
+	bne     LDC36
 	lda     _blimp_frames
 	cmp     #$12
-LD836:	bcs     LD834
+LDC36:	bcs     LDC34
 ;
 ; sprite_pointer = dino_2;
 ;
@@ -69043,11 +70028,11 @@ LD836:	bcs     LD834
 ;
 ; } else {
 ;
-	jmp     LDB75
+	jmp     LDF77
 ;
 ; sprite_pointer = dino_0;
 ;
-LD834:	lda     #>(_dino_0)
+LDC34:	lda     #>(_dino_0)
 	sta     _sprite_pointer+1
 	lda     #<(_dino_0)
 	sta     _sprite_pointer
@@ -69060,18 +70045,18 @@ LD834:	lda     #>(_dino_0)
 ;
 ; break;
 ;
-	jmp     LD7AE
+	jmp     LDBAE
 ;
 ; sprite_pointer = ufo_ship;
 ;
-LD83E:	lda     #>(_ufo_ship)
+LDC3E:	lda     #>(_ufo_ship)
 	sta     _sprite_pointer+1
 	lda     #<(_ufo_ship)
-LDB75:	sta     _sprite_pointer
+LDF77:	sta     _sprite_pointer
 ;
 ; oam_meta_spr(high_byte(spaceship_1_x), high_byte(spaceship_1_y), sprite_pointer);
 ;
-LD7AE:	jsr     decsp2
+LDBAE:	jsr     decsp2
 	lda     _spaceship_1_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -69106,16 +70091,16 @@ LD7AE:	jsr     decsp2
 ; if (starfield_complete)
 ;
 	lda     _starfield_complete
-	jeq     LD84B
+	jeq     LDC4B
 ;
 ; if(scroll_x < 250){
 ;
 	lda     _scroll_x+1
 	cmp     #$00
-	bne     LD84F
+	bne     LDC4F
 	lda     _scroll_x
 	cmp     #$FA
-LD84F:	bcs     LD84D
+LDC4F:	bcs     LDC4D
 ;
 ; scroll_x += 2;
 ;
@@ -69123,13 +70108,13 @@ LD84F:	bcs     LD84D
 	clc
 	adc     _scroll_x
 	sta     _scroll_x
-	bcc     LD84D
+	bcc     LDC4D
 	inc     _scroll_x+1
 ;
 ; if (player_x_direction)
 ;
-LD84D:	lda     _player_x_direction
-	beq     LD853
+LDC4D:	lda     _player_x_direction
+	beq     LDC53
 ;
 ; player_x -= 400;
 ;
@@ -69155,12 +70140,12 @@ LD84D:	lda     _player_x_direction
 ;
 ; else
 ;
-	jmp     LDB8C
+	jmp     LDF8E
 ;
 ; if(turns < 1){
 ;
-LD853:	lda     _turns
-	bne     LDB8E
+LDC53:	lda     _turns
+	bne     LDF90
 ;
 ; player_x += 400;
 ;
@@ -69186,13 +70171,13 @@ LD853:	lda     _turns
 ;
 ; else {
 ;
-	jmp     LDB8C
+	jmp     LDF8E
 ;
 ; if(high_byte(player_x) < 100){
 ;
-LDB8E:	lda     _player_x+1
+LDF90:	lda     _player_x+1
 	cmp     #$64
-	bcs     LD867
+	bcs     LDC67
 ;
 ; player_x += 200; 
 ;
@@ -69200,20 +70185,20 @@ LDB8E:	lda     _player_x+1
 ;
 ; } else {
 ;
-	jmp     LDBA1
+	jmp     LDFA3
 ;
 ; player_x += 130;
 ;
-LD867:	lda     #$82
-LDBA1:	clc
+LDC67:	lda     #$82
+LDFA3:	clc
 	adc     _player_x
 	sta     _player_x
-	bcc     LD870
+	bcc     LDC70
 	inc     _player_x+1
 ;
 ; oam_meta_spr(high_byte(player_x), 110, rocket_rider_right_small);
 ;
-LD870:	jsr     decsp2
+LDC70:	jsr     decsp2
 	lda     _player_x+1
 	ldy     #$01
 	sta     (sp),y
@@ -69222,16 +70207,16 @@ LD870:	jsr     decsp2
 	sta     (sp),y
 	lda     #<(_rocket_rider_right_small)
 	ldx     #>(_rocket_rider_right_small)
-LDB8C:	jsr     _oam_meta_spr
+LDF8E:	jsr     _oam_meta_spr
 ;
 ; if (high_byte(player_x) < 34 && turns < 3)
 ;
 	lda     _player_x+1
 	cmp     #$22
-	bcs     LDB91
+	bcs     LDF93
 	lda     _turns
 	cmp     #$03
-	bcs     LDB91
+	bcs     LDF93
 ;
 ; player_x_direction = 0;
 ;
@@ -69244,12 +70229,12 @@ LDB8C:	jsr     _oam_meta_spr
 ;
 ; if (high_byte(player_x) > 240 && turns < 3)
 ;
-LDB91:	lda     _player_x+1
+LDF93:	lda     _player_x+1
 	cmp     #$F1
-	bcc     LDB95
+	bcc     LDF97
 	lda     _turns
 	cmp     #$03
-	bcs     LDB95
+	bcs     LDF97
 ;
 ; player_x_direction = 1;
 ;
@@ -69262,12 +70247,12 @@ LDB91:	lda     _player_x+1
 ;
 ; if (high_byte(player_x) > 140 && turns == 2)
 ;
-LDB95:	lda     _player_x+1
+LDF97:	lda     _player_x+1
 	cmp     #$8D
-	bcc     LD886
+	bcc     LDC86
 	lda     _turns
 	cmp     #$02
-	bne     LD886
+	bne     LDC86
 ;
 ; wait_and_fade_out();
 ;
@@ -69292,7 +70277,7 @@ LDB95:	lda     _player_x+1
 ;
 ; scroll(scroll_x, 0);
 ;
-LD886:	lda     _scroll_x
+LDC86:	lda     _scroll_x
 	ldx     _scroll_x+1
 	jsr     pushax
 	ldx     #$00
@@ -69301,8 +70286,8 @@ LD886:	lda     _scroll_x
 ;
 ; if(final_boss_beat){
 ;
-LD84B:	lda     _final_boss_beat
-	beq     LD894
+LDC4B:	lda     _final_boss_beat
+	beq     LDC94
 ;
 ; scroll_x += 4;
 ;
@@ -69310,30 +70295,30 @@ LD84B:	lda     _final_boss_beat
 	clc
 	adc     _scroll_x
 	sta     _scroll_x
-	bcc     LD898
+	bcc     LDC98
 	inc     _scroll_x+1
 ;
 ; column_pixel_counter += 4;
 ;
-LD898:	lda     #$04
+LDC98:	lda     #$04
 ;
 ; } else {
 ;
-	jmp     LDB9E
+	jmp     LDFA0
 ;
 ; scroll_x += 2;
 ;
-LD894:	lda     #$02
+LDC94:	lda     #$02
 	clc
 	adc     _scroll_x
 	sta     _scroll_x
-	bcc     LD89E
+	bcc     LDC9E
 	inc     _scroll_x+1
 ;
 ; column_pixel_counter += 2;
 ;
-LD89E:	lda     #$02
-LDB9E:	clc
+LDC9E:	lda     #$02
+LDFA0:	clc
 	adc     _column_pixel_counter
 	sta     _column_pixel_counter
 ;
@@ -69365,7 +70350,7 @@ LDB9E:	clc
 ; if (trigger_clicked)
 ;
 	lda     _trigger_clicked
-	beq     LD8A8
+	beq     LDCA8
 ;
 ; sfx_play(SFX_SHOT,0);
 ;
@@ -69399,7 +70384,7 @@ LDB9E:	clc
 ; if (hit_detected)
 ;
 	lda     _hit_detected
-	beq     LD8C2
+	beq     LDCC2
 ;
 ; sfx_play(SFX_EXPLOSION,0);
 ;
@@ -69421,7 +70406,7 @@ LDB9E:	clc
 	lda     _space_enemy_pointer
 	cmp     #$05
 	lda     #$00
-	bcc     LDB9A
+	bcc     LDF9C
 ;
 ; space_enemy_pointer = 0;
 ;
@@ -69429,12 +70414,12 @@ LDB9E:	clc
 ;
 ; spaceship_1_frames = 0;
 ;
-LDB9A:	sta     _spaceship_1_frames
+LDF9C:	sta     _spaceship_1_frames
 ;
 ; if (boss_level)
 ;
 	lda     _boss_level
-	beq     LD8C2
+	beq     LDCC2
 ;
 ; sprite_frames = 0;
 ;
@@ -69448,7 +70433,7 @@ LDB9A:	sta     _spaceship_1_frames
 ;
 ; ppu_wait_nmi();
 ;
-LD8C2:	jsr     _ppu_wait_nmi
+LDCC2:	jsr     _ppu_wait_nmi
 ;
 ; shooting_mode = 0;
 ;
@@ -69462,13 +70447,13 @@ LD8C2:	jsr     _ppu_wait_nmi
 ;
 ; ++moveframes;
 ;
-LD8A8:	inc     _moveframes
-	bne     LD8CD
+LDCA8:	inc     _moveframes
+	bne     LDCCD
 	inc     _moveframes+1
 ;
 ; }
 ;
-LD8CD:	rts
+LDCCD:	rts
 
 .endproc
 
@@ -69561,8 +70546,8 @@ LD8CD:	rts
 ;
 ; if (game_mode == MODE_TITLE)
 ;
-LDBA3:	lda     _game_mode
-	bne     LDBA4
+LDFA5:	lda     _game_mode
+	bne     LDFA6
 ;
 ; banked_call(BANK_0, bank_0_title_loop);
 ;
@@ -69573,9 +70558,9 @@ LDBA3:	lda     _game_mode
 ;
 ; if (game_mode == MODE_INTRO_SCROLL)
 ;
-LDBA4:	lda     _game_mode
+LDFA6:	lda     _game_mode
 	cmp     #$03
-	bne     LDBA5
+	bne     LDFA7
 ;
 ; banked_call(BANK_0, bank_0_intro_scroll_loop);
 ;
@@ -69587,9 +70572,9 @@ LDBA4:	lda     _game_mode
 ;
 ; if (game_mode == MODE_INTRO_CUTSCENE)
 ;
-LDBA5:	lda     _game_mode
+LDFA7:	lda     _game_mode
 	cmp     #$04
-	bne     LDBA6
+	bne     LDFA8
 ;
 ; banked_call(BANK_0, bank_0_intro_cutscene_loop);
 ;
@@ -69601,9 +70586,9 @@ LDBA5:	lda     _game_mode
 ;
 ; if (game_mode == MODE_INTRO_INSTRUCTION)
 ;
-LDBA6:	lda     _game_mode
+LDFA8:	lda     _game_mode
 	cmp     #$05
-	bne     LDBA7
+	bne     LDFA9
 ;
 ; banked_call(BANK_1, bank_1_instructions_loop);
 ;
@@ -69619,9 +70604,9 @@ LDBA6:	lda     _game_mode
 ;
 ; if (game_mode == MODE_EVALUATION_TIME)
 ;
-LDBA7:	lda     _game_mode
+LDFA9:	lda     _game_mode
 	cmp     #$06
-	bne     LDBA8
+	bne     LDFAA
 ;
 ; banked_call(BANK_1, bank_1_evaluation_loop);
 ;
@@ -69637,9 +70622,9 @@ LDBA7:	lda     _game_mode
 ;
 ; if (game_mode == MODE_GAME)
 ;
-LDBA8:	lda     _game_mode
+LDFAA:	lda     _game_mode
 	cmp     #$01
-	bne     LDBA9
+	bne     LDFAB
 ;
 ; banked_call(BANK_3, bank_3_level_loop);
 ;
@@ -69651,9 +70636,9 @@ LDBA8:	lda     _game_mode
 ;
 ; if (game_mode == MODE_ABDUCTION_CUTSCENE)
 ;
-LDBA9:	lda     _game_mode
+LDFAB:	lda     _game_mode
 	cmp     #$07
-	bne     LDBAA
+	bne     LDFAC
 ;
 ; banked_call(BANK_4, bank_4_cutscene_loop);
 ;
@@ -69665,9 +70650,9 @@ LDBA9:	lda     _game_mode
 ;
 ; if (game_mode == MODE_ALIEN_INSTRUCTION)
 ;
-LDBAA:	lda     _game_mode
+LDFAC:	lda     _game_mode
 	cmp     #$08
-	bne     LDBAD
+	bne     LDFAF
 ;
 ; banked_call(BANK_4, bank_4_instruction_loop);
 ;
@@ -69680,20 +70665,20 @@ LDBAA:	lda     _game_mode
 ; ++temp_frames;
 ;
 	inc     _temp_frames
-	bne     LD91C
+	bne     LDD1C
 	inc     _temp_frames+1
 ;
 ; if (text_rendered < (text_length-10)){ 
 ;
-LD91C:	lda     _text_rendered
+LDD1C:	lda     _text_rendered
 	jsr     pusha0
 	lda     _text_length
 	sec
 	sbc     #$0A
-	bcs     LD920
+	bcs     LDD20
 	ldx     #$FF
-LD920:	jsr     tosicmp
-	bcs     LDBAD
+LDD20:	jsr     tosicmp
+	bcs     LDFAF
 ;
 ; temp = rand8() % 4;
 ;
@@ -69707,12 +70692,12 @@ LD920:	jsr     tosicmp
 	cmp     #$29
 	lda     _temp_frames+1
 	sbc     #$00
-	bcc     LDBAD
+	bcc     LDFAF
 ;
 ; if(temp == 0){
 ;
 	lda     _temp
-	bne     LDBAB
+	bne     LDFAD
 ;
 ; sfx_play(SFX_SPACETALK1, 0);
 ;
@@ -69720,10 +70705,10 @@ LD920:	jsr     tosicmp
 ;
 ; } else if(temp == 1){
 ;
-	jmp     LDBB2
-LDBAB:	lda     _temp
+	jmp     LDFB5
+LDFAD:	lda     _temp
 	cmp     #$01
-	bne     LDBAC
+	bne     LDFAE
 ;
 ; sfx_play(SFX_SPACETALK2, 0);
 ;
@@ -69731,10 +70716,10 @@ LDBAB:	lda     _temp
 ;
 ; } else if(temp == 2){
 ;
-	jmp     LDBB2
-LDBAC:	lda     _temp
+	jmp     LDFB5
+LDFAE:	lda     _temp
 	cmp     #$02
-	bne     LD931
+	bne     LDD31
 ;
 ; sfx_play(SFX_SPACETALK3, 0);
 ;
@@ -69742,12 +70727,12 @@ LDBAC:	lda     _temp
 ;
 ; } else {
 ;
-	jmp     LDBB2
+	jmp     LDFB5
 ;
 ; sfx_play(SFX_SPACETALK4, 0);
 ;
-LD931:	lda     #$19
-LDBB2:	jsr     pusha
+LDD31:	lda     #$19
+LDFB5:	jsr     pusha
 	lda     #$00
 	jsr     _sfx_play
 ;
@@ -69759,9 +70744,9 @@ LDBB2:	jsr     pusha
 ;
 ; if (game_mode == MODE_ALIEN_LEVEL)
 ;
-LDBAD:	lda     _game_mode
+LDFAF:	lda     _game_mode
 	cmp     #$09
-	bne     LDBAE
+	bne     LDFB0
 ;
 ; banked_call(BANK_4, bank_4_alien_level_loop);
 ;
@@ -69773,7 +70758,7 @@ LDBAD:	lda     _game_mode
 ;
 ; if (game_mode == MODE_ALIEN_EVALUATION)
 ;
-LDBAE:	lda     _game_mode
+LDFB0:	lda     _game_mode
 	cmp     #$0A
 	jsr     booleq
 ;
@@ -69781,7 +70766,7 @@ LDBAE:	lda     _game_mode
 ;
 	lda     _game_mode
 	cmp     #$0B
-	bne     LDBAF
+	bne     LDFB1
 ;
 ; banked_call(BANK_5, bank_5_starfield_loop);
 ;
@@ -69793,9 +70778,9 @@ LDBAE:	lda     _game_mode
 ;
 ; if (game_mode == MODE_GAME_ENDING)
 ;
-LDBAF:	lda     _game_mode
+LDFB1:	lda     _game_mode
 	cmp     #$0C
-	bne     LDBB0
+	bne     LDFB2
 ;
 ; banked_call(BANK_2, bank_2_ending_scroll_loop);
 ;
@@ -69807,9 +70792,9 @@ LDBAF:	lda     _game_mode
 ;
 ; if (game_mode == MODE_GAME_OVER)
 ;
-LDBB0:	lda     _game_mode
-	cmp     #$0D
-	jne     LDBA3
+LDFB2:	lda     _game_mode
+	cmp     #$0E
+	bne     LDFB3
 ;
 ; banked_call(BANK_5, bank_5_gameover_loop);
 ;
@@ -69819,9 +70804,19 @@ LDBB0:	lda     _game_mode
 	ldx     #>(_bank_5_gameover_loop)
 	jsr     _banked_call
 ;
+; if(game_mode == MODE_GAME_ENDLOOP){
+;
+LDFB3:	lda     _game_mode
+	cmp     #$0F
+	jne     LDFA5
+;
+; ppu_wait_nmi(); //loop forever
+;
+	jsr     _ppu_wait_nmi
+;
 ; while (1)
 ;
-	jmp     LDBA3
+	jmp     LDFA5
 
 .endproc
 

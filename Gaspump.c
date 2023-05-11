@@ -1159,7 +1159,7 @@ void bank_1_evaluation_loop(void)
 
 #include "BACKGROUNDS/ending_scroll_1.h"
 #include "BACKGROUNDS/ending_scroll_2.h"
-// #include "BACKGROUNDS/ending_scroll_3.h"
+#include "BACKGROUNDS/ending_scroll_3.h"
 
 void bank_2_ending_scroll_init(void)
 {
@@ -1172,9 +1172,7 @@ void bank_2_ending_scroll_init(void)
 	screen_line_counter = 0;
 	scroll_wait_lines = 32; // wait this many lines before drawing (not working)
 	scroll_page = 1;				// we load in page 1 at the start here
-	scroll_page_end = 2;		// this is for the 3 page scroll
-	// scroll_page_end = 3; //this is for the 3 page scroll
-	// scroll_page_end = 1; //this is for the 1 page scroll
+	scroll_page_end = 3;		// this is for the 3 page scroll
 
 	scroll(0, 0); // reset scrolling
 	set_mirroring(MIRROR_HORIZONTAL);
@@ -1184,12 +1182,7 @@ void bank_2_ending_scroll_init(void)
 
 	pal_bg(endingscroll_palette);
 	clear_background();
-	// scroll_y = 0x080;
-	// scroll(0,scroll_y);
-	// multi_vram_buffer_horz("Pull the Trigger", 16, NTADR_A(4,10));
-	// multi_vram_buffer_horz("But don't click it", 18, NTADR_A(4,12));
-
-	// load the gun
+	
 	vram_adr(NAMETABLE_A);
 	for (nametable_index = 0; nametable_index < 1024; ++nametable_index)
 	{
@@ -1197,38 +1190,51 @@ void bank_2_ending_scroll_init(void)
 		flush_vram_update2();
 	}
 
-	// load the first page of text
+	// load the second page
 	vram_adr(NAMETABLE_C);
 	for (nametable_index = 0; nametable_index < 1024; ++nametable_index)
 	{
 		vram_put(ending_scroll_2[nametable_index]);
 		flush_vram_update2();
 	}
+
+	//set pointer to 3rd page
 	nametable_index = 0;
 	cutscene_index = NAMETABLE_A;
 	attribute_table_index = NAMETABLE_A_ATTR;
 	attribute_bytes_written = 0;
-	pointer = ending_scroll_2;
+	pointer = ending_scroll_3;
 
-	set_chr_bank_0(CUTSCENE_CHR_0);
-	set_chr_bank_1(CUTSCENE_CHR_1);
+	set_chr_bank_0(GAMEOVER_CHR_1);
+	set_chr_bank_1(GAMEOVER_CHR_1);
 
 	ppu_on_all(); // turn on screen
 	pal_fade_to(0, 4);
-	game_mode = MODE_INTRO_SCROLL;
-	// music_play(SONG_INTROSCROLL);
+	game_mode = MODE_GAME_ENDING;
 	music_play(SONG_SCROLL); //todo replace with ending music?
 }
 
-void bank_2_ending_scroll_loop(void)
-{
-	ppu_wait_nmi();
+void bank_2_ending_scroll_loop(void)  
+{   
+	ppu_wait_nmi();  
 
-	if (scroll_page == scroll_page_end)
-	{ // we're done here loop forever.
-		ppu_wait_nmi();
+	if ((scroll_page == scroll_page_end) && scroll_y > 8)
+	{ // we're done here
+		for(largeindex = 0; largeindex < 600; ++largeindex){
+			ppu_wait_nmi();
+		}
+		music_stop();
+		for(largeindex = 0; largeindex < 100; ++largeindex){
+			ppu_wait_nmi();
+		}
+		sample_play(SAMPLE_HAHA);
+		for(index = 0; index < 26; ++index){
+			ppu_wait_nmi();
+		}
+		sample_play(SAMPLE_HAHA);
+		game_mode = MODE_GAME_ENDLOOP;
 		return;
-	}
+	} 
 
 	if (line_counter == 8 && nametable_index <= 960)
 	{ // after we've scrolled 8 lines down, let's draw the next line in the nametable.
@@ -1252,47 +1258,18 @@ void bank_2_ending_scroll_loop(void)
 		line_counter = 0;
 	}
 
-	if (screen_line_counter > 240)
-	{
-		set_chr_bank_0(CUTSCENE_CHR_0);
-		set_chr_bank_1(CUTSCENE_CHR_1);
-		++scroll_page;
-		screen_line_counter = 0;
-		nametable_index = 0;
-		attribute_bytes_written = 0;
-		// update where we're pointing
-		if (scroll_page == 1)
-		{
-			attribute_table_index = NAMETABLE_A_ATTR;
-			cutscene_index = NAMETABLE_A;
-			pointer = intro_scroll_2;
-		}
-		if (scroll_page == 2)
-		{
-			attribute_table_index = NAMETABLE_C_ATTR;
-			cutscene_index = NAMETABLE_C;
-			pointer = intro_scroll_3;
-		}
-		if (scroll_page == 3)
-		{
-			attribute_table_index = NAMETABLE_A_ATTR;
-			cutscene_index = NAMETABLE_A;
-			pointer = intro_scroll_4;
-		}
-		if (scroll_page == 4)
-		{
-			attribute_table_index = NAMETABLE_C_ATTR;
-			cutscene_index = NAMETABLE_C;
-			pointer = intro_scroll_5;
-		}
-	}
-
 	if (scroll_y > 0x1df)
 	{
 		scroll_y = 0;
 	}
 
 	scroll(0, scroll_y);
+
+	if (screen_line_counter > 240)
+	{
+		++scroll_page;
+		screen_line_counter = 0;
+	}
 
 	read_input();
 	if (trigger_pulled)
@@ -1301,13 +1278,6 @@ void bank_2_ending_scroll_loop(void)
 		++screen_line_counter; // count each screen line
 		++scroll_y;
 	}
-	// if (trigger_clicked) // allow cutscene to be skipped
-	// {
-	// 	// debug, just go to game
-	// 	wait_a_little();
-	// 	set_scroll_y(0);
-	// 	banked_call(BANK_0, bank_0_intro_cutscene_init);
-	// }
 }
 
 #pragma endregion
@@ -4471,6 +4441,7 @@ void main(void)
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_5, bank_5_starfield_init);
+	// banked_call(BANK_2, bank_2_ending_scroll_init);
 
 	while (1)
 	{
@@ -4562,6 +4533,9 @@ void main(void)
 		{
 			// todo brian has better content here eventually
 			banked_call(BANK_5, bank_5_gameover_loop);
+		}
+		if(game_mode == MODE_GAME_ENDLOOP){
+			ppu_wait_nmi(); //loop forever
 		}
 	}
 }

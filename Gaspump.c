@@ -2390,8 +2390,9 @@ void bank_3_level_loop(void)
 #include "BACKGROUNDS/intro_cutscene_1x.h"
 #include "BACKGROUNDS/intro_cutscene_2x.h"
 #include "BACKGROUNDS/intro_cutscene_3x.h"
-const unsigned char alien_instruction_text[] = "Welcome to Planet Gardok\nWe modified our pump\njust for you.\n\nJust pump to the goal\nnumber on the left\n\nPump, human!\nThe Battle BEGINS!";
-const unsigned char alien_evaluation_text_bad[] = "Well...\nThat's your best?\n\nYou're earth's best?!\nIt's not good enough.\n\nWe're doomed.";
+
+const unsigned char alien_instruction_text[] = "Welcome to Planet Bargham!\n\nWe are in an awful war, so\nwe turn to you, for out of\nbillions of creatures, onlyyou possess the gift.\n\nJust pump to the goal\nnumber on the left.\n\nVICTORY OR DEATH!";
+const unsigned char alien_evaluation_text_bad[] = "What was that?!\nThat's your best?\n\nYou're earth's best?!\nIt's not good enough.\n\nWe're doomed.";
 const unsigned char alien_evaluation_text_good[] = "Perfect pumping!\nI knew you could do it.\n\nI'm fueled up and ready\nto go! Now hop on!!\n\nLet's stop Lord ZARKAQ!";
 #include "SPRITES/gasboy.h"
 #include "SPRITES/spacepump.h"
@@ -4431,7 +4432,7 @@ void main(void)
 	/*      
 		DEBUG ONLY!!!!  
 	*/     
-	// music_stop();
+	music_stop();
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
@@ -4439,7 +4440,7 @@ void main(void)
 	// banked_call(BANK_4, bank_4_cutscene_init);
 	// levels_complete = 2;
 	// banked_call(BANK_1, bank_1_instructions_init);
-	// banked_call(BANK_4, bank_4_instruction_init);
+	banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_5, bank_5_starfield_init);
 	// banked_call(BANK_2, bank_2_ending_scroll_init);
 

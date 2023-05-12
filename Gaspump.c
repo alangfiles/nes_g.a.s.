@@ -3520,6 +3520,9 @@ void bank_4_alien_level_loop(void)
 		// add gas every X frameas
 		if (moveframes > 16)
 		{
+			if(gas_pumped >= 64){
+				gas_pumped = 0;
+			}
 			++gas_pumped; //<--total gas
 
 			++aliengas1;

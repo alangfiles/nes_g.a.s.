@@ -967,7 +967,7 @@ void bank_1_evaluation_init(void)
 	reset_text_values();
 	// debug gas goals
 
-	if (gas_pumped >= gas_goal_hundreds - 1 && gas_pumped <= gas_goal_hundreds + 1)
+	if (gas_pumped == gas_goal_hundreds)
 	{
 		gas_pump_level_quality = PERFECT_PUMP;
 	}

@@ -2373,7 +2373,7 @@ void bank_3_level_loop(void)
 			wait_and_fade_out();
 			banked_call(BANK_1, bank_1_evaluation_init);
 		}
-	}
+	}   
 }
 
 #pragma endregion

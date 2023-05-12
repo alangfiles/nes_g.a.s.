@@ -550,9 +550,9 @@ void bank_0_intro_cutscene_loop(void)
 
 #include "SPRITES/al.h"
 
-const unsigned char level_0_text[] = "So you wanna pump gas?!?\nGive me 2 gallons.\n\nJust pull the trigger,\nbut don't click it.";
-const unsigned char level_1_text[] = "I'm starting to believe,\nbut you have much to learn.\n\nNow give me 8 gallons!!";
-const unsigned char level_2_text[] = "I can't deny it...\nYou were born to do this.\nOne last test...\nCan you do 17 gallons?\n\nI'm watching closely...";
+const unsigned char level_0_text[] = "So you think you\ncan pump gas?\n\nI pump gas like you for breakfast.\n\nGive me 2 gallons, hot shot.";
+const unsigned char level_1_text[] = "OK, you can pump\nwith your brain, but\ncan you pump with your\nbrawn?\n\nGive me 8 gallons!";
+const unsigned char level_2_text[] = "I can't deny it...\n\nYou were born to do this.\n\nOne last test...\n\nCan you do 17 gallons?\n\nI'm watching closely...";
 // const unsigned char level_3_text[] = "You've got it. \n I believe in you.\n Only you can save our space people.\n\n Follow me to my galaxy.";
 void bank_4_cutscene_init(void);					 // prototype (needed to get call from bank_4)
 void bank_3_draw_level_base_sprites(void); // prototype

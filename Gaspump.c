@@ -1189,13 +1189,13 @@ void bank_2_ending_scroll_init(void)
 		vram_put(ending_scroll_1[nametable_index]);
 		flush_vram_update2();
 	}
-
+   
 	// load the second page
 	vram_adr(NAMETABLE_C);
 	for (nametable_index = 0; nametable_index < 1024; ++nametable_index)
 	{
 		vram_put(ending_scroll_2[nametable_index]);
-		flush_vram_update2();
+		flush_vram_update2();  
 	}
 
 	//set pointer to 3rd page
@@ -4432,7 +4432,7 @@ void main(void)
 	/*      
 		DEBUG ONLY!!!!  
 	*/     
-	music_stop();
+	// music_stop();
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
@@ -4442,7 +4442,7 @@ void main(void)
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_5, bank_5_starfield_init);
-	banked_call(BANK_2, bank_2_ending_scroll_init);
+	// banked_call(BANK_2, bank_2_ending_scroll_init);
 
 	while (1)
 	{

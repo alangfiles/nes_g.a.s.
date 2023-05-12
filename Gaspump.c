@@ -863,23 +863,23 @@ void bank_1_title_init(void)
 
 }
 
-const unsigned char level_0_awful[] = "Don't click.\n\nKeep the flow\n\ngoing...";
-const unsigned char level_0_bad[] = "That's not near\n\nenough gas.\n\nPump Harder.";
-const unsigned char level_0_good[] = "Rough around the\n\nedges, but we can\n\nwork together.";
+const unsigned char level_0_awful[] = "Don't click.\n\nKeep the flow\ngoing...";
+const unsigned char level_0_bad[] = "That's not near\nenough gas.\n\nPump Harder.";
+const unsigned char level_0_good[] = "Rough around the\nedges, but we can\nwork together.";
 const unsigned char level_0_perfect[] = "Jumping Gardoks!\n\nThat's perfect!";
 const unsigned char level_0_over[] = "Bit too much bub.\n\nRelax and pump.";
 
 const unsigned char level_1_awful[] = "You clicked it...\n\nDidn't you?";
-const unsigned char level_1_bad[] = "Pay attention!\n\nIf you've got time to\nslump, you've got time\n to pump.";
-const unsigned char level_1_good[] = "Not perfect...\n\nBut that'll do\n\njust fine.";
+const unsigned char level_1_bad[] = "Pay attention!\n\nIf you've got time\nto slump, you've\ngot time to pump.";
+const unsigned char level_1_good[] = "Not perfect...\n\nBut that'll do\njust fine.";
 const unsigned char level_1_perfect[] = "WOW!!!\n\nIt wasn't a fluke.\nYou've got skill.";
-const unsigned char level_1_over[] = "Pump that much\n\nand it spills out.";
+const unsigned char level_1_over[] = "Pump that much\nand it spills out.";
 
-const unsigned char level_2_awful[] = "To pump or not\n\nto pump, that is\n\nthe question.";
-const unsigned char level_2_bad[] = "Your finger may\n\nhurt, but pump\n\nthrough the pain.";
+const unsigned char level_2_awful[] = "To pump or not\nto pump, that is\nthe question.";
+const unsigned char level_2_bad[] = "Your finger may\nhurt, but pump\nthrough the pain.";
 const unsigned char level_2_good[] = "You're as good as\nI hoped. Wait\noutside. I've gotta\ncall my boss.";
-const unsigned char level_2_perfect[] = "Bumping Barthoids!\nYou're great!\nMaybe... just maybe.\n\nWait outside okay?";
-const unsigned char level_2_over[] = "You have no regard\n\nfor the gas\n\nyou spill...";
+const unsigned char level_2_perfect[] = "Bumping Barthoids!\n\nMaybe... just maybe.\n\nWait outside okay?";
+const unsigned char level_2_over[] = "You have no regard\nfor the gas\nyou spill...";
 
 void bank_4_cutscene_init(void); // prototype
 
@@ -2392,8 +2392,8 @@ void bank_3_level_loop(void)
 #include "BACKGROUNDS/intro_cutscene_3x.h"
 
 const unsigned char alien_instruction_text[] = "Welcome to Planet Bargham!\n\nWe are in an awful war, so\nwe turn to you, for out of\nbillions of creatures, onlyyou possess the gift.\n\nJust pump to the goal\nnumber on the left.\n\nVICTORY OR DEATH!";
-const unsigned char alien_evaluation_text_bad[] = "What was that?!\nThat's your best?\n\nYou're earth's best?!\nIt's not good enough.\n\nWe're doomed.";
-const unsigned char alien_evaluation_text_good[] = "Perfect pumping!\nI knew you could do it.\n\nI'm fueled up and ready\nto go! Now hop on!!\n\nLet's stop Lord ZARKAQ!";
+const unsigned char alien_evaluation_text_bad[] = "What was that?!\nThat's your best?\n\nYou're Earth's best?!\nIt's not good enough.\n\nWe're doomed.";
+const unsigned char alien_evaluation_text_good[] = "Perfect pumping!\n\nI knew you could do it.\n\nI'm fueled up and ready\nto go! Now hop on!!\n\nLet's stop Lord ZARKAQ!";
 #include "SPRITES/gasboy.h"
 #include "SPRITES/spacepump.h"
 
@@ -4415,11 +4415,11 @@ void main(void)
 	vram_adr(NAMETABLE_A);
 	// this sets a start position on the BG, top left of screen
 	// vram_adr() and vram_unrle() need to be done with the screen OFF
-
+   
 	ppu_wait_nmi(); // wait
 
 	//	music_play(0); // silence
-
+  
 	set_vram_buffer(); // points ppu update to vram_buffer, do this at least once
 
 	ppu_on_all(); // turn on screen
@@ -4440,9 +4440,9 @@ void main(void)
 	// banked_call(BANK_4, bank_4_cutscene_init);
 	// levels_complete = 2;
 	// banked_call(BANK_1, bank_1_instructions_init);
-	banked_call(BANK_4, bank_4_instruction_init);
+	// banked_call(BANK_4, bank_4_instruction_init);
 	// banked_call(BANK_5, bank_5_starfield_init);
-	// banked_call(BANK_2, bank_2_ending_scroll_init);
+	banked_call(BANK_2, bank_2_ending_scroll_init);
 
 	while (1)
 	{

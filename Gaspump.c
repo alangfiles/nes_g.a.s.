@@ -3929,7 +3929,7 @@ void bank_5_draw_starfield_boss(void)
 		sprite_frames = 0;
 	}
 
-	if (spaceship_destroyed && boss_hits == 5)
+	if (spaceship_destroyed && boss_hits >= 5)
 	{
 		final_boss_beat = 1;
 		if(sprite_frames == 1){
@@ -3998,7 +3998,7 @@ void bank_5_draw_starfield_boss(void)
 		{
 			scroll_x += 2; 
 		} 
-		else if (sprite_frames == 500)
+		else
 		{
 			banked_call(BANK_5, bank_5_starfield_boss_defeated);
 		}

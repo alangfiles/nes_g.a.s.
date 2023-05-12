@@ -863,7 +863,7 @@ void bank_1_title_init(void)
 
 }
 
-const unsigned char level_0_awful[] = "Don't click\n\nKeep the flow\n\ngoing...";
+const unsigned char level_0_awful[] = "Don't click.\n\nKeep the flow\n\ngoing...";
 const unsigned char level_0_bad[] = "Don't get distracted\n\nPump'n'Focus.";
 const unsigned char level_0_good[] = "Rough around the\n\nedges, but we can\n\nwork together.";
 const unsigned char level_0_perfect[] = "Jumping Gardoks!\n\nThat's perfect!";

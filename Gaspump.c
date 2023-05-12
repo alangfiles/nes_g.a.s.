@@ -864,20 +864,20 @@ void bank_1_title_init(void)
 }
 
 const unsigned char level_0_awful[] = "Don't click.\n\nKeep the flow\n\ngoing...";
-const unsigned char level_0_bad[] = "Don't get distracted\n\nPump'n'Focus.";
+const unsigned char level_0_bad[] = "That's not near\n\nenough gas.\n\nPump Harder.";
 const unsigned char level_0_good[] = "Rough around the\n\nedges, but we can\n\nwork together.";
 const unsigned char level_0_perfect[] = "Jumping Gardoks!\n\nThat's perfect!";
 const unsigned char level_0_over[] = "Bit too much bub.\n\nRelax and pump.";
 
-const unsigned char level_1_awful[] = "You clicked it...\n\nDidn't you?\nTry Again\n";
-const unsigned char level_1_bad[] = "That's not near\n\nenough gas.\n\nPump Harder.";
+const unsigned char level_1_awful[] = "You clicked it...\n\nDidn't you?";
+const unsigned char level_1_bad[] = "Pay attention!\n\nIf you've got time to\nslump, you've got time\n to pump.";
 const unsigned char level_1_good[] = "Not perfect...\n\nBut that'll do\n\njust fine.";
 const unsigned char level_1_perfect[] = "WOW!!!\n\nIt wasn't a fluke.\nYou've got skill.";
 const unsigned char level_1_over[] = "Pump that much\n\nand it spills out.";
 
 const unsigned char level_2_awful[] = "To pump or not\n\nto pump, that is\n\nthe question.";
 const unsigned char level_2_bad[] = "Your finger may\n\nhurt, but pump\n\nthrough the pain.";
-const unsigned char level_2_good[] = "You're as good as\nI hoped. Wait \noutside. I've gotta\ncall my boss.";
+const unsigned char level_2_good[] = "You're as good as\nI hoped. Wait\noutside. I've gotta\ncall my boss.";
 const unsigned char level_2_perfect[] = "Bumping Barthoids!\nYou're great!\nMaybe... just maybe.\n\nWait outside okay?";
 const unsigned char level_2_over[] = "You have no regard\n\nfor the gas\n\nyou spill...";
 

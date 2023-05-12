@@ -2666,7 +2666,7 @@ void bank_4_instruction_loop(void)
 	}
 
 	read_input();
-	if (trigger_clicked)
+	if (trigger_clicked && text_rendered == text_length)
 	{
 		wait_and_fade_out();
 		if (alien_level_cleared)

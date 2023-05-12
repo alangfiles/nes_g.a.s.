@@ -24,7 +24,7 @@ file	id=20,name="CHRS/Gaspump_alt.chr",size=8192,mtime=0x645A9DA4,mod=0
 file	id=21,name="CHRS/Futurepump_alt.chr",size=8192,mtime=0x6427A2A0,mod=0
 file	id=22,name="CHRS/Futurepump_alt_2.chr",size=8192,mtime=0x6427A2A1,mod=0
 file	id=23,name="CHRS/titlescreen.chr",size=8192,mtime=0x6437E6AE,mod=0
-file	id=24,name="Gaspump.s",size=891027,mtime=0x645D95BD,mod=1
+file	id=24,name="Gaspump.s",size=891031,mtime=0x645D960C,mod=1
 file	id=25,name="/usr/local/Cellar/cc65/2.19/share/cc65/asminc/longbranch.mac",size=2632,mtime=0x5ED2ADF3,mod=1
 file	id=26,name="/private/tmp/cc65-20211029-72602-uqb2uc/cc65-2.19/asminc/cpu.mac",size=843,mtime=0x5ED2ADF3,mod=10+13+15+19
 file	id=27,name="/private/tmp/cc65-20211029-72602-uqb2uc/cc65-2.19/asminc/zeropage.inc",size=721,mtime=0x5ED2ADF3,mod=23
@@ -67455,7 +67455,7 @@ seg	id=5,name="NULL",start=0x000000,size=0x0000,addrsize=absolute,type=rw
 seg	id=6,name="HEADER",start=0x000000,size=0x0010,addrsize=absolute,type=ro,oname="Gaspump.nes",ooffs=0
 seg	id=7,name="ONCE",start=0x00ECDA,size=0x0000,addrsize=absolute,type=ro,oname="Gaspump.nes",ooffs=126186
 seg	id=8,name="BANK0",start=0x008000,size=0x30F6,addrsize=absolute,type=ro,oname="Gaspump.nes",ooffs=16
-seg	id=9,name="BANK1",start=0x008000,size=0x160F,addrsize=absolute,type=ro,oname="Gaspump.nes",ooffs=16400
+seg	id=9,name="BANK1",start=0x008000,size=0x1610,addrsize=absolute,type=ro,oname="Gaspump.nes",ooffs=16400
 seg	id=10,name="BANK2",start=0x008000,size=0x0E8E,addrsize=absolute,type=ro,oname="Gaspump.nes",ooffs=32784
 seg	id=11,name="BANK3",start=0x008000,size=0x3FBD,addrsize=absolute,type=ro,oname="Gaspump.nes",ooffs=49168
 seg	id=12,name="BANK4",start=0x008000,size=0x3E51,addrsize=absolute,type=ro,oname="Gaspump.nes",ooffs=65552

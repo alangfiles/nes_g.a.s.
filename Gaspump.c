@@ -550,7 +550,7 @@ void bank_0_intro_cutscene_loop(void)
 
 #include "SPRITES/al.h"
 
-const unsigned char level_0_text[] = "So you think you can pump\ngas?\n\nI pump gas like you for\nbreakfast.\n\nGive me 2 gallons";
+const unsigned char level_0_text[] = "So you think you can\npump gas?\n\nI pump gas like you for\nbreakfast.\n\nGive me 2 gallons.";
 const unsigned char level_1_text[] = "OK, you can pump with your\nbrain, but can you pump with\nyour brawn?\n\nGive me 8 gallons!";
 const unsigned char level_2_text[] = "I can't deny it...\n\nYou were born to do this.\n\nOne last test...\n\n\nCan you do 17 gallons?";
 // const unsigned char level_3_text[] = "You've got it. \n I believe in you.\n Only you can save our space people.\n\n Follow me to my galaxy.";

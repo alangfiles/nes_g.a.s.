@@ -3674,6 +3674,7 @@ unsigned int spaceship_1_x = 230 << 8;
 unsigned int spaceship_1_y = 100 << 8;
 unsigned char spaceship_1_frames = 0;
 unsigned char spaceship_destroyed = 0;
+unsigned char bosship_hit = 0;
 unsigned char spaceship_y_dir = 0;
 const unsigned char ship_speeds[] = {210, 180, 250, 200};
 #include "SPRITES/starfield.h"
@@ -3933,7 +3934,7 @@ void bank_5_draw_starfield_boss(void)
 		sprite_frames = 0;
 	}
 
-	if (spaceship_destroyed && boss_hits >= 5)
+	if (bosship_hit && boss_hits >= 5)
 	{
 		final_boss_beat = 1;
 		if(sprite_frames == 1){
@@ -4009,7 +4010,7 @@ void bank_5_draw_starfield_boss(void)
 		return;
 	}
 
-	if (moveframes > 600 && moveframes < 800 && spaceship_destroyed == 0)
+	if (moveframes > 600 && moveframes < 800 && bosship_hit == 0)
 	{
 		// open up to shoot during these frames.
 		// the guy stops moving for them.
@@ -4039,7 +4040,7 @@ void bank_5_draw_starfield_boss(void)
 		{
 			// reset stuff for boss level
 			moveframes = 0;
-			spaceship_destroyed = 0;
+			bosship_hit = 0;
 		}
 		if (high_byte(spaceship_1_y) == 40)
 		{
@@ -4378,6 +4379,7 @@ void bank_5_starfield_loop(void)
 				sprite_frames = 0;
 				++boss_hits;
 				hit_detected = 0;
+				bosship_hit = 1;
 			}
 		}
 		ppu_wait_nmi();
@@ -4446,7 +4448,7 @@ void main(void)
 	/*      
 		DEBUG ONLY!!!!  
 	*/     
-	music_stop();
+	// music_stop();
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
@@ -4455,7 +4457,7 @@ void main(void)
 	// levels_complete = 2;
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
-	banked_call(BANK_5, bank_5_starfield_init);
+	// banked_call(BANK_5, bank_5_starfield_init);
 	// banked_call(BANK_2, bank_2_ending_scroll_init);
 
 	while (1)

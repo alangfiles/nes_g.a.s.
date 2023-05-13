@@ -3871,6 +3871,7 @@ void bank_5_draw_starfield_player_sprite(void)
 		--player_y;
 	}
 	oam_meta_spr(high_byte(player_x), player_y, rocket_rider_right);
+	
 }
 
 void bank_5_starfield_boss_defeated(void)
@@ -4348,11 +4349,20 @@ void bank_5_starfield_loop(void)
 	{
 		sfx_play(SFX_SHOT,0);
 		shooting_mode = 1;
+		oam_clear();
+		bank_5_draw_starfield_sprites(); // draw white blocks because shooting mode
 		ppu_mask(0x16); // BG off, won't happen till NEXT frame
 		ppu_wait_nmi(); // wait till the top of the next frame
+
 		oam_clear();
-		// draw white blocks
 		bank_5_draw_starfield_sprites();
+		ppu_mask(0x1e); // bg on, won't happen till NEXT frame
+
+		hit_detected = zap_read(0);
+		if (debug_mode && hit_detected == 0)
+		{
+			hit_detected = (pad1 & PAD_A);
+		}
 
 		if (hit_detected)
 		{
@@ -4367,11 +4377,12 @@ void bank_5_starfield_loop(void)
 			{
 				sprite_frames = 0;
 				++boss_hits;
+				hit_detected = 0;
 			}
 		}
 		ppu_wait_nmi();
 		shooting_mode = 0;
-		ppu_mask(0x1e); // bg on, won't happen till NEXT frame
+		
 	}
 
 	++moveframes;
@@ -4435,7 +4446,7 @@ void main(void)
 	/*      
 		DEBUG ONLY!!!!  
 	*/     
-	// music_stop();
+	music_stop();
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_5, bank_5_gameover_init);
 	// alien_level_status = ALIEN_INITIAL_INSTRUCTION;
@@ -4444,7 +4455,7 @@ void main(void)
 	// levels_complete = 2;
 	// banked_call(BANK_1, bank_1_instructions_init);
 	// banked_call(BANK_4, bank_4_instruction_init);
-	// banked_call(BANK_5, bank_5_starfield_init);
+	banked_call(BANK_5, bank_5_starfield_init);
 	// banked_call(BANK_2, bank_2_ending_scroll_init);
 
 	while (1)
